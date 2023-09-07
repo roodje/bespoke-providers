@@ -1,0 +1,57 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/92198f42-4726-12fd-ad55-b93b04192121/direct-debits",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "x-fapi-financial-id": {
+        "contains": "001728392JD873NNHY"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "DirectDebit": [
+          {
+            "AccountId": "92198f42-4726-12fd-ad55-b93b04192121",
+            "DirectDebitId": "826113-20012771-DD-0001",
+            "MandateIdentification": "911484",
+            "DirectDebitStatusCode": "Active",
+            "Name": "LIMITED",
+            "PreviousPaymentDateTime": "2021-02-12T00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "43.24",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "92198f42-4726-12fd-ad55-b93b04192121",
+            "DirectDebitId": "826113-20012771-DD-0002",
+            "MandateIdentification": "713556",
+            "DirectDebitStatusCode": "Inactive",
+            "Name": "MANAGEMENT",
+            "PreviousPaymentDateTime": "2020-10-06T00:00+01:00",
+            "PreviousPaymentAmount": {
+              "Amount": "367.50",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://cb.api-nc.cybservices.co.uk/open-banking/v3.1/aisp/accounts/92198f42-4726-12fd-ad55-b93b04192121/direct-debits/"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

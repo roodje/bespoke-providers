@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/berlingroup/.well-known/openid-configuration?authorizationId=11111111-1111-1111-1111-111111111111"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "issuer": "https://xs2a-sandbox.bankvanbreda.be",
+      "authorization_endpoint": "https://xs2a-sandbox-web.bankvanbreda.be/public/berlingroup/authorize/11111111-1111-1111-1111-111111111111",
+      "token_endpoint": "https://xs2a-sandbox.bankvanbreda.be/berlingroup/v1/token",
+      "userinfo_endpoint": "https://xs2a-sandbox.bankvanbreda.be/berlingroup/v1/accounts",
+      "scopes_supported": [
+        "account",
+        "payment"
+      ],
+      "response_types_supported": [
+        "code"
+      ],
+      "grant_types_supported": [
+        "client_credentials",
+        "authorization_code",
+        "refresh_token"
+      ],
+      "code_challenge_methods_supported": [
+        "S256"
+      ],
+      "subject_types_supported": [
+        "public"
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

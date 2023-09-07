@@ -1,0 +1,15 @@
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+lovebird:
+  bancatransilvaniagroup:
+    bancatransilvania:
+      baseUrl: https://localhost:${wiremock.server.https-port}/bt/sb
+      authorizeUrl: https://localhost:${wiremock.server.https-port}/prd/sps/oauth/oauth20/authorize
+      paginationLimit: 40

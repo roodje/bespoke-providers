@@ -1,0 +1,7 @@
+lovebird:
+  rabobank:
+    base-url: http://localhost:${wiremock.server.port}/
+    base-authorization-url: http://localhost:${wiremock.server.port}/
+    base-url-pis: http://localhost:${wiremock.server.port}
+    o-auth-authorization-scope: "ais.balances.read ais.transactions.read-90days ais.transactions.read-history"
+    transactions-fetch-start-time-max-days: 30

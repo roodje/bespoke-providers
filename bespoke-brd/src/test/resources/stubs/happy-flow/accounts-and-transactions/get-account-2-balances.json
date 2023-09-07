@@ -1,0 +1,43 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/accounts/1010000000285/balances",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "consent-id": {
+        "equalTo": "800000022"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "RO46BRDE410SV04646464100",
+        "currency": "EUR"
+      },
+      "balances": [
+        {
+          "balanceType": "expected",
+          "balanceAmount": {
+            "amount": "1111.44",
+            "currency": "EUR"
+          },
+          "creditLimitIncluded": true,
+          "lastChangeDateTime": "2019-01-12T03:32:07.190+02:00"
+        }
+      ]
+    }
+  }
+}

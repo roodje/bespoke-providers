@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/apiplatform/v2/oauth/token/mac",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Authentication": {
+        "matches": "MAC.id=\"THE-CLIENT-ID\",ts=\"[0-9]+\",nonce=\"[0-9a-z-]+:AMEX\",mac=\".+\""
+      },
+      "x-amex-api-key": {
+        "contains": "THE-CLIENT-ID"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "code=THE-CODE"
+      },
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "scope_list=MEMBER_ACCT_INFO%2CFINS_STP_DTLS%2CFINS_BAL_INFO%2CFINS_TXN_INFO"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Flocalhost%2Fredirect"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "access_token":"the-access-token",
+      "token_type": "mac",
+      "expires_in": 2592000,
+      "refresh_token": "the-refresh-token",
+      "scope": "MEMBER_ACCT_INFO FINS_STP_DTLS FINS_BAL_INFO FINS_TXN_INFO",
+      "mac_key": "the-mac-key",
+      "mac_algorithm": "hmac-sha-256"
+    }
+  }
+}
+

@@ -1,0 +1,7 @@
+lovebird:
+  chebancagroup:
+    chebanca:
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      tokenUrl: https://localhost:${wiremock.server.https-port}/auth/oauth/v2/token
+      authorizeUrl: https://localhost:${wiremock.server.https-port}/auth/oauth/v2/authorize
+      paginationLimit: 1000

@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.0/aisp/accounts/f59f6450-d6de-4f08-917a-d883cae85119/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer j4HmjDMaBdSXUQQzN1GpdHoozGho"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "5008e82d-f5ac-42fe-8f07-a49b025f3c2e"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0011800000tfV9aBBE"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "f59f6450-d6de-4f08-917a-d883cae85119",
+            "CreditDebitIndicator": "Credit",
+            "Type": "Expected",
+            "DateTime": "2020-09-09T21:36:57+00:00",
+            "Amount": {
+              "Amount": "10.00",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.0/aisp/accounts/f59f6450-d6de-4f08-917a-d883cae85119/balances"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

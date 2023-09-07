@@ -1,0 +1,7 @@
+lovebird:
+  belfiusGroup:
+    belfius:
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      pagination-limit: 2000
+      transactionsAcceptHeaderValue: application/vnd.belfius.api+json; version=2
+      acceptHeaderValue: application/vnd.belfius.api+json; version=2

@@ -1,0 +1,5 @@
+lovebird:
+  libragroup:
+    libra:
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthBaseUrl: https://localhost/oAuth

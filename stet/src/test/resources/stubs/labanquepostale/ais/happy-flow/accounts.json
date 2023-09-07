@@ -1,0 +1,92 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v1/accounts",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Connection": {
+        "equalTo": "Keep-Alive",
+        "caseInsensitive": true
+      },
+      "Authorization": {
+        "equalTo": "Bearer af39f12f-eb22-4226-aa4e-5f68ba840c55"
+      },
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "1",
+          "name": "NAME OF THE ACCOUNT",
+          "cashAccountType": "CACC",
+          "accountId": {
+            "iban": "FR8414508000709133733381U45",
+            "currency": "EUR"
+          },
+          "usage": "PRIV",
+          "_links": {
+            "balances": {
+              "href": "https://localhost:{{request.requestLine.port}}/v1/accounts/1/balances"
+            },
+            "transactions": {
+              "href": "https://localhost:{{request.requestLine.port}}/v1/accounts/1/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "2",
+          "name": "Current-Account-2 with OTHR balance and empty transactions",
+          "cashAccountType": "CACC",
+          "accountId": {
+            "iban": "FR9317569000502693659367F19",
+            "currency": "EUR"
+          },
+          "_links": {
+            "balances": {
+              "href": "https://localhost:{{request.requestLine.port}}/v1/accounts/2/balances"
+            },
+            "transactions": {
+              "href": "https://localhost:{{request.requestLine.port}}/v1/accounts/2/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "3",
+          "name": "Card-Account-3 Credit Card Account",
+          "cashAccountType": "CARD",
+          "accountId": {
+            "iban": "FR3930003000505784737239O11",
+            "currency": "EUR"
+          },
+          "_links": {
+            "balances": {
+              "href": "https://localhost:{{request.requestLine.port}}/v1/accounts/3/balances"
+            },
+            "transactions": {
+              "href": "https://localhost:{{request.requestLine.port}}/v1/accounts/3/transactions"
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "https://localhost:{{request.requestLine.port}}/v1/accounts"
+        }
+      }
+    }
+  }
+}

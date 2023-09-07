@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/accounts/v1/account-requests/3536089c-266f-4306-984f-15233d711800",
+    "headers": {
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "content-type": {
+        "contains": "application/json;charset=utf-8"
+      },
+      "x-ab-bank-id": {
+        "equalTo": "x-ab-bank-id"
+      },
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "Ocp-Apim-Subscription-Key": {
+        "equalTo": "subscription-key"
+      }
+    }
+  },
+  "response": {
+    "status": 204,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-ab-interaction-id": "977354b4-b31e-11eb-8529-0242ac130003"
+    }
+  }
+}

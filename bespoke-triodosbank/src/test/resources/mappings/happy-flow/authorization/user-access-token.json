@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/auth/(uk|nl|be_fr|be_nl)/v1/token",
+    "headers": {
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "content-type": {
+        "contains": "application/x-www-form-urlencoded"
+      }
+    },
+    "basicAuthCredentials": {
+      "username": "client-id",
+      "password": "client-secret"
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=authorization-code"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fyolt.com%2Fcallback"
+      },
+      {
+        "contains": "code_verifier"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access_token": "access-token",
+      "scope": "openid offline_access",
+      "refresh_token": "refresh-token",
+      "id_token": "id_token",
+      "token_type": "Bearer",
+      "expires_in": 600
+    }
+  }
+}

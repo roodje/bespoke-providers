@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/v3.1/aisp/account-access-consents/urn-alphabank-intent-88379",
+    "headers": {
+      "x-client-id": {
+        "equalTo": "THE-CLIENT-ID"
+      },
+      "x-amex-api-key": {
+        "equalTo": "THE-CLIENT-ID"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "Authorization": {
+        "equalTo": "Bearer client-access-token"
+      }
+    }
+  },
+  "response": {
+    "status": 204,
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

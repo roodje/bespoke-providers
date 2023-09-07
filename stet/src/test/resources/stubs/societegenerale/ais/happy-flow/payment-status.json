@@ -1,0 +1,94 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/payment-requests/4ccb2450-eeb1-11ea-2222-0242ac120002",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-ACCESS-TOKEN"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Signature": {
+        "equalTo": "keyId=\"https://test.qseal.certificate.com/26:c7:b8:8e:09:0b:e1:ed:04:3e:bd:58:3d:4d:78:b5:ad:ad:fa:c1.pem\",algorithm=\"rsa-sha256\",headers=\"x-request-id\",signature=\"signed string\""
+      },
+      "Client-Id": {
+        "equalTo": "f330xxxx6fe8xxxx6edbxxxxd15axxxx"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store",
+      "Pragma": "no-cache",
+      "content-length": "1688",
+      "X-Global-Transaction-ID": "e99c5689-dd45-4f64-9324-9e5491b57b04",
+      "Strict-Transport-Security": "max-age=16070400; includeSubDomains",
+      "Set-Cookie": "TS019f9c34=01383c5c9c18f6e6a2a498a1205e6eb1cb76357089b212864042c6641a3d0a15ef5d7bf8a39c8c03c08058311184b5d03068557ccd; Path=/",
+      "Vary": "Accept-Encoding",
+      "Connection": "Keep-Alive"
+    },
+    "jsonBody": {
+      "paymentRequest": {
+        "paymentInformationId": "4ccb2450-eeb1-11ea-2222-0242ac120002",
+        "creationDateTime": "2019-10-17T19:40:00.000Z",
+        "requestedExecutionDate": "2019-10-17T19:40:00.000Z",
+        "numberOfTransactions": 1,
+        "paymentTypeInformation": {
+          "serviceLevel": "SEPA"
+        },
+        "beneficiary": {
+          "creditor": {
+            "name": "Buzz Lightyear"
+          },
+          "creditorAccount": {
+            "iban": "FR7630006000011234567890189"
+          },
+          "creditorAgent": {
+            "bicFi": "Vivialdi's bank"
+          }
+        },
+        "creditTransferTransaction": [
+          {
+            "paymentId": {
+              "instructionId": "4ccb2450-eeb1-11ea-3333-0242ac120002",
+              "endToEndId": "4ccb2450-eeb1-11ea-3333-0242ac120002"
+            },
+            "instructedAmount": {
+              "currency": "EUR",
+              "amount": "124.35"
+            },
+            "remittanceInformation": {
+              "unstructured": [
+                "To infinity and beyond!"
+              ]
+            }
+          }
+        ],
+        "supplementaryData": {
+          "acceptedAuthenticationApproach": [
+            "REDIRECT"
+          ],
+          "appliedAuthenticationApproach": "REDIRECT",
+          "successfulReportUrl": "https://www.redirect.url/callback/payment?state=state&succesfull=true",
+          "unsuccessfulReportUrl": "https://www.redirect.url/callback/payment?state=state&succesfull=false"
+        },
+        "resourceId": "4ccb2450-eeb1-11ea-5555-0242ac120002",
+        "paymentInformationStatus": "ACSC"
+      },
+      "_links": {
+        "request": {
+          "href": "v1/payments/paymentReport/MyPmtInfRscId"
+        },
+        "confirmation": {
+          "href": "v1/payments/paymentReport/MyPmtInfRscId/confirmation"
+        }
+      }
+    }
+  }
+}

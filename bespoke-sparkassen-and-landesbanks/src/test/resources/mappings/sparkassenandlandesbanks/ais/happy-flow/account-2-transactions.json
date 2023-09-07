@@ -1,0 +1,41 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/10050000/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e81g/transactions",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "deltaList": {
+        "equalTo": "false"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_ACCESS_TOKEN"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Accept": {
+        "equalTo": "application/xml"
+      },
+      "Consent-ID": {
+        "equalTo": "SOME_CONSENT_ID"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/xml"
+    },
+    "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.052.001.02\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"          xsi:schemaLocation=\"urn:iso:std:iso:20022:tech:xsd:camt.052.001.02 camt.052.001.02.xsd\">    <BkToCstmrAcctRpt>        <GrpHdr>            <MsgId>camt52_20210119123123__ONLINEBA</MsgId>            <CreDtTm>2021-01-19T12:31:23+01:00</CreDtTm>            <MsgPgntn>                <PgNb>1</PgNb>                <LastPgInd>true</LastPgInd>            </MsgPgntn>        </GrpHdr>        <Rpt>            <Id>camt052_ONLINEBA</Id>            <ElctrncSeqNb>00000</ElctrncSeqNb>            <CreDtTm>2021-01-19T12:31:23+01:00</CreDtTm>            <Acct>                <Id>                    <IBAN>DE12345678910111213145</IBAN>                </Id>                <Ccy>EUR</Ccy>                <Svcr>                    <FinInstnId>                        <BIC>FRSPDE66XXX</BIC>                        <Nm>SPARKASSE ABC</Nm>                        <Othr>                            <Id>1232323232323</Id>                            <Issr>UmsStId</Issr>                        </Othr>                    </FinInstnId>                </Svcr>            </Acct>            <Bal>                <Tp>                    <CdOrPrtry>                        <Cd>PRCD</Cd>                    </CdOrPrtry>                </Tp>                <Amt Ccy=\"EUR\">500.00</Amt>                <CdtDbtInd>CRDT</CdtDbtInd>                <Dt>                    <Dt>2020-10-20</Dt>                </Dt>            </Bal>            <Bal>                <Tp>                    <CdOrPrtry>                        <Cd>CLBD</Cd>                    </CdOrPrtry>                </Tp>                <Amt Ccy=\"EUR\">499.99</Amt>                <CdtDbtInd>CRDT</CdtDbtInd>                <Dt>                    <Dt>2021-01-19</Dt>                </Dt>            </Bal>        </Rpt>    </BkToCstmrAcctRpt></Document>"
+  }
+}

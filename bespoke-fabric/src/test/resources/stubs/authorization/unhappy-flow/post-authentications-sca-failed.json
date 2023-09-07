@@ -1,0 +1,47 @@
+{
+  "request": {
+    "url": "/api/fabrick/psd2/v1/consents/33333/authorisations",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "TPP-Redirect-Preferred": {
+        "equalTo": "true"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "TPP-Redirect-URI": {
+        "equalTo": "https://www.yolt.com/callback-acc"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "scaStatus": "failed",
+      "consentId": "1111111111-aa11111",
+      "_links": {
+        "scaOAuth": {
+          "href": "https://psdgw-sella.fabrick.com/public/api/fabrick/psd2/v1/scaOAuth/aaaaaaaa-11a1-1111-aaaa-11111aaaa111"
+        },
+        "scaStatus": {
+          "href": "https://psdgw-sella.fabrick.com/api/fabrick/psd2/v1/scaStatus/aaaaaaaa-11a1-1111-aaaa-11111aaaa111"
+        },
+        "scaRedirect": {
+          "href": "https://psdgw-sella.fabrick.com/api/fabrick/psd2/v1/scaRedirect/aaaaaaaa-11a1-1111-aaaa-11111aaaa111"
+        },
+        "self": {
+          "href": "https://psdgw-sella.fabrick.com/api/fabrick/psd2/v1/consents/1111111111-aa11111"
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

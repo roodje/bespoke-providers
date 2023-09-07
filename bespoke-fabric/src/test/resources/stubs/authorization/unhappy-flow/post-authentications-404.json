@@ -1,0 +1,39 @@
+{
+  "request": {
+    "url": "/api/fabrick/psd2/v1/consents/22222/authorisations",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "TPP-Redirect-Preferred": {
+        "equalTo": "true"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "TPP-Redirect-URI": {
+        "equalTo": "https://www.yolt.com/callback-acc"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 404,
+    "jsonBody": {
+      "tppMessages": [
+        {
+          "category": "Category of the TPP message category",
+          "code": "404",
+          "path": "Some path",
+          "text": "Message codes defined for AIS for HTTP Error code 400 (BAD_REQUEST)"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

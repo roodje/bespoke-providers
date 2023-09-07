@@ -1,0 +1,610 @@
+openapi: 3.0.1
+info:
+  version: "1.0.2"
+  title: Account Information
+  description: >-
+    The Account Information API is used to retrieve account data. You can
+    retrieve transaction information, the current balance of an account or
+    details of the account itself.  
+
+
+    The API can be used by licensed third party service providers to access ABN
+    AMRO accounts. An account can only be accessed when ABN AMRO's account
+    holder authorizes this through the consent application.
+
+
+    **New in version 1.0.2:**  
+   
+    - Updated to OpenAPI 3
+    
+    - Textual improvements
+
+    Version 3.0.4 was updated to 1.0.2 to bring versioning in line with the API. 
+
+externalDocs:
+  description: Click here for more information on the Account Information API
+  url: >-
+    https://developer.abnamro.com/api/account-information-v1/account-information-documentation
+
+servers:
+  - url: 'https://api-sandbox.abnamro.com/v1'
+    description: for sandbox environment
+  - url: 'https://api.abnamro.com/v1'
+    description: for production environment
+
+paths:
+  /accounts/{accountNumber}/transactions:
+    get:
+      description: Retrieve a list of transactions for a specific account number.
+      tags:
+        - Account Information Services
+      parameters:
+        - name: accountNumber
+          in: path
+          description: The IBAN for which transactions are to be retrieved
+          required: true
+          schema:
+            type: string
+            pattern: "^[0-9A-Z]+$"
+        - name: Authorization
+          in: header
+          description: Access token to be passed as a Bearer token.
+          required: true
+          schema:
+            type: string
+        - name: bookDateFrom
+          in: query
+          description: >-
+            Filter, only retrieve transactions more recent than this date 
+            (Format: yyyy-mm-dd). If field or date is ommitted, last 50 transactions
+            are retrieved. The history for which transactions can be retrieved is 18 months.
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: bookDateTo
+          in: query
+          description: >-
+            Filter, only retrieve transactions preceding this date (Format:
+            yyyy-mm-dd).
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: nextPageKey
+          in: query
+          description: >-
+            Key parameter for fetching the next set of transactions. Value to be
+            used is returned in a response of a previous request to the endpoint
+            when more transactions are present.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transactionResponse'
+        '400':
+            $ref: '#/components/responses/400'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403'
+        '404':
+            $ref: '#/components/responses/404'
+        '500':
+            $ref: '#/components/responses/500'   
+      security:
+        - PSD2_Oauth: ['psd2:account:transaction:read']
+          Gen_ApiKey: []
+          
+  /accounts/{accountNumber}/balances:
+    get:
+      description: >-
+        This operation allows you to retrieve the details of the account, like
+        book balance of the account and currency.
+      tags:
+        - Account Information Services
+      parameters:
+        - name: accountNumber
+          in: path
+          description: The IBAN for which the balance is to be retrieved
+          required: true
+          schema:
+            type: string
+            pattern: "^[0-9A-Z]+$"            
+        - name: Authorization
+          in: header
+          description: Access token to be passed as a Bearer token.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/balanceResponse'
+        '400':
+            $ref: '#/components/responses/400'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403'
+        '404':
+            $ref: '#/components/responses/404'
+        '500':
+            $ref: '#/components/responses/500'   
+      security:
+        - PSD2_Oauth: ['psd2:account:balance:read']
+          Gen_ApiKey: []
+
+  /accounts/{accountNumber}/details:
+    get:
+      description: >-
+        This operation allows you to retrieve the details of the account, like
+        currency and account holder name.
+      tags:
+        - Account Information Services
+      parameters:
+        - name: accountNumber
+          in: path
+          description: The IBAN for which the details are to be retrieved
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Access token to be passed as a Bearer token.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/detailsResponse'
+        '400':
+            $ref: '#/components/responses/400'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403'
+        '404':
+            $ref: '#/components/responses/404'
+        '500':
+            $ref: '#/components/responses/500'            
+      security:
+        - PSD2_Oauth: ['psd2:account:details:read']
+          Gen_ApiKey: []
+          
+  /accounts/{accountNumber}/funds:
+    get:
+      description: >-
+        This operation will allow you to verify if the amount specified in the
+        request is available on the account at that time (including any
+        creditline).
+      tags:
+        - Check Availability of Funds
+      parameters:
+        - name: accountNumber
+          in: path
+          description: The IBAN for which transactions are to be retrieved
+          required: true
+          schema:
+            type: string
+            pattern: "^[0-9A-Z]+$"
+        - name: Authorization
+          in: header
+          description: Access token to be passed as a Bearer token.
+          required: true
+          schema:
+            type: string
+        - name: amount
+          in: query
+          description: >-
+            Amount, decimal always a positive number and no more than 3 decimals
+            (fractional digits)
+          required: true
+          schema:
+            type: integer
+            format: double
+            minimum: 0.01
+            exclusiveMinimum: true
+        - name: currency
+          in: query
+          description: >-
+            Currency of the amount, 3 characters alphabetic ISO-4217 currency
+            code (e.g. EUR or USD)
+          required: false
+          schema:
+            type: string
+            pattern: "^[A-Z]{3}$"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/fundsResponse'
+        '400':
+            $ref: '#/components/responses/400'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403'
+        '404':
+            $ref: '#/components/responses/404'
+        '500':
+            $ref: '#/components/responses/500'   
+      security:
+        - PSD2_Oauth: ['psd2:account:transaction:read, psd2:account:balance:read, psd2:account:details:read, psd2:account:funds:read']
+          Gen_ApiKey: []
+
+  /consentinfo:
+    get:
+      description: >-
+        This operation will provide information regarding the authorization to a resource that an
+        access token provides. The access token reprents the consent granted by the account holder
+        / resource owner to an account or resource. The information returned contains information about
+        the granted scopes, selected account number or transaction id.
+      tags:
+        - Consent Info
+      parameters:
+        - name: Authorization
+          in: header
+          description: Access token to be passed as a Bearer token.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/consentInfoResponse'
+        '400':
+            $ref: '#/components/responses/400'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403'
+        '404':
+            $ref: '#/components/responses/404'
+        '500':
+            $ref: '#/components/responses/500'   
+      security:
+        - PSD2_Oauth: ['psd2:account:funds:read']
+          Gen_ApiKey: []
+          
+components:
+  securitySchemes:
+    PSD2_Oauth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://auth-sandbox.connect.abnamro.com/as/authorization.oauth2'
+          tokenUrl: 'https://auth-sandbox.connect.abnamro.com/as/token.oauth2'
+          scopes:
+            psd2:account:balance:read: Read the balance of an account
+            psd2:account:transaction:read: Read the transactions/mutations on an account
+            psd2:account:details:read: Read the details of an account e.g. Address, Currency etc
+            psd2:account:funds:read: Check availability of funds on an account
+    Gen_ApiKey:
+      type: apiKey
+      in: header
+      name: API-Key
+      description: The API Key for your app from the Developer Portal
+    
+  schemas:
+    transactionResponse:
+      type: object
+      required:
+        - accountNumber
+      properties:
+        accountNumber:
+          description: The IBAN for which transactions were retrieved
+          type: string
+          example: NL12ABNA9999876523
+        nextPageKey:
+          description: >-
+            Key parameter for fetching the next set of transactions. Value to be
+            used is returned in a response of a previous request to the endpoint
+            when more transactions are present.
+          type: string
+          example: '2018-10-24T11:50:27.810000'
+        transactions:
+          type: array
+          items:
+            type: object # YCO-354: fixing this in original yaml file in order to get a proper object representation
+            description: Transaction details
+            required:
+              - transactionId
+              - bookDate
+              - amount
+              - currency
+            properties:
+              transactionId:
+                description: Unique id generated for every request
+                type: string
+                example: 8297K5935164172S0AC
+              mutationCode:
+                description: Indicator for the type of transaction
+                type: string
+                example: 654
+              descriptionLines:
+                description: >-
+                  Unformatted text entered by the user during the transaction.
+                  String array of up to nine lines of each 0 to 32 characters
+                type: array
+                items:
+                  type: string
+                  example: SEPA Overboeking
+              transactionTimestamp:
+                description: Timestamp of the transaction execution
+                type: string
+                example: '2018-10-24-11:59:35.710'
+              bookDate:
+                description: The bookkeeping date of the mutation
+                type: string
+                format: date
+                example: '2018-10-24'
+              balanceAfterMutation:
+                description: Account balance after the current payment transaction
+                type: number
+                format: double
+                example: 6941.18
+              counterPartyAccountNumber:
+                description: >-
+                  Counter account number. Will be empty if no counter account is
+                  found for the transaction (e.g an ATM withdrawal).
+                type: string
+                example: NL55INGB9999300517
+              counterPartyName:
+                description: Name associated with the counter account number
+                type: string
+                maxLength: 24
+                example: Petstore supplies
+              amount:
+                description: >-
+                  Amount including minus -9999999.99, unformatted. Negative in
+                  case of debit transactions
+                type: number
+                format: double
+                example: 10.15
+              currency:
+                description: >-
+                  Currency of the mutation, 3 characters alphabetic ISO currency
+                  code (e.g. EUR or USD) as per ISO 4217
+                type: string
+                example: EUR
+              status:
+                description: The status of the transaction.
+                type: string
+                enum:
+                  - EXECUTED
+                example: EXECUTED
+          minItems: 0
+          maxItems: 50  
+            
+    balanceResponse:
+      type: object
+      required:
+        - accountNumber
+      properties:
+        accountNumber:
+          description: The IBAN for which the balance was retrieved
+          type: string
+          example: NL12ABNA9999876523
+        balanceType:
+          description: Indicator of the type of balance that was retrieved
+          type: string
+          enum:
+            - BOOKBALANCE
+          example: BOOKBALANCE
+        amount:
+          description: >-
+            Amount including minus -9999999.99, unformatted. Negative in case of
+            debit balance
+          type: number
+          format: double
+          example: -999.99
+        currency:
+          description: >-
+            Currency of the mutation, 3 characters alphabetic ISO currency code
+            (e.g. EUR or USD) as per ISO 4217
+          type: string
+          example: EUR
+          
+    detailsResponse:
+      type: object
+      required:
+        - accountNumber
+      properties:
+        accountNumber:
+          description: The IBAN for which the details were retrieved
+          type: string
+          example: NL12ABNA9999876523
+        currency:
+          description: >-
+            Currency of the account, 3 characters alphabetic ISO currency code
+            (e.g. EUR or USD) as per ISO 4217
+          type: string
+          example: EUR
+        accountHolderName: # YCO-354: ABN return 'accountHolderName' in response although 'AccountHolderName' was specified here
+          description: Name of the owner of the account
+          type: string
+          example: Firstname Lastname
+
+    consentInfoResponse:
+      type: object
+      required:
+        - scopes
+        - iban
+        - valid
+      properties:
+        scopes:
+          description: The scopes associated with the access token
+          type: string
+          example: psd2:account:transaction:read psd2:account:balance:read psd2:account:details:read
+        iban:
+          description: The iban/account number associated with the access token
+          type: string
+          example: NL12ABNA9999876523
+        transactionId:
+          description: >- 
+            The transaction ID associated with the access token for registered payments. Is "null" when access
+            token is not for payment
+          type: string
+          example: null
+        valid:
+          description: Time that the token is valid (in Unix epoch format).
+          type: string
+          example: 1554379039
+          
+    fundsResponse:
+      type: object
+      required:
+        - accountNumber
+      properties:
+        accountNumber:
+          description: The IBAN for which funds were checked
+          type: string
+          example: NL12ABNA9999876523
+        amount:
+          description: The amount of the funds checked
+          type: integer
+          format: double
+          example: '10.15'
+        currency:
+          description: The currency of the funds checked
+          type: string
+          example: USD
+        available:
+          description: The response if the amount was available true/false
+          type: boolean
+          example: 'true'
+          
+    Message:
+      type: object
+      title: message
+      description: Response object in case of error
+      properties:
+        errors:
+          type: array
+          items:
+            type: object # YCO-354: fixing this in original yaml file in order to get a proper object representation
+            required:
+              - code
+              - message
+              - reference
+              - traceId
+              - status
+              - category
+            properties:
+              code:
+                description: The unique error code key
+                type: string
+              message:
+                description: Understandable description for the error code key
+                type: string
+              reference:
+                description: Reference where to find more information on error
+                type: string
+              traceId:
+                description: The unique trace id sent for this request
+                type: string
+              status:
+                description: The http code of the error
+                type: integer
+                format: int32
+              category:
+                description: Category of error
+                type: string
+  responses:
+    '400':
+      description: Bad request/parameter error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+          example:
+                errors:
+                  - code: ERR_1100_004
+                    message: One of the input paramater is invalid
+                    reference: >-
+                      https://developer.abnamro.com/get-started#authentication
+                    traceId: 5d47e7b5-55b8-4b9f-b438-51ed01f92f3a
+                    status: 400
+                    category: BAD_REQUEST
+    '401':
+      description: Unauthorised
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+          example:
+                errors:
+                  - code: ERR_2002_002
+                    message: The presented access token is not valid or expired
+                    reference: >-
+                      https://developer.abnamro.com/get-started#authentication
+                    traceId: 36fa4309-fd51-4e6c-b8bc-9e1843b47cf8
+                    status: 401
+                    category: INVALID_ACCESS_TOKEN
+    '403':
+      description: Access Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+          example:
+                errors:
+                  - code: ERR_3002_003
+                    message: Insufficient scope of the token
+                    reference: >-
+                      https://developer.abnamro.com/api/corporate-accounts/technical-details
+                    traceId: c8e372a2-5968-446c-8562-d432cf5722b1
+                    status: 403
+                    category: INSUFFICIENT_SCOPE
+    '404':
+      description: Not found (account number not found)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+          example:
+                errors:
+                  - code: ERR_4001_001
+                    message: >-
+                      The requested resource was not found, or a disallowed
+                      method was used
+                    reference: 'https://developer.abnamro.com/overview'
+                    traceId: aa79f41e-ba03-4089-abf0-6113fddc924f
+                    status: 404
+                    category: NOT_FOUND
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+          example:
+                errors:
+                  - code: MESSAGE_BAI560_0005
+                    message: >-
+                      A technical error has occurred. Please try again
+                      later. Please report the following code when
+                      contacting us: MESSAGE_BAI560_0005
+                    reference: >-
+                      https://developer.abnamro.com/api/corporate-accounts/technical-details
+                    traceId: 114b1652-e499-45b4-8328-0dc41fb266f5
+                    status: 500
+                    category: BACKEND_ERROR

@@ -1,0 +1,45 @@
+{
+  "request": {
+    "urlPattern": "/([a-z-]*)/stet-psd2-api/(v\\d{1,2}\\.\\d{1,2})/accounts/123/balances",
+    "method": "GET",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer ACCESS_TOKEN"
+      },
+      "Signature": {
+        "matches": "keyId=\"d3de0198-6738-4784-92d0-a3e5e0894415\", algorithm=\"rsa-sha256\", headers=\"(.*)\", signature=\"(.*)\""
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "1.1.1.1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "balances": [
+      ],
+      "_links": {
+        "self": {
+          "href": "/any/stet-psd2-api/v2.0/accounts/123/balances-report"
+        },
+        "parent-list": {
+          "href": "/any/stet-psd2-api/v2.0/accounts"
+        },
+        "transactions": {
+          "href": "/any/stet-psd2-api/v2.0/accounts/123/transactions"
+        }
+      }
+    }
+  ,
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

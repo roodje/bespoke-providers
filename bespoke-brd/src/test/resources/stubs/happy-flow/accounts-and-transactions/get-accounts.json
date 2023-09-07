@@ -1,0 +1,60 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/accounts",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "consent-id": {
+        "equalTo": "800000022"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "1010000000195",
+          "iban": "RO47BRDE410SV04747474100",
+          "currency": "RON",
+          "name": "Contul meu in RON",
+          "status": "enabled",
+          "_links": {
+            "balances": {
+              "href": "/v1/accounts/1010000000195/balances"
+            },
+            "transactions": {
+              "href": "/v1/accounts/1010000000195/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "1010000000285",
+          "iban": "RO46BRDE410SV04646464100",
+          "currency": "EUR",
+          "name": "Contul meu in EUR",
+          "status": "enabled",
+          "_links": {
+            "balances": {
+              "href": "/v1/accounts/1010000000285/balances"
+            },
+            "transactions": {
+              "href": "/v1/accounts/1010000000285/transactions"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

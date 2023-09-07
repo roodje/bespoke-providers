@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v1/accounts/2/balances",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Connection": {
+        "equalTo": "Keep-Alive",
+        "caseInsensitive": true
+      },
+      "Authorization": {
+        "equalTo": "Bearer af39f12f-eb22-4226-aa4e-5f68ba840c55"
+      },
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "jsonBody": {
+      "balances": [
+        {
+          "name": "Solde comptable au 12/01/2017",
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": "84.11"
+          },
+          "balanceType": "OTHR"
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "https://localhost:{{request.requestLine.port}}/v1/accounts/2/balances-report",
+          "templated": false
+        }
+      }
+    }
+  }
+}

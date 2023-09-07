@@ -1,0 +1,33 @@
+{
+  "request": {
+    "url": "/v1/consents",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "TPP-Redirect-URI": {
+        "equalTo": "https://www.yolt.com/callback-acc?state=8b6dee15-ea2a-49b2-b100-f5f96d31cd90"
+      },
+      "PSU-ID": {
+        "equalTo": "clientId"
+      },
+      "PSU-IP-Address": {
+        "matches": "[12]\\.[12]\\.[12]\\.[12]"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "bodyFileName": "fineco/ais/happy_flow/post-consent-body.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/apis/open-banking/v3.1/pisp/domestic-payments",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_ACCESS_TOKEN"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "003882287203T83JKK"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "ConsentId": "bec2bc664f984571b5a20ea666a7d0c1",
+            "Initiation": {
+              "InstructionIdentification": "2513bfeg",
+              "EndToEndIdentification": "35B64F93",
+              "InstructedAmount": {
+                "Amount": "0.01",
+                "Currency": "GBP"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "12345678901234",
+                "Name": "P. Jantje"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "SomeRandomMessage",
+                "Reference": "SomeRandomMessage2"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "Status": "Rejected"
+      }
+    }
+  }
+}

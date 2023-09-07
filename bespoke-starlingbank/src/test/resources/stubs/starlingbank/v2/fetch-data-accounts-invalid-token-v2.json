@@ -1,0 +1,23 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/v2/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token-invalid"
+      },
+      "Accept-Encoding": {
+        "contains": "gzip"
+      }
+    }
+  },
+  "response": {
+    "status": 401,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "errorMessage": "Invalid token in authorization header"
+    }
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "info": {
+    "_postman_id": "7e9317ff-6c11-4618-898e-674723a102e2",
+    "name": "Knab Copy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Client LoginUrl with bob/bob credentials",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://login.knab.io/connect/authorize?response_type=code&client_id=34b8109c-b82f-4c0d-a0d7-41933318687f&redirect_uri=https://www.yolt.com/callback-dev&scope=psd2 offline_access AIS:815553c7-41cf-4c4e-acf5-7a4410f81f8e&state=random42",
+          "protocol": "https",
+          "host": [
+            "login",
+            "knab",
+            "io"
+          ],
+          "path": [
+            "connect",
+            "authorize"
+          ],
+          "query": [
+            {
+              "key": "response_type",
+              "value": "code"
+            },
+            {
+              "key": "client_id",
+              "value": "34b8109c-b82f-4c0d-a0d7-41933318687f"
+            },
+            {
+              "key": "redirect_uri",
+              "value": "https://www.yolt.com/callback-dev"
+            },
+            {
+              "key": "scope",
+              "value": "psd2 offline_access AIS:815553c7-41cf-4c4e-acf5-7a4410f81f8e"
+            },
+            {
+              "key": "state",
+              "value": "random42"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "client_credentials",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "34b8109c-b82f-4c0d-a0d7-41933318687f",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "Z2PX@nUknioUBvGj%5U&NjNw0qgo%oTgHV#vLpxk",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "cache-control",
+            "value": "no-cache",
+            "disabled": true
+          },
+          {
+            "key": "content-type",
+            "value": "application/x-www-form-urlencoded",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "text"
+            },
+            {
+              "key": "scope",
+              "value": "psd2",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://login.knab.io/connect/token",
+          "protocol": "https",
+          "host": [
+            "login",
+            "knab",
+            "io"
+          ],
+          "path": [
+            "connect",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "consent",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwQzdCREY2RTFDMzI0ODZFOTdGN0U3NjIwQzQxQjQwOTVEN0UyMDRSUzI1NiIsInR5cCI6IkpXVCIsIng1dCI6IkVNZTk5dUhESklicGYzNTJJTVFiUUpYWDRnUSJ9.eyJuYmYiOjE2NDA2OTU3ODQsImV4cCI6MTY0MDY5OTM4NCwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5rbmFiLmlvIiwiYXVkIjpbInBzZDIiLCJodHRwczovL2xvZ2luLmtuYWIuaW8vcmVzb3VyY2VzIl0sImNsaWVudF9pZCI6IjM0YjgxMDljLWI4MmYtNGMwZC1hMGQ3LTQxOTMzMzE4Njg3ZiIsImp0aSI6IjQ3N0RDRUU1QjVDMzFCQkNCM0NCOTU4QUVCRTUwQTJGIiwiaWF0IjoxNjQwNjk1Nzg0LCJzY29wZSI6WyJwc2QyIl19.nfUXzQ1AtYyFS1i4N5GiL6N_fDCetPy52iMDAjZZlNTjuypOxq0gLJyV1XugbFeJS8PBNs6ak1YwILrM-jEyFsD31kLWKwAIQazi5AmeZX6pXc7wdhBDg2YMmLrFBh-gXBBj7gLdxBWf4iMUINy0miazoUdFKeFeymmMY88J83aqyZdG0oGmPtC20vjInI9JLzdm97_bcmuYRUXsweuBDDt4MYhxbuBE1Xc56qzmRx_sq_jGbmN1P3vwn5shzM7rOq3uhQiZymZRPsGd2t_Ti6sleSEhCf-WN39pwtT2ePvC7OkBBttvnkhOMceTwm9t7AX0I7AO8z-rN4Qbnu6SOAwerALCzLhDAKRSjD9LDZ45NBQBknUkFH_iYDrsTiuYbWhi5QCFNo50cwS2Ni1Gz1f0RyA6vYb5QytDSv0KVmOhnJ6ES1hzswOkGbs69D9SO5uWEB_PTUuRDbB4KMRytu7QL0-OGkcP6rfiitWKrqeopDcD3Dvw668bV8fAG0EZHfZ0U5JT5FO9LY0bJDdaE_XwieZ-6x9RR4CJ5PDFKwU47_nQQzr-CjRGign7c2NswLA7qrE-VnATl4WrqFMJRq3lNaE1L0kTFtz9Fe67wUZEORO9MQvt7q8zSinKAj5mSmwL6idffi0n8BRuGghfk3v5uWKDhq6DYhk5eOk65wg",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "PSU-IP-Address",
+            "value": "127.0.0.1"
+          },
+          {
+            "key": "Date",
+            "value": "{{$timestamp}}",
+            "type": "text"
+          },
+          {
+            "key": "X-Request-ID",
+            "value": "{{$guid}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"access\": [\r\n        \"accounts\",\r\n        \"transactions\",\r\n        \"balances\"\r\n    ],\r\n    \"validUntil\": \"2022-03-20\",\r\n    \"frequencyPerDay\": 4 ,\r\n    \"recurringIndicator\" : true,\r\n    \"combinedServiceIndicator\" : false \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.knab.nl/openbanking-sandbox/v2/consents",
+          "protocol": "https",
+          "host": [
+            "api",
+            "knab",
+            "nl"
+          ],
+          "path": [
+            "openbanking-sandbox",
+            "v2",
+            "consents"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "access_token",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "34b8109c-b82f-4c0d-a0d7-41933318687f",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "Z2PX@nUknioUBvGj%5U&NjNw0qgo%oTgHV#vLpxk",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "authorization_code",
+              "type": "text"
+            },
+            {
+              "key": "code",
+              "value": "0B729CC0D13A39150B1463F9804F4FB03F05887FC8202F3965F13FF253B85C94",
+              "type": "text"
+            },
+            {
+              "key": "redirect_uri",
+              "value": "https://www.yolt.com/callback-dev",
+              "type": "text"
+            },
+            {
+              "key": "client_id",
+              "value": "34b8109c-b82f-4c0d-a0d7-41933318687f",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://login.knab.io/connect/token",
+          "protocol": "https",
+          "host": [
+            "login",
+            "knab",
+            "io"
+          ],
+          "path": [
+            "connect",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "fetch accounts - no signing",
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {
+          "accept": true
+        },
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwQzdCREY2RTFDMzI0ODZFOTdGN0U3NjIwQzQxQjQwOTVEN0UyMDRSUzI1NiIsInR5cCI6IkpXVCIsIng1dCI6IkVNZTk5dUhESklicGYzNTJJTVFiUUpYWDRnUSJ9.eyJuYmYiOjE2NDA2ODk2NjMsImV4cCI6MTY0MDY5MzI2MywiaXNzIjoiaHR0cHM6Ly9sb2dpbi5rbmFiLmlvIiwiYXVkIjpbInBzZDIiLCJodHRwczovL2xvZ2luLmtuYWIuaW8vcmVzb3VyY2VzIl0sImNsaWVudF9pZCI6IjM0YjgxMDljLWI4MmYtNGMwZC1hMGQ3LTQxOTMzMzE4Njg3ZiIsInN1YiI6ImUyODg3OWFhOWRjNjRhMzc4OTQ1NjdkNDQzY2EyZTdkMDdmNmM0ZTEyY2FlNDZkMTc5YzRmMzNjZGEyMGUzYjEiLCJhdXRoX3RpbWUiOjE2NDA2ODk0NjEsImlkcCI6ImtuYWIiLCJqdGkiOiJCQkM5NTUyNkM5MTBGQjE1NkJGRENDRTNBMTgxMjlDRCIsInNpZCI6IkRGNzI0NDQ0Q0RDM0FFMzdBRTQ0NkU2NzhBOEQ1NDY3IiwiaWF0IjoxNjQwNjg5NjYzLCJzY29wZSI6WyJwc2QyIiwiQUlTOjIzYjRiNDQ1LWQwNGQtNDM0ZS05OTI0LTE0OWYwOTMxNjQzNSIsIm9mZmxpbmVfYWNjZXNzIl0sImFtciI6WyJleHRlcm5hbCJdfQ.nZb_hD-QFMFxDbkAHJT5jCVfjE49w1hH9w5vrtKU6hL062RwsX2lFwUZQ7sSXE_NNF_kkIh9QAQheEZSnx-yIvm0c6sGOtidlOAPgzD7muIPtW5n8TWjSSQAQ_9-j07GESsOd9d8mMsjKrjm8tKTOte8Hg4s4V4qwaEJqJYpBQtzytz6IxhI-uEUCiNzHp790yx4MjbKdHsapftHKzjBx_840kR6JnBenuKRFi0fBtY7wYgcXuVwhroQY8dMrgKSapWrb_joL4VYEKLT3xF-dOcQEerJS6RJZykTB3_ZNehAp5uznYuSKY6mYz1fNTa4QIImkLj9-Ay5LsOj40DldZULvy5h0IcSL3tDJ7IC0G9J4wwgI_NKusb9GxiEQpymCR23C31z6ENJlPUjkdj-l2kmAX2Dv2FsZUgl45_FSRrqXD9Qg9gJAdiv1gcuRaf3HgU4c9kFQQXafpE88W0i_vvv3SorJisnIifxAbFGI39yfO66JdIbIdMFnJWY0ODkUhqxFVpWUcOkYkRqlyM32ImddYegZT6R219DKYu85EO1j6XV6Pf9r2Fp-_HkB1hduSkcJMKO4XY4MNfoaRzlXRrqqNoK_91j0RC_cv0R7G2a0pc0pZpEbGcIzAkCwHwKRoRHiqYNdk_LZl9ZDmNDU4SqWxj_wk5i3J7e9FwWmXw",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "no-cache",
+            "type": "text"
+          },
+          {
+            "key": "consent-id",
+            "value": "23b4b445-d04d-434e-9924-149f09316435",
+            "type": "text"
+          },
+          {
+            "key": "date",
+            "value": "{{$timestamp}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.knab.nl:443/openbanking-sandbox/v1/accounts?withBalance=true",
+          "protocol": "https",
+          "host": [
+            "api",
+            "knab",
+            "nl"
+          ],
+          "port": "443",
+          "path": [
+            "openbanking-sandbox",
+            "v1",
+            "accounts"
+          ],
+          "query": [
+            {
+              "key": "withBalance",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "refresh_token",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "refresh_token",
+              "type": "text"
+            },
+            {
+              "key": "client_id",
+              "value": "34b8109c-b82f-4c0d-a0d7-41933318687f",
+              "type": "text"
+            },
+            {
+              "key": "client_secret",
+              "value": "Z2PX@nUknioUBvGj%5U&NjNw0qgo%oTgHV#vLpxk",
+              "type": "text"
+            },
+            {
+              "key": "refresh_token",
+              "value": "0C1E775042A31D9FDB25C21D8C5C98553527D8DC82772FA28C935F0C581EEFE3",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://login.knab.io/connect/token",
+          "protocol": "https",
+          "host": [
+            "login",
+            "knab",
+            "io"
+          ],
+          "path": [
+            "connect",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth2/token",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=AALIUC2qSZfZr7iF9e7cFJsO9IMXpJbgoYJVtr2gV3u1DX03fkwZnkJiqDyCNxa918pKRP3_GzYnu1WxZRiF8f438szmCeeVRH4r57pZIUV2b0erzQeTKzYJInPd9FAlH6rB_lR0-e4qYY43hBgvHBLjYbXaJBFBXdbXutG3V0onbA"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "token_type": "Bearer",
+      "access_token": "AAIkMGI3ZGY1NWEtOGY1MS00NTRlLTlkZTgtODdiOWNhYzJhYmE0NQ6jyX3MRS4yO9h765MAUlX3hmYQUbk8iIKgQX4leyYpsGimIkxcVirSVoyqz276NWpCj6t6niSkY-jTdOrm3yVgjUR2pm7YPvZZggyNjflRoVk1-IWiOgVRI9c9UIhjeIDKP9JPNdjiJsR-WJC5Zg",
+      "expires_in": 3600,
+      "consented_on": 1537791226,
+      "scope": "ais.balances.read ais.transactions.read-90days ais.transactions.read-history oauth2.consents.read",
+      "refresh_token": "AALIUC2qSZfZr7iF9e7cFJsO9IMXpJbgoYJVtr2gV3u1DX03fkwZnkJiqDyCNxa918pKRP3_GzYnu1WxZRiF8f438szmCeeVRH4r57pZIUV2b0erzQeTKzYJInPd9FAlH6rB_lR0-e4qYY43hBgvHBLjYbXaJBFBXdbXutG3V0onbA",
+      "refresh_token_expires_in": 2592000
+    }
+  }
+}

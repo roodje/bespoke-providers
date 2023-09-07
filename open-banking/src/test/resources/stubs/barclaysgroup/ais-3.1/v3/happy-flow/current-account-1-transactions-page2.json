@@ -1,0 +1,109 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/10000000000001449160/transactions/next",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "d0a9b85f-9715-4d16-a33d-4323ceab5254"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0017440000hdQV5CCT"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "10000000000001449160",
+            "Amount": {
+              "Amount": "100.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "11004.29",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2020-11-21T10:19:19Z",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Barclays current account"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "102072",
+            "ValueDateTime": "2020-11-23T00:00:00.000Z"
+          },
+          {
+            "AccountId": "10000000000001449160",
+            "Amount": {
+              "Amount": "1000.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "11104.29",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2020-11-09T20:47:23Z",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Barclays current account"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "Payment",
+            "ValueDateTime": "2020-11-10T00:00:00.000Z"
+          },
+          {
+            "AccountId": "10000000000001449160",
+            "Amount": {
+              "Amount": "200.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "12104.29",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2020-11-06T09:19:28Z",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Barclays current account"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "Payment",
+            "ValueDateTime": "2020-11-06T00:00:00.000Z"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://telesto.api.barclays/open-banking/v3.1/aisp/accounts/10000000000001449160/transactions?toBookingDateTime=2020-12-01T00:00:00.000Z&fromBookingDateTime=2020-10-22T00:00:00.000%2B01:00",
+        "Next": ""
+      },
+      "Meta": {}
+    },
+    "transformers": [
+      "response-template"
+    ],
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

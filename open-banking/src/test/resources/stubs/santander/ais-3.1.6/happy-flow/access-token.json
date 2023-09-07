@@ -1,0 +1,50 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth-token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "matches": "1626df30-50ad-42d8-8f39-40dd95f4b15f"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      },
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF-8)?"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback%2F5fe1e9f8-eb5f-4812-a6a6-2002759db545"
+      },
+      {
+        "contains": "code=gktvoeyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiUlNBMV81Iiwia2lkIjoicTQtMjAxNy1tMi1CT1MifQ.JvophKQTiXv8tvE66jNaXidcYWw_a8BacizAdMiePt_Dd9zJAFU5-TN0qwVIwbIBWbc3hxmiz6VIyJjLoFVAb14QcJaBVuqAiv6Ci8Q752UA-R1aK-t3K1cT5iMtsGlO_7x2EfJum6ujZyCkeTQdKrdnYqH5r1VCLSLxlXFQedXUQ4xYOQr06b4Twj-APIH1dl6WKmIWTyvoFU6_FqGZVNFc_t8VE2KiUjnJnFyFlsF54077WFKiecSAzE_tOFqp0RN_eAaM8J4ycyBoO-cjJ3bJvBB3sXctoCG-lnSxQtP4c2eu0Qg6NIXpAiFEe562w0JRzW1d1ZFNjmBY4jGRIA.PAnSqNZdL4s539MyX4i-Rg.gepH1P5F_rrG5CCEMMkDQPRyxGcYdc136rVvwZs5sZS9kB9357PLJ7asdf8yeafjIKI-l-FoogsOvVf6dQE2_iVAmrTOoESGdk5szYvGC8_kSYmD8j2Kl9Px7xvjbaki-fW5wyR0F8c9MTRvT7aEx2JVy5RHq8hsMguAmCmTNi2NzyZXHhNoNxKmesYJpE2Bz-2bHBfWH1VakuhTp8751atBvbWvU97CMDbUAQx18QW4gL8pWaVtYfDx_5CfF6DP6Cv4RiK_NngCSV5CrdgcDhMWPZeeY41lVVITclG4-tpMZE3bp9W4NB2LYX_zShAR9OsnbD6qgHtwC_-6PfaPrNIW5PpTJK73IRzLxsU-bflLea4fHI2dtXSdL5msUqpM-kS-_tPBXweXT42AzIBNbIZ4Jj7R6WOhign5gx2Z_c3vj--1Pq2zh2ztZHwQ8s3oh5qUwkW_vrLG4ruL4MUDz_8MwTiTRNXZYRvq-M6fZAzN7B3_ykLHUbpoiGAl1Eli0Yw8N98WrcAfC6BWcwc2d-6hrwen6_QcZw0yX2nEt8bCRQwsbYoEE9PV3m38U0M3PAcqHkazVELJz4Afx_naFVRq6dlafQAuZbeS8kBF1gIhTubdWgQFEyCvIHvh5a_takLkDJimjrbYHsREykcrVdnJ73c_t4v6K5aWj7UOJ6p0w7nRjHBtV0uXlFJP-qfp.LZMdA6nFUbqat01P6uJFUA"
+      },
+      {
+        "contains": "client_id=422a2265-a061-4007-99b3-ceeb64e85077"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4",
+      "refresh_token": "qx3scq02pKLSkSJklsjDJwi8SJN82kSD44tGLSLKjsiojw89mDMUIHMDSIUyw89m2DuTlkCwRFxY0xSsKQuYAC6BinbvjksHMFIsihmsiuHMISUIW88w78SMJI8smjKMSJHKJSHMWIWSHIUGWUIgukwgjhskjshhkjsjkdhmsjkhdgshjhgsfsdfwefefwsefsegsdgsdfasjhguiynGUYFGU",
+      "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IlFPblRLV1BBdjNHSFk0cm1ic0JacjMifQ.eyJzdWIiOiIzNzRmZGY0Yjg1ZGQ0OTdiYTE4ZmQyMGZjYmViNDdiNSIsImF1ZCI6InpjUUFCU1lZYnRBbGpMRkFzSFJ3bCIsImp0aSI6Inpqb2pWR21aTmJwMXlsR0hrNFdBMWQiLCJpc3MiOiJodHRwczpcL1wvc2VjdXJlMS5yYnMuY28udWsiLCJpYXQiOjE1MTc0OTc2MjYsImV4cCI6MTUxNzQ5NzkyNiwibm9uY2UiOiI1YmNiYjFlMS00MmE2LTQ3ZGYtYWRmYi1lNThkMzkzZTM5MWQiLCJhdXRoX3RpbWUiOjE1MTc0OTc2MjYsImNfaGFzaCI6Ikw5SUFxTFRCeWtkRERCckpkR0ZqSUEifQ.Y43JyBUfPbcmV9H0waEWczRyezUbFJ0njOt7jivFSxNzNgeZzOxg9S6GoazC9PSK-F6OuP6L6m8NqUjNgPlC0hCRM3goyayhjXIBIeACLZdVtuRNKYsW7TaOLtTMuYXhxEQeXWmhU-1g593K0OtQzmBBrx_Z01fpjoQglD6hiZr6hmJNtFxOom4Gr7M26rApNUDC3hFVQaNSeZ1PwDYN1guVN73xFkKs9gS94L69N9cBnQ5nAwJPccMwx3fuB3Y3_UqE59plyJyU0Opm2X7zkdvlREzi6u93ZosqdlJKKPwYFkQanaLmv2IrA0PQ6TT4GhfC3doxe4RIYafWWPs2Gw",
+      "token_type": "Bearer",
+      "expires_in": 599,
+      "refresh_token_expires_in": 31536000,
+      "scope": "openid payments accounts",
+      "consented_on": 1574107032
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

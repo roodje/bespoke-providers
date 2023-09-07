@@ -1,0 +1,34 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/accounts",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "authorization": {
+        "equalTo": "Bearer o9xcq8V2zUg893gm6ROpO7XDUhaBkIOyilSHG0M11XCXFgjMPP7U6R"
+      },
+      "consent-id": {
+        "equalTo": "8c929c62-53f3-4543-97c0-0aed02b1d9bc"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "accept": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 401,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "code": "401",
+      "category": "ERROR",
+      "tppMessages": "Unauthorized"
+    }
+  }
+}

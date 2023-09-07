@@ -1,0 +1,50 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/psd2-auth/v1/auth/token",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": ".+"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "username": "login",
+          "password": "12345"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "returnCode": "NONE",
+      "actionCode": "PROMPT_FOR_LOGIN_NAME_PASSWORD",
+      "returnMsg": "string",
+      "lastSuccessfulLoginTimestamp": "2007-12-03T10:15:30+01:00",
+      "authOptionIdLastUsed": "string",
+      "authTypeSelected": "SMSTAN",
+      "authOptionIdSelected": "string",
+      "challenge": "string",
+      "timeout": 0,
+      "authSelectionList": [
+        {
+          "authOptionId": "string",
+          "authType": "SMSTAN",
+          "authInfo": "string"
+        }
+      ],
+      "accessToken": "PreToken"
+    }
+  }
+}

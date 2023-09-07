@@ -1,0 +1,824 @@
+{
+  "basePath" : "/psd2/asnbank",
+  "definitions" : {
+    "AccountDetails" : {
+      "type" : "object",
+      "properties" : {
+        "currency" : {
+          "description" : "ISO 4217 Alpha 3 currency code.",
+          "example" : "CUR",
+          "type" : "string"
+        },
+        "customerBic" : {
+          "description" : "The BIC associated with the account.",
+          "example" : "RBRBNL21",
+          "type" : "string"
+        },
+        "iban" : {
+          "description" : "IBAN is an internationally agreed system of identifying bank accounts across national borders.",
+          "example" : "NL86SNSB0230010733",
+          "type" : "string"
+        },
+        "name" : {
+          "description" : "Name of the account given by the bank or the PSU in Online-Banking.",
+          "example" : "My household account",
+          "type" : "string"
+        },
+        "ownerName" : {
+          "description" : "Name of the account holder(s). If an account has a joint account holder, the name of the account holder and joint account holder are separated with ' CJ '.",
+          "example" : "Z H van der Zee CJ Z Bottema",
+          "type" : "string"
+        },
+        "product" : {
+          "description" : "Product Name of the Bank for this account, proprietary definition.",
+          "example" : "Bank payment account",
+          "type" : "string"
+        },
+        "resourceId" : {
+          "description" : "A universally unique identifier (UUID) is a 128-bit number used to identify resources.",
+          "example" : "3dc3d5b3-7023-4848-9853-f5400a64e80f",
+          "type" : "string"
+        }
+      },
+      "description" : "Provides information about an account."
+    },
+    "AccountReference" : {
+      "type" : "object",
+      "properties" : {
+        "bban" : {
+          "description" : "BBAN of the creditor or debtor regarding the transaction. Note: only IBAN or only BBAN can be filled, never both.",
+          "example" : "5390 0754 7034",
+          "type" : "string"
+        },
+        "currency" : {
+          "description" : "ISO 4217 Alpha 3 currency code.",
+          "enum" : [ "EUR" ],
+          "type" : "string"
+        },
+        "iban" : {
+          "description" : "IBAN of the creditor or debtor regarding the transaction. Note: only IBAN or only BBAN can be filled, never both.",
+          "example" : "NL30RBRB0442482011",
+          "type" : "string"
+        }
+      },
+      "description" : "Account identification."
+    },
+    "AccountReport" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/Links"
+        },
+        "booked" : {
+          "items" : {
+            "$ref" : "#/definitions/TransactionItem"
+          },
+          "type" : "array"
+        }
+      },
+      "description" : "An account report containing a list of transactions with status 'booked', optionally transaction lists with status 'pending', and a list of hyperlinks."
+    },
+    "AccountResponse" : {
+      "type" : "object",
+      "properties" : {
+        "accounts" : {
+          "items" : {
+            "$ref" : "#/definitions/AccountDetails"
+          },
+          "type" : "array"
+        }
+      },
+      "description" : "Provides a list of accounts."
+    },
+    "Amount" : {
+      "type" : "object",
+      "properties" : {
+        "amount" : {
+          "description" : "The amount given with fractional digits, where fractions must be compliant to the currency definition.",
+          "example" : "500.15",
+          "type" : "string"
+        },
+        "currency" : {
+          "description" : "ISO 4217 Alpha 3 currency code.",
+          "enum" : [ "EUR" ],
+          "type" : "string"
+        }
+      },
+      "description" : "An amount represented as a combination of currency and amount."
+    },
+    "BalanceItem" : {
+      "type" : "object",
+      "properties" : {
+        "balanceAmount" : {
+          "$ref" : "#/definitions/Amount"
+        },
+        "balanceType" : {
+          "description" : "Subdivision of the amount of money owed (or due), that remains in the account.",
+          "enum" : [ "interimAvailable" ],
+          "type" : "string"
+        },
+        "lastChangeDateTime" : {
+          "description" : "ISO 8601 Representation of dates and times is an international standard covering the exchange of date and time related data. LastChangeDateTime is given in CEST.",
+          "example" : "2017-10-25T15:30:35.035Z",
+          "format" : "date-time",
+          "type" : "string"
+        }
+      },
+      "description" : "Provides information about a balance."
+    },
+    "BalanceResponse" : {
+      "type" : "object",
+      "properties" : {
+        "balances" : {
+          "items" : {
+            "$ref" : "#/definitions/BalanceItem"
+          },
+          "type" : "array"
+        }
+      },
+      "description" : "Provides balance information for a given account"
+    },
+    "Link" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        }
+      },
+      "description" : "Provides a URL"
+    },
+    "Links" : {
+      "type" : "object",
+      "properties" : {
+        "account" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "next" : {
+          "$ref" : "#/definitions/Link"
+        }
+      },
+      "description" : "A list of hyperlinks to be recognised by the TPP. The actual hyperlinks used in the response depend on the request."
+    },
+    "RemittanceInformationStructured" : {
+      "type" : "object",
+      "properties" : {
+        "reference" : {
+          "description" : "Actual reference or identification of a transaction.",
+          "example" : "1345-1231-1232-6456",
+          "type" : "string"
+        },
+        "referenceIssuer" : {
+          "description" : "Reference to the issuer of the structured remittance information.",
+          "example" : "CUR",
+          "type" : "string"
+        }
+      },
+      "description" : "Structured remittance information."
+    },
+    "TppMessage" : {
+      "type" : "object",
+      "properties" : {
+        "category" : {
+          "description" : "Error category.",
+          "type" : "string"
+        },
+        "code" : {
+          "description" : "Error code.",
+          "type" : "string"
+        },
+        "text" : {
+          "description" : "Additional error information.",
+          "type" : "string"
+        }
+      },
+      "description" : "Error model for the TPP."
+    },
+    "TransactionItem" : {
+      "type" : "object",
+      "properties" : {
+        "bankTransactionCode" : {
+          "description" : "ISO codes of this transaction.",
+          "example" : 7241,
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "batchIndicator" : {
+          "description" : "If this indicator equals true, then the related entry is a batch entry.",
+          "example" : true,
+          "type" : "boolean"
+        },
+        "batchNumberOfTransactions" : {
+          "description" : "Shows the number of transactions in a batch entry. Only used when the value of batchIndicator equals true.",
+          "example" : 10,
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "bookingDate" : {
+          "description" : "The date (in CEST) when an entry is posted to an account on the ASPSPs books.",
+          "example" : "2018-05-14",
+          "format" : "date",
+          "type" : "string"
+        },
+        "creditorAccount" : {
+          "$ref" : "#/definitions/AccountReference"
+        },
+        "creditorId" : {
+          "description" : "Identification of a creditor.",
+          "example" : "KLM08642LAX",
+          "type" : "string"
+        },
+        "creditorName" : {
+          "description" : "Name of the creditor in case of a debit transaction.",
+          "example" : "A.B.N. de Lateraal",
+          "type" : "string"
+        },
+        "debtorAccount" : {
+          "$ref" : "#/definitions/AccountReference"
+        },
+        "debtorName" : {
+          "description" : "Name of the debtor in case of a credit transaction.",
+          "example" : "I.N.G. von Ginieus",
+          "type" : "string"
+        },
+        "endToEndId" : {
+          "description" : "Unique end to end identity provided by AISP. Normally 35 chars.",
+          "example" : "234234",
+          "type" : "string"
+        },
+        "entryReference" : {
+          "description" : "Unique identification of the transaction.",
+          "example" : "20190101-3326374",
+          "type" : "string"
+        },
+        "instructionIdentification" : {
+          "description" : "The InstructionIdentification is a unique reference assigned by the Initiator to unambiguously identify the transaction.",
+          "example" : "INNDNL2U20101004000042800000011",
+          "type" : "string"
+        },
+        "mandateId" : {
+          "description" : "Identification of mandates, e.g. a SEPA Mandate ID.",
+          "example" : "50193507",
+          "type" : "string"
+        },
+        "paymentInformationIdentification" : {
+          "description" : "Reference assigned by a sending party in order to unambiguously identify the payment.",
+          "example" : "SEPA-CT Upload Batch B001 V3 A001",
+          "type" : "string"
+        },
+        "proprietaryBankTransactionCode" : {
+          "description" : "De Volkbanks own coding of transactions.",
+          "example" : "FPOV",
+          "type" : "string"
+        },
+        "purposeCode" : {
+          "description" : "Extra field for receiver for reporting.",
+          "example" : "SALA",
+          "type" : "string"
+        },
+        "remittanceInformationStructured" : {
+          "$ref" : "#/definitions/RemittanceInformationStructured"
+        },
+        "remittanceInformationUnstructured" : {
+          "description" : "Description of the transaction.",
+          "example" : "Birthday present",
+          "type" : "string"
+        },
+        "returnInformationCode" : {
+          "description" : "A 4 digit code indicating why a payment failed.",
+          "example" : "AC01",
+          "type" : "string"
+        },
+        "transactionAmount" : {
+          "$ref" : "#/definitions/Amount"
+        },
+        "transactionIdentification" : {
+          "description" : "Unique transaction identification issued by de Volksbank.",
+          "example" : "Collection FY12345 1",
+          "type" : "string"
+        },
+        "ultimateCreditor" : {
+          "description" : "Name of the ultimate creditor.",
+          "type" : "string"
+        },
+        "ultimateDebtor" : {
+          "description" : "Name of the ultimate debtor.",
+          "type" : "string"
+        },
+        "valueDate" : {
+          "description" : "The date (in CEST) at which assets become available to the account owner in case of a credit.",
+          "example" : "2018-05-17",
+          "format" : "date",
+          "type" : "string"
+        }
+      },
+      "description" : "Transaction object."
+    },
+    "TransactionResponse" : {
+      "type" : "object",
+      "properties" : {
+        "account" : {
+          "$ref" : "#/definitions/AccountReference"
+        },
+        "transactions" : {
+          "$ref" : "#/definitions/AccountReport"
+        }
+      },
+      "description" : "Provides a transaction report for a given account."
+    }
+  },
+  "host" : "PSD.bancairediensten.nl",
+  "info" : {
+    "description" : "Defining the BERLIN GROUP endpoints accounts, account/{account-id}/balances and accounts/{account-id}/transactions.",
+    "title" : "ASN Bank Account Information Services v1.1",
+    "version" : "1.1"
+  },
+  "paths" : {
+    "/v1.1/accounts" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "description" : "Based on the Berlin Group API Read Account List. No custom response header is provided (only default HTTPS).",
+        "operationId" : "getAccounts",
+        "parameters" : [ {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "Describes the data contained in the body; application/json.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "X-Request-ID",
+          "in" : "header",
+          "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Consent-ID",
+          "in" : "header",
+          "description" : "Consent ID obtained in the initiate consent call.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Bearer ACCESS-TOKEN",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/AccountResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad request. The request cannot be processed due to something that is perceived to be a client error (e.g. malformed request syntax or missing or invalid parameters).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden. The server understood the request but refuses to authorize it (e.g. due to an invalid token or invalid scope, or a violated security policy).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "404" : {
+            "description" : "Not found. The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "406" : {
+            "description" : "Not Acceptable. Cannot generate the content that is specified in the Accept header.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "415" : {
+            "description" : "Unsupported media type. The supplied media type is not supported.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          }
+        },
+        "security" : [ {
+          "oauth" : [ "psd2" ]
+        }, {
+          "portal_oauth2" : [ ]
+        } ],
+        "summary" : "Reads a list of reachable accounts.",
+        "tags" : [ "AIS" ]
+      },
+      "parameters" : [ ]
+    },
+    "/v1.1/accounts/{account-id}/balances" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "description" : "Based on the Berlin Group API Read Balance.",
+        "operationId" : "getBalances",
+        "parameters" : [ {
+          "name" : "account-id",
+          "in" : "path",
+          "description" : "This identification is denoting the addressed account.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "Describes the data contained in the body; application/json.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "X-Request-ID",
+          "in" : "header",
+          "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Consent-ID",
+          "in" : "header",
+          "description" : "Consent ID obtained in the initiate consent call.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Bearer ACCESS-TOKEN",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/BalanceResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad request. The request cannot be processed due to something that is perceived to be a client error (e.g. malformed request syntax or missing or invalid parameters).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden. The server understood the request but refuses to authorize it (e.g. due to an invalid token or invalid scope, or a violated security policy).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "404" : {
+            "description" : "Not found. The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "406" : {
+            "description" : "Not Acceptable. Cannot generate the content that is specified in the Accept header.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "415" : {
+            "description" : "Unsupported media type. The supplied media type is not supported.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          }
+        },
+        "security" : [ {
+          "oauth" : [ "psd2" ]
+        }, {
+          "portal_oauth2" : [ ]
+        } ],
+        "summary" : "Reads balance information from a given account addressed by account-id.",
+        "tags" : [ "AIS" ]
+      },
+      "parameters" : [ ]
+    },
+    "/v1.1/accounts/{account-id}/transactions" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "description" : "Based on the Berlin Group API Read Transaction List.",
+        "operationId" : "getTransactions",
+        "parameters" : [ {
+          "name" : "account-id",
+          "in" : "path",
+          "description" : "This identification is denoting the addressed account.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "Describes the data contained in the body; application/json.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "X-Request-ID",
+          "in" : "header",
+          "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Consent-ID",
+          "in" : "header",
+          "description" : "Consent ID obtained in the initiate consent call.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Bearer ACCESS-TOKEN",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "dateFrom",
+          "in" : "query",
+          "description" : "Start date",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "dateTo",
+          "in" : "query",
+          "description" : "End date",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "entryReferenceFrom",
+          "in" : "query",
+          "description" : "Unique reference and sequence number of each transaction.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "bookingStatus",
+          "in" : "query",
+          "description" : "Subdivision of status of the booking.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Maximum amount of transactions in the response.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nextPageKey",
+          "in" : "query",
+          "description" : "A key to retrieve the next list of transactions based on previous parameters.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TransactionResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad request. The request cannot be processed due to something that is perceived to be a client error (e.g. malformed request syntax or missing or invalid parameters).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden. The server understood the request but refuses to authorize it (e.g. due to an invalid token or invalid scope, or a violated security policy).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "404" : {
+            "description" : "Not found. The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "406" : {
+            "description" : "Not Acceptable. Cannot generate the content that is specified in the Accept header.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "415" : {
+            "description" : "Unsupported media type. The supplied media type is not supported.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          }
+        },
+        "security" : [ {
+          "oauth" : [ "psd2" ]
+        }, {
+          "portal_oauth2" : [ ]
+        } ],
+        "summary" : "Reads account data from a given account addressed by account-id.",
+        "tags" : [ "AIS" ]
+      },
+      "parameters" : [ ]
+    }
+  },
+  "schemes" : [ "https" ],
+  "securityDefinitions" : {
+    "oauth" : {
+      "authorizationUrl" : "https://PSD.bancairediensten.nl/psd2/asnbank/v1/authorize",
+      "flow" : "accessCode",
+      "scopes" : {
+        "psd2" : "psd2"
+      },
+      "tokenUrl" : "https://PSD.bancairediensten.nl/psd2/asnbank/v1/token",
+      "type" : "oauth2"
+    },
+    "portal_oauth2" : {
+      "authorizationUrl" : "https://PSD.bancairediensten.nl/psd2/asnbank/authorize",
+      "flow" : "accessCode",
+      "tokenUrl" : "https://PSD.bancairediensten.nl/psd2/asnbank/token",
+      "type" : "oauth2"
+    }
+  },
+  "swagger" : "2.0",
+  "tags" : [ {
+    "name" : "AIS"
+  } ]
+}

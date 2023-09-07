@@ -1,0 +1,9 @@
+lovebird:
+  amexgroup:
+    amex:
+      authorization-base-url-v2: https://localhost:${wiremock.server.https-port}/oauth
+      base-url: https://localhost:${wiremock.server.https-port}
+      host: localhost
+      port: 443
+      pagination-limit: 100
+      page-size: 5

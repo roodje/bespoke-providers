@@ -1,0 +1,71 @@
+{
+  "request": {
+    "url": "/v1/accounts/CTR%7C1271339%7C12345678901%7C1%7C2%7C1%7C12345678901/transactions?withBalance=false&dateFrom=2020-01-01&bookingStatus=both&page=1",
+    "method": "GET",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "X-Request-ID": {
+        "matches": "traceId"
+      },
+      "Consent-ID": {
+        "equalTo": "consentId"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-ACCESS-TOKEN"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "iban": "FR7612548029981234567890122",
+        "currency": "978"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "valueDate": "2020-10-29",
+            "transactionAmount": {
+              "currency": "978",
+              "amount": -54.42
+            },
+            "remittanceInformationUnstructured": "CB CARREFOUR DAC",
+            "bankTransactionCode": "PMNT-CCRD-POSC"
+          }
+        ],
+        "pending": [],
+        "_links": {
+          "next": {
+            "href": ""
+          },
+          "first": {
+            "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%25257C1271339%25257C12345678901%25257C1%25257C2%25257C1%25257C12345678901/transactions?dateFrom=2020-08-06&dateTo=2020-11-04&bookingStatus=BOTH&withBalance=false&page=0"
+          },
+          "last": {
+            "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%25257C1271339%25257C12345678901%25257C1%25257C2%25257C1%25257C12345678901/transactions?dateFrom=2020-08-06&dateTo=2020-11-04&bookingStatus=BOTH&withBalance=false&page=1"
+          },
+          "account": {
+            "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%7C1271339%7C12345678901%7C1%7C2%7C1%7C12345678901?withBalance=false"
+          },
+          "balances": {
+            "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%7C1271339%7C12345678901%7C1%7C2%7C1%7C12345678901/balances"
+          },
+          "transactions": {
+            "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%25257C1271339%25257C12345678901%25257C1%25257C2%25257C1%25257C12345678901/transactions"
+          }
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

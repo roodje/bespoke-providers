@@ -1,0 +1,54 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/28rolohnjgfmdpzzltpie2my76ypcshztfk6/direct-debits",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 3zHagXZSPyA6sifIDmqwZ0hLlqq"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "DirectDebit": [
+          {
+            "AccountId": "28rolohnjgfmdpzzltpie2my76ypcshztfk6",
+            "MandateIdentification": "Q14653722",
+            "DirectDebitStatusCode": "Active",
+            "Name": "LIMITED",
+            "PreviousPaymentDateTime": "2020-11-09T00:00:00+00:00",
+            "PreviousPaymentAmount": {
+              "Amount": "20.0",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "28rolohnjgfmdpzzltpie2my76ypcshztfk6",
+            "MandateIdentification": "00320056617902",
+            "DirectDebitStatusCode": "Active",
+            "Name": "PURE GYM",
+            "PreviousPaymentAmount": {
+              "Amount": "0.0",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.1/aisp/accounts/28rolohnjgfmdpzzltpie2my76ypcshztfk6/direct-debits"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

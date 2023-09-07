@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/token?grant_type=authorization_code&code=someCode&redirect_uri=https://www.yolt.com/callback&client_id=aabb&client_secret=bbaa",
+    "headers": {}
+  },
+  "response": {
+    "status": "",
+    "jsonBody": {
+      "access_token": "a1cd891ef7d76369a48df8201ccdd2d29e8911fe5d5d62fb99be705d61b15b69",
+      "token_type": "bearer",
+      "state": "ca7a33be-4441-49ed-91d3-f0232acb6d3c"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

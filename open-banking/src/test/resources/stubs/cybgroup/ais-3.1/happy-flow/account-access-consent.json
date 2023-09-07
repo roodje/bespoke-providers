@@ -1,0 +1,71 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/aisp/account-access-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer eyJraWQiOiJKTzJQVVhfSGlmT3JLUlVMS01EcHNwMzRzaHciLCJ0eXAiOiJKV1QiLCJhbTciOiJQUzI1NiJ9.eyJhdWQiOiJoTHRwczpcL1wvY2IuYXBpLW5jLmN5YnNlcnZpY2VzLmNvLnVrIiwic3ViIjoiMjhmNDgxYTktOTBhTy00OWExLWEyMTItZjM5ZTk5OWViZTJjIiwic2TvcGUiOiJhY2NvdW50cyIsImlzcyI6Imh0dHBzOlwvXC9jYi5hcGktbmMuY3lic2VydmljZXMuY28udWsiLCJleHAiOjE2MTM2ODAwNzcsImlhdCI6MTTxMzY3NjQ3NywiY2xpZW50X2lkIjoiMjhmNDgxYTktOTBhYy00OWExLWEyMTItZjM5ZTk5OWViZTJjIiwianRpIjoiYjI2MTllZGYtZjVmOS00YzcyLWE1MzktYTZlYzJiOTcyZWJiIn0.mgwIoVFdWozBCtHQRU8OOCqQ6gUF_NZx6w26SSVGYzKZ2j-FgU9UcREJxFrC0GMm1NKcZmH_VEp_oF4zvTUVzC-BIG1wsS2um0hyelyX34hS4-cGoSvzTY1zadzxw8DfGTSMxaJE_WMzjYQ774wlKwBJjcmJaslSRRVqGCGYt74L9kVObEdoO_sKkZ-fRqiTi1OA1G6MOl4WX45GWDPW1rYPqIygrNLKaj-w3rWiQSs4mrsvBpTDPad22O1wXxHmr3GxRYjzAflgfUaY68CEsxHS7fAtgW-Tle-vb4tSB_HGcu1icf3Na_P9ArUOlrk-_nkGE2zTApp1XTh7o6nDcw"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "001728392JD873NNHY"
+      },
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Permissions": [
+              "ReadAccountsDetail",
+              "ReadBalances",
+              "ReadDirectDebits",
+              "ReadStandingOrdersDetail",
+              "ReadTransactionsCredits",
+              "ReadTransactionsDebits",
+              "ReadTransactionsDetail"
+            ]
+          },
+          "Risk": {}
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "50ca5ed5-317c-451c-8438-3b3fb91466e1",
+        "CreationDateTime": "2018-07-26T15:11:29+00:00",
+        "Status": "AwaitingAuthorisation",
+        "StatusUpdateDateTime": "2019-02-02T00:00:00+00:00",
+        "Permissions": [
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail",
+          "ReadAccountsBasic",
+          "ReadStandingOrdersBasic",
+          "ReadTransactionsBasic",
+          "ReadDirectDebits",
+          "ReadStandingOrdersDetail",
+          "ReadTransactionsCredits",
+          "ReadAccountsDetail",
+          "ReadBalances"]
+      },
+      "Risk": {},
+      "Links": {
+        "Self": "https://cb.api-nc.cybservices.co.uk/open-banking/v3.1/aisp/account-access-consents"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

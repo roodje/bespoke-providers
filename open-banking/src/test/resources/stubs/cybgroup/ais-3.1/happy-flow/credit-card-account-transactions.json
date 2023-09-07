@@ -1,0 +1,101 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/a134fcf0-3f3a-3dd0-9398-109313b2c6b3/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "contains": "Bearer accessToken"
+      },
+      "x-fapi-financial-id": {
+        "contains": "001728392JD873NNHY"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "transformers": [
+      "response-template"
+    ],
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "a134fcf0-3f3a-3dd0-9398-109313b2c6b3",
+            "TransactionId": "fa13f93b-11b2-4b15-98f1-4e5ea328f846",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "BookingDateTime": "2021-02-15T00:00:00+00:00",
+            "TransactionInformation": "Payment - Thank You",
+            "Amount": {
+              "Amount": "6.00",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "CC Payment"
+            },
+            "Balance": {
+              "CreditDebitIndicator": "Debit",
+              "Type": "ClosingAvailable",
+              "Amount": {
+                "Amount": "0.00",
+                "Currency": "GBP"
+              }
+            },
+            "DebtorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "0000004404430001409683"
+            }
+          },
+          {
+            "AccountId": "a134fcf0-3f3a-3dd0-9398-109313b2c6b3",
+            "TransactionId": "87f24c78-74dd-4541-ad77-4c1cb275ebc9",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2021-02-15T00:00:00+00:00",
+            "TransactionInformation": "SAINSBURYS LOC",
+            "Amount": {
+              "Amount": "5.30",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "Card"
+            },
+            "Balance": {
+              "CreditDebitIndicator": "Debit",
+              "Type": "ClosingAvailable",
+              "Amount": {
+                "Amount": "0.00",
+                "Currency": "GBP"
+              }
+            },
+            "DebtorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "0000001404130001109681"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://cb.api-nc.cybservices.co.uk/open-banking/v3.1/aisp/accounts/a134fcf0-3f3a-3dd0-9398-109313b2c6b3/transactions?fromBookingDateTime=2021-01-08T01:27:16Z&page=1"
+      },
+      "Meta": {
+        "FirstAvailableDateTime": "2021-01-08T01:27:16+00:00",
+        "LastAvailableDateTime": "2021-02-17T07:12:15+00:00"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

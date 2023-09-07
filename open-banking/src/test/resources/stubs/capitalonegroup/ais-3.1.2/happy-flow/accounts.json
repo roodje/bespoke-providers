@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer TEST_ACCESS_TOKEN"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "35acdd5c-ddf1-4a70-ac0f-a4322e3bc263"
+      },
+      "x-fapi-customer-ip-address": {
+        "equalTo": "1.1.1.1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Meta": {
+        "TotalPages": 1
+      },
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "6b4427c634a1a1d9e1284b57a54b2f1a1721420c",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard",
+            "Description": "CAPITALONE CREDIT CARD",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.PAN",
+                "Identification": "xxxx xxxx xxxx 1234",
+                "Name": "Robin Hood"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://open-banking.capitalone.co.uk/open-banking/v3.1/aisp/accounts/"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/token?grant_type=authorization_code&code=123456789&redirect_uri=https://www.yolt.com/callback/payment",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded"
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Authorization": {
+        "equalTo": "Basic c29tZUNsaWVudElkOnNvbWVDbGllbnRTZWNyZXQ="
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access_token": "fakeAccessToken",
+      "token_type": "Bearer",
+      "expires_in": 600,
+      "refresh_token": "fakeRefreshToken",
+      "scope": "PIS"
+    }
+  }
+}

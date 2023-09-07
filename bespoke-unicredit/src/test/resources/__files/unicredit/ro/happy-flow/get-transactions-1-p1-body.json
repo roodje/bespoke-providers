@@ -1,0 +1,109 @@
+{
+  "account": {
+    "iban": "IT75E0100000000000000000001",
+    "currency": "EUR"
+  },
+  "transactions": {
+    "booked": [
+      {
+        "transactionId": "123",
+        "entryReference": "321",
+        "endToEndId": "123",
+        "mandateId": "11",
+        "checkId": "22",
+        "creditorId": "33",
+        "bookingDate": "2020-08-01",
+        "valueDate": "2020-08-01",
+        "transactionAmount": {
+          "currency": "EUR",
+          "amount": "123.12"
+        },
+        "debtorName": "John Kowalsky",
+        "debtorAccount": {
+          "iban": "123123123",
+          "currency": "EUR"
+        },
+        "ultimateDebtor": "UltimateDebtor",
+        "remittanceInformationUnstructured": "Some remittance info",
+        "purposeCode": "COST",
+        "bankTransactionCode": "ABC"
+      },
+      {
+        "transactionId": "124",
+        "entryReference": "323",
+        "endToEndId": "124",
+        "mandateId": "22",
+        "checkId": "33",
+        "creditorId": "44",
+        "bookingDate": "2020-08-02",
+        "valueDate": "2020-08-02",
+        "transactionAmount": {
+          "currency": "EUR",
+          "amount": "321.21"
+        },
+        "debtorName": "John Kowalsky",
+        "debtorAccount": {
+          "iban": "123123123",
+          "currency": "EUR"
+        },
+        "ultimateDebtor": "UltimateDebtor",
+        "remittanceInformationUnstructured": "Some remittance info",
+        "purposeCode": "COST",
+        "bankTransactionCode": "ABC"
+      },
+      {
+        "transactionId": "125",
+        "entryReference": "521",
+        "endToEndId": "125",
+        "mandateId": "33",
+        "checkId": "44",
+        "creditorId": "55",
+        "bookingDate": "2020-08-03",
+        "valueDate": "2020-08-03",
+        "transactionAmount": {
+          "currency": "EUR",
+          "amount": "543.31"
+        },
+        "debtorName": "John Kowalsky",
+        "debtorAccount": {
+          "iban": "123123123",
+          "currency": "EUR"
+        },
+        "ultimateDebtor": "UltimateDebtor",
+        "remittanceInformationUnstructured": "Some remittance info",
+        "purposeCode": "COST",
+        "bankTransactionCode": "ABC"
+      }
+    ],
+    "pending": [
+      {
+        "transactionId": "126",
+        "entryReference": "621",
+        "endToEndId": "126",
+        "mandateId": "44",
+        "checkId": "55",
+        "creditorId": "66",
+        "bookingDate": "2020-08-03",
+        "valueDate": "2020-08-04",
+        "transactionAmount": {
+          "currency": "EUR",
+          "amount": "543.23"
+        },
+        "debtorName": "John Kowalsky",
+        "debtorAccount": {
+          "iban": "123123123",
+          "currency": "EUR"
+        },
+        "ultimateDebtor": "UltimateDebtor",
+        "remittanceInformationUnstructured": "Some remittance info",
+        "purposeCode": "COST",
+        "bankTransactionCode": "ABC"
+      }
+    ],
+    "_links": {
+      "next": {
+        "href": "/v1/accounts/312fdgyiuy374yr349fh8923hf0823h8757973482qop238rh39fh3920340923u/transactions/next"
+      }
+    }
+  }
+}

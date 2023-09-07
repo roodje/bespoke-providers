@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "1626df30-50ad-42d8-8f39-40dd95f4b15f"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 401,
+    "jsonBody": {
+      "Data": {
+        "code": "401",
+        "message": "unauthorized"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

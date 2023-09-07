@@ -1,0 +1,20 @@
+{
+  "accounts": [
+    {
+      "resourceId": "312fdgyiuy374yr349fh8923hf0823h8757973482qop238rh39fh3920340923u",
+      "iban": "DE49700202700123456785",
+      "currency": "EUR",
+      "name": "John Doe",
+      "cashAccountType": "CACC",
+      "bic": "HYVEDEMM405"
+    },
+    {
+      "resourceId": "980981309fdus09fu12uidhy90128123897dasd8012ud0823h832hf08345h09f",
+      "iban": "DE49700202700123456786",
+      "currency": "EUR",
+      "name": "John Doe",
+      "cashAccountType": "CACC",
+      "bic": "HYVEDEMM405"
+    }
+  ]
+}

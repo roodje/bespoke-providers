@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/open-banking/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AccessToken"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf7AeAAI"
+      }
+    }
+  },
+  "response": {
+    "status": 403,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "code": "403",
+      "message": "Forbidden"
+    }
+  }
+}

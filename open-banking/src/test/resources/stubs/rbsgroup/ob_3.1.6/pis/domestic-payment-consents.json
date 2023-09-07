@@ -1,0 +1,78 @@
+{
+  "request": {
+    "url": "/v3.1/pisp/domestic-payment-consents",
+    "method": "POST",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Content-Type": {
+        "equalTo": "application/json;charset=UTF-8"
+      },
+      "x-idempotency-key": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"Data\":{\"Initiation\":{\"InstructionIdentification\":\"${json-unit.any-string}\",\"EndToEndIdentification\":\"35B64F93\",\"InstructedAmount\":{\"Amount\":\"0.01\",\"Currency\":\"GBP\"},\"CreditorAccount\":{\"SchemeName\":\"UK.OBIE.SortCodeAccountNumber\",\"Identification\":\"12345678901234\", \"Name\" : \"P. Jantje\"},\"RemittanceInformation\":{\"Unstructured\":\"SomeRandomMessage\",\"Reference\":\"SomeRandomMessage2\"}}},\"Risk\":{\"PaymentContextCode\":\"PartyToParty\"}}",
+        "ignoreArrayOrder": true
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "331d76df48ed41229b67f062dd55e340",
+        "CreationDateTime": "2019-08-20T13:07:51.710Z",
+        "Status": "AwaitingAuthorisation",
+        "StatusUpdateDateTime": "2019-08-20T13:07:51.710Z",
+        "Initiation": {
+          "InstructionIdentification": "h3ce0bdd-3460-48c0-ae63-b0981",
+          "EndToEndIdentification": "524a62e9-d",
+          "InstructedAmount": {
+            "Amount": "0.01",
+            "Currency": "GBP"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "41141266529926",
+            "Name": "John Doe"
+          },
+          "RemittanceInformation": {
+            "Reference": "Unstructured"
+          }
+        }
+      },
+      "Risk": {
+        "PaymentContextCode": "PartyToParty"
+      },
+      "Links": {
+        "Self": "https://api.natwest.com/open-banking/v3.1/pisp/domestic-payment-consents/331d76df48ed41229b67f062dd55e340"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Frame-Options": "DENY",
+      "x-fapi-interaction-id": "aa997d0c-9f4f-4d6b-ad57-cfd440e5bdd8",
+      "Set-Cookie": [
+        "f5avrbbbbbbbbbbbbbbbb=CCODBDEPDCEDBDPMEHLABDGKLENHPOKHJBLCMFIJKOABBNNBEHFICLKEACGGBIMPILLDOBKBONMIHLJHPNKAILJEIIPLFOCMFMNBBFKLDLMEIKDDNLBAHMEHPKNADKHC; HttpOnly; secure; Domain=api.rbs.co.uk; Path=/ob_rbs/open-banking/v1.1",
+        "f5avrbbbbbbbbbbbbbbbb=POPGILLPFKDJLIBAFFAJBEJGGFHNABOIBKMNLNBGKDFGJOHBNEGDEDLEJBEDOPFOIEBDPLFFONHMFAINFBIANEAEIIFOJHHDJNOEKAKEDAKMOBPMEJJJNFNHGCKEBAGG; HttpOnly; secure"
+      ],
+      "Content-Type": "application/json;charset=UTF-8",
+      "Date": "Thu, 24 Jan 2019 10:05:13 GMT",
+      "Server": ""
+    }
+  }
+}

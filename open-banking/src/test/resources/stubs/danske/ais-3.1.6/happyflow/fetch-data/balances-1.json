@@ -1,0 +1,58 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/open-banking/v3.1/aisp/accounts/77f5cb47-fb53-49e7-acd7-f8ed17ba4396/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AccessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "551c6cce-fc16-49b9-8b16-ab66fea5eb35"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf7AeAAI"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "Amount": {
+              "Amount": "229.51",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2020-12-09T12:14:03.460989+02:00"
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "Amount": {
+              "Amount": "38.66",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2020-12-09T12:14:03.460989+02:00"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://obp-api.danskebank.com/open-banking/v3.1/aisp/accounts/77f5cb47-fb53-49e7-acd7-f8ed17ba4396/balances/"
+      },
+      "Meta": {}
+    },
+    "transformers": ["response-template"],
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "{{request.headers.x-fapi-interaction-id}}"
+    }
+  }
+}

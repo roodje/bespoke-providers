@@ -1,0 +1,104 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/EC26D95F-6DDC-44E3-82C1-BA1145D7CEA6/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 7531d7a8-7f5e-4bde-ae07-a5c587458ad7"
+      },
+      "Accept": {
+        "matches": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800001ZEZ3yAAH"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Data": {
+          "Transaction": [
+            {
+              "AccountId": "EC26D95F-6DDC-44E3-82C1-BA1145D7CEA6",
+              "Amount": {
+                "Amount": "117.50",
+                "Currency": "EUR"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Status": "Pending",
+              "BookingDateTime": "2020-04-11T00:00:00+01:00",
+              "ValueDateTime": "2020-04-11T00:00:00+01:00",
+              "TransactionInformation": "POS Centra"
+            },
+            {
+              "AccountId": "EC26D95F-6DDC-44E3-82C1-BA1145D7CEA6",
+              "Amount": {
+                "Amount": "85.50",
+                "Currency": "EUR"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Status": "Pending",
+              "BookingDateTime": "2020-05-12T00:00:00+01:00",
+              "ValueDateTime": "2020-05-12T00:00:00+01:00",
+              "TransactionInformation": "POS Tesco"
+            },
+            {
+              "AccountId": "EC26D95F-6DDC-44E3-82C1-BA1145D7CEA6",
+              "TransactionId": "C475869",
+              "TransactionReference": "OP/CG Direct Debit10C561144X7412589",
+              "Amount": {
+                "Amount": "100",
+                "Currency": "EUR"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Status": "Booked",
+              "BookingDateTime": "2020-06-10T00:00:00+01:00",
+              "ValueDateTime": "2020-06-10T00:00:00+01:00",
+              "TransactionInformation": "Cheque Lodgement",
+              "Balance": {
+                "Amount": {
+                  "Amount": "1250",
+                  "Currency": "EUR"
+                },
+                "CreditDebitIndicator": "Credit",
+                "Type": "Information"
+              },
+              "CreditorAccount": {
+                "Name": "Mr. John Doe"
+              },
+              "DebtorAccount": {
+                "Name": "Revenue Ireland"
+              },
+              "SupplementaryData": {
+                "OriginatorId": "IE81ZZZ333777",
+                "BeneficiaryId": "Othr",
+                "RemittanceInformation": "Additional Information"
+              }
+            }
+          ]
+        },
+        "Links": {
+          "Self": "https://developer.permanenttsb.ie/psd2api/ptsb/open-banking/v3.1/aisp/accounts/EC26D95F-6DDC-44E3-82C1-BA1145D7CEA6/transactions",
+          "Last": "https://developer.permanenttsb.ie/psd2api/ptsb/open-banking/v3.1/aisp/accounts/EC26D95F-6DDC-44E3-82C1-BA1145D7CEA6/transactions"
+        },
+        "Meta": {
+          "FirstAvailableDateTime": "2007-05-03T01:00:00+01:00",
+          "LastAvailableDateTime": "2037-12-03T00:00:00+00:00"
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+lovebird:
+  redsys:
+    bankinter:
+      base-url: https://localhost:${wiremock.server.https-port}/bankinter
+      authorization-url: https://localhost:${wiremock.server.https-port}/bankinter
+      pagination-limit: 2000
+    bbva:
+      base-url: https://localhost:${wiremock.server.https-port}/bbva
+      authorization-url: https://localhost:${wiremock.server.https-port}/bbva
+      pagination-limit: 2000
+    caixa:
+      base-url: https://localhost:${wiremock.server.https-port}/caixa
+      authorization-url: https://localhost:${wiremock.server.https-port}/caixa
+      pagination-limit: 2000
+    sabadell:
+      base-url: https://localhost:${wiremock.server.https-port}/sabadell
+      authorization-url: https://localhost:${wiremock.server.https-port}/sabadell
+      pagination-limit: 2000
+    santander:
+      base-url: https://localhost:${wiremock.server.https-port}/santander
+      authorization-url: https://localhost:${wiremock.server.https-port}/santander
+      pagination-limit: 2000
+    cajasur:
+      base-url: https://localhost:${wiremock.server.https-port}/cajasur
+      authorization-url: https://localhost:${wiremock.server.https-port}/cajasur
+      pagination-limit: 2000
+    cajarural:
+      base-url: https://localhost:${wiremock.server.https-port}
+      authorization-url: https://localhost:${wiremock.server.https-port}
+      pagination-limit: 2000
+    kutxabank:
+      base-url: https://localhost:${wiremock.server.https-port}/kutxabank
+      authorization-url: https://localhost:${wiremock.server.https-port}/kutxabank
+      pagination-limit: 2000
+    openbank:
+      base-url: https://localhost:${wiremock.server.https-port}/openbank
+      authorization-url: https://localhost:${wiremock.server.https-port}/openbank
+      pagination-limit: 2000
+    unicaja:
+      base-url: https://localhost:${wiremock.server.https-port}/unicaja
+      authorization-url: https://localhost:${wiremock.server.https-port}/unicaja
+      pagination-limit: 2000
+    evo:
+      base-url: https://localhost:${wiremock.server.https-port}/EVOBANCO
+      authorization-url: https://localhost:${wiremock.server.https-port}/EVOBANCO
+      pagination-limit: 2000
+    laboralkutxa:
+      base-url: https://localhost:${wiremock.server.https-port}/laboralkutxa
+      authorization-url: https://localhost:${wiremock.server.https-port}/laboralkutxa
+      pagination-limit: 2000
+    ibercaja:
+      base-url: https://localhost:${wiremock.server.https-port}/ibercaja
+      authorization-url: https://localhost:${wiremock.server.https-port}/ibercaja
+      pagination-limit: 2000
+    cajamarcajarural:
+      base-url: https://localhost:${wiremock.server.https-port}/grupocajamar
+      authorization-url: https://localhost:${wiremock.server.https-port}/grupocajamar
+      pagination-limit: 2000

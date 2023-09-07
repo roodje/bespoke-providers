@@ -1,0 +1,17 @@
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+lovebird:
+  brdgroup:
+    brd:
+      baseUrl: https://localhost:${wiremock.server.https-port}/
+      paginationLimit: 40
+      corePoolSize: 2
+      consentStatusPollingInitialDelayInSeconds: 1
+      consentStatusPollingTotalDelayLimitInSeconds: 300

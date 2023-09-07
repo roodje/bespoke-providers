@@ -1,0 +1,23 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/v2/account-holder/name",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "Accept-Encoding": {
+        "contains": "gzip"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accountHolderName": "Dave Bowman"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "request": {
+    "url": "/v1/consents",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "TPP-Redirect-URI": {
+        "equalTo": "https://www.yolt.com/callback-acc?state=11a1aaa1-aa1a-11a1-a111-a1a11a11aa11"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.combinedServiceIndicator == false)]"
+      },
+      {
+        "matchesJsonPath": "$.access[?(@.allPsd2 == 'allAccounts')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.frequencyPerDay == '4')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.recurringIndicator == true)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.validUntil =~ /[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}/)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "consentStatus": "received",
+      "consentId": "1111111111-aa11111",
+      "_links": {
+        "scaOAuth": {
+          "href": "https://psd2.axabanque.fr/public/berlingroup/authorize/aaaaaaaa-11a1-1111-aaaa-11111aaaa111"
+        },
+        "scaStatus": {
+          "href": "https://psd2.axabanque.fr/berlingroup/v1/consents/1111111111-aa11111/authorisations/aaaaaaaa-11a1-1111-aaaa-11111aaaa111"
+        },
+        "status": {
+          "href": "https://psd2.axabanque.fr/berlingroup/v1/consents/1111111111-aa11111/status"
+        },
+        "self": {
+          "href": "https://psd2.axabanque.fr/berlingroup/v1/consents/1111111111-aa11111"
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

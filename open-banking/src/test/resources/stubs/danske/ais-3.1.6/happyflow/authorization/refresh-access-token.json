@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/open-banking/private/oauth2/token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "551c6cce-fc16-49b9-8b16-ab66fea5eb35"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf7AeAAI"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "client_id=2892ebea7ea9befa778897b5454fea56fb564fba4ebf65e4ba6546789fae98a9"
+      },
+      {
+        "contains": "refresh_token=RefreshToken"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "AccessToken",
+      "refresh_token": "RefreshToken",
+      "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IlFPblRLV1BBdjNHSFk0cm1ic0JacjMifQ.eyJzdWIiOiIzNzRmZGY0Yjg1ZGQ0OTdiYTE4ZmQyMGZjYmViNDdiNSIsImF1ZCI6InpjUUFCU1lZYnRBbGpMRkFzSFJ3bCIsImp0aSI6Inpqb2pWR21aTmJwMXlsR0hrNFdBMWQiLCJpc3MiOiJodHRwczpcL1wvc2VjdXJlMS5yYnMuY28udWsiLCJpYXQiOjE1MTc0OTc2MjYsImV4cCI6MTUxNzQ5NzkyNiwibm9uY2UiOiI1YmNiYjFlMS00MmE2LTQ3ZGYtYWRmYi1lNThkMzkzZTM5MWQiLCJhdXRoX3RpbWUiOjE1MTc0OTc2MjYsImNfaGFzaCI6Ikw5SUFxTFRCeWtkRERCckpkR0ZqSUEifQ.Y43JyBUfPbcmV9H0waEWczRyezUbFJ0njOt7jivFSxNzNgeZzOxg9S6GoazC9PSK-F6OuP6L6m8NqUjNgPlC0hCRM3goyayhjXIBIeACLZdVtuRNKYsW7TaOLtTMuYXhxEQeXWmhU-1g593K0OtQzmBBrx_Z01fpjoQglD6hiZr6hmJNtFxOom4Gr7M26rApNUDC3hFVQaNSeZ1PwDYN1guVN73xFkKs9gS94L69N9cBnQ5nAwJPccMwx3fuB3Y3_UqE59plyJyU0Opm2X7zkdvlREzi6u93ZosqdlJKKPwYFkQanaLmv2IrA0PQ6TT4GhfC3doxe4RIYafWWPs2Gw",
+      "token_type": "Bearer",
+      "expires_in": 3600,
+      "refresh_token_expires_in": 7776000,
+      "metadata": "m:consent=urn:accounts:v3:b5c54d3c-c494-487e-9753-b8c92bf0e482&nonce=3a877f87-fef0-4e62-908f-f7bfca559ac7&acr=urn:openbanking:psd2:sca",
+      "consented_on": 1612882064,
+      "scope": "openid accounts"
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id" : "{{request.headers.x-fapi-interaction-id}}"
+    }
+  }
+}

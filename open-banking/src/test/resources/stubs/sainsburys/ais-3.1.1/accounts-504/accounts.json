@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "001728392JD873NNHY"
+      }
+    }
+  },
+  "response": {
+    "status": 504,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "code": "504",
+      "message": "Gateway timeout"
+    }
+  }
+}

@@ -1,0 +1,2995 @@
+components:
+  responses:
+    INTERNAL_SERVER_ERROR_500:
+      description: Internal Server Error
+      headers:
+        Location:
+          description: Location of the created resource.
+          schema:
+            type: string
+        X-Request-Id:
+          description: ID of the request, unique to the call, as determined by the
+            initiating party.
+          schema:
+            type: string
+    SERVICE_UNAVAILABLE_503:
+      description: Service Unavailable
+      headers:
+        Location:
+          description: Location of the created resource.
+          schema:
+            type: string
+        X-Request-Id:
+          description: ID of the request, unique to the call, as determined by the
+            initiating party.
+          schema:
+            type: string
+  schemas:
+    GetAccountResponse:
+      properties:
+        _links:
+          description: Links to the account, which can be directly used for retrieving
+            account information from this dedicated account. Links to “balances” and/or
+            “transactions”. These links are only supported, when the corresponding
+            consent has been already granted.
+          properties:
+            balances:
+              description: A link to the resource providing the balance of a dedicated
+                account
+              properties:
+                href:
+                  description: link of the resource
+                  type: string
+              type: object
+            transactions:
+              description: A link to the resource providing the transaction history
+                of a dedicated account
+              properties:
+                href:
+                  description: link of the resource
+                  type: string
+              type: object
+          type: object
+        balances:
+          description: List of balances.
+          items:
+            properties:
+              balanceAmount:
+                description: Amount object.
+                properties:
+                  amount:
+                    description: The amount given with fractional digits, where fractions
+                      must be compliant to the currency definition. Up to 14 significant
+                      figures. Negative amounts are signed by minus.The decimal separator
+                      is a dot.
+                    type: string
+                  currency:
+                    description: Currency code (ISO 4217).
+                    type: string
+                required:
+                - amount
+                - currency
+                type: object
+              balanceType:
+                description: This definition is following ISO20022 logic for defining
+                  balance types, supported value is INTERIM_BOOKED only.
+                enum:
+                - CLOSING_AVAILABLE
+                - CLOSING_BOOKED
+                - EXPECTED
+                - FORWARD_AVAILABLE
+                - INFORMATION
+                - INTERIM_AVAILABLE
+                - INTERIM_BOOKED
+                - OPENING_AVAILABLE
+                - OPENING_BOOKED
+                - PREVIOUSLY_CLOSED_BOOKED
+                type: string
+              lastChangeDateTime:
+                description: This data element might be used to indicate e.g. with
+                  the expected or booked balance that no action is known on the account,
+                  which is not yet booked.
+                type: string
+              lastCommittedTransaction:
+                description: EntryReference of the last committed transaction to support
+                  the TPP in identifying whether all PSU transactions are already
+                  known
+                type: string
+              referenceDate:
+                description: Reference date of the balance
+                type: string
+            required:
+            - balanceAmount
+            - balanceType
+            type: object
+          type: array
+        bban:
+          description: Ultimate creditor account
+          type: string
+        bic:
+          description: The BIC associated to the account (ISO 9362).
+          type: string
+        cashAccountType:
+          description: ExternalCashAccountType1Code from ISO20022.
+          type: string
+        currency:
+          description: Currency code (ISO 4217).
+          type: string
+        iban:
+          description: Ultimate debtor account
+          type: string
+        maskedPan:
+          description: Primary Account Number (PAN) of a card in a masked form
+          type: string
+        msisdn:
+          description: An alias to access a payment account via a registered mobile
+            phone number.
+          type: string
+        name:
+          description: Name of the account given by the bank or the PSU in Online-Banking.
+          type: string
+        ownerName:
+          description: Name of the legal account owner. If there is more than one
+            owner, then e.g. two names might be noted here.
+          type: string
+        pan:
+          description: Primary Account Number (PAN) of a card, can be tokenized by
+            the ASPSP due to PCI DSS requirements. This field is not used in v1 release.
+          type: string
+        product:
+          description: Product Name of the Bank for this account, proprietary definition.
+          type: string
+        resourceId:
+          description: Unique identification, as assigned by the initiating party,
+            to unambiguously identify the transaction.
+          type: string
+      required:
+      - currency
+      title: GetAccountResponse
+      type: object
+    GetAccountsResponse:
+      properties:
+        accounts:
+          description: JSON based list of authorized accounts of a PSU
+          items:
+            properties:
+              _links:
+                description: Links to the account, which can be directly used for
+                  retrieving account information from this dedicated account. Links
+                  to “balances” and/or “transactions”. These links are only supported,
+                  when the corresponding consent has been already granted.
+                properties:
+                  balances:
+                    description: A link to the resource providing the balance of a
+                      dedicated account
+                    properties:
+                      href:
+                        description: link of the resource
+                        type: string
+                    type: object
+                  transactions:
+                    description: A link to the resource providing the transaction
+                      history of a dedicated account
+                    properties:
+                      href:
+                        description: link of the resource
+                        type: string
+                    type: object
+                type: object
+              balances:
+                description: List of balances.
+                items:
+                  properties:
+                    balanceAmount:
+                      description: Amount object.
+                      properties:
+                        amount:
+                          description: The amount given with fractional digits, where
+                            fractions must be compliant to the currency definition.
+                            Up to 14 significant figures. Negative amounts are signed
+                            by minus.The decimal separator is a dot.
+                          type: string
+                        currency:
+                          description: Currency code (ISO 4217).
+                          type: string
+                      required:
+                      - amount
+                      - currency
+                      type: object
+                    balanceType:
+                      description: This definition is following ISO20022 logic for
+                        defining balance types, supported value is INTERIM_BOOKED
+                        only.
+                      enum:
+                      - CLOSING_AVAILABLE
+                      - CLOSING_BOOKED
+                      - EXPECTED
+                      - FORWARD_AVAILABLE
+                      - INFORMATION
+                      - INTERIM_AVAILABLE
+                      - INTERIM_BOOKED
+                      - OPENING_AVAILABLE
+                      - OPENING_BOOKED
+                      - PREVIOUSLY_CLOSED_BOOKED
+                      type: string
+                    lastChangeDateTime:
+                      description: This data element might be used to indicate e.g.
+                        with the expected or booked balance that no action is known
+                        on the account, which is not yet booked.
+                      type: string
+                    lastCommittedTransaction:
+                      description: EntryReference of the last committed transaction
+                        to support the TPP in identifying whether all PSU transactions
+                        are already known
+                      type: string
+                    referenceDate:
+                      description: Reference date of the balance
+                      type: string
+                  required:
+                  - balanceAmount
+                  - balanceType
+                  type: object
+                type: array
+              bban:
+                description: Ultimate creditor account
+                type: string
+              bic:
+                description: The BIC associated to the account (ISO 9362).
+                type: string
+              cashAccountType:
+                description: ExternalCashAccountType1Code from ISO20022.
+                type: string
+              currency:
+                description: Currency code (ISO 4217).
+                type: string
+              iban:
+                description: Ultimate debtor account
+                type: string
+              maskedPan:
+                description: Primary Account Number (PAN) of a card in a masked form
+                type: string
+              msisdn:
+                description: An alias to access a payment account via a registered
+                  mobile phone number.
+                type: string
+              name:
+                description: Name of the account given by the bank or the PSU in Online-Banking.
+                type: string
+              ownerName:
+                description: Name of the legal account owner. If there is more than
+                  one owner, then e.g. two names might be noted here.
+                type: string
+              pan:
+                description: Primary Account Number (PAN) of a card, can be tokenized
+                  by the ASPSP due to PCI DSS requirements. This field is not used
+                  in v1 release.
+                type: string
+              product:
+                description: Product Name of the Bank for this account, proprietary
+                  definition.
+                type: string
+              resourceId:
+                description: Unique identification, as assigned by the initiating
+                  party, to unambiguously identify the transaction.
+                type: string
+            required:
+            - currency
+            type: object
+          type: array
+      required:
+      - accounts
+      title: GetAccountsResponse
+      type: object
+    GetBalancesResponse:
+      properties:
+        balances:
+          description: A list of balance regarding this account, e.g. the current
+            balance, the last booked balance. See below for Balance description.
+          items:
+            properties:
+              balanceAmount:
+                description: Amount object.
+                properties:
+                  amount:
+                    description: The amount given with fractional digits, where fractions
+                      must be compliant to the currency definition. Up to 14 significant
+                      figures. Negative amounts are signed by minus.The decimal separator
+                      is a dot.
+                    type: string
+                  currency:
+                    description: Currency code (ISO 4217).
+                    type: string
+                required:
+                - amount
+                - currency
+                type: object
+              balanceType:
+                description: This definition is following ISO20022 logic for defining
+                  balance types
+                enum:
+                - CLOSING_AVAILABLE
+                - CLOSING_BOOKED
+                - EXPECTED
+                - FORWARD_AVAILABLE
+                - INFORMATION
+                - INTERIM_AVAILABLE
+                - INTERIM_BOOKED
+                - OPENING_AVAILABLE
+                - OPENING_BOOKED
+                - PREVIOUSLY_CLOSED_BOOKED
+                type: string
+              lastChangeDateTime:
+                description: This data element might be used to indicate e.g. with
+                  the expected or booked balance that no action is known on the account,
+                  which is not yet booked.
+                type: string
+              lastCommittedTransaction:
+                description: EntryReference of the last committed transaction to support
+                  the TPP in identifying whether all PSU transactions are already
+                  known
+                type: string
+              referenceDate:
+                description: Reference date of the balance
+                type: string
+            required:
+            - balanceAmount
+            - balanceType
+            type: object
+          type: array
+      required:
+      - balances
+      title: GetBalancesResponse
+      type: object
+    GetTransactionsResponse:
+      properties:
+        _links:
+          description: A list of hyperlinks to be recognised by the TPP.
+          properties:
+            href:
+              description: link of the resource
+              type: string
+          type: object
+        balances:
+          description: List of balances
+          items:
+            properties:
+              balanceAmount:
+                description: Amount object.
+                properties:
+                  amount:
+                    description: The amount given with fractional digits, where fractions
+                      must be compliant to the currency definition. Up to 14 significant
+                      figures. Negative amounts are signed by minus.The decimal separator
+                      is a dot.
+                    type: string
+                  currency:
+                    description: Currency code (ISO 4217).
+                    type: string
+                required:
+                - amount
+                - currency
+                type: object
+              balanceType:
+                description: This definition is following ISO20022 logic for defining
+                  balance types
+                enum:
+                - CLOSING_AVAILABLE
+                - CLOSING_BOOKED
+                - EXPECTED
+                - FORWARD_AVAILABLE
+                - INFORMATION
+                - INTERIM_AVAILABLE
+                - INTERIM_BOOKED
+                - OPENING_AVAILABLE
+                - OPENING_BOOKED
+                - PREVIOUSLY_CLOSED_BOOKED
+                type: string
+              lastChangeDateTime:
+                description: This data element might be used to indicate e.g. with
+                  the expected or booked balance that no action is known on the account,
+                  which is not yet booked.
+                type: string
+              lastCommittedTransaction:
+                description: EntryReference of the last committed transaction to support
+                  the TPP in identifying whether all PSU transactions are already
+                  known
+                type: string
+              referenceDate:
+                description: Reference date of the balance
+                type: string
+            required:
+            - balanceAmount
+            - balanceType
+            type: object
+          type: array
+        transactions:
+          description: JSON based account report (booked, pending, links)
+          properties:
+            _links:
+              description: A list of hyperlinks to be recognised by the TPP
+              properties:
+                account:
+                  description: Pagination links to the account
+                  properties:
+                    href:
+                      description: link of the resource
+                      type: string
+                  type: object
+                first:
+                  description: Pagination link to first page
+                  properties:
+                    href:
+                      description: link of the resource
+                      type: string
+                  type: object
+                last:
+                  description: Pagination links to last page
+                  properties:
+                    href:
+                      description: link of the resource
+                      type: string
+                  type: object
+                next:
+                  description: Pagination links to next page
+                  properties:
+                    href:
+                      description: link of the resource
+                      type: string
+                  type: object
+                previous:
+                  description: Pagination links to previous page
+                  properties:
+                    href:
+                      description: link of the resource
+                      type: string
+                  type: object
+                self:
+                  description: Pagination links to self page
+                  properties:
+                    href:
+                      description: link of the resource
+                      type: string
+                  type: object
+              type: object
+            booked:
+              description: List of transaction with status booked
+              items:
+                properties:
+                  _links:
+                    description: Link for this transaction resource
+                    properties:
+                      href:
+                        description: link of the resource
+                        type: string
+                    type: object
+                  bookingDate:
+                    description: Date when a transaction entry is posted to an account
+                      on the account service's books.
+                    type: string
+                  creditorAccount:
+                    description: Creditor account.
+                    properties:
+                      bban:
+                        description: This data elements is used for payment accounts
+                          which have no IBAN.
+                        type: string
+                      currency:
+                        description: Currency code (ISO 4217).
+                        type: string
+                      iban:
+                        description: The International Bank Account Number.
+                        type: string
+                      maskedPan:
+                        description: Primary Account Number (PAN) of a card in a masked
+                          form.
+                        maxLength: 35
+                        minLength: 0
+                        type: string
+                      msisdn:
+                        description: An alias to access a payment account via a registered
+                          mobile phone number.
+                        maxLength: 35
+                        minLength: 0
+                        type: string
+                      pan:
+                        description: Primary Account Number (PAN) of a card, can be
+                          tokenised by the ASPSP due to PCI DSS requirements. This
+                          field is not used in v1 release.
+                        maxLength: 35
+                        minLength: 0
+                        type: string
+                    type: object
+                  creditorName:
+                    description: Name of the creditor if a "Debited" transaction.
+                    type: string
+                  debtorAccount:
+                    description: Debtor account.
+                    properties:
+                      bban:
+                        description: This data elements is used for payment accounts
+                          which have no IBAN.
+                        type: string
+                      currency:
+                        description: Currency code (ISO 4217).
+                        type: string
+                      iban:
+                        description: The International Bank Account Number.
+                        type: string
+                      maskedPan:
+                        description: Primary Account Number (PAN) of a card in a masked
+                          form.
+                        maxLength: 35
+                        minLength: 0
+                        type: string
+                      msisdn:
+                        description: An alias to access a payment account via a registered
+                          mobile phone number.
+                        maxLength: 35
+                        minLength: 0
+                        type: string
+                      pan:
+                        description: Primary Account Number (PAN) of a card, can be
+                          tokenised by the ASPSP due to PCI DSS requirements. This
+                          field is not used in v1 release.
+                        maxLength: 35
+                        minLength: 0
+                        type: string
+                    type: object
+                  debtorName:
+                    description: Name of the debtor if a "Credited" transaction.
+                    type: string
+                  entryReference:
+                    description: Is the identification of the transaction as used
+                      e.g. for reference for deltafunction on application level.
+                    type: string
+                  proprietaryBankTransactionCode:
+                    description: Proprietary bank transaction code to identify the
+                      underlying transaction
+                    type: string
+                  remittanceInformationStructured:
+                    description: Information supplied to enable the matching/reconciliation
+                      of an entry with the items that the payment is intended to settle,
+                      such as commercial invoices in an accounts' receivable system,
+                      in an structured form.
+                    type: string
+                  remittanceInformationUnstructured:
+                    description: Information supplied to enable the matching/reconciliation
+                      of an entry with the items that the payment is intended to settle,
+                      such as commercial invoices in an accounts' receivable system,
+                      in an unstructured form.
+                    type: string
+                  transactionAmount:
+                    description: Amount object.
+                    properties:
+                      amount:
+                        description: The amount given with fractional digits, where
+                          fractions must be compliant to the currency definition.
+                          Up to 14 significant figures. Negative amounts are signed
+                          by minus.The decimal separator is a dot.
+                        type: string
+                      currency:
+                        description: Currency code (ISO 4217).
+                        type: string
+                    required:
+                    - amount
+                    - currency
+                    type: object
+                  transactionDate:
+                    description: Date when the actual transaction was initiated by
+                      a third party at ASPSP.
+                    type: string
+                  transactionId:
+                    description: Can be used as access-ID in the API, where more details
+                      on an transaction is offered.
+                    type: string
+                  valueDate:
+                    description: Date at which assets become available to the account
+                      owner in case of a credit entry, or cease to be available to
+                      the account owner in case of a debit transaction entry.
+                    type: string
+                required:
+                - transactionAmount
+                type: object
+              type: array
+            pending:
+              description: List of transaction with status pending
+              items:
+                properties:
+                  _links:
+                    description: Link for this transaction resource
+                    properties:
+                      href:
+                        description: link of the resource
+                        type: string
+                    type: object
+                  bookingDate:
+                    description: Date when a transaction entry is posted to an account
+                      on the account service's books.
+                    type: string
+                  creditorAccount:
+                    description: Creditor account.
+                    properties:
+                      bban:
+                        description: This data elements is used for payment accounts
+                          which have no IBAN.
+                        type: string
+                      currency:
+                        description: Currency code (ISO 4217).
+                        type: string
+                      iban:
+                        description: The International Bank Account Number.
+                        type: string
+                      maskedPan:
+                        description: Primary Account Number (PAN) of a card in a masked
+                          form.
+                        maxLength: 35
+                        minLength: 0
+                        type: string
+                      msisdn:
+                        description: An alias to access a payment account via a registered
+                          mobile phone number.
+                        maxLength: 35
+                        minLength: 0
+                        type: string
+                      pan:
+                        description: Primary Account Number (PAN) of a card, can be
+                          tokenised by the ASPSP due to PCI DSS requirements. This
+                          field is not used in v1 release.
+                        maxLength: 35
+                        minLength: 0
+                        type: string
+                    type: object
+                  creditorName:
+                    description: Name of the creditor if a "Debited" transaction.
+                    type: string
+                  debtorAccount:
+                    description: Debtor account.
+                    properties:
+                      bban:
+                        description: This data elements is used for payment accounts
+                          which have no IBAN.
+                        type: string
+                      currency:
+                        description: Currency code (ISO 4217).
+                        type: string
+                      iban:
+                        description: The International Bank Account Number.
+                        type: string
+                      maskedPan:
+                        description: Primary Account Number (PAN) of a card in a masked
+                          form.
+                        maxLength: 35
+                        minLength: 0
+                        type: string
+                      msisdn:
+                        description: An alias to access a payment account via a registered
+                          mobile phone number.
+                        maxLength: 35
+                        minLength: 0
+                        type: string
+                      pan:
+                        description: Primary Account Number (PAN) of a card, can be
+                          tokenised by the ASPSP due to PCI DSS requirements. This
+                          field is not used in v1 release.
+                        maxLength: 35
+                        minLength: 0
+                        type: string
+                    type: object
+                  debtorName:
+                    description: Name of the debtor if a "Credited" transaction.
+                    type: string
+                  entryReference:
+                    description: Is the identification of the transaction as used
+                      e.g. for reference for deltafunction on application level.
+                    type: string
+                  proprietaryBankTransactionCode:
+                    description: Proprietary bank transaction code to identify the
+                      underlying transaction
+                    type: string
+                  remittanceInformationStructured:
+                    description: Information supplied to enable the matching/reconciliation
+                      of an entry with the items that the payment is intended to settle,
+                      such as commercial invoices in an accounts' receivable system,
+                      in an structured form.
+                    type: string
+                  remittanceInformationUnstructured:
+                    description: Information supplied to enable the matching/reconciliation
+                      of an entry with the items that the payment is intended to settle,
+                      such as commercial invoices in an accounts' receivable system,
+                      in an unstructured form.
+                    type: string
+                  transactionAmount:
+                    description: Amount object.
+                    properties:
+                      amount:
+                        description: The amount given with fractional digits, where
+                          fractions must be compliant to the currency definition.
+                          Up to 14 significant figures. Negative amounts are signed
+                          by minus.The decimal separator is a dot.
+                        type: string
+                      currency:
+                        description: Currency code (ISO 4217).
+                        type: string
+                    type: object
+                  transactionDate:
+                    description: Date when the actual transaction was initiated by
+                      a third party at ASPSP.
+                    type: string
+                  transactionId:
+                    description: Can be used as access-ID in the API, where more details
+                      on an transaction is offered.
+                    type: string
+                  valueDate:
+                    description: Date at which assets become available to the account
+                      owner in case of a credit entry, or cease to be available to
+                      the account owner in case of a debit transaction entry.
+                    type: string
+                type: object
+              type: array
+          required:
+          - _links
+          - booked
+          type: object
+      title: GetTransactionsResponse
+      type: object
+    error:
+      properties:
+        tppMessages:
+          description: NextGenPSD2 specific definition of reporting error information
+            in case of a HTTP error code
+          items:
+            properties:
+              category:
+                description: Category of the TPP message category. Possible values
+                  are `ERROR` and `WARNING`.
+                type: string
+              code:
+                description: Message codes defined for AIS, HTTP Error code
+                type: string
+              path:
+                description: Field name or param causing error.
+                type: string
+              text:
+                description: Additional explaining text to the TPP.
+                type: string
+            required:
+            - category
+            - code
+            type: object
+          type: array
+      title: error
+      type: object
+  securitySchemes:
+    apiKey:
+      description: Your personal API Key
+      in: header
+      name: apiKey
+      type: apiKey
+info:
+  description: "The **Account Information Service (AIS)** allows access to the account\
+    \ & balances information and transaction history of his or her consented checking\
+    \ accounts.\r\nThe design of these APIs is in accordance with the international\
+    \ **Berlin Group NextGenPSD2 standard**, version 1.3.\r\n\r\nIn this Account Information\
+    \ Service (AIS) are included the endpoints for the following functionalities:\r\
+    \n- Retrieve a list of consented accounts\r\n- Retrieve details of a consented\
+    \ account\r\n- Retrieve balances of a consented account\r\n- Retrieve transactions\
+    \ of a consented account\r\n\r\nThis new version supports the Article 10 and the\
+    \ Article 36.5(b) related to the Regulatory Technical Standard (RTS).\r\nThis\
+    \ means that:\r\n- It is not possible to create a consent with a validity date\
+    \ than exceed 90 days after the creation date.\r\n- Only the first JWT (access_token)\
+    \ obtained via the consent authorisation can be used to have more that 90 days\
+    \ of transactions in the past. The JWT obtained by refresh_token will allow to\
+    \ have only 90 days of transactions.\r\n- Account information can be requested\
+    \ only 4 times in a 24-hour period if the IP-Address of the PSU is not present\
+    \ in the request (PSU-IP-Address).\r\n\r\nSee the guide in the Documentation section\
+    \ for a detailed explanation of how to use the Account Information Service.\r\n\
+    \r\n# Transport Layer\r\n\r\nThe communication between the **TPP** and the **ASPSP**\
+    \ is always secured by using a TLS-connection using TLS version 1.2.\r\n\r\nThe\
+    \ TLS-connection has to be established always including client (i.e. **TPP**)\
+    \ authentication.\r\nFor this authentication the **TPP** has to use a qualified\
+    \ certificate for website authentication (QWAC).\r\nThis qualified certificate\
+    \ has to be issued by a qualified trust service provider according to the eIDAS\
+    \ regulation.\r\nThe content of the certificate has to be compliant with the requirements\
+    \ of EBA-RTS.\r\nThe certificate of the **TPP** has to indicate all roles the\
+    \ **TPP** is authorized to use.\r\n\r\n# Actors\r\n\r\n- **Third Party Providers\
+    \ (TPP)**: A party other than an **ASPSP** that provides payment related services.\r\
+    \n- **Payment Service User (PSU)**: A natural or legal person making use of a\
+    \ payment service as a payee, payer or both (PSD2 Article 4(10)).\r\n- **Account\
+    \ Servicing Payment Service Provider (ASPSP)**: An **ASPSP** is a PSP that provides\
+    \ and maintains a payment account for a **Payment Service User** (PSD 2 Article\
+    \ 4(15)).\r\n\r\n# Sequence diagram\r\n\r\nSequence diagram can be found [here](https://media-dxp-delivery.s3-eu-west-1.amazonaws.com/2019.2.1/actAsAspsp_Berlin%2BGroup_AIS_Sequence%2BDiagram%2B-%2BAccount%2BInformation.svg)."
+  title: NextGenPSD2 - Account Information
+  version: '1.5'
+openapi: 3.0.1
+paths:
+  /:
+    get:
+      description: 'It is assumed that a consent of the PSU to this access is already
+        given. The addressed list of accounts depends then on the stored consent addressed
+        by consentId.
+
+        Returns all identifiers of the accounts, to which an account access has been
+        granted to through the consents endpoint by the PSU.
+
+        In addition, relevant information about the accounts and hyperlinks to corresponding
+        account information resources are provided if a related consent has been already
+        granted.'
+      operationId: Request to retrieve all accounts8-Request to retrieve all accounts
+        none found8-Request to retrieve all accounts with balance8-Request to retrieve
+        all accounts with owner name8-Wrong request to retrieve all accounts with
+        Tpp blocked8-Wrong request to retrieve all accounts with Tpp having invalid
+        authority status8-Wrong request to retrieve all accounts with Tpp having no
+        accreditation8-Wrong request to retrieve all accounts with Tpp having no national
+        accreditation8-Wrong request to retrieve all accounts with access exceeded8-Wrong
+        request to retrieve all accounts with consent not found8-Wrong request to
+        retrieve all accounts with invalid consent-id8-Wrong request to retrieve all
+        accounts with invalid tokenWrong request to retrieve all accounts with digest
+        header missingWrong request to retrieve all accounts with signature header
+        missingWrong request to retrieve all accounts with tpp-signature-certificate
+        missing
+      parameters:
+      - description: Optional param for pagination requested (zero indexed). If omitted
+          default 0-49 is applied.
+        in: query
+        name: range
+        required: false
+        schema:
+          type: string
+      - description: Optional param for sorting paginated resource. For example use
+          ?sort=name,-age to sort on name ascending and age descending.
+        in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+      - description: Default value is false. If passed as true, then balances will
+          be included in the response
+        in: query
+        name: withBalance
+        required: false
+        schema:
+          type: string
+      - description: ID of the request, unique to the call, as determined by the initiating
+          party.
+        example: 99391c7e-ad88-49ec-a2ad-99ddcb1f7721
+        in: header
+        name: X-Request-Id
+        required: true
+        schema:
+          type: string
+      - description: It contains a Hash of the message body. The only hash algorithms
+          that may be used to calculate the Digest within the context of this specification
+          are SHA-256 and SHA-512 as defined in [RFC5843].
+        example: SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+        in: header
+        name: digest
+        required: true
+        schema:
+          type: string
+      - description: A signature of the request by the **TPP** on application level.
+        example: keyId="SN=4145e06efda52dc2,CA=EMAILADDRESS=rootCA@root.com, OU=DxP,
+          O=SBS, L=Paris, ST=Paris, C=FR",algorithm="rsa-sha256",headers="digest x-request-id",signature="Ts7gUo4afmgu2WC/5iUeJBzesmRXTtJV9vZf8msWnDM6kSUZLyoWt891XJTyARIyRwWIHD3u1U+UehWlcJw57alhG1IE2q5IS27PJlLlQpbaIqwGuGcrFZJIcfTiosHAsuwzJr5jOTzd66TbwO+OqwswalcpQ5t2Y2FC0rG8UXUvw165aXTuj7q4mMhZ6drxd8KD+x461W4j10uMSqfNAMcaLJrXoaw59k2LmoVub5zYew/rq2ImdCa8FBQ0/VQTH5IBlOuXXq715K2m0hltU2jYJy7Bf7ccY69U4ZrLNP8fCyblD8T+B+7b7HNfDjL2iIKFL0xQWwpoj8/K0i1VFg=="
+        in: header
+        name: signature
+        required: true
+        schema:
+          type: string
+      - description: The certificate used for signing the request, in pem format.
+        example: "-----BEGIN CERTIFICATE-----\n    MIIERzCCAy+gAwIBAgIIQUXgbv2lLcIwDQYJKoZIhvcNAQELBQAwaTELMAkGA1UE\n\
+          \    BhMCRlIxDjAMBgNVBAgTBVBhcmlzMQ4wDAYDVQQHEwVQYXJpczEMMAoGA1UEChMD\n\
+          \    U0JTMQwwCgYDVQQLEwNEeFAxHjAcBgkqhkiG9w0BCQEWD3Jvb3RDQUByb290LmNv\n\
+          \    bTAeFw0xOTAyMTQxMzU4MDBaFw0yODEyMTkxODAwMDBaMIGSMQswCQYDVQQGEwJG\n\
+          \    UjEOMAwGA1UECBMFUGFyaXMxDjAMBgNVBAcTBVBhcmlzMQwwCgYDVQQKEwNTQlMx\n\
+          \    DDAKBgNVBAsTA0R4UDEMMAoGA1UEAxMDU0JTMR4wHAYJKoZIhvcNAQkBFg9yb290\n\
+          \    Q0FAcm9vdC5jb20xGTAXBgNVBGETEFBTREJFLUFJUy0xMjM0NTYwggEiMA0GCSqG\n\
+          \    SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCyB1NOqlS7X/XOZyoMPXHhDG8c8VyVC6sC\n\
+          \    M6dW2rTkQEr4fm57fi3bdPjMTBRFB+dRNcERyWUSWiE85LW9UWcMIORltL59utio\n\
+          \    1dySGUV+DRKffLAoe2jyhq5iWsU6WvK3kVcqLddXMfgdSB+qgYhQqCK6mpOilhdG\n\
+          \    BE6nFbF4M4+sTGL/0ncW4eGqAIsk6VvCEjuXtLabeE0Ji2BSekQnYMgu0qEXkwcg\n\
+          \    TPkMw1topWz3VNAgN0aGAOMAN0piFBGayoLVGqoLd3eD4Xk/EzFkt3/XBYZ1TSaF\n\
+          \    1jevtwrscrbnIrajfg1R36a5gJAUZpweT3RvpIVsYDBdCSUbCPsjAgMBAAGjgcgw\n\
+          \    gcUwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUQHK9dnN045oBeO2Be73LDTJU\n\
+          \    VlswCwYDVR0PBAQDAgEGMBQGA1UdIAQNMAswCQYHBACL7EABATA9BggrBgEFBQcB\n\
+          \    AwQxMC8wLQYGBACBmCcCMCMwEzARBgcEAIGYJwEDDAZQU1BfQUkMBEF1dGgMBkZy\n\
+          \    YW5jZTARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0\n\
+          \    aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAgPKZSlIVmemajqUe290ecKQ3HLd4\n\
+          \    KruOMEqpJoIOPRF9zIXe9RQb7qwbYpP0tweL4tA8eEdkwz7dxOwno/75GeCb5vVo\n\
+          \    1GDbeOecgIyEMjEPyxoTtuo1qr07GIcVXmx/aOMLoZXAbKq1Tg2SU+876z1YlBs8\n\
+          \    4n4hloJeWpkbKOTQkzfmTWW1AtLrBnU7KFhKdC1s5g/EyVz063lscSJNg07/i+n2\n\
+          \    LSvrOptLOogZ92EcuVB6t7/3tmp6lIptMxoTNwZee8mqDI7ogUxcZUxGpAJzG6Ub\n\
+          \    2qmL9KvMFjKTMhfyuTG8xx+4EN+VsduIxe/7/0nM5zQFwEZvPX1CQizAzQ==\n    -----END\
+          \ CERTIFICATE-----"
+        in: header
+        name: tpp-signature-certificate
+        required: true
+        schema:
+          type: string
+      - description: The forwarded IP Address header field consists of the corresponding
+          HTTP request IP Address field between **PSU** and **TPP**.
+        example: 127.0.0.1
+        in: header
+        name: psu-ip-address
+        required: false
+        schema:
+          type: string
+      - description: Client ID of the PSU in the ASPSP client interface.
+        in: header
+        name: psu-id
+        required: false
+        schema:
+          type: string
+      - description: Type of the PSU-ID, needed in scenarios where PSUs have several
+          PSU-IDs as access possibility.
+        in: header
+        name: psu-id-type
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Port header field consists of the corresponding
+          HTTP request IP Port field between **PSU** and **TPP**, if available.
+        example: '87877'
+        in: header
+        name: psu-ip-port
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept header fields consist of the corresponding
+          HTTP request Accept header fields between **PSU** and **TPP**, if available.
+        example: application/json
+        in: header
+        name: psu-accept
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Charset header fields consist of the
+          corresponding HTTP request Accept-Charset header fields between **PSU**
+          and **TPP**, if available.
+        example: utf-8
+        in: header
+        name: psu-accept-charset
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Encoding header fields consist of the
+          corresponding HTTP request Accept-Encoding header fields between **PSU**
+          and **TPP**, if available.
+        example: gzip, deflat
+        in: header
+        name: psu-accept-encoding
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Language header fields consist of the
+          corresponding HTTP request Accept-Language header fields between **PSU**
+          and **TPP**, if available.
+        example: en-US
+        in: header
+        name: psu-accept-language
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Agent header field of the HTTP request between
+          **PSU** and **TPP**, if available.
+        example: Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0
+        in: header
+        name: psu-user-agent
+        required: false
+        schema:
+          type: string
+      - description: 'HTTP method used at the **PSU** – **TPP** interface, if available.Possible
+          values : GET, POST, PUT, PATCH, DELETE.'
+        example: GET
+        in: header
+        name: psu-http-method
+        required: false
+        schema:
+          type: string
+      - description: UUID identifies either a device or a device dependant application
+          installation. In case of an installation identification this ID need to
+          be unaltered until removal from device.
+        example: 8cb184d9-f90b-4994-abce-ba8079d1c505
+        in: header
+        name: psu-device-id
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Geo Location of the corresponding HTTP request
+          between **PSU** and **TPP** if available.
+        example: US
+        in: header
+        name: psu-geo-location
+        required: false
+        schema:
+          type: string
+      - description: Identification of the consent resource as it is used in the API
+          structure. Shall be contained, if a consent resource was generated.
+        example: c00000000000000000000000
+        in: header
+        name: consent-id
+        required: true
+        schema:
+          type: string
+      - description: Marker used by the server to advertise its support of partial
+          requests
+        example: application/json
+        in: header
+        name: Accept
+        required: false
+        schema:
+          type: string
+      - description: Holds Bearer information
+        example: Bearer sona
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: Contains the date and time at which the message was originated
+        example: Sun, 06 Aug 2017 15:05:37 GMT
+        in: header
+        name: Date
+        required: false
+        schema:
+          type: string
+      - description: The apiKey is a token that a client provides when making API
+          calls.
+        example: 3fdd7da3-03ae-4fd5-bf0b-d09bc018cde1
+        in: header
+        name: apiKey
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all accounts:
+                  value: "{\r\n  \"accounts\" : [ {\r\n    \"resourceId\" : \"6e0029c7932b50dd5a308625\"\
+                    ,\r\n    \"iban\" : \"BE98999000661993\",\r\n    \"bban\" : \"\
+                    999000661993\",\r\n    \"currency\" : \"AUD\",\r\n    \"name\"\
+                    \ : \"test FKI 2505\",\r\n    \"product\" : \"Current account\"\
+                    ,\r\n    \"cashAccountType\" : \"ODFT\",\r\n    \"_links\" : {\r\
+                    \n      \"balances\" : {\r\n        \"href\" : \"/v1/accounts/6e0029c7932b50dd5a308625/balances\"\
+                    \r\n      },\r\n      \"transactions\" : {\r\n        \"href\"\
+                    \ : \"/v1/accounts/6e0029c7932b50dd5a308625/transactions\"\r\n\
+                    \      }\r\n    }\r\n  }, {\r\n    \"resourceId\" : \"5b111695400e574a608a9cbb\"\
+                    ,\r\n    \"iban\" : \"BE60999000126170\",\r\n    \"bban\" : \"\
+                    999000126170\",\r\n    \"currency\" : \"EUR\",\r\n    \"name\"\
+                    \ : \"Current account 2\",\r\n    \"product\" : \"Current account\"\
+                    ,\r\n    \"cashAccountType\" : \"ODFT\",\r\n    \"_links\" : {\r\
+                    \n      \"balances\" : {\r\n        \"href\" : \"/v1/accounts/5b111695400e574a608a9cbb/balances\"\
+                    \r\n      },\r\n      \"transactions\" : {\r\n        \"href\"\
+                    \ : \"/v1/accounts/5b111695400e574a608a9cbb/transactions\"\r\n\
+                    \      }\r\n    }\r\n  }, {\r\n    \"resourceId\" : \"1aa8b59d9886b25df9ebe94b\"\
+                    ,\r\n    \"iban\" : \"BE35999000297437\",\r\n    \"bban\" : \"\
+                    999000297437\",\r\n    \"currency\" : \"USD\",\r\n    \"name\"\
+                    \ : \"test Postman AFU01\",\r\n    \"product\" : \"Current account\"\
+                    ,\r\n    \"cashAccountType\" : \"ODFT\",\r\n    \"_links\" : {\r\
+                    \n      \"balances\" : {\r\n        \"href\" : \"/v1/accounts/1aa8b59d9886b25df9ebe94b/balances\"\
+                    \r\n      },\r\n      \"transactions\" : {\r\n        \"href\"\
+                    \ : \"/v1/accounts/1aa8b59d9886b25df9ebe94b/transactions\"\r\n\
+                    \      }\r\n    }\r\n  } ]\r\n}"
+                Response of retrieve all accounts none found:
+                  value: "{\r\n  \"accounts\" : [ ]\r\n}"
+                Response of retrieve all accounts with balance:
+                  value: "{\r\n  \"accounts\" : [ {\r\n    \"resourceId\" : \"6e0029c7932b50dd5a308625\"\
+                    ,\r\n    \"iban\" : \"BE98999000661993\",\r\n    \"bban\" : \"\
+                    999000661993\",\r\n    \"currency\" : \"AUD\",\r\n    \"name\"\
+                    \ : \"test Postman AFU01\",\r\n    \"product\" : \"Current account\"\
+                    ,\r\n    \"balances\" : [ {\r\n      \"balanceAmount\" : {\r\n\
+                    \        \"amount\" : \"0.00\",\r\n        \"currency\" : \"AUD\"\
+                    \r\n      },\r\n      \"balanceType\" : \"interimBooked\",\r\n\
+                    \      \"referenceDate\" : \"2019-02-01\"\r\n    } ],\r\n    \"\
+                    cashAccountType\" : \"ODFT\",\r\n    \"_links\" : {\r\n      \"\
+                    balances\" : {\r\n        \"href\" : \"/v1/accounts/6e0029c7932b50dd5a308625/balances\"\
+                    \r\n      },\r\n      \"transactions\" : {\r\n        \"href\"\
+                    \ : \"/v1/accounts/6e0029c7932b50dd5a308625/transactions\"\r\n\
+                    \      }\r\n    }\r\n  }, {\r\n    \"resourceId\" : \"5b111695400e574a608a9cbb\"\
+                    ,\r\n    \"iban\" : \"BE60999000126170\",\r\n    \"bban\" : \"\
+                    999000126170\",\r\n    \"currency\" : \"EUR\",\r\n    \"name\"\
+                    \ : \"Current account 2\",\r\n    \"product\" : \"Current account\"\
+                    ,\r\n    \"balances\" : [ {\r\n      \"balanceAmount\" : {\r\n\
+                    \        \"amount\" : \"9864.00\",\r\n        \"currency\" : \"\
+                    EUR\"\r\n      },\r\n      \"balanceType\" : \"interimBooked\"\
+                    ,\r\n      \"referenceDate\" : \"2019-02-01\"\r\n    } ],\r\n\
+                    \    \"cashAccountType\" : \"ODFT\",\r\n    \"_links\" : {\r\n\
+                    \      \"balances\" : {\r\n        \"href\" : \"/v1/accounts/5b111695400e574a608a9cbb/balances\"\
+                    \r\n      },\r\n      \"transactions\" : {\r\n        \"href\"\
+                    \ : \"/v1/accounts/5b111695400e574a608a9cbb/transactions\"\r\n\
+                    \      }\r\n    }\r\n  }, {\r\n    \"resourceId\" : \"1aa8b59d9886b25df9ebe94b\"\
+                    ,\r\n    \"iban\" : \"BE35999000297437\",\r\n    \"bban\" : \"\
+                    999000297437\",\r\n    \"currency\" : \"USD\",\r\n    \"name\"\
+                    \ : \"test Postman AFU01\",\r\n    \"product\" : \"Current account\"\
+                    ,\r\n    \"balances\" : [ {\r\n      \"balanceAmount\" : {\r\n\
+                    \        \"amount\" : \"0.00\",\r\n        \"currency\" : \"USD\"\
+                    \r\n      },\r\n      \"balanceType\" : \"interimBooked\",\r\n\
+                    \      \"referenceDate\" : \"2019-02-01\"\r\n    } ],\r\n    \"\
+                    cashAccountType\" : \"ODFT\",\r\n    \"_links\" : {\r\n      \"\
+                    balances\" : {\r\n        \"href\" : \"/v1/accounts/1aa8b59d9886b25df9ebe94b/balances\"\
+                    \r\n      },\r\n      \"transactions\" : {\r\n        \"href\"\
+                    \ : \"/v1/accounts/1aa8b59d9886b25df9ebe94b/transactions\"\r\n\
+                    \      }\r\n    }\r\n  } ]\r\n}"
+                Response of retrieve all accounts with owner name:
+                  value: "{\r\n  \"accounts\" : [ {\r\n    \"resourceId\" : \"6e0029c7932b50dd5a308625\"\
+                    ,\r\n    \"iban\" : \"BE98999000661993\",\r\n    \"bban\" : \"\
+                    999000661993\",\r\n    \"currency\" : \"AUD\",\r\n    \"name\"\
+                    \ : \"test FKI 2505\",\r\n    \"product\" : \"Current account\"\
+                    ,\r\n    \"balances\" : [ {\r\n      \"balanceAmount\" : {\r\n\
+                    \        \"amount\" : \"0.00\",\r\n        \"currency\" : \"AUD\"\
+                    \r\n      },\r\n      \"balanceType\" : \"interimBooked\",\r\n\
+                    \      \"referenceDate\" : \"2019-02-01\"\r\n    } ],\r\n    \"\
+                    cashAccountType\" : \"ODFT\",\r\n    \"ownerName\" : \"Mr Rohit\
+                    \ Srivastava\",\r\n    \"_links\" : {\r\n      \"balances\" :\
+                    \ {\r\n        \"href\" : \"/v1/accounts/6e0029c7932b50dd5a308625/balances\"\
+                    \r\n      },\r\n      \"transactions\" : {\r\n        \"href\"\
+                    \ : \"/v1/accounts/6e0029c7932b50dd5a308625/transactions\"\r\n\
+                    \      }\r\n    }\r\n  }, {\r\n    \"resourceId\" : \"5b111695400e574a608a9cbb\"\
+                    ,\r\n    \"iban\" : \"BE60999000126170\",\r\n    \"bban\" : \"\
+                    999000126170\",\r\n    \"pan\" : \"PANNUMBER\",\r\n    \"currency\"\
+                    \ : \"EUR\",\r\n    \"name\" : \"Current account 2\",\r\n    \"\
+                    product\" : \"Current account\",\r\n    \"balances\" : [ {\r\n\
+                    \      \"balanceAmount\" : {\r\n        \"amount\" : \"9864.00\"\
+                    ,\r\n        \"currency\" : \"EUR\"\r\n      },\r\n      \"balanceType\"\
+                    \ : \"interimBooked\",\r\n      \"referenceDate\" : \"2019-02-01\"\
+                    \r\n    } ],\r\n    \"cashAccountType\" : \"ODFT\",\r\n    \"\
+                    ownerName\" : \"Mr Rohit Srivastava\",\r\n    \"_links\" : {\r\
+                    \n      \"balances\" : {\r\n        \"href\" : \"/v1/accounts/5b111695400e574a608a9cbb/balances\"\
+                    \r\n      },\r\n      \"transactions\" : {\r\n        \"href\"\
+                    \ : \"/v1/accounts/5b111695400e574a608a9cbb/transactions\"\r\n\
+                    \      }\r\n    }\r\n  }, {\r\n    \"resourceId\" : \"1aa8b59d9886b25df9ebe94b\"\
+                    ,\r\n    \"iban\" : \"BE35999000297437\",\r\n    \"bban\" : \"\
+                    999000297437\",\r\n    \"maskedPan\" : \"MASKEDPANNUMBER\",\r\n\
+                    \    \"currency\" : \"USD\",\r\n    \"name\" : \"test Postman\
+                    \ AFU01\",\r\n    \"product\" : \"Current account\",\r\n    \"\
+                    balances\" : [ {\r\n      \"balanceAmount\" : {\r\n        \"\
+                    amount\" : \"0.00\",\r\n        \"currency\" : \"USD\"\r\n   \
+                    \   },\r\n      \"balanceType\" : \"interimBooked\",\r\n     \
+                    \ \"referenceDate\" : \"2019-02-01\"\r\n    } ],\r\n    \"cashAccountType\"\
+                    \ : \"ODFT\",\r\n    \"ownerName\" : \"Mr Rohit Srivastava\",\r\
+                    \n    \"_links\" : {\r\n      \"balances\" : {\r\n        \"href\"\
+                    \ : \"/v1/accounts/1aa8b59d9886b25df9ebe94b/balances\"\r\n   \
+                    \   },\r\n      \"transactions\" : {\r\n        \"href\" : \"\
+                    /v1/accounts/1aa8b59d9886b25df9ebe94b/transactions\"\r\n     \
+                    \ }\r\n    }\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/GetAccountsResponse'
+          description: OK
+          headers:
+            Accept-Ranges:
+              description: Indicates partial request support for paginated query
+              schema:
+                type: string
+            Content-Range:
+              description: Indicates partial body response for paginated query
+              schema:
+                type: string
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Date:
+              description: 'Current date matching RFC7231 (ex : Mon, 04 Jun 2018 15:25:31
+                GMT).'
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '400':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all accounts with digest header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"A required\
+                    \ HTTP header was not specified\",\r\n    \"path\" : \"digest\"\
+                    \r\n  } ]\r\n}"
+                Response of retrieve all accounts with invalid consent-id:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CONSENT_UNKNOWN\",\r\n    \"text\" : \"\
+                    The Consent-ID header does not match any active consent for the\
+                    \ TPP\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '401':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all accounts with Tpp blocked:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The TPP is blocked at ASPSP level\"\r\n  } ]\r\n}"
+                Response of retrieve all accounts with Tpp having invalid authority status:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"The TPP does not have the correct authorization status\"\r\
+                    \n  } ]\r\n}"
+                Response of retrieve all accounts with Tpp having no accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The TPP does not have the requested ASPSP accreditation\"\r\
+                    \n  } ]\r\n}"
+                Response of retrieve all accounts with Tpp having no national accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"ROLE_INVALID\",\r\n    \"text\" : \"The\
+                    \ TPP does not have the requested national accreditation\"\r\n\
+                    \  } ]\r\n}"
+                Response of retrieve all accounts with invalid token:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"TOKEN_INVALID\",\r\n    \"text\" : \"Client\
+                    \ does not have sufficient permission. This can happen because\
+                    \ the user doesn''t match the type of users supported by this\
+                    \ API.\"\r\n  } ]\r\n}"
+                Response of retrieve all accounts with signature header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"SIGNATURE_MISSING\",\r\n    \"text\" : \"\
+                    Required signature header was not specified\",\r\n    \"path\"\
+                    \ : \"signature\"\r\n  } ]\r\n}"
+                Response of retrieve all accounts with tpp-signature-certificate missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_MISSING\",\r\n    \"text\" :\
+                    \ \"Required tpp-signature-certificate header was not specified\"\
+                    ,\r\n    \"path\" : \"tpp-signature-certificate\"\r\n  } ]\r\n\
+                    }"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '403':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all accounts with consent not found:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"SERVICE_BLOCKED\",\r\n    \"text\" : \"\
+                    Internal server error. Typically a server bug\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '429':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all accounts with access exceeded:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"ACCESS_EXCEEDED\",\r\n    \"text\" : \"\
+                    The access on the account has been exceeding the consented multiplicity\
+                    \ per day\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '500':
+          $ref: '#/components/responses/INTERNAL_SERVER_ERROR_500'
+        '503':
+          $ref: '#/components/responses/SERVICE_UNAVAILABLE_503'
+      summary: Retrieve a list of consented accounts
+      tags:
+      - Accounts
+  /{accountId}:
+    get:
+      description: 'It is assumed that a consent of the PSU to this access is already
+        given and stored on the ASPSP system.The addressed details of this account
+        depends then on the stored consent addressed by consentId, respectively the
+        OAuth2 access token.
+
+        Give detailed information about the addressed account.'
+      operationId: Request to retrieve details for an account9-Request to retrieve
+        details for an account with balance9-Request to retrieve details for an account
+        with owner name9-Wrong request to retrieve details for an account with Tpp
+        having invalid authority status9-Wrong request to retrieve details for an
+        account with Tpp having no accreditation9-Wrong request to retrieve details
+        for an account with Tpp having no national accreditation9-Wrong request to
+        retrieve details for an account with access exceeded9-Wrong request to retrieve
+        details for an account with account id not found9-Wrong request to retrieve
+        details for an account with blocked Tpp9-Wrong request to retrieve details
+        for an account with invalid consent-id9-Wrong request to retrieve details
+        for an account with invalid tokenWrong request to retrieve details for an
+        account with digest header missingWrong request to retrieve details for an
+        account with signature header missingWrong request to retrieve details for
+        an account with tpp-signature-certificate missing
+      parameters:
+      - description: Unique identifier of the account in **ASPSP**
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      - description: Default value is false. If passed as true, then balances will
+          be included in the response
+        in: query
+        name: withBalance
+        required: false
+        schema:
+          type: string
+      - description: ID of the request, unique to the call, as determined by the initiating
+          party.
+        example: 99391c7e-ad88-49ec-a2ad-99ddcb1f7721
+        in: header
+        name: X-Request-Id
+        required: true
+        schema:
+          type: string
+      - description: It contains a Hash of the message body. The only hash algorithms
+          that may be used to calculate the Digest within the context of this specification
+          are SHA-256 and SHA-512 as defined in [RFC5843].
+        example: SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+        in: header
+        name: digest
+        required: true
+        schema:
+          type: string
+      - description: A signature of the request by the **TPP** on application level.
+        example: keyId="SN=4145e06efda52dc2,CA=EMAILADDRESS=rootCA@root.com, OU=DxP,
+          O=SBS, L=Paris, ST=Paris, C=FR",algorithm="rsa-sha256",headers="digest x-request-id",signature="Ts7gUo4afmgu2WC/5iUeJBzesmRXTtJV9vZf8msWnDM6kSUZLyoWt891XJTyARIyRwWIHD3u1U+UehWlcJw57alhG1IE2q5IS27PJlLlQpbaIqwGuGcrFZJIcfTiosHAsuwzJr5jOTzd66TbwO+OqwswalcpQ5t2Y2FC0rG8UXUvw165aXTuj7q4mMhZ6drxd8KD+x461W4j10uMSqfNAMcaLJrXoaw59k2LmoVub5zYew/rq2ImdCa8FBQ0/VQTH5IBlOuXXq715K2m0hltU2jYJy7Bf7ccY69U4ZrLNP8fCyblD8T+B+7b7HNfDjL2iIKFL0xQWwpoj8/K0i1VFg=="
+        in: header
+        name: signature
+        required: true
+        schema:
+          type: string
+      - description: The certificate used for signing the request, in pem format.
+        example: "-----BEGIN CERTIFICATE-----\n    MIIERzCCAy+gAwIBAgIIQUXgbv2lLcIwDQYJKoZIhvcNAQELBQAwaTELMAkGA1UE\n\
+          \    BhMCRlIxDjAMBgNVBAgTBVBhcmlzMQ4wDAYDVQQHEwVQYXJpczEMMAoGA1UEChMD\n\
+          \    U0JTMQwwCgYDVQQLEwNEeFAxHjAcBgkqhkiG9w0BCQEWD3Jvb3RDQUByb290LmNv\n\
+          \    bTAeFw0xOTAyMTQxMzU4MDBaFw0yODEyMTkxODAwMDBaMIGSMQswCQYDVQQGEwJG\n\
+          \    UjEOMAwGA1UECBMFUGFyaXMxDjAMBgNVBAcTBVBhcmlzMQwwCgYDVQQKEwNTQlMx\n\
+          \    DDAKBgNVBAsTA0R4UDEMMAoGA1UEAxMDU0JTMR4wHAYJKoZIhvcNAQkBFg9yb290\n\
+          \    Q0FAcm9vdC5jb20xGTAXBgNVBGETEFBTREJFLUFJUy0xMjM0NTYwggEiMA0GCSqG\n\
+          \    SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCyB1NOqlS7X/XOZyoMPXHhDG8c8VyVC6sC\n\
+          \    M6dW2rTkQEr4fm57fi3bdPjMTBRFB+dRNcERyWUSWiE85LW9UWcMIORltL59utio\n\
+          \    1dySGUV+DRKffLAoe2jyhq5iWsU6WvK3kVcqLddXMfgdSB+qgYhQqCK6mpOilhdG\n\
+          \    BE6nFbF4M4+sTGL/0ncW4eGqAIsk6VvCEjuXtLabeE0Ji2BSekQnYMgu0qEXkwcg\n\
+          \    TPkMw1topWz3VNAgN0aGAOMAN0piFBGayoLVGqoLd3eD4Xk/EzFkt3/XBYZ1TSaF\n\
+          \    1jevtwrscrbnIrajfg1R36a5gJAUZpweT3RvpIVsYDBdCSUbCPsjAgMBAAGjgcgw\n\
+          \    gcUwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUQHK9dnN045oBeO2Be73LDTJU\n\
+          \    VlswCwYDVR0PBAQDAgEGMBQGA1UdIAQNMAswCQYHBACL7EABATA9BggrBgEFBQcB\n\
+          \    AwQxMC8wLQYGBACBmCcCMCMwEzARBgcEAIGYJwEDDAZQU1BfQUkMBEF1dGgMBkZy\n\
+          \    YW5jZTARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0\n\
+          \    aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAgPKZSlIVmemajqUe290ecKQ3HLd4\n\
+          \    KruOMEqpJoIOPRF9zIXe9RQb7qwbYpP0tweL4tA8eEdkwz7dxOwno/75GeCb5vVo\n\
+          \    1GDbeOecgIyEMjEPyxoTtuo1qr07GIcVXmx/aOMLoZXAbKq1Tg2SU+876z1YlBs8\n\
+          \    4n4hloJeWpkbKOTQkzfmTWW1AtLrBnU7KFhKdC1s5g/EyVz063lscSJNg07/i+n2\n\
+          \    LSvrOptLOogZ92EcuVB6t7/3tmp6lIptMxoTNwZee8mqDI7ogUxcZUxGpAJzG6Ub\n\
+          \    2qmL9KvMFjKTMhfyuTG8xx+4EN+VsduIxe/7/0nM5zQFwEZvPX1CQizAzQ==\n    -----END\
+          \ CERTIFICATE-----"
+        in: header
+        name: tpp-signature-certificate
+        required: true
+        schema:
+          type: string
+      - description: The forwarded IP Address header field consists of the corresponding
+          HTTP request IP Address field between **PSU** and **TPP**.
+        example: 127.0.0.1
+        in: header
+        name: psu-ip-address
+        required: false
+        schema:
+          type: string
+      - description: Client ID of the PSU in the ASPSP client interface.
+        in: header
+        name: psu-id
+        required: false
+        schema:
+          type: string
+      - description: Type of the PSU-ID, needed in scenarios where PSUs have several
+          PSU-IDs as access possibility.
+        in: header
+        name: psu-id-type
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Port header field consists of the corresponding
+          HTTP request IP Port field between **PSU** and **TPP**, if available.
+        example: '87877'
+        in: header
+        name: psu-ip-port
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept header fields consist of the corresponding
+          HTTP request Accept header fields between **PSU** and **TPP**, if available.
+        example: application/json
+        in: header
+        name: psu-accept
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Charset header fields consist of the
+          corresponding HTTP request Accept-Charset header fields between **PSU**
+          and **TPP**, if available.
+        example: utf-8
+        in: header
+        name: psu-accept-charset
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Encoding header fields consist of the
+          corresponding HTTP request Accept-Encoding header fields between **PSU**
+          and **TPP**, if available.
+        example: gzip, deflat
+        in: header
+        name: psu-accept-encoding
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Language header fields consist of the
+          corresponding HTTP request Accept-Language header fields between **PSU**
+          and **TPP**, if available.
+        example: en-US
+        in: header
+        name: psu-accept-language
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Agent header field of the HTTP request between
+          **PSU** and **TPP**, if available.
+        example: Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0
+        in: header
+        name: psu-user-agent
+        required: false
+        schema:
+          type: string
+      - description: 'HTTP method used at the **PSU** – **TPP** interface, if available.Possible
+          values : GET, POST, PUT, PATCH, DELETE.'
+        example: GET
+        in: header
+        name: psu-http-method
+        required: false
+        schema:
+          type: string
+      - description: UUID identifies either a device or a device dependant application
+          installation. In case of an installation identification this ID need to
+          be unaltered until removal from device.
+        example: 8cb184d9-f90b-4994-abce-ba8079d1c505
+        in: header
+        name: psu-device-id
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Geo Location of the corresponding HTTP request
+          between **PSU** and **TPP** if available.
+        example: US
+        in: header
+        name: psu-geo-location
+        required: false
+        schema:
+          type: string
+      - description: Identification of the consent resource as it is used in the API
+          structure. Shall be contained, if a consent resource was generated.
+        example: c00000000000000000000000
+        in: header
+        name: consent-id
+        required: true
+        schema:
+          type: string
+      - description: Marker used by the server to advertise its support of partial
+          requests
+        example: application/json
+        in: header
+        name: Accept
+        required: false
+        schema:
+          type: string
+      - description: Holds Bearer information
+        example: Bearer sona
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: Contains the date and time at which the message was originated
+        example: Sun, 06 Aug 2017 15:05:37 GMT
+        in: header
+        name: Date
+        required: false
+        schema:
+          type: string
+      - description: The apiKey is a token that a client provides when making API
+          calls.
+        example: 3fdd7da3-03ae-4fd5-bf0b-d09bc018cde1
+        in: header
+        name: apiKey
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Response of retrieve details for an account:
+                  value: "{\r\n  \"resourceId\" : \"6e0029c7932b50dd5a308625\",\r\n\
+                    \  \"iban\" : \"BE20999000661993\",\r\n  \"bban\" : \"999000661993\"\
+                    ,\r\n  \"currency\" : \"EUR\",\r\n  \"name\" : \"Current account\"\
+                    ,\r\n  \"product\" : \"Current account\",\r\n  \"_links\" : {\r\
+                    \n    \"balances\" : {\r\n      \"href\" : \"/v1/accounts/6e0029c7932b50dd5a308625/balances\"\
+                    \r\n    },\r\n    \"transactions\" : {\r\n      \"href\" : \"\
+                    /v1/accounts/6e0029c7932b50dd5a308625/transactions\"\r\n    }\r\
+                    \n  }\r\n}"
+                Response of retrieve details for an account with balance:
+                  value: "{\r\n  \"resourceId\" : \"6e0029c7932b50dd5a308625\",\r\n\
+                    \  \"iban\" : \"BE20999000661993\",\r\n  \"bban\" : \"999000661993\"\
+                    ,\r\n  \"currency\" : \"EUR\",\r\n  \"name\" : \"Current account\"\
+                    ,\r\n  \"product\" : \"Current account\",\r\n  \"balances\" :\
+                    \ [ {\r\n    \"balanceAmount\" : {\r\n      \"amount\" : \"0.00\"\
+                    ,\r\n      \"currency\" : \"EUR\"\r\n    },\r\n    \"balanceType\"\
+                    \ : \"interimBooked\",\r\n    \"referenceDate\" : \"2018-12-05\"\
+                    \r\n  } ],\r\n  \"_links\" : {\r\n    \"balances\" : {\r\n   \
+                    \   \"href\" : \"/v1/accounts/6e0029c7932b50dd5a308625/balances\"\
+                    \r\n    },\r\n    \"transactions\" : {\r\n      \"href\" : \"\
+                    /v1/accounts/6e0029c7932b50dd5a308625/transactions\"\r\n    }\r\
+                    \n  }\r\n}"
+                Response of retrieve details for an account with owner name:
+                  value: "{\r\n  \"resourceId\" : \"6e0029c7932b50dd5a308625\",\r\n\
+                    \  \"iban\" : \"BE20999000661993\",\r\n  \"bban\" : \"999000661993\"\
+                    ,\r\n  \"currency\" : \"EUR\",\r\n  \"name\" : \"Current account\"\
+                    ,\r\n  \"product\" : \"Current account\",\r\n  \"ownerName\" :\
+                    \ \"Mr Rohit Srivastava\",\r\n  \"_links\" : {\r\n    \"balances\"\
+                    \ : {\r\n      \"href\" : \"/v1/accounts/6e0029c7932b50dd5a308625/balances\"\
+                    \r\n    },\r\n    \"transactions\" : {\r\n      \"href\" : \"\
+                    /v1/accounts/6e0029c7932b50dd5a308625/transactions\"\r\n    }\r\
+                    \n  }\r\n}"
+              schema:
+                $ref: '#/components/schemas/GetAccountResponse'
+          description: OK
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Date:
+              description: 'Current date matching RFC7231 (ex : Mon, 04 Jun 2018 15:25:31
+                GMT).'
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '400':
+          content:
+            application/json:
+              examples:
+                Response of retrieve details for an account with digest header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"A required\
+                    \ HTTP header was not specified\",\r\n    \"path\" : \"digest\"\
+                    \r\n  } ]\r\n}"
+                Response of retrieve details for an account with invalid consent-id:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CONSENT_UNKNOWN\",\r\n    \"text\" : \"\
+                    The Consent-ID header does not match any active consent for the\
+                    \ TPP\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '401':
+          content:
+            application/json:
+              examples:
+                Response of retrieve details for an account with Tpp having invalid authority status:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"The TPP does not have the correct authorization status\"\r\
+                    \n  } ]\r\n}"
+                Response of retrieve details for an account with Tpp having no accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The TPP does not have the requested ASPSP accreditation\"\r\
+                    \n  } ]\r\n}"
+                Response of retrieve details for an account with Tpp having no national accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"ROLE_INVALID\",\r\n    \"text\" : \"The\
+                    \ TPP does not have the requested national accreditation\"\r\n\
+                    \  } ]\r\n}"
+                Response of retrieve details for an account with blocked Tpp:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The TPP is blocked at ASPSP level\"\r\n  } ]\r\n}"
+                Response of retrieve details for an account with invalid token:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"TOKEN_INVALID\",\r\n    \"text\" : \"Client\
+                    \ does not have sufficient permission. This can happen because\
+                    \ the user doesn''t match the type of users supported by this\
+                    \ API.\"\r\n  } ]\r\n}"
+                Response of retrieve details for an account with signature header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"SIGNATURE_MISSING\",\r\n    \"text\" : \"\
+                    Required signature header was not specified\",\r\n    \"path\"\
+                    \ : \"signature\"\r\n  } ]\r\n}"
+                Response of retrieve details for an account with tpp-signature-certificate missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_MISSING\",\r\n    \"text\" :\
+                    \ \"Required tpp-signature-certificate header was not specified\"\
+                    ,\r\n    \"path\" : \"tpp-signature-certificate\"\r\n  } ]\r\n\
+                    }"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '404':
+          content:
+            application/json:
+              examples:
+                Response of retrieve details for an account with account id not found:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"RESOURCE_UNKNOWN\",\r\n    \"text\" : \"\
+                    The specified resource does not exist\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '429':
+          content:
+            application/json:
+              examples:
+                Response of retrieve details for an account with access exceeded:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"ACCESS_EXCEEDED\",\r\n    \"text\" : \"\
+                    The access on the account has been exceeding the consented multiplicity\
+                    \ per day\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '500':
+          $ref: '#/components/responses/INTERNAL_SERVER_ERROR_500'
+        '503':
+          $ref: '#/components/responses/SERVICE_UNAVAILABLE_503'
+      summary: Retrieve details of a consented account
+      tags:
+      - Accounts
+  /{accountId}/balances:
+    get:
+      description: 'Reads account data from a given account addressed by accountId
+        to retrieve balances information.
+
+        This "accountId" then can be retrieved by the "GET Account List" call.'
+      operationId: Request to retrieve all balances10-Wrong request to retrieve all
+        balances with Tpp blocked10-Wrong request to retrieve all balances with Tpp
+        having invalid authority status10-Wrong request to retrieve all balances with
+        Tpp having no accreditation10-Wrong request to retrieve all balances with
+        Tpp having no national accreditation10-Wrong request to retrieve all balances
+        with access exceeded10-Wrong request to retrieve all balances with account
+        id not found10-Wrong request to retrieve all balances with invalid consent-id10-Wrong
+        request to retrieve all balances with invalid tokenWrong request to retrieve
+        all balances with digest header missingWrong request to retrieve all balances
+        with signature header missingWrong request to retrieve all balances with tpp-signature-certificate
+        missing
+      parameters:
+      - description: Unique identifier of the account in **ASPSP**
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      - description: Optional param for pagination requested (zero indexed). If omitted
+          default 0-49 is applied.
+        in: query
+        name: range
+        required: false
+        schema:
+          type: string
+      - description: Optional param for sorting paginated resource. For example use
+          ?sort=name,-age to sort on name ascending and age descending.
+        in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+      - description: ID of the request, unique to the call, as determined by the initiating
+          party.
+        example: 99391c7e-ad88-49ec-a2ad-99ddcb1f7721
+        in: header
+        name: X-Request-Id
+        required: true
+        schema:
+          type: string
+      - description: It contains a Hash of the message body. The only hash algorithms
+          that may be used to calculate the Digest within the context of this specification
+          are SHA-256 and SHA-512 as defined in [RFC5843].
+        example: SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+        in: header
+        name: digest
+        required: true
+        schema:
+          type: string
+      - description: A signature of the request by the **TPP** on application level.
+        example: keyId="SN=4145e06efda52dc2,CA=EMAILADDRESS=rootCA@root.com, OU=DxP,
+          O=SBS, L=Paris, ST=Paris, C=FR",algorithm="rsa-sha256",headers="digest x-request-id",signature="Ts7gUo4afmgu2WC/5iUeJBzesmRXTtJV9vZf8msWnDM6kSUZLyoWt891XJTyARIyRwWIHD3u1U+UehWlcJw57alhG1IE2q5IS27PJlLlQpbaIqwGuGcrFZJIcfTiosHAsuwzJr5jOTzd66TbwO+OqwswalcpQ5t2Y2FC0rG8UXUvw165aXTuj7q4mMhZ6drxd8KD+x461W4j10uMSqfNAMcaLJrXoaw59k2LmoVub5zYew/rq2ImdCa8FBQ0/VQTH5IBlOuXXq715K2m0hltU2jYJy7Bf7ccY69U4ZrLNP8fCyblD8T+B+7b7HNfDjL2iIKFL0xQWwpoj8/K0i1VFg=="
+        in: header
+        name: signature
+        required: true
+        schema:
+          type: string
+      - description: The certificate used for signing the request, in pem format.
+        example: "-----BEGIN CERTIFICATE-----\n    MIIERzCCAy+gAwIBAgIIQUXgbv2lLcIwDQYJKoZIhvcNAQELBQAwaTELMAkGA1UE\n\
+          \    BhMCRlIxDjAMBgNVBAgTBVBhcmlzMQ4wDAYDVQQHEwVQYXJpczEMMAoGA1UEChMD\n\
+          \    U0JTMQwwCgYDVQQLEwNEeFAxHjAcBgkqhkiG9w0BCQEWD3Jvb3RDQUByb290LmNv\n\
+          \    bTAeFw0xOTAyMTQxMzU4MDBaFw0yODEyMTkxODAwMDBaMIGSMQswCQYDVQQGEwJG\n\
+          \    UjEOMAwGA1UECBMFUGFyaXMxDjAMBgNVBAcTBVBhcmlzMQwwCgYDVQQKEwNTQlMx\n\
+          \    DDAKBgNVBAsTA0R4UDEMMAoGA1UEAxMDU0JTMR4wHAYJKoZIhvcNAQkBFg9yb290\n\
+          \    Q0FAcm9vdC5jb20xGTAXBgNVBGETEFBTREJFLUFJUy0xMjM0NTYwggEiMA0GCSqG\n\
+          \    SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCyB1NOqlS7X/XOZyoMPXHhDG8c8VyVC6sC\n\
+          \    M6dW2rTkQEr4fm57fi3bdPjMTBRFB+dRNcERyWUSWiE85LW9UWcMIORltL59utio\n\
+          \    1dySGUV+DRKffLAoe2jyhq5iWsU6WvK3kVcqLddXMfgdSB+qgYhQqCK6mpOilhdG\n\
+          \    BE6nFbF4M4+sTGL/0ncW4eGqAIsk6VvCEjuXtLabeE0Ji2BSekQnYMgu0qEXkwcg\n\
+          \    TPkMw1topWz3VNAgN0aGAOMAN0piFBGayoLVGqoLd3eD4Xk/EzFkt3/XBYZ1TSaF\n\
+          \    1jevtwrscrbnIrajfg1R36a5gJAUZpweT3RvpIVsYDBdCSUbCPsjAgMBAAGjgcgw\n\
+          \    gcUwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUQHK9dnN045oBeO2Be73LDTJU\n\
+          \    VlswCwYDVR0PBAQDAgEGMBQGA1UdIAQNMAswCQYHBACL7EABATA9BggrBgEFBQcB\n\
+          \    AwQxMC8wLQYGBACBmCcCMCMwEzARBgcEAIGYJwEDDAZQU1BfQUkMBEF1dGgMBkZy\n\
+          \    YW5jZTARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0\n\
+          \    aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAgPKZSlIVmemajqUe290ecKQ3HLd4\n\
+          \    KruOMEqpJoIOPRF9zIXe9RQb7qwbYpP0tweL4tA8eEdkwz7dxOwno/75GeCb5vVo\n\
+          \    1GDbeOecgIyEMjEPyxoTtuo1qr07GIcVXmx/aOMLoZXAbKq1Tg2SU+876z1YlBs8\n\
+          \    4n4hloJeWpkbKOTQkzfmTWW1AtLrBnU7KFhKdC1s5g/EyVz063lscSJNg07/i+n2\n\
+          \    LSvrOptLOogZ92EcuVB6t7/3tmp6lIptMxoTNwZee8mqDI7ogUxcZUxGpAJzG6Ub\n\
+          \    2qmL9KvMFjKTMhfyuTG8xx+4EN+VsduIxe/7/0nM5zQFwEZvPX1CQizAzQ==\n    -----END\
+          \ CERTIFICATE-----"
+        in: header
+        name: tpp-signature-certificate
+        required: true
+        schema:
+          type: string
+      - description: The forwarded IP Address header field consists of the corresponding
+          HTTP request IP Address field between **PSU** and **TPP**.
+        example: 127.0.0.1
+        in: header
+        name: psu-ip-address
+        required: false
+        schema:
+          type: string
+      - description: Client ID of the PSU in the ASPSP client interface.
+        in: header
+        name: psu-id
+        required: false
+        schema:
+          type: string
+      - description: Type of the PSU-ID, needed in scenarios where PSUs have several
+          PSU-IDs as access possibility.
+        in: header
+        name: psu-id-type
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Port header field consists of the corresponding
+          HTTP request IP Port field between **PSU** and **TPP**, if available.
+        example: '87877'
+        in: header
+        name: psu-ip-port
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept header fields consist of the corresponding
+          HTTP request Accept header fields between **PSU** and **TPP**, if available.
+        example: application/json
+        in: header
+        name: psu-accept
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Charset header fields consist of the
+          corresponding HTTP request Accept-Charset header fields between **PSU**
+          and **TPP**, if available.
+        example: utf-8
+        in: header
+        name: psu-accept-charset
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Encoding header fields consist of the
+          corresponding HTTP request Accept-Encoding header fields between **PSU**
+          and **TPP**, if available.
+        example: gzip, deflat
+        in: header
+        name: psu-accept-encoding
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Language header fields consist of the
+          corresponding HTTP request Accept-Language header fields between **PSU**
+          and **TPP**, if available.
+        example: en-US
+        in: header
+        name: psu-accept-language
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Agent header field of the HTTP request between
+          **PSU** and **TPP**, if available.
+        example: Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0
+        in: header
+        name: psu-user-agent
+        required: false
+        schema:
+          type: string
+      - description: 'HTTP method used at the **PSU** – **TPP** interface, if available.Possible
+          values : GET, POST, PUT, PATCH, DELETE.'
+        example: GET
+        in: header
+        name: psu-http-method
+        required: false
+        schema:
+          type: string
+      - description: UUID identifies either a device or a device dependant application
+          installation. In case of an installation identification this ID need to
+          be unaltered until removal from device.
+        example: 8cb184d9-f90b-4994-abce-ba8079d1c505
+        in: header
+        name: psu-device-id
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Geo Location of the corresponding HTTP request
+          between **PSU** and **TPP** if available.
+        example: US
+        in: header
+        name: psu-geo-location
+        required: false
+        schema:
+          type: string
+      - description: Identification of the consent resource as it is used in the API
+          structure. Shall be contained, if a consent resource was generated.
+        example: c00000000000000000000000
+        in: header
+        name: consent-id
+        required: true
+        schema:
+          type: string
+      - description: Marker used by the server to advertise its support of partial
+          requests
+        example: application/json
+        in: header
+        name: Accept
+        required: false
+        schema:
+          type: string
+      - description: Holds Bearer information
+        example: Bearer sona
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: Contains the date and time at which the message was originated
+        example: Sun, 06 Aug 2017 15:05:37 GMT
+        in: header
+        name: Date
+        required: false
+        schema:
+          type: string
+      - description: The apiKey is a token that a client provides when making API
+          calls.
+        example: 3fdd7da3-03ae-4fd5-bf0b-d09bc018cde1
+        in: header
+        name: apiKey
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all balances:
+                  value: "{\r\n  \"balances\" : [ {\r\n    \"balanceAmount\" : {\r\
+                    \n      \"amount\" : \"9700.00\",\r\n      \"currency\" : \"EUR\"\
+                    \r\n    },\r\n    \"balanceType\" : \"interimAvailable\",\r\n\
+                    \    \"referenceDate\" : \"2019-02-04\"\r\n  }, {\r\n    \"balanceAmount\"\
+                    \ : {\r\n      \"amount\" : \"9700.00\",\r\n      \"currency\"\
+                    \ : \"EUR\"\r\n    },\r\n    \"balanceType\" : \"interimBooked\"\
+                    ,\r\n    \"referenceDate\" : \"2019-02-04\"\r\n  }, {\r\n    \"\
+                    balanceAmount\" : {\r\n      \"amount\" : \"0.00\",\r\n      \"\
+                    currency\" : \"EUR\"\r\n    },\r\n    \"balanceType\" : \"previouslyClosedBooked\"\
+                    ,\r\n    \"referenceDate\" : \"2019-02-04\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/GetBalancesResponse'
+          description: OK
+          headers:
+            Accept-Ranges:
+              description: Indicates partial request support for paginated query
+              schema:
+                type: string
+            Content-Range:
+              description: Indicates partial body response for paginated query
+              schema:
+                type: string
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Date:
+              description: 'Current date matching RFC7231 (ex : Mon, 04 Jun 2018 15:25:31
+                GMT).'
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '400':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all balances with digest header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"A required\
+                    \ HTTP header was not specified\",\r\n    \"path\" : \"digest\"\
+                    \r\n  } ]\r\n}"
+                Response of retrieve all balances with invalid consent-id:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CONSENT_UNKNOWN\",\r\n    \"text\" : \"\
+                    The Consent-ID header does not match any active consent for the\
+                    \ TPP\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '401':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all balances with Tpp blocked:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The TPP is blocked at ASPSP level\"\r\n  } ]\r\n}"
+                Response of retrieve all balances with Tpp having invalid authority status:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"The TPP does not have the correct authorization status\"\r\
+                    \n  } ]\r\n}"
+                Response of retrieve all balances with Tpp having no accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The TPP does not have the requested ASPSP accreditation\"\r\
+                    \n  } ]\r\n}"
+                Response of retrieve all balances with Tpp having no national accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"ROLE_INVALID\",\r\n    \"text\" : \"The\
+                    \ TPP does not have the requested national accreditation\"\r\n\
+                    \  } ]\r\n}"
+                Response of retrieve all balances with invalid token:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"TOKEN_INVALID\",\r\n    \"text\" : \"Client\
+                    \ does not have sufficient permission. This can happen because\
+                    \ the user doesn''t match the type of users supported by this\
+                    \ API.\"\r\n  } ]\r\n}"
+                Response of retrieve all balances with signature header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"SIGNATURE_MISSING\",\r\n    \"text\" : \"\
+                    Required signature header was not specified\",\r\n    \"path\"\
+                    \ : \"signature\"\r\n  } ]\r\n}"
+                Response of retrieve all balances with tpp-signature-certificate missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_MISSING\",\r\n    \"text\" :\
+                    \ \"Required tpp-signature-certificate header was not specified\"\
+                    ,\r\n    \"path\" : \"tpp-signature-certificate\"\r\n  } ]\r\n\
+                    }"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '404':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all balances with account id not found:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"RESOURCE_UNKNOWN\",\r\n    \"text\" : \"\
+                    The specified resource does not exist\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '429':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all balances with access exceeded:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"ACCESS_EXCEEDED\",\r\n    \"text\" : \"\
+                    The access on the account has been exceeding the consented multiplicity\
+                    \ per day\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '500':
+          $ref: '#/components/responses/INTERNAL_SERVER_ERROR_500'
+        '503':
+          $ref: '#/components/responses/SERVICE_UNAVAILABLE_503'
+      summary: Retrieve balances of a consented account
+      tags:
+      - Balances
+  /{accountId}/transactions:
+    get:
+      description: This method returns transaction lists of a given account addressed
+        by accountId.
+      operationId: Request to retrieve all transactions11-Request to retrieve all
+        transactions with balance11-Request to retrieve transactions in a range11-Wrong
+        request to retrieve all transactions with Tpp blocked11-Wrong request to retrieve
+        all transactions with Tpp having invalid authority status11-Wrong request
+        to retrieve all transactions with Tpp having no accreditation11-Wrong request
+        to retrieve all transactions with Tpp having no national accreditation11-Wrong
+        request to retrieve all transactions with access exceeded11-Wrong request
+        to retrieve all transactions with account id not found11-Wrong request to
+        retrieve all transactions with booking status UNKNOWN11-Wrong request to retrieve
+        all transactions with booking status pending11-Wrong request to retrieve all
+        transactions with delta list11-Wrong request to retrieve all transactions
+        with filled entry reference from11-Wrong request to retrieve all transactions
+        with invalid tokenWrong request to retrieve all transactions with digest header
+        missingWrong request to retrieve all transactions with signature header missingWrong
+        request to retrieve all transactions with tpp-signature-certificate missing
+      parameters:
+      - description: Unique identifier of the account in **ASPSP**
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      - description: Permitted codes are "both" and "booked". The value "pending"
+          is not supported
+        in: query
+        name: bookingStatus
+        required: true
+        schema:
+          type: string
+      - description: End date of the transaction list, default is **now** if not given
+        in: query
+        name: dateTo
+        required: false
+        schema:
+          type: string
+      - description: Starting date of the transaction list
+        in: query
+        name: dateFrom
+        required: true
+        schema:
+          type: string
+      - description: This is not supported
+        in: query
+        name: entryReferenceFrom
+        required: false
+        schema:
+          type: string
+      - description: This is not supported
+        in: query
+        name: deltaList
+        required: false
+        schema:
+          type: string
+      - description: Default value is false. If passed as true, then balances will
+          be included in the response
+        in: query
+        name: withBalance
+        required: false
+        schema:
+          type: string
+      - description: Optional param for pagination requested (zero indexed). If omitted
+          default 0-49 is applied.
+        in: query
+        name: range
+        required: false
+        schema:
+          type: string
+      - description: Optional param for sorting paginated resource. For example use
+          ?sort=name,-age to sort on name ascending and age descending.
+        in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+      - description: ID of the request, unique to the call, as determined by the initiating
+          party.
+        example: 99391c7e-ad88-49ec-a2ad-99ddcb1f7721
+        in: header
+        name: X-Request-Id
+        required: true
+        schema:
+          type: string
+      - description: It contains a Hash of the message body. The only hash algorithms
+          that may be used to calculate the Digest within the context of this specification
+          are SHA-256 and SHA-512 as defined in [RFC5843].
+        example: SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+        in: header
+        name: digest
+        required: true
+        schema:
+          type: string
+      - description: A signature of the request by the **TPP** on application level.
+        example: keyId="SN=4145e06efda52dc2,CA=EMAILADDRESS=rootCA@root.com, OU=DxP,
+          O=SBS, L=Paris, ST=Paris, C=FR",algorithm="rsa-sha256",headers="digest x-request-id",signature="Ts7gUo4afmgu2WC/5iUeJBzesmRXTtJV9vZf8msWnDM6kSUZLyoWt891XJTyARIyRwWIHD3u1U+UehWlcJw57alhG1IE2q5IS27PJlLlQpbaIqwGuGcrFZJIcfTiosHAsuwzJr5jOTzd66TbwO+OqwswalcpQ5t2Y2FC0rG8UXUvw165aXTuj7q4mMhZ6drxd8KD+x461W4j10uMSqfNAMcaLJrXoaw59k2LmoVub5zYew/rq2ImdCa8FBQ0/VQTH5IBlOuXXq715K2m0hltU2jYJy7Bf7ccY69U4ZrLNP8fCyblD8T+B+7b7HNfDjL2iIKFL0xQWwpoj8/K0i1VFg=="
+        in: header
+        name: signature
+        required: true
+        schema:
+          type: string
+      - description: The certificate used for signing the request, in pem format.
+        example: "-----BEGIN CERTIFICATE-----\n    MIIERzCCAy+gAwIBAgIIQUXgbv2lLcIwDQYJKoZIhvcNAQELBQAwaTELMAkGA1UE\n\
+          \    BhMCRlIxDjAMBgNVBAgTBVBhcmlzMQ4wDAYDVQQHEwVQYXJpczEMMAoGA1UEChMD\n\
+          \    U0JTMQwwCgYDVQQLEwNEeFAxHjAcBgkqhkiG9w0BCQEWD3Jvb3RDQUByb290LmNv\n\
+          \    bTAeFw0xOTAyMTQxMzU4MDBaFw0yODEyMTkxODAwMDBaMIGSMQswCQYDVQQGEwJG\n\
+          \    UjEOMAwGA1UECBMFUGFyaXMxDjAMBgNVBAcTBVBhcmlzMQwwCgYDVQQKEwNTQlMx\n\
+          \    DDAKBgNVBAsTA0R4UDEMMAoGA1UEAxMDU0JTMR4wHAYJKoZIhvcNAQkBFg9yb290\n\
+          \    Q0FAcm9vdC5jb20xGTAXBgNVBGETEFBTREJFLUFJUy0xMjM0NTYwggEiMA0GCSqG\n\
+          \    SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCyB1NOqlS7X/XOZyoMPXHhDG8c8VyVC6sC\n\
+          \    M6dW2rTkQEr4fm57fi3bdPjMTBRFB+dRNcERyWUSWiE85LW9UWcMIORltL59utio\n\
+          \    1dySGUV+DRKffLAoe2jyhq5iWsU6WvK3kVcqLddXMfgdSB+qgYhQqCK6mpOilhdG\n\
+          \    BE6nFbF4M4+sTGL/0ncW4eGqAIsk6VvCEjuXtLabeE0Ji2BSekQnYMgu0qEXkwcg\n\
+          \    TPkMw1topWz3VNAgN0aGAOMAN0piFBGayoLVGqoLd3eD4Xk/EzFkt3/XBYZ1TSaF\n\
+          \    1jevtwrscrbnIrajfg1R36a5gJAUZpweT3RvpIVsYDBdCSUbCPsjAgMBAAGjgcgw\n\
+          \    gcUwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUQHK9dnN045oBeO2Be73LDTJU\n\
+          \    VlswCwYDVR0PBAQDAgEGMBQGA1UdIAQNMAswCQYHBACL7EABATA9BggrBgEFBQcB\n\
+          \    AwQxMC8wLQYGBACBmCcCMCMwEzARBgcEAIGYJwEDDAZQU1BfQUkMBEF1dGgMBkZy\n\
+          \    YW5jZTARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0\n\
+          \    aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAgPKZSlIVmemajqUe290ecKQ3HLd4\n\
+          \    KruOMEqpJoIOPRF9zIXe9RQb7qwbYpP0tweL4tA8eEdkwz7dxOwno/75GeCb5vVo\n\
+          \    1GDbeOecgIyEMjEPyxoTtuo1qr07GIcVXmx/aOMLoZXAbKq1Tg2SU+876z1YlBs8\n\
+          \    4n4hloJeWpkbKOTQkzfmTWW1AtLrBnU7KFhKdC1s5g/EyVz063lscSJNg07/i+n2\n\
+          \    LSvrOptLOogZ92EcuVB6t7/3tmp6lIptMxoTNwZee8mqDI7ogUxcZUxGpAJzG6Ub\n\
+          \    2qmL9KvMFjKTMhfyuTG8xx+4EN+VsduIxe/7/0nM5zQFwEZvPX1CQizAzQ==\n    -----END\
+          \ CERTIFICATE-----"
+        in: header
+        name: tpp-signature-certificate
+        required: true
+        schema:
+          type: string
+      - description: The forwarded IP Address header field consists of the corresponding
+          HTTP request IP Address field between **PSU** and **TPP**.
+        example: 127.0.0.1
+        in: header
+        name: psu-ip-address
+        required: false
+        schema:
+          type: string
+      - description: Client ID of the PSU in the ASPSP client interface.
+        in: header
+        name: psu-id
+        required: false
+        schema:
+          type: string
+      - description: Type of the PSU-ID, needed in scenarios where PSUs have several
+          PSU-IDs as access possibility.
+        in: header
+        name: psu-id-type
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Port header field consists of the corresponding
+          HTTP request IP Port field between **PSU** and **TPP**, if available.
+        example: '87877'
+        in: header
+        name: psu-ip-port
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept header fields consist of the corresponding
+          HTTP request Accept header fields between **PSU** and **TPP**, if available.
+        example: application/json
+        in: header
+        name: psu-accept
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Charset header fields consist of the
+          corresponding HTTP request Accept-Charset header fields between **PSU**
+          and **TPP**, if available.
+        example: utf-8
+        in: header
+        name: psu-accept-charset
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Encoding header fields consist of the
+          corresponding HTTP request Accept-Encoding header fields between **PSU**
+          and **TPP**, if available.
+        example: gzip, deflat
+        in: header
+        name: psu-accept-encoding
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Language header fields consist of the
+          corresponding HTTP request Accept-Language header fields between **PSU**
+          and **TPP**, if available.
+        example: en-US
+        in: header
+        name: psu-accept-language
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Agent header field of the HTTP request between
+          **PSU** and **TPP**, if available.
+        example: Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0
+        in: header
+        name: psu-user-agent
+        required: false
+        schema:
+          type: string
+      - description: 'HTTP method used at the **PSU** – **TPP** interface, if available.Possible
+          values : GET, POST, PUT, PATCH, DELETE.'
+        example: GET
+        in: header
+        name: psu-http-method
+        required: false
+        schema:
+          type: string
+      - description: UUID identifies either a device or a device dependant application
+          installation. In case of an installation identification this ID need to
+          be unaltered until removal from device.
+        example: 8cb184d9-f90b-4994-abce-ba8079d1c505
+        in: header
+        name: psu-device-id
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Geo Location of the corresponding HTTP request
+          between **PSU** and **TPP** if available.
+        example: US
+        in: header
+        name: psu-geo-location
+        required: false
+        schema:
+          type: string
+      - description: Identification of the consent resource as it is used in the API
+          structure. Shall be contained, if a consent resource was generated.
+        example: c00000000000000000000000
+        in: header
+        name: consent-id
+        required: true
+        schema:
+          type: string
+      - description: Marker used by the server to advertise its support of partial
+          requests
+        example: application/json
+        in: header
+        name: Accept
+        required: false
+        schema:
+          type: string
+      - description: Holds Bearer information
+        example: Bearer sona
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: Contains the date and time at which the message was originated
+        example: Sun, 06 Aug 2017 15:05:37 GMT
+        in: header
+        name: Date
+        required: false
+        schema:
+          type: string
+      - description: The apiKey is a token that a client provides when making API
+          calls.
+        example: 3fdd7da3-03ae-4fd5-bf0b-d09bc018cde1
+        in: header
+        name: apiKey
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all transactions:
+                  value: "{\r\n  \"transactions\" : {\r\n    \"booked\" : [ {\r\n\
+                    \      \"transactionAmount\" : {\r\n        \"amount\" : \"9637.31\"\
+                    ,\r\n        \"currency\" : \"EUR\"\r\n      },\r\n      \"debtorAccount\"\
+                    \ : {\r\n        \"iban\" : \"BE50999090049618\"\r\n      },\r\
+                    \n      \"remittanceInformationUnstructured\" : \"PSQDNJPUDAUHVLAVXZIH\"\
+                    ,\r\n      \"remittanceInformationStructured\" : \"\",\r\n   \
+                    \   \"debtorName\" : \"KMUJGMCVHOEWCCCPDGLO\",\r\n      \"proprietaryBankTransactionCode\"\
+                    \ : \"P7MT9W\",\r\n      \"entryReference\" : \"B7H31CWDOS4K1F13\"\
+                    ,\r\n      \"_links\" : {\r\n        \"href\" : \"\"\r\n     \
+                    \ }\r\n    }, {\r\n      \"transactionAmount\" : {\r\n       \
+                    \ \"amount\" : \"5843.46\",\r\n        \"currency\" : \"EUR\"\r\
+                    \n      },\r\n      \"debtorAccount\" : {\r\n        \"iban\"\
+                    \ : \"BE50999090049618\"\r\n      },\r\n      \"remittanceInformationUnstructured\"\
+                    \ : \"\",\r\n      \"remittanceInformationStructured\" : \"VCUTZERMRSQPNGSMWCAG\"\
+                    ,\r\n      \"debtorName\" : \"ENZCASJWXSNWOOHRSGIT\",\r\n    \
+                    \  \"proprietaryBankTransactionCode\" : \"JF\",\r\n      \"entryReference\"\
+                    \ : \"B7H31CWDOQ7K1CLR\",\r\n      \"_links\" : {\r\n        \"\
+                    href\" : \"\"\r\n      }\r\n    }, {\r\n      \"transactionAmount\"\
+                    \ : {\r\n        \"amount\" : \"-5343.21\",\r\n        \"currency\"\
+                    \ : \"EUR\"\r\n      },\r\n      \"creditorAccount\" : {\r\n \
+                    \       \"iban\" : \"BE50999090049618\"\r\n      },\r\n      \"\
+                    remittanceInformationUnstructured\" : \"JITKAZGKSRRDSNNHAOEN\"\
+                    ,\r\n      \"remittanceInformationStructured\" : \"\",\r\n   \
+                    \   \"creditorName\" : \"RLPBADOUNJXTXMIEHKIB\",\r\n      \"proprietaryBankTransactionCode\"\
+                    \ : \"8R5699\",\r\n      \"entryReference\" : \"B7H31CWDOP4K1B09\"\
+                    ,\r\n      \"_links\" : {\r\n        \"href\" : \"\"\r\n     \
+                    \ }\r\n    } ],\r\n    \"_links\" : {\r\n      \"first\" : {\r\
+                    \n        \"href\" : \"/v1/accounts/5b111695400e574a608a9cbb/transactions?dateTo=2019-10-12&bookingStatus=both&dateFrom=2019-10-11&range=0-49\"\
+                    \r\n      },\r\n      \"account\" : {\r\n        \"href\" : \"\
+                    /v1/accounts/5b111695400e574a608a9cbb\"\r\n      },\r\n      \"\
+                    self\" : {\r\n        \"href\" : \"/v1/accounts/5b111695400e574a608a9cbb/transactions?dateTo=2019-10-12&bookingStatus=both&dateFrom=2019-10-11&range=0-49\"\
+                    \r\n      }\r\n    }\r\n  },\r\n  \"_links\" : {\r\n    \"href\"\
+                    \ : \"\"\r\n  }\r\n}"
+                Response of retrieve all transactions with balance:
+                  value: "{\r\n  \"transactions\" : {\r\n    \"booked\" : [ {\r\n\
+                    \      \"transactionAmount\" : {\r\n        \"amount\" : \"9637.31\"\
+                    ,\r\n        \"currency\" : \"EUR\"\r\n      },\r\n      \"debtorAccount\"\
+                    \ : {\r\n        \"iban\" : \"BE50999090049618\"\r\n      },\r\
+                    \n      \"remittanceInformationUnstructured\" : \"PSQDNJPUDAUHVLAVXZIH\"\
+                    ,\r\n      \"remittanceInformationStructured\" : \"\",\r\n   \
+                    \   \"debtorName\" : \"KMUJGMCVHOEWCCCPDGLO\",\r\n      \"proprietaryBankTransactionCode\"\
+                    \ : \"P7MT9W\",\r\n      \"entryReference\" : \"B7H31CWDOS4K1F13\"\
+                    ,\r\n      \"_links\" : {\r\n        \"href\" : \"\"\r\n     \
+                    \ }\r\n    }, {\r\n      \"transactionAmount\" : {\r\n       \
+                    \ \"amount\" : \"5843.46\",\r\n        \"currency\" : \"EUR\"\r\
+                    \n      },\r\n      \"debtorAccount\" : {\r\n        \"iban\"\
+                    \ : \"BE50999090049618\"\r\n      },\r\n      \"remittanceInformationUnstructured\"\
+                    \ : \"\",\r\n      \"remittanceInformationStructured\" : \"VCUTZERMRSQPNGSMWCAG\"\
+                    ,\r\n      \"debtorName\" : \"ENZCASJWXSNWOOHRSGIT\",\r\n    \
+                    \  \"proprietaryBankTransactionCode\" : \"JF\",\r\n      \"entryReference\"\
+                    \ : \"B7H31CWDOQ7K1CLR\",\r\n      \"_links\" : {\r\n        \"\
+                    href\" : \"\"\r\n      }\r\n    }, {\r\n      \"transactionAmount\"\
+                    \ : {\r\n        \"amount\" : \"-5343.21\",\r\n        \"currency\"\
+                    \ : \"EUR\"\r\n      },\r\n      \"creditorAccount\" : {\r\n \
+                    \       \"iban\" : \"BE50999090049618\"\r\n      },\r\n      \"\
+                    remittanceInformationUnstructured\" : \"JITKAZGKSRRDSNNHAOEN\"\
+                    ,\r\n      \"remittanceInformationStructured\" : \"\",\r\n   \
+                    \   \"creditorName\" : \"RLPBADOUNJXTXMIEHKIB\",\r\n      \"proprietaryBankTransactionCode\"\
+                    \ : \"8R5699\",\r\n      \"entryReference\" : \"B7H31CWDOP4K1B09\"\
+                    ,\r\n      \"_links\" : {\r\n        \"href\" : \"\"\r\n     \
+                    \ }\r\n    } ],\r\n    \"_links\" : {\r\n      \"first\" : {\r\
+                    \n        \"href\" : \"/v1/accounts/5b111695400e574a608a9cbb/transactions?dateTo=2019-10-12&bookingStatus=both&withBalance=true&dateFrom=2019-10-11&range=0-49\"\
+                    \r\n      },\r\n      \"account\" : {\r\n        \"href\" : \"\
+                    /v1/accounts/5b111695400e574a608a9cbb\"\r\n      },\r\n      \"\
+                    self\" : {\r\n        \"href\" : \"/v1/accounts/5b111695400e574a608a9cbb/transactions?dateTo=2019-10-12&bookingStatus=both&withBalance=true&dateFrom=2019-10-11&range=0-49\"\
+                    \r\n      }\r\n    }\r\n  },\r\n  \"balances\" : [ {\r\n    \"\
+                    balanceAmount\" : {\r\n      \"amount\" : \"9700.00\",\r\n   \
+                    \   \"currency\" : \"EUR\"\r\n    },\r\n    \"balanceType\" :\
+                    \ \"interimAvailable\",\r\n    \"referenceDate\" : \"2019-02-04\"\
+                    \r\n  }, {\r\n    \"balanceAmount\" : {\r\n      \"amount\" :\
+                    \ \"9700.00\",\r\n      \"currency\" : \"EUR\"\r\n    },\r\n \
+                    \   \"balanceType\" : \"interimBooked\",\r\n    \"referenceDate\"\
+                    \ : \"2019-02-04\"\r\n  }, {\r\n    \"balanceAmount\" : {\r\n\
+                    \      \"amount\" : \"0.00\",\r\n      \"currency\" : \"EUR\"\r\
+                    \n    },\r\n    \"balanceType\" : \"previouslyClosedBooked\",\r\
+                    \n    \"referenceDate\" : \"2019-02-04\"\r\n  } ],\r\n  \"_links\"\
+                    \ : {\r\n    \"href\" : \"\"\r\n  }\r\n}"
+                Response of retrieve transactions in a range:
+                  value: "{\r\n  \"transactions\" : {\r\n    \"booked\" : [ {\r\n\
+                    \      \"transactionAmount\" : {\r\n        \"amount\" : \"9637.31\"\
+                    ,\r\n        \"currency\" : \"EUR\"\r\n      },\r\n      \"debtorAccount\"\
+                    \ : {\r\n        \"iban\" : \"BE50999090049618\"\r\n      },\r\
+                    \n      \"remittanceInformationUnstructured\" : \"PSQDNJPUDAUHVLAVXZIH\"\
+                    ,\r\n      \"remittanceInformationStructured\" : \"\",\r\n   \
+                    \   \"debtorName\" : \"KMUJGMCVHOEWCCCPDGLO\",\r\n      \"proprietaryBankTransactionCode\"\
+                    \ : \"P7MT9W\",\r\n      \"entryReference\" : \"B7H31CWDOS4K1F13\"\
+                    ,\r\n      \"_links\" : {\r\n        \"href\" : \"\"\r\n     \
+                    \ }\r\n    }, {\r\n      \"transactionAmount\" : {\r\n       \
+                    \ \"amount\" : \"5843.46\",\r\n        \"currency\" : \"EUR\"\r\
+                    \n      },\r\n      \"debtorAccount\" : {\r\n        \"iban\"\
+                    \ : \"BE50999090049618\"\r\n      },\r\n      \"remittanceInformationUnstructured\"\
+                    \ : \"\",\r\n      \"remittanceInformationStructured\" : \"VCUTZERMRSQPNGSMWCAG\"\
+                    ,\r\n      \"debtorName\" : \"ENZCASJWXSNWOOHRSGIT\",\r\n    \
+                    \  \"proprietaryBankTransactionCode\" : \"JF\",\r\n      \"entryReference\"\
+                    \ : \"B7H31CWDOQ7K1CLR\",\r\n      \"_links\" : {\r\n        \"\
+                    href\" : \"\"\r\n      }\r\n    }, {\r\n      \"transactionAmount\"\
+                    \ : {\r\n        \"amount\" : \"-5343.21\",\r\n        \"currency\"\
+                    \ : \"EUR\"\r\n      },\r\n      \"creditorAccount\" : {\r\n \
+                    \       \"iban\" : \"BE50999090049618\"\r\n      },\r\n      \"\
+                    remittanceInformationUnstructured\" : \"JITKAZGKSRRDSNNHAOEN\"\
+                    ,\r\n      \"remittanceInformationStructured\" : \"\",\r\n   \
+                    \   \"creditorName\" : \"RLPBADOUNJXTXMIEHKIB\",\r\n      \"proprietaryBankTransactionCode\"\
+                    \ : \"8R5699\",\r\n      \"entryReference\" : \"B7H31CWDOP4K1B09\"\
+                    ,\r\n      \"_links\" : {\r\n        \"href\" : \"\"\r\n     \
+                    \ }\r\n    } ],\r\n    \"_links\" : {\r\n      \"first\" : {\r\
+                    \n        \"href\" : \"/v1/accounts/5b111695400e574a608a9cbb/transactions?dateTo=2019-10-12&bookingStatus=both&dateFrom=2019-10-11&range=0-2\"\
+                    \r\n      },\r\n      \"last\" : {\r\n        \"href\" : \"/v1/accounts/5b111695400e574a608a9cbb/transactions?dateTo=2019-10-12&bookingStatus=both&dateFrom=2019-10-11&range=6-8\"\
+                    \r\n      },\r\n      \"next\" : {\r\n        \"href\" : \"/v1/accounts/5b111695400e574a608a9cbb/transactions?dateTo=2019-10-12&bookingStatus=both&dateFrom=2019-10-11&range=3-5\"\
+                    \r\n      },\r\n      \"account\" : {\r\n        \"href\" : \"\
+                    /v1/accounts/5b111695400e574a608a9cbb\"\r\n      },\r\n      \"\
+                    self\" : {\r\n        \"href\" : \"/v1/accounts/5b111695400e574a608a9cbb/transactions?dateTo=2019-10-12&bookingStatus=both&dateFrom=2019-10-11&range=0-2\"\
+                    \r\n      }\r\n    }\r\n  },\r\n  \"_links\" : {\r\n    \"href\"\
+                    \ : \"\"\r\n  }\r\n}"
+              schema:
+                $ref: '#/components/schemas/GetTransactionsResponse'
+          description: OK
+          headers:
+            Accept-Ranges:
+              description: Indicates partial request support for paginated query
+              schema:
+                type: string
+            Content-Range:
+              description: Indicates partial body response for paginated query
+              schema:
+                type: string
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Date:
+              description: 'Current date matching RFC7231 (ex : Mon, 04 Jun 2018 15:25:31
+                GMT).'
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '400':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all transactions with booking status UNKNOWN:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"PARAMETER_NOT_SUPPORTED\",\r\n    \"text\"\
+                    \ : \"The parameter is not supported by the API provider\",\r\n\
+                    \    \"path\" : \"bookingStatus\"\r\n  } ]\r\n}"
+                Response of retrieve all transactions with booking status pending:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"PARAMETER_NOT_SUPPORTED\",\r\n    \"text\"\
+                    \ : \"The parameter is not supported by the API provider\",\r\n\
+                    \    \"path\" : \"bookingStatus\"\r\n  } ]\r\n}"
+                Response of retrieve all transactions with delta list:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"PARAMETER_NOT_SUPPORTED\",\r\n    \"text\"\
+                    \ : \"The parameter is not supported by the API provider\",\r\n\
+                    \    \"path\" : \"deltaList\"\r\n  } ]\r\n}"
+                Response of retrieve all transactions with digest header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"A required\
+                    \ HTTP header was not specified\",\r\n    \"path\" : \"digest\"\
+                    \r\n  } ]\r\n}"
+                Response of retrieve all transactions with filled entry reference from:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"PARAMETER_NOT_SUPPORTED\",\r\n    \"text\"\
+                    \ : \"The parameter is not supported by the API provider\",\r\n\
+                    \    \"path\" : \"entryReferenceFrom\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '401':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all transactions with Tpp blocked:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The TPP is blocked at ASPSP level\"\r\n  } ]\r\n}"
+                Response of retrieve all transactions with Tpp having invalid authority status:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"The TPP does not have the correct authorization status\"\r\
+                    \n  } ]\r\n}"
+                Response of retrieve all transactions with Tpp having no accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The TPP does not have the requested ASPSP accreditation\"\r\
+                    \n  } ]\r\n}"
+                Response of retrieve all transactions with Tpp having no national accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"ROLE_INVALID\",\r\n    \"text\" : \"The\
+                    \ TPP does not have the requested national accreditation\"\r\n\
+                    \  } ]\r\n}"
+                Response of retrieve all transactions with invalid token:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"TOKEN_INVALID\",\r\n    \"text\" : \"Client\
+                    \ does not have sufficient permission. This can happen because\
+                    \ the user doesn''t match the type of users supported by this\
+                    \ API.\"\r\n  } ]\r\n}"
+                Response of retrieve all transactions with signature header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"SIGNATURE_MISSING\",\r\n    \"text\" : \"\
+                    Required signature header was not specified\",\r\n    \"path\"\
+                    \ : \"signature\"\r\n  } ]\r\n}"
+                Response of retrieve all transactions with tpp-signature-certificate missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_MISSING\",\r\n    \"text\" :\
+                    \ \"Required tpp-signature-certificate header was not specified\"\
+                    ,\r\n    \"path\" : \"tpp-signature-certificate\"\r\n  } ]\r\n\
+                    }"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '404':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all transactions with account id not found:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"RESOURCE_UNKNOWN\",\r\n    \"text\" : \"\
+                    The specified resource does not exist\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '429':
+          content:
+            application/json:
+              examples:
+                Response of retrieve all transactions with access exceeded:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"ACCESS_EXCEEDED\",\r\n    \"text\" : \"\
+                    The access on the account has been exceeding the consented multiplicity\
+                    \ per day\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Too Many Requests
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '500':
+          $ref: '#/components/responses/INTERNAL_SERVER_ERROR_500'
+        '503':
+          $ref: '#/components/responses/SERVICE_UNAVAILABLE_503'
+      summary: Retrieve transactions of a consented account
+      tags:
+      - Transactions
+  /{accountId}/transactions/{transactionId}:
+    get:
+      description: "This method returns transaction details of a given transaction\
+        \ addressed by transactionId.\r\n\r\n **This method is not supported yet.**"
+      operationId: Request to retrieve transaction details
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: transactionId
+        required: true
+        schema:
+          type: string
+      - description: Holds Bearer information
+        example: Bearer sona
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: Contains the date and time at which the message was originated
+        example: Sun, 06 Aug 2017 15:05:37 GMT
+        in: header
+        name: Date
+        required: false
+        schema:
+          type: string
+      - description: ID of the request, unique to the call, as determined by the initiating
+          party.
+        example: 99391c7e-ad88-49ec-a2ad-99ddcb1f7721
+        in: header
+        name: X-Request-Id
+        required: true
+        schema:
+          type: string
+      - description: It contains a Hash of the message body. The only hash algorithms
+          that may be used to calculate the Digest within the context of this specification
+          are SHA-256 and SHA-512 as defined in [RFC5843].
+        example: SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+        in: header
+        name: digest
+        required: true
+        schema:
+          type: string
+      - description: A signature of the request by the **TPP** on application level.
+        example: keyId="SN=4145e06efda52dc2,CA=EMAILADDRESS=rootCA@root.com, OU=DxP,
+          O=SBS, L=Paris, ST=Paris, C=FR",algorithm="rsa-sha256",headers="digest x-request-id",signature="Ts7gUo4afmgu2WC/5iUeJBzesmRXTtJV9vZf8msWnDM6kSUZLyoWt891XJTyARIyRwWIHD3u1U+UehWlcJw57alhG1IE2q5IS27PJlLlQpbaIqwGuGcrFZJIcfTiosHAsuwzJr5jOTzd66TbwO+OqwswalcpQ5t2Y2FC0rG8UXUvw165aXTuj7q4mMhZ6drxd8KD+x461W4j10uMSqfNAMcaLJrXoaw59k2LmoVub5zYew/rq2ImdCa8FBQ0/VQTH5IBlOuXXq715K2m0hltU2jYJy7Bf7ccY69U4ZrLNP8fCyblD8T+B+7b7HNfDjL2iIKFL0xQWwpoj8/K0i1VFg=="
+        in: header
+        name: signature
+        required: true
+        schema:
+          type: string
+      - description: The certificate used for signing the request, in pem format.
+        example: "-----BEGIN CERTIFICATE-----\n    MIIERzCCAy+gAwIBAgIIQUXgbv2lLcIwDQYJKoZIhvcNAQELBQAwaTELMAkGA1UE\n\
+          \    BhMCRlIxDjAMBgNVBAgTBVBhcmlzMQ4wDAYDVQQHEwVQYXJpczEMMAoGA1UEChMD\n\
+          \    U0JTMQwwCgYDVQQLEwNEeFAxHjAcBgkqhkiG9w0BCQEWD3Jvb3RDQUByb290LmNv\n\
+          \    bTAeFw0xOTAyMTQxMzU4MDBaFw0yODEyMTkxODAwMDBaMIGSMQswCQYDVQQGEwJG\n\
+          \    UjEOMAwGA1UECBMFUGFyaXMxDjAMBgNVBAcTBVBhcmlzMQwwCgYDVQQKEwNTQlMx\n\
+          \    DDAKBgNVBAsTA0R4UDEMMAoGA1UEAxMDU0JTMR4wHAYJKoZIhvcNAQkBFg9yb290\n\
+          \    Q0FAcm9vdC5jb20xGTAXBgNVBGETEFBTREJFLUFJUy0xMjM0NTYwggEiMA0GCSqG\n\
+          \    SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCyB1NOqlS7X/XOZyoMPXHhDG8c8VyVC6sC\n\
+          \    M6dW2rTkQEr4fm57fi3bdPjMTBRFB+dRNcERyWUSWiE85LW9UWcMIORltL59utio\n\
+          \    1dySGUV+DRKffLAoe2jyhq5iWsU6WvK3kVcqLddXMfgdSB+qgYhQqCK6mpOilhdG\n\
+          \    BE6nFbF4M4+sTGL/0ncW4eGqAIsk6VvCEjuXtLabeE0Ji2BSekQnYMgu0qEXkwcg\n\
+          \    TPkMw1topWz3VNAgN0aGAOMAN0piFBGayoLVGqoLd3eD4Xk/EzFkt3/XBYZ1TSaF\n\
+          \    1jevtwrscrbnIrajfg1R36a5gJAUZpweT3RvpIVsYDBdCSUbCPsjAgMBAAGjgcgw\n\
+          \    gcUwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUQHK9dnN045oBeO2Be73LDTJU\n\
+          \    VlswCwYDVR0PBAQDAgEGMBQGA1UdIAQNMAswCQYHBACL7EABATA9BggrBgEFBQcB\n\
+          \    AwQxMC8wLQYGBACBmCcCMCMwEzARBgcEAIGYJwEDDAZQU1BfQUkMBEF1dGgMBkZy\n\
+          \    YW5jZTARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0\n\
+          \    aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAgPKZSlIVmemajqUe290ecKQ3HLd4\n\
+          \    KruOMEqpJoIOPRF9zIXe9RQb7qwbYpP0tweL4tA8eEdkwz7dxOwno/75GeCb5vVo\n\
+          \    1GDbeOecgIyEMjEPyxoTtuo1qr07GIcVXmx/aOMLoZXAbKq1Tg2SU+876z1YlBs8\n\
+          \    4n4hloJeWpkbKOTQkzfmTWW1AtLrBnU7KFhKdC1s5g/EyVz063lscSJNg07/i+n2\n\
+          \    LSvrOptLOogZ92EcuVB6t7/3tmp6lIptMxoTNwZee8mqDI7ogUxcZUxGpAJzG6Ub\n\
+          \    2qmL9KvMFjKTMhfyuTG8xx+4EN+VsduIxe/7/0nM5zQFwEZvPX1CQizAzQ==\n    -----END\
+          \ CERTIFICATE-----"
+        in: header
+        name: tpp-signature-certificate
+        required: true
+        schema:
+          type: string
+      - description: The forwarded IP Address header field consists of the corresponding
+          HTTP request IP Address field between **PSU** and **TPP**.
+        example: 127.0.0.1
+        in: header
+        name: psu-ip-address
+        required: false
+        schema:
+          type: string
+      - description: Client ID of the PSU in the ASPSP client interface.
+        in: header
+        name: psu-id
+        required: false
+        schema:
+          type: string
+      - description: Type of the PSU-ID, needed in scenarios where PSUs have several
+          PSU-IDs as access possibility.
+        in: header
+        name: psu-id-type
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Port header field consists of the corresponding
+          HTTP request IP Port field between **PSU** and **TPP**, if available.
+        example: '87877'
+        in: header
+        name: psu-ip-port
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept header fields consist of the corresponding
+          HTTP request Accept header fields between **PSU** and **TPP**, if available.
+        example: application/json
+        in: header
+        name: psu-accept
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Charset header fields consist of the
+          corresponding HTTP request Accept-Charset header fields between **PSU**
+          and **TPP**, if available.
+        example: utf-8
+        in: header
+        name: psu-accept-charset
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Encoding header fields consist of the
+          corresponding HTTP request Accept-Encoding header fields between **PSU**
+          and **TPP**, if available.
+        example: gzip, deflat
+        in: header
+        name: psu-accept-encoding
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Language header fields consist of the
+          corresponding HTTP request Accept-Language header fields between **PSU**
+          and **TPP**, if available.
+        example: en-US
+        in: header
+        name: psu-accept-language
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Agent header field of the HTTP request between
+          **PSU** and **TPP**, if available.
+        example: Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0
+        in: header
+        name: psu-user-agent
+        required: false
+        schema:
+          type: string
+      - description: 'HTTP method used at the **PSU** – **TPP** interface, if available.Possible
+          values : GET, POST, PUT, PATCH, DELETE.'
+        example: GET
+        in: header
+        name: psu-http-method
+        required: false
+        schema:
+          type: string
+      - description: UUID identifies either a device or a device dependant application
+          installation. In case of an installation identification this ID need to
+          be unaltered until removal from device.
+        example: 8cb184d9-f90b-4994-abce-ba8079d1c505
+        in: header
+        name: psu-device-id
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Geo Location of the corresponding HTTP request
+          between **PSU** and **TPP** if available.
+        example: US
+        in: header
+        name: psu-geo-location
+        required: false
+        schema:
+          type: string
+      - description: Identification of the consent resource as it is used in the API
+          structure. Shall be contained, if a consent resource was generated.
+        example: c00000000000000000000000
+        in: header
+        name: consent-id
+        required: true
+        schema:
+          type: string
+      - description: Marker used by the server to advertise its support of partial
+          requests
+        example: application/json
+        in: header
+        name: Accept
+        required: false
+        schema:
+          type: string
+      - description: The apiKey is a token that a client provides when making API
+          calls.
+        example: 3fdd7da3-03ae-4fd5-bf0b-d09bc018cde1
+        in: header
+        name: apiKey
+        required: true
+        schema:
+          type: string
+      responses:
+        '500':
+          $ref: '#/components/responses/INTERNAL_SERVER_ERROR_500'
+        '501':
+          content:
+            application/json:
+              examples:
+                Response of retrieve transaction details:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"SERVICE_INVALID\",\r\n    \"text\" : \"\
+                    This Request is not supported\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Implemented
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '503':
+          $ref: '#/components/responses/SERVICE_UNAVAILABLE_503'
+      summary: Retrieve details of a transaction for a consented account
+      tags:
+      - Transactions
+security:
+- apiKey: []
+servers:
+- url: https://api.payments.argenta.be/berlingroup/v1/accounts
+tags:
+- description: Account's API
+  name: Accounts
+- description: Balance's API
+  name: Balances
+- description: Transaction's API
+  name: Transactions

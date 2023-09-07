@@ -1,0 +1,55 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/([0-9]+)/v1/consents",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "TPP-Redirect-Preferred": {
+        "equalTo": "true"
+      },
+      "TPP-Redirect-URI": {
+        "equalTo": "https://www.yolt.com/callback"
+      },
+      "TPP-Nok-Redirect-URI": {
+        "equalTo": "https://www.yolt.com/callback?error=true"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "access"
+      },
+      {
+        "contains": "recurringIndicator"
+      },
+      {
+        "contains": "validUntil"
+      },
+      {
+        "contains": "frequencyPerDay"
+      },
+      {
+        "contains": "combinedServiceIndicator"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "consentStatus": "received",
+      "consentId": "SOME_CONSENT_ID",
+      "_links": {
+        "scaOAuth": {
+          "href": "https://localhost:{{request.requestLine.port}}/scaOauthLinks"
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

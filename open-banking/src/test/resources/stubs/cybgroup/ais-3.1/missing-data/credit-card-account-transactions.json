@@ -1,0 +1,115 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/a134fcf0-3f3a-3dd0-9398-109313b2c6b3/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "contains": "Bearer accessToken"
+      },
+      "x-fapi-financial-id": {
+        "contains": "001728392JD873NNHY"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "transformers": [
+      "response-template"
+    ],
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "a134fcf0-3f3a-3dd0-9398-109313b2c6b3",
+            "TransactionId": "10934709871",
+            "Amount": {
+              "Currency": "GBP"
+            },
+            "Status": "Booked",
+            "BookingDateTime": "2019-01-08T00:00:00+00:00",
+            "ValueDateTime": "2019-01-08T00:00:00+00:00",
+            "TransactionInformation": "Sherwood Council 31987634",
+            "ProprietaryBankTransactionCode": {
+              "Code": "PDT",
+              "Issuer": "Clydesdale"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "1230.40",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            }
+          },
+          {
+            "AccountId": "a134fcf0-3f3a-3dd0-9398-109313b2c6b3",
+            "TransactionId": "76429715251",
+            "Amount": {
+              "Amount": "85.00"
+            },
+            "CreditDebitIndicator": "Debit",
+            "BookingDateTime": "2019-01-09T00:00:00+00:00",
+            "ValueDateTime": "2019-01-09T00:00:00+00:00",
+            "TransactionInformation": "Friar Tuck Tuck Bill",
+            "ProprietaryBankTransactionCode": {
+              "Code": "PDT",
+              "Issuer": "Clydesdale"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "1145.40",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "InterimBooked"
+            }
+          },
+          {
+            "AccountId": "a134fcf0-3f3a-3dd0-9398-109313b2c6b3",
+            "TransactionId": "10934709871",
+            "Amount": {
+              "Amount": "12.52",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2019-01-08T00:00:00+00:00",
+            "ValueDateTime": "2019-01-08T00:00:00+00:00",
+            "TransactionInformation": "Sherwood Council 31987634",
+            "ProprietaryBankTransactionCode": {
+              "Code": "PDT",
+              "Issuer": "Clydesdale"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "1230.40",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://cb.api-nc.cybservices.co.uk/open-banking/v3.1/aisp/accounts/a134fcf0-3f3a-3dd0-9398-109313b2c6b3/transactions"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

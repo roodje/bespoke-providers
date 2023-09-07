@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/oauth2/authorize",
+    "queryParameters": {
+      "client_id": {
+        "equalTo": "client-id"
+      },
+      "scope": {
+        "equalTo": "DEDICATED_AISP"
+      },
+      "code_challenge": {
+        "matches": ".*"
+      },
+      "redirect_uri": {
+        "equalTo": "https://www.yolt.com/callback"
+      },
+      "state": {
+        "equalTo": "d79960be-3058-4d8e-9cd3-3753febd4661"
+      },
+      "response_type": {
+        "equalTo": "code"
+      }
+    },
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded"
+      }
+    }
+  },
+  "response": {
+    "status": 302,
+    "headers": {
+      "Location": "https://app.n26.com/login?requestId=0daa152a-651a-4592-8542-47ff60799deb&state=testState&authType=XS2A"
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "account": {},
+  "transactions": {
+    "booked": [
+      {
+        "debtorAccount": {},
+        "additionalInformation": "NETFLIX",
+        "creditorName": " ",
+        "_links": {
+          "transactionDetails": {
+            "href": ""
+          }
+        },
+        "valueDate": "2019-10-22",
+        "transactionAmount": {
+          "amount": "-11.99",
+          "currency": "EUR"
+        },
+        "creditorAccount": {},
+        "proprietaryBankTransactionCode": "LASTSCHRIFT",
+        "bookingDate": "2019-10-22"
+      },
+      {
+        "debtorAccount": {},
+        "additionalInformation": "Spotify",
+        "creditorName": " ",
+        "_links": {
+          "transactionDetails": {
+            "href": ""
+          }
+        },
+        "valueDate": "2019-10-22",
+        "transactionAmount": {
+          "amount": "-9.99",
+          "currency": "EUR"
+        },
+        "creditorAccount": {},
+        "proprietaryBankTransactionCode": "LASTSCHRIFT",
+        "bookingDate": "2019-10-22"
+      },
+      {
+        "debtorAccount": {},
+        "additionalInformation": "Some payment",
+        "creditorName": " ",
+        "_links": {
+          "transactionDetails": {
+            "href": ""
+          }
+        },
+        "valueDate": "2019-10-28",
+        "transactionAmount": {
+          "amount": "-1000.0",
+          "currency": "EUR"
+        },
+        "creditorAccount": {},
+        "proprietaryBankTransactionCode": "ÜBERWEISUNG",
+        "bookingDate": "2019-10-28"
+      },
+      {
+        "debtorAccount": {},
+        "additionalInformation": "SEPA Payment to John Kowalsky",
+        "creditorName": " ",
+        "_links": {
+          "transactionDetails": {
+            "href": ""
+          }
+        },
+        "valueDate": "2019-10-28",
+        "transactionAmount": {
+          "amount": "580.0",
+          "currency": "EUR"
+        },
+        "creditorAccount": {},
+        "proprietaryBankTransactionCode": "SEPA-GUTSCHRIFT",
+        "bookingDate": "2019-10-28"
+      },
+      {
+        "debtorAccount": {},
+        "additionalInformation": "Dinner",
+        "creditorName": " ",
+        "_links": {
+          "transactionDetails": {
+            "href": ""
+          }
+        },
+        "valueDate": "2019-10-29",
+        "transactionAmount": {
+          "amount": "-350.0",
+          "currency": "EUR"
+        },
+        "creditorAccount": {},
+        "proprietaryBankTransactionCode": "ÜBERWEISUNG (DIRECT BANKING",
+        "bookingDate": "2019-10-29"
+      }
+    ],
+    "pending": []
+  }
+}

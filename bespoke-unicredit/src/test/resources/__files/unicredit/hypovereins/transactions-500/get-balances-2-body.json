@@ -1,0 +1,48 @@
+{
+  "account": {
+    "iban": "DE49700202700123456786",
+    "currency": "EUR"
+  },
+  "balances": [
+    {
+      "balanceAmount": {
+        "currency": "EUR",
+        "amount": 123.45
+      },
+      "balanceType": "closingBooked",
+      "creditLimitIncluded": true,
+      "lastChangeDateTime": "",
+      "referenceDate": "2020-09-04"
+    },
+    {
+      "balanceAmount": {
+        "currency": "EUR",
+        "amount": 432.56
+      },
+      "balanceType": "openingBooked",
+      "creditLimitIncluded": false,
+      "lastChangeDateTime": "",
+      "referenceDate": "2020-09-03"
+    },
+    {
+      "balanceAmount": {
+        "currency": "EUR",
+        "amount": 124.56
+      },
+      "balanceType": "expected",
+      "creditLimitIncluded": false,
+      "lastChangeDateTime": "",
+      "referenceDate": "2020-09-02"
+    },
+    {
+      "balanceAmount": {
+        "currency": "EUR",
+        "amount": 125.67
+      },
+      "balanceType": "interimBooked",
+      "creditLimitIncluded": false,
+      "lastChangeDateTime": "",
+      "referenceDate": "2020-09-01"
+    }
+  ]
+}

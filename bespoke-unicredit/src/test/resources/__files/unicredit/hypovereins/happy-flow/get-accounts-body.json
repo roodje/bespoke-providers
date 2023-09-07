@@ -1,0 +1,38 @@
+{
+  "accounts": [
+    {
+      "resourceId": "312fdgyiuy374yr349fh8923hf0823h8757973482qop238rh39fh3920340923u",
+      "product": "23434123",
+      "_links": {
+        "balances": {
+          "href": "/v1/accounts/312fdgyiuy374yr349fh8923hf0823h8757973482qop238rh39fh3920340923u/balances"
+        },
+        "transactions": {
+          "href": "/v1/accounts/312fdgyiuy374yr349fh8923hf0823h8757973482qop238rh39fh3920340923u/transactions"
+        },
+        "account": {
+          "href": "/v1/accounts/312fdgyiuy374yr349fh8923hf0823h8757973482qop238rh39fh3920340923u"
+        }
+      },
+      "iban": "DE49700202700123456785",
+      "currency": "EUR"
+    },
+    {
+      "resourceId": "980981309fdus09fu12uidhy90128123897dasd8012ud0823h832hf08345h09f",
+      "product": "5453534",
+      "_links": {
+        "balances": {
+          "href": "/v1/accounts/980981309fdus09fu12uidhy90128123897dasd8012ud0823h832hf08345h09f/balances"
+        },
+        "transactions": {
+          "href": "/v1/accounts/980981309fdus09fu12uidhy90128123897dasd8012ud0823h832hf08345h09f/transactions"
+        },
+        "account": {
+          "href": "/v1/accounts/980981309fdus09fu12uidhy90128123897dasd8012ud0823h832hf08345h09f"
+        }
+      },
+      "iban": "DE112222239000240112312",
+      "currency": "EUR"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/v2/payments/local/payment-order/33443344-3344-3344-3344-334433443344/payments",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AccessToken"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "payments": [
+        {
+          "paymentUid": "375affe0-3211-4bef-90e7-84c93d790e5a",
+          "amount": {
+            "currency": "PLN",
+            "minorUnits": 12311
+          },
+          "reference": "Payment reference",
+          "payeeUid": "55665566-5566-5566-5566-556655665566",
+          "payeeAccountUid": "66776677-6677-6677-6677-667766776677",
+          "createdAt": "2021-02-02T10:43:56.266Z",
+          "completedAt": "2021-02-02T10:43:56.266Z",
+          "rejectedAt": "2021-02-02T10:43:56.266Z",
+          "paymentStatusDetails": {
+            "paymentStatus": "REJECTED",
+            "description": "SOME_REASON"
+          }
+        }
+      ]
+    }
+  }
+}

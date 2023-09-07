@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/consents",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "matches": "someClientId"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "access"
+      },
+      {
+        "contains": "recurringIndicator"
+      },
+      {
+        "contains": "validUntil"
+      },
+      {
+        "contains": "frequencyPerDay"
+      },
+      {
+        "contains": "combinedServiceIndicator"
+      }
+    ]
+  },
+  "response": {
+    "status": 401
+  }
+}

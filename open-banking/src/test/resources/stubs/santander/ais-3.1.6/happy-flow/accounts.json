@@ -1,0 +1,134 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "1626df30-50ad-42d8-8f39-40dd95f4b15f"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "db5002d3-13cf-48fb-96f1-8ee074795181",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "98765432109876"
+              }
+            ],
+            "Servicer": {
+              "SchemeName": "UK.OBIE.BICFI",
+              "Identification": "ACCTGB4LXXX"
+            }
+          },
+          {
+            "AccountId": "c2b7c559-5024-491b-b7e7-4730fc6465c5",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "12345678901234"
+              }
+            ],
+            "Servicer": {
+              "SchemeName": "UK.OBIE.BICFI",
+              "Identification": "ACCTGB4LXXX"
+            }
+          },
+          {
+            "AccountId": "b5016a2d-483a-4b13-94de-5bea780f9881",
+            "Currency": "GBP",
+            "AccountType": "Business",
+            "AccountSubType": "CreditCard",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "12345123451234"
+              }
+            ],
+            "Servicer": {
+              "SchemeName": "UK.OBIE.BICFI",
+              "Identification": "ACCTGB4LXXX"
+            }
+          },
+          {
+            "AccountId": "b62d495a-a3c7-4671-ba21-4cb3bf141d07",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "Savings",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "12345612345612"
+              }
+            ],
+            "Servicer": {
+              "SchemeName": "UK.OBIE.BICFI",
+              "Identification": "ACCTGB4LXXX"
+            }
+          },
+          {
+            "AccountId": "ab5c938d-20a1-4e32-9eed-201fa093f4e2",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "Savings",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "12348364754562"
+              }
+            ],
+            "Servicer": {
+              "SchemeName": "UK.OBIE.BICFI",
+              "Identification": "ACCTGB4LXXX"
+            }
+          },
+          {
+            "AccountId": "ab5c938d-20a1-4e32-0000-201fa093f4e2",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "Savings",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "12348364750000"
+              }
+            ],
+            "Servicer": {
+              "SchemeName": "UK.OBIE.BICFI",
+              "Identification": "ACCTGB4LYYY"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://openbanking-ma.santander.co.uk/sanuk/external/open-banking/v3.1/aisp/accounts"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/bt/sb/bt-psd2-aisp-prd/v1/consents",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "content-type": {
+        "equalTo": "application/json"
+      },
+      "accept": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.access[?(@.availableAccounts == 'allAccounts')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.recurringIndicator == true)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.combinedServiceIndicator == false)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.validUntil =~ /[0-9]{4}-[0-9]{2}-[0-9]{2}/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.frequencyPerDay == 4)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "consentStatus": "received",
+      "consentId": "100",
+      "_links": {
+        "scaOAuth": {
+          "href": "https://apistorebt.ro/bt/sb/oauth/.well-known/oauth-authorization-server"
+        },
+        "self": {
+          "href": "https://apistorebt.ro/bt/sb/bt-psd2-aisp/v1/consents/15535944504672sfbf51fa"
+        },
+        "status": {
+          "href": "https://apistorebt.ro/bt/sb/bt-psd2-aisp/v1/consents/15535944504672sfbf51fa/status"
+        }
+      }
+    }
+  }
+}

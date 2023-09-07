@@ -1,0 +1,92 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/pisp/domestic-payment-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer eyJhbGciOiJkaXIiRCJlbmMiOiJBMjU2R0NNIiViY3R5IjoiSldUIiwicGkuYXRtIjoiMSJ5..pJ8hTTqHD1cWgyjI.YvIc3KwitTbYuZVKQuX3YmOCp_ny_fW5T5V9jugTWWjdwwB8WUZra98AU62tdYwXZzvb9uRN7MAXeor6ccv2-Bz2M1ddI_8menntneTEnx29QaIjwWhI07kfaAsWKZAkyE7YKEG8JVbcYI5ZZR4dsYmUF5PqUacNwUugUiudWzORQwtQ7bwjspilRz0Jy2PuDq47JBmpAB-3lR2q1WU8zftKKaHc73_o6jl9TKYoUiPm_IN9C-Q1jnduVo60aatSRLNLIofvHagQYNRHkgv_3DfJFZApKWFKTbJB9RBFohxxfwMLVv-FM9nYvXtdqu1yfOeP5B5IkIxqwtHViGPayLoAcewxbcH5bJXlD35eZWC5UA3gwmh5y0oNt22PrZ0aIs5hy2UQAxyfe_AdgUDwOjfrMKLhXGhA7E496YeKPXokyNWOqErNiCqT_TrjMY6Twor0pPJWbXeLM617SLchrajdUlAyXgcMeHkN-u-ZuR6221Msd4IEUunbbjUESdMhE1IDI5QAQKoAQjP5wBSO_bI6CpehxFSfDo3iUJuFIa2E9SjwhKR6adJiTOOracmq85m747RSEK797bvcm4CWkXt5SqFJjEou0qr8a03lAnqJ9bVRCGw5Ob4dD8vY12vg0pKRTof_6RBQk1uMoa7Jy3KBSpklTosSZdcHNrt2zWuP0VbWYfd2FTACjLtQf8tu6MNQDGslmFm7GHs1jvWttbubpIGKO6wfGVyR4BbvoUAzhiVUI3T3LLeIP1Q1v7Xrh3oQCW6GMB-VDy4KPuTGrq9BGvJfiHRE8YDw95YHxezSzzzO3sy7qvqwudRSAvvU0QvWt0hSleMcrAwracVC3p_L7ORhkLBDVbwDwmrH0hC_eaEfNPiUW8GjYx-VULPnzpyAe7ssI0jrlvz_l034Hw4JA1g9OWMZQwE9MmBgY1f7ywdQV4mD_8SpCC8x7RMJrMIClcv8jI9geDG-dm57xGA3P8jRTI3-_zk9q5X_pPvgJq7Y5vnIeSmq-R8sL1ZG-1zjZbgKSAsFCFSDrOoN7MXKVUg8KrLY09KxTZHI8CYciggz5bXjCjAVaJWWmv25Y1nmyHyE79wgJhBYlmZ7tF4Hc3uRjOHmdhGSnQtGQVRfwKx4SAmeJe4MRW_WQq6fQS4s2GMFUB-QIWTT2vo6QygVjQnmhAFXszIImrrYfz38sUu90Sb8Mq9ylrCWZ9YAn4rMAiq5Rfjh_S5UPdmL.XXMv4yuh-J1lsjlEarQvxA"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf9VgAAI"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "d0a9b85f-9715-4d16-a33d-4323ceab5253"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      },
+      "x-jws-signature": {
+        "matches": "^.*...*$"
+      },
+      "x-idempotency-key": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Initiation": {
+              "InstructionIdentification": "20201202002028103-4b1t742n-102",
+              "EndToEndIdentification": "B7F2761C",
+              "InstructedAmount": {
+                "Amount": "10000.00",
+                "Currency": "GBP"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "98765432104322",
+                "Name": "ACME Inc creditor"
+              },
+              "RemittanceInformation": {
+                "Reference": "Unstructured"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-jws-signature": "some_signature",
+      "x-fapi-interaction-id": "d0a9b85f-9715-4d16-a33d-4323ceab5253"
+    },
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "58923",
+        "CreationDateTime": "2019-08-05T11:46:24Z",
+        "Status": "AwaitingAuthorisation",
+        "StatusUpdateDateTime": "2019-08-05T11:46:24Z",
+        "Initiation": {
+          "InstructionIdentification": "20201202002028103-4b1t742n-102",
+          "EndToEndIdentification": "B7F2761C",
+          "InstructedAmount": {
+            "Amount": "10000.00",
+            "Currency": "GBP"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "98765432104322",
+            "Name": "ACME Inc creditor"
+          },
+          "RemittanceInformation": {
+            "Reference": "Unstructured"
+          }
+        }
+      },
+      "Risk": {
+        "PaymentContextCode": "PartyToParty"
+      },
+      "Links": {
+        "Self": "https://api.alphabank.com/open-banking/v3.1/pisp/domestic-payment-consents/58923"
+      },
+      "Meta": {}
+    }
+  }
+}

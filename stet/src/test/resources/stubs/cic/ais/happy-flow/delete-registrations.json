@@ -1,0 +1,9 @@
+{
+  "request": {
+    "urlPattern": "/([a-z-]*)/oauth2/registrations/clientId",
+    "method": "DELETE"
+  },
+  "response": {
+    "status": 204
+  }
+}

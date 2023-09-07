@@ -1,0 +1,43 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/bt/sb/bt-psd2-aisp-prd/v1/accounts",
+    "queryParameters": {
+      "withBalance": {
+        "equalTo": "true"
+      }
+    },
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "consent-id": {
+        "equalTo": "100"
+      },
+      "authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "content-type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "tppMessages": [
+        {
+          "category": "ERROR",
+          "code": "CONSENT_UNKNOWN",
+          "text": "The Consent-ID cannot be matched by the ASPSP relative to the TPP"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/session-server",
+    "headers": {},
+    "bodyPatterns": [
+      {
+        "contains": "invalidApiToken"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "Error": [
+        {
+          "error_description": "User credentials are incorrect. Incorrect API key or IP address.",
+          "error_description_translated": "User credentials are incorrect. Incorrect API key or IP address."
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

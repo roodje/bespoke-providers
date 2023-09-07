@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer test-accounts"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Code": "UK.OBIE.Resource.InvalidConsentStatus",
+      "Message": "account-access-consent with id f27d7317-9f9e-44a9-a3bd-b44e5b964470 has status Revoked. Expected 'Authorised'",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Resource.InvalidConsentStatus",
+          "Message": "account-access-consent with id f27d7317-9f9e-44a9-a3bd-b44e5b964470 has status Revoked. Expected 'Authorised'",
+          "Path": "Authorization"
+        }
+      ]
+    }
+  }
+}

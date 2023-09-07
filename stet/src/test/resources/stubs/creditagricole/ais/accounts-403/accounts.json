@@ -1,0 +1,20 @@
+{
+  "request" : {
+    "urlPattern" : "/psd2-api.ca-alpesprovence.fr/dsp2/v1/accounts",
+    "method" : "GET",
+    "headers" : {
+      "Authorization" : {
+        "equalTo" : "Bearer 2acc9055-3078-453b-9f07-adde186e13e5"
+      }
+    }
+  },
+  "response" : {
+    "status" : 403,
+    "headers" : {
+      "error" : "Forbidden",
+      "message" : "Too many requests for this account",
+      "path" : "accounts",
+      "timestamp" : "2020-07-10T16:45:13.356+0200"
+    }
+  }
+}

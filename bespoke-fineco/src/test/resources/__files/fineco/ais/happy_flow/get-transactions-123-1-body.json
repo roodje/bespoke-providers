@@ -1,0 +1,28 @@
+{
+  "account": {
+    "iban": "IT31X0301503200000003517230"
+  },
+  "transactions": {
+    "booked": [
+      {
+        "transactionId": "MjAyMDA4MTNfNTc1MDY0ODIyNDY4MjIyMDU=",
+        "endToEndId": "2008111675416855480320003200IT",
+        "creditorName": "Walter Bianchi",
+        "creditorAccount": {
+          "iban": "DE67100100101306118605"
+        },
+        "transactionAmount": {
+          "currency": "EUR",
+          "amount": "-256.67"
+        },
+        "bookingDate": "2019-01-25",
+        "valueDate": "2019-01-26",
+        "remittanceInformationUnstructured": "causale pagamento",
+        "proprietaryBankTransactionCode": "W43-Pagamento Visa Debit"
+      }
+    ],
+    "_links": {
+      "next": "https://sandbox.api.finceobank.com/v1/accounts/123/transactions/next"
+    }
+  }
+}

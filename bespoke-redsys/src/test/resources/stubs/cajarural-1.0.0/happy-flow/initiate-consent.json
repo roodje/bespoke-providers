@@ -1,0 +1,71 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/ALBAL/v1/consents",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 4ebf95f7-02f5-11eb-8309-411ae25e53e3"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Digest": {
+        "matches": "SHA-256=([A-Za-z0-9+/\n])*(=){0,2}([\n])*"
+      },
+      "Signature": {
+        "matches": "keyId=\"SN=13299021239615735660,CA=C=US,ST=foo,L=foo,O=foo,OU=foo,CN=foo\",algorithm=\"SHA-256\",headers=\"digest x-request-id tpp-redirect-uri\",signature=\"([A-Za-z0-9+/\n])*(=){0,2}([\n])*\""
+      },
+      "TPP-Signature-Certificate": {
+        "equalTo": "MIICMzCCAZygAwIBAgIJALiPnVsvq8dsMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzAeFw0xMzAzMTkxNTQwMTlaFw0xODAzMTgxNTQwMTlaMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzdGfxi9CNbMf1UUcvDQh7MYBOveIHyc0E0KIbhjK5FkCBU4CiZrbfHagaW7ZEcN0tt3EvpbOMxxc/ZQU2WN/s/wPxph0pSfsfFsTKM4RhTWD2v4fgk+xZiKd1p0+L4hTtpwnEw0uXRVd0ki6muwV5y/P+5FHUeldq+pgTcgzuK8CAwEAAaMPMA0wCwYDVR0PBAQDAgLkMA0GCSqGSIb3DQEBBQUAA4GBAJiDAAtY0mQQeuxWdzLRzXmjvdSuL9GoyT3BF/jSnpxz5/58dba8pWenv3pj4P3w5DoOso0rzkZy2jEsEitlVM2mLSbQpMM+MUVQCQoiG6W9xuCFuxSrwPISpAqEAuV4DNoxQKKWmhVv+J0ptMWD25Pnpxeq5sXzghfJnslJlQND"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": {
+          "expression": "$.access",
+          "equalToJson": "{\"allPsd2\":\"allAccounts\"}"
+        }
+      },
+      {
+        "matchesJsonPath" : "$.[?(@.recurringIndicator == true)]"
+      },
+      {
+        "contains": "validUntil"
+      },
+      {
+        "matchesJsonPath" : "$.[?(@.frequencyPerDay == 4)]"
+      },
+      {
+        "matchesJsonPath" : "$.[?(@.combinedServiceIndicator == false)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Request-ID": "1b3ab8e8-0fd5-43d2-946e-d75958b172e7"
+    },
+    "jsonBody": {
+      "consentStatus": "received",
+      "consentId": "7eea2874-04f5-21ec-9cd5-fbg83ac17655",
+      "_links": {
+        "scaRedirect": {
+          "href": "https://hubpsd2.redsys.es/api-oauth-xs2a/services/rest/sca/eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiIsInR5cCI6IkpXVCJ9.eNqqVipKLc4vLUpO9UxRslJKMTYyMLNINtJNtLBI0zWxTEvUtbQwStE1SzM1NzUwS0szTjVS0oHrCaksSAXqcswsds7PK07NK1GqBQAAAP__.Rqtn1d4XaNm2MR_MMJx0CExtIesxdWfZUB-l3j6y3sg"
+        },
+        "self": {
+          "href": "/v1/consents/7eea2874-04f5-21ec-9cd5-fbg83ac17655"
+        },
+        "status": {
+          "href": "/v1/consents/7eea2874-04f5-21ec-9cd5-fbg83ac17655/status"
+        }
+      }
+    }
+  }
+}

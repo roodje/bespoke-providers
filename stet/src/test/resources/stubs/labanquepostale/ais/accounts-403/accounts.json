@@ -1,0 +1,55 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v1/accounts",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Connection": {
+        "equalTo": "Keep-Alive",
+        "caseInsensitive": true
+      },
+      "Authorization": {
+        "equalTo": "Bearer 447cebdf-9425-490d-a2b2-1a0450bb97a1"
+      },
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      }
+    }
+  },
+  "response": {
+    "status": 403,
+    "headers": {
+      "X-Backside-Transport": "OK OK",
+      "Connection": "Keep-Alive",
+      "Transfer-Encoding": "chunked",
+      "Content-Type": "application/json",
+      "Date": "Fri, 09 Aug 2019 09:39:58 GMT",
+      "X-Global-Transaction-ID": "196c55655d4d3f6e011fc241",
+      "X-Request-Id": "7f80019e-ba06-4ca2-b46f-d0685ecc5277",
+      "Accept": "application/json",
+      "Accept-Encoding": "gzip,deflate",
+      "Via": "1.1 AwAAADdByGg-",
+      "X-Client-IP": "220.2.64.10",
+      "IBM-App-User": "123456789",
+      "Access-Control-Expose-Headers": "APIm-Debug-Trans-Id, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-Global-Transaction-ID",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET",
+      "X-RateLimit-Limit": "name=rate-limit,100;",
+      "X-RateLimit-Remaining": "name=rate-limit,96;"
+    },
+    "jsonBody": {
+      "accounts": [],
+      "_links": {
+        "self": {
+          "href": "v1/accounts",
+          "templated": false
+        }
+      }
+    }
+  }
+}

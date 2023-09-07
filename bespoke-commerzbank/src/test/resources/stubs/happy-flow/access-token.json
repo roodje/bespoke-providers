@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/berlingroup/v1/token",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF-8)?"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "client_id=PSDNL-DNB-33031431"
+      },
+      {
+        "contains": "code=SOME_CODE"
+      },
+      {
+        "contains": "code_verifier="
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "SOME_ACCESS_TOKEN",
+      "token_type": "Bearer",
+      "expires_in": "3600",
+      "refresh_token": "SOME_REFRESH_TOKEN"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

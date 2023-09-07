@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/accounts",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-ACCESS-TOKEN-EXPIRED"
+      },
+      "Client-Id": {
+        "equalTo": "f330xxxx6fe8xxxx6edbxxxxd15axxxx"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Signature": {
+        "equalTo": "keyId=\"https://test.qseal.certificate.com/26:c7:b8:8e:09:0b:e1:ed:04:3e:bd:58:3d:4d:78:b5:ad:ad:fa:c1.pem\",algorithm=\"rsa-sha256\",headers=\"client-id digest x-request-id\",signature=\"signed string\""
+      }
+    }
+  },
+  "response": {
+    "status": 403,
+    "headers": {
+      "Date": "Fri, 04 Oct 2019 13:23:04 GMT",
+      "Content-Type": "application/json",
+      "Connection": "keep-alive",
+      "Vary": "Accept-Encoding",
+      "x-Request-id": "278a4666-3e82-45a2-8feb-9992b2cfb0da",
+      "Cache-control": "private",
+      "X-RateLimit-Limit": "name=10tps,10;",
+      "X-RateLimit-Remaining": "name=10tps,9;",
+      "Strict-Transport-Security": "max-age=16070400; includeSubDomains",
+      "Set-Cookie": "ICDSSNSERVERID=; Expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; Secure;"
+    },
+    "jsonBody": {
+      "timestamp": "2020-12-01T12:00:11.212+01:00",
+      "status": 403,
+      "error": "Forbidden",
+      "message": "No consent for TPP [client-id] and scope [AISP]",
+      "path": "/accounts"
+    }
+  }
+}

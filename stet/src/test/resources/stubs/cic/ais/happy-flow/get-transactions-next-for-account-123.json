@@ -1,0 +1,76 @@
+{
+  "request": {
+    "urlPattern": "/([a-z-]*)/stet-psd2-api/v2.0/accounts/123/transactions\\?page=2",
+    "method": "GET",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer ACCESS_TOKEN"
+      },
+      "Signature": {
+        "matches": "keyId=\"d3de0198-6738-4784-92d0-a3e5e0894415\", algorithm=\"rsa-sha256\", headers=\"(.*)\", signature=\"(.*)\""
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "1.1.1.1"
+      },
+      "Date": {
+        "matches": "[A-Za-z]+, \\d?\\d [A-Za-z]+ \\d{4} \\d{1,2}:\\d{1,2}:\\d{1,2} [A-Za-z]{3}"
+      },
+      "Host": {
+        "contains": "localhost"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "transactions": [
+        {
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "resourceId": "10011202130900001-a9bd3758abc77f5fa4944e6e498281afa55be4921d85f5c1ec226d595b8f066f",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 78.7
+          },
+          "bookingDate": "2021-11-05T00:00:00Z",
+          "valueDate": "2021-11-05T00:00:00Z",
+          "transactionDate": "2021-11-05T00:00:00Z",
+          "remittanceInformation": {
+            "unstructured": [
+              "PRLV SEPA MMA IARD SA",
+              "2155782036320211027520959818",
+              "LES MUTUELLES DE MANS"
+            ]
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/any/stet-psd2-api/v2.0/accounts/123/transactions"
+        },
+        "parent-list": {
+          "href": "/any/stet-psd2-api/v2.0/accounts"
+        },
+        "balances": {
+          "href": "/any/stet-psd2-api/v2.0/accounts/123/balances"
+        },
+        "last": {
+          "href": "/any/stet-psd2-api/v2.0/accounts/123/transactions?page=last"
+        },
+        "next": {
+          "href": "/any/stet-psd2-api/v2.0/accounts/123/transactions?page=3"
+        }
+      }
+    }
+  ,
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

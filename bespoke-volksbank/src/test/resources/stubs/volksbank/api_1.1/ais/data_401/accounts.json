@@ -1,0 +1,23 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v1.1/accounts",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "matches": "Bearer 3fb45310-e2bb-11ea-87d0-0242ac130003"
+      },
+      "Consent-ID": {
+        "equalTo": "CONSENT_ID"
+      }
+    }
+  },
+  "response": {
+    "status": 401
+  }
+}

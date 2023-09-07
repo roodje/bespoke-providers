@@ -1,0 +1,17 @@
+{
+  "request": {
+    "url": "/api/fabrick/psd2/v1/accounts",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "500"
+      }
+    }
+  },
+  "response": {
+    "status": 500
+  }
+}

@@ -1,0 +1,17 @@
+lovebird:
+  danske:
+    pagination-limit: 2
+    baseUrl: https://localhost:${wiremock.server.https-port}/open-banking
+    oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/open-banking/private/oauth2/token
+    oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+    registrationUrl: https://localhost:${wiremock.server.https-port}/register
+    audience: https://obp-api.danskebank.com/open-banking/private-from-properties
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

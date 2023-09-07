@@ -1,0 +1,23 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/servicing/v1/member/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "MAC ID='INVALID-MAC-ID', ts='1485888999137', nonce='aeafc081-ffef-4c67-8abd-477b20fa45a9', mac='INVALID-MAC'"
+      },
+      "x-amex-api-key": {
+        "matches": "acc1b6d2-f3d6-4e74-a855-595d46f29a3b"
+      },
+      "x-amex-request-id": {
+        "equalTo": "9shWQjwZ0jRPIN1T2NrnQYw"
+      }
+    }
+  },
+  "response": {
+    "status": 401,
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

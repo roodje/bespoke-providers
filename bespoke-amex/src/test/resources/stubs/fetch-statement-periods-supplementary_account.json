@@ -1,0 +1,34 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/servicing/v1/financials/statement_periods",
+    "headers": {
+      "Authorization": {
+        "matches": "MAC.id=\"9shWQjwZ0jRPIN1T2NrnQYw\",ts=\"[0-9]+\",nonce=\".+:AMEX\",mac=\".+\""
+      },
+      "x-amex-api-key": {
+        "matches": "THE-CLIENT-ID-2"
+      },
+      "x-amex-request-id": {
+        "matches": "[0-9a-z]{32}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type":  "application/json",
+      "x-amex-request-id":  "9shWQjwZ0jRPIN1T2NrnQYw"
+    },
+    "jsonBody": {
+      "statement_periods": [
+        {
+          "start_date": "2017-03-02",
+          "end_date": "2017-02-03",
+          "index": 0,
+          "statement_available_indicator": false
+        }
+      ]
+    }
+  }
+}

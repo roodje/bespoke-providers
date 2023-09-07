@@ -1,0 +1,8 @@
+lovebird:
+  sainsburys:
+    pagination-limit: 2
+    baseUrl: https://localhost:${wiremock.server.https-port}
+    oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+    oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+    registrationUrl: https://localhost:${wiremock.server.https-port}/register
+    audience: test-audience

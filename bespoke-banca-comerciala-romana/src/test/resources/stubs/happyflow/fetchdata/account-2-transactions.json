@@ -1,0 +1,107 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/accounts/2/transactions",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "web-api-key": {
+        "equalTo": "beac2259-aa52-4225-9356-e3195120d43d"
+      },
+      "authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "content-type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "RO49RNCB0002000000010020",
+        "product": "Cont curent ORG ROL",
+        "currency": "RON"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "7509134265",
+            "bookingDate": "2019-04-16",
+            "additionalInformation": "description",
+            "valueDate": "2019-04-16",
+            "transactionAmount": {
+              "currency": "RON",
+              "amount": "5.75"
+            },
+            "creditorName": "Roy Corney",
+            "creditorAccount": {
+              "iban": "RO22RNCB0002000000010021"
+            },
+            "debtorName": "Peter Pan",
+            "debtorAccount": {
+              "iban": "RO92RNCB0002000000010022"
+            },
+            "remittanceInformationUnstructured": "Transfer conturi proprii",
+            "_links": {
+              "balances": {
+                "href": "/v1/accounts/2/balances"
+              },
+              "transactionDetails": {
+                "href": "/v1/accounts/2/transactions/7509134265"
+              }
+            }
+          }
+        ],
+        "pending": [
+          {
+          "transactionId": "8679655462",
+          "bookingDate": "2021-01-27",
+          "valueDate": "2021-01-27",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "-0.07"
+          },
+          "creditorAccount": {},
+          "debtorAccount": {
+            "iban": "RO22RNCB0002000000010021"
+          },
+          "remittanceInformationUnstructured": "Virament automat din",
+          "_links": {
+            "balances": {
+              "href": "/v1/accounts/2/balances"
+            },
+            "transactionDetails": {
+              "href": "/v1/accounts/2/transactions/8679655462"
+            }
+          }
+        }
+        ],
+        "_links": {
+          "self": {
+            "href": "/v1/accounts/2/transactions"
+          },
+          "account": {
+            "href": "/v1/accounts/"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/110f7ec6-b395-41fa-af30-3bd7b984a38d/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,3})?Z$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "1238972887jdsIWNND"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "c554a9ef-47c1-4b4e-a77f-2ad770d69748"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "transformers": ["response-template"],
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "d73e74fc-d04f-4049-ac8e-a3fd3252dbfe",
+            "TransactionId": "3444d9579cc9fcb37ad763ffe3986ae6",
+            "Amount": {
+              "Amount": "1,000.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2017-11-23T00:00:00+00:00",
+            "ValueDateTime": "2017-11-23T00:00:00+00:00",
+            "BankTransactionCode": {
+              "Code": "IssuedCreditTransfers",
+              "SubCode": "SameDayValueCreditTransfer"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "FPO",
+              "Issuer": "LBG:DSP"
+            },
+            "TransactionInformation": "030257113392360",
+            "Balance": {
+              "Amount": {
+                "Amount": "1.00",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "InterimBooked"
+            }
+          },
+          {
+            "AccountId": "d73e74fc-d04f-4049-ac8e-a3fd3252dbfe",
+            "TransactionId": "f242ae23f999295961ad19657f6a19ad",
+            "Amount": {
+              "Amount": "0.01",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2017-11-06T00:00:00+00:00",
+            "ValueDateTime": "2017-11-06T00:00:00+00:00",
+            "BankTransactionCode": {
+              "Code": "IssuedCreditTransfers",
+              "SubCode": "AutomaticTransfer"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "TFR",
+              "Issuer": "LBG:DSP"
+            },
+            "TransactionInformation": "LTBSEVEN",
+            "Balance": {
+              "Amount": {
+                "Amount": "0.00",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            }
+          },
+          {
+            "AccountId": "d73e74fc-d04f-4049-ac8e-a3fd3252dbfe",
+            "TransactionId": "42527ccb2c2534572cd167569a80f312",
+            "Amount": {
+              "Amount": "0.01",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "BookingDateTime": "2017-11-06T00:00:00+00:00",
+            "ValueDateTime": "2017-11-06T00:00:00+00:00",
+            "BankTransactionCode": {
+              "Code": "ReceivedCreditTransfers",
+              "SubCode": "AutomaticTransfer"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "TFR",
+              "Issuer": "LBG:DSP"
+            },
+            "TransactionInformation": "O BOSFOUR",
+            "Balance": {
+              "Amount": {
+                "Amount": "0.01",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            }
+          },
+          {
+            "AccountId": "d73e74fc-d04f-4049-ac8e-a3fd3252dbfe",
+            "TransactionId": "bc726ebdf76b75b232920d1b8dd0189d",
+            "Amount": {
+              "Amount": "0.01",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2017-11-06T00:00:00+00:00",
+            "ValueDateTime": "2017-11-06T00:00:00+00:00",
+            "BankTransactionCode": {
+              "Code": "IssuedCreditTransfers",
+              "SubCode": "AutomaticTransfer"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "TFR",
+              "Issuer": "LBG:DSP"
+            },
+            "TransactionInformation": "LTBSEVEN",
+            "Balance": {
+              "Amount": {
+                "Amount": "0.00",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            }
+          },
+          {
+            "AccountId": "d73e74fc-d04f-4049-ac8e-a3fd3252dbfe",
+            "TransactionId": "cd39e10d9f5053545d68000203829136",
+            "Amount": {
+              "Amount": "0.01",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2017-11-06T00:00:00+00:00",
+            "ValueDateTime": "2017-11-06T00:00:00+00:00",
+            "BankTransactionCode": {
+              "Code": "IssuedCreditTransfers",
+              "SubCode": "AutomaticTransfer"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "TFR",
+              "Issuer": "LBG:DSP"
+            },
+            "TransactionInformation": "O BOSFOUR",
+            "Balance": {
+              "Amount": {
+                "Amount": "0.01",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            }
+          },
+          {
+            "AccountId": "d73e74fc-d04f-4049-ac8e-a3fd3252dbfe",
+            "TransactionId": "48c2f352a6c53aafbacd6a9627085e7e",
+            "Amount": {
+              "Amount": "0.01",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2017-10-26T00:00:00+01:00",
+            "ValueDateTime": "2017-10-26T00:00:00+01:00",
+            "BankTransactionCode": {
+              "Code": "IssuedCreditTransfers",
+              "SubCode": "AutomaticTransfer"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "TFR",
+              "Issuer": "LBG:DSP"
+            },
+            "TransactionInformation": "O BOSFOUR",
+            "Balance": {
+              "Amount": {
+                "Amount": "0.02",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            }
+          },
+          {
+            "AccountId": "d73e74fc-d04f-4049-ac8e-a3fd3252dbfe",
+            "TransactionId": "2ae11ae0de9397a4975965e11d8363b0",
+            "Amount": {
+              "Amount": "0.03",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "BookingDateTime": "2017-08-21T00:00:00+01:00",
+            "ValueDateTime": "2017-08-21T00:00:00+01:00",
+            "BankTransactionCode": {
+              "Code": "ReceivedCreditTransfers",
+              "SubCode": "AutomaticTransfer"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "TFR",
+              "Issuer": "LBG:DSP"
+            },
+            "TransactionInformation": "B TESTMARMALADETWE",
+            "Balance": {
+              "Amount": {
+                "Amount": "0.03",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://luat01-authorise-api.bankofscotland.co.uk/luat01/lbg/bos/open-banking/v3.1/aisp/accounts/d73e74fc-d04f-4049-ac8e-a3fd3252dbfe/transactions?fromBookingDateTime=2016-12-05&toBookingDateTime=&navTok=bf3ac1062f8c7ea36d030478b208ab",
+        "Next": "{{request.requestLine.baseUrl}}/v3.1/aisp/accounts/110f7ec6-b395-41fa-af30-3bd7b984a38d/transactions?fromBookingDateTime=2018-08-26T07%3A19%3A10.736Z&toBookingDateTime=&navTok=9479d610288868e7334c3d2ce74f8ea6ed5e2986badd0cec270a2587a9"
+      },
+      "Meta": {
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

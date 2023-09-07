@@ -1,0 +1,5 @@
+lovebird:
+  bankvanbredagroup:
+    bankvanbreda:
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      paginationLimit: 100

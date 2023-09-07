@@ -1,0 +1,76 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/berlingroup/v1/accounts",
+    "headers": {
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "digest": {
+        "matches": ".+"
+      },
+      "signature": {
+        "matches": "keyId=\"SN=.+,CA=.+\",algorithm=\"rsa-sha512\",headers=\"digest x-request-id\",signature=\".+\""
+      },
+      "TPP-signature-certificate": {
+        "matches": "^-----BEGIN CERTIFICATE-----    [^\n]+-----END CERTIFICATE-----$"
+      },
+      "psu-ip-address": {
+        "equalTo": "192.168.0.1"
+      },
+      "apiKey": {
+        "equalTo": "TEST_API_KEY"
+      },
+      "Authorization": {
+        "equalTo": "Bearer TEST_ACCESS_TOKEN"
+      },
+      "consent-id": {
+        "equalTo": "TEST_CONSENT_ID"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "account1",
+          "iban": "BE98999000661993",
+          "bban": "999000661993",
+          "currency": "EUR",
+          "name": "test FKI 2505",
+          "product": "Current account",
+          "cashAccountType": "CACC",
+          "_links": {
+            "balances": {
+              "href": "/v1/accounts/account1/balances"
+            },
+            "transactions": {
+              "href": "/v1/accounts/account1/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "account2",
+          "iban": "BE60999000126170",
+          "bban": "999000126170",
+          "currency": "EUR",
+          "name": "Current account 2",
+          "product": "Current account",
+          "cashAccountType": "CACC",
+          "_links": {
+            "balances": {
+              "href": "/v1/accounts/account2/balances"
+            },
+            "transactions": {
+              "href": "/v1/accounts/account2/transactions"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/psd2/v1/berlingroup-auth/token",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "apiKey": {
+        "equalTo": "TEST_API_KEY"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=TEST_REFRESH_TOKEN"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "error": "invalid_grant",
+      "error_description": "refresh token is expired"
+    }
+  }
+}

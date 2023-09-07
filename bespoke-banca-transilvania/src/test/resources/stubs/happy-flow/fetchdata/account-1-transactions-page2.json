@@ -1,0 +1,79 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/bt/sb/bt-psd2-aisp-prd/v1/accounts/1/transactions",
+    "queryParameters": {
+      "page": {
+        "equalTo": "2"
+      }
+    },
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "consent-id": {
+        "equalTo": "100"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "content-type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "NL22INGB5157915454"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "013ATCW1822203ZV",
+            "creditorName": "Ms Monica",
+            "creditorAccount": {
+              "iban": "RO84BTRLRONCRT9HFEDEHEZE"
+            },
+            "transactionAmount": {
+              "currency": "RON",
+              "amount": "0.20"
+            },
+            "bookingDate": "2019-01-03",
+            "valueDate": "2019-01-03",
+            "details": "Ref 12345678, Suma platita 252.91 RON. Data_Ora: 23-02-2019 17:10:30"
+          },
+          {
+            "transactionId": "028ZTRF182730XRR",
+            "debtorName": "Mr Gerald",
+            "debtorAccount": {
+              "iban": "RO92BTRLRONCRT9HFEDEHEZE"
+            },
+            "transactionAmount": {
+              "currency": "RON",
+              "amount": "400.20"
+            },
+            "bookingDate": "2019-01-03",
+            "valueDate": "2019-01-03",
+            "remittanceInformationUnstructured": "Tranzactie comerciant - Tranz: Nr card 9999XXXXXX9999. Data_Ora: 23-02-2019 17:10:30"
+          }
+        ]
+      },
+      "_links": {
+        "account": {
+          "href": "https://localhost:{{request.requestLine.port}}/bt/sb/bt-psd2-aisp-prd/v1/accounts/1"
+        }
+      }
+    }
+  }
+}

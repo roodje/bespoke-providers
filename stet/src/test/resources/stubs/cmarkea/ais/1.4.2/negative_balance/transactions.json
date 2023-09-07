@@ -1,0 +1,135 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/psd2/v1/accounts/TE0000004/transactions",
+    "queryParameters": {
+      "dateFrom": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]$"
+      },
+      "dateTo": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]$"
+      }
+    },
+    "headers": {
+      "Accept": {
+        "matches": "application/hal\\+json;charset=utf-8;version=1.4.2"
+      },
+      "Digest": {
+        "matches": "SHA-256=([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "Signature": {
+        "matches": "keyId=\"https://test.qseal.certificate.com/[a-zA-Z0-9:]{59}.pem\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) x-request-id digest\", signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Authorization": {
+        "matches": "Bearer accessToken123456704"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "transactions": [
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 1000.0
+          },
+          "creditDebitIndicator": "CRDT",
+          "status": "BOOK",
+          "bookingDate": "2020-05-17T00:00:00",
+          "valueDate": "2020-05-17T00:00:00",
+          "transactionDate": "2020-05-17T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "VIR DOMI COMPTE CHEQUES 1"
+            ]
+          }
+        },
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 300.0
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-05-17T00:00:00",
+          "valueDate": "2020-05-17T00:00:00",
+          "transactionDate": "2020-05-17T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "VIR HARAND AUDREY"
+            ]
+          }
+        },
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 1500.0
+          },
+          "creditDebitIndicator": "CRDT",
+          "status": "BOOK",
+          "bookingDate": "2020-05-16T00:00:00",
+          "valueDate": "2020-05-15T00:00:00",
+          "transactionDate": "2020-05-15T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "VIR DOMI COMPTE CHEQUES 1"
+            ]
+          }
+        },
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 2.89
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-04-23T00:00:00",
+          "valueDate": "2020-04-23T00:00:00",
+          "transactionDate": "2020-04-21T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "ECH PRET 0139000016005"
+            ]
+          }
+        },
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 12.0
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2018-11-07T00:00:00",
+          "valueDate": "2018-11-06T00:00:00",
+          "transactionDate": "2018-11-07T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "CARTE 25/06 MONMEZIERES PERIGNY"
+            ]
+          }
+        }
+      ],
+      "_links": {
+        "first": {
+          "href": "/psd2/v1/accounts/TE0000004/transactions?page=0"
+        },
+        "last": {
+          "href": "/psd2/v1/accounts/TE0000004/transactions?page=0"
+        },
+        "next": {
+          "href": "/psd2/v1/accounts/TE0000004/transactions?page=0"
+        },
+        "self": {
+          "href": "/psd2/v1/accounts/TE0000004/transactions?page=0"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/psd2-api.ca-alpesprovence.fr/authentication/v1/openid/token",
+    "bodyPatterns": [
+      {
+        "contains": "redirect_uri=http%3A%2F%2Fwww.yolt.io%2Fcallback"
+      },
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=ff663031-c8c6-48ed-bee9-ccff2e07bee3"
+      },
+      {
+        "contains": "client_id=f89a65f5-b4b4-4ef3-8bb3-3697ebb9ce04"
+      },
+      {
+        "contains": "scope=aisp+extended_transaction_history"
+      }
+    ],
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF\\-8)?"
+      },
+      "correlationid": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "cats_consommateur": {
+        "equalTo": "{\"consommateur\":{\"nom\":\"Yolt\",\"version\":\"1.0.0\"}}"
+      },
+      "cats_consommateurorigine": {
+        "equalTo": "{\"consommateur\":{\"nom\":\"Yolt\",\"version\":\"1.0.0\"}}"
+      },
+      "cats_canal": {
+        "equalTo": "{\"canal\":{\"canalId\":\"internet\",\"canalDistribution\":\"internet\"}}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access_token": "39911f01-4613-461f-9b47-1e4ba35176e6",
+      "refresh_token": "8ebcae13-6297-4ab2-8080-2734bba3f311",
+      "expires_in": 10
+    }
+  }
+}

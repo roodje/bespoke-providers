@@ -1,0 +1,27 @@
+{
+  "request": {
+    "url": "/token",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalTo": "grant_type=client_credentials&client_id=API-7d6f204b-3219-4b63-b66e-5f7a0be1d067&scope=apic-psd2"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access_token": "THE-CLIENT-ACCESS-TOKEN",
+      "token_type": "Bearer",
+      "expires_in": 599
+    }
+  }
+}

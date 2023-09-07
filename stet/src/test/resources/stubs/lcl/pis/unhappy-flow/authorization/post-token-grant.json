@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/token",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "client_id=unhappy-client-id"
+      },
+      {
+        "contains": "grant_type=client_credentials"
+      },
+      {
+        "contains": "scope=pisp"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "X-Frame-Options": "DENY",
+      "Transfer-Encoding": "chunked",
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "access_token": "unhappy-access-token",
+      "expires_in": 3599,
+      "token_type": "Bearer",
+      "scope" : "pisp"
+    }
+  }
+}

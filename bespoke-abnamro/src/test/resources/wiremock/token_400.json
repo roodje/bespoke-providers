@@ -1,0 +1,19 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/as/token.oauth2",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalTo": "grant_type=authorization_code&code=wrong_code&redirect_uri=https%3A%2F%2Flocalhost%2Fauth&client_id=TPP_test"
+      }
+    ]
+  },
+  "response": {
+    "status": 400
+  }
+}

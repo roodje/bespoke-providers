@@ -1,0 +1,58 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/ab5c938d-20a1-4e32-9eed-201fa093f4e2/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "1626df30-50ad-42d8-8f39-40dd95f4b15f"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "ab5c938d-20a1-4e32-9eed-201fa093f4e2",
+            "Amount": {
+              "Amount": "0.01",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2017-12-15T12:19:00Z"
+          },
+          {
+            "AccountId": "ab5c938d-20a1-4e32-9eed-201fa093f4e2",
+            "Amount": {
+              "Amount": "0.01",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2017-12-15T12:19:00+00:00"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://openbanking-ma.santander.co.uk/sanuk/external/open-banking/v3.1/aisp/accounts/b5b50b78-cb70-4569-bf14-b8ab35a6686d/balances"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

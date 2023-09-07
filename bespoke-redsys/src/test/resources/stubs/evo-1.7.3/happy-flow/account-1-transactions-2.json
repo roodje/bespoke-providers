@@ -1,0 +1,77 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/EVOBANCO/v1/accounts/ES018202000000000000000000578044871/transactions",
+    "queryParameters": {
+      "link": {
+        "equalTo": "eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiIsInR5cCI6IkpXVCJ9.eNoczMEKAiEUQNF_cdEq8T0dzYJo1aJtLaOF80ZDKqdGjSj696Tlgcv9sNfeP6rPZTewFQt6QA1kOARQvEOSvDfBcBM6a8mpQeklm7NrTJdWiycKRzTWVLLYHiwCSgsLC9oAGgBoLynK5FJ2VOKY8ubuzv6Y6q3302mtZn_m-PYNwL4_AAAA__8.KZHPqiqepBCILuC6NkcHkg4aw9vqC1hm0Cpi3Tg4HEQ"
+      }
+    },
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 4ebf95f7-02f5-11eb-8309-411ae25e53e3"
+      },
+      "Consent-ID": {
+        "equalTo": "7eea2874-04f5-21ec-9cd5-fbg83ac17655"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Signature": {
+        "matches": "keyId=\"SN=13299021239615735660,CA=C=US,ST=foo,L=foo,O=foo,OU=foo,CN=foo\",algorithm=\"SHA-256\",headers=\"digest x-request-id\",signature=\"([A-Za-z0-9+/\n])*(=){0,2}([\n])*\""
+      },
+      "Tpp-Signature-Certificate": {
+        "equalTo": "MIICMzCCAZygAwIBAgIJALiPnVsvq8dsMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzAeFw0xMzAzMTkxNTQwMTlaFw0xODAzMTgxNTQwMTlaMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzdGfxi9CNbMf1UUcvDQh7MYBOveIHyc0E0KIbhjK5FkCBU4CiZrbfHagaW7ZEcN0tt3EvpbOMxxc/ZQU2WN/s/wPxph0pSfsfFsTKM4RhTWD2v4fgk+xZiKd1p0+L4hTtpwnEw0uXRVd0ki6muwV5y/P+5FHUeldq+pgTcgzuK8CAwEAAaMPMA0wCwYDVR0PBAQDAgLkMA0GCSqGSIb3DQEBBQUAA4GBAJiDAAtY0mQQeuxWdzLRzXmjvdSuL9GoyT3BF/jSnpxz5/58dba8pWenv3pj4P3w5DoOso0rzkZy2jEsEitlVM2mLSbQpMM+MUVQCQoiG6W9xuCFuxSrwPISpAqEAuV4DNoxQKKWmhVv+J0ptMWD25Pnpxeq5sXzghfJnslJlQND"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "192.168.16.5"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "ES2420802795447427789873"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "140000035881041084200504011255957714",
+            "bookingDate": "2019-10-26",
+            "valueDate": "2019-10-28",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-100.00"
+            },
+            "debtorAccount": {
+              "iban": "ES2420802795447427789123"
+            },
+            "remittanceInformationUnstructured": "Example for Remittance Information"
+          }
+        ],
+        "_links": {
+          "account": {
+            "href": "/v1/accounts/ES018202000000000000000000578044871"
+          },
+          "first": {
+            "href": "/v1/accounts/ES018202000000000000000000578044871/transactions?link=eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiIsInR5cCI6IkpXVCJ9.eNocyrsKwjAUgOF3yeBkyTnNpYkgTg6uOopDLkcp1VSbVETx3Q0uP3zwf9hrT4-ZctlFtmIdyjMqEo2SZBspagwFbHT0srXaiug1W7Jrn4Z68ydyF8I4p5L59mAQsDXQGVAaUAMAKmh5mVzKLpR-THlzdxc6pvnmaTqtxeLP3L-pAtj3BwAA__8.ONr4sasgt_UksFOQ6ccquPH7RWp5kM18Xo0B8H2X6rA"
+          },
+          "previous": {
+            "href": "/v1/accounts/ES018202000000000000000000578044871/transactions?link=eyJhbGciOiJIUzI1NiIsInppcCI6IkRFRiIsInR5cCI6IkpXVCJ9.eNocyrsKwjAUgOF3yeBkyTnNpYkgTg6uOopDLkcp1VSbVETx3Q0uP3zwf9hrT4-ZctlFtmIdyjMqEo2SZBspagwFbHT0srXaiug1W7Jrn4Z68ydyF8I4p5L59mAQsDXQGVAaUAMAKmh5mVzKLpR-THlzdxc6pvnmaTqtxeLP3L-pAtj3BwAA__8.ONr4sasgt_UksFOQ6ccquPH7RWp5kM18Xo0B8H2X6rA"
+          }
+        }
+      }
+    }
+  }
+}
+

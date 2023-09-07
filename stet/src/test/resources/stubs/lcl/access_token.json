@@ -1,0 +1,35 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/token",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/x-www-form-urlencoded"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=auth-code"
+      },
+      {
+        "contains": "redirect_uri=http%3A%2F%2Fyolt.com%2Fredirect%2Flcl"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access_token": "access-token",
+      "refresh_token": "refresh-token",
+      "expires_in": 3600,
+      "token_type": "Bearer",
+      "id_token": "fake.fake.fake"
+    }
+  }
+}

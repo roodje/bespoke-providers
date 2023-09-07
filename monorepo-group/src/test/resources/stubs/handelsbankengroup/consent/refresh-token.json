@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/bb/gls5/oauth2/token/1.0",
+    "headers": {
+      "Accept": {
+        "matches": "application/json"
+      },
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF-8)?"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=UlQ6NNWMtNWQ3YS00MWUyLTg3NTk5NmUxZDkwNTll"
+      },
+      {
+        "contains": "client_id=2cffdb50-2323-4be7-a2a2-70a6610f8a06"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token":"QVQ6MGQ2YmYtMmZjOC00Yzg3LzYyOGU0NTg5YmM3",
+      "expires_in":123456,
+      "token_type":"Bearer"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+

@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth-token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "5008e82d-f5ac-42fe-8f07-a49b025f3c2e"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0011800000tfV9aBBE"
+      },
+      "Authorization": {
+        "equalTo": "Basic c29tZUNsaWVudElk"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback%2F"
+      },
+      {
+        "contains": "code=BncpkVcaQsT8aBEJe6cea5n5by3mcNkE9rhx-KJn"
+      },
+      {
+        "contains": "client_id=someClientId"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "j4HmjDMaBdSXUQQzN1GpdHoozGho",
+      "refresh_token": "xcdog81ShrtxuIqRO9Zlf0zG0YVuaGuo9iK8sHWeA8",
+      "id_token": "eyJhbGciOjJSUzI1NiIsImtpZCI6Ilg3NGUxS0dtV3llT0gyaFhPRndTU285anhuZyJ9.eyJzdWIiOiIwZWJmZTQzMi04ZjYyLTQyYzQtYWQ5OC00NzMwOWIyMDYwNmEiLCJhdWQiOiI1djh4T1haR2dBc0N3UVEzdTBEV0U4IiwianRpIjoiV0hvVWZvejFZNzZBdmdOaWZzbzlqSyIsImlzcyI6Imh0dHBzOi8vYXV0aC5vYmFwaS5iYW5rb2ZpcnVsYW5kLmNvbSIsInlhdCI6MTYwNTg2OTUyMiwiZXhwIjoxNjA1OTA1NTIyLCJhY3IiOiJ1cm46b3BlbmJhbmtpbmc6cHNkMjpzY2EiLCJvcGVuYmFua2luZ19pbnRlbnRfaWQiOiIwZWJmZTQzMi04ZjYyLTQyYzQtYWQ5OC00NzMwOWIyMDYwNmEiLCJyZWZyZXNoX3Rva2VuX2V4cGlyZXNfYXQiOjE2MTM2NDU1MjIsIm5vbmNlIjoiZmU4ZTc4Y2UtNGQ1Yy00YzkxLTgyZDAtYzU3NTFmYzA1MzEzIiwiYXV0aF90aW1lIjoxNjA1ODY5NDgwLCJjX2hhc2giOiJzeGhNZFhsTXF6Nk9MLU12VFZuTWVBIiwic19oYXNoIjoib3kyajl2ZExwZ1h4dHFfb2lzTUV0QSJ9.Nff5F4Xyh2bTQ4cOq2IiBkbR-AQVDcNGyztBv174wD8_sVF2HYYwKh6Mi9fRUW5q9FO6IknE9Us2n8kwVuaj21ptbJFhwBHOQuyaEmokCvsYAAbSjoyiV4AzUa7uMr64-xgyr4RBGipP_y2QtlB5uDvbTCh5-tIU-025r7aUZqrHh2gIqeZtodPqh19pYyv4BwEmgo9DPxs5ZL3vG1Tq4i17Sjm4CJfUsna8OxkC0e7elg9tcg650ajjjDOvTIqxUGGHKjVuzGcATTheUbqxBuNCOgDPEU59b158H8SIGwShenOZVIS3kAntNriUO5JttBKZgC4qcOlf8Qg5bQBQEQ",
+      "token_type": "Bearer",
+      "expires_in": 299
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

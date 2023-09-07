@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer fake-access-token"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "fake-institution-id"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 401,
+    "jsonBody": {
+      "Code": "401 Unauthorized",
+      "Id": "9aca9b9c-6fb8-4f54-9641-4b28d6ceab48",
+      "Message": "Unauthorized",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Unauthorized",
+          "Message": "Unauthorized"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

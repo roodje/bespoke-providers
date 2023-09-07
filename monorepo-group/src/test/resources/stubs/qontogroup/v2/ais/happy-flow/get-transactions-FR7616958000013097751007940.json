@@ -1,0 +1,137 @@
+{
+  "request": {
+    "url": "/v2/transactions?iban=FR7616958000013097751007940&emitted_at_from=2022-01-01T00:00:00.000Z&current_page=1",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer AWESOME-ACCESS-TOKEN"
+      },
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Signature": {
+        "matches": "keyId=\"https:\\/\\/test.qseal.certificate.com\\/5f:18:d2:93:04:36:f7:d3:8b:91:11:d8:85:ac:62:0c:06:e9:54:02.pem\",algorithm=\"rsa-sha256\",headers=\"content-type psu-ip-address digest\",signature=\"(.+)\""
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "transactions": [
+        {
+          "transaction_id": "scep-1111-3-transaction-2",
+          "amount": 10.0,
+          "amount_cents": 1000,
+          "settled_balance": 28.0,
+          "settled_balance_cents": 2800,
+          "attachment_ids": [],
+          "local_amount": 10.0,
+          "local_amount_cents": 1000,
+          "side": "debit",
+          "operation_type": "income",
+          "currency": "EUR",
+          "local_currency": "EUR",
+          "label": "SCEP",
+          "settled_at": "2022-07-13T00:00:16.564Z",
+          "emitted_at": "2022-07-13T00:00:16.494Z",
+          "updated_at": "2022-07-13T00:00:17.340Z",
+          "status": "completed",
+          "note": null,
+          "reference": "Internal transfer",
+          "vat_amount": null,
+          "vat_amount_cents": null,
+          "vat_rate": null,
+          "initiator_id": null,
+          "label_ids": [],
+          "attachment_lost": false,
+          "attachment_required": true,
+          "card_last_digits": null,
+          "category": "other_income",
+          "id": "180be222-40e0-4e9f-a967-bdd16afea2c6"
+        },
+        {
+          "transaction_id": "scep-1111-3-transaction-1",
+          "amount": 18.0,
+          "amount_cents": 1800,
+          "settled_balance": 18.0,
+          "settled_balance_cents": 1800,
+          "attachment_ids": [],
+          "local_amount": 18.0,
+          "local_amount_cents": 1800,
+          "side": "credit",
+          "operation_type": "income",
+          "currency": "EUR",
+          "local_currency": "EUR",
+          "label": "SCEP",
+          "settled_at": "2022-07-13T00:00:14.367Z",
+          "emitted_at": "2022-07-13T00:00:14.268Z",
+          "updated_at": "2022-07-13T00:00:14.743Z",
+          "status": "pending",
+          "note": null,
+          "reference": "Internal transfer",
+          "vat_amount": null,
+          "vat_amount_cents": null,
+          "vat_rate": null,
+          "initiator_id": null,
+          "label_ids": [],
+          "attachment_lost": false,
+          "attachment_required": true,
+          "card_last_digits": null,
+          "category": "other_income",
+          "id": "530ebae7-65ce-4205-bd0f-aed0764fa494"
+        },
+        {
+          "transaction_id": "scep-1111-3-transaction-143243",
+          "amount": 18.0,
+          "amount_cents": 1800,
+          "settled_balance": 18.0,
+          "settled_balance_cents": 1800,
+          "attachment_ids": [],
+          "local_amount": 18.0,
+          "local_amount_cents": 1800,
+          "side": "credit",
+          "operation_type": "income",
+          "currency": "EUR",
+          "local_currency": "EUR",
+          "label": "SCEP",
+          "settled_at": "2022-07-13T00:00:14.367Z",
+          "emitted_at": "2022-07-13T00:00:14.268Z",
+          "updated_at": "2022-07-13T00:00:14.743Z",
+          "status": "rejected",
+          "note": null,
+          "reference": "Internal transfer",
+          "vat_amount": null,
+          "vat_amount_cents": null,
+          "vat_rate": null,
+          "initiator_id": null,
+          "label_ids": [],
+          "attachment_lost": false,
+          "attachment_required": true,
+          "card_last_digits": null,
+          "category": "other_income",
+          "id": "530ebae7-65ce-4205-bd0f-aed0764fa494"
+        }
+      ],
+      "meta": {
+        "current_page": 1,
+        "next_page": null,
+        "prev_page": null,
+        "total_pages": 1,
+        "total_count": 2,
+        "per_page": 100
+      }
+    }
+  }
+}

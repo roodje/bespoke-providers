@@ -1,0 +1,67 @@
+{
+  "account": {
+    "iban": "456",
+    "currency": "EUR"
+  },
+  "transactions": {
+    "booked": [
+      {
+        "transactionId": "312",
+        "entryReference": "323",
+        "endToEndId": "334",
+        "mandateId": "345",
+        "checkId": "356",
+        "creditorId": "367",
+        "bookingDate": "2008-09-17",
+        "valueDate": "2008-09-18",
+        "transactionAmount": {
+          "currency": "EUR",
+          "amount": "20.00"
+        },
+        "creditorName": "creditor",
+        "creditorAccount": {
+          "iban": "45",
+          "currency": "EUR"
+        },
+        "ultimateCreditor": "ultimateCreditor",
+        "remittanceInformationUnstructured": "Unstructured",
+        "remittanceInformationStructured": "Structured",
+        "purposeCode": "BKFM",
+        "bankTransactionCode": "ACT",
+        "proprietaryBankTransactionCode": "143"
+      }
+    ],
+    "pending": [
+      {
+        "transactionId": "314",
+        "entryReference": "325",
+        "endToEndId": "336",
+        "mandateId": "347",
+        "checkId": "358",
+        "creditorId": "369",
+        "bookingDate": "2008-09-15",
+        "valueDate": "2008-09-16",
+        "transactionAmount": {
+          "currency": "EUR",
+          "amount": "100.00"
+        },
+        "debtorName": "creditor",
+        "debtorAccount": {
+          "iban": "99",
+          "currency": "EUR"
+        },
+        "ultimateDebtor": "UltimateDebtor",
+        "remittanceInformationUnstructured": "Unstructured",
+        "remittanceInformationStructured": "Structured",
+        "purposeCode": "BKFM",
+        "bankTransactionCode": "ACT",
+        "proprietaryBankTransactionCode": "143"
+      }
+    ],
+    "_links": {
+      "next": {
+        "href": ""
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr/direct-debits",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "DirectDebit": [
+          {
+            "AccountId": "aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr",
+            "MandateIdentification": "GAD45503990 ",
+            "DirectDebitStatusCode": "Active",
+            "Name": "O2",
+            "PreviousPaymentDateTime": "2020-11-09T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "21.53",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr",
+            "MandateIdentification": "4RF21127GZH6S ",
+            "DirectDebitStatusCode": "Active",
+            "Name": "PAYPAL PAYMENT "
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://api.nationwide.co.uk/open-banking/v3.1/aisp/accounts/aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr/direct-debits"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

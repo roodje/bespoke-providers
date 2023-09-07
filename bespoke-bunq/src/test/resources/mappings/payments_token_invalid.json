@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/user/([0-9]*)/monetary-account/([0-9]*)/payment\\?count=([0-9]*)",
+    "headers": {
+      "X-Bunq-Client-Authentication": {
+        "equalTo": "give401"
+      }
+    }
+  },
+  "response": {
+    "status": "401",
+    "jsonBody": {
+      "Error": [
+        {
+          "error_description": "Token Invalid",
+          "error_description_translated": "User's Token is invalid."
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

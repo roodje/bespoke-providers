@@ -1,0 +1,72 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/v3.1/aisp/accounts/73rl9txy4z65hh3e0gg3rr5laqdbmtuohtvn/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 3zHagXZSPyA6sifIDmqwZ0hLlqq"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "d73e74fc-d04f-4049-ac8e-a3fd3252dbfe",
+            "Amount": {
+              "Amount": "9.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2017-12-15T12:16:00+00:00",
+            "CreditLine": [
+              {
+                "Included": true,
+                "Amount": {
+                  "Amount": "0.10",
+                  "Currency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "AccountId": "d73e74fc-d04f-4049-ac8e-a3fd3252dbfe",
+            "Amount": {
+              "Amount": "1.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Type": "InterimBooked",
+            "DateTime": "2017-12-15T12:16:00+00:00",
+            "CreditLine": [
+              {
+                "Included": false
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://luat01-authorise-api.bankofscotland.co.uk/luat01/lbg/bos/open-banking/v3.1/aisp/accounts/d73e74fc-d04f-4049-ac8e-a3fd3252dbfe/balances"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

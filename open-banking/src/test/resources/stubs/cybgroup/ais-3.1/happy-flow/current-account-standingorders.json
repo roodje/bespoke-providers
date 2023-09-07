@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/92198f42-4726-12fd-ad55-b93b04192121/standing-orders",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "x-fapi-financial-id": {
+        "contains": "001728392JD873NNHY"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "StandingOrder": [
+          {
+            "AccountId": "92198f42-4726-12fd-ad55-b93b04192121",
+            "StandingOrderId": "060762-26054401-SO-0001",
+            "Frequency": "IntrvlMnthDay:01:01",
+            "Reference": "17723262",
+            "NextPaymentDateTime": "2021-03-10T00:00Z",
+            "StandingOrderStatusCode": "Active",
+            "NextPaymentAmount": {
+              "Amount": "150.00",
+              "Currency": "GBP"
+            },
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "50506492837451",
+              "Name": "Maid Marian"
+            },
+            "SupplementaryData": {}
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://cb.api-nc.cybservices.co.uk/open-banking/v3.1/aisp/accounts/92198f42-4726-12fd-ad55-b93b04192121/standing-orders/"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

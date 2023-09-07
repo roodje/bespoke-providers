@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer TEST_ACCESS_TOKEN"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "35acdd5c-ddf1-4a70-ac0f-a4322e3bc263"
+      },
+      "x-fapi-customer-ip-address": {
+        "equalTo": "1.1.1.1"
+      }
+    }
+  },
+  "response": {
+    "status": 500,
+    "jsonBody": {
+      "Code": "Internal Server Error",
+      "Message": "An unexpected error has occurred while serving the request.",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.UnexpectedError",
+          "Message": "An unexpected error has occurred while serving the request."
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

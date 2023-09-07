@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/yoltbank/openbanking/token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "93bac548-d2de-4546-b106-880a5018460d"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=Invalid_1SavZW1s7thJ7iw0XZ"
+      },
+      {
+        "contains": "client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer"
+      }
+    ]
+  },
+  "response": {
+    "status": 401,
+    "jsonBody": {
+      "Code": "401",
+      "Id": "553a1558-8aea-453d-8cf7-5dca6e9b9d9f",
+      "Message": "Invalid access token",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Field.Invalid",
+          "Message": "Unauthorized"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

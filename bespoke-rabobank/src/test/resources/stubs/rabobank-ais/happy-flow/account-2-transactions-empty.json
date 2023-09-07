@@ -1,0 +1,54 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/payments/account-information/ais/accounts/PoSeg9Tbre3fIS0yi2NgUE3ggMAM2zqw_pb6sQ4J2tOrtXdDUn8jkJSt_18ahqah/transactions",
+    "queryParameters": {
+      "dateFrom": {
+        "equalTo": "2018-10-02T08:18:32.009Z"
+      },
+      "bookingStatus": {
+        "equalTo": "booked"
+      }
+    },
+    "headers": {
+      "psu-ip-address": {
+        "matches": ".*"
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIIDFjCCAf4CCQC6MIKO2WnC1TANBgkqhkiG9w0BAQsFADBSMQswCQYDVQQGEwJOTDEWMBQGA1UECAwNTm9vcmQtSG9sbGFuZDENMAsGA1UECgwEWW9sdDEcMBoGCSqGSIb3DQEJARYNbGVvbkB5b2x0LmNvbTAeFw0xODA5MjAwODUzMTVaFw0yMTA3MTAwODUzMTVaMEgxCzAJBgNVBAYTAk5MMRswGQYDVQQKDBJZb2x0IC0gQ29ubmVjdGlvbnMxHDAaBgkqhkiG9w0BCQEWDWxlb25AeW9sdC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDXu4pG9Fdvek5opDjk9DsgMe+vZsYVoHP3E4fDa0O9n06+wFh1qgrbctu3UNKhTiqiOuyqar9IkSIV92GO09xIjyxAWGVv8eNN2poGVRDta6zo2YLanmU1EuXcMd5hICj3l/PEJbsksFP2jNlsJsfE6ehSCdrPKcX9oYL3oCvZDohytdrHO4c+8m8/aZS1nQyhT9lyqWMcBvz9I35BE2uiVPiBKuAtZZcp0yHvvObNC/BzrZncM2LrrtCDcS6ozjotHvCbk37W+loBr6b1+jA64qv3ILDl+T7fcmUyIyBoWa5GVdmZ9Go8Gl3SOcjGx2SwtmC1V6w4DDbZkLyT6oJLAgMBAAEwDQYJKoZIhvcNAQELBQADggEBABZPEHktIG+pKoOfpeBsRF6K5ZIBbmSeRBrzJ0BOOUhr894iuHhMKku239fN3sFc0+6ylQjjFC3soBimWVcnf6AUb8ncP4FCE8oyHpZ2WPjYeXqIdTxxFPfA0l3FW18ncdIa0zSFmo5wwzhN7A2FhtCfnlI8YkatHQSv/90VMuICMZF0HTzfeuhv4z8PH6SVEa3B1uYogwwv9dCW/8amOddoO2K/aB4hS23h4TyAw1tKjN8/IHmLvE3R8LlazMJhY9J2xvYOPFq3BnM3V8vHpj/7BBWJKxWvYtbCqqVCEeG/qLQH7CmVaIX7hg5Yfurwvgwm3mujCaRNKjHjS3Jb5YQ="
+      },
+      "date": {
+        "matches": ".+"
+      },
+      "digest": {
+        "matches": ".+"
+      },
+      "signature": {
+        "matches": "(keyId=\"13416366839981261525\",algorithm=\"rsa-sha512\",headers=\"date digest x-request-id\",signature=).*"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "NL39RABO0320130878",
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [],
+        "_links": {
+          "account": {
+            "href": "/v3/accounts/PoSeg9Tbre3fIS0yi2NgUE3ggMAM2zqw_pb6sQ4J2tOrtXdDUn8jkJSt_18ahqah"
+          }
+        }
+      }
+    }
+  }
+}

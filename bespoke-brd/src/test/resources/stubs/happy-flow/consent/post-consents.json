@@ -1,0 +1,62 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/v1/consents",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "psu-id": {
+        "equalTo": "customer-login"
+      },
+      "content-type": {
+        "equalTo": "application/json"
+      },
+      "accept": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.access[?(@.allPsd2 == 'allAccounts')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.recurringIndicator == true)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.combinedServiceIndicator == false)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.validUntil =~ /[0-9]{4}-[0-9]{2}-[0-9]{2}/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.frequencyPerDay == 4)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "consentStatus": "received",
+      "consentId": "800000022",
+      "_links": {
+        "self": {
+          "href": "/v1/consent/800000022"
+        },
+        "status": {
+          "href": "/v1/consent/800000022/status"
+        },
+        "delete": {
+          "href": "/v1/consent/800000022"
+        },
+        "psuMessage": "Pentru validare consent, introduceti in aplicatia MyBRD codul: 800000022"
+      }
+    }
+  }
+}

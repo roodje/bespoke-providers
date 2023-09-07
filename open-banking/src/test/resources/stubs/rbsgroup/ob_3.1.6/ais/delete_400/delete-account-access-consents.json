@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/v3.1/aisp/account-access-consents/alreadyDeletedConsentId",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      }
+    }
+  },
+  "response": {
+    "status": 400
+  }
+}

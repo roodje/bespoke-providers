@@ -1,0 +1,57 @@
+{
+  "request": {
+    "url": "/v3.1/pisp/domestic-payments/10168215535616",
+    "method": "GET",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "1626df30-50ad-42d8-8f39-40dd95f4b15f"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "DomesticPaymentId": "10168215535616",
+        "ConsentId": "GENERIC-P-PAYMENT_ID",
+        "CreationDateTime": "2002-02-23T21:54:55.85Z",
+        "Status": "AcceptedCreditSettlementCompleted",
+        "StatusUpdateDateTime": "2019-01-28T16:45:25.91Z",
+        "Initiation": {
+          "InstructionIdentification": "1938883646324736",
+          "EndToEndIdentification": "2707380502528000",
+          "InstructedAmount": {
+            "Amount": "100.00",
+            "Currency": "JPY"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "1802968485593088",
+            "Name": "Jordan Bell"
+          },
+          "RemittanceInformation": {
+            "Unstructured": "Payment"
+          }
+        }
+      },
+      "Links": {
+        "Self": "https://api.santander.co.uk/open-banking/v3.1/pisp/domestic-payments/10168215535616"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    }
+  }
+}

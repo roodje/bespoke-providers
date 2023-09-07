@@ -1,0 +1,96 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/services/api/v1.7/_user_/_70352f41061eda4_/dsp2/accounts/transactions/3B9F0FCF487ECF9FCDC4CBAFDD0A2E6D",
+    "queryParameters": {
+      "dateFrom": {
+        "matches": "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$"
+      }
+    },
+    "headers": {
+      "content-type": {
+        "matches": "application/json"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "digest": {
+        "matches": "SHA-256=([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "signature": {
+        "matches": "keyId=\"([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) digest psu-ip-address x-request-id\",signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Authorization": {
+        "matches": "Bearer( )[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*$"
+      },
+      "psu-ip-address": {
+        "equalTo": "147.206.96.254"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "transactions": [
+        {
+          "resourceId": "4d6f54sd6f54sdf654",
+          "transactionAmount": {
+            "amount": "12.00"
+          },
+          "status": "BOOK",
+          "bookingDate": "2020-01-16",
+          "transactionDate": "2020-01-16",
+          "valueDate": "2020-01-16",
+          "remittanceInformation": [
+            "Account 2 Boursorama Essentiel"
+          ]
+        },
+        {
+          "resourceId": "4d6f54sd6f54sdf654",
+          "transactionAmount": {
+            "currency": "EUR"
+          },
+          "creditDebitIndicator": "DBIT",
+          "bookingDate": "2020-01-16",
+          "transactionDate": "2020-01-16",
+          "valueDate": "2020-01-16",
+          "remittanceInformation": [
+            "Account 2 Boursorama Essentiel"
+          ]
+        },
+        {
+          "resourceId": "4d6f54sd6f54sdf654",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "14.00"
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-01-16",
+          "transactionDate": "2020-01-16",
+          "valueDate": "2020-01-16",
+          "remittanceInformation": [
+            "Account 2 Boursorama Essentiel"
+          ]
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "v1/accounts/balance/21fs2d4fs5df4s5d4f4f4fd54sf5d4fs"
+        },
+        "parent-list": {
+          "href": "v1/accounts/balance/21fs2d4fs5df4s5d4f4f4fd54sf5d4fs"
+        },
+        "balances": {
+          "href": "v1/accounts/balance/21fs2d4fs5df4s5d4f4f4fd54sf5d4fs"
+        }
+      }
+    }
+  }
+}

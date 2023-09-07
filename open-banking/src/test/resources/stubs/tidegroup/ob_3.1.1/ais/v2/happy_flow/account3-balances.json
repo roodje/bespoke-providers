@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/654321/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer test-accounts"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "transformers": ["response-template"],
+    "jsonBody": {
+      "Data": {
+        "Balance": []
+      },
+      "Links": {
+        "Self": "https://api.alphabank.com/open-banking/v3.1/aisp/accounts/1234/balances/"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

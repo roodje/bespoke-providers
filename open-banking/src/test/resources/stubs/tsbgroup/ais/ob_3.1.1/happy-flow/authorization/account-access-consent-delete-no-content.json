@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/apis/open-banking/v3.1/aisp/account-access-consents/527ed751-dabc-46f2-86a5-8b0acab6ee8b",
+    "headers": {
+      "x-fapi-financial-id": {
+        "equalTo": "003882287203T83JKK"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+      },
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      },
+      "Content-Type": {
+        "equalTo": "application/json;charset=UTF-8"
+      }
+    }
+  },
+  "response": {
+    "status": 204,
+    "headers": {
+      "x-fapi-interaction-id": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "request": {
+    "url": "/customers/pots",
+    "method": "GET",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer ACCESS_TOKEN"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "get-pots.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

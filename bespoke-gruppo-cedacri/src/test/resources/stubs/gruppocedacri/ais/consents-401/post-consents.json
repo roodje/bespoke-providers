@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/consents",
+    "headers": {
+      "x-request-id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "authorization": {
+        "equalTo": "Bearer o9xcq8V2zUg893gm6ROpO7XDUhaBkIOyilSHG0M11XCXFgjMPP7U6R"
+      },
+      "tpp-redirect-uri": {
+        "equalTo": "https://yolt.com/callback?state=d6290c4a-3ae9-415e-99cd-e572d0fca3f7"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.access[?(@.availableAccounts == 'allAccounts')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.recurringIndicator == true)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.combinedServiceIndicator == false)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.validUntil =~ /[0-9]{4}-[0-9]{2}-[0-9]{2}/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.frequencyPerDay == 4)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 401
+  }
+}

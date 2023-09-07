@@ -1,0 +1,103 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v1/payment-requests/98ff0a93-7f37-41a9-8563-214f898c7b1c",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer TEST_CCG_TOKEN"
+      },
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "_links": {
+        "request": {
+          "href": "https://api.labanquepostale.com/v1/payment-requests/ce4e4589-440c-4d2d-81fc-a0dfecb7ec5f"
+        },
+        "confirmation": {
+          "href": "https://api.labanquepostale.com/v1/payment-requests/ce4e4589-440c-4d2d-81fc-a0dfecb7ec5f/confirmation"
+        }
+      },
+      "paymentRequest": {
+        "paymentInformationId": "00000000-0000-0000-0000-000000000000",
+        "creationDateTime": "2020-01-20T15:39:30.983Z",
+        "numberOfTransactions": 1,
+        "initiatingParty": {
+          "name": "Commercant initiateur"
+        },
+        "paymentTypeInformation": {
+          "serviceLevel": "SEPA",
+          "localInstrument": "INST",
+          "categoryPurpose": "CASH"
+        },
+        "beneficiary": {
+          "isTrusted": false,
+          "creditorAgent": {
+            "bicFi": "BNKAFRPPXXX",
+            "name": "LBP"
+          },
+          "creditor": {
+            "name": "Nom du benef"
+          },
+          "creditorAccount": {
+            "iban": "FR5020041000011913330M02096",
+            "currency": "EUR"
+          }
+        },
+        "paymentInformationStatus": "ACSC",
+        "fundsAvailability": false,
+        "booking": false,
+        "requestedExecutionDate": "2020-01-20T15:42:30.985Z",
+        "creditTransferTransaction": [
+          {
+            "paymentId": {
+              "instructionId": "IdInstruction001"
+            },
+            "instructedAmount": {
+              "amount": "0.52",
+              "currency": "EUR"
+            },
+            "beneficiary": {
+              "isTrusted": false,
+              "creditorAgent": {
+                "bicFi": "BNKAFRPPXXX",
+                "name": "name beneficiary obli"
+              },
+              "creditor": {
+                "name": "La Banque Postale"
+              },
+              "creditorAccount": {
+                "iban": "FR5020041000011913330M02096",
+                "currency": "EUR"
+              }
+            },
+            "instructionForCreditorAgent": [],
+            "remittanceInformation": {
+              "unstructured": [
+                "Motif du paiement Oblig"
+              ]
+            }
+          }
+        ],
+        "supplementaryData": {
+          "appliedAuthenticationApproach": "REDIRECT",
+          "successfulReportUrl": "https%3A%2F%2Fwww.labanquepostale.fr%2Fpisp%2Fsuccessful.html",
+          "unsuccessfulReportUrl": "https%3A%2F%2Fwww.labanquepostale.fr%2Fpisp%2Fsuccessful.html"
+        }
+      }
+    }
+  }
+}

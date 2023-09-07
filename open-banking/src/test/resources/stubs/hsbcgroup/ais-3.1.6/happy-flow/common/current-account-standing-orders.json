@@ -1,0 +1,75 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/28rolohnjgfmdpzzltpie2my76ypcshztfk6/standing-orders",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 3zHagXZSPyA6sifIDmqwZ0hLlqq"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "StandingOrder": [
+          {
+            "AccountId": "28rolohnjgfmdpzzltpie2my76ypcshztfk6",
+            "Frequency": "EvryWorkgDay",
+            "Reference": "MEMBER200",
+            "NextPaymentDateTime": "2020-12-01T00:00:00+00:00",
+            "LastPaymentDateTime": "2020-11-02T00:00:00+00:00",
+            "StandingOrderStatusCode": "Active",
+            "NextPaymentAmount": {
+              "Amount": "29.00",
+              "Currency": "GBP"
+            },
+            "LastPaymentAmount": {
+              "Amount": "29.00",
+              "Currency": "GBP"
+            },
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "20580943876213",
+              "Name": "URBAN SPORTS"
+            }
+          },
+          {
+            "AccountId": "28rolohnjgfmdpzzltpie2my76ypcshztfk6",
+            "Frequency": "IntrvlMnthDay:01:28",
+            "Reference": "SAVER",
+            "NextPaymentDateTime": "2020-11-28T00:00:00+00:00",
+            "LastPaymentDateTime": "2020-10-28T00:00:00+00:00",
+            "StandingOrderStatusCode": "Active",
+            "NextPaymentAmount": {
+              "Amount": "250.00",
+              "Currency": "GBP"
+            },
+            "LastPaymentAmount": {
+              "Amount": "250.00",
+              "Currency": "GBP"
+            },
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "40370823399691",
+              "Name": "URBAN SPORTS"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.1/aisp/accounts/28rolohnjgfmdpzzltpie2my76ypcshztfk6/standing-orders"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

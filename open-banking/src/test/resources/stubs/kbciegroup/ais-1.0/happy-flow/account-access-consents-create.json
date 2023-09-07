@@ -1,0 +1,74 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/aisp/account-access-consents",
+    "headers": {
+      "x-fapi-financial-id": {
+        "equalTo": "0015800001ZEZ3yAAH"
+      },
+      "Authorization": {
+        "equalTo": "Bearer eef651ef-4738-4fd0-9cbd-c4a9db57dddc"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Content-Type": {
+        "matches": "application/json;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Permissions": [
+              "ReadAccountsDetail",
+              "ReadBalances",
+              "ReadPAN",
+              "ReadDirectDebits",
+              "ReadTransactionsCredits",
+              "ReadTransactionsDebits",
+              "ReadTransactionsDetail",
+              "ReadStandingOrdersDetail"
+            ]
+          },
+          "Risk": {}
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "CNS19252587RSWHN",
+        "Status": "AwaitingAuthorisation",
+        "StatusUpdateDateTime": "2020-06-12T11:44:10+01:00",
+        "CreationDateTime": "2020-06-12T11:44:10+01:00",
+        "Permissions": [
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadPAN",
+          "ReadDirectDebits",
+          "ReadTransactionsCredits",
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail",
+          "ReadStandingOrdersDetail"
+        ],
+        "ExpirationDateTime": "2030-12-02T00:00:00+00:00",
+        "TransactionFromDateTime": "2027-05-03T00:00:00+00:00",
+        "TransactionToDateTime": "2020-12-03T00:00:00+00:00"
+      },
+      "Risk": {},
+      "Links": {
+        "Self": "https://developer.permanenttsb.ie/psd2api/ptsb/open-banking/v3.1/aisp/account-access-consents"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

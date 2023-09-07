@@ -1,0 +1,56 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/pisp/domestic-payments/0000d1d31c8a99bebff069dff194611c",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "3da42a4b-5e10-4807-9087-d90a8f66d997"
+      },
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "matches": "^application/json$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "f2f36954-2ef9-4c1a-999d-b8d1bbb64f4f",
+        "CreationDateTime": "2022-01-26T11:50:51+00:00",
+        "DomesticPaymentId": "0000d1d31c8a99bebff069dff194611c",
+        "Status": "AcceptedSettlementCompleted",
+        "StatusUpdateDateTime": "2022-01-26T11:53:51+00:00",
+        "Initiation": {
+          "InstructionIdentification": "20200515101750462-522347ee-5e0",
+          "EndToEndIdentification": "E2EDN5K3",
+          "InstructedAmount": {
+            "Amount": "0.01",
+            "Currency": "GBP"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "04060584855930",
+            "Name": "Jordan Bell"
+          },
+          "RemittanceInformation": {
+            "Unstructured": "Remi Unstr",
+            "Reference": "REF1122336789-4321"
+          }
+        }
+      },
+      "Links": {
+        "Self": "/v3.1/pisp/domestic-payments/0000d1d31c8a99bebff069dff194611c"
+      },
+      "Meta": {}
+    }
+  }
+}

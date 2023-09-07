@@ -1,0 +1,97 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/apis/open-banking/v3.1/pisp/domestic-payment-consents/GENERIC-P-PAYMENT_ID",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "003882287203T83JKK"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "GENERIC-P-PAYMENT_ID",
+        "CreationDateTime": "2017-06-05T15:15:22+00:00",
+        "Status": "AwaitingAuthorisation",
+        "StatusUpdateDateTime": "2018-05-20T20:23:26.786Z",
+        "ExpectedExecutionDateTime": "2016-11-16T13:25:58.306Z",
+        "ExpectedSettlementDateTime": "2011-04-12T14:13:34.692Z",
+        "Charges": [
+          {
+            "ChargeBearer": "FollowingServiceLevel",
+            "Type": "UK.OBIE.CHAPSOut",
+            "Amount": {
+              "Amount": "4326988714082304",
+              "Currency": "BOB"
+            }
+          }
+        ],
+        "Initiation": {
+          "InstructionIdentification": "1110249236856832",
+          "EndToEndIdentification": "5564227511123968",
+          "LocalInstrument": "UK.OBIE.BACS",
+          "InstructedAmount": {
+            "Amount": "4850187992301568",
+            "Currency": "WST"
+          },
+          "DebtorAccount": {
+            "SchemeName": "UK.OBIE.BBAN",
+            "Identification": "1497829767905280",
+            "Name": "Lelia Abbott",
+            "SecondaryIdentification": "2243560185266176"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.BBAN",
+            "Identification": "3914479339307008",
+            "Name": "Celia Hernandez",
+            "SecondaryIdentification": "6335337399844864"
+          },
+          "CreditorPostalAddress": {
+            "AddressType": "DeliveryTo",
+            "Department": "ikiucufgolreholwamakijheramildikuganenusuhwajivuthotlepomuwegwak",
+            "SubDepartment": "dufomcijeubodazokobjepeviikavevliccizboukejovikvula",
+            "StreetName": "Garaj Ridge",
+            "BuildingNumber": "8803584019791872",
+            "PostCode": "V4F 8B1",
+            "TownName": "Jose Lynch",
+            "CountrySubDivision": "Svalbard & Jan Mayen",
+            "Country": "Portugal",
+            "AddressLine": [
+              "kikwer"
+            ]
+          },
+          "RemittanceInformation": {
+            "Unstructured": "ledlegudibesidiwuguehpoppawrunhicrojibzoldorewzadejgulecobosacdasabzecawitimofusikobuowhewowsaluvjilfivufurikhesedfitasvewte",
+            "Reference": "dugazkuh"
+          },
+          "SupplementaryData": {}
+        },
+        "MultiAuthorisation": {
+          "Status": "Rejected",
+          "NumberRequired": 11,
+          "NumberReceived": 67,
+          "LastUpdateDateTime": "2016-06-27T19:26:10.750Z",
+          "ExpirationDateTime": "2012-09-20T19:24:30.512Z"
+        }
+      },
+      "Links": {
+        "Self": "https://carme.api.generic/open-banking/v2.0/pisp/payments"
+      },
+      "Meta": {}
+    }
+  }
+}

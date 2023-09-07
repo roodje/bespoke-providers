@@ -1,0 +1,109 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "contains": "Bearer accessToken"
+      },
+      "x-fapi-financial-id": {
+        "contains": "test"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "transformers": [
+      "response-template"
+    ],
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr",
+            "TransactionId": "4624B084D1861EDB25C0E6B312AE4207",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Pending",
+            "BookingDateTime": "2020-10-24T00:00:00Z",
+            "ValueDateTime": "2020-10-24T00:00:00Z",
+            "AddressLine": "LONDON",
+            "Amount": {
+              "Amount": "7.93",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "PaymentType: VP"
+            },
+            "CardInstrument": {
+              "CardSchemeName": "VISA",
+              "AuthorisationType": "Contactless"
+            },
+            "TransactionInformation": "Contactless Payment",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked",
+              "Amount": {
+                "Amount": "336.57",
+                "Currency": "GBP"
+              }
+            },
+            "MerchantDetails": {
+              "MerchantName": "IKEA"
+            }
+          },
+          {
+            "AccountId": "aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr",
+            "TransactionId": "4624B084D1821EDB85C0E6B326BAC207",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "BookingDateTime": "2020-10-24T00:00:00Z",
+            "ValueDateTime": "2020-10-24T00:00:00Z",
+            "AddressLine": "SHAREWOOD STREET",
+            "Amount": {
+              "Amount": "9.45",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "PaymentType: VP"
+            },
+            "CardInstrument": {
+              "CardSchemeName": "VISA",
+              "AuthorisationType": "Contactless"
+            },
+            "TransactionInformation": "Contactless Payment",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked",
+              "Amount": {
+                "Amount": "327.12",
+                "Currency": "GBP"
+              }
+            },
+            "MerchantDetails": {
+              "MerchantName": "GROUP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://api.nationwide.co.uk/open-banking/v3.1/aisp/accounts/aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr/transactions?fromBookingDateTime=2020-10-24T01%3A18%3A48",
+        "Next": "{{request.requestLine.baseUrl}}/v3.1/aisp/accounts/aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr/transactions?fromBookingDateTime=2015-01-01T00:00:00&page=2"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

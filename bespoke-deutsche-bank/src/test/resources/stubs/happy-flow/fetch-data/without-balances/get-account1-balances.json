@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/ais/(DE|ES|IT)/(DB|Postbank)/v1/accounts/1/balances",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "consent-id": {
+        "equalTo": "7a7251ff-45ef-4e24-a4cc-bb77d4ba0b16"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "content-type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "DE66500105172915693295",
+        "currency": "EUR"
+      },
+      "balances": [
+        {
+          "balanceType": "interimAvailable",
+          "creditLimitIncluded": false,
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": "510.10"
+          },
+          "referenceDate": "2019-02-28"
+        }
+      ]
+    }
+  }
+}

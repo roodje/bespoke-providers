@@ -1,0 +1,6 @@
+lovebird:
+  handelsbankengroup:
+    handelsbankennl:
+      baseUrl: https://localhost:${wiremock.server.https-port}/
+      authorizationUrl: https://localhost:${wiremock.server.https-port}/bb/gls5/oauth2/authorize/1.0
+      paginationLimit: 1000

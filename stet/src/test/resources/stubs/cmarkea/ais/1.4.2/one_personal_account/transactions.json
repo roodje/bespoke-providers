@@ -1,0 +1,237 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/psd2/v1/accounts/TE0000001/transactions",
+    "queryParameters": {
+      "dateFrom": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]$"
+      },
+      "dateTo": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]$"
+      },
+      "page": {
+        "absent": false
+      }
+    },
+    "headers": {
+      "Accept": {
+        "matches": "application/hal\\+json;charset=utf-8;version=1.4.2"
+      },
+      "Digest": {
+        "matches": "SHA-256=([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "Signature": {
+        "matches" : "keyId=\"https://test.qseal.certificate.com/[a-zA-Z0-9:]{59}.pem\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) x-request-id digest psu-ip-address\", signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Authorization": {
+        "matches": "Bearer accessToken123456700"
+      },
+      "psu-ip-address": {
+        "matches": "127.0.0.1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "transactions": [
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 2.64
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-03-18T00:00:00",
+          "valueDate": "2020-03-18T00:00:00",
+          "transactionDate": "2020-03-16T00:00:00",
+      "remittanceInformation": {
+        "unstructured": [
+           "ECH PRET 0709000009102"
+        ]
+      }
+        },
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 8.14
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-03-18T00:00:00",
+          "valueDate": "2020-03-18T00:00:00",
+          "transactionDate": "2020-03-18T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "PRLV AXA FRANCE VIE SA"
+            ]
+          }
+        },
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 12.22
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-03-18T00:00:00",
+          "valueDate": "2020-03-18T00:00:00",
+          "transactionDate": "2020-03-18T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "PRLV SURAVENIR ASSURANCES"
+            ]
+          }
+        },
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 18.25
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-03-18T00:00:00",
+          "valueDate": "2020-03-18T00:00:00",
+          "transactionDate": "2020-03-18T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "PRLV SURAVENIR ASSURANCES"
+            ]
+          }
+        },
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 20.0
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-03-18T00:00:00",
+          "valueDate": "2020-03-18T00:00:00",
+          "transactionDate": "2020-03-18T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "PRLV COMITE D ENTREPRISE GIANNON"
+            ]
+          }
+        },
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 35.31
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-03-18T00:00:00",
+          "valueDate": "2020-03-18T00:00:00",
+          "transactionDate": "2020-03-18T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "PRLV SURAVENIR ASSURANCES"
+            ]
+          }
+        },
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 48.0
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-03-18T00:00:00",
+          "valueDate": "2020-03-18T00:00:00",
+          "transactionDate": "2020-03-18T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "CHQ 1408619"
+            ]
+          }
+        },
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 98.36
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-03-18T00:00:00",
+          "valueDate": "2020-03-18T00:00:00",
+          "transactionDate": "2020-03-16T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "ECH PRET 0750000009101"
+            ]
+          }
+        },
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 498.77
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-03-18T00:00:00",
+          "valueDate": "2020-03-18T00:00:00",
+          "transactionDate": "2020-03-16T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "ECH PRET 0709000009103"
+            ]
+          }
+        },
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 11.12
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-03-18T00:00:00",
+          "valueDate": "2020-03-18T00:00:00",
+          "transactionDate": "2020-03-18T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "CARTE 03/11 LECLERC-MORLAIX MORLAIX"
+            ]
+          }
+        },
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 24.98
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-03-18T00:00:00",
+          "valueDate": "2020-03-18T00:00:00",
+          "transactionDate": "2020-03-18T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "CARTE 03/11 LECLERC-MORLAIX MORLAIX"
+            ]
+          }
+        }
+      ],
+      "_links": {
+        "first": {
+          "href": "/psd2/v1/accounts/TE0000001/transactions?page=0"
+        },
+        "last": {
+          "href": "/psd2/v1/accounts/TE0000001/transactions?page=1"
+        },
+        "next": {
+          "href": "/psd2/v1/accounts/TE0000001/transactions?page=1"
+        },
+        "self": {
+          "href": "/psd2/v1/accounts/TE0000001/transactions?page=0"
+        }
+      }
+    }
+  }
+}

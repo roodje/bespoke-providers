@@ -1,0 +1,77 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/ais/(DE|ES|IT)/(DB|Postbank)/v1/accounts/1/transactions",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "content-type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "DE66500105172915693295"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "313ATCW1823600GV",
+            "creditorName": "Ms Monica",
+            "creditorAccount": {
+              "iban": "DE13500105173668147693"
+            },
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "0.10"
+            },
+            "bookingDate": "2020-10-03",
+            "valueDate": "2020-10-03",
+            "details": "Ref 12345678, Bestätigung der Transaktion: 23-02-2019 17:10:30"
+          },
+          {
+            "transactionId": "766ATCW18223009Z",
+            "debtorName": "Mr Gerald",
+            "debtorAccount": {
+              "iban": "DE05500105177645384711"
+            },
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "200.10"
+            },
+            "bookingDate": "2020-10-03",
+            "valueDate": "2020-10-03",
+            "details": "Bestätigung der Transaktion: 23-02-2019 17:10:30"
+          }
+        ],
+        "pending": [],
+        "_links": {
+          "next": {
+            "href": "https://localhost:{{request.requestLine.port}}/pagination/v1/accounts/1/transactions?page=2"
+          }
+        }
+      }
+    }
+  }
+}

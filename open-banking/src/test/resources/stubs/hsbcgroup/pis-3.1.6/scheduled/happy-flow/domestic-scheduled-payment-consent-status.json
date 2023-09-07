@@ -1,0 +1,63 @@
+{
+  "request": {
+    "url": "/v3.1/pisp/domestic-scheduled-payment-consents/462d1a04-4g74-42d7-ba69-0bbe1e5fef68",
+    "method": "GET",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer DEjYK7CWVFHi71RteqxmKv1NO2a"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      },
+      "x-idempotency-key": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "462d1a04-4g74-42d7-ba69-0bbe1e5fef68",
+        "CreationDateTime": "2019-08-20T13:09:13.372Z",
+        "Status": "AwaitingAuthorisation",
+        "StatusUpdateDateTime": "2019-08-20T13:09:14.413Z",
+        "Initiation": {
+          "InstructionIdentification": "20200515101750462-522347ee-5e0",
+          "RequestedExecutionDateTime": "2022-02-01T00:00:00+00:00",
+          "EndToEndIdentification": "35B64F93",
+          "InstructedAmount": {
+            "Amount": "0.01",
+            "Currency": "GBP"
+          },
+          "DebtorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "8272908780568576",
+            "Name": "Alex Mitchell"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "1802968485593088",
+            "Name": "Jordan Bell"
+          },
+          "RemittanceInformation": {
+            "Unstructured": "Remittance Unstructured",
+            "Reference": "REF0123456789-0123"
+          }
+        }
+      },
+      "Links": {
+        "Self": "/v3.1/pisp/domestic-scheduled-payment-consents/462d1a04-4g74-42d7-ba69-0bbe1e5fef68"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    }
+  }
+}

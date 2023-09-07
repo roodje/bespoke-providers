@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/auth/(uk|nl|be_fr|be_nl)/v1/registration",
+    "headers": {
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "content-type": {
+        "contains": "application/x-www-form-urlencoded"
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIICMzCCAZygAwIBAgIJALiPnVsvq8dsMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzAeFw0xMzAzMTkxNTQwMTlaFw0xODAzMTgxNTQwMTlaMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzdGfxi9CNbMf1UUcvDQh7MYBOveIHyc0E0KIbhjK5FkCBU4CiZrbfHagaW7ZEcN0tt3EvpbOMxxc/ZQU2WN/s/wPxph0pSfsfFsTKM4RhTWD2v4fgk+xZiKd1p0+L4hTtpwnEw0uXRVd0ki6muwV5y/P+5FHUeldq+pgTcgzuK8CAwEAAaMPMA0wCwYDVR0PBAQDAgLkMA0GCSqGSIb3DQEBBQUAA4GBAJiDAAtY0mQQeuxWdzLRzXmjvdSuL9GoyT3BF/jSnpxz5/58dba8pWenv3pj4P3w5DoOso0rzkZy2jEsEitlVM2mLSbQpMM+MUVQCQoiG6W9xuCFuxSrwPISpAqEAuV4DNoxQKKWmhVv+J0ptMWD25Pnpxeq5sXzghfJnslJlQND"
+      },
+      "authorization": {
+        "equalTo": "Bearer 11111111-1111-0000-0000-000000000000"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "initial_access_token=11111111-1111-0000-0000-000000000000"
+      },
+      {
+        "contains": "sector_identifier_uri="
+      },
+      {
+        "contains": "redirect_uris=https%3A%2F%2Fyolt.com%2Fcallback-acc"
+      },
+      {
+        "contains": "redirect_uris=https%3A%2F%2Fyolt.com%2dev"
+      }
+    ]
+  },
+  "response": {
+    "status": 400
+  }
+}

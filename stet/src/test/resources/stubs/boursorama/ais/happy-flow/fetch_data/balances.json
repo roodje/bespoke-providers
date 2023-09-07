@@ -1,0 +1,64 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/services/api/v1.7/_user_/_70352f41061eda4_/dsp2/accounts/balances/3B9F0FCF487ECF9FCDC4CBAFDD0A2E6D",
+    "headers": {
+      "content-type": {
+        "matches": "application/json"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "digest": {
+        "matches": "SHA-256=([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "signature": {
+        "matches": "keyId=\"([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) digest psu-ip-address x-request-id\",signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Authorization": {
+        "matches": "Bearer( )[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*$"
+      },
+      "psu-ip-address": {
+        "equalTo": "147.206.96.254"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "balances": [
+        {
+          "name": "Solde en valeur",
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": "1642.68"
+          },
+          "balanceType": "XPCD",
+          "lastChangeDateTime": null,
+          "referenceDate": "2018-07-02",
+          "lastCommittedTransaction": "2018-07-02"
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/services/api/v1.7/_user_/_70352f41061eda4_/dsp2/accounts/balances/3B9F0FCF487ECF9FCDC4CBAFDD0A2E6D",
+          "method": "GET"
+        },
+        "parent-list": {
+          "href": "/services/api/v1.7/_user_/_70352f41061eda4_/dsp2/accounts",
+          "method": "GET"
+        },
+        "transactions": {
+          "href": "/services/api/v1.7/_user_/_70352f41061eda4_/dsp2/accounts/transactions/3B9F0FCF487ECF9FCDC4CBAFDD0A2E6D",
+          "method": "GET"
+        }
+      }
+    }
+  }
+}

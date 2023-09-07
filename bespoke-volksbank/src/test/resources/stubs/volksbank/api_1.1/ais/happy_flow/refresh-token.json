@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/token?grant_type=refresh_token&refresh_token=4a33007a-e2bb-11ea-87d0-0242ac130003&redirect_uri=https://www.yolt.com/callback/",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded"
+      },
+      "Authorization": {
+        "matches": "Basic c29tZUNsaWVudElkOnNvbWVDbGllbnRTZWNyZXQ="
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "e8f72628-e2bb-11ea-87d0-0242ac130003",
+      "token_type": "Bearer",
+      "expires_in": 600,
+      "refresh_token": "f23a5796-e2bb-11ea-87d0-0242ac130003",
+      "scope": "AIS"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

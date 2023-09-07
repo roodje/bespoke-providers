@@ -1,0 +1,57 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/aisp/accounts/bcd6a21e-24e4-11ec-9621-0242ac130002/balances",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 0c3da8a6-24ff-11ec-9621-0242ac130002"
+      },
+      "Accept": {
+        "matches": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800001ZEZ3yAAH"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "bcd6a21e-24e4-11ec-9621-0242ac130002",
+            "Amount": {
+              "Amount": "123.88",
+              "Currency": "EUR"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2018-10-18T00:00:00+01:00"
+          },
+          {
+            "AccountId": "bcd6a21e-24e4-11ec-9621-0242ac130002",
+            "Amount": {
+              "Amount": "121.55",
+              "Currency": "EUR"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2018-10-18T00:00:00+01:00"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://openapi.ie.kbc-group.com/psd2-ie/open-banking/v1.0/aisp/accounts/bcd6a21e-24e4-11ec-9621-0242ac130002/balances",
+        "Last": "https://openapi.ie.kbc-group.com/psd2-ie/open-banking/v1.0/aisp/accounts/bcd6a21e-24e4-11ec-9621-0242ac130002/balances"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

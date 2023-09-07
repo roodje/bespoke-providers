@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/123/direct-debits",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf9VgAAI"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "DirectDebit": [
+          {
+            "AccountId": "123",
+            "DirectDebitId": "16421382",
+            "MandateIdentification": "03294003-01009003I",
+            "DirectDebitStatusCode": "Active",
+            "Name": "1STCENTRALFINANCE",
+            "PreviousPaymentDateTime": "2020-02-18T00:00:00.000Z",
+            "Frequency": "UK.OBIE.NotKnown",
+            "PreviousPaymentAmount": {
+              "Amount": "61.54",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/accounts/22289/direct-debits/"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

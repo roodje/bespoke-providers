@@ -1,0 +1,9 @@
+lovebird:
+  openbanking:
+    pagination-limit: 2
+    baseUrl: https://localhost:${wiremock.server.https-port}/yoltbank/openbanking
+    oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/yoltbank/openbanking/authorize
+    oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/yoltbank/openbanking/token
+service:
+  crypto:
+    url: http://test-url

@@ -1,0 +1,313 @@
+{
+  "basePath" : "/psd2/asnbank",
+  "definitions" : {
+    "AccountAccess" : {
+      "type" : "object",
+      "required" : [ "accounts", "balances", "transactions" ],
+      "properties" : {
+        "accounts" : {
+          "items" : {
+            "$ref" : "#/definitions/AccountReference"
+          },
+          "maxItems" : 0,
+          "minItems" : 0,
+          "type" : "array"
+        },
+        "balances" : {
+          "items" : {
+            "$ref" : "#/definitions/AccountReference"
+          },
+          "maxItems" : 0,
+          "minItems" : 0,
+          "type" : "array"
+        },
+        "transactions" : {
+          "items" : {
+            "$ref" : "#/definitions/AccountReference"
+          },
+          "maxItems" : 0,
+          "minItems" : 0,
+          "type" : "array"
+        }
+      },
+      "description" : "Access to calls for a consent."
+    },
+    "AccountReference" : {
+      "type" : "object",
+      "properties" : {
+        "currency" : {
+          "description" : "ISO 4217 Alpha 3 currency code.",
+          "enum" : [ "EUR" ],
+          "type" : "string"
+        },
+        "iban" : {
+          "description" : "IBAN of the creditor or debtor regarding the transaction.",
+          "example" : "NL30RBRB0442482011",
+          "type" : "string"
+        }
+      },
+      "description" : "Account identification based on IBAN"
+    },
+    "ConsentInitiationResponse" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/ConsentLinks"
+        },
+        "consentId" : {
+          "type" : "string"
+        },
+        "consentStatus" : {
+          "description" : "Status of the consent initiation following the ISO Consent Status Code.",
+          "enum" : [ "received" ],
+          "type" : "string"
+        }
+      }
+    },
+    "ConsentLinks" : {
+      "type" : "object",
+      "properties" : {
+        "scaOAuth" : {
+          "$ref" : "#/definitions/Link"
+        }
+      },
+      "description" : "A list of hyperlinks to be recognised by the TPP."
+    },
+    "InitiateConsentRequest" : {
+      "type" : "object",
+      "required" : [ "access", "combinedServiceIndicator", "frequencyPerDay", "recurringIndicator", "validUntil" ],
+      "properties" : {
+        "access" : {
+          "$ref" : "#/definitions/AccountAccess"
+        },
+        "combinedServiceIndicator" : {
+          "default" : false,
+          "description" : "Information as to whether a payment initiation or an account information service will be addressed in the same session as a funds confirmation service.",
+          "type" : "boolean"
+        },
+        "frequencyPerDay" : {
+          "description" : "The requested maximum frequency for access per day.",
+          "format" : "int32",
+          "minimum" : 1.0,
+          "type" : "integer"
+        },
+        "recurringIndicator" : {
+          "default" : false,
+          "description" : "Information on whether the consent is for recurring access to the account data.",
+          "type" : "boolean"
+        },
+        "validUntil" : {
+          "description" : "A date (in CEST) which stands for the expiry moment of the consent.",
+          "type" : "string"
+        }
+      },
+      "description" : "InitiateConsentRequest which contains requested access services (accounts, balances and transactions), information on whether the consent is for recurring access to the account data, a validUntil date, the requested maximum frequency for access per day, and information as to whether a funds confirmation or payment initiation service will be addressed in the same session as an account information service."
+    },
+    "Link" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        }
+      },
+      "description" : "Provides a URL"
+    },
+    "TppMessage" : {
+      "type" : "object",
+      "properties" : {
+        "category" : {
+          "description" : "Error category.",
+          "type" : "string"
+        },
+        "code" : {
+          "description" : "Error code.",
+          "type" : "string"
+        },
+        "text" : {
+          "description" : "Additional error information.",
+          "type" : "string"
+        }
+      },
+      "description" : "Error model for the TPP."
+    }
+  },
+  "host" : "PSD.bancairediensten.nl",
+  "info" : {
+    "description" : "Defining the BERLIN GROUP endpoint consents.",
+    "title" : "ASN Bank Consent Services",
+    "version" : "1.0"
+  },
+  "paths" : {
+    "/v1/consents" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "description" : "Based on the Berlin Group API Read Account List. No custom response header is provided (only default HTTPS).",
+        "operationId" : "initiateAisConsent",
+        "parameters" : [ {
+          "description" : "Data for creating a consent. There are a couple fields which need to be filled for a successful creation of a consent",
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/InitiateConsentRequest"
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "Describes the data contained in the body; application/json.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "X-Request-ID",
+          "in" : "header",
+          "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "client_id: identification of the TPP with de Volksbank.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "TPP-Notification-URL",
+          "in" : "header",
+          "description" : "The URI of the TPP-API where notifications about the consent status will be send towards. The URI should match with the common name or one of the domains of the QWAC certificate.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "TPP-Notification-Content-Preferred",
+          "in" : "header",
+          "description" : "Only SCA is supported by De Volksbank. Other options are currently ignored.",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "201" : {
+            "description" : "Resource has been created.",
+            "headers" : {
+              "ASPSP-SCA-Approach" : {
+                "description" : "Always filled with value REDIRECT.",
+                "type" : "string"
+              },
+              "Location" : {
+                "description" : "Location of the created resource. In case of AIS and CAF: {url endpoint}/{consentId}. In case of PIS: {url endpoint}/{paymentId}.",
+                "type" : "string"
+              },
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/ConsentInitiationResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad request. The request cannot be processed due to something that is perceived to be a client error (e.g. malformed request syntax or missing or invalid parameters).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden. The server understood the request but refuses to authorize it (e.g. due to an invalid token or invalid scope, or a violated security policy).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "404" : {
+            "description" : "Not found. The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "406" : {
+            "description" : "Not Acceptable. Cannot generate the content that is specified in the Accept header.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "415" : {
+            "description" : "Unsupported media type. The supplied media type is not supported.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          }
+        },
+        "security" : [ {
+          "portal_api_key" : [ ]
+        } ],
+        "summary" : "Initiates a request for an AIS consent. Creates an account information consent resource at the ASPSP regarding access to accounts specified in this request. Returns output which contains consentStatus, consentId and links.",
+        "tags" : [ "AIS" ]
+      },
+      "parameters" : [ ]
+    }
+  },
+  "schemes" : [ "https" ],
+  "securityDefinitions" : {
+    "portal_api_key" : {
+      "in" : "header",
+      "name" : "apiKey",
+      "type" : "apiKey"
+    }
+  },
+  "swagger" : "2.0",
+  "tags" : [ {
+    "name" : "AIS"
+  } ]
+}

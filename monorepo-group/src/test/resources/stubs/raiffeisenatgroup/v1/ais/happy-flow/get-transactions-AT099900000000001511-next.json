@@ -1,0 +1,97 @@
+{
+  "request": {
+    "url": "/v1/accounts/AT099900000000001511/transactionsNextPage",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-CLIENT-ACCESS-TOKEN"
+      },
+      "Consent-ID": {
+        "equalTo": "8edfea3a-a660-11eb-bcbc-0242ac130002"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "AT099900000000001511",
+        "bban": null,
+        "pan": null,
+        "maskedPan": null,
+        "msisdn": null,
+        "currency": null
+      },
+      "transactions": {
+        "booked": [],
+        "pending": [
+          {
+            "transactionId": "22123456",
+            "entryReference": null,
+            "endToEndId": null,
+            "mandateId": null,
+            "checkId": null,
+            "creditorId": "",
+            "bookingDate": "2022-07-05",
+            "valueDate": null,
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "789.89"
+            },
+            "currencyExchange": null,
+            "creditorName": "Pending Order",
+            "creditorAccount": {
+              "iban": "AT439900000000010017",
+              "bban": null,
+              "pan": null,
+              "maskedPan": null,
+              "msisdn": null,
+              "currency": null
+            },
+            "creditorAgent": null,
+            "ultimateCreditor": null,
+            "debtorName": "DebtorName1",
+            "debtorAccount": {
+              "iban": "AT099900000000001511",
+              "bban": null,
+              "pan": null,
+              "maskedPan": null,
+              "msisdn": null,
+              "currency": null
+            },
+            "debtorAgent": null,
+            "ultimateDebtor": null,
+            "remittanceInformationUnstructured": "Pending Order Sent",
+            "remittanceInformationUnstructuredArray": null,
+            "remittanceInformationStructured": null,
+            "remittanceInformationStructuredArray": null,
+            "additionalInformation": null,
+            "additionalInformationStructured": null,
+            "purposeCode": null,
+            "bankTransactionCode": null,
+            "proprietaryBankTransactionCode": null,
+            "balanceAfterTransaction": null,
+            "_links": null
+          }
+        ],
+        "information": null,
+        "_links": {
+          "account": {
+            "href": "/v1/accounts/AT099900000000001511"
+          }
+        }
+      },
+      "balances": null,
+      "_links": null
+    }
+  }
+}

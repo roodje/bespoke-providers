@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/pots",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer Az90SAOJklae"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "93bac548-d2de-4546-b106-880a5018460d"
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "93bac548-d2de-4546-b106-880a5018460d"
+    },
+    "jsonBody": {
+      "code": "bad_request.client_mismatch",
+      "message": "Client does not belong to same org as client certificate",
+      "params": {
+        "client_cert_org_id": "0014H00002LmnTjQAJ",
+        "client_id": "oauth2client_CLASSIFIED",
+        "client_org_id": "001580000103UAYAA2"
+      },
+      "retryable": {}
+    }
+  }
+}

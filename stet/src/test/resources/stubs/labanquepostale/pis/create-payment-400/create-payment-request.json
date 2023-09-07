@@ -1,0 +1,95 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/payment-requests",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer TEST_CCG_TOKEN"
+      },
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.paymentInformationId =~ /[a-zA-Z0-9]{32}/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.creationDateTime =~ /^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(|\\.\\d{0,3})(\\+|-)\\d{2}:\\d{2})$/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.numberOfTransactions == 1)]"
+      },
+      {
+        "matchesJsonPath": "$.initiatingParty[?(@.name == 'ING Bank N.V.')]"
+      },
+      {
+        "matchesJsonPath": "$.paymentTypeInformation[?(@.serviceLevel == 'SEPA')]"
+      },
+      {
+        "matchesJsonPath": "$.paymentTypeInformation[?(@.categoryPurpose == 'CASH')]"
+      },
+      {
+        "matchesJsonPath": "$.beneficiary.creditor[?(@.name == 'TEST CREDITOR NAME')]"
+      },
+      {
+        "matchesJsonPath": "$.beneficiary.creditorAccount[?(@.iban == 'FR7620041010011408742123456')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.requestedExecutionDate == @.creationDateTime)]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].paymentId[?(@.instructionId =~ /[a-zA-Z0-9]{32}/i)]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0][?(@.requestedExecutionDate == $.creationDateTime)]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].instructedAmount[?(@.currency == 'EUR')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].instructedAmount[?(@.amount == '4.00')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].beneficiary.creditorAgent[?(@.name == $.initiatingParty.name)]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].beneficiary.creditorAgent[?(@.bicFi == 'Creditor Agent Bic')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].beneficiary.creditor[?(@.name == $.beneficiary.creditor.name)]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].beneficiary.creditorAccount[?(@.iban == $.beneficiary.creditorAccount.iban)]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].remittanceInformation[?(@.unstructured.[0] == 'TEST REMITTANCE INFORMATION')]"
+      },
+      {
+        "matchesJsonPath": "$.supplementaryData[?(@.successfulReportUrl == 'https%3A%2F%2Fwww.yolt.com%2Fcallback-acc%2Fpayment%3Fstate%3DTEST_STATE')]"
+      },
+      {
+        "matchesJsonPath": "$.supplementaryData[?(@.unsuccessfulReportUrl == 'https%3A%2F%2Fwww.yolt.com%2Fcallback-acc%2Fpayment%3Fstate%3DTEST_STATE%26error%3Dwrong')]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "timestamp": "2018-03-30T16:06:27.499+0000",
+      "status": 400,
+      "error": "Bad Request",
+      "message": "Something went wrong",
+      "path": "/v1/accounts"
+    }
+  }
+}

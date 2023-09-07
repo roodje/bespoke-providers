@@ -1,0 +1,63 @@
+{
+  "request": {
+    "url": "/v1/accounts?withBalance=true",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "equalTo": "traceId"
+      },
+      "Consent-ID": {
+        "equalTo": "consentId"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-ACCESS-TOKEN"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "CTR|1271339|12345678901|1|2|1|12345678901",
+          "name": "MLLE VALENTINE MABIRE",
+          "currency": "978",
+          "iban": "FR7612548029981234567890122",
+          "_links": {
+            "account": {
+              "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%25257C1271339%25257C12345678901%25257C1%25257C2%25257C1%25257C12345678901"
+            },
+            "balances": {
+              "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%7C1271339%7C12345678901%7C1%7C2%7C1%7C12345678901/balances"
+            },
+            "transactions": {
+              "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%25257C1271339%25257C12345678901%25257C1%25257C2%25257C1%25257C12345678901/transactions"
+            }
+          },
+          "product": "Compte Courant"
+        },
+        {
+          "resourceId": "CTR|1271339|10987654321|1|2|1|10987654321",
+          "name": "MLLE VALENTINE MABIRE",
+          "currency": "978",
+          "iban": "FR7612548029981098765432122",
+          "_links": {
+            "account": {
+              "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%25257C1271339%25257C10987654321%25257C1%25257C2%25257C1%25257C10987654321"
+            },
+            "balances": {
+              "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%7C1271339%7C10987654321%7C1%7C2%7C1%7C10987654321/balances"
+            },
+            "transactions": {
+              "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%25257C1271339%25257C10987654321%25257C1%25257C2%25257C1%25257C10987654321/transactions"
+            }
+          },
+          "product": "Compte Courant"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

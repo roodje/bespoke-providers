@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/10000000000001801829/parties",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "Code": "400 Bad Request",
+      "Id": "62d9d009-9bfd-477f-b74c-43afb966e683",
+      "Message": "The account identifier provided is unsupported for the given scheme. ",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Unsupported.AccountIdentifier",
+          "Message": "Supplied account is not eligible to retrieve the requested details. "
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

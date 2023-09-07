@@ -1,0 +1,87 @@
+{
+  "request": {
+    "urlPattern": "/([a-z-]*)/stet-psd2-api/(v\\d{1,2}\\.\\d{1,2})/accounts/456/transactions\\?dateFrom=(.*)",
+    "method": "GET",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer ACCESS_TOKEN"
+      },
+      "Signature": {
+        "matches": "keyId=\"d3de0198-6738-4784-92d0-a3e5e0894415\", algorithm=\"rsa-sha256\", headers=\"(.*)\", signature=\"(.*)\""
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "1.1.1.1"
+      },
+      "Date": {
+        "matches": "[A-Za-z]+, \\d?\\d [A-Za-z]+ \\d{4} \\d{1,2}:\\d{1,2}:\\d{1,2} [A-Za-z]{3}"
+      },
+      "Host": {
+        "contains": "localhost"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "transactions": [
+        {
+          "resourceId": "1587d16aa40834b8e1698718bf566f52c46a63e4b66dbd1dcb524c4f999c6e4a-69d85aa9149898ec5",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 12.25
+          },
+          "creditDebitIndicator": "CRDT",
+          "status": "BOOK",
+          "bookingDate": "2018-02-15T00:00:00Z",
+          "remittanceInformation": {
+            "unstructured": [
+              "SEPA CREDIT TRANSFER from PSD2Company"
+            ]
+          }
+        },
+        {
+          "resourceId": "1587d16aa40834b8e1698718bf566f52c46a63e4b66dbd1dcb524c4f999c6e4a-69d85aa9149898ec6",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 22.25
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2018-02-16T00:00:00Z",
+          "remittanceInformation": {
+            "unstructured": [
+              "SEPA CREDIT TRANSFER from PSD2Company2"
+            ]
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/any/stet-psd2-api/v2.0/accounts/456/transactions"
+        },
+        "parent-list": {
+          "href": "/any/stet-psd2-api/v2.0/accounts"
+        },
+        "balances": {
+          "href": "/any/stet-psd2-api/v2.0/accounts/456/balances"
+        },
+        "last": {
+          "href": "/any/stet-psd2-api/v2.0/accounts/456/transactions?page=last"
+        },
+        "next": {
+          "href": "/any/stet-psd2-api/v2.0/accounts/456/transactions?page=2"
+        }
+      }
+    }
+  ,
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/accounts/1/transactions",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "signature": {
+        "matches": "keyId=\"https://test.qseal.certificate.com/a4:62:72:3b:cc:7f:37:07:17:5d:2d:21:18:f1:e2:2a:d0:fb:79:1a.pem\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) accept authorization content-type x-request-id digest\", signature=\"(.*)\""
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "X-Frame-Options": "DENY",
+      "Transfer-Encoding": "chunked",
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "transactions": [
+        {
+          "entryReference": "AF5T2",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "12.25"
+          },
+          "creditDebitIndicator": "CRDT",
+          "status": "BOOK",
+          "bookingDate": "2018-02-12",
+          "transactionDate": "",
+          "remittanceInformation": [
+            "SEPA CREDIT TRANSFER from PSD2Company"
+          ]
+        },
+        {
+          "entryReference": "AF5T3",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "-2.50"
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "PDNG",
+          "bookingDate": "2018-02-12",
+          "transactionDate": "",
+          "remittanceInformation": [
+            "SEPA CREDIT TRANSFER from PSD2Company"
+          ]
+        },
+        {
+          "entryReference": "AF5T3",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "-2.50"
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "OTHR",
+          "bookingDate": "2018-02-13",
+          "transactionDate": "",
+          "remittanceInformation": [
+            "SEPA CREDIT TRANSFER from PSD2Company no 2"
+          ]
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/accounts/4/transactions"
+        }
+      }
+    }
+  }
+}

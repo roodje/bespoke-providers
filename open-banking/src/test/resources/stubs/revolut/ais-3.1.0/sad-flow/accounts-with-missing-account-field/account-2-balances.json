@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/accounts/b5cda922-6af1-453e-9b29-10b53807a33d/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 908b3693-23bf-41c8-898d-3846d22a6858"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0032400006451CCVVX"
+      }
+    }
+  },
+  "response": {
+    "transformers": ["response-template"],
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "b5cda922-6af1-453e-9b29-10b53807a33d",
+            "Amount": {
+              "Amount": "33.00",
+              "Currency": "EUR"
+            },
+
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2017-05-02T00:00:00+00:00"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "{{request.requestLine.baseUrl}}/accounts/b5cda922-6af1-453e-9b29-10b53807a33d/balances"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/authorize/exchange",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "code": "5f9c4ab08cac7457e9111a30e4664920607ea2c115a1433d7be98e97e64244ca"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody":
+      {
+        "access_token": "5f9c4ab08cac7457e9111a30e4664920607ea2c115a1433d7be98e97e64244ca"
+      },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

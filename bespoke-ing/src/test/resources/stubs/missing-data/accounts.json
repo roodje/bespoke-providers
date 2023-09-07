@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/ing/v3/accounts",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "matches": "Bearer (.*)"
+      },
+      "Signature": {
+        "matches": "keyId=\"example_client_id\",algorithm=\"rsa-sha256\",headers=\"(.*)\",signature=\"(.*)\""
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "Date": {
+        "matches": "[A-Z][a-z]{2}, [0-9]{1,2} [A-Z][a-z]{2} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} GMT"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "7de0041d-4f25-4b6c-a885-0bbeb1eab220",
+          "iban": "NL12INGB987654321",
+          "name": "A. Van Dijk",
+          "currency": "EURA",
+          "product": "product1",
+          "_links": {
+            "balances": {
+              "href": "/v3/accounts/7de0041d-4f25-4b6c-a885-0bbeb1eab220/balances"
+            },
+            "transactions": {
+              "href": "/v2/accounts/7de0041d-4f25-4b6c-a885-0bbeb1eab220/transactions"
+            }
+          }
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

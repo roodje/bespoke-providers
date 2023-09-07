@@ -1,0 +1,143 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/aisp/1.1/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "Signature": {
+        "matches": "keyId=\"https://test.qseal.certificate.com/a4:62:72:3b:cc:7f:37:07:17:5d:2d:21:18:f1:e2:2a:d0:fb:79:1a.pem\", algorithm=\"rsa-sha256\", headers=\"(.*)\", signature=\"(.*)\""
+      },
+      "Date": {
+        "matches": "[A-Z][a-z]{2}, [0-9]{1,2} [A-Z][a-z]{2} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2,7} CES?T"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/hal+json;charset=utf-8",
+      "X-Request-ID": "00000000-0000-0000-0000-000000000000"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "1",
+          "accountId": {
+            "iban": "FR5030002002070000025973D36",
+            "currency": "EUR"
+          },
+          "name": "Account name",
+          "usage": "PRIV",
+          "cashAccountType": "CACC",
+          "product": "deposit-account",
+          "balances": [
+            {
+              "name": "balance-name",
+              "balanceAmount": {
+                "amount": "-100",
+                "currency": "EUR"
+              },
+              "balanceType": "CLBD",
+              "referenceDate": "15-11-2019"
+            },
+            {
+              "name": "balance-name-2",
+              "balanceAmount": {
+                "amount": "200",
+                "currency": "EUR"
+              },
+              "balanceType": "XPCD",
+              "referenceDate": "01-07-2019"
+            }
+          ],
+          "_links": {
+            "balances": {
+              "href": "https://psd.lcl.fr/aisp/1.1/accounts/1/balances"
+            },
+            "transactions": {
+              "href": "https://psd.lcl.fr/aisp/1.1/accounts/1/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "2",
+          "accountId": {
+            "iban": "FR5030002002070000025973D36",
+            "currency": "EUR"
+          },
+          "name": "Account name",
+          "usage": "PRIV",
+          "cashAccountType": "CACC",
+          "product": "deposit-account",
+          "balances": [
+            {
+              "name": "balance-name",
+              "balanceAmount": {
+                "amount": "300",
+                "currency": "EUR"
+              },
+              "balanceType": "OTHR",
+              "referenceDate": "15-11-2019"
+            }
+          ],
+          "_links": {
+            "balances": {
+              "href": "https://psd.lcl.fr/aisp/1.1/accounts/2/balances"
+            },
+            "transactions": {
+              "href": "https://psd.lcl.fr/aisp/1.1/accounts/2/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "3",
+          "accountId": {
+            "other": {
+              "identification": "XXXX XXXX XXXX X123",
+              "schemeName": "CPAN"
+            }
+          },
+          "name": "Card Name",
+          "detail": "Card name detail name",
+          "linkedAccount": "12345078604P",
+          "cashAccountType": "CARD",
+          "product": "CARD NAME",
+          "balances": [
+            {
+              "name": "balance-card-name",
+              "balanceAmount": {
+                "amount": "-99.99",
+                "currency": "EUR"
+              },
+              "balanceType": "OTHR"
+            }
+          ],
+          "_links": {
+            "balances": {
+              "href": "https://psd.lcl.fr/aisp/1.1/accounts/3/balances"
+            },
+            "transactions": {
+              "href": "https://psd.lcl.fr/aisp/1.1/accounts/3/transactions"
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "https://psd.lcl.fr/aisp/1.1/accounts?page=1"
+        },
+        "endUserIdentity": {
+          "href": "https://psd.lcl.fr/aisp/1.1/end-user-identity"
+        },
+        "beneficiaries": {
+          "href": "https://psd.lcl.fr/aisp/1.1/trusted-beneficiaries"
+        }
+      }
+    }
+  }
+}

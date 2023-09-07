@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/openbanking/psd2/v1/third-parties",
+    "headers": {
+      "Accept": {
+        "matches": "application/json"
+      },
+      "TPP-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "TPP-Transaction-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "clientId": "SE-FINA-100001"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+

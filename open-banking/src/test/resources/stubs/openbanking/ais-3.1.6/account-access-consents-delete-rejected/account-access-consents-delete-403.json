@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/yoltbank/openbanking/aisp/account-access-consents/363ca7c1-f403-4876-8766-ddefc9fd2d76",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "93bac548-d2de-4546-b106-880a5018460d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer DEjYK7CWVFHi71RteqxmKv1NO2a"
+      }
+    }
+  },
+  "response": {
+    "status": 403
+  }
+}

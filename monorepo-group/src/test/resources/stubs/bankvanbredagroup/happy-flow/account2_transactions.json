@@ -1,0 +1,73 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/berlingroup/v1/accounts/ACCOUNT_ID_2/transactions?dateFrom=2022-01-01&bookingStatus=both",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer access_token"
+      },
+      "Consent-ID": {
+        "matches": "VALID_CONSENT_ID"
+      },
+      "PSU-IP-Address": {
+        "matches": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "FR7630056009271234567890183",
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "1234563",
+            "bookingDate": "2022-06-23",
+            "valueDate": "2022-06-24",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": -256.63
+            },
+            "creditorName": "John Miles",
+            "creditorAccount": {
+              "iban": "DE43533700240123456903"
+            },
+            "remittanceInformationUnstructured": "Example 3",
+            "_links": {
+              "transactionDetails": {
+                "href": "https://xs2a-sandbox.bankvanbreda.be/berlingroup/v1/accounts/ACCOUNT_ID/transactions/1234567"
+              }
+            }
+          }
+        ],
+        "pending": [],
+        "_links": {
+          "first": {
+            "href": "https://xs2a-sandbox.bankvanbreda.be/berlingroup/v1/accounts/ACCOUNT_ID/transactions?dateFrom=2019-02-01&dateTo=2022-07-05&bookingStatus=BOTH&page=0"
+          },
+          "last": {
+            "href": "https://xs2a-sandbox.bankvanbreda.be/berlingroup/v1/accounts/ACCOUNT_ID/transactions?dateFrom=2019-02-01&dateTo=2022-07-05&bookingStatus=BOTH&page=0"
+          },
+          "account": {
+            "href": "https://xs2a-sandbox.bankvanbreda.be/berlingroup/v1/accounts/ACCOUNT_ID"
+          },
+          "balances": {
+            "href": "https://xs2a-sandbox.bankvanbreda.be/berlingroup/v1/accounts/ACCOUNT_ID/balances"
+          },
+          "transactions": {
+            "href": "https://xs2a-sandbox.bankvanbreda.be/berlingroup/v1/accounts/ACCOUNT_ID/transactions"
+          }
+        }
+      }
+    }
+  }
+}

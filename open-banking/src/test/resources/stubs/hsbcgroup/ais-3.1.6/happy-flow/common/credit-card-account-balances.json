@@ -1,0 +1,63 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/l8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6/balances",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 3zHagXZSPyA6sifIDmqwZ0hLlqq"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "l8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2020-11-11T00:00:00+00:00",
+            "Amount": {
+              "Amount": "12000.00",
+              "Currency": "GBP"
+            },
+            "CreditLine": [
+              {
+                "Included": true,
+                "Type": "Credit",
+                "Amount": {
+                  "Amount": "12000.00",
+                  "Currency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "AccountId": "l8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2020-11-11T00:00:00+00:00",
+            "Amount": {
+              "Amount": "0.00",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.1/aisp/accounts/l8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6/balances"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

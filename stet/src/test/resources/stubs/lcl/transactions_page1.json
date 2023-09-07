@@ -1,0 +1,64 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/aisp/1.1/accounts/1/transactions",
+    "queryParameters": {
+      "page": {
+        "equalTo": "1"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "Signature": {
+        "matches": "keyId=\"https://test.qseal.certificate.com/a4:62:72:3b:cc:7f:37:07:17:5d:2d:21:18:f1:e2:2a:d0:fb:79:1a.pem\", algorithm=\"rsa-sha256\", headers=\"(.*)\", signature=\"(.*)\""
+      },
+      "Date": {
+        "matches": "[A-Z][a-z]{2}, [0-9]{1,2} [A-Z][a-z]{2} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} CES?T"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/hal+json;charset=utf-8",
+      "X-Request-ID": "00000000-0000-0000-0000-000000000000"
+    },
+    "jsonBody": {
+      "transactions": [
+        {
+          "resourceId": "1",
+          "entryReference": "entry-reference",
+          "transactionAmount": {
+            "amount": "12.25",
+            "currency": "EUR"
+          },
+          "creditDebitIndicator": "CRDT",
+          "status": "BOOK",
+          "bookingDate": "20-02-2018",
+          "valueDate": "20-02-2018",
+          "remittanceInformation": {
+            "unstructured": [
+              "SEPA CREDIT TRANSFER from TestCompany"
+            ]
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "https://psd.lcl.fr/aisp/1.1/accounts/1/transactions?page=1"
+        },
+        "parent-list": {
+          "href": "https://psd.lcl.fr/aisp/1.1/accounts"
+        },
+        "balances": {
+          "href": "https://psd.lcl.fr/aisp/1.1/accounts/1/balances"
+        }
+      }
+    }
+  }
+}

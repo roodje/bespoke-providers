@@ -1,0 +1,9 @@
+lovebird:
+  n26Group:
+    n26:
+      baseUrl: http://localhost:${wiremock.server.port}/v1/berlin-group
+      authorizationUrl: http://localhost:${wiremock.server.port}/oauth2/authorize
+      tokenEndpoint: http://localhost:${wiremock.server.port}/oauth2/token
+      paginationLimit: 1000
+      consentStatusPollingInitialDelaySeconds: 1
+      consentStatusPollingTotalDelayLimitSeconds: 300

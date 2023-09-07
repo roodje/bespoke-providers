@@ -1,0 +1,470 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.6",
+    "title": "PSD2 Pre-Step Authorization API",
+    "description": "As for every API call via API Store (WSO2) you have to pass a valid WSO2 token in the Authorization Header.\nIn this case, the security defined by this API should not be placed in the authorization header, but in a PSD2-AUTHORIZATION header parameter.\n  \nSee in API Store (WSO2) under Applications --> Production keys.\n\n## __Change List__\n<table>\n  <tr>\n    <b>\n    <td>Version</bold></td>\n    <td>description</td>\n    <td>Author</td>\n    <td>Date</td>\n    </b>\n  </tr>\n  <tr>\n    <td>1.0.0</td>\n    <td>Initial API definition</td>\n    <td>Hristo Teliatinov</td>\n    <td>25.03.2019</td>\n  </tr>\n  <tr>\n    <td>1.0.1</td>\n    <td>Adapted to be close to the Auth GUI API</td>\n    <td>Marcel Signer</td>\n    <td>03.04.2019</td>\n  </tr>\n  <tr>\n    <td>1.0.2</td>\n    <td>csrftoken and accessToken added</td>\n    <td>Marcel Signer</td>\n    <td>04.04.2019</td>\n  </tr>\n  <tr>\n    <td>1.0.3</td>\n    <td>adapted and corrected</td>\n    <td>Marcel Signer, Hristo Teliatinov</td>\n    <td>05.04.2019</td>\n  </tr>\n  <tr>\n    <td>1.0.4</td>\n    <td>BugFixing the basicAuth</td>\n    <td>Hristo Teliatinov</td>\n    <td>05.04.2019</td>\n  </tr>\n  <tr>\n    <td>1.0.5</td>\n    <td>Description extensions</td>\n    <td>Hristo Teliatinov</td>\n    <td>10.04.2019</td>\n  </tr>\n  <tr>\n    <td>1.0.6</td>\n    <td>Clean up. Add X-XSRF-TOKEN header parameter. ActionCode STOP_POLL_FOR_TAN added.</td>\n    <td>Hristo Teliatinov</td>\n    <td>02.09.2019</td>\n  </tr>\n</table>\n"
+  },
+  "paths": {
+    "/psd2-auth/v1/auth/token": {
+      "post": {
+        "tags": [
+          "PSD2-Auth"
+        ],
+        "summary": "Login / Credentials validation",
+        "description": "Credential validation with loginname/password.\nCreates an AccessToken if no SCA is needed.\nSee basicAuth. BasicAuth will contain TPP-ID and secret from the TPP Onboarding process.\nIn this method, you pass the TPP ID and the TPP secret as basic authentication in the header parameter PSD2-AUTHORIZATION.\n\nPSD2-AUTHORIZATION value consists of Basic TPP-ID:TPP-SECRET.\nTPP-ID:TPP-SECRET must be Base64 encoded",
+        "operationId": "ValidateCredentials",
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Request identifier to trace a request route across the subsystems.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "parameter must be a ValidateCredentialsAuthRequest",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateCredentialsAuthRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The call was executed. This does not mean that the AccessToken was successfully created.\nThe response contains status information in the returnCode field.\n",
+            "headers": {
+              "JESESSIONID": {
+                "description": "session cookie to secure the following requests",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "401": {
+            "description": "Unauthorized, cannot access the endpoint"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "default": {
+            "description": "Unexpected error (from infrastructure/middleware)"
+          }
+        },
+        "x-auth-type": "None",
+        "x-throttling-tier": "Unlimited"
+      },
+      "delete": {
+        "tags": [
+          "PSD2-Auth"
+        ],
+        "summary": "Logout user",
+        "description": "Logs the user out and closes the session.",
+        "operationId": "LogoutUser",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Request identifier to trace a request route across the subsystems.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "token invalidate successfully"
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "401": {
+            "description": "Unauthorized, cannot access the endpoint"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "default": {
+            "description": "Unexpected error (from infrastructure/middleware)"
+          }
+        },
+        "x-auth-type": "None",
+        "x-throttling-tier": "Unlimited"
+      }
+    },
+    "/psd2-auth/v1/challenge": {
+      "post": {
+        "tags": [
+          "PSD2-Auth"
+        ],
+        "summary": "Challenge creation",
+        "description": "Creates the challenge for the authOptionId selected by the user. This request is authorized by session cookie. It contains the login info.\n",
+        "operationId": "CreateChallenge",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "X-XSRF-TOKEN",
+            "in": "header",
+            "description": "For additional security needed. Use the XSRF-Token returned from the ValidateCredentials request.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Request identifier to trace a request route across the subsystems.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "parameter must be an AuthSelectionRequest",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthSelectionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Challenge for second factor has been created. \nTo confirm the authorisation with the TAN a ValidateChallenge call is needed. \n* if mTAN, mTAN has been sent to the users mobile\n* if pushTAN, pushTAN sent to the users device\n* if pushTAN via backend response (polling required), TAN returned in response for display\n* if fotoTAN, png returned in response for display to the user\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "401": {
+            "description": "Unauthorized, cannot access the endpoint"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "default": {
+            "description": "Unexpected error (from infrastructure/middleware)"
+          }
+        },
+        "x-auth-type": "None",
+        "x-throttling-tier": "Unlimited"
+      },
+      "put": {
+        "tags": [
+          "PSD2-Auth"
+        ],
+        "summary": "Challenge validation",
+        "description": "Validates the challenge of the second factor. This request is authorized by session cookie. It contains the login info.\n",
+        "operationId": "ValidateChallenge",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "X-XSRF-TOKEN",
+            "in": "header",
+            "description": "For additional security needed. Use the XSRF-Token returned from the CreateChallenge request.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Request-ID",
+            "in": "header",
+            "description": "Request identifier to trace a request route across the subsystems.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "If user responds to PushTAN on smartphone, polling takes place over this method.\n",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChallengeValidationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The call was executed. This does not mean that the AccessToken was successfully created.\nThe response contains status information in the returnCode field.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "401": {
+            "description": "Unauthorized, cannot access the endpoint"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "default": {
+            "description": "Unexpected error (from infrastructure/middleware)"
+          }
+        },
+        "x-auth-type": "None",
+        "x-throttling-tier": "Unlimited"
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "description": "Basic Authentication.\nMust contain the clientId and the clientSecret of the TPP\n",
+        "type": "http",
+        "scheme": "basic"
+      },
+      "cookieAuth": {
+        "description": "Session cookie received from the ValidateCredential request\n",
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "JSESSIONID"
+      },
+      "bearerAuth": {
+        "description": "Bearer Token.\nIt contains the OAuth2 accessToken from a pre-step authorization.\n",
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "default": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://api.dkb.de/authorize",
+            "scopes": {}
+          }
+        }
+      }
+    },
+    "schemas": {
+      "AuthType": {
+        "description": "Authentication types for first and second step.\n* PASSWORD: LoginName / password for first auth step\n* SMSTAN: Also called mTAN is an alphanumeric value sent per SMS\n* MATRIX: The user has a card with TANs, the challenge indicates in GUI which one to use. for futur implementation\n* FOTOTAN: The TAN is encrypted and embedded in a QR Code which is dispayed to the user. The mobile device scans the QR Code, decrypts the message and displays it to the user\n* DIGIPASS: Pretty much the same as FOTOTAN but technology frm OneSpan (ex Vasco). A colorded CrontoSign is used instead of a QR Code.\n* CHIPTAN: Similar to FOTOTAN. A chipTAN is displayed on the screen, either as optical chipTAN (flicker) or as QR Code, which is scanned from a dedicated chipTAN device.</br>\n  Use FOTOTAN for CHIPTAN QR.\n",
+        "type": "string",
+        "enum": [
+          "PASSWORD",
+          "SMSTAN",
+          "MATRIX",
+          "FOTOTAN",
+          "PUSHTAN",
+          "DIGIPASS",
+          "CHIPTAN"
+        ],
+        "example": "SMSTAN"
+      },
+      "ReturnCode": {
+        "description": "The return codes can be more or less specific.\nSome tenants may want to indicate, if password has been entered wrong or if user is locked.\n* NONE: Used to prevent any indication to possible intruders what was wrong.\n* CORRECT: Credential validation was successful\n* CORRECT_PASSWORD_CHANGE: Password need to be changed\n* FAILED: Credential validation failed\n* LOCKED: User account is locked\n* TEMPORARY_LOCKED: User account is temporarily locked. Will be automatically unlocked after some time\n* PASSWORD_EXPIRED: Initial password has expired - user cannot be authenticated - requires a new initial password\n* OFFLINE_TOOL_ONLY: This user account is not valid for OAuth authorization\n* NO_SUITABLE_AUTHENTICATION_TYPE: User account does not have supported second factor\n* TAN_WRONG: User entered wrong TAN\n* TAN_INVALIDATED: TAN is not valid anymore. Invalidated on backend.\n* TAN_EXPIRED: TAN has expired.\n* TAN_NOT_ACTIVE:\n* NOTIFICATION_UNDELIVERABLE: PushTAN or SMS transmission failed\n* NOTIFICATION_CONFIRMATION_REJECTED: User rejected PushTAN\n* NOTIFICATION_EXPIRED: PushTAN expired\n* AWAITING_USER_RESPONSE: Indicates to continue polling for PushTAN confirmation\n",
+        "type": "string",
+        "enum": [
+          "NONE",
+          "CORRECT",
+          "CORRECT_PASSWORD_CHANGE",
+          "FAILED",
+          "LOCKED",
+          "TEMPORARY_LOCKED",
+          "PASSWORD_EXPIRED",
+          "OFFLINE_TOOL_ONLY",
+          "NO_SUITABLE_AUTHENTICATION_TYPE",
+          "TAN_WRONG",
+          "TAN_INVALIDATED",
+          "TAN_EXPIRED",
+          "TAN_NOT_ACTIVE",
+          "NOTIFICATION_UNDELIVERABLE",
+          "NOTIFICATION_CONFIRMATION_REJECTED",
+          "NOTIFICATION_EXPIRED",
+          "AWAITING_USER_RESPONSE"
+        ]
+      },
+      "ActionCode": {
+        "description": "Tells the next authorisation step.\n* PROMPT_FOR_LOGIN_NAME_PASSWORD: This use case is not supported by the PreStep Authentication API\n* PROMPT_FOR_AUTH_METHOD_SELECTION: AuthOptions provided - next expected API call POST /challenge\n* PROMPT_FOR_TAN: Ask user for TAN - next expected API call PUT /challenge\n* POLL_FOR_TAN: Just poll API call PUT /challenge\n* STOP_POLL_FOR_TAN: Stop poll API call PUT /challenge\n* PROMPT_FOR_PASSWORD_CHANGE: Let user change password - This use case is not supported by the PreStep Authentication API\n* PROMPT_FOR_SCOPE_ACCEPTANCE: This use case is not supported by the PreStep Authentication API\n* SEND_REQUEST: Redirect user - This use case is not supported by the PreStep Authentication API\n",
+        "type": "string",
+        "enum": [
+          "PROMPT_FOR_LOGIN_NAME_PASSWORD",
+          "PROMPT_FOR_AUTH_METHOD_SELECTION",
+          "PROMPT_FOR_TAN",
+          "POLL_FOR_TAN",
+          "STOP_POLL_FOR_TAN",
+          "PROMPT_FOR_PASSWORD_CHANGE",
+          "PROMPT_FOR_SCOPE_ACCEPTANCE",
+          "SEND_REQUEST"
+        ]
+      },
+      "ValidateCredentialsAuthRequest": {
+        "description": "Request object to check loginName/password",
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "userId entered from the user"
+          },
+          "password": {
+            "type": "string",
+            "description": "password entered by the user"
+          }
+        }
+      },
+      "AuthItem": {
+        "type": "object",
+        "required": [
+          "authOptionId"
+        ],
+        "properties": {
+          "authOptionId": {
+            "type": "string",
+            "description": "Unique identification (alphanumeric) for choosing an authentication method."
+          },
+          "authType": {
+            "$ref": "#/components/schemas/AuthType"
+          },
+          "authInfo": {
+            "type": "string",
+            "description": "Additional info about authentication type to be\ndisplayed to the user to select the AuthOption\nIn case of SMS Code, the mobile phone number is displayed partially\nIn case of Matrix card or Digipass, a text indicating the auth Type is displayed\nIn case of FotoTAN or PushTAN the name of the device is displayed.\n"
+          }
+        }
+      },
+      "ValidationResponse": {
+        "description": "Response of the userId/password check.\nIt also returns the options for step2\n",
+        "type": "object",
+        "required": [
+          "returnCode",
+          "actionCode"
+        ],
+        "properties": {
+          "returnCode": {
+            "$ref": "#/components/schemas/ReturnCode"
+          },
+          "actionCode": {
+            "$ref": "#/components/schemas/ActionCode"
+          },
+          "returnMsg": {
+            "type": "string",
+            "description": "message to display to the user in the language requested\n"
+          },
+          "lastSuccessfulLoginTimestamp": {
+            "type": "string",
+            "format": "DateTime"
+          },
+          "authOptionIdLastUsed": {
+            "type": "string",
+            "description": "indicates a authOption of the following array"
+          },
+          "authTypeSelected": {
+            "$ref": "#/components/schemas/AuthType"
+          },
+          "authOptionIdSelected": {
+            "type": "string",
+            "description": "indicates the authOption selected\nused if user request the challenge again (mTAN, PushTAN)\n"
+          },
+          "challenge": {
+            "type": "string",
+            "description": "challenge differs depending on the authType\n* FOTOTAN base64 encoded png of QR code\n* DIGIPASS base64 encoded png of crontoSign\n* MATRIX index to the TAN on the matrix card\n* PUSHTAN TAN to be displayed in push message for comparison\n"
+          },
+          "timeout": {
+            "type": "number",
+            "description": "Timeout in seconds. In case of PushTAN, a timer is displayed indicating\nhow much time is left for the user to authorize on the mobile.\ntbd, if timeout shall be used in other use cases.\n"
+          },
+          "authSelectionList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AuthItem"
+            }
+          },
+          "accessToken": {
+            "type": "string",
+            "description": "accessToken returned after successful authorization.\nThe authorization is succesful if the ReturnCode is \"CORRECT\"\n \n"
+          }
+        }
+      },
+      "AuthSelectionRequest": {
+        "description": "selection of the auth method for second factor",
+        "type": "object",
+        "required": [
+          "authOptionId"
+        ],
+        "properties": {
+          "authOptionId": {
+            "type": "string",
+            "description": "selected auth method from the auth SelectionList in the previous call"
+          }
+        }
+      },
+      "ChallengeValidationRequest": {
+        "description": "TAN as a result from the challenge.\nCan be from any second factor auth method\n",
+        "type": "object",
+        "properties": {
+          "tan": {
+            "type": "string",
+            "description": "TAN entered by the user\nnot available if polling for backend validation (PushTAN)\n"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.dkb.de/pre-auth/1.0.6"
+    },
+    {
+      "url": "http://api.dkb.de/pre-auth/1.0.6"
+    }
+  ]
+}

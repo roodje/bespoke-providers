@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/accounts/2e7d0eed-c1c1-47a4-a884-b9fc83f51d5f/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 978e46f2-b8a5-4f81-ac45-f10d32e6b764"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0032400006451CCVVX"
+      }
+    }
+  },
+  "response": {
+    "transformers": ["response-template"],
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "2e7d0eed-c1c1-47a4-a884-b9fc83f51d5f",
+            "Amount": {
+              "Amount": "34.45",
+              "Currency": "EUR"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2021-08-18T17:41:36.211752Z"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://oba.revolut.com/accounts/2e7d0eed-c1c1-47a4-a884-b9fc83f51d5f/balances"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    }
+  }
+}

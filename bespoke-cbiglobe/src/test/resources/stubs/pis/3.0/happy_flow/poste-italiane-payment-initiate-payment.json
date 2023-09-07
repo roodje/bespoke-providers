@@ -1,0 +1,86 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/platform/enabler/psd2orchestrator/pis/2.3.2/payments/sepa-credit-transfers",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Authorization": {
+        "equalTo": "Bearer PAYMENT-CLIENT-ACCESS-TOKEN"
+      },
+      "PSU-IP-Address": {
+        "matches": "\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b"
+      },
+      "tpp-redirect-uri": {
+        "equalTo": "https://www.yolt.com/callback/payment?state=fakeState"
+      },
+      "tpp-redirect-preferred": {
+        "equalTo": "true"
+      },
+      "aspsp-code": {
+        "matches": "ASPSP_MM_01"
+      },
+      "aspsp-product-code": {
+        "matches": "ASPSP_PRODUCT_001"
+      },
+      "digest": {
+        "equalTo": "sha-512=Xu4qgccEMJvB1b0s5GNPdoLLYymKW5DdAuS1oTp70aKt1ER08pBuUAyprXdzuM8e4Kyw77GqWahm3A5duGTdeQ=="
+      },
+      "signature": {
+        "matches": "keyId=\"13299021239615735660\",algorithm=\"rsa-sha512\",headers=\"date digest tpp-redirect-uri x-request-id\",signature=\"([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*\""
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIICMzCCAZygAwIBAgIJALiPnVsvq8dsMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzAeFw0xMzAzMTkxNTQwMTlaFw0xODAzMTgxNTQwMTlaMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzdGfxi9CNbMf1UUcvDQh7MYBOveIHyc0E0KIbhjK5FkCBU4CiZrbfHagaW7ZEcN0tt3EvpbOMxxc/ZQU2WN/s/wPxph0pSfsfFsTKM4RhTWD2v4fgk+xZiKd1p0+L4hTtpwnEw0uXRVd0ki6muwV5y/P+5FHUeldq+pgTcgzuK8CAwEAAaMPMA0wCwYDVR0PBAQDAgLkMA0GCSqGSIb3DQEBBQUAA4GBAJiDAAtY0mQQeuxWdzLRzXmjvdSuL9GoyT3BF/jSnpxz5/58dba8pWenv3pj4P3w5DoOso0rzkZy2jEsEitlVM2mLSbQpMM+MUVQCQoiG6W9xuCFuxSrwPISpAqEAuV4DNoxQKKWmhVv+J0ptMWD25Pnpxeq5sXzghfJnslJlQND"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "creditorAccount": {
+            "currency": "EUR",
+            "iban": "IT11E03268444900B2860435030"
+          },
+          "debtorAccount": {
+            "currency": "EUR",
+            "iban": "IT70R0306948420100000000187"
+          },
+          "instructedAmount": {
+            "amount": "1.23",
+            "currency": "EUR"
+          },
+          "creditorName": "Jan Kowalski",
+          "remittanceInformationUnstructured": "For beer",
+          "transactionType": "remote_transaction",
+          "creditorAddress": {
+            "country": "NL"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json",
+      "Location": "",
+      "ASPSP-SCA-Approach": "REDIRECT",
+      "X-Request-ID": "a8da60a1-4a81-4c59-bf24-a257244c2fd0"
+    },
+    "jsonBody": {
+      "transactionStatus": "RCVD",
+      "paymentId": "SOME-PAYMENT-ID",
+      "_links": {
+        "scaRedirect": {
+          "href": "https://idp-poste.poste.it/jod-idp-retail/federation/cbiauth/private/v1/sca-iban-selection?a=SOME_A_VALUE"
+        },
+        "self": {
+          "href": "/payments/sepa-credit-transfers/SOME-PAYMENT-ID"
+        }
+      }
+    }
+  }
+}

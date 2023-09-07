@@ -1,0 +1,169 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/psd2-accounts-api-1.3.2-rbro/v1/accounts/EX09999991/transactions?dateFrom=1970-01-12&bookingStatus=both",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer test-access-token"
+      },
+      "client_id": {
+        "matches": "22222222-2222-2222-2222-222222222222"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "123000001",
+            "endToEndId": "1109085025992704",
+            "mandateId": "8/21/2108",
+            "bookingDate": "2018-01-01",
+            "valueDate": "2018-01-02",
+            "transactionAmount": {
+              "amount": "3789661851877376",
+              "currency": "EUR"
+            },
+            "exchangeRate": [
+              {
+                "sourceCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "unitCurrency": "NAD",
+                "exchangeRate": 0.241,
+                "targetCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "quotationDate": "2002-10-11",
+                "contractIdentification": "4082602069721088"
+              },
+              {
+                "sourceCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "unitCurrency": "GEL",
+                "exchangeRate": 0.241,
+                "targetCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "quotationDate": "2017-11-27",
+                "contractIdentification": "1328627138428928"
+              },
+              {
+                "sourceCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "unitCurrency": "AED",
+                "exchangeRate": 0.241,
+                "targetCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "quotationDate": "2013-12-12",
+                "contractIdentification": "7555606961455104"
+              }
+            ],
+            "creditorName": "36848963124227",
+            "creditorAccount": {
+              "accountNumber": "99999/9999",
+              "iban": "AT611904300234573201"
+            },
+            "ultimateCreditor": "5488596990242908",
+            "debtorName": "Mike Fleming",
+            "debtorAccount": {
+              "accountNumber": "99999/9999",
+              "iban": "AT611904300234573301"
+            },
+            "ultimateDebtor": "pepgiwaaptudifri",
+            "remittanceInformationUnstructured": "nanrunalasowubse",
+            "remittanceInformationStructured": "lemohijik",
+            "purposeCode": "nemisufiemui",
+            "bankTransactionCode": "zisamogumbo"
+          }
+        ],
+        "pending": [
+          {
+            "transactionId": "123000010",
+            "endToEndId": "8693916113043456",
+            "mandateId": "6/14/2024",
+            "bookingDate": "2018-01-01",
+            "valueDate": "2018-01-02",
+            "transactionAmount": {
+              "amount": "1475586782396416",
+              "currency": "EUR"
+            },
+            "exchangeRate": [
+              {
+                "sourceCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "unitCurrency": "HTG",
+                "exchangeRate": 0.241,
+                "targetCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "quotationDate": "2017-09-22",
+                "contractIdentification": "1784568380129280"
+              },
+              {
+                "sourceCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "unitCurrency": "AZN",
+                "exchangeRate": 0.241,
+                "targetCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "quotationDate": "2008-05-05",
+                "contractIdentification": "4985903986507776"
+              },
+              {
+                "sourceCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "unitCurrency": "AFN",
+                "exchangeRate": 0.241,
+                "targetCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "quotationDate": "2014-03-04",
+                "contractIdentification": "1164281766739968"
+              }
+            ],
+            "creditorName": "6011688244360349",
+            "creditorAccount": {
+              "accountNumber": "99999/9999",
+              "iban": "AT611904300234573201"
+            },
+            "ultimateCreditor": "6334276691503643",
+            "debtorName": "Kate Webb",
+            "debtorAccount": {
+              "accountNumber": "99999/9999",
+              "iban": "AT611904300234573301"
+            },
+            "ultimateDebtor": "mopmuslulirzucuv",
+            "remittanceInformationUnstructured": "gazgu",
+            "remittanceInformationStructured": "dawfa",
+            "purposeCode": "oror",
+            "bankTransactionCode": "avatmasnoveigjaf"
+          }
+        ],
+        "_links": {
+          "viewAccount": "/psd2-accounts-api-1.3.2-rbro/v1/accounts/EX09999991",
+          "firstPage": "/psd2-accounts-api-1.3.2-rbro/v1/accounts/EX09999991/transactions?page=0",
+          "secondPage": "/psd2-accounts-api-1.3.2-rbro/v1/accounts/EX09999991/transactions?page=1",
+          "currentPage": "/psd2-accounts-api-1.3.2-rbro/v1/accounts/EX09999991/transactions?page=0",
+          "nextPage": "/psd2-accounts-api-1.3.2-rbro/v1/accounts/EX09999991/transactions?page=1",
+          "lastPage": "/psd2-accounts-api-1.3.2-rbro/v1/accounts/EX09999991/transactions?page=1"
+        }
+      }
+    }
+  }
+}

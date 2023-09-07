@@ -1,0 +1,68 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/890_1/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken456"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "890_1",
+            "CreditDebitIndicator": "Credit",
+            "Type": "ForwardAvailable",
+            "DateTime": "2020-11-23T17:48:45+00:00",
+            "Amount": {
+              "Amount": "191.25",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "890_1",
+            "CreditDebitIndicator": "Debit",
+            "Type": "PreviouslyClosedBooked",
+            "DateTime": "2020-11-23T17:48:45+00:00",
+            "Amount": {
+              "Amount": "223.72",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "890_1",
+            "CreditDebitIndicator": "Debit",
+            "Type": "OpeningCleared",
+            "DateTime": "2020-11-23T17:48:45+00:00",
+            "Amount": {
+              "Amount": "209.57",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/accounts/890_1/balances"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

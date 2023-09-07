@@ -1,0 +1,37 @@
+lovebird:
+  aibgroup:
+    aib:
+      pagination-limit: 2
+      audience: https://apis.aibgb.co.uk/security/v2/oauth/token
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth-token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+      registrationAudience: someRegistrationAudience
+      loginUrlAudience: https://apis.aibgb.co.uk
+    aib-ni:
+      pagination-limit: 2
+      audience: https://apis.firsttrustbank.co.uk/security/v2/oauth/token
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth-token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+      registrationAudience: someRegistrationAudience
+      loginUrlAudience: https://apis.firsttrustbank.co.uk/
+    aib-ie:
+      pagination-limit: 2
+      audience: https://apis.firsttrustbank.co.uk
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth-token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+      registrationAudience: someRegistrationAudience
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

@@ -1,0 +1,56 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/20000000000001449160/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "d0a9b85f-9715-4d16-a33d-4323ceab5254"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0017440000hdQV5CCT"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "20000000000001449160",
+            "Amount": {
+              "Amount": "9.12",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "CREDIT",
+            "DateTime": "2020-12-01T07:35:55Z",
+            "Type": "InterimAvailable"
+          },
+          {
+            "AccountId": "20000000000001449160",
+            "Amount": {
+              "Amount": "11.12",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "DateTime": "2020-12-01T07:35:55Z",
+            "Type": "ClosingBooked"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://telesto.api.barclays/open-banking/v3.1/aisp/accounts/20000000000001449160/balances"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/joba-psd2/r1/v1/accounts/1c425531-8ef5-484a-a0d7-65788bfe1726/transactions",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "12345"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "12.34.56.78"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "iban": "DE72500502011234567882"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "C0F10SRA002A00HK000001",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "1234.90"
+            },
+            "creditorAccount": {
+              "iban": "DE72500502011234567898"
+            },
+            "bookingDate": "2020-06-10",
+            "valueDate": "2020-06-11",
+            "creditorName": "David Smith",
+            "remittanceInformationUnstructured": "A gift from Grandpa."
+          }
+        ],
+        "pending": [
+          {
+            "transactionId": "C0F10SRA002A00HK000003",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "120.90"
+            },
+            "creditorAccount": {
+              "iban": "DE72500502011234567890"
+            },
+            "valueDate": "2020-06-12",
+            "creditorName": "ABC",
+            "remittanceInformationUnstructured": "Return."
+          }
+        ],
+        "_links": {
+          "account": {
+            "href": "/accounts/75647ea0-0d3a-442c-8046-bf415b20a9f"
+          }
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json; charset=UTF-8",
+      "X-Request-ID": "39e872b0-c662-4deb-a274-2ce2363862c6"
+    }
+  }
+}

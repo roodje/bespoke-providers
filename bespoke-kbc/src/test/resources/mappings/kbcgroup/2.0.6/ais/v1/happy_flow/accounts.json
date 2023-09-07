@@ -1,0 +1,50 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/psd2/v2/accounts?withBalance=true",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "test-consent-id"
+      },
+      "Authorization": {
+        "equalTo": "Bearer test-access-token"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "123.45.67.89"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "test-resource-id",
+          "iban": "BE16690375703426",
+          "currency": "EUR",
+          "name": "test-name",
+          "product": "test-product",
+          "cashAccountType": "CACC",
+          "balances": [
+            {
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": "123.45"
+              },
+              "balanceType": "closingBooked"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

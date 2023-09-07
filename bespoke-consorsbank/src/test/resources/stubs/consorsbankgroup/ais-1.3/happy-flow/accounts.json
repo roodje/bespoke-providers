@@ -1,0 +1,93 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v1/accounts",
+
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "123"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "TEST_PSU_IP_ADDRESS"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "1",
+          "iban": "DE60760300800500123456",
+          "bban": "",
+          "msisdn": "",
+          "currency": "EUR",
+          "name": "",
+          "product": "Current Account",
+          "cashAccountType": "CACC",
+          "status": null,
+          "bic": "",
+          "linkedAccounts": "",
+          "usage": null,
+          "details": "",
+          "_links": {
+            "balances": {
+              "href": "http://xs2a-sndbx.consorsbank.de/v1/accounts/1/balances"
+            },
+            "transactions": {
+              "href": "http://xs2a-sndbx.consorsbank.de/v1/accounts/1/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "2",
+          "iban": "DE98701204008538752000",
+          "bban": "",
+          "msisdn": "",
+          "currency": "EUR",
+          "name": "",
+          "product": "Savings",
+          "cashAccountType": "SVGS",
+          "status": null,
+          "bic": "",
+          "linkedAccounts": "",
+          "usage": null,
+          "details": "",
+          "_links": {
+            "balances": {
+              "href": "http://xs2a-sndbx.consorsbank.de/v1/accounts/2/balances"
+            },
+            "transactions": {
+              "href": "http://xs2a-sndbx.consorsbank.de/v1/accounts/2/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "3",
+          "iban": "DE17236023400834520145647",
+          "currency": "EUR",
+          "cashAccountType": "TRAS",
+          "status": "enabled",
+          "bic": "CSXXXXXXXXX",
+          "_links": {
+            "balances": {
+              "href": "https://xs2a.consorsbank.de/v1/accounts/3/balances"
+            },
+            "transactions": {
+              "href": "https://xs2a.consorsbank.de/v1/accounts/3/transactions"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

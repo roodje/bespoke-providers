@@ -1,0 +1,122 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/stet/setting/v1/register",
+    "headers": {
+      "x-request-id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "digest": {
+        "equalTo": "SHA-256=LHeCjoRVsGviuaIvt97RoFU9Yh9UG2aclwtnGkIZzS8="
+      },
+      "Signature": {
+        "contains": "keyId=\"https://test.qseal.certificate.com/26:c7:b8:8e:09:0b:e1:ed:04:3e:bd:58:3d:4d:78:b5:ad:ad:fa:c1.pem\",algorithm=\"rsa-sha256\",headers=\"(request-target) digest x-request-id\",signature="
+      },
+      "Authorization": {
+        "equalTo": "Bearer KXyZabcdefghijklmopqrstuvw1234567890"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "client_name": "Acme Co.",
+          "redirect_uris": [
+            "https://sample.redirect.uri/testparam"
+          ],
+          "token_endpoint_auth_method": "tls_client_auth",
+          "grant_types": [
+            "authorization_code",
+            "refresh_token",
+            "client_credentials"
+          ],
+          "response_types": [
+            "code"
+          ],
+          "contact": {
+            "contact_name": "Acme Co.",
+            "email": "connections@acme.com",
+            "phone_number": "+48123456789"
+          },
+          "provider_legal_id": "PSDNL-DNB-33031431",
+          "jwks": {
+            "keys": [
+              {
+                "kty": "RSA",
+                "use": "sig",
+                "alg": "RS256",
+                "keys_ops": [
+                  "verify"
+                ],
+                "kid": "5448667811826975824161486376202",
+                "x5c": ["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"],
+                "x5t#S256": "-oaxH6Bt1YS5jxejfTfKZWeGs8l6X8oDFEyJIibJo2E"
+              }
+            ]
+          },
+          "scope": "aisp,pisp",
+          "software_id": "Acme Co."
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "client_id": "1PSDNL-DNB-33031431-0-RWMH",
+      "registration_client_uri": null,
+      "registration_access_token": null,
+      "client_secret": null,
+      "client_id_issued_at": "2022-04-22T15:33:39.521",
+      "client_secret_expires_at": null,
+      "redirect_uris": [
+        "https://sample.redirect.uri/testparam"
+      ],
+      "token_endpoint_auth_method": "tls_client_auth",
+      "grant_types": [
+        "AUTHORIZATION_CODE",
+        "REFRESH_TOKEN",
+        "CLIENT_CREDENTIALS"
+      ],
+      "response_types": [
+        "CODE"
+      ],
+      "client_name": "Acme Co.",
+      "client_uri": null,
+      "logo_uri": null,
+      "scope": "aisp,pisp",
+      "contact": {
+        "contact_name": "Acme Co.",
+        "phone_number": "+48123456789",
+        "email": "connections@acme.com"
+      },
+      "tos_uri": null,
+      "policy_uri": null,
+      "jwks_uri": null,
+      "provider_legal_id": "PSDNL-DNB-R179712",
+      "client_legal_id": null,
+      "logo": null,
+      "jwks": {
+        "keys": [
+          {
+            "kty": "RSA",
+            "use": "sig",
+            "key_ops": null,
+            "alg": null,
+            "kid": null,
+            "x5u": null,
+            "x5c": [
+              "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"
+            ],
+            "x5t": null,
+            "x5t#S256": null
+          }
+        ]
+      },
+      "software_id": "Acme Co.",
+      "software_version": null
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

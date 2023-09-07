@@ -1,0 +1,324 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/open-banking/v3.1/aisp/accounts/77f5cb47-fb53-49e7-acd7-f8ed17ba4396/direct-debits",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AccessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "551c6cce-fc16-49b9-8b16-ab66fea5eb35"
+      },
+      "x-fapi-financial-id": {
+        "contains": "0015800000jf7AeAAI"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "DirectDebit": [
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "00eed4f2-f99e-4e59-b58b-7545d04bf23f",
+            "MandateIdentification": "007216833",
+            "DirectDebitStatusCode": "Active",
+            "Name": "HASTINGS INSURANCE SERVICES LTD",
+            "PreviousPaymentDateTime": "2020-11-30T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "69.51",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "008c21f2-c2a6-403a-b7e4-a183d584c80c",
+            "MandateIdentification": "00NL31644640",
+            "DirectDebitStatusCode": "Active",
+            "Name": "PAYMENTSHIELD LIMITED IP",
+            "PreviousPaymentDateTime": "2020-11-30T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "19.28",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "00986c2e-0a03-4e6c-857c-8eac9bcc8b8f",
+            "MandateIdentification": "0065952106-A",
+            "DirectDebitStatusCode": "Active",
+            "Name": "AIG LIFE LIMITED",
+            "PreviousPaymentDateTime": "2020-11-30T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "28.97",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "0063a3e3-0c57-42a1-9b70-f654e22c7c69",
+            "MandateIdentification": "0001643288",
+            "DirectDebitStatusCode": "Active",
+            "Name": "POWER NI ENERGY LTD",
+            "PreviousPaymentDateTime": "2020-11-13T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "45.00",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "00f969a7-ce2d-434f-8db0-8f3a0199d521",
+            "MandateIdentification": "0012454382",
+            "DirectDebitStatusCode": "Inactive",
+            "Name": "CAPITA BUS SVS re TV LICENSING",
+            "PreviousPaymentDateTime": "2020-06-30T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "13.20",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "00e2b0c8-88f4-48c4-a0a2-2011f77c231f",
+            "MandateIdentification": "000000000029693158",
+            "DirectDebitStatusCode": "Active",
+            "Name": "Driver & Vehicle Licensing Agency",
+            "PreviousPaymentDateTime": "2020-11-30T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "13.12",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "001174f0-5054-42a1-9d25-f0ec1a7482cd",
+            "MandateIdentification": "00CC1299",
+            "DirectDebitStatusCode": "Active",
+            "Name": "LURGAN RUGBY AND CRICKET CLUB GW",
+            "PreviousPaymentDateTime": "2020-12-01T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "11.00",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "00795880-4e33-4446-9190-9c96051a874d",
+            "MandateIdentification": "00900003356672/335",
+            "DirectDebitStatusCode": "Active",
+            "Name": "CREATION CONSUMER FINANCE LTD",
+            "PreviousPaymentDateTime": "2018-11-30T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "61.85",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "0077700f-77d2-478b-8533-9c12f89b7029",
+            "MandateIdentification": "002306037",
+            "DirectDebitStatusCode": "Active",
+            "Name": "Santander UK (MORTGAGES)",
+            "PreviousPaymentDateTime": "2020-11-30T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "367.24",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "00547f34-fe2e-451f-8736-34eb8d4c9d42",
+            "MandateIdentification": "00371780302",
+            "DirectDebitStatusCode": "Active",
+            "Name": "EUI LIMITED - DIAMOND",
+            "PreviousPaymentDateTime": "2020-05-29T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "88.60",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "00b719f9-1c93-4a85-bc71-2b317076bc77",
+            "MandateIdentification": "009129645",
+            "DirectDebitStatusCode": "Active",
+            "Name": "HITACHI CAPITAL (UK) LTD",
+            "PreviousPaymentDateTime": "2020-11-19T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "39.25",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "00b78b04-209f-4611-87a4-365997402ff9",
+            "MandateIdentification": "000000000031187681",
+            "DirectDebitStatusCode": "Active",
+            "Name": "Driver & Vehicle Licensing Agency",
+            "PreviousPaymentDateTime": "2020-02-28T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "20.56",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "003c1ca4-b4a1-4594-9309-782b2835bd1b",
+            "MandateIdentification": "000000003641/10000",
+            "DirectDebitStatusCode": "Active",
+            "Name": "CREATION CONSUMER FINANCE LTD",
+            "PreviousPaymentDateTime": "2019-11-29T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "105.60",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "0077499c-3ee1-474b-8445-2c01b73b7edf",
+            "MandateIdentification": "005 0690 359930820",
+            "DirectDebitStatusCode": "Active",
+            "Name": "CLYDESDALE FS T/A BARCLAYS PRTNER",
+            "PreviousPaymentDateTime": "2020-11-30T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "18.04",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "00613a36-ca9a-450b-bb78-947b3d8ad9f8",
+            "MandateIdentification": "006029804",
+            "DirectDebitStatusCode": "Active",
+            "Name": "HMRC NDDS",
+            "PreviousPaymentDateTime": "2020-11-30T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "24.13",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "00f5f8f0-7c84-4f56-991b-81dad9957542",
+            "MandateIdentification": "00959721",
+            "DirectDebitStatusCode": "Active",
+            "Name": "LAND & PROPERTY SERVICES",
+            "PreviousPaymentDateTime": "2020-12-04T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "80.93",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "0020419d-55c1-43fd-bbfa-a7cb2200528f",
+            "MandateIdentification": "0043220202-1001",
+            "DirectDebitStatusCode": "Active",
+            "Name": "VODAFONE LTD",
+            "PreviousPaymentDateTime": "2020-12-03T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "21.00",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "00ef086e-32b5-4ea8-8c37-7209331e6448",
+            "MandateIdentification": "00N695",
+            "DirectDebitStatusCode": "Active",
+            "Name": "G P MARKETING LTD NB LJ",
+            "PreviousPaymentDateTime": "2020-05-29T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "50.00",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "00598dd0-d797-4913-a499-b79c424ae7a9",
+            "MandateIdentification": "00945659",
+            "DirectDebitStatusCode": "Active",
+            "Name": "CLOSE BROTHERS T/ACLOSEBROSPREMFI",
+            "PreviousPaymentDateTime": "2020-11-25T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "79.61",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "0058d400-2f00-423e-b4cf-1a6e8f0a8dd0",
+            "MandateIdentification": "000249210",
+            "DirectDebitStatusCode": "Active",
+            "Name": "FCE BANK PLC",
+            "PreviousPaymentDateTime": "2020-11-30T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "220.38",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "0070b8d3-ed72-46b4-86be-b0bfbceb0075",
+            "MandateIdentification": "00D54766816",
+            "DirectDebitStatusCode": "Active",
+            "Name": "TELEFONICA UK LIMITED",
+            "PreviousPaymentDateTime": "2020-11-10T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "17.14",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "006673a5-21f1-4056-a166-1b458279505f",
+            "MandateIdentification": "00D54766827",
+            "DirectDebitStatusCode": "Active",
+            "Name": "TELEFONICA UK LIMITED",
+            "PreviousPaymentDateTime": "2020-11-10T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "5.00",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "008801c8-65ef-4a1c-9e7a-d41fbc183c0b",
+            "MandateIdentification": "003465262",
+            "DirectDebitStatusCode": "Active",
+            "Name": "ANIMAL FRIENDS INSURANCE SER LTD",
+            "PreviousPaymentDateTime": "2020-11-27T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "10.37",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "DirectDebitId": "00bb8179-af86-46a2-89ca-1478e6d0c45d",
+            "MandateIdentification": "001789801001",
+            "DirectDebitStatusCode": "Active",
+            "Name": "VIRGIN MEDIA PAYMENTS LTD",
+            "PreviousPaymentDateTime": "2020-12-08T00:00:00Z",
+            "PreviousPaymentAmount": {
+              "Amount": "24.00",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://obp-api.danskebank.com/open-banking/v3.1/accounts/77f5cb47-fb53-49e7-acd7-f8ed17ba4396/direct-debits/"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

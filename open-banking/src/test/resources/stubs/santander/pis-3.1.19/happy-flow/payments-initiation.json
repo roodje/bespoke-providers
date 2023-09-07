@@ -1,0 +1,84 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/pisp/domestic-payment-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "1626df30-50ad-42d8-8f39-40dd95f4b15f"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "EndToEndIdentification": "2707380502528000",
+              "InstructedAmount": {
+                "Amount": "100.0",
+                "Currency": "JPY"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "1802968485593088",
+                "Name": "Jordan Bell"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "onmobhetelalobucmogigelecarreocukaezeji"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "4851833560367104",
+        "Status": "AwaitingAuthorisation",
+        "CreationDateTime": "2012-03-08T07:26:20.745Z",
+        "StatusUpdateDateTime": "2019-10-29T13:38:04Z",
+        "Initiation": {
+          "InstructionIdentification": "1938883646324736",
+          "EndToEndIdentification": "2707380502528000",
+          "InstructedAmount": {
+            "Amount": "100.0",
+            "Currency": "JPY"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "1802968485593088",
+            "Name": "Jordan Bell"
+          },
+          "RemittanceInformation": {
+            "Unstructured": "onmobhetelalobucmogigelecarreocukaezeji"
+          }
+        }
+      },
+      "Risk": {
+        "PaymentContextCode": "PartyToParty"
+      },
+      "Links": {
+        "Self": "https://openbanking-ma.santander.co.uk/sanuk/external/open-banking/v3.1/pisp/domestic-payment-consents/4851833560367104"
+      },
+      "Meta": {}
+    }
+  }
+}

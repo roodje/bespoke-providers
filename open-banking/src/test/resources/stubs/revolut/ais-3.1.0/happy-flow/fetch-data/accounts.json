@@ -1,0 +1,115 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 978e46f2-b8a5-4f81-ac45-f10d32e6b764"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0032400006451CCVVX"
+      }
+    }
+  },
+  "response": {
+    "transformers": ["response-template"],
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "cbba2fa2-2630-4862-a080-872b6735bfb1",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "04001692251742",
+                "Name": "John Smith"
+              },
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "LT222222222222222222",
+                "Name": "John Smith"
+              }
+            ]
+          },
+          {
+            "AccountId": "4c8f3ed8-a3d7-4d75-b239-3c9f42ac8685",
+            "Currency": "EUR",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "LT222222222222222222",
+                "Name": "Meghan Fountain"
+              },
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "RO36BREL0022222222222222",
+                "Name": "Meghan Fountain"
+              }
+            ]
+          },
+          {
+            "AccountId": "8f084ca6-7c30-4c1f-901a-d33d6e35949a",
+            "Currency": "BTC",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB74BARC20040477389672",
+                "Name": "Meghan Fountain"
+              },
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "04081692251742",
+                "Name": "Meghan Fountain"
+              }
+            ]
+          },
+          {
+            "AccountId": "8f084ca6-7c30-4c1f-901a-d33d6e359433",
+            "Currency": "OMG",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB74BARC20040477389699",
+                "Name": "Meghan Fountain"
+              },
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "040816922517400",
+                "Name": "Meghan Fountain"
+              }
+            ]
+          },
+          {
+            "AccountId": "2e7d0eed-c1c1-47a4-a884-b9fc83f51d5f",
+            "Currency": "EUR",
+            "AccountType": "Personal",
+            "AccountSubType": "Savings",
+            "Nickname": "My Savings Account"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "{{request.requestLine.baseUrl}}/accounts"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    }
+  }
+}

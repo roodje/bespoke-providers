@@ -1,0 +1,85 @@
+{
+  "account": {
+    "iban": "123",
+    "currency": "EUR"
+  },
+  "transactions": {
+    "booked": [
+      {
+        "transactionId": "12",
+        "entryReference": "23",
+        "endToEndId": "34",
+        "mandateId": "45",
+        "checkId": "56",
+        "creditorId": "67",
+        "bookingDate": "2008-09-15",
+        "valueDate": "2008-09-16",
+        "transactionAmount": {
+          "currency": "EUR",
+          "amount": "-43.00"
+        },
+        "exchangeRate": [
+          {
+            "currencyFrom": "EUR",
+            "rateFrom": "rateFrom1",
+            "currencyTo": "PLN",
+            "rateTo": "rateTo1",
+            "rateDate": "2008-09-17",
+            "rateContract": "rateContract1"
+          },
+          {
+            "currencyFrom": "EUR",
+            "rateFrom": "rateFrom2",
+            "currencyTo": "PLN",
+            "rateTo": "rateTo2",
+            "rateDate": "2008-09-18",
+            "rateContract": "rateContract2"
+          }
+        ],
+        "creditorName": "creditor",
+        "creditorAccount": {
+          "iban": "43",
+          "currency": "EUR"
+        },
+        "ultimateCreditor": "ultimateCreditor",
+        "remittanceInformationUnstructured": "Unstructured",
+        "remittanceInformationStructured": "Structured",
+        "purposeCode": "BKFM",
+        "bankTransactionCode": "ACT",
+        "proprietaryBankTransactionCode": "143"
+      }
+    ],
+    "pending": [
+      {
+        "transactionId": "22",
+        "entryReference": "33",
+        "endToEndId": "44",
+        "mandateId": "55",
+        "checkId": "66",
+        "creditorId": "77",
+        "bookingDate": "2008-09-14",
+        "valueDate": "2008-09-19",
+        "transactionAmount": {
+          "currency": "EUR",
+          "amount": "-9.00"
+        },
+        "debtorName": "creditor",
+        "debtorAccount": {
+          "iban": "57",
+          "currency": "EUR"
+        },
+        "ultimateDebtor": "UltimateDebtor",
+        "remittanceInformationUnstructured": "Unstructured",
+        "remittanceInformationStructured": "Structured",
+        "purposeCode": "BKFM",
+        "bankTransactionCode": "ACT",
+        "proprietaryBankTransactionCode": "143"
+      }
+    ],
+    "_links": {
+      "next": {
+        "href": "/v1/accounts/123/transactions/next"
+      }
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/api/v2/feed/account/bbccbbcc-bbcc-bbcc-bbcc-bbccbbccbbcc/category/ccddccdd-ccdd-ccdd-ccdd-ccddccddccdd/transactions-between",
+    "queryParameters": {
+      "minTransactionTimestamp": {
+        "equalTo": "2019-06-03T12:23:25Z"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "contains": "Bearer access-token"
+      },
+      "Accept-Encoding": {
+        "contains": "gzip"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "feedItems": [
+        {
+          "feedItemUid": "11221122-1122-1122-1122-112211221122",
+          "categoryUid": "ccddccdd-ccdd-ccdd-ccdd-ccddccddccdd",
+          "amount": {
+            "currency": "GBP",
+            "minorUnits": 11223344
+          },
+          "sourceAmount": {
+            "currency": "GBP",
+            "minorUnits": 11223344
+          },
+          "direction": "IN",
+          "updatedAt": "2017-07-05T18:27:02.335Z",
+          "transactionTime": "2017-07-05T18:27:02.335Z",
+          "settlementTime": "2017-07-05T18:27:02.335Z",
+          "source": "FASTER_PAYMENTS_IN",
+          "sourceSubType": "CONTACTLESS",
+          "status": "PENDING",
+          "counterPartyType": "PAYEE",
+          "counterPartyUid": "68e16af4-c2c3-413b-bf93-1056b90097fa",
+          "counterPartyName": "Endeavour Morse",
+          "counterPartySubEntityUid": "35d46207-d90e-483c-a40a-128cc4da4bee",
+          "counterPartySubEntityName": "My Starling Business account",
+          "counterPartySubEntityIdentifier": "608371",
+          "counterPartySubEntitySubIdentifier": "12345678",
+          "reference": "STARLING TOP-UP",
+          "country": "GB",
+          "spendingCategory": "INCOME",
+          "userNote": "See Lewis series too",
+          "roundUp": {
+            "goalCategoryUid": "68e16af4-c2c3-413b-bf93-1056b90097fa",
+            "amount": {
+              "currency": "GBP",
+              "minorUnits": 11223344
+            }
+          }
+        },
+        {
+          "feedItemUid": "11221122-1122-1122-1122-112211221123",
+          "categoryUid": "ccddccdd-ccdd-ccdd-ccdd-ccddccddccdd",
+          "amount": {
+            "currency": "GBP",
+            "minorUnits": 11223366
+          },
+          "sourceAmount": {
+            "currency": "GBP",
+            "minorUnits": 11223366
+          },
+          "direction": "OUT",
+          "updatedAt": "2017-07-05T18:28:02.335Z",
+          "transactionTime": "2017-07-05T18:28:02.335Z",
+          "settlementTime": "2017-07-05T18:28:02.335Z",
+          "source": "MASTER_CARD",
+          "sourceSubType": "CONTACTLESS",
+          "status": "SETTLED",
+          "counterPartyType": "MERCHANT",
+          "counterPartyUid": "68e16af4-c2c3-413b-bf93-1056b90097fa",
+          "counterPartyName": "Tesco",
+          "counterPartySubEntityUid": "35d46207-d90e-483c-a40a-128cc4da4bee",
+          "counterPartySubEntityName": "My Starling Business account",
+          "counterPartySubEntityIdentifier": "608371",
+          "counterPartySubEntitySubIdentifier": "12345679",
+          "reference": "TESCO-STORES-6148      SOUTHAMPTON   GBR",
+          "country": "GB",
+          "spendingCategory": "BILLS_AND_SERVICES",
+          "userNote": "Tax deductable, submit me to payroll",
+          "roundUp": {
+            "goalCategoryUid": "68e16af4-c2c3-413b-bf93-1056b90097fa",
+            "amount": {
+              "currency": "GBP",
+              "minorUnits": 11223366
+            }
+          }
+        },
+        {
+          "feedItemUid": "11221122-1122-1122-1122-112211221124",
+          "categoryUid": "ccddccdd-ccdd-ccdd-ccdd-ccddccddccdd",
+          "amount": {
+            "currency": "GBP",
+            "minorUnits": 11223344
+          },
+          "sourceAmount": {
+            "currency": "GBP",
+            "minorUnits": 11223344
+          },
+          "direction": "IN",
+          "updatedAt": "2017-07-05T18:27:02.335Z",
+          "transactionTime": "2017-07-05T18:27:02.335Z",
+          "settlementTime": "2017-07-05T18:27:02.335Z",
+          "status": "ACCOUNT_CHECK",
+          "country": "GB",
+          "roundUp": {
+            "goalCategoryUid": "68e16af4-c2c3-413b-bf93-1056b90097fa",
+            "amount": {
+              "currency": "GBP",
+              "minorUnits": 11223344
+            }
+          }
+        }
+      ]
+    }
+  }
+}

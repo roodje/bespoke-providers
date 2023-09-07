@@ -1,0 +1,33 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/oauth2/token",
+    "queryParameters": {
+      "role": {
+        "equalTo": "DEDICATED_AISP"
+      }
+    },
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalTo": "grant_type=refresh_token&refresh_token=refresh-token"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "access-token",
+      "token_type": "bearer",
+      "refresh_token": "refresh-token",
+      "expires_in": 7776000
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

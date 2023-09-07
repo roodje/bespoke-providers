@@ -1,0 +1,27 @@
+{
+  "request": {
+    "url": "/v1/accounts/312fdgyiuy374yr349fh8923hf0823h8757973482qop238rh39fh3920340923u/balances",
+    "method": "GET",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Consent-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "PSU-IP-Address": {
+        "matches": "^([0-9]{1,3}\\.){3}[0-9]{1,3}$"
+      }
+    }
+  },
+  "response": {
+    "status": 500,
+    "bodyFileName": "unicredit/hypovereins/balances-500/get-balances-500-body.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

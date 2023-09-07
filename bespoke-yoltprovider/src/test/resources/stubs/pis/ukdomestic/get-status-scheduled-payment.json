@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/pis/uk/domestic/scheduled/f1f009fb-ec37-4612-a38e-c59c92593096",
+    "headers": {
+      "client-id": {
+        "equalTo": "6f16d556-2845-45c4-a3bd-73054dacada5"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Status": "AcceptedSettlementCompleted",
+        "DomesticPaymentId": "f1f009fb-ec37-4612-a38e-c59c92593096"
+      },
+      "Links": null,
+      "Meta": null
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

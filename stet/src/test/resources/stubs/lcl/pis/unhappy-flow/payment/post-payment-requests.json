@@ -1,0 +1,100 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/pisp/1.0/payment-requests",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer unhappy-access-token"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Signature": {
+        "matches": "keyId=\"57960876493606644482050706203694200967\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) digest date\", signature=\"[a-zA-Z0-9]+\""
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{12}"
+      },
+      "Date": {
+        "matches": "[A-Z][a-z]{2}, [0-9]{1,2} [A-Z][a-z]{2} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} CES?T"
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "beneficiary": {
+            "creditor": {
+              "name": "myMerchant"
+            },
+            "creditorAccount": {
+              "iban": "FR7613807008043001965406128"
+            }
+          },
+          "numberOfTransactions": 1,
+          "chargeBearer": "SLEV",
+          "creationDateTime": "${json-unit.regex}^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}Z$",
+          "paymentInformationId": "${json-unit.regex}[a-zA-Z0-9]+",
+          "paymentTypeInformation": {
+            "categoryPurpose": "CASH",
+            "instructionPriority": "NORM",
+            "serviceLevel": "SEPA"
+          },
+          "creditTransferTransaction": [
+            {
+              "requestedExecutionDate": "2020-01-01T08:00:00.000+02:00",
+              "paymentId": {
+                "endToEndId": "MyEndToEndId123",
+                "instructionId": "${json-unit.regex}[a-z0-9]{32}"
+              },
+              "instructedAmount": {
+                "amount": 10.01,
+                "currency": "EUR"
+              },
+              "remittanceInformation": {
+                "unstructured": [
+                  "MyRemittanceInformation123"
+                ]
+              }
+            }
+          ],
+          "debtorAccount": {
+            "iban": "FR7613807008043001965405255"
+          },
+          "initiatingParty": {
+            "name": "myMerchant"
+          },
+          "supplementaryData": {
+            "acceptedAuthenticationApproach": [
+              "REDIRECT"
+            ],
+            "successfulReportUrl": "https://www.yolt.com/callback/payment?state=state",
+            "unsuccessfulReportUrl": "https://www.yolt.com/callback/payment?state=state"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "X-Frame-Options": "DENY",
+      "Transfer-Encoding": "chunked",
+      "Content-Type": "application/json",
+      "Location": "https://psd2.aspsp/payment-requests/"
+    },
+    "jsonBody": {
+      "_links": {
+        "consentApproval": {
+          "href": "https://psd2.aspsp/consent-approval"
+        }
+      },
+      "appliedAuthenticationApproach": "REDIRECT"
+    }
+  }
+}

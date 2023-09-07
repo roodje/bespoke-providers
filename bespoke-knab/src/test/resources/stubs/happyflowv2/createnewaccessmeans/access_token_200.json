@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/connect/token",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;\\d?charset=UTF-8)?"
+      },
+      "Cache-Control": {
+        "equalTo": "no-cache"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=my-awesome-authorization-code"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback-dev"
+      },
+      {
+        "contains": "client_id=d3de0198-6738-4784-92d0-a3e5e0894413"
+      }
+    ],
+    "basicAuthCredentials": {
+      "username": "d3de0198-6738-4784-92d0-a3e5e0894413",
+      "password": "d3de0198-6738-4784-92d0-a3e5e0894414"
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "user-access-token",
+      "expires_in": 3600,
+      "token_type": "Bearer",
+      "refresh_token": "user-refresh-token",
+      "scope": "psd2 offline_access AIS:some-consent-id"
+    },
+    "headers": {
+      "Content-Type": "application/json; charset=UTF-8"
+    }
+  }
+}

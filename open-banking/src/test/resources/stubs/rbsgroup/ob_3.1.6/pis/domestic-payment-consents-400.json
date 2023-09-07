@@ -1,0 +1,64 @@
+{
+  "request": {
+    "url": "/v3.1/pisp/domestic-payment-consents",
+    "method": "POST",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Content-Type": {
+        "equalTo": "application/json;charset=UTF-8"
+      },
+      "x-idempotency-key": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"Data\":{\"Initiation\":{\"InstructionIdentification\":\"${json-unit.any-string}\",\"EndToEndIdentification\":\"\",\"InstructedAmount\":{\"Amount\":\"0.01\",\"Currency\":\"GBP\"},\"CreditorAccount\":{\"SchemeName\":\"UK.OBIE.IBAN\",\"Identification\":\"98765432109876\", \"Name\" : \"P. Jantje\"},\"RemittanceInformation\":{\"Unstructured\":\"SomeRandomMessage\",\"Reference\":\"SomeRandomMessage2\"}}},\"Risk\":{\"PaymentContextCode\":\"PartyToParty\"}}",
+        "ignoreArrayOrder": true
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "Code": "400 BadRequest",
+      "Id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+      "Message": "Invalid request parameters.",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Field.Missing",
+          "Message": "End to end identification is missing",
+          "Path": "Data.Initiation.InstructionIdentification",
+          "Url": "<url to the api reference for Payment Inititaion API>"
+        },
+        {
+          "ErrorCode": "UK.OBIE.Unsupported.Scheme",
+          "Message": "Scheme name supplied is not supported",
+          "Path": "Data.Initiation.CreditorAccount.SchemeName",
+          "Url": "<url to the online documentation referring supported scheme names>"
+        }
+      ]
+    },
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Frame-Options": "DENY",
+      "x-fapi-interaction-id": "aa997d0c-9f4f-4d6b-ad57-cfd440e5bdd8",
+      "Set-Cookie": [
+        "f5avrbbbbbbbbbbbbbbbb=CCODBDEPDCEDBDPMEHLABDGKLENHPOKHJBLCMFIJKOABBNNBEHFICLKEACGGBIMPILLDOBKBONMIHLJHPNKAILJEIIPLFOCMFMNBBFKLDLMEIKDDNLBAHMEHPKNADKHC; HttpOnly; secure; Domain=api.rbs.co.uk; Path=/ob_rbs/open-banking/v1.1",
+        "f5avrbbbbbbbbbbbbbbbb=POPGILLPFKDJLIBAFFAJBEJGGFHNABOIBKMNLNBGKDFGJOHBNEGDEDLEJBEDOPFOIEBDPLFFONHMFAINFBIANEAEIIFOJHHDJNOEKAKEDAKMOBPMEJJJNFNHGCKEBAGG; HttpOnly; secure"
+      ],
+      "Content-Type": "application/json;charset=UTF-8",
+      "Date": "Thu, 24 Jan 2019 10:05:13 GMT",
+      "Server": ""
+    }
+  }
+}

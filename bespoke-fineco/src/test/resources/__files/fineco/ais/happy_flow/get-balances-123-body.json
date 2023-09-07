@@ -1,0 +1,32 @@
+{
+  "account": {
+    "iban": "IT31X0301503200000003517230",
+    "currency": "EUR"
+  },
+  "balances": [
+    {
+      "balanceType": "interimAvailable",
+      "creditLimitIncluded": true,
+      "balanceAmount": {
+        "currency": "EUR",
+        "amount": "6000.00"
+      }
+    },
+    {
+      "balanceType": "forwardAvailable",
+      "creditLimitIncluded": true,
+      "balanceAmount": {
+        "currency": "EUR",
+        "amount": "-500.00"
+      }
+    },
+    {
+      "balanceType": "interimBooked",
+      "creditLimitIncluded": false,
+      "balanceAmount": {
+        "currency": "EUR",
+        "amount": "-1000.00"
+      }
+    }
+  ]
+}

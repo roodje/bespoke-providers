@@ -1,0 +1,56 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/accounts/3/transactions",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "web-api-key": {
+        "equalTo": "beac2259-aa52-4225-9356-e3195120d43d"
+      },
+      "authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "content-type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "RO49RNCB0002000000010021",
+        "product": "Cont curent ORG ROL",
+        "currency": "RON"
+      },
+      "transactions": {
+        "booked": [],
+        "pending": [],
+        "_links": {
+          "self": {
+            "href": "/v1/accounts/3/transactions"
+          },
+          "account": {
+            "href": "/v1/accounts/"
+          }
+        }
+      }
+    }
+  }
+}

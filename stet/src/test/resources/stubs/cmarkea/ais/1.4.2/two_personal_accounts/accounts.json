@@ -1,0 +1,86 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/psd2/v1/accounts",
+    "headers": {
+      "Accept": {
+        "matches": "application/hal\\+json;charset=utf-8;version=1.4.2"
+      },
+      "Digest": {
+        "matches": "SHA-256=([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "Signature": {
+        "matches" : "keyId=\"https://test.qseal.certificate.com/[a-zA-Z0-9:]{59}.pem\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) x-request-id digest\", signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Authorization": {
+        "matches": "Bearer accessToken123456701"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "TE0000003",
+          "bicFi": "FTNOFRP1XXX",
+          "accountId": {
+            "iban": "FR7614518000000000000000003",
+            "currency": "EUR"
+          },
+          "name": "COMPTE COURANT : ROLLAND JOHN",
+          "details": "usage:PRIV;owner:ROLLAND JOHN",
+          "usage": "PRIV",
+          "cashAccountType": "CACC",
+          "psuStatus": "Account Holder",
+          "_links": {
+            "balances": {
+              "href": "/psd2/v1/accounts/TE0000003/balances"
+            },
+            "transactions": {
+              "href": "/psd2/v1/accounts/TE0000003/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "TE0000002",
+          "bicFi": "FTNOFRP1XXX",
+          "accountId": {
+            "iban": "FR7614518000000000000000002",
+            "currency": "EUR"
+          },
+          "name": "COMPTE COURANT : LE GALL MARC",
+          "details": "usage:PRIV;owner:LE GALL MARC",
+          "usage": "PRIV",
+          "cashAccountType": "CACC",
+          "psuStatus": "Attorney",
+          "_links": {
+            "balances": {
+              "href": "/psd2/v1/accounts/TE0000002/balances"
+            },
+            "transactions": {
+              "href": "/psd2/v1/accounts/TE0000002/transactions"
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/psd2/v1/accounts"
+        },
+        "endUserIdentity": {
+          "href": "/psd2/v1/end-user-identity"
+        },
+        "beneficiaries": {
+          "href": "/psd2/v1/trusted-beneficiaries"
+        }
+      }
+    }
+  }
+}

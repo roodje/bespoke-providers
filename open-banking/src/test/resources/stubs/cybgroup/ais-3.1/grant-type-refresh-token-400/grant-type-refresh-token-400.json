@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth2/token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "001728392JD873NNHY"
+      },
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF\\-8)?"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "basicAuthCredentials": {
+      "username": "someClientId",
+      "password": "someClientSecret"
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=refreshToken"
+      },
+      {
+        "contains": "scope=openid+accounts"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "Code": "400 Bad Request",
+      "Id": "5f9513c3-f976-4d11-bda6-2e94647e0e14",
+      "Message": "The request is invalid",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.BadRequest",
+          "Message": "The request is invalid"
+        }
+      ]
+    }
+  }
+}

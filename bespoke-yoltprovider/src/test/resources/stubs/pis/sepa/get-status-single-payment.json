@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/pis/sepa/single/3acc39d0-3e38-4140-b8c4-ff53c9b0f5d3/status",
+    "headers": {
+      "digest": {
+        "equalTo": "SHA-256=9bN2Lx69pDspN7NgRsaUkX/Jz8KG2HOOy9Sc1ksfZ+0="
+      },
+      "signature": {
+        "equalTo": "\"keyId=\"999b371f-926e-49a9-b23d-e594d5ff47c3\",algorithm=\"SHA256withRSA\"\""
+      },
+      "client-id": {
+        "equalTo": "6f16d556-2845-45c4-a3bd-73054dacada5"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "paymentId": "3acc39d0-3e38-4140-b8c4-ff53c9b0f5d3",
+      "paymentStatus": "INITIATED"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

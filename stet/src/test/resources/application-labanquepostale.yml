@@ -1,0 +1,25 @@
+lovebird:
+  stet:
+    labanquepostalegroup:
+      labanquepostale:
+        paginationLimit: 1000
+        registrationUrl: https://localhost:${wiremock.server.https-port}/register
+        regions:
+          - code: LBP
+            name: "La Banque Postale Main"
+            baseUrl: https://localhost:${wiremock.server.https-port}/v1
+            tokenUrl: https://localhost:${wiremock.server.https-port}/token
+            authUrl: https://labanquepostale.com/authorize
+yolt:
+  qseal-certificate-exposure:
+    enabled: true
+    base-url: https://test.qseal.certificate.com
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

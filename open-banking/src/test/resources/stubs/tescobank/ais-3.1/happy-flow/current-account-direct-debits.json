@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/10000000000001449160/direct-debits",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0017440000hdQV5CCT"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "DirectDebit": [
+          {
+            "AccountId": "10000000000001449160",
+            "DirectDebitId": "0046551406",
+            "MandateIdentification": "BETTER0855360",
+            "DirectDebitStatusCode": "Inactive",
+            "Name": "GREENWICH LEISURE",
+            "PreviousPaymentDateTime": "2019-10-10T00:00:00+00:00",
+            "PreviousPaymentAmount": {
+              "Amount": "20.95",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://ob.api.tescobank.com/open-banking/v3.1/aisp/accounts/10000000000001449160/direct-debits"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

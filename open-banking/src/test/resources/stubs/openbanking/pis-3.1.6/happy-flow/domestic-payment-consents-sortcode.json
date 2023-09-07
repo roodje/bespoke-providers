@@ -1,0 +1,86 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/yoltbank/openbanking/pisp/domestic-payment-consents",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer DEjYK7CWVFHi71RteqxmKv1NO2a"
+      },
+      "Accept": {
+        "matches": "^application/json$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "EndToEndIdentification": "35B64F93",
+              "InstructedAmount": {
+                "Amount": "0.01",
+                "Currency": "GBP"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SORTCODEACCOUNTNUMBER",
+                "Identification": "1802968485593088",
+                "Name": "Jordan Bell"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "Remittance Unstructured",
+                "Reference": "REF0123456789-0123"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-jws-signature": "eyJhbGciOiJSUzM4NCIsImtpZCI6InlvbHRiYW5rIiwiamt1IjoiIiwiYjY0IjpmYWxzZSwiY3JpdCI6WyJiNjQiXX0..OaYh9VKZg4FxlwJJ2CycpaknLv17oEgZglu1-lTkerhoeYdQU2lMrn6tSi4CUIYFm5qhXfPYzqcIGZh5cAAdA0GfbPK9Q-Lx80xYRJh4FZwkt6qCrvHRtqhv8AEkmWMYxlCYcGUht_OfPrPuiI9pG456pxa-AsvwBZ-cJFBa8Se-OSRViTEdbjDme7NkFL-b9RaCg73YxC15l1XupvQX5NlXmk-Vql6wcVJb4pf2J_oA3DvJc1J6Q68I6ovYQatY_wAUgsseTk7PyK7cdZM5MZtjZNaARyPeUBVJYi44Cj6gdUJ-v-cvhvbZedg_5lqZg7XbUKoFYnKm6k38MLDf_mHmbS5igb3e75niwkMdoAJhacEn5Nzk1qWv_xAo0PqA6wQhpk3mSYeZzeypwvJZFIvJmHgXXq4oGG8cKFdmK7vua7DhIPJF_RSq9Wt2d-Q-vvQwWAIhoquPAqxwq8BVJkA31D3BOimpQCoORH6RV7wlVPkZS3nJwf5HDvOLBb-x2D6hM1AoQZo3S04Xu7jGHa_DqImF8knyR-J1m9cbc9QtKv20VUB0TzIURaSE7ZV2aRs-_F1CaVNX4qv_mgfT6lKAQVh8ljUJSekIKe_LEJ2g13mV32Huhvr9paGzvXjXg5fpUGo3u0wfVhzhoeEva8y-P9nc_99QkAzUoFe7I1E"
+    },
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "462d1a04-4g74-42d7-ba69-0bbe1e5fef68",
+        "Status": "AwaitingAuthorisation",
+        "StatusUpdateDateTime": "2020-06-16T09:50:51+00:00",
+        "CreationDateTime": "2020-06-16T09:50:51+00:00",
+        "Initiation": {
+          "InstructionIdentification": "20200515101750462-522347ee-5e0",
+          "EndToEndIdentification": "35B64F93",
+          "InstructedAmount": {
+            "Amount": "0.01",
+            "Currency": "GBP"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SORTCODEACCOUNTNUMBER",
+            "Identification": "1802968485593088",
+            "Name": "Jordan Bell"
+          },
+          "RemittanceInformation": {
+            "Unstructured": "Remittance Unstructured",
+            "Reference": "REF0123456789-0123"
+          }
+        }
+      },
+      "Links": {
+        "Self": "/yoltbank/openbanking/pisp/domestic-payment-consents/462d1a04-4g74-42d7-ba69-0bbe1e5fef68"
+      },
+      "Meta": {
+        "TotalPages": 1
+      },
+      "Risk": {
+        "PaymentContextCode": "PartyToParty"
+      }
+    }
+  }
+}

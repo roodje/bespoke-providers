@@ -1,0 +1,58 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/v1/payments/sepa-credit-transfers",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Authorization": {
+        "equalTo": "someClientId"
+      },
+      "PSU-IP-Address": {
+        "matches": "\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "debtorAccount": {
+            "iban": "NL64MAART0948305290",
+            "currency": "EUR"
+          },
+          "instructedAmount": {
+            "currency": "EUR",
+            "amount": "123.50"
+          },
+          "creditorAccount": {
+            "iban": "NL55WIND0000012345",
+            "currency": "EUR"
+          },
+          "creditorName": "John Doe",
+          "remittanceInformationUnstructured": "payment for 11 currant buns"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "Content-Type": "application/json",
+      "Location": "",
+      "ASPSP-SCA-Approach": "REDIRECT",
+      "X-Request-ID": "a8da60a1-4a81-4c59-bf24-a257244c2fd0"
+    },
+    "jsonBody": {
+      "tppMessages": [
+        {
+          "category": "ERROR",
+          "code": "INTERNAL_SERVER_ERROR",
+          "text": "An internal server error occurred."
+        }
+      ]
+    }
+  }
+}

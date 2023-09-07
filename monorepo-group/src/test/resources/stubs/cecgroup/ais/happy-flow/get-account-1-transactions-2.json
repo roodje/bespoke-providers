@@ -1,0 +1,89 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/cec/prod/psd29c/v1/accounts/436976287219712/transactions",
+    "queryParameters": {
+      "page": {
+        "equalTo": "2"
+      }
+    },
+    "headers": {
+      "x-request-id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "X-IBM-Client-Id": {
+        "equalTo": "bb07276b-0a8a-41de-b95a-6c54a67a4d1c"
+      },
+      "oauth-1": {
+        "equalTo": "TEST_ACCESS_TOKEN"
+      },
+      "consent-id": {
+        "equalTo": "c3e66a4b-d6de-4c18-9195-303397ae13c3"
+      },
+      "tpp-signature-certificate": {
+        "matches": "^MII.*$"
+      },
+      "signature": {
+        "matches": "^(keyId=\"13299021239615735660\",algorithm=\"rsa-sha512\",headers=\"digest psu-ip-address x-request-id\",signature=).*$"
+      },
+      "digest": {
+        "matches": "^sha.*$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "accept": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "RO7612345987650123456789014"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "2234567",
+            "creditorName": "John Doe",
+            "creditorAccount": {
+              "iban": "DE67100100101306118606"
+            },
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "233.67"
+            },
+            "bookingDate": "2017-09-25",
+            "valueDate": "2017-09-26",
+            "remittanceInformationUnstructured": "Example 4"
+          }
+        ],
+        "pending": [
+          {
+            "transactionId": "22345610",
+            "creditorName": "Someone else",
+            "creditorAccount": {
+              "iban": "FR7612345987650123456789015"
+            },
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-65.03"
+            },
+            "valueDate": "2017-11-26",
+            "remittanceInformationUnstructured": "Example 5"
+          }
+        ],
+        "_links": {
+          "account": {
+            "href": "/cec/prod/psd29c/v1/accounts/436976287219712"
+          }
+        }
+      }
+    }
+  }
+}

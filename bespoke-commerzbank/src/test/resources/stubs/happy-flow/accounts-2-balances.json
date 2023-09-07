@@ -1,0 +1,53 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/berlingroup/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e81e/balances",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer SOME_ACCESS_TOKEN"
+      },
+      "Consent-ID": {
+        "equalTo": "1234-wertiq-983"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "192.168.16.5"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Request-ID": "1b3ab8e8-0fd5-43d2-946e-d75958b172e7"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "FR7612345987650123456789014"
+      },
+      "balances": [
+        {
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": "500.00"
+          },
+          "balanceType": "closingBooked",
+          "referenceDate": "2017-10-25"
+        },
+        {
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": "900.00"
+          },
+          "balanceType": "expected",
+          "lastChangeDateTime": "2017-10-25T15:30:35.035Z"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPattern": "/v1/payments/8325P3346070108S0PD",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer GPgYglX4sO1WhzfChx4tmjr4y7Qg"
+      },
+      "API-Key": {
+        "equalTo": "7zacIF8Cu5o3XF4gUll4sRGuI2gDYiCA"
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Content-Length": {
+        "equalTo": "0"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "X-Request-ID": "a8da60a1-4a81-4c59-bf24-a257244c2fd0",
+      "Trace-Id": "07ca8f04-9847-4e11-bd30-cd7d2a92961d",
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accountNumber": "NL12ABNA9999876523",
+      "transactionId": "8325P3346070108S0PD",
+      "status": "EXECUTED",
+      "accountHolderName": "John Doe"
+    }
+  }
+}

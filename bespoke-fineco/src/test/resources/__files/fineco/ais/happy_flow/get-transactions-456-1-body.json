@@ -1,0 +1,24 @@
+{
+  "cardAccount": {
+    "maskedPan": "1234567891234567"
+  },
+  "cardTransactions": {
+    "booked": [
+      {
+        "cardTransactionId": "3b5d3cd3-3207-8484-3589-f08e46a0045a",
+        "transactionAmount": {
+          "currency": "EUR",
+          "amount": "255.67"
+        },
+        "transactionDetails":"causale pagamento",
+        "transactionDate": "2019-02-05",
+        "bookingDate": "2018-11-05",
+        "maskedPAN": "1234567891234567",
+        "invoiced": true
+      }
+    ],
+    "_links": {
+      "next": "https://sandbox.api.finceobank.com/v1/card-accounts/456/transactions/next"
+    }
+  }
+}

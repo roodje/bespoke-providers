@@ -1,0 +1,71 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/123/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf9VgAAI"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "transformers": [
+      "response-template"
+    ],
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "123",
+            "Amount": {
+              "Amount": "796.58",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "Expected",
+            "DateTime": "2021-02-08T00:00:00Z"
+          },
+          {
+            "AccountId": "123",
+            "Amount": {
+              "Amount": "769.96",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2021-02-08T00:00:00Z"
+          },
+          {
+            "AccountId": "123",
+            "Amount": {
+              "Amount": "804.57",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "OpeningAvailable",
+            "DateTime": "2021-02-08T00:00:00Z"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://apis.firsttrustbank.co.uk/api/open-banking/v3.1/aisp/accounts/93837830728062/balances"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

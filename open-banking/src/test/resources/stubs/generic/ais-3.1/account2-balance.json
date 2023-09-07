@@ -1,0 +1,58 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/aisp/accounts/1234/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "2.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2018-07-21T11:50:03+01:00"
+          },
+          {
+            "AccountId": "123",
+            "Amount": {
+              "Amount": "2.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2018-07-21T11:50:03+01:00"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/aisp/accounts/1234/balances"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

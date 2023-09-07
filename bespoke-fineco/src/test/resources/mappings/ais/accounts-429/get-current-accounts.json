@@ -1,0 +1,29 @@
+{
+  "request": {
+    "url": "/v1/accounts",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "consentId"
+      }
+    }
+  },
+  "response": {
+    "status": 429,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "tppMessages": [
+        {
+          "code": "ACCESS_EXCEEDED",
+          "category": "ERROR",
+          "text": "The access on the account has been exceeding the consented multiplicity per day"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "request": {
+    "url": "/v3.1/pisp/domestic-payments",
+    "method": "POST",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_ACCESS_TOKEN"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Content-Type": {
+        "equalTo": "application/json;charset=UTF-8"
+      },
+      "x-idempotency-key": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"Data\":{\"ConsentId\":\"ca0542b33fd34fcbaacbe0ea02d0a0aa\",\"Initiation\":{\"InstructionIdentification\":\"2513bfeg\",\"EndToEndIdentification\":\"35B64F93\",\"InstructedAmount\":{\"Amount\":\"0.10\",\"Currency\":\"GBP\"},\"CreditorAccount\":{\"SchemeName\":\"UK.OBIE.SortCodeAccountNumber\",\"Identification\":\"12345678901234\",\"Name\":\"P. Jantje\"},\"RemittanceInformation\":{\"Unstructured\":\"SomeRandomMessage\",\"Reference\":\"SomeRandomMessage2\"}}},\"Risk\":{\"PaymentContextCode\":\"PartyToParty\"}}",
+        "ignoreArrayOrder": true
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "Code": "400 BadRequest",
+      "Id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+      "Message": "Initiation does not match",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Field.Missing",
+          "Message": "Instructed amount does not match",
+          "Path": "Data.Initiation.InstructedAmount.Amount",
+          "Url": "<url to the api reference for Payment Inititaion API>"
+        }
+      ]
+    },
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Frame-Options": "DENY",
+      "x-fapi-interaction-id": "4afceace-6ba4-4894-9441-aaef7f7a9004",
+      "Set-Cookie": [
+        "f5avrbbbbbbbbbbbbbbbb=JFBCGNCOGHBBMHDMLMJKJPBNKGGJDKBFDHKPEFLPIHGIFOPENNJNLFKDOAONFOCIPMEDJCBPAGPJODPABOFAGPCAENOMJGLKLLLABGPJOGBDEAPHIINEOIHMIGKOFNFN; HttpOnly; secure; Domain=api.natwest.com; Path=/open-banking/v1.1",
+        "f5avrbbbbbbbbbbbbbbbb=FKHECGAFBCFNKMPEAKHBLCNPELEHKEAMIMPOOIHKLIKGPNKLJJDJOICLEEKFJMFGCGPDMJONAGFKINEEJLFAFCMJENFNOPAKGKGFCOPNGJDFGOPLMIJLBLGFABLKOAPA; HttpOnly; secure"
+      ],
+      "Content-Type": "application/json;charset=UTF-8",
+      "Date": "Mon, 28 Jan 2019 10:16:51 GMT",
+      "Server": ""
+    }
+  }
+}

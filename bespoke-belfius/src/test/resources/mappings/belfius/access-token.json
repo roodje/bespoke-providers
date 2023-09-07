@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/token",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF\\-8)?"
+      },
+      "Authorization": {
+        "matches": "Basic U09NRV9DTElFTlRfSUQ6U09NRV9DTElFTlRfU0VDUkVU"
+      },
+      "Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Accept": {
+        "equalTo": "application/vnd.belfius.api+json; version=2"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback-acc"
+      },
+      {
+        "contains": "code=25sdfsdfsd5345"
+      },
+      {
+        "contains": "code_verifier=sfs353DRT345D"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "BELFIUS_ACCESS_TOKEN",
+      "refresh_token": "BELFIUS_REFRESH_TOKEN",
+      "token_type": "Bearer",
+      "expires_in": 3600,
+      "scope": "AIS",
+      "logical_id": "SOME_LOGICAL_ID"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

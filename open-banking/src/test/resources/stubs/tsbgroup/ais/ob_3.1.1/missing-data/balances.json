@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/apis/open-banking/v3.1/aisp/accounts/123/balances",
+    "headers": {
+      "x-fapi-financial-id": {
+        "equalTo": "003882287203T83JKK"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+      },
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "12345"
+    },
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "122",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2018-07-21T11:50:03+01:00",
+            "Amount": {
+              "Amount": "1.00"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/aisp/accounts/123/balances",
+        "First": "/aisp/accounts/123/balances",
+        "Prev": "",
+        "Next": "/aisp/accounts/123/balances?page=2",
+        "Last": "/aisp/accounts/123/balances?page=2"
+      },
+      "Meta": {
+        "TotalPages": 2
+      }
+    }
+  }
+}

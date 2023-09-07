@@ -1,0 +1,91 @@
+# CBC 
+[Current open problems on our end][1]
+
+## BIP overview 
+
+|                                       |                                                                                                       |
+|---------------------------------------|-------------------------------------------------------------------------------------------------------|
+| **Country of origin**                 | Belgium                                                                                               | 
+| **Site Id**                           | 2d947326-087b-4879-9803-0a546beb4db8                                                                  |
+| **Standard**                          | [Berlin Group Standard][2]                                                                            |
+| **Contact**                           | E-mail: developer@kbc.be                                                                              |
+| **Developer Portal**                  | https://developer.kbc.be/                                                                             | 
+| **Account SubTypes**                  | CURRENT_ACCOUNT                                                                                       |
+| **IP Whitelisting**                   | no                                                                                                    |
+| **AIS Standard version**              | 2.0.9                                                                                                 |
+| **PISP Standard version**             | not implemented                                                                                       |
+| **Auto-onboarding**                   | no                                                                                                    |
+| **Requires PSU IP address**           | no                                                                                                    |
+| **Type of certificate**               | EIDAS                                                                                                 |
+| **Mutual TLS Authentication Support** | https://multimediafiles.kbcgroup.eu/ng/multimedia/published/KBC/Pronovix/MutualSSL%20documentatie.pdf |
+| **Repository**                        | https://git.yolt.io/providers/bespoke-kbc                                                             |
+
+## Links - production 
+
+|                            |                                                 |
+|----------------------------|-------------------------------------------------|
+| **Base URL**               | https://psd2.api.cbc.be/psd2/v2                 | 
+| **Authorization Endpoint** | https://idp.kbc.com/ASK/oauth/authorize/1       |
+| **Token endpoint**         | https://openapi.kbc-group.com/ASK/oauth/token/1 |
+
+## Client configuration overview
+
+|                           |                             |
+|---------------------------|-----------------------------|
+| **Transport key id**      | eIDAS transport key id      |
+| **Transport certificate** | eIDAS transport certificate |
+
+## Registration details
+According to documentation, no registration is needed. A valid eIDAS certificate should be enough to consume the AIS API.
+
+### Certificate rotation
+As the bank does not require any certification and there is no auto onboarding in place we can simply start using a new certificate.
+
+### Connection overview
+Useful information can be found on the [Developer Portal][3] and in the [Authorization Guide][4]
+The AIS API swagger downloaded from bank can be found: [kbc-be-psd2-api.yaml][5]. Things worth noticing:
+* There is a dynamic flow and the IBAN is required upfront to generate the consent page. **/consents** call is required prior to returning the authorization URL.
+* There is no separate call for balances, they are retrieved together with accounts with the use of **withBalances** query parameter
+* eIDAS's **organization identifier** should be provided as **client_id**
+
+Simplified sequence diagram:
+```mermaid
+sequenceDiagram
+  autonumber
+  participant PSU (via Yolt app);
+  participant Yolt (providers);
+  participant ASPSP;
+  PSU (via Yolt app)->>+Yolt (providers): getLoginInfo()
+  Yolt (providers)->>-PSU (via Yolt app): IBAN input form
+  PSU (via Yolt app)->>+Yolt (providers): createAccessMeans() with PSU's IBAN
+  Yolt (providers)->>+ASPSP: calls /consents with IBAN
+  ASPSP->>-Yolt (providers): consent ID
+  Yolt (providers)->>+PSU (via Yolt app): authorization URL containing consent ID
+  PSU (via Yolt app)->>+ASPSP: authenticates via web/app
+  ASPSP->>-PSU (via Yolt app): redirect to Yolt with authCode=xxx
+  activate Yolt (providers)
+  PSU (via Yolt app)->>+Yolt (providers): createAccessMeans()/fetchData()
+  Yolt (providers)->>+ASPSP: calls /token with authCode
+  ASPSP-->>Yolt (providers): {access_token:"xx",expires_in:86400,refresh_token:"yy"}
+  loop Various data fetches
+  Yolt (providers)->>+ASPSP: /accounts, /transactions
+  ASPSP->>-Yolt (providers): accounts with balances, transactions
+  end
+  Yolt (providers)-->>PSU (via Yolt app): user data
+  deactivate Yolt (providers)
+```
+  
+## User Site deletion
+This provider does NOT implement `onUserSiteDelete` method. 
+
+## Business and technical decisions
+
+
+## External links
+* [Current open problems on our end][1]
+
+[1]: <https://yolt.atlassian.net/issues/?jql=project%20%3D%20%22C4PO%22%20AND%20component%20%3D%20%20AND%20status%20!%3D%20Done%20AND%20Resolution%20%3D%20Unresolved%20ORDER%20BY%20status%20%3D%20CBC>
+[2]: <https://www.berlin-group.org/>
+[3]: <https://kbc.layer7.saas.broadcom.com/admin/login>
+[4]: <https://multimediafiles.kbcgroup.eu/ng/published/pdf/kbc-user-guide-authorization-api.pdf>
+[5]: ./swagger/kbcgroup/kbc-be-psd2-api.yaml

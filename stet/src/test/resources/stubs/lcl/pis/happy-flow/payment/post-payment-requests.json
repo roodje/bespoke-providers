@@ -1,0 +1,108 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/pisp/1.0/payment-requests",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Signature": {
+        "matches": "keyId=\"57960876493606644482050706203694200967\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) digest date\", signature=\"(.*)\""
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{12}"
+      },
+      "Date": {
+        "matches": "[A-Z][a-z]{2}, [0-9]{1,2} [A-Z][a-z]{2} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} CES?T"
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.beneficiary.creditor[?(@.name == 'myMerchant')]"
+      },
+      {
+        "matchesJsonPath": "$.beneficiary.creditorAccount[?(@.iban == 'FR7613807008043001965406128')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.numberOfTransactions == 1)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.chargeBearer == 'SLEV')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.creationDateTime =~ /^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}Z$/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.paymentInformationId =~ /^[a-zA-Z0-9]+/i)]"
+      },
+      {
+        "matchesJsonPath": "$.paymentTypeInformation[?(@.serviceLevel == 'SEPA')]"
+      },
+      {
+        "matchesJsonPath": "$.paymentTypeInformation[?(@.categoryPurpose == 'CASH')]"
+      },
+      {
+        "matchesJsonPath": "$.paymentTypeInformation[?(@.instructionPriority == 'NORM')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].[?(@.requestedExecutionDate =~ /2020-01-01T08:00:00.000\\+(02:00|01:00)/i)]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].paymentId[?(@.instructionId =~ /[a-zA-Z0-9]{32}/i)]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].paymentId[?(@.endToEndId == 'MyEndToEndId123')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].instructedAmount[?(@.currency == 'EUR')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].instructedAmount[?(@.amount == '10.01')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].remittanceInformation[?(@.unstructured[0] == 'MyRemittanceInformation123')]"
+      },
+      {
+        "matchesJsonPath": "$.debtorAccount[?(@.iban == 'FR7613807008043001965405255')]"
+      },
+      {
+        "matchesJsonPath": "$.initiatingParty[?(@.name == 'myMerchant')]"
+      },
+      {
+        "matchesJsonPath": "$.supplementaryData[?(@.acceptedAuthenticationApproach[0] == 'REDIRECT')]"
+      },
+      {
+        "matchesJsonPath": "$.supplementaryData[?(@.successfulReportUrl == 'https://www.yolt.com/callback/payment/?state=state')]"
+      },
+      {
+        "matchesJsonPath": "$.supplementaryData[?(@.unsuccessfulReportUrl == 'https://www.yolt.com/callback/payment/?state=state')]"
+      }
+        ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "X-Frame-Options": "DENY",
+      "Transfer-Encoding": "chunked",
+      "Content-Type": "application/json",
+      "Location": "https://psd2.aspsp/payment-requests/123"
+    },
+    "jsonBody": {
+      "_links": {
+        "consentApproval": {
+          "href": "https://psd2.aspsp/consent-approval"
+        }
+      },
+      "appliedAuthenticationApproach": "REDIRECT"
+    }
+  }
+}

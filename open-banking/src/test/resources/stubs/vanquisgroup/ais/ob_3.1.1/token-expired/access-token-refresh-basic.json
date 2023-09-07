@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "scope=accounts"
+      },
+      {
+        "contains": "refresh_token=refreshToken"
+      },
+      {
+        "contains": "client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "error_description": "unknown, invalid, or expired refresh token",
+      "error": "invalid_grant"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

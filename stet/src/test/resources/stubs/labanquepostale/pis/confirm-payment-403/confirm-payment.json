@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/payment-requests/98ff0a93-7f37-41a9-8563-214f898c7b1c/confirmation",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer TEST_CCG_TOKEN"
+      },
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "psuAuthenticationFactor": "403"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 403,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "timestamp": "2018-03-30T16:06:27.499+0000",
+      "status": 403,
+      "error": "Forbidden",
+      "message": "Something went wrong",
+      "path": "/v1/payment-requests/id/confirmation"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/v2/psd2/me/accounts/(10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4|D208D3D2D4D3014B9DE3770A222E11BAF2CFD59E44DDA9400A654D5586A29018)/balance",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer test-access-token"
+      },
+      "Signature": {
+        "matches": "keyId=\"SN=(.*)\",algorithm=\"rsa-sha256\",headers=\"request-target date digest x-request-id\",signature=\"(.*)\""
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Date": {
+        "equalTo": "Mon, 12 Jan 1970 13:46:40 GMT"
+      },
+      "Request-Target": {
+        "matches": "get /v2/psd2/me/accounts/(10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4|D208D3D2D4D3014B9DE3770A222E11BAF2CFD59E44DDA9400A654D5586A29018)/balance"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "data": {
+        "type": "balanceMeResponse",
+        "attributes": {
+          "availableBalance": {
+            "value": 285570.24,
+            "currency": "EUR"
+          }
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+

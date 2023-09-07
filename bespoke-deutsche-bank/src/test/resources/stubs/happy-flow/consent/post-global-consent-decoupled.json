@@ -1,0 +1,67 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/ais/ES/DB/v1/consents",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "psu-id": {
+        "equalTo": "custom-username"
+      },
+      "psu-id-type": {
+        "equalTo": "ES_ONLB_DB"
+      },
+      "content-type": {
+        "equalTo": "application/json"
+      },
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "tpp-redirect-uri": {
+        "equalTo": "https://yolt.com/callback?state=7c3e98de-0239-4868-ada8-aefb5384ef0a"
+      },
+      "tpp-nok-redirect-uri": {
+        "equalTo": "https://yolt.com/callback?state=7c3e98de-0239-4868-ada8-aefb5384ef0a&error=true"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.access[?(@.allPsd2 == 'allAccounts')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.recurringIndicator == true)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.combinedServiceIndicator == false)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.validUntil =~ /[0-9]{4}-[0-9]{2}-[0-9]{2}/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.frequencyPerDay == 4)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "consentStatus": "received",
+      "consentId": "7a7251ff-45ef-4e24-a4cc-bb77d4ba0b16",
+      "_links": {
+        "self": {
+          "href": "https://localhost:{{request.requestLine.port}}/v1/consents/7a7251ff-45ef-4e24-a4cc-bb77d4ba0b16"
+        },
+        "status": {
+          "href": "https://localhost:{{request.requestLine.port}}/v1/consents/7a7251ff-45ef-4e24-a4cc-bb77d4ba0b16/status"
+        }
+      }
+    }
+  }
+}

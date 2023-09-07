@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/token",
+    "headers": {
+      "x-openbank-stet-version": {
+        "equalTo": "1.4.0.47.develop"
+      },
+      "Content-Type": {
+        "contains": "application/x-www-form-urlencoded"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=authorization-code"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fyolt.com%2Fcallback"
+      },
+      {
+        "contains": "client_id=client-id"
+      },
+      {
+        "contains": "client_secret=client-secret"
+      },
+      {
+        "contains": "scope=aisp"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "access_token":"d5010e19-6e93-4720-af4c-98b9466c126f",
+      "scope":"aisp",
+      "token_type":"bearer",
+      "expires_in":7775999
+    }
+  }
+}

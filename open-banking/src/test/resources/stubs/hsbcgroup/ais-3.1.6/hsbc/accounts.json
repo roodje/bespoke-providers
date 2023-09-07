@@ -1,0 +1,68 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 3zHagXZSPyA6sifIDmqwZ0hLlqq"
+      },
+      "Accept": {
+        "matches": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "73rl9txy4z65hh3e0gg3rr5laqdbmtuohtvn",
+            "Status": "Enabled",
+            "StatusUpdateDateTime": "2020-11-12T03:21:35+00:00",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "Savings",
+            "Description": "FLEX SAVER",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "40864210734180",
+                "Name": "ROBIN H"
+              }
+            ]
+          },
+          {
+            "AccountId": "l8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6",
+            "Status": "Enabled",
+            "StatusUpdateDateTime": "2020-11-11T07:11:04+00:00",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard",
+            "Description": "CREDIT CARD",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.PAN",
+                "Identification": "XXXX XXXX XXXX 2343",
+                "Name": "HOOD,ROBIN/MR"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.1/aisp/accounts"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

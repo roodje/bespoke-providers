@@ -1,0 +1,64 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth-token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf9VgAAI"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "equalTo": "application/json, application/*+json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.test-url.com%2F"
+      },
+      {
+        "contains": "refresh_token=refreshToken"
+      },
+      {
+        "contains": "scope=accounts"
+      },
+      {
+        "contains": "client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer"
+      },
+      {
+        "contains": "client_assertion="
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "0a85daa7-a544-4472-9d16-91715fc5641f",
+      "token_type": "BearerToken",
+      "expires_in": 299,
+      "scope": "accounts",
+      "refresh_token": "23a88b8a-0580-4b50-a0ad-32fb97dcdbae",
+      "application_name": "<>",
+      "client_id": "<>",
+      "developer.email": "example@yolt.com",
+      "api_product_list": "[aisp, pisp]",
+      "issued_at": "1520505852525",
+      "refresh_count": "9",
+      "refresh_token_issued_at": "1520346318962",
+      "refresh_token_status": "approved",
+      "refresh_token_expires_in": 7616311,
+      "state": "53891a3e-0e99-436e-90d9-49c466087b2a",
+      "status": "approved"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

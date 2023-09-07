@@ -1,0 +1,5 @@
+lovebird:
+  olbgroup:
+    olb:
+      baseUrl: https://localhost:${wiremock.server.https-port}/xs2a/OLB
+      paginationLimit: 1000

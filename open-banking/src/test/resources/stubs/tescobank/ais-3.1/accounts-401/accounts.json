@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0017440000hdQV5CCT"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 401,
+    "jsonBody": {
+      "Code": "401",
+      "Id": "553a1558-8aea-453d-8cf7-5dca6e9b9d9f",
+      "Message": "Invalid access token",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Field.Invalid",
+          "Message": "Unauthorized"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "d0a9b85f-9715-4d16-a33d-4323ceab5254"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0017440000hdQV5CCT"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "Code": "400 Bad Request",
+      "Id": "5f9513c3-f976-4d11-bda6-2e94647e0e13",
+      "Message": "Consent validation failed. ",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Resource.InvalidConsentStatus",
+          "Message": "The requested Consent ID doesn't exist or do not have valid status. "
+        }
+      ]
+    }
+  }
+}

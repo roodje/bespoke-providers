@@ -1,0 +1,76 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/xs2a-bg/(uk|nl|be_fr|be_nl)/v1/consents",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "signature": {
+        "matches": "keyId=\"SN=b88f9d5b2fabc76c,CA=CN=foo, OU=foo, O=foo, L=foo, ST=foo, C=US\",algorithm=\"rsa-sha256\",headers=\"digest x-request-id\",signature=\"([A-Za-z0-9+/\n])*(=){0,2}([\n])*\""
+      },
+      "digest": {
+        "matches": "SHA-256=([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "tpp-redirect-uri": {
+        "equalTo": "https://yolt.com/callback"
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIICMzCCAZygAwIBAgIJALiPnVsvq8dsMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzAeFw0xMzAzMTkxNTQwMTlaFw0xODAzMTgxNTQwMTlaMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzdGfxi9CNbMf1UUcvDQh7MYBOveIHyc0E0KIbhjK5FkCBU4CiZrbfHagaW7ZEcN0tt3EvpbOMxxc/ZQU2WN/s/wPxph0pSfsfFsTKM4RhTWD2v4fgk+xZiKd1p0+L4hTtpwnEw0uXRVd0ki6muwV5y/P+5FHUeldq+pgTcgzuK8CAwEAAaMPMA0wCwYDVR0PBAQDAgLkMA0GCSqGSIb3DQEBBQUAA4GBAJiDAAtY0mQQeuxWdzLRzXmjvdSuL9GoyT3BF/jSnpxz5/58dba8pWenv3pj4P3w5DoOso0rzkZy2jEsEitlVM2mLSbQpMM+MUVQCQoiG6W9xuCFuxSrwPISpAqEAuV4DNoxQKKWmhVv+J0ptMWD25Pnpxeq5sXzghfJnslJlQND"
+      },
+      "content-type": {
+        "equalTo": "application/json"
+      },
+      "accept": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "\"access\":{\"accounts\":[],\"balances\":[],\"transactions\":[]}"
+      },
+      {
+        "contains": "\"recurringIndicator\":true"
+      },
+      {
+        "contains": "\"validUntil\":"
+      },
+      {
+        "contains": "\"frequencyPerDay\":4"
+      },
+      {
+        "contains": "\"combinedServiceIndicator\":false"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access": {
+        "accounts": [],
+        "balances": [],
+        "transactions": []
+      },
+      "recurringIndicator": true,
+      "validUntil": "2019-05-30",
+      "frequencyPerDay": 4,
+      "lastActionDate": "2019-02-28",
+      "consentStatus": "received",
+      "consentId": "c5bcbf1b-5a3a-45d4-86aa-ed17988e3a63",
+      "authorisationId": "b6fafab4-0ae4-48a9-b192-28f8b1fdc0f9",
+      "_links": {
+        "scaOAuth": "https://xs2a-sandbox.triodos.com/auth/nl/.well-known/openid-configuration",
+        "scaRedirect": "https://xs2a-sandbox.triodos.com/auth/nl/v1/auth?response_type=code&scope=openid+offline_access+AIS%3Ac5bcbf1b-5a3a-45d4-86aa-ed17988e3a63&client_id=client-id&redirect_uri=https://yolt.com/callback",
+        "scaStatus": "/nl/v1/consents/c5bcbf1b-5a3a-45d4-86aa-ed17988e3a63/authorisations/b6fafab4-0ae4-48a9-b192-28f8b1fdc0f9",
+        "self": "/nl/v1/consents/c5bcbf1b-5a3a-45d4-86aa-ed17988e3a63",
+        "status": "/nl/v1/consents/c5bcbf1b-5a3a-45d4-86aa-ed17988e3a63/status"
+      }
+    }
+  }
+}

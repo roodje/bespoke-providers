@@ -1,0 +1,19 @@
+{
+  "AccountId": "30000000000000000000",
+  "Amount": {
+    "Amount": "781.91",
+    "Currency": "GBP"
+  },
+  "CreditDebitIndicator": "Debit",
+  "CreditLine": [{
+    "Amount": {
+      "Amount": "4500.00",
+      "Currency": "GBP"
+    },
+    "Included": false,
+    "Type": "Pre-Agreed"
+  }
+  ],
+  "DateTime": "2021-05-11T13:57:20+01:00",
+  "Type": "Expected"
+}

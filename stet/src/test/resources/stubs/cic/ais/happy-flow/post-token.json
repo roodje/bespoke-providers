@@ -1,0 +1,44 @@
+{
+  "request": {
+    "urlPattern": "/([a-z-]*)/oauth2/token",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF-8)?"
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "client_id=clientId"
+      },
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=authorization_code"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback"
+      },
+      {
+        "contains": "code_verifier=6965646a-e758-4478-8b22-312a96472b856965646a-e758-4478-8b22-312a96472b85"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "access_token": "ACCESS_TOKEN",
+      "refresh_token": "REFRESH_TOKEN",
+      "token_type": "bearer",
+      "expires_in": 10800,
+      "scope": "aisp"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

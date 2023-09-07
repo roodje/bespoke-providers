@@ -1,0 +1,62 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/psd2/v1/accounts/TE0000005/balances",
+    "headers": {
+      "Accept": {
+        "matches": "application/hal\\+json;charset=utf-8;version=1.4.2"
+      },
+      "Digest": {
+        "matches": "SHA-256=([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "Signature": {
+        "matches" : "keyId=\"https://test.qseal.certificate.com/[a-zA-Z0-9:]{59}.pem\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) x-request-id digest\", signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Authorization": {
+        "matches": "Bearer accessToken123456709"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "balances": [
+        {
+          "name": "accounting balance",
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": 587.21
+          },
+          "balanceType": "CLBD",
+          "referenceDate": "2019-02-24T00:00:00"
+        },
+        {
+          "name": "real time balance",
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": 386.15
+          },
+          "balanceType": "XPCD",
+          "referenceDate": "2020-03-18T00:00:00"
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/psd2/v1/accounts/TE0000005/balances"
+        },
+        "transactions": {
+          "href": "/psd2/v1/accounts/TE0000005/transactions"
+        },
+        "parent-list": {
+          "href": "/psd2/v1/accounts"
+        }
+      }
+    }
+  }
+}

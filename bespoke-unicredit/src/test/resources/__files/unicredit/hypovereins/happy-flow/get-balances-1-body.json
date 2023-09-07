@@ -1,0 +1,30 @@
+{
+  "account": {},
+  "balances": [
+    {
+      "balanceType": "expected",
+      "lastChangeDateTime": "2020-10-22T23:11:00+02:00",
+      "creditLimitIncluded": false,
+      "balanceAmount": {
+        "amount": "779.8",
+        "currency": "EUR"
+      }
+    },
+    {
+      "balanceType": "expected",
+      "lastChangeDateTime": "2020-10-22T23:11:00+02:00",
+      "creditLimitIncluded": true,
+      "balanceAmount": {
+        "amount": "779.8",
+        "currency": "EUR"
+      }
+    },
+    {
+      "balanceType": "closingBooked",
+      "balanceAmount": {
+        "amount": "829.8",
+        "currency": "EUR"
+      }
+    }
+  ]
+}

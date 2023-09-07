@@ -1,0 +1,108 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/apis/open-banking/v3.1/aisp/accounts",
+    "headers": {
+      "x-fapi-financial-id": {
+        "equalTo": "003882287203T83JKK"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+      },
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "9e1b14ba-5923-4ba2-bf2a-e910b1d3438e",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Description": "description string 9e1b14ba-5923-4ba2-bf2a-e910b1d3438e",
+            "Nickname": "Current Account",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "98765432109876",
+                "Name": "name string 9e1b14ba-5923-4ba2-bf2a-e910b1d3438e",
+                "SecondaryIdentification": "secondary identification string 9e1b14ba-5923-4ba2-bf2a-e910b1d3438e"
+              }
+            ]
+          },
+          {
+            "AccountId": "1234",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Description": "description string 1234",
+            "Nickname": "Current Account",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "12345678901234",
+                "Name": "name string 9e1b14ba-5923-4ba2-bf2a-e910b1d3438e",
+                "SecondaryIdentification": "secondary identification string 9e1b14ba-5923-4ba2-bf2a-e910b1d3438e"
+              }
+            ]
+          },
+          {
+            "AccountId": "762c502e-7c0a-45b5-a1c6-9116adb5b60e",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Description": "string",
+            "Nickname": "Current Account",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "98765432109876",
+                "Name": "name string 9e1b14ba-5923-4ba2-bf2a-e910b1d3438e",
+                "SecondaryIdentification": "secondary identification string 9e1b14ba-5923-4ba2-bf2a-e910b1d3438e"
+              }
+            ]
+          },
+          {
+            "AccountId": "aaf905ce-043d-4483-8a9b-9b8431452446",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Description": "string",
+            "Nickname": "Current Account",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "12345678901234",
+                "Name": "name string 9e1b14ba-5923-4ba2-bf2a-e910b1d3438e",
+                "SecondaryIdentification": "secondary identification string 9e1b14ba-5923-4ba2-bf2a-e910b1d3438e"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/apis/open-banking/v3.1/aisp/accounts",
+        "First": "/apis/open-banking/v3.1/aisp/accounts",
+        "Prev": "",
+        "Next": "",
+        "Last": "/apis/open-banking/v3.1/aisp/accounts"
+      },
+      "Meta": {
+        "TotalPages": 1,
+        "FirstAvailableDateTime": "2019-07-31T08:13:25.628Z",
+        "LastAvailableDateTime": "2019-07-31T08:13:25.628Z"
+      }
+    }
+  }
+}

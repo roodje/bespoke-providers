@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/l8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6/parties",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer rNs2kF3cpk1gD2WjWBmWbrO1vN1"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      }
+    }
+  },
+  "response": {
+    "status": 403,
+    "jsonBody": {},
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

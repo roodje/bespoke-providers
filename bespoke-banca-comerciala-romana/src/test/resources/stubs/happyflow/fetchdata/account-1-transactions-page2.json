@@ -1,0 +1,78 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/accounts/1/transactions",
+    "queryParameters": {
+      "page": {
+        "equalTo": "2"
+      }
+    },
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "web-api-key": {
+        "equalTo": "beac2259-aa52-4225-9356-e3195120d43d"
+      },
+      "authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "content-type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "RO92RNCB0002000000010022",
+        "product": "Cont curent ORG ROL",
+        "currency": "RON"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "7456512758",
+            "bookingDate": "2019-03-16",
+            "valueDate": "2019-03-16",
+            "additionalInformation": "description",
+            "transactionAmount": {
+              "currency": "RON",
+              "amount": "3.75"
+            },
+            "creditorName": "Bilbo Baggins",
+            "creditorAccount": {
+              "iban": "AT108809156711523429"
+            },
+            "debtorName": "Peter Pan",
+            "debtorAccount": {
+              "iban": "RO77RNCB0002000000010001"
+            },
+            "remittanceInformationUnstructured": "Sepa Credit Transfer",
+            "_links": {
+              "balances": {
+                "href": "/v1/accounts/1/balances"
+              },
+              "transactionDetails": {
+                "href": "/v1/accounts/1/transactions/7456512758"
+              }
+            }
+          }
+        ],
+        "pending": [],
+        "_links": {
+          "account": {
+            "href": "/v1/accounts/"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/v1.1/payments/sepa-credit-transfers/SNS0123456789012/status",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Authorization": {
+        "equalTo": "someClientId"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Request-ID": "99391c7e-ad88-49ec-a2ad-99ddcb1f7721"
+    },
+    "jsonBody": {
+      "transactionStatus": "ACCC"
+    }
+  }
+}

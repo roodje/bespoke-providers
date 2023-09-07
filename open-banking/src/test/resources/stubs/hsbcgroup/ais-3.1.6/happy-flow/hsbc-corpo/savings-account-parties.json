@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/73rl9txy4z65hh3e0gg3rr5laqdbmtuohtvn/parties",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer rNs2kF3cpk1gD2WjWBmWbrO1vN1"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Party": []
+      },
+      "Links": {
+        "Self": "/v3.1/aisp/accounts/73rl9txy4z65hh3e0gg3rr5laqdbmtuohtvn/parties",
+        "First": "",
+        "Prev": "",
+        "Next": "",
+        "Last": ""
+      },
+      "Meta": {
+        "TotalPages": 0,
+        "FirstAvailableDateTime": "2021-05-20T08:26:32.355Z",
+        "LastAvailableDateTime": "2021-05-20T08:26:32.355Z"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

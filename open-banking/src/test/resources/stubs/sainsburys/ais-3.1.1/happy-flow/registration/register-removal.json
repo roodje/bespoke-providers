@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/register/someClientId",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "matches": "4bf28754-9c17-41e6-bc46-6cf98fff6795"
+      },
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      }
+    }
+  },
+  "response": {
+    "status": 204
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/ing/v2/accounts/7de0041d-4f25-4b6c-a885-0bbeb1eab220/transactions\\?next=CQR23TABC",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "matches": "Bearer (.*)"
+      },
+      "Signature": {
+        "matches": "keyId=\"example_client_id\",algorithm=\"rsa-sha256\",headers=\"(.*)\",signature=\"(.*)\""
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "Date": {
+        "matches": "[A-Z][a-z]{2}, [0-9]{1,2} [A-Z][a-z]{2} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} GMT"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "iban": "NL86INGB0004487826",
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "543213063182576540000000",
+            "endToEndId": "26-08-2020 16:59 5432104803914777",
+            "bookingDate": "2020-08-26",
+            "valueDate": "2020-08-26",
+            "executionDateTime": "2020-08-26T17:00:22Z",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": 15.00
+            },
+            "debtorName": "Debtor Name",
+            "debtorAccount": {
+              "iban": "NL10INGB5432100114",
+              "bban": "INGB1234426886"
+            },
+            "transactionType": "Online bankieren",
+            "remittanceInformationUnstructured": "Naam: Hr N van der Niels<br>IBAN: NL52INGB0001111111<br>Datum/Tijd: 08-01-2022 14:00:36<br>Valutadatum: 08-01-2022"
+          }
+        ],
+        "pending": [],
+        "info": []
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

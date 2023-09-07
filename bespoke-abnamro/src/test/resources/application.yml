@@ -1,0 +1,16 @@
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+lovebird:
+  abnamrogroup:
+    abnamro:
+      base-url: https://localhost:${wiremock.server.https-port}
+      oauth2-url: https://localhost:${wiremock.server.https-port}/as/authorization.oauth2
+      token-url: https://localhost:${wiremock.server.https-port}/as/token.oauth2
+      ais-scope: psd2:account:balance:read+psd2:account:transaction:read+psd2:account:details:read

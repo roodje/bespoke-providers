@@ -1,0 +1,61 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/openbanking/psd2/v1/subscriptions",
+    "headers": {
+      "Accept": {
+        "matches": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer QVQ6ZWU1M2Y1ZTQtY2U1Ni00MTNkLWIzYWItYjRkYWEzMTA5ZmYw"
+      },
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF-8)?"
+      },
+      "TPP-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "TPP-Transaction-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "X-IBM-Client-Id": {
+        "equalTo": "SE-FINA-100001"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.app[?(@.name == 'Yolt')])]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.app[?(@.description == 'Test description')])]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.app[?(@.name == 'https://yolt.com/callback')])]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.product[?(@.name == 'consents')])]"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "clientId": "2cffdb50-2323-4be7-a2a2-70a6610f8a06",
+      "name": "Yolt",
+      "description": "Test description",
+      "oauthRedirectURI": "https://yolt.com/callback",
+      "subscription": {
+        "subscriptionId": "5a72e1531b6586f34a0d7ce7",
+        "product": {
+          "name": "consents",
+          "version": "1.0.2",
+          "scope": "AIS"
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+

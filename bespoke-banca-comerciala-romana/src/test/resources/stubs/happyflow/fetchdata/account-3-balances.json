@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/accounts/3/balances",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "web-api-key": {
+        "equalTo": "beac2259-aa52-4225-9356-e3195120d43d"
+      },
+      "authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "content-type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "RO49RNCB0002000000010021"
+      },
+      "balances": [
+        {
+          "balanceType": "interimAvailable",
+          "balanceAmount": {
+            "currency": "RON",
+            "amount": 51.00
+          },
+          "referenceDate": "2019-02-28"
+        },
+        {
+          "balanceType": "expected",
+          "balanceAmount": {
+            "currency": "RON",
+            "amount": 112.00
+          },
+          "lastChangeDateTime": "2019-01-25T15:30:35.035Z"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/af58ba4e-6471-46d5-9a3f-011e0ff91857/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff6795"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "001728392JD873NNHY"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "af58ba4e-6471-46d5-9a3f-011e0ff91857",
+            "Amount": {
+              "Amount": "2056.50",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "CreditLine": [
+              {
+                "Amount": {
+                  "Amount": "6608.50",
+                  "Currency": "GBP"
+                },
+                "Included": false,
+                "Type": "Available"
+              },
+              {
+                "Amount": {
+                  "Amount": "9000.00",
+                  "Currency": "GBP"
+                },
+                "Included": false,
+                "Type": "Credit"
+              }
+            ],
+            "DateTime": "2020-08-11T13:13:00.000Z",
+            "Type": "InterimCleared"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.1/aisp/accounts/af58ba4e-6471-46d5-9a3f-011e0ff91857/balances"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

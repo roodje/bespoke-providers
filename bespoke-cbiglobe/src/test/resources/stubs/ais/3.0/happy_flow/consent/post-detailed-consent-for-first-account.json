@@ -1,0 +1,102 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/platform/enabler/psd2orchestrator/ais/3.0.0/consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 00000000-0000-0000-0000-000000000000"
+      },
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "aspsp-code": {
+        "equalTo": "ASPSP_MM_01"
+      },
+      "aspsp-product-code": {
+        "equalTo": "ASPSP_PRODUCT_001"
+      },
+      "date": {
+        "matches": "^[a-zA-Z]{3},\\s[0-9]{1,2}\\s[a-zA-Z]{3}\\s[0-9]{4}\\s(2[0-3]|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])\\sUTC$"
+      },
+      "tpp-redirect-preferred": {
+        "equalTo": "true"
+      },
+      "tpp-redirect-uri": {
+        "equalTo": "https://yolt.com/callback-acc?state=33333333-3333-3333-3333-333333333333"
+      },
+      "digest": {
+        "matches": "sha-512=([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "signature": {
+        "matches": "keyId=\"13299021239615735660\",algorithm=\"rsa-sha512\",headers=\"date digest tpp-redirect-uri x-request-id\",signature=\"([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*\""
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIICMzCCAZygAwIBAgIJALiPnVsvq8dsMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzAeFw0xMzAzMTkxNTQwMTlaFw0xODAzMTgxNTQwMTlaMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzdGfxi9CNbMf1UUcvDQh7MYBOveIHyc0E0KIbhjK5FkCBU4CiZrbfHagaW7ZEcN0tt3EvpbOMxxc/ZQU2WN/s/wPxph0pSfsfFsTKM4RhTWD2v4fgk+xZiKd1p0+L4hTtpwnEw0uXRVd0ki6muwV5y/P+5FHUeldq+pgTcgzuK8CAwEAAaMPMA0wCwYDVR0PBAQDAgLkMA0GCSqGSIb3DQEBBQUAA4GBAJiDAAtY0mQQeuxWdzLRzXmjvdSuL9GoyT3BF/jSnpxz5/58dba8pWenv3pj4P3w5DoOso0rzkZy2jEsEitlVM2mLSbQpMM+MUVQCQoiG6W9xuCFuxSrwPISpAqEAuV4DNoxQKKWmhVv+J0ptMWD25Pnpxeq5sXzghfJnslJlQND"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "\"access\":{\"balances\":[{\"accountId\":\"1\",\"iban\":\"IT11T11111111111\"}],\"transactions\":[{\"accountId\":\"1\",\"iban\":\"IT11T11111111111\"}]}"
+      },
+      {
+        "contains": "\"recurringIndicator\":\"true\""
+      },
+      {
+        "contains": "\"validUntil\":"
+      },
+      {
+        "contains": "\"combinedServiceIndicator\":\"false\""
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "consentStatus": "RCVD",
+      "consentId": "3",
+      "psuCredentials": {
+        "aspspProductCode": "ASPSP_PRODUCT_001",
+        "credentialsDetails": [
+          {
+            "credentialDetailId": "CDETT001",
+            "isSecret": "true"
+          }
+        ]
+      },
+      "scaMethods": [
+        {
+          "authenticationMethodId": "3.0",
+          "authenticationType": "PHOTO_OTP",
+          "name": "jod-idp-retail"
+        },
+        {
+          "authenticationMethodId": "2.0",
+          "authenticationType": "SMS_OTP",
+          "name": "jod-idp-retail"
+        },
+        {
+          "authenticationMethodId": "1.0",
+          "authenticationType": "PUSH_OTP",
+          "name": "jod-idp-retail"
+        }
+      ],
+      "_links": {
+        "updatePsuAuthentication": {
+          "href": "/consents/3"
+        },
+        "self": {
+          "href": "/consents/3"
+        },
+        "scaRedirect": {
+          "href": "https://cbiglobe.it/clientlogin?id=some-id"
+        }
+      }
+    }
+  }
+}

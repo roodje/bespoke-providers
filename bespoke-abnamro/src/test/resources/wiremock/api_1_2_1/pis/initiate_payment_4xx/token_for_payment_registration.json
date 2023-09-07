@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/as/token.oauth2",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalTo": "grant_type=client_credentials&client_id=TPP_test&scope=psd2%3Apayment%3Asepa%3Awrite"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "token_type": "Bearer",
+      "access_token": "pLO93fAqqk4YxwzfjB4ziiD2EM6m",
+      "expires_in": 7199
+    }
+  }
+}

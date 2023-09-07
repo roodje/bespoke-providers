@@ -1,0 +1,63 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/berlingroup/v1/accounts",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer SOME_ACCESS_TOKEN"
+      },
+      "Consent-ID": {
+        "equalTo": "1234-wertiq-983"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "192.168.16.5"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Request-ID": "1b3ab8e8-0fd5-43d2-946e-d75958b172e7"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "3dc3d5b3-7023-4848-9853-f5400a64e80f",
+          "iban": "DE2310010010123456789",
+          "currency": "EUR",
+          "product": "Girokonto",
+          "cashAccountType": "CACC",
+          "name": "Main Account",
+          "_links": {
+            "balances": {
+              "href": "/psd2/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/balances"
+            },
+            "transactions": {
+              "href": "/psd2/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "3dc3d5b3-7023-4848-9853-f5400a64e81e",
+          "iban": "DE2310010010123456788",
+          "currency": "USD",
+          "product": "Fremdwährungskonto",
+          "cashAccountType": "CACC",
+          "name": "US Dollar Account",
+          "_links": {
+            "balances": {
+              "href": "/psd2/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e81e/balances"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

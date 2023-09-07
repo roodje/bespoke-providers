@@ -1,0 +1,148 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/payments/account-information/ais/accounts/ACSeg9Tbre3fIS0yi2NgUE3ggMAM2ztQ_wbXsQ4J2tOrtXdDUn8jkJSt_12Vhqah/transactions",
+    "queryParameters": {
+      "dateFrom": {
+        "equalTo": "2018-07-26T00:00:00Z"
+      },
+      "bookingStatus": {
+        "equalTo": "booked"
+      },
+      "nextPageToken": {
+        "equalTo": "kwzOVJBQk8wMzIwMTMkwzwODc4OkVVUgDc4Ok"
+      }
+    },
+    "headers": {
+      "psu-ip-address": {
+        "matches": ".*"
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIIDFjCCAf4CCQC6MIKO2WnC1TANBgkqhkiG9w0BAQsFADBSMQswCQYDVQQGEwJOTDEWMBQGA1UECAwNTm9vcmQtSG9sbGFuZDENMAsGA1UECgwEWW9sdDEcMBoGCSqGSIb3DQEJARYNbGVvbkB5b2x0LmNvbTAeFw0xODA5MjAwODUzMTVaFw0yMTA3MTAwODUzMTVaMEgxCzAJBgNVBAYTAk5MMRswGQYDVQQKDBJZb2x0IC0gQ29ubmVjdGlvbnMxHDAaBgkqhkiG9w0BCQEWDWxlb25AeW9sdC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDXu4pG9Fdvek5opDjk9DsgMe+vZsYVoHP3E4fDa0O9n06+wFh1qgrbctu3UNKhTiqiOuyqar9IkSIV92GO09xIjyxAWGVv8eNN2poGVRDta6zo2YLanmU1EuXcMd5hICj3l/PEJbsksFP2jNlsJsfE6ehSCdrPKcX9oYL3oCvZDohytdrHO4c+8m8/aZS1nQyhT9lyqWMcBvz9I35BE2uiVPiBKuAtZZcp0yHvvObNC/BzrZncM2LrrtCDcS6ozjotHvCbk37W+loBr6b1+jA64qv3ILDl+T7fcmUyIyBoWa5GVdmZ9Go8Gl3SOcjGx2SwtmC1V6w4DDbZkLyT6oJLAgMBAAEwDQYJKoZIhvcNAQELBQADggEBABZPEHktIG+pKoOfpeBsRF6K5ZIBbmSeRBrzJ0BOOUhr894iuHhMKku239fN3sFc0+6ylQjjFC3soBimWVcnf6AUb8ncP4FCE8oyHpZ2WPjYeXqIdTxxFPfA0l3FW18ncdIa0zSFmo5wwzhN7A2FhtCfnlI8YkatHQSv/90VMuICMZF0HTzfeuhv4z8PH6SVEa3B1uYogwwv9dCW/8amOddoO2K/aB4hS23h4TyAw1tKjN8/IHmLvE3R8LlazMJhY9J2xvYOPFq3BnM3V8vHpj/7BBWJKxWvYtbCqqVCEeG/qLQH7CmVaIX7hg5Yfurwvgwm3mujCaRNKjHjS3Jb5YQ="
+      },
+      "date": {
+        "matches": ".+"
+      },
+      "digest": {
+        "matches": ".+"
+      },
+      "signature": {
+        "matches": "(keyId=\"13416366839981261525\",algorithm=\"rsa-sha512\",headers=\"date digest x-request-id\",signature=).*"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "NL39RABO0320130878",
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "entryReference": "18704",
+            "endToEndId": "25-09-2018 20:40 003000522993513",
+            "bookingDate": "2018-09-25",
+            "valueDate": "2018-09-26",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "3361.32"
+            },
+            "creditorAccount": {
+              "iban": "NL02RABO0195354344",
+              "currency": "EUR"
+            },
+            "creditorName": "Celestine Bove",
+            "debtorAccount": {
+              "iban": "NL02RABO0271488177"
+            },
+            "debtorName": "Proof of Concept",
+            "remittanceInformationUnstructured": "Description Line 1\nDescription Line 2\nLine 3",
+            "purposeCode": "CDCD",
+            "raboBookingDateTime": "2018-09-25T02:11:44.685Z",
+            "raboDetailedTransactionType": "541",
+            "raboTransactionTypeName": "cb"
+          },
+          {
+            "entryReference": "18730",
+            "endToEndId": "25-09-2018 20:40 003000522993514",
+            "bookingDate": "2018-09-25",
+            "creditorId": "NL02RABO0326791429",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-706.45"
+            },
+            "creditorAccount": {
+              "iban": "NL02RABO0356851143"
+            },
+            "creditorName": "Anderson Due",
+            "debtorAccount": {
+              "iban": "NL02RABO0279918103",
+              "currency": "EUR"
+            },
+            "remittanceInformationUnstructured": "Description Line 1\nDescription Line 2\nLine 3",
+            "purposeCode": "OTCD",
+            "raboBookingDateTime": "2018-09-25T02:18:39.671Z",
+            "raboDetailedTransactionType": "102",
+            "raboTransactionTypeName": "id"
+          },
+          {
+            "entryReference": "18738",
+            "endToEndId": "25-09-2018 20:40 003000522993515",
+            "bookingDate": "2018-09-25",
+            "valueDate": "2018-09-26",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "363.67"
+            },
+            "creditorAccount": {
+              "iban": "NL02RABO0759521310",
+              "currency": "EUR"
+            },
+            "creditorName": "Nicholle Perkinson",
+            "debtorAccount": {
+              "iban": "NL02RABO0146065825"
+            },
+            "remittanceInformationUnstructured": "Description Line 1\nDescription Line 2\nLine 3",
+            "purposeCode": "GWLT",
+            "raboBookingDateTime": "2018-09-25T03:46:32.527Z",
+            "raboDetailedTransactionType": "2",
+            "raboTransactionTypeName": "bc"
+          },
+          {
+            "entryReference": "8606",
+            "bookingDate": "2018-09-26",
+            "valueDate": "2018-09-27",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "322.02"
+            },
+            "creditorAccount": {
+              "iban": "NL02RABO0356851143",
+              "currency": "EUR"
+            },
+            "debtorAccount": {},
+            "initiatingPartyName": "John WithTransactionWhichWasReversed",
+            "numberOfTransactions": 1,
+            "paymentInformationIdentification": "JOHN002031DD020056R220330",
+            "raboBookingDateTime": "2018-09-26T03:46:32.527Z",
+            "raboDetailedTransactionType": "680",
+            "raboTransactionTypeName": "ei"
+          }
+        ],
+        "_links": {
+          "account": {
+            "href": "/accounts/ACSeg9Tbre3fIS0yi2NgUE3ggMAM2ztQ_wbXsQ4J2tOrtXdDUn8jkJSt_12Vhqah"
+          }
+        }
+      }
+    }
+  }
+}

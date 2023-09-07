@@ -1,0 +1,67 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/xs2a/OLB/v1/consents",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "content-type": {
+        "equalTo": "application/json"
+      },
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "psu-id": {
+        "equalTo": "John"
+      },
+      "tpp-redirect-preferred": {
+        "equalTo": "true"
+      },
+      "tpp-redirect-uri": {
+        "equalTo": "https://yolt.com/callback?state=7c3e98de-0239-4868-ada8-aefb5384ef0a"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.access[?(@.allPsd2 == 'allAccounts')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.recurringIndicator == true)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.combinedServiceIndicator == false)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.validUntil == '2022-03-31')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.frequencyPerDay == 4)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "consentStatus": "received",
+      "consentId": "7a7251ff-45ef-4e24-a4cc-bb77d4ba0b16",
+      "_links": {
+        "self": {
+          "href": "https://localhost:{{request.requestLine.port}}/v1/consents/7a7251ff-45ef-4e24-a4cc-bb77d4ba0b16"
+        },
+        "status": {
+          "href": "https://localhost:{{request.requestLine.port}}/v1/consents/7a7251ff-45ef-4e24-a4cc-bb77d4ba0b16/status"
+        },
+        "scaRedirect": {
+          "href": "https://xs2a.olb.de/xs2a/OLB/authorize"
+        }
+      }
+    }
+  }
+}

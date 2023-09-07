@@ -1,0 +1,69 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPath": "/psd2-api.ca-alpesprovence.fr/dsp2/v1/consents",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Connection": {
+        "equalTo": "Keep-Alive",
+        "caseInsensitive": true
+      },
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 39911f01-4613-461f-9b47-1e4ba35176e6"
+      },
+      "Date": {
+        "matches": "((Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{1,2} ... \\d{4} \\d{2}:\\d{2}:\\d{2} ...)"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Signature": {
+        "matches": "keyId=\"2b9adbd7f86bed51e23f467c25e1f887\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) x-request-id authorization accept digest date content-type\", signature=\"([A-Za-z0-9+])*(=){0,2}\""
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.balances[0][?(@.area.areaLabel == 'M.OU MME NAMDRA CENUMUKIA' && @.area.areaId == '423908fsodij091ud021093290ufr924' && @.iban == 'FR7617806004800000010000149' && @.currency == 'EUR')]"
+      },
+      {
+        "matchesJsonPath": "$.balances[1][?(@.iban == 'FR7617806004800000010000252' && @.currency == 'EUR')]"
+      },
+      {
+        "matchesJsonPath": "$.balances[2][?(@.other.identification == '1300000000003573228' && @.other.schemeName == 'CPAN' && @.other.issuer == 'AGRIFRPP878' && @.currency == 'EUR')]"
+      },
+      {
+        "matchesJsonPath": "$.balances[3][?(@.iban == 'FR7617806004800000010000458' && @.currency == 'CHF')]"
+      },
+      {
+        "matchesJsonPath": "$.transactions[0][?(@.area.areaLabel == 'M.OU MME NAMDRA CENUMUKIA' && @.area.areaId == '423908fsodij091ud021093290ufr924' && @.iban == 'FR7617806004800000010000149' && @.currency == 'EUR')]"
+      },
+      {
+        "matchesJsonPath": "$.transactions[1][?(@.iban == 'FR7617806004800000010000252' && @.currency == 'EUR')]"
+      },
+      {
+        "matchesJsonPath": "$.transactions[2][?(@.other.identification == '1300000000003573228' && @.other.schemeName == 'CPAN' && @.other.issuer == 'AGRIFRPP878' && @.currency == 'EUR')]"
+      },
+      {
+        "matchesJsonPath": "$.transactions[3][?(@.iban == 'FR7617806004800000010000458' && @.currency == 'CHF')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.psuIdentity == 'true')]"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "body": "{}",
+      "Content-Type": "application/json"
+    }
+  }
+}

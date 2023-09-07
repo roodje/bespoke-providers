@@ -1,0 +1,9 @@
+lovebird:
+  nutmeggroup:
+    nutmeg:
+      authorizeUrl: http://localhost:${wiremock.server.port}/authorize
+      potsUrl: http://localhost:${wiremock.server.port}/customers/pots
+      tokenUrl: http://localhost:${wiremock.server.port}/oauth/token
+      scope: "read:balance offline_access"
+      audience: https://api.nutmeg.com
+      codeChallengeMethod: S256

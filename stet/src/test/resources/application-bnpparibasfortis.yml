@@ -1,0 +1,26 @@
+lovebird:
+  stet:
+    bnpparibasfortisgroup:
+      bnpparibasfortis:
+        paginationLimit: 1000
+        registrationUrl: https://localhost:${wiremock.server.https-port}/third-party-onboarding/v1/third-party
+        s3BaseUrl: https://test.qseal.certificate.com
+        regions:
+          - code: BNPPF
+            name: "BNP Paribas Fortis Main"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/token
+            authUrl: https://sandbox.auth.bnpparibasfortis.com/authorize
+yolt:
+  qseal-certificate-exposure:
+    enabled: true
+    base-url: https://test.qseal.certificate.com
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

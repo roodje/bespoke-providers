@@ -1,0 +1,126 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/ais/(DE|ES|IT)/(DB|Postbank)/v1/accounts/1/transactions",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "consent-id": {
+        "equalTo": "7a7251ff-45ef-4e24-a4cc-bb77d4ba0b16"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "content-type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "DE97500105176141527356"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "328CHDP182190065",
+            "debtorName": "Ms Alexa",
+            "debtorAccount": {
+              "iban": "DE88500105179169635979",
+              "currency": "EUR"
+            },
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-400.00"
+            },
+            "bookingDate": "2020-10-03",
+            "valueDate": "2020-10-03",
+            "checkId": "0000000000000",
+            "endToEndId": "5603906634437281020120956",
+            "mandateId": "631535",
+            "purposeCode": "IDCP",
+            "creditorId": "DE05ZZZ07642128772",
+            "remittanceInformationUnstructured": "Data_Ora: 23-02-2019 17:10:30"
+          }
+        ],
+        "pending": [
+          {
+            "transactionId": "000001-330DA1CD87C588578AD4906D5C1E11127151742020-10-03 12:05:17.4263780",
+            "debtorName": "Mr Edward",
+            "debtorAccount": {
+              "iban": "DE74500105174697811586"
+            },
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-0.13"
+            },
+            "checkId": "0000000000000",
+            "endToEndId": "5603906608425645320190956",
+            "mandateId": "563535",
+            "purposeCode": "IDCP",
+            "creditorId": "DE05ZZZ07536328772",
+            "remittanceInformationUnstructured": "Ref 12345678, Suma platita 252.91 EUR"
+          },
+          {
+            "transactionId": "000002-330DA1CD87C58X5S8AF4E06DC1EE11127151742020-10-03 09:05:17.426",
+            "creditorName": "Mr George",
+            "creditorAccount": {
+              "iban": "DE13500105172528611287"
+            },
+            "debtorName": "Mr Edward",
+            "debtorAccount": {
+              "iban": "DE74500105174697811586",
+              "currency": "EUR"
+            },
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "95.415"
+            },
+            "checkId": "0000000000000",
+            "endToEndId": "5603906608634631020190956",
+            "mandateId": "067835",
+            "purposeCode": "IDCP",
+            "creditorId": "DE05ZZZ00345466672",
+            "remittanceInformationUnstructured": "Ref 12345678, Bestätigung der Transaktion: 23-02-2019 17:10:30"
+          },
+          {
+            "debtorAccount": {
+              "iban": "DE74500105174697811586",
+              "currency": "EUR"
+            },
+            "creditorName": "Mr George",
+            "creditorAccount": {
+              "iban": "DE13500105172528611287"
+            },
+            "bankTransactionCode": "PMNT-ICDT-ESCT",
+            "transactionAmount": {
+              "amount": "-265.54",
+              "currency": "EUR"
+            },
+            "remittanceInformationUnstructured": "390905/20/0",
+            "endToEndId": "NOTPROVIDED",
+            "transactionId": "000001-314962621"
+          }
+        ]
+      },
+      "_links": {}
+    }
+  }
+}

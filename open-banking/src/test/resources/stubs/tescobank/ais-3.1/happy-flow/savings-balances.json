@@ -1,0 +1,56 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/10000000000000947108/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0017440000hdQV5CCT"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "10000000000001449160",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2021-02-02T18:24:23+00:00",
+            "Amount": {
+              "Amount": "10.00",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "10000000000001449160",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2021-02-02T18:24:23+00:00",
+            "Amount": {
+              "Amount": "10.00",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://ob.api.tescobank.com/open-banking/v3.1/aisp/accounts/10000000000000947108/balances"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

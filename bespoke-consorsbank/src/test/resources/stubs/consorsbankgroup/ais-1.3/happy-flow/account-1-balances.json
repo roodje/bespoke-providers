@@ -1,0 +1,60 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v1/accounts/1/balances",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "123"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "TEST_PSU_IP_ADDRESS"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "DE98701204008538752000",
+        "bban": null,
+        "pan": null,
+        "maskedPan": null,
+        "msisdn": null,
+        "currency": "EUR"
+      },
+      "balances": [
+        {
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": "1500"
+          },
+          "balanceType": "interimAvailable",
+          "creditLimitIncluded": null,
+          "lastChangeDateTime": null,
+          "referenceDate": null,
+          "lastCommittedTransaction": null
+        },
+        {
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": "1501"
+          },
+          "balanceType": "closingBooked",
+          "creditLimitIncluded": null,
+          "lastChangeDateTime": null,
+          "referenceDate": null,
+          "lastCommittedTransaction": null
+        }
+      ]
+    }
+  }
+}

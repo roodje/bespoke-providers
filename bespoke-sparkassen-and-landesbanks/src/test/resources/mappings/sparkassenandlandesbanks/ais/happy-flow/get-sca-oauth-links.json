@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/scaOauthLinks",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "issuer": "yolt",
+      "authorization_endpoint": "https://localhost:{{request.requestLine.port}}/authorize",
+      "token_endpoint": "https://localhost:{{request.requestLine.port}}/token"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

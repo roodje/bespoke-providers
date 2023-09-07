@@ -1,0 +1,90 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/pots",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer Az90SAOJklae"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "93bac548-d2de-4546-b106-880a5018460d"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "93bac548-d2de-4546-b106-880a5018460d"
+    },
+    "jsonBody": {
+      "Data": {
+        "Pot": [
+          {
+            "PotId": "pot_00009g4AB7nItyHI3R7CVt",
+            "AccountId": "22289",
+            "Name": "Japan 🇯🇵🍙🍜🍱",
+            "Type": "default",
+            "CreditDebitIndicator": "Debit",
+            "Balance": {
+              "Amount": "5.0000",
+              "Currency": "GBP"
+            },
+            "Style": "cassette",
+            "ImageUrl": "https://monzo-prod-user-images.imgix.net/user_00009dJnZjA0IambX67lWz/image/jpeg/potimg_00009w0CPMlYCHyK8FGxAv-kiukto6oKqhQHEqW2tp3?crop=faces\u0026fit=crop\u0026h=820\u0026w=1280\u0026s=a948ac9c4dc4c15a15661d3b9dd86a29",
+            "Goal": {
+              "Amount": "1000.0000",
+              "Currency": "GBP"
+            },
+            "Created": "2020-06-12T09:13:25.466Z",
+            "Updated": "2020-07-11T11:34:53.277Z",
+            "Status": "Open"
+          },
+          {
+            "PotId": "pot_00009kIt1QKIXu98cu1RM9",
+            "AccountId": "22289",
+            "Name": "Bobs And Bits",
+            "Type": "flexible_savings",
+            "CreditDebitIndicator": "Debit",
+            "Balance": {
+              "Amount": "1000.0000",
+              "Currency": "GBP"
+            },
+            "Style": "",
+            "ImageUrl": "...",
+            "Goal": {
+              "Amount": "9999.0000",
+              "Currency": "GBP"
+            },
+            "Created": "2019-06-28T11:10:29.478Z",
+            "Updated": "2019-06-28T11:11:09.173Z",
+            "Status": "Open"
+          },
+          {
+            "PotId": "pot_00009kIt8JXWB3R9bYUWkD",
+            "AccountId": "22289",
+            "Name": "My Savings Pot",
+            "Type": "fixed_savings",
+            "CreditDebitIndicator": "Debit",
+            "Balance": {
+              "Amount": "1100.0000",
+              "Currency": "GBP"
+            },
+            "Style": "cassette",
+            "LockType": "until_date",
+            "LockedUntil": "2020-07-01T00:00:00Z",
+            "Created": "2019-06-28T11:11:44.195Z",
+            "Updated": "2019-06-28T11:11:44.195Z",
+            "Status": "Open"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://openbanking.monzo.com/open-banking/v3.1/aisp/pots"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    }
+  }
+}

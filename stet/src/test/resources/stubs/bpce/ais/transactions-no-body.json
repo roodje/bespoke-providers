@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/stet/psd2/v1.4.2/accounts/175150009204004305180/transactions",
+    "headers": {
+      "x-request-id": {
+        "equalTo": "49a17f62-6787-4042-abcd-83e9c41f575b"
+      },
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}$"
+      },
+      "signature": {
+        "matches": "keyId=\"THE_CLIENT_ID\",algorithm=\"rsa-sha256\",headers=\"(.*)\",signature=\"(.*)\""
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "httpMessage": "Success"
+    }
+  }
+}

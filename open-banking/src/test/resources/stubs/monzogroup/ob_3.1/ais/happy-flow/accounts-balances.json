@@ -1,0 +1,53 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/22289/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer Az90SAOJklae"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "93bac548-d2de-4546-b106-880a5018460d"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "93bac548-d2de-4546-b106-880a5018460d"
+    },
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "22289",
+            "Amount": {
+              "Amount": "147.8500",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2021-02-10T14:35:49.983Z",
+            "CreditLine": [
+              {
+                "Included": false,
+                "Amount": {
+                  "Amount": "250.0000",
+                  "Currency": "GBP"
+                },
+                "Type": "Pre-Agreed"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://openbanking.monzo.com/open-banking/v3.1/aisp/accounts/22289/balances/"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    }
+  }
+}

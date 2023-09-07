@@ -1,0 +1,90 @@
+{
+  "request": {
+    "url": "/v1/accounts/CTR%7C1271339%7C12345678901%7C1%7C2%7C1%7C12345678901/transactions?withBalance=false&dateFrom=2020-01-01&bookingStatus=both",
+    "method": "GET",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "X-Request-ID": {
+        "matches": "traceId"
+      },
+      "Consent-ID": {
+        "equalTo": "consentId"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-ACCESS-TOKEN"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "iban": "FR7612548029981234567890122",
+        "currency": "978"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "valueDate": "2020-11-03",
+            "transactionAmount": {
+              "currency": "978",
+              "amount": -196.33
+            },
+            "remittanceInformationUnstructured": "PRLV GMF ASSURANCES",
+            "bankTransactionCode": "PMNT-IDDT-PMDD"
+          },
+          {
+            "valueDate": "2020-11-02",
+            "transactionAmount": {
+              "currency": "978",
+              "amount": 18.21
+            },
+            "remittanceInformationUnstructured": "ANNUL CB MGP*Vinted",
+            "bankTransactionCode": "PMNT-CCRD-POSC"
+          }
+        ],
+        "pending": [
+          {
+            "valueDate": "2020-10-27",
+            "transactionAmount": {
+              "currency": "978",
+              "amount": -9.95
+            },
+            "remittanceInformationUnstructured": "CB AUDIBLE.FR",
+            "bankTransactionCode": "PMNT-CCRD-POSC"
+          }
+        ],
+        "_links": {
+          "next": {
+            "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%25257C1271339%25257C12345678901%25257C1%25257C2%25257C1%25257C12345678901/transactions?dateFrom=2020-08-06&dateTo=2020-11-04&bookingStatus=BOTH&withBalance=false&page=1"
+          },
+          "first": {
+            "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%25257C1271339%25257C12345678901%25257C1%25257C2%25257C1%25257C12345678901/transactions?dateFrom=2020-08-06&dateTo=2020-11-04&bookingStatus=BOTH&withBalance=false&page=0"
+          },
+          "last": {
+            "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%25257C1271339%25257C12345678901%25257C1%25257C2%25257C1%25257C12345678901/transactions?dateFrom=2020-08-06&dateTo=2020-11-04&bookingStatus=BOTH&withBalance=false&page=1"
+          },
+          "account": {
+            "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%7C1271339%7C12345678901%7C1%7C2%7C1%7C12345678901?withBalance=false"
+          },
+          "balances": {
+            "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%7C1271339%7C12345678901%7C1%7C2%7C1%7C12345678901/balances"
+          },
+          "transactions": {
+            "href": "https://api-dailybanking.axabank.be/berlingroup/v1/accounts/CTR%25257C1271339%25257C12345678901%25257C1%25257C2%25257C1%25257C12345678901/transactions"
+          }
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

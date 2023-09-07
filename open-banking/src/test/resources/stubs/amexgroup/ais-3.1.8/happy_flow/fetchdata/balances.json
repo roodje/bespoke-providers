@@ -1,0 +1,61 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/22289/balances",
+    "headers": {
+      "x-client-id": {
+        "equalTo": "THE-CLIENT-ID"
+      },
+      "x-amex-api-key": {
+        "equalTo": "THE-CLIENT-ID"
+      },
+      "Authorization": {
+        "equalTo": "Bearer user-access-token"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "22289",
+            "CreditDebitIndicator": "Credit",
+            "Type": "Information",
+            "DateTime": "2021-04-05T10:43:07+00:00",
+            "Amount": {
+              "Amount": "300.00",
+              "Currency": "GBP"
+            },
+            "CreditLine": [
+              {
+                "Included": false,
+                "Type": "Available",
+                "Amount": {
+                  "Amount": "500.00",
+                  "Currency": "GBP"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "{{request.requestLine.baseUrl}}/v3.1/aisp/accounts/22289/balances"
+      },
+      "Meta": {
+        "TotalPages": "1"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

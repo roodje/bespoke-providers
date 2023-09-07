@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.yolt.providers</groupId>
+        <artifactId>providers-parent</artifactId>
+        <version>3.2.18</version>
+        <relativePath />
+    </parent>
+    <groupId>com.yolt.providers.bespoke</groupId>
+    <artifactId>amex</artifactId>
+    <version>4.0.17-SNAPSHOT</version>
+
+    <scm>
+        <connection>scm:git:https://git.yolt.io/providers/bespoke-amex.git</connection>
+        <developerConnection>scm:git:https://git.yolt.io/providers/bespoke-amex.git
+        </developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <repositories>
+        <repository>
+            <id>lovebird-aws</id>
+            <url>https://nexus.yolt.io/repository/public/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>lovebird-aws</id>
+            <url>https://nexus.yolt.io/repository/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <properties>
+        <build.number>${env.CI_PIPELINE_ID}</build.number>
+        <sonar.projectKey>bespoke-amex</sonar.projectKey>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.yolt.providers</groupId>
+            <artifactId>providers-commons</artifactId>
+            <version>4.1.26</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.yolt.providers</groupId>
+            <artifactId>providers-commons</artifactId>
+            <version>4.1.26</version>
+            <classifier>tests</classifier>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.openapitools/jackson-databind-nullable -->
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.4</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!--
+                ======================================
+                Version openapi-generator-maven-plugin
+                ======================================
+
+                3.3.0; No RemittanceInformation.unstructered
+                3.3.4; No RemittanceInformation.unstructered
+                4.0.0; Brings org.openapitools.jackson.nullable! OWASP flagged.
+                4.0.1; Fails to parse spec
+                4.0.2; Brings org.openapitools.jackson.nullable! OWASP flagged.
+                4.0.3; Brings org.openapitools.jackson.nullable! OWASP flagged.
+
+                Maybe future versions will be fixed. For now, an empty class is added in project.
+                -->
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>4.3.1</version>
+                <configuration>
+                    <generatorName>spring</generatorName>
+                    <generateApis>false</generateApis>
+                    <generateSupportingFiles>false</generateSupportingFiles>
+                    <configOptions>
+                        <java8>true</java8>
+                        <dateLibrary>java8</dateLibrary>
+                        <sourceFolder>swagger-generated</sourceFolder>
+                    </configOptions>
+                    <inputSpec />
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>amex-psd2</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/swagger/account-financials-eu.swg.v2.json</inputSpec>
+                            <modelPackage>com.yolt.providers.amex.common.dto</modelPackage>
+                            <skipValidateSpec>true</skipValidateSpec>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

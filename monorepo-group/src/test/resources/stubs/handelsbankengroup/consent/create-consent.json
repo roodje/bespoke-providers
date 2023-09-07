@@ -1,0 +1,73 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/openbanking/psd2/v1/consents",
+    "headers": {
+      "Accept": {
+        "matches": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer QVQ6ZWU1M2Y1ZTQtY2U1Ni00MTNkLWIzYWItYjRkYWEzMTA5ZmYw"
+      },
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "Country": {
+        "matches": "NL"
+      },
+      "TPP-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "TPP-Transaction-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "X-IBM-Client-Id": {
+        "equalTo": "2cffdb50-2323-4be7-a2a2-70a6610f8a06"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "access": "ALL_ACCOUNTS"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "consentStatus": "RECEIVED",
+      "consentId": "a9271b81-3229-4a1f-bf9c-758f11c1f5af",
+      "scaMethods": [
+        {
+          "_links": {
+            "authorization": [
+              {
+                "href": "https://api.handelsbanken.com/bb/gls5/decoupled/mbid/initAuthorization/1.0",
+                "name": "decpld_mbid_1.0",
+                "type": "application/json"
+              }
+            ]
+          },
+          "scaMethodType": "DECOUPLED"
+        },
+        {
+          "_links": {
+            "authorization": [
+              {
+                "href": "https://secure.handelsbanken.com/bb/gls5/oauth2/authorize/1.0",
+                "name": "authorize_1.0",
+                "type": "application/x-www-form-urlencoded"
+              }
+            ]
+          },
+          "scaMethodType": "REDIRECT"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+

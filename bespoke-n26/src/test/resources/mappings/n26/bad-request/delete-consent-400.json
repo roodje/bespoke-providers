@@ -1,0 +1,35 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/v1/berlin-group/v1/consents/16640bfe-9a98-441a-8380-c568976eee4a",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "userMessage": {
+        "title": "Error",
+        "detail": "Please try again later."
+      },
+      "error_description": "Bad Request",
+      "detail": "Bad Request",
+      "type": "invalid_request",
+      "error": "invalid_request",
+      "title": "invalid_request",
+      "status": 400
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

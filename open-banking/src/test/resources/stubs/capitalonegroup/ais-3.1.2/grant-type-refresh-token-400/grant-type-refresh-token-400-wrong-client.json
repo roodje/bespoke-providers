@@ -1,0 +1,41 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth/token",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF\\-8)?"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "35acdd5c-ddf1-4a70-ac0f-a4322e3bc263"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=TEST_REFRESH_TOKEN"
+      },
+      {
+        "contains": "client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer"
+      },
+      {
+        "contains": "client_assertion=ZW5jb2RlZHNpZ25hdHVyZQ%3D%3D"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "error": "invalid_request",
+      "error_description": "Token was issued to a different client"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

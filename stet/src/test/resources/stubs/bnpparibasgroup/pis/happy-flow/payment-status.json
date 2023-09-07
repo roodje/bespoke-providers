@@ -1,0 +1,106 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/payment-requests/PAYMENT_REQUEST_RESOURCE_ID",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer client-credentials-token"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=utf-8",
+      "X-Request-ID": "a8da60a1-4a81-4c59-bf24-a257244c2fd0",
+      "Trace-Id": "07ca8f04-9847-4e11-bd30-cd7d2a92961d"
+    },
+    "jsonBody": {
+      "paymentRequest": {
+        "paymentInformationId": "MyPmtInfId",
+        "creationDateTime": "2018-03-31T13:25:22.527+02:00",
+        "paymentInformationStatus": "ACSC",
+        "numberOfTransactions": 1,
+        "initiatingParty": {
+          "name": "John Debtor",
+          "postalAddress": {
+            "country": "FR",
+            "addressLine": [
+              "18 rue de la DSP2",
+              "75008 PARIS"
+            ]
+          },
+          "organisationId": {
+            "identification": "12FR5",
+            "schemeName": "COID",
+            "issuer": "ACPR"
+          }
+        },
+        "paymentTypeInformation": {
+          "serviceLevel": "SEPA",
+          "localInstrument": "INST",
+          "categoryPurpose": "DVPM"
+        },
+        "debtor": {
+          "name": "MyCustomer",
+          "postalAddress": {
+            "country": "FR",
+            "addressLine": [
+              "18 rue de la DSP2",
+              "75008 PARIS"
+            ]
+          }
+        },
+        "beneficiary": {
+          "creditor": {
+            "name": "myMerchant",
+            "postalAddress": {
+              "country": "FR",
+              "addressLine": [
+                "18 rue de la DSP2",
+                "75008 PARIS"
+              ]
+            }
+          },
+          "creditorAccount": {
+            "iban": "FR7630004030160000003778069"
+          }
+        },
+        "chargeBearer": "SLEV",
+        "creditTransferTransaction": [
+          {
+            "paymentId": {
+              "instructionId": "MyInstrId"
+            },
+            "requestedExecutionDate": "2020-12-31T00:00:00.000+01:00",
+            "instructedAmount": {
+              "currency": "EUR",
+              "amount": "124.35"
+            },
+            "remittanceInformation": [
+              "MyRemittanceInformation"
+            ]
+          }
+        ],
+        "supplementaryData": {
+          "acceptedAuthenticationApproach": [
+            "REDIRECT"
+          ],
+          "successfulReportUrl": "http://myPisp/PaymentSuccess",
+          "unsuccessfulReportUrl": "http://myPisp/PaymentFailure"
+        }
+      },
+      "_links": {
+        "self": {
+          "href": "v1/payment-requests/MyPmtInfRscId"
+        }
+      }
+    }
+  }
+}

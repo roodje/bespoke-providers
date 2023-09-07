@@ -1,0 +1,77 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/payments/payment-initiation/pis/v1/payments/sepa-credit-transfers",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF-8)?"
+      },
+      "psu-ip-address": {
+        "matches": ".*"
+      },
+      "tpp-redirect-uri": {
+        "equalTo": "https://www.yolt.com/callback/payment?state=8a456132-6b95-44dd-9d09-1ce389e2e392"
+      },
+      "tpp-nok-redirect-uri": {
+        "equalTo": "https://www.yolt.com/callback/payment?state=8a456132-6b95-44dd-9d09-1ce389e2e392&error=denied"
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-ibm-client-id": {
+        "equalTo": "0b7df55a-8f51-454e-9de8-87b9cac2aba4"
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIIDFjCCAf4CCQC6MIKO2WnC1TANBgkqhkiG9w0BAQsFADBSMQswCQYDVQQGEwJOTDEWMBQGA1UECAwNTm9vcmQtSG9sbGFuZDENMAsGA1UECgwEWW9sdDEcMBoGCSqGSIb3DQEJARYNbGVvbkB5b2x0LmNvbTAeFw0xODA5MjAwODUzMTVaFw0yMTA3MTAwODUzMTVaMEgxCzAJBgNVBAYTAk5MMRswGQYDVQQKDBJZb2x0IC0gQ29ubmVjdGlvbnMxHDAaBgkqhkiG9w0BCQEWDWxlb25AeW9sdC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDXu4pG9Fdvek5opDjk9DsgMe+vZsYVoHP3E4fDa0O9n06+wFh1qgrbctu3UNKhTiqiOuyqar9IkSIV92GO09xIjyxAWGVv8eNN2poGVRDta6zo2YLanmU1EuXcMd5hICj3l/PEJbsksFP2jNlsJsfE6ehSCdrPKcX9oYL3oCvZDohytdrHO4c+8m8/aZS1nQyhT9lyqWMcBvz9I35BE2uiVPiBKuAtZZcp0yHvvObNC/BzrZncM2LrrtCDcS6ozjotHvCbk37W+loBr6b1+jA64qv3ILDl+T7fcmUyIyBoWa5GVdmZ9Go8Gl3SOcjGx2SwtmC1V6w4DDbZkLyT6oJLAgMBAAEwDQYJKoZIhvcNAQELBQADggEBABZPEHktIG+pKoOfpeBsRF6K5ZIBbmSeRBrzJ0BOOUhr894iuHhMKku239fN3sFc0+6ylQjjFC3soBimWVcnf6AUb8ncP4FCE8oyHpZ2WPjYeXqIdTxxFPfA0l3FW18ncdIa0zSFmo5wwzhN7A2FhtCfnlI8YkatHQSv/90VMuICMZF0HTzfeuhv4z8PH6SVEa3B1uYogwwv9dCW/8amOddoO2K/aB4hS23h4TyAw1tKjN8/IHmLvE3R8LlazMJhY9J2xvYOPFq3BnM3V8vHpj/7BBWJKxWvYtbCqqVCEeG/qLQH7CmVaIX7hg5Yfurwvgwm3mujCaRNKjHjS3Jb5YQ="
+      },
+      "date": {
+        "matches": ".+"
+      },
+      "digest": {
+        "matches": ".+"
+      },
+      "signature": {
+        "matches": "(keyId=\"13416366839981261525\",algorithm=\"rsa-sha512\",headers=\"date digest tpp-nok-redirect-uri tpp-redirect-uri x-request-id\",signature=).*"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "creditorAccount": {
+            "currency": "EUR",
+            "iban": "GB32ESSE40486562136016"
+          },
+          "creditorAddress": {
+            "country": "NL"
+          },
+          "creditorName": "Mr. Smith",
+          "debtorAccount": {
+            "currency": "EUR",
+            "iban": "GB32ESSE40486562136017"
+          },
+          "endToEndIdentification": "e2e",
+          "instructedAmount": {
+            "content": "10",
+            "currency": "EUR"
+          },
+          "remittanceInformationUnstructured": "Test Remittance Info Unstructured"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "paymentId": "2cdc7c5c-f2ae-4d8f-ac3a-09b26e275a8a",
+      "transactionStatus": "ACTC",
+      "_links": {
+        "scaRedirect": {
+          "href": "https://betalen.rabobank.nl/afronden-web/deeps/deeplink/deeplink/pi/ucp/single-credit-transfers/start?paymentinitiationid=2cdc7c5c-f2ae-4d8f-ac3a-09b26e275a8a"
+        }
+      }
+    }
+  }
+}

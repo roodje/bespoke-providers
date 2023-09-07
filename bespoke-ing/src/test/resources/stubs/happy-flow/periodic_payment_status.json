@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/ing/v1/periodic-payments/sepa-credit-transfers/cc04ef71-085e-468e-87bd-2881d8a03a5e/status",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Signature": {
+        "matches": "keyId=\"example_client_id\",algorithm=\"rsa-sha256\",headers=\"(.*)\",signature=\"(.*)\""
+      },
+      "Date": {
+        "matches": "[A-Z][a-z]{2}, [0-9]{1,2} [A-Z][a-z]{2} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} GMT"
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "Authorization": {
+        "matches": "Bearer (.*)"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "111.1.111.111"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8",
+      "X-Request-ID": "00000000-0000-0000-0000-000000000000"
+    },
+    "jsonBody": {
+      "transactionStatus": "ACTV"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/open-banking/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AccessToken"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf7AeAAI"
+      }
+    }
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Code": "500",
+      "Id": "392b4540-bde4-468d-a844-d7e8a70aea4a",
+      "Message": "Failed to retrieve account information",
+      "Errors": []
+    }
+  }
+}

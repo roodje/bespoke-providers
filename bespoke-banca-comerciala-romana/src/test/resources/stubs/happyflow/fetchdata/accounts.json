@@ -1,0 +1,108 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/accounts",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "web-api-key": {
+        "equalTo": "beac2259-aa52-4225-9356-e3195120d43d"
+      },
+      "authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "content-type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "1",
+          "iban": "RO92RNCB0002000000010022",
+          "currency": "RON",
+          "name": "Conturi curente",
+          "product": "Cont curent ORG ROL",
+          "cashAccountType": "CACC",
+          "status": "enabled",
+          "bic": "RNCBROB0XXX",
+          "usage": "ORGA",
+          "_links": {
+            "self": {
+              "href": "/v1/accounts"
+            },
+            "balances": {
+              "href": "/v1/accounts/1/balances"
+            },
+            "transactions": {
+              "href": "/v1/accounts/1/transactions"
+            },
+            "details": {
+              "href": "/v1/accounts/1"
+            }
+          }
+        },
+        {
+          "resourceId": "2",
+          "iban": "RO49RNCB0002000000010020",
+          "currency": "RON",
+          "name": "Alte sume datorate- Ordine de plata neachitate- Pl",
+          "cashAccountType": "CACC",
+          "product": "Cont bugetari",
+          "status": "enabled",
+          "bic": "RNCBROB0XXX",
+          "usage": "ORGA",
+          "_links": {
+            "self": {
+              "href": "/v1/accounts"
+            },
+            "balances": {
+              "href": "/v1/accounts/2/balances"
+            },
+            "transactions": {
+              "href": "/v1/accounts/2/transactions"
+            },
+            "details": {
+              "href": "/v1/accounts/2"
+            }
+          }
+        },
+        {
+          "resourceId": "3",
+          "iban": "RO49RNCB0002000000010021",
+          "currency": "RON",
+          "name": "Alte sume datorate- Ordine de plata neachitate- Pl",
+          "cashAccountType": "CACC",
+          "product": "Cont bugetari",
+          "status": "enabled",
+          "bic": "RNCBROB0XXX",
+          "usage": "ORGA",
+          "_links": {
+            "self": {
+              "href": "/v1/accounts"
+            },
+            "balances": {
+              "href": "/v1/accounts/3/balances"
+            },
+            "transactions": {
+              "href": "/v1/accounts/3/transactions"
+            },
+            "details": {
+              "href": "/v1/accounts/3"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

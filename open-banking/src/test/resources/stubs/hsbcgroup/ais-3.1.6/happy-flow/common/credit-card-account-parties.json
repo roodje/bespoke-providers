@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/l8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6/parties",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 3zHagXZSPyA6sifIDmqwZ0hLlqq"
+      }
+    }
+  },
+  "response": {
+    "status": 403,
+    "jsonBody": {},
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "request": {
+    "url": "/v2/transactions?iban=FR7616958000015974423718064&emitted_at_from=2022-01-01T00:00:00.000Z&current_page=2",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer AWESOME-ACCESS-TOKEN"
+      },
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Signature": {
+        "matches": "keyId=\"https:\\/\\/test.qseal.certificate.com\\/5f:18:d2:93:04:36:f7:d3:8b:91:11:d8:85:ac:62:0c:06:e9:54:02.pem\",algorithm=\"rsa-sha256\",headers=\"content-type psu-ip-address digest\",signature=\"(.+)\""
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "transactions": [
+        {
+          "transaction_id": "scep-1111-1-transaction-73",
+          "amount": 18.0,
+          "amount_cents": 1800,
+          "settled_balance": 951.62,
+          "settled_balance_cents": 95162,
+          "attachment_ids": [],
+          "local_amount": 18.0,
+          "local_amount_cents": 1800,
+          "side": "debit",
+          "operation_type": "transfer",
+          "currency": "EUR",
+          "local_currency": "EUR",
+          "label": "TEST STAGING",
+          "settled_at": "2022-07-13T00:00:14.367Z",
+          "emitted_at": "2022-07-13T00:00:14.268Z",
+          "updated_at": "2022-07-13T00:00:15.381Z",
+          "status": "completed",
+          "note": null,
+          "reference": "Internal transfer",
+          "vat_amount": 0.0,
+          "vat_amount_cents": null,
+          "vat_rate": null,
+          "initiator_id": "83713b83-e800-419e-810e-1dff59326c34",
+          "label_ids": [],
+          "attachment_lost": false,
+          "attachment_required": false,
+          "card_last_digits": null,
+          "category": "treasury_and_interco",
+          "id": "ce6c6737-fd84-4d50-92f7-7e69e0b7cdb7"
+        }
+      ],
+      "meta": {
+        "current_page": 2,
+        "next_page": null,
+        "prev_page": 1,
+        "total_pages": 2,
+        "total_count": 3,
+        "per_page": 2
+      }
+    }
+  }
+}

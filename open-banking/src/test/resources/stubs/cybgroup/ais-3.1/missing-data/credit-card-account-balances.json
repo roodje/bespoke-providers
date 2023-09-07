@@ -1,0 +1,74 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/a134fcf0-3f3a-3dd0-9398-109313b2c6b3/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "001728392JD873NNHY"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "a134fcf0-3f3a-3dd0-9398-109313b2c6b3",
+            "Amount": {
+              "Amount": "1200.00"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2019-01-09T00:00:00+00:00",
+            "CreditLine": [
+              {
+                "Included": false,
+                "Amount": {
+                  "Amount": "1000.00",
+                  "Currency": "GBP"
+                },
+                "Type": "Pre-Agreed"
+              }
+            ]
+          },
+          {
+            "AccountId": "a134fcf0-3f3a-3dd0-9398-109313b2c6b3",
+            "Amount": {
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2019-01-08T00:00:00+00:00",
+            "CreditLine": [
+              {
+                "Included": false,
+                "Amount": {
+                  "Amount": "1000.00",
+                  "Currency": "GBP"
+                },
+                "Type": "Pre-Agreed"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://cb.api-nc.cybservices.co.uk/open-banking/v3.1/aisp/accounts/a134fcf0-3f3a-3dd0-9398-109313b2c6b3/balances/"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

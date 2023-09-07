@@ -1,0 +1,101 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/pisp/domestic-payment-consents",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0016800001051XVBBZ"
+      },
+      "x-idempotency-key": {
+        "matches": "^(?!\\s)(.*)(\\S)$"
+      },
+      "x-jws-signature": {
+        "matches": "^[A-Za-z0-9-_=]+(\\.\\.)[A-Za-z0-9-_=]*$"
+      },
+      "Accept": {
+        "matches": "application/json(;charset=UTF-8)?"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "EndToEndIdentification": "3482044854173696",
+              "LocalInstrument": "UK.OBIE.FPS",
+              "InstructedAmount": {
+                "Amount": "220.50",
+                "Currency": "GBP"
+              },
+              "DebtorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "08606467451219",
+                "Name": "Mr Robin Hood"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "60132378234512",
+                "Name": "Batman"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "Unstructured",
+                "Reference": "Structured"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "Initiation": {
+          "InstructionIdentification": "6611438219034624",
+          "EndToEndIdentification": "3482044854173696",
+          "LocalInstrument": "UK.OBIE.FPS",
+          "InstructedAmount": {
+            "Amount": "220.50",
+            "Currency": "GBP"
+          },
+          "DebtorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "08606467451219",
+            "Name": "Mr Robin Hood"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "60132378234512",
+            "Name": "Batman"
+          },
+          "RemittanceInformation": {
+            "Unstructured": "Unstructured",
+            "Reference": "Structured"
+          }
+        },
+        "Authorisation": {},
+        "ConsentId": "f5e03fa8-aab5-4749-9c84-7d84c35fc39e",
+        "CreationDateTime": "2019-06-05T15:15:22+00:00",
+        "Status": "AcceptedSettlementInProcess",
+        "StatusUpdateDateTime": "2019-06-05T15:15:13+00:00"
+      },
+      "Risk": {
+        "PaymentContextCode": "PartyToParty"
+      }
+    }
+  }
+}

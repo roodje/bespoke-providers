@@ -1,0 +1,151 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v2/psd2/me/accounts",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer test-access-token"
+      },
+      "Signature": {
+        "matches": "keyId=\"SN=(.*)\",algorithm=\"rsa-sha256\",headers=\"request-target date digest x-request-id\",signature=\"(.*)\""
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Date": {
+        "equalTo": "Mon, 12 Jan 1970 13:46:40 GMT"
+      },
+      "Request-Target": {
+        "matches": "get /v2/psd2/me/accounts"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "data": [
+        {
+          "type": "accountMeResponse",
+          "id": "10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4",
+          "attributes": {
+            "identifier": {
+              "number": "ES1920800531183000027485",
+              "type": "IBAN"
+            },
+            "type": "C000",
+            "creditInterestRate": 0.0,
+            "debtorInterestRate": 0.0,
+            "participants": [
+              {
+                "participantTypeCode": "1",
+                "name": "INMACULADA",
+                "surname": "IGLESIAS",
+                "secondSurname": "FERNANDEZ",
+                "identificationDocument": {
+                  "identificationDocumentType": "1",
+                  "identificationDocumentCode": "22827629Z"
+                }
+              },
+              {
+                "participantTypeCode": "10",
+                "name": "ANA",
+                "surname": "TEIJIDO",
+                "secondSurname": "MARCOS",
+                "identificationDocument": {
+                  "identificationDocumentType": "1",
+                  "identificationDocumentCode": "33347710X"
+                }
+              }
+            ]
+          },
+          "links": {
+            "self": "/v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4"
+          },
+          "relationships": {
+            "transactions": {
+              "links": {
+                "related": "/v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/transactions"
+              }
+            },
+            "fundsAvailability": {
+              "links": {
+                "related": "/v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/fundsAvailability"
+              }
+            },
+            "balance": {
+              "links": {
+                "related": "/v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/balance"
+              }
+            }
+          }
+        },
+        {
+          "type": "accountMeResponse",
+          "id": "D208D3D2D4D3014B9DE3770A222E11BAF2CFD59E44DDA9400A654D5586A29018",
+          "attributes": {
+            "identifier": {
+              "number": "ES5420805148513040004380",
+              "type": "IBAN"
+            },
+            "type": "R000",
+            "creditInterestRate": 0.0,
+            "debtorInterestRate": 0.0,
+            "participants": [
+              {
+                "participantTypeCode": "1",
+                "name": "",
+                "surname": "TRANSHORMIGALIA, S.L.",
+                "secondSurname": "",
+                "identificationDocument": {
+                  "identificationDocumentType": "2",
+                  "identificationDocumentCode": "B36407930"
+                }
+              },
+              {
+                "participantTypeCode": "10",
+                "name": "HIPOLITO",
+                "surname": "FONTENLA",
+                "secondSurname": "SOMOZA",
+                "identificationDocument": {
+                  "identificationDocumentType": "1",
+                  "identificationDocumentCode": "35321481J"
+                }
+              }
+            ]
+          },
+          "links": {
+            "self": "/v2/psd2/me/accounts/D208D3D2D4D3014B9DE3770A222E11BAF2CFD59E44DDA9400A654D5586A29018"
+          },
+          "relationships": {
+            "transactions": {
+              "links": {
+                "related": "/v2/psd2/me/accounts/D208D3D2D4D3014B9DE3770A222E11BAF2CFD59E44DDA9400A654D5586A29018/transactions"
+              }
+            },
+            "fundsAvailability": {
+              "links": {
+                "related": "/v2/psd2/me/accounts/D208D3D2D4D3014B9DE3770A222E11BAF2CFD59E44DDA9400A654D5586A29018/fundsAvailability"
+              }
+            },
+            "balance": {
+              "links": {
+                "related": "/v2/psd2/me/accounts/D208D3D2D4D3014B9DE3770A222E11BAF2CFD59E44DDA9400A654D5586A29018/balance"
+              }
+            }
+          }
+        }
+      ],
+      "links": {
+        "first": "/v2/psd2/me/accounts?pageNumber=1&pageSize=20",
+        "self": "/v2/psd2/me/accounts?pageNumber=1&pageSize=20",
+        "last": "/v2/psd2/me/accounts?pageNumber=1&pageSize=20"
+      }
+    }
+  }
+}

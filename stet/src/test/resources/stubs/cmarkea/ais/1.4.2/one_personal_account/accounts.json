@@ -1,0 +1,68 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/psd2/v1/accounts",
+    "headers": {
+      "Accept": {
+        "matches": "application/hal\\+json;charset=utf-8;version=1.4.2"
+      },
+      "Digest": {
+        "matches": "SHA-256=([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "Signature": {
+        "matches" : "keyId=\"https://test.qseal.certificate.com/[a-zA-Z0-9:]{59}.pem\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) x-request-id digest psu-ip-address\", signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Authorization": {
+        "matches": "Bearer accessToken123456700"
+      },
+      "psu-ip-address": {
+        "matches": "127.0.0.1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "TE0000001",
+          "bicFi": "FTNOFRP1XXX",
+          "accountId": {
+            "iban": "FR7614518000000000000000001",
+            "currency": "EUR"
+          },
+          "name": "COMPTE COURANT : BERGOT FRANCIS",
+          "details": "usage:PRIV;owner:BERGOT FRANCIS",
+          "usage": "PRIV",
+          "cashAccountType": "CACC",
+          "psuStatus": "Account Holder",
+          "_links": {
+            "balances": {
+              "href": "/psd2/v1/accounts/TE0000001/balances"
+            },
+            "transactions": {
+              "href": "/psd2/v1/accounts/TE0000001/transactions"
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/psd2/v1/accounts"
+        },
+        "endUserIdentity": {
+          "href": "/psd2/v1/end-user-identity"
+        },
+        "beneficiaries": {
+          "href": "/psd2/v1/trusted-beneficiaries"
+        }
+      }
+    }
+  }
+}

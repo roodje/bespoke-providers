@@ -1,0 +1,86 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/b6165a6c-cfbe-6027-8696-163e4557e2f6/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "001728392JD873NNHY"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "b6165a6c-cfbe-6027-8696-163e4557e2f6",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2021-02-17T00:48:47.883Z",
+            "Amount": {
+              "Amount": "0.50",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "b6165a6c-cfbe-6027-8696-163e4557e2f6",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2021-02-17T00:48:47.886Z",
+            "Amount": {
+              "Amount": "0.50",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "b6165a6c-cfbe-6027-8696-163e4557e2f6",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimCleared",
+            "DateTime": "2021-02-17T00:48:47.886Z",
+            "Amount": {
+              "Amount": "0.50",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "b6165a6c-cfbe-6027-8696-163e4557e2f6",
+            "CreditDebitIndicator": "Credit",
+            "Type": "PreviouslyClosedBooked",
+            "DateTime": "2021-02-17T00:48:47.886Z",
+            "Amount": {
+              "Amount": "0.50",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "b6165a6c-cfbe-6027-8696-163e4557e2f6",
+            "CreditDebitIndicator": "Credit",
+            "Type": "ClosingCleared",
+            "DateTime": "2021-02-17T00:48:47.886Z",
+            "Amount": {
+              "Amount": "0.50",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://cb.api-nc.cybservices.co.uk/open-banking/v3.1/aisp/accounts/b6165a6c-cfbe-6027-8696-163e4557e2f6/balances/"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

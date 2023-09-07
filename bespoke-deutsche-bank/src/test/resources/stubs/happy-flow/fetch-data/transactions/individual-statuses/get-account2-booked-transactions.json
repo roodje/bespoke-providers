@@ -1,0 +1,63 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/ais/(DE|ES|IT)/(DB|Postbank)/v1/accounts/2/transactions",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "booked"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "consent-id": {
+        "equalTo": "7a7251ff-45ef-4e24-a4cc-bb77d4ba0b16"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "content-type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "DE97500105176141527356"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-400.00"
+            },
+            "bookingDate": "2020-10-03",
+            "remittanceInformationUnstructured": "Data_Ora: 23-02-2019 17:10:30"
+          },
+          {
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "150.00"
+            },
+            "bookingDate": "2020-10-03",
+            "remittanceInformationUnstructured": "Bestätigung der Transaktion - Tranz: Nr card 9999XXXXXX9999"
+          }
+        ]
+      },
+      "_links": {}
+    }
+  }
+}

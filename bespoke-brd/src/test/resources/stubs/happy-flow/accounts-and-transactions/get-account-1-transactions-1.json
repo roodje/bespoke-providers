@@ -1,0 +1,99 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/accounts/1010000000195/transactions",
+    "queryParameters": {
+      "dateFrom": {
+        "matches": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+      },
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "pageNumber": {
+        "absent": true
+      }
+    },
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "consent-id": {
+        "equalTo": "800000022"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "RO47BRDE410SV04747474100",
+        "currency": "RON"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "endToEndId": "12323414235435",
+            "bookingDate": "2019-01-13",
+            "valueDate": "2019-01-12",
+            "transactionAmount": {
+              "amount": "5.67",
+              "currency": "RON"
+            },
+            "creditorName": "NUME PRENUME TEST",
+            "creditorAccount": {
+              "iban": "RO46BRDE410SV04646464100"
+            },
+            "remittanceInformationUnstructured": "TEST 1",
+            "proprietaryBankTransactionCode": "Plata pentru alta sucursala BRD",
+            "exchangeRate": {
+              "currencyFrom": "RON",
+              "rate": "4.7234",
+              "currencyTo": "EUR",
+              "rateDate": "2019-01-13"
+            }
+          },
+          {
+            "endToEndId": "12323414235436",
+            "bookingDate": "2019-01-12",
+            "valueDate": "2019-01-12",
+            "transactionAmount": {
+              "amount": "343.01",
+              "currency": "RON"
+            },
+            "debtorName": "NUME PRENUME TEST",
+            "debtorAccount": {
+              "iban": "RO48BRDE410SV04848484100"
+            },
+            "remittanceInformationUnstructured": "TEST 2",
+            "proprietaryBankTransactionCode": "Incasare aceeasi sucursala BRD"
+          }
+        ],
+        "pending": [
+          {
+            "valueDate": "2019-01-11",
+            "transactionAmount": {
+              "amount": "35",
+              "currency": "RON"
+            },
+            "purposeCode": "CARDURI",
+            "remittanceInformationUnstructured": "COMERCIANT TEST"
+          }
+        ],
+        "_links": {
+          "next": {
+            "href": "/v1/accounts/1010000000195/transactions?bookingStatus=both&pageNumber=2"
+          }
+        }
+      }
+    }
+  }
+}

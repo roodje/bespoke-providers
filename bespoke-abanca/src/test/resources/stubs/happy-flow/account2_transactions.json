@@ -1,0 +1,65 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v2/psd2/me/accounts/D208D3D2D4D3014B9DE3770A222E11BAF2CFD59E44DDA9400A654D5586A29018/transactions?dateFrom=1970-01-12",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer test-access-token"
+      },
+      "Signature": {
+        "matches": "keyId=\"SN=(.*)\",algorithm=\"rsa-sha256\",headers=\"request-target date digest x-request-id\",signature=\"(.*)\""
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Date": {
+        "equalTo": "Mon, 12 Jan 1970 13:46:40 GMT"
+      },
+      "Request-Target": {
+        "equalTo": "get /v2/psd2/me/accounts/D208D3D2D4D3014B9DE3770A222E11BAF2CFD59E44DDA9400A654D5586A29018/transactions?dateFrom=1970-01-12"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "data": [
+        {
+          "type": "transactionMeResponse",
+          "id": "784F36B04966704B6026140CD3E7ACCDFD90E17673EBE2E5CDC8F1B29F6ABAE5",
+          "attributes": {
+            "valueDate": "2021-08-13T11:22:09.3884048",
+            "operationDate": "2021-08-13T11:22:09.3884048",
+            "accountingDate": "2021-08-13T11:22:09.3884048",
+            "concept": "PAGARE 000361681",
+            "amount": {
+              "value": 248.99,
+              "currency": "EUR"
+            },
+            "subsequentBalance": {
+              "value": 291569.73,
+              "currency": "EUR"
+            }
+          },
+          "links": {
+            "self": "/v2/psd2/me/accounts/D208D3D2D4D3014B9DE3770A222E11BAF2CFD59E44DDA9400A654D5586A29018/transactions/784F36B04966704B6026140CD3E7ACCDFD90E17673EBE2E5CDC8F1B29F6ABAE5"
+          }
+        }
+      ],
+      "links": {
+        "first": "/v2/psd2/me/accounts/D208D3D2D4D3014B9DE3770A222E11BAF2CFD59E44DDA9400A654D5586A29018/transactions?dateFrom=2021-06-09&count=20",
+        "self": "/v2/psd2/me/accounts/D208D3D2D4D3014B9DE3770A222E11BAF2CFD59E44DDA9400A654D5586A29018/transactions?dateFrom=2021-06-09&count=20"
+      },
+      "meta": {
+        "totalTransactions": 20,
+        "more": true
+      }
+    }
+  }
+}

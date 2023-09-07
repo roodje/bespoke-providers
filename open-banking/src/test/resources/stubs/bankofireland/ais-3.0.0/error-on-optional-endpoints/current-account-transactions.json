@@ -1,0 +1,97 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.0/aisp/accounts/5be63cf5-1e7d-45f9-b15d-db1dcc6d979e/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,3})?Z$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer j4HmjDMaBdSXUQQzN1GpdHoozGho"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "5008e82d-f5ac-42fe-8f07-a49b025f3c2e"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0011800000tfV9aBBE"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "5be63cf5-1e7d-45f9-b15d-db1dcc6d979e",
+            "TransactionId": "8426F58C992148037502C5BCAF9089",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Pending",
+            "BookingDateTime": "2020-11-12T00:00:00+00:00",
+            "ValueDateTime": "2020-11-12T00:00:00+00:00",
+            "Amount": {
+              "Amount": "12.45",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "221"
+            },
+            "TransactionInformation": "SPAR"
+          },
+          {
+            "AccountId": "5be63cf5-1e7d-45f9-b15d-db1dcc6d979e",
+            "TransactionId": "1D7889183A2146968175E9A5389A9A",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "BookingDateTime": "2020-11-11T00:00:00+00:00",
+            "ValueDateTime": "2020-11-11T00:00:00+00:00",
+            "Amount": {
+              "Amount": "28.81",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "545"
+            },
+            "TransactionInformation": "STORES",
+            "Balance": {
+              "CreditDebitIndicator": "Debit",
+              "Type": "Expected",
+              "Amount": {
+                "Amount": "47.19",
+                "Currency": "GBP"
+              }
+            }
+          },
+          {
+            "AccountId": "5be63cf5-1e7d-45f9-b15d-db1dcc6d979e",
+            "TransactionId": "CBE821181A2139648218CBBF80B4C6",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "BookingDateTime": "2020-11-09T00:00:00+00:00",
+            "ValueDateTime": "2020-11-09T00:00:00+00:00",
+            "Amount": {
+              "Amount": "7.19",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "624"
+            },
+            "TransactionInformation": "AMAZON PRIME"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.0/aisp/accounts/5be63cf5-1e7d-45f9-b15d-db1dcc6d979e/transactions?fromBookingDateTime=2019-11-20T10:52:06.27Z"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

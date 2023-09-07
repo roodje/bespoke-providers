@@ -1,0 +1,76 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/open-banking/v3.1/aisp/accounts/77f5cb47-fb53-49e7-acd7-f8ed17ba4396/standing-orders",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AccessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "551c6cce-fc16-49b9-8b16-ab66fea5eb35"
+      },
+      "x-fapi-financial-id": {
+        "contains": "0015800000jf7AeAAI"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "StandingOrder": [
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "StandingOrderId": "9d473e42-aa14-429a-a9e3-70c41d67d2e1",
+            "Frequency": "IntrvlMnthDay:01:31",
+            "Reference": "Some Standing Order Reference 1",
+            "NextPaymentDateTime": "2021-03-01T00:00:00Z",
+            "NextPaymentAmount": {
+              "Amount": "200.00",
+              "Currency": "GBP"
+            },
+            "FinalPaymentDateTime": "2030-01-31T00:00:00Z",
+            "StandingOrderStatusCode": "Active",
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "09012945835043"
+            },
+            "SupplementaryData": {
+              "DebtorEntryText": "Some Standing Order Supplementary Data 1"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "StandingOrderId": "b8089918-b21d-4894-b412-8504f049919e",
+            "Frequency": "IntrvlMnthDay:01:31",
+            "Reference": "Some Standing Order Reference 2",
+            "NextPaymentDateTime": "2021-03-01T00:00:00Z",
+            "NextPaymentAmount": {
+              "Amount": "200.00",
+              "Currency": "GBP"
+            },
+            "FinalPaymentDateTime": "2030-01-31T00:00:00Z",
+            "StandingOrderStatusCode": "Active",
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "95026611000101"
+            },
+            "SupplementaryData": {
+              "DebtorEntryText": "Some Standing Order Supplementary Data 2"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://obp-api.danskebank.com/open-banking/v3.1/aisp/accounts/77f5cb47-fb53-49e7-acd7-f8ed17ba4396/standing-orders/"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

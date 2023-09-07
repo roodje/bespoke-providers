@@ -1,0 +1,65 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/aisp/accounts",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 0c3da8a6-24ff-11ec-9621-0242ac130002"
+      },
+      "Accept": {
+        "matches": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800001ZEZ3yAAH"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "bcd6a21e-24e4-11ec-9621-0242ac130002",
+            "Currency": "EUR",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Description": "Current account description",
+            "Nickname": "Current account nickname",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "IE14BOFI900017611258"
+              }
+            ]
+          },
+          {
+            "AccountId": "2b462486-24e5-11ec-9621-0242ac130002",
+            "Currency": "EUR",
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard",
+            "Description": "Credit card description",
+            "Nickname": "Credit card nickname",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.PAN",
+                "Identification": "IE04BOFI900017949289"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://openapi.ie.kbc-group.com/psd2-ie/open-banking/v1.0/aisp/accounts",
+        "Last": "https://openapi.ie.kbc-group.com/psd2-ie/open-banking/v1.0/aisp/accounts"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

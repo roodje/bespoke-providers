@@ -1,0 +1,35 @@
+{
+  "scenarioName": "Consent Status Polling",
+  "requiredScenarioState": "Started",
+  "newScenarioState": "Valid Consent",
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/consents/800000022",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "accept": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access": {
+        "accounts": [],
+        "balances": [],
+        "transactions": []
+      },
+      "recurringIndicator": "true",
+      "validUntil": "2019-06-14",
+      "frequencyPerDay": "4",
+      "consentStatus": "received",
+      "lastActionDate": "2019-04-14"
+    }
+  }
+}

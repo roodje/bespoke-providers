@@ -1,0 +1,81 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/register",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "matches": "12345"
+      },
+      "Content-Type": {
+        "equalTo": "application/jwt"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "client_id": "SOME_FAKE_CLIENT_ID",
+      "client_name": "YoltSmile - developer",
+      "redirect_uris": [
+        "https://www.yoltSmile.com/callback-dev"
+      ],
+      "token_endpoint_auth_method": "tls_client_auth",
+      "tls_client_auth_subject_dn": "CN=softwareId, OU=organizationId, O=OpenBanking, C=GB",
+      "id_token_signed_response_alg": "PS256",
+      "grant_types": [
+        "refresh_token",
+        "implicit",
+        "client_credentials",
+        "authorization_code"
+      ],
+      "scope": "openid payments accounts",
+      "jwks_uri": "https://keystore.openbanking.org.uk/organizationId/softwareId.jwks",
+      "response_types": [
+        "code id_token"
+      ],
+      "validate_using_all_eligible_atms": false,
+      "software_environment": "production",
+      "software_mode": "Live",
+      "software_id": "softwareId",
+      "software_client_id": "softwareId",
+      "software_client_name": "YoltSmile - developer",
+      "software_client_description": "For Yolt testing purposes",
+      "software_client_uri": "https://www.yolt.com",
+      "software_redirect_uris": [
+        "https://www.yoltSmile.com/callback-dev"
+      ],
+      "software_roles": [
+        "AISP",
+        "PISP"
+      ],
+      "software_logo_uri": "https://www.yoltSmile.com/images/logosSmile/yolt-logo.png",
+      "org_status": "Active",
+      "org_id": "organizatonId",
+      "org_name": "org_name",
+      "org_jwks_endpoint": "https://keystore.openbanking.org.uk/organizatonId/organizatonId.jwks",
+      "org_jwks_revoked_endpoint": "https://keystore.openbanking.org.uk/organizatonId/revoked/organizatonId.jwks",
+      "software_jwks_endpoint": "https://keystore.openbanking.org.uk/organizatonId/softwareID.jwks",
+      "software_jwks_revoked_endpoint": "https://keystore.openbanking.org.uk/organizatonId/revoked/softwareID.jwks",
+      "software_policy_uri": "https://www.yolt.com/app-privacy",
+      "software_tos_uri": "https://www.yolt.com/app-disclaimer",
+      "org_contacts": [
+        "[{\"name\":\"Technical\",\"email\":\"helloSmile@yolt.com\",\"phone\":\"(+44) 12 3456 7890\",\"type\":\"Technical\"},{\"name\":\"Business\",\"email\":\"helloSmile@yolt.com\",\"phone\":\"(+44) 12 3456 7890\",\"type\":\"Business\"}]"
+      ],
+      "tls_client_auth_root_dn": "CN=OpenBanking Issuing CA, O=OpenBanking, C=GB",
+      "default_access_token_manager_id": "openbanking",
+      "refresh_token_rolling_policy": "server_default",
+      "persistent_grant_expiration_type": "server_default",
+      "persistent_grant_idle_timeout_type": "server_default",
+      "policy_group_id": "openbanking",
+      "grant_access_session_revocation_api": false,
+      "pingaccess_logout_capable": false,
+      "device_flow_setting_type": "SERVER_DEFAULT"
+    }
+  }
+}

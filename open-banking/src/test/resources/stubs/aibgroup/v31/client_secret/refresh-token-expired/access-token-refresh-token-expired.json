@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth-token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf9VgAAI"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "equalTo": "application/json, application/*+json"
+      }
+    },
+    "basicAuthCredentials": {
+      "username": "someClientId",
+      "password": "someClientSecret"
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.test-url.com%2F"
+      },
+      {
+        "contains": "refresh_token=expiredConsentToken"
+      },
+      {
+        "contains": "scope=accounts"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "path": "/security/v2/oauth/token",
+      "status": 400,
+      "code": "400-1200-007",
+      "uuid": "19a25073-143f-4929-9ec9-eefb8a42eb18",
+      "timestamp": 1607595399974
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

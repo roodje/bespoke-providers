@@ -1,0 +1,68 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/db5002d3-13cf-48fb-96f1-8ee074795181/standing-orders",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "1626df30-50ad-42d8-8f39-40dd95f4b15f"
+      },
+      "x-fapi-financial-id": {
+        "contains": "00162010018e22KCTR"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "StandingOrder": [
+          {
+            "AccountId": "db5002d3-13cf-48fb-96f1-8ee074795181",
+            "StandingOrderId": "Ben3",
+            "Frequency": "EvryWorkgDay",
+            "Reference": "Towbar Club 2 - We Love Towbars",
+            "FirstPaymentDateTime": "2017-08-12T00:00:00+00:00",
+            "NextPaymentDateTime": "2017-12-11T11:03:31+00:00",
+            "FinalPaymentDateTime": "2018-09-30T20:38:35+00:00",
+            "StandingOrderStatusCode": "Active",
+            "FirstPaymentAmount": {
+              "Amount": "0.57",
+              "Currency": "GBP"
+            },
+            "NextPaymentAmount": {
+              "Amount": "0.56",
+              "Currency": "GBP"
+            },
+            "FinalPaymentAmount": {
+              "Amount": "0.56",
+              "Currency": "GBP"
+            },
+            "SupplementaryData": {},
+            "CreditorAgent": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "80200112345678"
+            },
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "80200112345678",
+              "Name": "Trevor Jensen",
+              "SecondaryIdentification": "1420705585430528"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://openbanking-ma.santander.co.uk/sanuk/external/open-banking/v3.1/aisp/accounts/db5002d3-13cf-48fb-96f1-8ee074795181/standing-orders"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

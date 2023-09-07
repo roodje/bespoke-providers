@@ -1,0 +1,7 @@
+lovebird:
+  raiffeisenatgroup:
+    raiffeisenat:
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      tokenUrl: https://localhost:${wiremock.server.https-port}/token
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+      paginationLimit: 1000

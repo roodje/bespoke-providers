@@ -1,0 +1,7 @@
+{
+  "consentStatus": "received",
+  "consentId": "c3a1880e-cd10-4833-8edb-3296beee5247",
+  "_links": {
+    "scaRedirect": "https://sandbox.api.finceobank.com/v1/consent"
+  }
+}

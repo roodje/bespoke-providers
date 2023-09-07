@@ -1,0 +1,1095 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/apis/open-banking/v3.1/aisp/accounts/762c502e-7c0a-45b5-a1c6-9116adb5b60e/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{1,3}$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "contains": "Bearer accessToken"
+      },
+      "x-fapi-financial-id": {
+        "contains": "003882287203T83JKK"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "07caae75-b42a-4e8a-91e7-053b96b181c6",
+            "Amount": {
+              "Amount": "2.45",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "13.36",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-14T11:57:32+01:00",
+            "CreditDebitIndicator": "Credit",
+            "MerchantDetails": {
+              "MerchantName": "J. SAINSBURY"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "SAINSBURYS PETROL  ON 12 MAY          CLP"
+          },
+          {
+            "AccountId": "07caae75-b42a-4e8a-91e7-053b96b181c6",
+            "Amount": {
+              "Amount": "6.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "15.81",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-14T11:57:32+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Anduff Car Wash ltd"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "ANDUFF CARWASH  ON 12 MAY          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "5.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "21.81",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-14T10:06:36+01:00",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "202015 83400379  MOBILE-CHANNEL     FT"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "50.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "26.81",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-12T22:34:17+01:00",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "NATIONWIDE B.S.  MARKET PLACE"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "15.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "76.81",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-12T11:51:03+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Frankie & Benny's"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "FRANKIE & BENNYS 5  ON 10 MAY          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "17.75",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "91.81",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-11T19:46:33+01:00",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "202595 40315494  MOBILE-CHANNEL     FT"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "1.30",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "109.56",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-11T12:18:21+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Tesco"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "TESCO STORES 5812  ON 09 MAY          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "4.44",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "110.86",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-11T12:18:21+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "RADBROKE RESTAURANT &"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "ISS FOOD @BARCLAYS  ON 09 MAY          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "10.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "115.30",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-10T22:05:22+01:00",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "TESCO  TESCO MID RD B EXP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "4.97",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "125.30",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-10T12:20:14+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "KFC-BANBURY"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "KFC-BANBURY  ON 08 MAY          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "4.10",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "130.27",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-10T12:20:14+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "WESTWOOD RESTAURANT &"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "ISS FOOD @BARCLAYS  ON 08 MAY          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "2.90",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "134.37",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-10T12:20:14+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "WESTWOOD RESTAURANT &"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "ISS FOOD @BARCLAYS  ON 07 MAY          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "8.08",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "137.27",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-08T12:27:28+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "KFC-BANBURY"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "KFC-BANBURY  ON 06 MAY          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "50.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "145.35",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-07T13:01:04+01:00",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "202595 40315494  MOBILE-CHANNEL     FT"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "183.74",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "195.35",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-07T11:36:13+01:00",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "TransactionInformation": "DINEEN AARON  SPENDING           BGC"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "0.30",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "11.61",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-06T14:50:35+01:00",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "202595 40315494  MOBILE-CHANNEL     FT"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "10.82",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "11.91",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-06T12:01:24+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Frankie & Benny's"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "FRANKIE & BENNYS 5  ON 04 MAY          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "5.50",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "22.73",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-05T12:02:27+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "IZ *TREBECCA LIMITED"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "IZ *TREBECCA LIMIT  ON 03 MAY          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "5.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "28.23",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-04T13:25:09+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Barclays Catering"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "ISS FOOD@BARCLAYS  ON 01 MAY          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "13.97",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "33.23",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-04T13:25:09+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Slug And Lettuce"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "CHERWELL BANBURY  ON 02 MAY          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "6.84",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "47.20",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-04T13:25:09+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Caf? Express Shop"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "CAFEXPRESSOP  ON 01 MAY          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "8.58",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "54.04",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-04T13:25:09+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Waitrose"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "WAITROSE 874  ON 02 MAY          BCC"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "6.43",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "62.62",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-04T13:25:09+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "THE MIDCOUNTIES CO-OPE"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "CO-OPERATIVE FOOD  ON 01 MAY          BCC"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "100.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "69.05",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-04T12:32:48+01:00",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "HALIFAX PLC  BANBURY"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "3.34",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "169.05",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-03T11:06:11+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "WH Smith"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "WH SMITH  ON 01 MAY          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "6.99",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "172.39",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-02T13:06:17+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "RADBROKE RESTAURANT &"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "ISS FOOD @BARCLAYS  ON 29 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "4.95",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "179.38",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-02T13:06:17+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "WESTWOOD RESTAURANT &"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "ISS FOOD @BARCLAYS  ON 30 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "20.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "184.33",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-05-01T11:19:01+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Next"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "NEXT RETAIL LTD  ON 29 APR          BCC"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "2.58",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "204.33",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-30T12:29:19+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "McDonald's"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "MCDONALDS  ON 28 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "9.07",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "206.91",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-30T12:29:19+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "KFC"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "KFC  ON 28 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "3.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "215.98",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-29T12:00:20+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Subway"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "SUBWAY  ON 27 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "9.50",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "218.98",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-29T12:00:20+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "SAINSBURYS- BANBURY"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "SAINSBURYS S/MKTS  ON 27 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "4.58",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "228.48",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-28T12:14:29+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "McDonald's"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "MCDONALDS  ON 26 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "4.80",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "233.06",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-28T12:14:29+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "WESTWOOD RESTAURANT &"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "ISS FOOD @BARCLAYS  ON 26 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "20.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "237.86",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-27T22:37:20+01:00",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "HALIFAX PLC  BANBURY"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "4.96",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "257.86",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-27T11:59:17+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "NORTHAMPTON RESTAURANT"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "ISS FOOD@BARCLAYS  ON 25 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "1.35",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "262.82",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-27T11:59:17+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "NORTHAMPTON RESTAURANT"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "ISS FOOD@BARCLAYS  ON 25 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "9.35",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "264.17",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-27T11:59:17+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Slug And Lettuce"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "CHERWELL BANBURY  ON 25 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "26.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "273.52",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-26T12:03:59+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Halfords"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "HALFORDS 0853  ON 24 APR          BCC"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "4.10",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "299.52",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-25T11:42:50+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "WESTWOOD RESTAURANT &"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "ISS FOOD @BARCLAYS  ON 23 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "300.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "303.62",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-24T10:23:05+01:00",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "202595 40315494  MOBILE-CHANNEL     FT"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "600.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "603.62",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-24T10:22:33+01:00",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "TransactionInformation": "DINEEN AARON  SPENDING           BGC"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "20.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "3.62",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-22T21:15:24+01:00",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "HALIFAX PLC  BANBURY"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "20.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "23.62",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-22T21:15:03+01:00",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "TransactionInformation": "DINEEN AARON  LONDON             BGC"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "80.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "3.62",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-21T12:42:01+01:00",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "202595 40315494  MOBILE-CHANNEL     FT"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "80.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "83.62",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-21T12:41:10+01:00",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "TransactionInformation": "DINEEN AARON  LONDON             BGC"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "11.50",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "3.62",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-21T11:47:22+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "SAINSBURYS- BANBURY"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "SAINSBURYS S/MKTS  ON 19 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "3.99",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "15.12",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-21T11:47:22+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "McDonald's"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "MCDONALDS  ON 18 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "1.25",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "19.11",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-21T11:47:22+01:00",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "Starbucks"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "ISS FOOD @BARCLAYS  ON 19 APR          CLP"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "7.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "20.36",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information"
+            },
+            "BookingDateTime": "2018-04-16T19:23:32+01:00",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "TransactionInformation": "202015 83400379  MONEY              FT"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "http://baseurl.com/accounts/1234/transactions?fromBookingDateTime=2017-05-14T14:41:15.144Z",
+        "Next": "{{request.requestLine.baseUrl}}/apis/open-banking/v3.1/aisp/accounts/1234/transactions?page=2&fromBookingDateTime=2017-05-14T14:41:15.144"
+      },
+      "Meta": {}
+    },
+    "transformers": ["response-template"],
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

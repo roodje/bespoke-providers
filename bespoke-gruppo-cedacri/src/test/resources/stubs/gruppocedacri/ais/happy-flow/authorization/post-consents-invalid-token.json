@@ -1,0 +1,50 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/consents",
+    "headers": {
+      "x-request-id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "authorization": {
+        "equalTo": "Bearer fakeAuthorizationToken"
+      },
+      "tpp-redirect-uri": {
+        "equalTo": "https://yolt.com/callback?state=d6290c4a-3ae9-415e-99cd-e572d0fca3f7"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.access[?(@.availableAccounts == 'allAccounts')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.recurringIndicator == true)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.combinedServiceIndicator == false)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.validUntil =~ /[0-9]{4}-[0-9]{2}-[0-9]{2}/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.frequencyPerDay == 4)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 401,
+    "jsonBody": {
+      "result": {
+        "status": 401,
+        "status_message": "Unathorized",
+        "url": "https://www.apimediolanum.it/ecm/login?abi=03062&lang=IT&cancel_link=https://tpp.psd2.cedacrigroup.it/&d=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

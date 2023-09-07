@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/account-access-consents/existing-external-consent-id",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "existing-external-consent-id",
+        "Permissions": [
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadDirectDebits",
+          "ReadProducts",
+          "ReadStandingOrdersDetail",
+          "ReadTransactionsCredits",
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail"
+        ],
+        "CreationDateTime": "2019-08-21T09:34:15.738Z",
+        "StatusUpdateDateTime": "2019-08-21T09:34:15.738Z",
+        "Status": "Authorised"
+      },
+      "Risk": {},
+      "Links": {
+        "Self": "https://api.natwest.com/open-banking/v3.1/aisp/account-access-consents/existing-external-consent-id"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

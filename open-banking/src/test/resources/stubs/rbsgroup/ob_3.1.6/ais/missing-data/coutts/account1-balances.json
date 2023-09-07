@@ -1,0 +1,63 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/123/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer test-accounts"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "504021-10001077",
+            "Amount": {
+              "Amount": "1.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "CreditLine": [
+              {
+                "Included": false,
+                "Amount": {
+                  "Amount": "500"
+                },
+                "Type": "Pre-Agreed"
+              },
+              {
+                "Included": false,
+                "Amount": {
+                  "Amount": "350",
+                  "Currency": "GBP"
+                },
+                "Type": "Available"
+              }
+            ],
+            "DateTime": "2018-02-02T10:42:37.398Z"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://api.natwest.com/accounts/504021-10001077/balances"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

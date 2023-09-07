@@ -1,0 +1,7 @@
+lovebird:
+  gruppocedacri:
+    bancamediolanum:
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      tokenUrl: https://localhost:${wiremock.server.https-port}/oauth/token
+      registrationUrl: https://localhost:${wiremock.server.https-port}/tpp
+      paginationLimit: 2000

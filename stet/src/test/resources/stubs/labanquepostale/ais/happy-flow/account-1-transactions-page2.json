@@ -1,0 +1,58 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/accounts/1/transactions/page-2",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Connection": {
+        "equalTo": "Keep-Alive",
+        "caseInsensitive": true
+      },
+      "Authorization": {
+        "equalTo": "Bearer af39f12f-eb22-4226-aa4e-5f68ba840c55"
+      },
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "jsonBody": {
+      "transactions": [
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "12.25"
+          },
+          "creditDebitIndicator": "CRDT",
+          "status": "BOOK",
+          "bookingDate": "2018-02-12",
+          "remittanceInformation": [
+            "SEPA CREDIT TRANSFER from PSD2Company"
+          ]
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "https://localhost:{{request.requestLine.port}}/v1/accounts/1/transactions/page-2"
+        },
+        "parent-list": {
+          "href": "https://localhost:{{request.requestLine.port}}/v1/accounts"
+        },
+        "balances": {
+          "href": "https://localhost:{{request.requestLine.port}}/v1/accounts/1/balances"
+        }
+      }
+    }
+  }
+}

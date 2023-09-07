@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/ab5c938d-20a1-4e32-9eed-201fa093f4e2/direct-debits",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "1626df30-50ad-42d8-8f39-40dd95f4b15f"
+      },
+      "x-fapi-financial-id": {
+        "contains": "00162010018e22KCTR"
+      }
+    }
+  },
+  "response": {
+    "status": 500
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/v2.0/account-requests/363ca7c1-9d03-4876-8766-ddefc9fd2d76",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "50000000-8cea-412d-b6ed-04aeb924eace"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "1238972887jdsIWNND"
+      }
+    }
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }}

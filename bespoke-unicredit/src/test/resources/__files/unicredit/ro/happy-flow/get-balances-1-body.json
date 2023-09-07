@@ -1,0 +1,32 @@
+{
+  "account": {
+    "iban": "IT75E0100000000000000000001",
+    "currency": "EUR"
+  },
+  "balances": [
+    {
+      "balanceAmount": {
+        "currency": "EUR",
+        "amount": 123.45
+      },
+      "balanceType": "expected",
+      "creditLimitIncluded": true
+    },
+    {
+      "balanceAmount": {
+        "currency": "EUR",
+        "amount": 124.56
+      },
+      "balanceType": "openingBooked",
+      "creditLimitIncluded": false
+    },
+    {
+      "balanceAmount": {
+        "currency": "EUR",
+        "amount": 125.67
+      },
+      "balanceType": "interimBooked",
+      "creditLimitIncluded": false
+    }
+  ]
+}

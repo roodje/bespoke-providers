@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/open-banking/private/oauth2/token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "3da42a4b-5e10-4807-9087-d90a8f66d997"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf7AeAAI"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback%2F3651edaa-d36e-48cb-8cc3-94bb1fbe8f76"
+      },
+      {
+        "contains": "code=authorization_code"
+      },
+      {
+        "contains": "client_id=2892ebea7ea9befa778897b5454fea56fb564fba4ebf65e4ba6546789fae98a9"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "AccessToken",
+      "refresh_token": "RefreshToken",
+      "id_token": "authorization_code",
+      "token_type": "Bearer",
+      "expires_in": 599
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "{{request.headers.x-fapi-interaction-id}}"
+    }
+  }
+}

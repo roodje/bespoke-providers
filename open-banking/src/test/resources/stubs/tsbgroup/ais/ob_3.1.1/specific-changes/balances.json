@@ -1,0 +1,58 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/apis/open-banking/v3.1/aisp/accounts/456/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "003882287203T83JKK"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "456",
+            "Amount": {
+              "Amount": "6.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2018-07-21T11:50:03+01:00"
+          },
+          {
+            "AccountId": "456",
+            "Amount": {
+              "Amount": "2.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2018-07-21T11:50:03+01:00"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/aisp/accounts/456/balances"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

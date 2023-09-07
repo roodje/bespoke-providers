@@ -1,0 +1,9 @@
+{
+  "tppMessages": [
+    {
+      "code": "RESOURCE_UNKNOWN",
+      "category": "ERROR",
+      "text": "Can't find card accounts belonging to the specific consentId"
+    }
+  ]
+}

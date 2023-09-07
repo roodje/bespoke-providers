@@ -1,0 +1,56 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/accounts/SOME_LOGICAL_ID",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer BELFIUS_ACCESS_TOKEN"
+      },
+      "Accept": {
+        "equalTo": "application/vnd.belfius.api+json; version=2"
+      },
+      "Client-ID": {
+        "equalTo": "SOME_CLIENT_ID"
+      },
+      "Accept-Language": {
+        "equalTo": "en"
+      },
+      "Redirect-URI": {
+        "equalTo": "REDIRECT_URL"
+      },
+      "Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "type": "current-account",
+      "iban": "BE80350454678790",
+      "currency": "EUR",
+      "balance": 123.12,
+      "multicurrency": "True",
+      "accountName": "ACCOUNT NAME",
+      "other_compartments": [
+        {
+          "currency": "EUR",
+          "balance": -123.12
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "SOME_LINK",
+          "templated": "boolean"
+        },
+        "transactions": {
+          "href": "SOME_LINK",
+          "templated": "boolean"
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

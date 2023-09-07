@@ -1,0 +1,58 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/1234/balances/next",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer test-accounts"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "2.27",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "OpeningAvailable",
+            "DateTime": "2018-03-06T00:00:00Z"
+          },
+          {
+            "AccountId": "123",
+            "Amount": {
+              "Amount": "13.37",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Type": "Expected",
+            "DateTime": "2018-03-06T00:00:00Z"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/accounts/1234/balances/next"
+      },
+      "Meta": {
+        "TotalPages": 2
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

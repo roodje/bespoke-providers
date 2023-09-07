@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/authserver/oauth/token",
+    "headers": {
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "content-type": {
+        "contains": "application/x-www-form-urlencoded"
+      }
+    },
+    "queryParameters": {
+      "grant_type": {
+        "equalTo": "refresh_token"
+      },
+      "refresh_token": {
+        "equalTo": "refresh-token"
+      }
+    },
+    "basicAuthCredentials": {
+      "username": "someClientId",
+      "password": "someClientSecret"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access_token": "access-token",
+      "scope": "aisp",
+      "refresh_token": "refresh-token",
+      "token_type": "bearer",
+      "expires_in": 3599
+    }
+  }
+}

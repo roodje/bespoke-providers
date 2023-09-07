@@ -1,0 +1,25 @@
+{
+  "request": {
+    "url": "/v1/consents/1111111111-aa11111/authorisations",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "authorisationIds": [
+        "aaaaaaa1-1111-1111-aaaa-111111111111"
+      ]
+    }
+  }
+}

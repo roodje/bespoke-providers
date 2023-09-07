@@ -1,0 +1,96 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/pisp/domestic-payments",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0017440000hdQV5CCT"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      },
+      "x-jws-signature": {
+        "matches": "^.*...*$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "ConsentId": "TESCOBANK-P-PAYMENT_ID",
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "EndToEndIdentification": "B7F2761C",
+              "InstructedAmount": {
+                "Amount": "10000.00",
+                "Currency": "GBP"
+              },
+              "DebtorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "45654645435345",
+                "Name": "Jordan Bell"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "20581634112471",
+                "Name": "Robin Hood"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "Unstructured"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "DomesticPaymentId": "PAYMENT_SUBMISSION_ID",
+        "ConsentId": "TESCOBANK-P-PAYMENT_ID",
+        "CreationDateTime": "2020-12-02T00:20:50+00:00",
+        "Status": "Pending",
+        "StatusUpdateDateTime": "2020-12-02T00:20:50+00:00",
+        "Initiation": {
+          "InstructionIdentification": "${json-unit.any-string}",
+          "EndToEndIdentification": "B7F2761C",
+          "InstructedAmount": {
+            "Amount": "10000.00",
+            "Currency": "GBP"
+          },
+          "DebtorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "45654645435345",
+            "Name": "Jordan Bell"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "20581634112471",
+            "Name": "Robin Hood"
+          },
+          "RemittanceInformation": {
+            "Unstructured": "Unstructured"
+          }
+        }
+      },
+      "Links": {
+        "Self": "https://ob.api.tescobank.com/open-banking/v3.1/pisp/domestic-payments"
+      },
+      "Meta": {}
+    }
+  }
+}

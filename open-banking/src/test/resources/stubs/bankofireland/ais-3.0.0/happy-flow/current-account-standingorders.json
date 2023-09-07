@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.0/aisp/accounts/5be63cf5-1e7d-45f9-b15d-db1dcc6d979e/standing-orders",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer j4HmjDMaBdSXUQQzN1GpdHoozGho"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "5008e82d-f5ac-42fe-8f07-a49b025f3c2e"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0011800000tfV9aBBE"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "StandingOrder": [
+          {
+            "AccountId": "5be63cf5-1e7d-45f9-b15d-db1dcc6d979e",
+            "StandingOrderId": "018",
+            "Frequency": "IntrvlMnthDay:01:28",
+            "Reference": "HL",
+            "NextPaymentDateTime": "2020-10-28T00:00:00+00:00",
+            "StandingOrderStatusCode": "Active",
+            "NextPaymentAmount": {
+              "Amount": "60.0",
+              "Currency": "GBP"
+            },
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "609XXXXXXXX908",
+              "Name": "Starling"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.0/aisp/accounts/5be63cf5-1e7d-45f9-b15d-db1dcc6d979e/standing-orders"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

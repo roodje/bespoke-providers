@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 908b3693-23bf-41c8-898d-3846d22a6858"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0032400006451CCVVX"
+      }
+    }
+  },
+  "response": {
+    "transformers": ["response-template"],
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "22ed9418-0510-4b29-9d8a-b30cdb208aa4",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount"
+          },
+          {
+            "AccountId": "b5cda922-6af1-453e-9b29-10b53807a33d",
+            "Currency": "EUR",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Account": []
+          }
+        ]
+      },
+      "Links": {
+        "Self": "{{request.requestLine.baseUrl}}/accounts"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    }
+  }
+}

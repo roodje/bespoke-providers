@@ -1,0 +1,65 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/transactions?dateFrom=2021-06-09&offset=Mg%3D%3D&count=20",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer test-access-token"
+      },
+      "Signature": {
+        "matches": "keyId=\"SN=(.*)\",algorithm=\"rsa-sha256\",headers=\"request-target date digest x-request-id\",signature=\"(.*)\""
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Date": {
+        "equalTo": "Mon, 12 Jan 1970 13:46:40 GMT"
+      },
+      "Request-Target": {
+        "equalTo": "get /v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/transactions?dateFrom=2021-06-09&offset=Mg%3d%3d&count=20"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "data": [
+        {
+          "type": "transactionMeResponse",
+          "id": "21CA17E6D6FCAD8D873E9A7C3D96781D86DB3BFCF71B92D3141FA1751B838960",
+          "attributes": {
+            "valueDate": "2021-08-13T11:22:09.3884048",
+            "operationDate": "2021-08-13T11:22:09.3884048",
+            "accountingDate": "2021-08-13T11:22:09.3884048",
+            "concept": "FICH. TRFS: B364073690002021-02-05T13:33",
+            "amount": {
+              "value": 6177.61,
+              "currency": "EUR"
+            },
+            "subsequentBalance": {
+              "value": 285392.12,
+              "currency": "EUR"
+            }
+          },
+          "links": {
+            "self": "/v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/transactions/21CA17E6D6FCAD8D873E9A7C3D96781D86DB3BFCF71B92D3141FA1751B838960"
+          }
+        }
+      ],
+      "links": {
+        "first": "/v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/transactions?dateFrom=2021-06-09&count=20",
+        "self": "/v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/transactions?dateFrom=2021-06-09&count=20"
+      },
+      "meta": {
+        "totalTransactions": 20,
+        "more": true
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/v1/berlin-group/v1/consents/16640bfe-9a98-441a-8380-c568976eee4a",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      }
+    }
+  },
+  "response": {
+    "status": 204
+  }
+}

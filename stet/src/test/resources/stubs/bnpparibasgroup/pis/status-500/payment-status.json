@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/payment-requests/PAYMENT_REQUEST_RESOURCE_ID",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer client-credentials-token"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    }
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "Content-Type": "application/json;charset=utf-8",
+      "X-Request-ID": "a77a60a1-23e1-4c59-bf24-a23d244c2fd0",
+      "Trace-Id": "07ca8f04-9847-e3f1-bd30-cd7e0092961d"
+    },
+    "jsonBody": {
+      "timestamp": "2018-03-30T16:06:27.499+0000",
+      "status": 500,
+      "error": "Internal Server Error",
+      "message": "Something went wrong",
+      "path": "/v1/payment-requests"
+    }
+  }
+}

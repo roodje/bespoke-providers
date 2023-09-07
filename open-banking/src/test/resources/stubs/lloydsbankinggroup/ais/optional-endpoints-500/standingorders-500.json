@@ -1,0 +1,23 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/v3.1/aisp/accounts/(110f7ec6-b395-41fa-af30-3bd7b984a38d|2b99602d-88c8-4bb9-b9a4-de0c39b9975e|37fe236a-cb65-44f8-a8d8-f9a477f8ec0d|4c253c59-db6d-493e-a937-126338822618)/standing-orders",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "c554a9ef-47c1-4b4e-a77f-2ad770d69748"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "1238972887jdsIWNND"
+      }
+    }
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

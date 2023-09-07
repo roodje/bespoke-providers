@@ -1,0 +1,95 @@
+{
+  "request": {
+    "url": "/v1/accounts/8EAAC7F4F3E75F786FB71B7C111111/transactions?withBalance=false&dateFrom=2020-01-01&bookingStatus=both",
+    "method": "GET",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "X-Request-ID": {
+        "matches": "traceId"
+      },
+      "Consent-ID": {
+        "equalTo": "consentId"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-ACCESS-TOKEN"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.1.2"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "maskedPan": "426354XXXXXX1513",
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "83117CE92E654B7F8712A2A58FAA7869",
+            "bookingDate": "2020-10-30",
+            "valueDate": "2020-10-30",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": 195.37
+            },
+            "remittanceInformationUnstructured": "SUMME MONATSABRECHNUNG VISA",
+            "additionalInformation": "Visa-Kartenabrechnung",
+            "_links": {
+              "transactionDetails": {
+                "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/8EAAC7F4F3E75F786FB71B7C111111/transactions/83117CE92E654B7F8712A2A58FAA7869"
+              }
+            }
+          }
+        ],
+        "pending": [
+          {
+            "transactionId": "910886EF984545ECA94E0A9BE8F64267",
+            "bookingDate": "2020-10-13",
+            "valueDate": "2020-10-13",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": -0.94
+            },
+            "remittanceInformationUnstructured": "1.75 PROZ.AUSLANDSENTGELT",
+            "additionalInformation": "Auslandsentgelt",
+            "_links": {
+              "transactionDetails": {
+                "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/8EAAC7F4F3E75F786FB71B7C111111/transactions/910886EF984545ECA94E0A9BE8F64267"
+              }
+            }
+          }
+        ],
+        "_links": {
+          "first": {
+            "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/8EAAC7F4F3E75F786FB71B7C111111/transactions?dateFrom=2020-01-01&dateTo=2020-12-07&bookingStatus=BOTH&withBalance=false&page=0"
+          },
+          "last": {
+            "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/8EAAC7F4F3E75F786FB71B7C111111/transactions?dateFrom=2020-01-01&dateTo=2020-12-07&bookingStatus=BOTH&withBalance=false&page=0"
+          },
+          "account": {
+            "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/8EAAC7F4F3E75F786FB71B7C111111?withBalance=false"
+          },
+          "balances": {
+            "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/8EAAC7F4F3E75F786FB71B7C111111/balances"
+          },
+          "transactions": {
+            "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/8EAAC7F4F3E75F786FB71B7C111111/transactions"
+          }
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

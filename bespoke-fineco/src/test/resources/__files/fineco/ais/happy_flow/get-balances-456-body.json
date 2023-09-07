@@ -1,0 +1,40 @@
+{
+  "cardAccount": {
+    "maskedPan": "1234567891234567",
+    "currency": "EUR"
+  },
+  "balances": [
+    {
+      "balanceType": "interimAvailable",
+      "referenceDate": "2019-02-28",
+      "balanceAmount": {
+        "currency": "EUR",
+        "amount": "6000.00"
+      }
+    },
+    {
+      "balanceType": "interimAvailable",
+      "referenceDate": "2019-02-28",
+      "balanceAmount": {
+        "currency": "EUR",
+        "amount": "-500.00"
+      }
+    },
+    {
+      "balanceType": "authorised",
+      "referenceDate": "2019-02-28",
+      "balanceAmount": {
+        "currency": "EUR",
+        "amount": "1000.00"
+      }
+    },
+    {
+      "balanceType": "interimAvailable",
+      "referenceDate": "2019-02-28",
+      "balanceAmount": {
+        "currency": "EUR",
+        "amount": "300.00"
+      }
+    }
+  ]
+}

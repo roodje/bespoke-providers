@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/bt/sb/oauth-prd/token",
+    "headers": {
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "content-type": {
+        "contains": "application/x-www-form-urlencoded"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=refresh-token"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fyolt.com%2Fcallback"
+      },
+      {
+        "contains": "client_id=client-id"
+      },
+      {
+        "contains": "client_secret=client-secret"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access_token": "new-access-token",
+      "scope": "openid offline_access",
+      "refresh_token": "new-refresh-token",
+      "token_type": "bearer",
+      "expires_in": 3599
+    }
+  }
+}

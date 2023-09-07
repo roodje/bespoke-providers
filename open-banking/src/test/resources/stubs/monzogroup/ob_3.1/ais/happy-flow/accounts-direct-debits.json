@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/22289/direct-debits",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer Az90SAOJklae"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "93bac548-d2de-4546-b106-880a5018460d"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "93bac548-d2de-4546-b106-880a5018460d"
+    },
+    "jsonBody": {
+      "Data": {
+        "DirectDebit": [
+          {
+            "AccountId": "22289",
+            "DirectDebitId": "ddi_00009dBQPquelhHLWrjXec",
+            "MandateIdentification": "5DYJ22294G97K",
+            "DirectDebitStatusCode": "Active",
+            "Name": "JPMC RE PAYPAL INTL LTD",
+            "PreviousPaymentDateTime": "2017-04-05T10:43:07+00:00",
+            "PreviousPaymentAmount": {
+              "Amount": "34.9900",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://api.alphabank.com/openbanking.monzo.com/v3.1/aisp/accounts/22289/direct-debits/"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    }
+  }
+}

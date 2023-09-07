@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/ACCOUNTS_API/v1/(2002222222100|2002222222103)/balances",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer access_token"
+      },
+      "Consent-ID": {
+        "matches": "VALID_CONSENT_ID"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "iban": "RO40BREL0001012119210203"
+      },
+      "balances": [
+        {
+          "balanceType": "Expected",
+          "balanceAmount": {
+            "currency": "RON",
+            "amount": 1450.00
+          },
+          "referenceDate": "2020-07-21",
+          "lastChangeDateTime": "2020-07-21 03:59:51"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+

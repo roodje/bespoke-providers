@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/accounts/4c8f3ed8-a3d7-4d75-b239-3c9f42ac8685/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 978e46f2-b8a5-4f81-ac45-f10d32e6b764"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0032400006451CCVVX"
+      }
+    }
+  },
+  "response": {
+    "transformers": ["response-template"],
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "4c8f3ed8-a3d7-4d75-b239-3c9f42ac8685",
+            "Amount": {
+              "Amount": "50.20",
+              "Currency": "EUR"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2020-11-08T10:23:53.620764Z"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "{{request.requestLine.baseUrl}}/accounts/4c8f3ed8-a3d7-4d75-b239-3c9f42ac8685/balances"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    }
+  }
+}

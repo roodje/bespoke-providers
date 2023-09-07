@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/123/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf9VgAAI"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "transformers": [
+      "response-template"
+    ],
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "123",
+            "Amount": {
+              "Amount": "4.20",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2018-03-06T00:00:00Z"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://apis.aibgb.co.uk:443//api/open-banking/v1.1/123/balances",
+        "Next": "{{request.requestLine.baseUrl}}/v3.1/aisp/accounts/123/balances/next"
+      },
+      "Meta": {
+        "TotalPages": 2
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

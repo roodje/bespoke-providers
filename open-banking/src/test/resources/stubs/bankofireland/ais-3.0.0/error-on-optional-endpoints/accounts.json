@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.0/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer j4HmjDMaBdSXUQQzN1GpdHoozGho"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "5008e82d-f5ac-42fe-8f07-a49b025f3c2e"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0011800000tfV9aBBE"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "5be63cf5-1e7d-45f9-b15d-db1dcc6d979e",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Nickname": "Current Account",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "90489636534098"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.0/aisp/accounts"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

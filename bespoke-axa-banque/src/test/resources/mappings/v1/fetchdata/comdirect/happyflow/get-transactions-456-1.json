@@ -1,0 +1,104 @@
+{
+  "request": {
+    "url": "/v1/accounts/CB0160780E04423D84BAD51111111/transactions?withBalance=false&dateFrom=2020-01-01&bookingStatus=both",
+    "method": "GET",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "X-Request-ID": {
+        "matches": "traceId"
+      },
+      "Consent-ID": {
+        "equalTo": "consentId"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-ACCESS-TOKEN"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.1.2"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "8F24CE774BF14193942AF944653200A2",
+            "endToEndId": "1011368432846 PP.6822.PP PAYPAL",
+            "mandateId": "5PPJ224RYMJDW",
+            "creditorId": "LU96ZZZ0000000000000000058",
+            "bookingDate": "2020-12-07",
+            "valueDate": "2020-12-07",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": -0.84
+            },
+            "creditorName": "PAYPAL EUROPE SARL ET CIE SCA",
+            "creditorAccount": {},
+            "remittanceInformationUnstructured": "PP.6822.PP . ITUNESAPPST, Ihr Einka; uf bei ITUNESAPPST",
+            "additionalInformation": "Lastschrift / Belastung",
+            "_links": {
+              "transactionDetails": {
+                "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/CB0160780E04423D84BAD51111111/transactions/8F24CE774BF14193942AF944653200A2"
+              }
+            }
+          }
+        ],
+        "pending": [
+          {
+            "transactionId": "16FD1325308948C394695003518F6A8F",
+            "endToEndId": "1011371316158 PP.6822.PP PAYPAL",
+            "mandateId": "5PPJ224RYMJDW",
+            "creditorId": "LU96ZZZ0000000000000000058",
+            "bookingDate": "2020-12-07",
+            "valueDate": "2020-12-07",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": -6.01
+            },
+            "creditorName": "PAYPAL EUROPE SARL ET CIE SCA",
+            "creditorAccount": {},
+            "remittanceInformationUnstructured": "PP.6822.PP . CREATELYCOM, Ihr Einka; uf bei CREATELYCOM",
+            "additionalInformation": "Lastschrift / Belastung",
+            "_links": {
+              "transactionDetails": {
+                "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/CB0160780E04423D84BAD51111111/transactions/16FD1325308948C394695003518F6A8F"
+              }
+            }
+          }
+        ],
+        "_links": {
+          "next": {
+            "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/CB0160780E04423D84BAD51111111/transactions?dateFrom=2020-10-27&dateTo=2020-12-07&bookingStatus=BOTH&withBalance=false&page=1"
+          },
+          "first": {
+            "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/CB0160780E04423D84BAD51111111/transactions?dateFrom=2020-10-27&dateTo=2020-12-07&bookingStatus=BOTH&withBalance=false&page=0"
+          },
+          "last": {
+            "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/CB0160780E04423D84BAD51111111/transactions?dateFrom=2020-10-27&dateTo=2020-12-07&bookingStatus=BOTH&withBalance=false&page=4"
+          },
+          "account": {
+            "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/CB0160780E04423D84BAD51111111?withBalance=false"
+          },
+          "balances": {
+            "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/CB0160780E04423D84BAD51111111/balances"
+          },
+          "transactions": {
+            "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/CB0160780E04423D84BAD5289DD82225/transactions"
+          }
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

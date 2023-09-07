@@ -1,0 +1,120 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/servicing/v1/financials/transactions",
+    "queryParameters": {
+      "statement_end_date": {
+        "equalTo": "2016-12-03"
+      },
+      "offset": {
+        "matches": "5"
+      },
+      "limit": {
+        "matches": "5"
+      },
+      "extended_details": {
+        "matches": "merchant"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "matches": "MAC.id=\"9shWQjwZ0jRPIN1T2NrnQYw\",ts=\"[0-9]+\",nonce=\".+:AMEX\",mac=\".+\""
+      },
+      "x-amex-api-key": {
+        "matches": "THE-CLIENT-ID"
+      },
+      "x-amex-request-id": {
+        "matches": "[0-9a-z]{32}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type":  "application/json",
+      "x-amex-request-id":  "9shWQjwZ0jRPIN1T2NrnQYw"
+    },
+    "jsonBody": [
+      {
+        "total_transaction_count": "8",
+        "transactions": [
+          {
+            "identifier": "320162240910370235",
+            "charge_date": "2016-08-10",
+            "post_date": "2016-08-10",
+            "statement_end_date": "2016-09-06",
+            "amount": "110.25",
+            "reference_number": "320162240910370230",
+            "type": "CREDIT",
+            "description": "NIGEL'S BAGEL EMPORIUM 194 0194",
+            "iso_alpha_currency_code": "USD",
+            "display_account_number": "XXXX-XXXXXX-81004",
+            "first_name": "Nigel",
+            "last_name": "Smythe",
+            "embossed_name": "Nigel Smythe",
+            "extended_details": {
+              "merchant": {
+                "name": "NIGEL'S BAGEL EMPORIUM",
+                "address": {
+                  "address_lines": [
+                    "18631 N 19TH AVE, 150"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "identifier": "320162240910370236",
+            "charge_date": "2016-08-10",
+            "post_date": "2016-08-10",
+            "statement_end_date": "2016-09-06",
+            "amount": "110.26",
+            "reference_number": "320162240910370230",
+            "type": "CREDIT",
+            "description": "NIGEL'S BAGEL EMPORIUM 194 0194",
+            "iso_alpha_currency_code": "USD",
+            "display_account_number": "XXXX-XXXXXX-81004",
+            "first_name": "Nigel",
+            "last_name": "Smythe",
+            "embossed_name": "Nigel Smythe",
+            "extended_details": {
+              "merchant": {
+                "name": "NIGEL'S BAGEL EMPORIUM",
+                "address": {
+                  "address_lines": [
+                    "18631 N 19TH AVE, 150"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "identifier": "320162240910370237",
+            "charge_date": "2016-08-10",
+            "post_date": "2016-08-10",
+            "statement_end_date": "2016-09-06",
+            "amount": "110.27",
+            "reference_number": "320162240910370230",
+            "type": "CREDIT",
+            "description": "NIGEL'S BAGEL EMPORIUM 194 0194",
+            "iso_alpha_currency_code": "USD",
+            "display_account_number": "XXXX-XXXXXX-81004",
+            "first_name": "Nigel",
+            "last_name": "Smythe",
+            "embossed_name": "Nigel Smythe",
+            "extended_details": {
+              "merchant": {
+                "name": "NIGEL'S BAGEL EMPORIUM",
+                "address": {
+                  "address_lines": [
+                    "18631 N 19TH AVE, 150"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

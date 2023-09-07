@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/api/v2/feed/account/bbccbbcc-bbcc-bbcc-bbcc-bbccbbccbbcd/category/ccddccdd-ccdd-ccdd-ccdd-ccddccddccdd/transactions-between",
+    "queryParameters": {
+      "minTransactionTimestamp": {
+        "equalTo": "2019-06-03T12:23:25Z"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "contains": "Bearer access-token"
+      },
+      "Accept-Encoding": {
+        "contains": "gzip"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "feedItems": [
+      ]
+    }
+  }
+}

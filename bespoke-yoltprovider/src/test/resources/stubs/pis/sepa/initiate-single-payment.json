@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/pis/sepa/single/initiate-payment",
+    "headers": {
+      "digest": {
+        "equalTo": "SHA-256=ocT2aVeR79lP4HcTJKEHp3bjvBTgIGiBtaWo/MFaR24="
+      },
+      "signature": {
+        "equalTo": "\"keyId=\"999b371f-926e-49a9-b23d-e594d5ff47c3\",algorithm=\"SHA256withRSA\"\""
+      },
+      "client-id": {
+        "equalTo": "6f16d556-2845-45c4-a3bd-73054dacada5"
+      },
+      "redirect_url": {
+        "equalTo": "http://redirect.url?state="
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"creditorAccount\":{\"currency\":\"EUR\",\"iban\":\"AB1234\"},\"creditorName\":\"fake creditor\",\"endToEndIdentification\":\"endToEndIdentification\",\"instructedAmount\":{\"amount\":1},\"remittanceInformationUnstructured\":\"fake reference\",\"debtorAccount\":{\"currency\":\"EUR\",\"iban\":\"CD5678\"},\"executionDate\":[2000,12,31]}\n"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "paymentStatus": {
+        "paymentId": "123",
+        "paymentStatus": "INITIATED"
+      },
+      "_links": {
+        "scaRedirect": "http://yoltbank.io/authorize",
+        "status": "INITIATED"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "request": {
+    "urlPathPattern": "/psd2-api.ca-alpesprovence.fr/dsp2/v1/accounts/2/transactions",
+    "queryParameters": {
+      "dateFrom": {
+        "matches": "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$"
+      },
+      "dateTo": {
+        "matches": "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$"
+      }
+    },
+    "method": "GET",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Connection": {
+        "equalTo": "Keep-Alive",
+        "caseInsensitive": true
+      },
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 39911f01-4613-461f-9b47-1e4ba35176e6"
+      },
+      "Date": {
+        "matches": "((Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{1,2} ... \\d{4} \\d{2}:\\d{2}:\\d{2} ...)"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Signature": {
+        "matches": "keyId=\"2b9adbd7f86bed51e23f467c25e1f887\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) x-request-id authorization accept digest date content-type\", signature=\"([A-Za-z0-9+])*(=){0,2}\""
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Accept": "application/json, application/*+json",
+      "Content-Type": "application/json; charset=UTF-8"
+    },
+    "jsonBody": {
+      "transactions": [
+        {
+          "entryReference": "5504400000379",
+          "bookingDate": "2019-01-28",
+          "valueDate": "2019-01-29",
+          "status": "BOOK",
+          "creditDebitIndicator": "CRDT",
+          "remittanceInformation": [
+            "Motif de paiement 364"
+          ],
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "31.36"
+          }
+        },
+        {
+          "entryReference": "5504400000377",
+          "bookingDate": "2019-01-28",
+          "valueDate": "2019-01-29",
+          "status": "BOOK",
+          "creditDebitIndicator": "DBIT",
+          "remittanceInformation": [
+            "Motif de paiement 366"
+          ],
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "31.38"
+          }
+        },
+        {
+          "entryReference": "5504400000376",
+          "bookingDate": "2019-01-28",
+          "valueDate": "2019-01-29",
+          "status": "BOOK",
+          "creditDebitIndicator": "DBIT",
+          "remittanceInformation": [
+            "Motif de paiement 367"
+          ],
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "31.39"
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/psd2-api.ca-alpesprovence.fr/v1/accounts/2/transactions?dateFrom=2019-12-31&dateTo=2020-04-15",
+          "templated": true
+        },
+        "balances": {
+          "href": "/psd2-api.ca-alpesprovence.fr/v1/accounts/2/balances",
+          "templated": false
+        },
+        "parentlist": {
+          "href": "/psd2-api.ca-alpesprovence.fr/v1/accounts/",
+          "templated": false
+        },
+        "next": {
+          "templated": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/aisp/accounts/2b462486-24e5-11ec-9621-0242ac130002/balances",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 0c3da8a6-24ff-11ec-9621-0242ac130002"
+      },
+      "Accept": {
+        "matches": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800001ZEZ3yAAH"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "2b462486-24e5-11ec-9621-0242ac130002",
+            "Amount": {
+              "Amount": "5643.17",
+              "Currency": "EUR"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2018-02-06T07:32:08+00:00",
+            "CreditLine": [
+              {
+                "Amount": {
+                  "Amount": "8000",
+                  "Currency": "EUR"
+                },
+                "Included": true,
+                "Type": "Credit"
+              }
+            ]
+          },
+          {
+            "AccountId": "b462486-24e5-11ec-9621-0242ac130002",
+            "Amount": {
+              "Amount": "5001.45",
+              "Currency": "EUR"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2018-02-06T07:32:08+00:00",
+            "CreditLine": [
+              {
+                "Amount": {
+                  "Amount": "8000",
+                  "Currency": "EUR"
+                },
+                "Included": true,
+                "Type": "Credit"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://openapi.ie.kbc-group.com/psd2-ie/open-banking/v1.0/aisp/accounts/2b462486-24e5-11ec-9621-0242ac130002/balances",
+        "Last": "https://openapi.ie.kbc-group.com/psd2-ie/open-banking/v1.0/aisp/accounts/2b462486-24e5-11ec-9621-0242ac130002/balances"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

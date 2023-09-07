@@ -1,0 +1,14 @@
+lovebird:
+  volksbank:
+    sns:
+      base-url: https://localhost:${wiremock.server.https-port}
+      authorization-url: https://localhost:${wiremock.server.https-port}
+      pagination-limit: 2000
+    regio:
+      base-url: https://localhost:${wiremock.server.https-port}
+      authorization-url: https://localhost:${wiremock.server.https-port}
+      pagination-limit: 2000
+    asn:
+      base-url: https://localhost:${wiremock.server.https-port}
+      authorization-url: https://localhost:${wiremock.server.https-port}
+      pagination-limit: 2000

@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth-token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "82802014-b8ee-497f-88fa-848187020e9d"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0011800000tfV9aBBE"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Basic c29tZUNsaWVudElk"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=xcdog81ShrtxuIqRO9Zlf0zG0YVuaGuo9iK8sHWeA8"
+      },
+      {
+        "contains": "client_id=someClientId"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "0002qSaik8FeZuXPd6E79EAb9Uh2",
+      "token_type": "Bearer",
+      "expires_in": 299
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

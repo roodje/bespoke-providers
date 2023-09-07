@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth2/token",
+    "queryParameters": {
+      "role": {
+        "equalTo": "DEDICATED_AIS"
+      }
+    },
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalTo": "grant_type=authorization_code&code={{authorization code}}&code_verifier={{code verifier}}&request_id={{request_id}}&redirect_uri={{redirect_uri}}"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "userMessage": {
+        "title": "Error",
+        "detail": "Please try again later."
+      },
+      "error_description": "Bad Request",
+      "detail": "Bad Request",
+      "type": "invalid_request",
+      "error": "invalid_request",
+      "title": "invalid_request",
+      "status": 400
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

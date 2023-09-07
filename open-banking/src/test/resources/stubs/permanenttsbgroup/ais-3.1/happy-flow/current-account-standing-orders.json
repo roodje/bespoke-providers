@@ -1,0 +1,55 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/E179385A-3774-499C-8D61-142783AB943C/standing-orders",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 7531d7a8-7f5e-4bde-ae07-a5c587458ad7"
+      },
+      "Accept": {
+        "matches": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800001ZEZ3yAAH"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "StandingOrder": [
+          {
+            "AccountId": "E179385A-3774-499C-8D61-142783AB943C",
+            "Frequency": "IntrvlMnthDay:01:01",
+            "Reference": "99070656010101",
+            "NextPaymentDateTime": "2019-04-28T01:00:00+01:00",
+            "NextPaymentAmount": {
+              "Amount": "12.81",
+              "Currency": "EUR"
+            },
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.IBAN",
+              "Identification": "IE29IPBS99066018001052"
+            },
+            "CreditorAgent": {
+              "SchemeName": "UK.OBIE.BICFI",
+              "Identification": "IPBSIE2D"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://developer.permanenttsb.ie/psd2api/ptsb/open-banking/v3.1/aisp/accounts/E179385A-3774-499C-8D61-142783AB943C/standing-orders",
+        "Last": "https://developer.permanenttsb.ie/psd2api/ptsb/open-banking/v3.1/aisp/accounts/E179385A-3774-499C-8D61-142783AB943C/standing-orders"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

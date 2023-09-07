@@ -1,0 +1,18 @@
+lovebird:
+  virginmoney2group:
+    virginmoney2:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      registrationUrl: https://localhost:${wiremock.server.https-port}/v3.2/register
+      registrationAudience: registrationAudience
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/v3.0/oauth2/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

@@ -1,0 +1,32 @@
+{
+  "scenarioName": "Status polling",
+  "requiredScenarioState": "Started",
+  "newScenarioState": "Valid consent",
+  "request": {
+    "method": "GET",
+    "url": "/v1/berlin-group/v1/consents/16640bfe-9a98-441a-8380-c568976eee4a/status",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "consentStatus": "pending"
+    }
+  }
+}

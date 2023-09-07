@@ -1,0 +1,100 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/psd2-accounts-api-1.3.2-rbro/v1/accounts/EX09999992/transactions?dateFrom=1970-01-12&bookingStatus=both",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer test-access-token"
+      },
+      "client_id": {
+        "matches": "22222222-2222-2222-2222-222222222222"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "123000003",
+            "endToEndId": "6032334822309888",
+            "mandateId": "7/11/2022",
+            "bookingDate": "2018-01-01",
+            "valueDate": "2018-01-02",
+            "transactionAmount": {
+              "amount": "22196791541760",
+              "currency": "EUR"
+            },
+            "exchangeRate": [
+              {
+                "sourceCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "unitCurrency": "CDF",
+                "exchangeRate": 0.241,
+                "targetCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "quotationDate": "2014-12-11",
+                "contractIdentification": "1540398856011776"
+              },
+              {
+                "sourceCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "unitCurrency": "THB",
+                "exchangeRate": 0.241,
+                "targetCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "quotationDate": "2015-09-17",
+                "contractIdentification": "8190866466275328"
+              },
+              {
+                "sourceCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "unitCurrency": "SAR",
+                "exchangeRate": 0.241,
+                "targetCurrency": {
+                  "CurrencyCode": "EUR"
+                },
+                "quotationDate": "2015-10-15",
+                "contractIdentification": "5773558059892736"
+              }
+            ],
+            "creditorName": "5610754844080575",
+            "creditorAccount": {
+              "accountNumber": "99999/9999",
+              "iban": "AT611904300234573201"
+            },
+            "ultimateCreditor": "5146114389566053",
+            "debtorName": "Mike Hall",
+            "debtorAccount": {
+              "accountNumber": "99999/9999",
+              "iban": "AT611904300234573301"
+            },
+            "ultimateDebtor": "zeobamocza",
+            "remittanceInformationUnstructured": "opevapulucalel",
+            "remittanceInformationStructured": "mehefze",
+            "purposeCode": "italuluursus",
+            "bankTransactionCode": "mubem"
+          }
+        ],
+        "_links": {
+          "viewAccount": "/psd2-accounts-api-1.3.2-rbro/v1/accounts/EX09999992",
+          "firstPage": "/psd2-accounts-api-1.3.2-rbro/v1/accounts/EX09999992/transactions?page=0",
+          "currentPage": "/psd2-accounts-api-1.3.2-rbro/v1/accounts/EX09999992/transactions?page=0",
+          "lastPage": "/psd2-accounts-api-1.3.2-rbro/v1/accounts/EX09999992/transactions?page=0"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/platform/enabler/psd2orchestrator/ais/2.3.2/card-accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 00000000-0000-0000-0000-000000000000"
+      },
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "aspsp-code": {
+        "matches": "^.+$"
+      },
+      "date": {
+        "matches": "^[a-zA-Z]{3},\\s[0-9]{1,2}\\s[a-zA-Z]{3}\\s[0-9]{4}\\s(2[0-3]|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])\\sUTC$"
+      },
+      "digest": {
+        "equalTo": "sha-512=slspTLTetp6gCkw88xE5BIAbYBXllWvQGahXCx/h1gQOlE7zze4W0KRlA8puZZol8hz5zt3BPzUqPJgTjBXWrw=="
+      },
+      "signature": {
+        "matches": "keyId=\"13299021239615735660\",algorithm=\"rsa-sha512\",headers=\"date digest x-request-id\",signature=\"([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*\""
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIICMzCCAZygAwIBAgIJALiPnVsvq8dsMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzAeFw0xMzAzMTkxNTQwMTlaFw0xODAzMTgxNTQwMTlaMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzdGfxi9CNbMf1UUcvDQh7MYBOveIHyc0E0KIbhjK5FkCBU4CiZrbfHagaW7ZEcN0tt3EvpbOMxxc/ZQU2WN/s/wPxph0pSfsfFsTKM4RhTWD2v4fgk+xZiKd1p0+L4hTtpwnEw0uXRVd0ki6muwV5y/P+5FHUeldq+pgTcgzuK8CAwEAAaMPMA0wCwYDVR0PBAQDAgLkMA0GCSqGSIb3DQEBBQUAA4GBAJiDAAtY0mQQeuxWdzLRzXmjvdSuL9GoyT3BF/jSnpxz5/58dba8pWenv3pj4P3w5DoOso0rzkZy2jEsEitlVM2mLSbQpMM+MUVQCQoiG6W9xuCFuxSrwPISpAqEAuV4DNoxQKKWmhVv+J0ptMWD25Pnpxeq5sXzghfJnslJlQND"
+      },
+      "consent-id": {
+        "equalTo": "3"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "cardAccounts": [
+        {
+          "name": "TestCardAccount",
+          "maskedPan": "1111 ******* 1111",
+          "currency": "EUR",
+          "resourceId": "1",
+          "details": "TestCardAccount Details",
+          "balances": [
+            {
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": "100.10"
+              },
+              "balanceType": "interimAvailable",
+              "lastChangeDateTime": "2020-01-01T09:45:00.000+02:00",
+              "referenceDate": "2020-01-01"
+            }
+          ],
+          "creditLimit": {
+            "currency": "EUR",
+            "amount": "12345.67"
+          },
+          "_links": {
+            "account": {
+              "href": "/card-accounts/1"
+            },
+            "balances": {
+              "href": "/card-accounts/1/balances"
+            },
+            "transactions": {
+              "href": "/card-accounts/1/transactions"
+            }
+          }
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "cpaas-total-pages": "1",
+      "cpaas-total-elements": "2"
+    }
+  }
+}

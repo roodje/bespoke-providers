@@ -1,0 +1,85 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/accounts/cbba2fa2-2630-4862-a080-872b6735bfb1/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^(\\d{4})\\D?(0[1-9]|1[0-2])\\D?([12]\\d|0[1-9]|3[01])(\\D?([01]\\d|2[0-3])\\D?([0-5]\\d)\\D?([0-5]\\d)?\\D?(\\d{3})?)?$"
+      },
+      "toBookingDateTime": {
+        "absent": true
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 978e46f2-b8a5-4f81-ac45-f10d32e6b764"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0032400006451CCVVX"
+      }
+    }
+  },
+  "response": {
+    "transformers": ["response-template"],
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "cbba2fa2-2630-4862-a080-872b6735bfb1",
+            "Amount": {
+              "Amount": "1.59",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "2.21",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            },
+            "BookingDateTime": "2020-11-02T12:16:29.766072Z",
+            "ValueDateTime": "2020-11-04T03:46:49.620686Z",
+            "CreditDebitIndicator": "Debit",
+            "CurrencyExchange": {
+              "InstructedAmount": {
+                "Amount": "5.58",
+                "Currency": "USD"
+              },
+              "SourceCurrency": "GBP",
+              "TargetCurrency": "USD",
+              "UnitCurrency": "GBP",
+              "ExchangeRate": "1.2992"
+            },
+            "MerchantDetails": {
+              "MerchantName": "Aws Emea"
+            },
+            "DebtorAccount": {
+              "SchemeName": "UK.OBIE.IBAN",
+              "Identification": "GB95BARC20040187265883",
+              "Name": "John Smith"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "CARD_PAYMENT",
+              "Issuer": "Revolut"
+            },
+            "Status": "Booked",
+            "TransactionId": "1710cbe4-f721-49f3-9ea0-83a830647b2a",
+            "TransactionInformation": "Aws Emea"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "{{request.requestLine.baseUrl}}/accounts/cbba2fa2-2630-4862-a080-872b6735bfb1/transactions"
+      },
+      "Meta": {}
+    }
+  }
+}

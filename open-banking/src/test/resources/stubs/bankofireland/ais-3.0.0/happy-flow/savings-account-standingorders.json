@@ -1,0 +1,34 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.0/aisp/accounts/f59f6450-d6de-4f08-917a-d883cae85119/standing-orders",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer j4HmjDMaBdSXUQQzN1GpdHoozGho"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "5008e82d-f5ac-42fe-8f07-a49b025f3c2e"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0011800000tfV9aBBE"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "StandingOrder": []
+      },
+      "Links": {
+        "Self": "/v3.0/aisp/accounts/f59f6450-d6de-4f08-917a-d883cae85119/standing-orders"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+lovebird:
+  raiffeisenbank:
+    ro:
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthBaseUrl: https://localhost:${wiremock.server.https-port}
+      paginationLimit: 100

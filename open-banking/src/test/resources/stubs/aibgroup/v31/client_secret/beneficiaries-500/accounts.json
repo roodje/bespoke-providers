@@ -1,0 +1,60 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf9VgAAI"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "transformers": [
+      "response-template"
+    ],
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "123",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Description": "string",
+            "Nickname": "CURRENT-1337",
+            "Account": [
+              {
+                "SchemeName": "IBAN",
+                "Identification": "GB15AIBK12345678901234"
+              }
+            ],
+            "Servicer": {
+              "SchemeName": "BICFI",
+              "Identification": "AIBKGB2L"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/account/v2/accounts",
+        "Next": "{{request.requestLine.baseUrl}}/v3.1/aisp/accounts/next"
+      },
+      "Meta": {
+        "TotalPages": 2
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

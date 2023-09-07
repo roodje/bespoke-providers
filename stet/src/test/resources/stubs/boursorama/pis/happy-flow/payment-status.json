@@ -1,0 +1,121 @@
+{
+  "request":{
+    "method":"GET",
+    "urlPattern":"/services/api/v1.7/_public_/dsp2/payment-requests/MyPmtInfId",
+    "headers":{
+      "Authorization":{
+        "equalTo":"Bearer payment-token"
+      },
+      "digest":{
+        "matches":"SHA-256=([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "signature":{
+        "matches": "keyId=\"([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) digest psu-ip-address x-request-id\",signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "x-request-id":{
+        "matches":"^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    }
+  },
+  "response":{
+    "status":201,
+    "headers":{
+      "Content-Type":"application/json;charset=utf-8",
+      "X-Request-ID":"a8da60a1-4a81-4c59-bf24-a257244c2fd0",
+      "Trace-Id":"07ca8f04-9847-4e11-bd30-cd7d2a92961d"
+    },
+    "jsonBody":{
+      "paymentRequest":{
+        "paymentInformationId":"MyPmtInfId",
+        "creationDateTime":"2018-03-31T13:25:22.527+02:00",
+        "numberOfTransactions":1,
+        "initiatingParty":{
+          "name":"MyPreferredPisp",
+          "postalAddress":{
+            "country":"FR",
+            "addressLine":[
+              "18 rue de la DSP2",
+              "75008 PARIS"
+            ]
+          },
+          "organisationId":{
+            "identification":"12FR5",
+            "schemeName":"COID",
+            "issuer":"ACPR"
+          }
+        },
+        "paymentTypeInformation":{
+          "serviceLevel":"SEPA",
+          "categoryPurpose":"DVPM"
+        },
+        "debtor":{
+          "name":"MyCustomer",
+          "postalAddress":{
+            "country":"FR",
+            "addressLine":[
+              "18 rue de la DSP2",
+              "75008 PARIS"
+            ]
+          },
+          "privateId":{
+            "identification":"FD37G",
+            "schemeName":"BANK",
+            "issuer":"BICXYYTTZZZ"
+          }
+        },
+        "beneficiary":{
+          "creditor":{
+            "name":"myMerchant",
+            "postalAddress":{
+              "country":"FR",
+              "addressLine":[
+                "18 rue de la DSP2",
+                "75008 PARIS"
+              ]
+            },
+            "organisationId":{
+              "identification":"852126789",
+              "schemeName":"SIREN",
+              "issuer":"FR"
+            }
+          },
+          "creditorAccount":{
+            "iban":"FR7640618802500004082626224"
+          }
+        },
+        "paymentInformationStatus":"ACSC",
+        "chargeBearer":"SLEV",
+        "requestedExecutionDate":"2028-12-29T00:00:00.000+01:00",
+        "creditTransferTransaction":[
+          {
+            "paymentId":{
+              "instructionId":"MyInstrId",
+              "endToEndId":"MyEndToEndId"
+            },
+            "instructedAmount":{
+              "currency":"EUR",
+              "amount":124.35
+            },
+            "remittanceInformation":{
+              "unstructured":[
+                "Motif du virement"
+              ]
+            }
+          }
+        ],
+        "supplementaryData":{
+          "acceptedAuthenticationApproach":[
+            "REDIRECT"
+          ],
+          "successfulReportUrl":"https://www.boursorama.com?ok",
+          "unsuccessfulReportUrl":"https://www.boursorama.com?ko"
+        }
+      },
+      "_links":{
+        "self":{
+          "href":"/services/api/v1.7/_public_/dsp2/payment-requests/MyPmtInfRscId"
+        }
+      }
+    }
+  }
+}

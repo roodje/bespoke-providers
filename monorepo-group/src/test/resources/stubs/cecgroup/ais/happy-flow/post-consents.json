@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/cec/prod/psd29c/v1/consents",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "content-type": {
+        "equalTo": "application/json"
+      },
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "tpp-redirect-preferred": {
+        "equalTo": "true"
+      },
+      "tpp-redirect-uri": {
+        "equalTo": "https://yolt.com/callback?state=6eff752f-ad5c-4d68-8355-89d291adcedb"
+      },
+      "tpp-nok-redirect-uri": {
+        "equalTo": "https://yolt.com/callback?state=6eff752f-ad5c-4d68-8355-89d291adcedb&error=true"
+      },
+      "X-IBM-Client-Id": {
+        "equalTo": "bb07276b-0a8a-41de-b95a-6c54a67a4d1c"
+      },
+      "tpp-signature-certificate": {
+        "matches": "^-----BEGIN CERTIFICATE-----.*-----END CERTIFICATE-----$"
+      },
+      "signature": {
+        "matches": "^(keyId=\"13299021239615735660\",algorithm=\"rsa-sha512\",headers=\"digest psu-ip-address x-request-id\",signature=).*$"
+      },
+      "digest": {
+        "matches": "^sha.*$"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "consentStatus": "received",
+      "consentId": "c3e66a4b-d6de-4c18-9195-303397ae13c3"
+    }
+  }
+}

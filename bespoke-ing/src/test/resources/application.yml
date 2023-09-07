@@ -1,0 +1,44 @@
+lovebird:
+  ing:
+    fr:
+      fetchDataRetryLimit: 3
+      baseUrl: https://localhost:${wiremock.server.https-port}/ing
+      oAuthTokenEndpoint: /token
+      authorizationUrlServerEndpoint: /authorization-server-url
+      paginationLimit: 1000
+      transactionsPageSizeLimit: 100
+    nl:
+      fetchDataRetryLimit: 3
+      baseUrl: https://localhost:${wiremock.server.https-port}/ing
+      oAuthTokenEndpoint: /token
+      authorizationUrlServerEndpoint: /authorization-server-url
+      paginationLimit: 1000
+      transactionsPageSizeLimit: 100
+    it:
+      fetchDataRetryLimit: 3
+      baseUrl: https://localhost:${wiremock.server.https-port}/ing
+      oAuthTokenEndpoint: /token
+      authorizationUrlServerEndpoint: /authorization-server-url
+      paginationLimit: 1000
+      transactionsPageSizeLimit: 100
+    be:
+      fetchDataRetryLimit: 3
+      baseUrl: https://localhost:${wiremock.server.https-port}/ing
+      oAuthTokenEndpoint: /token
+      authorizationUrlServerEndpoint: /authorization-server-url
+      paginationLimit: 1000
+      transactionsPageSizeLimit: 100
+    ro:
+      fetchDataRetryLimit: 3
+      baseUrl: https://localhost:${wiremock.server.https-port}/ing
+      oAuthTokenEndpoint: /token
+      authorizationUrlServerEndpoint: /authorization-server-url
+      paginationLimit: 1000
+      transactionsPageSizeLimit: 100
+    de:
+      fetchDataRetryLimit: 3
+      baseUrl: https://localhost:${wiremock.server.https-port}/ing
+      oAuthTokenEndpoint: /token
+      authorizationUrlServerEndpoint: /authorization-server-url
+      paginationLimit: 1000
+      transactionsPageSizeLimit: 100

@@ -1,0 +1,304 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/user/([0-9]*)/monetary-account/([0-9]*)/payment\\?count=([0-9]*)",
+    "headers": {
+      "X-Bunq-Client-Authentication": {
+        "equalTo": "sessionToken"
+      }
+    }
+  },
+  "response": {
+    "status": "200",
+    "jsonBody": {
+      "Response": [
+        {
+          "Payment": {
+            "id": 229833,
+            "created": "2018-09-04 13:49:03.006898",
+            "updated": "2018-09-04 13:49:03.006898",
+            "monetary_account_id": 4912,
+            "amount": {
+              "currency": "EUR",
+              "value": "-20.00"
+            },
+            "description": "testPayment",
+            "type": "EBA_SCT",
+            "merchant_reference": null,
+            "alias": {
+              "iban": "NL58BUNQ9900053761",
+              "is_light": false,
+              "display_name": "B. Schipper",
+              "avatar": {
+                "uuid": "8ac10451-6296-4689-a33f-d85862f3f7b9",
+                "image": [
+                  {
+                    "attachment_public_uuid": "a518dae6-9453-4f4b-972d-a8d81658bd1d",
+                    "height": 1024,
+                    "width": 1024,
+                    "content_type": "image\/png"
+                  }
+                ],
+                "anchor_uuid": null
+              },
+              "label_user": {
+                "uuid": "86c0376e-8da7-4f87-bda5-3ee1fdb35a96",
+                "display_name": "B. Schipper",
+                "country": "NL",
+                "avatar": {
+                  "uuid": "c7833be8-6254-4732-94f6-905571675b44",
+                  "image": [
+                    {
+                      "attachment_public_uuid": "ddf892cd-95f2-4936-a456-c23f51ab985b",
+                      "height": 126,
+                      "width": 200,
+                      "content_type": "image\/jpeg"
+                    }
+                  ],
+                  "anchor_uuid": "86c0376e-8da7-4f87-bda5-3ee1fdb35a96"
+                },
+                "public_nick_name": "Beverlee"
+              },
+              "country": "NL"
+            },
+            "counterparty_alias": {
+              "iban": "NL23ABNA0581113566",
+              "is_light": null,
+              "display_name": "duder",
+              "avatar": {
+                "uuid": "5c605a21-3595-407d-9e80-6516da9109a3",
+                "image": [
+                  {
+                    "attachment_public_uuid": "7361cbc5-8874-4b5d-a5db-17f2c3bd6e1b",
+                    "height": 640,
+                    "width": 640,
+                    "content_type": "image\/jpeg"
+                  }
+                ],
+                "anchor_uuid": null
+              },
+              "label_user": {
+                "uuid": null,
+                "display_name": "duder",
+                "country": "NL",
+                "avatar": null,
+                "public_nick_name": "duder"
+              },
+              "country": "NL"
+            },
+            "attachment": [],
+            "geolocation": null,
+            "batch_id": null,
+            "allow_chat": true,
+            "scheduled_id": null,
+            "address_billing": null,
+            "address_shipping": null,
+            "sub_type": "SCT",
+            "request_reference_split_the_bill": []
+          }
+        },
+        {
+          "Payment": {
+            "id": 229832,
+            "created": "2018-09-04 13:49:02.772081",
+            "updated": "2018-09-04 13:49:02.772081",
+            "monetary_account_id": 4912,
+            "amount": {
+              "currency": "EUR",
+              "value": "500.00"
+            },
+            "description": "",
+            "type": "BUNQ",
+            "merchant_reference": null,
+            "alias": {
+              "iban": "NL58BUNQ9900053761",
+              "is_light": false,
+              "display_name": "B. Schipper",
+              "avatar": {
+                "uuid": "8ac10451-6296-4689-a33f-d85862f3f7b9",
+                "image": [
+                  {
+                    "attachment_public_uuid": "a518dae6-9453-4f4b-972d-a8d81658bd1d",
+                    "height": 1024,
+                    "width": 1024,
+                    "content_type": "image\/png"
+                  }
+                ],
+                "anchor_uuid": null
+              },
+              "label_user": {
+                "uuid": "86c0376e-8da7-4f87-bda5-3ee1fdb35a96",
+                "display_name": "B. Schipper",
+                "country": "NL",
+                "avatar": {
+                  "uuid": "c7833be8-6254-4732-94f6-905571675b44",
+                  "image": [
+                    {
+                      "attachment_public_uuid": "ddf892cd-95f2-4936-a456-c23f51ab985b",
+                      "height": 126,
+                      "width": 200,
+                      "content_type": "image\/jpeg"
+                    }
+                  ],
+                  "anchor_uuid": "86c0376e-8da7-4f87-bda5-3ee1fdb35a96"
+                },
+                "public_nick_name": "Beverlee"
+              },
+              "country": "NL"
+            },
+            "counterparty_alias": {
+              "iban": "NL65BUNQ9900000188",
+              "is_light": false,
+              "display_name": "S. Daddy",
+              "avatar": {
+                "uuid": "6acf697a-70ce-41c9-964e-7cadf71ed2c7",
+                "image": [
+                  {
+                    "attachment_public_uuid": "894bd6df-307e-4596-bacc-265146018ba1",
+                    "height": 1024,
+                    "width": 1024,
+                    "content_type": "image\/png"
+                  }
+                ],
+                "anchor_uuid": null
+              },
+              "label_user": {
+                "uuid": "caf2f932-da65-402c-baaf-86fb1aa101d1",
+                "display_name": "S. Daddy",
+                "country": "NL",
+                "avatar": {
+                  "uuid": "3fbdafdd-091c-4a4c-a05f-7b60b403d643",
+                  "image": [
+                    {
+                      "attachment_public_uuid": "0daad054-c382-4cd9-bdc7-8eb85e2541a8",
+                      "height": 480,
+                      "width": 480,
+                      "content_type": "image\/jpeg"
+                    }
+                  ],
+                  "anchor_uuid": "caf2f932-da65-402c-baaf-86fb1aa101d1"
+                },
+                "public_nick_name": "Sugar (nickname)"
+              },
+              "country": "NL"
+            },
+            "attachment": [],
+            "geolocation": null,
+            "batch_id": null,
+            "allow_chat": true,
+            "scheduled_id": null,
+            "address_billing": null,
+            "address_shipping": null,
+            "sub_type": "REQUEST",
+            "request_reference_split_the_bill": []
+          }
+        },
+        {
+          "Payment": {
+            "id": 229830,
+            "created": "2018-09-04 13:46:57.979381",
+            "updated": "2018-09-04 13:46:57.979381",
+
+            "monetary_account_id": 4912,
+            "amount": {
+              "currency": "EUR",
+              "value": "500.00"
+            },
+            "description": "",
+            "type": "BUNQ",
+            "merchant_reference": null,
+            "alias": {
+              "iban": "NL58BUNQ9900053761",
+              "is_light": false,
+              "display_name": "B. Schipper",
+              "avatar": {
+                "uuid": "8ac10451-6296-4689-a33f-d85862f3f7b9",
+                "image": [
+                  {
+                    "attachment_public_uuid": "a518dae6-9453-4f4b-972d-a8d81658bd1d",
+                    "height": 1024,
+                    "width": 1024,
+                    "content_type": "image\/png"
+                  }
+                ],
+                "anchor_uuid": null
+              },
+              "label_user": {
+                "uuid": "86c0376e-8da7-4f87-bda5-3ee1fdb35a96",
+                "display_name": "B. Schipper",
+                "country": "NL",
+                "avatar": {
+                  "uuid": "c7833be8-6254-4732-94f6-905571675b44",
+                  "image": [
+                    {
+                      "attachment_public_uuid": "ddf892cd-95f2-4936-a456-c23f51ab985b",
+                      "height": 126,
+                      "width": 200,
+                      "content_type": "image\/jpeg"
+                    }
+                  ],
+                  "anchor_uuid": "86c0376e-8da7-4f87-bda5-3ee1fdb35a96"
+                },
+                "public_nick_name": "Beverlee"
+              },
+              "country": "NL"
+            },
+            "counterparty_alias": {
+              "iban": "NL65BUNQ9900000188",
+              "is_light": false,
+              "display_name": "S. Daddy",
+              "avatar": {
+                "uuid": "6acf697a-70ce-41c9-964e-7cadf71ed2c7",
+                "image": [
+                  {
+                    "attachment_public_uuid": "894bd6df-307e-4596-bacc-265146018ba1",
+                    "height": 1024,
+                    "width": 1024,
+                    "content_type": "image\/png"
+                  }
+                ],
+                "anchor_uuid": null
+              },
+              "label_user": {
+                "uuid": "caf2f932-da65-402c-baaf-86fb1aa101d1",
+                "display_name": "S. Daddy",
+                "country": "NL",
+                "avatar": {
+                  "uuid": "3fbdafdd-091c-4a4c-a05f-7b60b403d643",
+                  "image": [
+                    {
+                      "attachment_public_uuid": "0daad054-c382-4cd9-bdc7-8eb85e2541a8",
+                      "height": 480,
+                      "width": 480,
+                      "content_type": "image\/jpeg"
+                    }
+                  ],
+                  "anchor_uuid": "caf2f932-da65-402c-baaf-86fb1aa101d1"
+                },
+                "public_nick_name": "Sugar (nickname)"
+              },
+              "country": "NL"
+            },
+            "attachment": [],
+            "geolocation": null,
+            "batch_id": null,
+            "allow_chat": true,
+            "scheduled_id": null,
+            "address_billing": null,
+            "address_shipping": null,
+            "sub_type": "REQUEST",
+            "request_reference_split_the_bill": []
+          }
+        }
+      ],
+      "Pagination": {
+        "future_url": "\/v1\/user\/2838\/monetary-account\/4912\/payment?count=200&newer_id=229833",
+        "newer_url": null,
+        "older_url": "\/v1\/user\/2838\/monetary-account\/4912\/payment?count=200&older_id=229830"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "request": {
+    "url": "/v2/transactions?iban=FR7616958000015974423718064&emitted_at_from=2022-01-01T00:00:00.000Z&current_page=1",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer AWESOME-ACCESS-TOKEN"
+      },
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Signature": {
+        "matches": "keyId=\"https:\\/\\/test.qseal.certificate.com\\/5f:18:d2:93:04:36:f7:d3:8b:91:11:d8:85:ac:62:0c:06:e9:54:02.pem\",algorithm=\"rsa-sha256\",headers=\"content-type psu-ip-address digest\",signature=\"(.+)\""
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "transactions": [
+        {
+          "transaction_id": "scep-1111-1-transaction-92",
+          "amount": 8.63,
+          "amount_cents": 863,
+          "settled_balance": 31000876.08,
+          "settled_balance_cents": 3100087608,
+          "attachment_ids": [],
+          "local_amount": 8.63,
+          "local_amount_cents": 863,
+          "side": "debit",
+          "operation_type": "transfer",
+          "currency": "EUR",
+          "local_currency": "EUR",
+          "label": "Jane Skywalker",
+          "settled_at": "2022-07-18T08:45:19.352Z",
+          "emitted_at": "2022-07-18T08:45:19.042Z",
+          "updated_at": "2022-07-18T08:45:19.974Z",
+          "status": "pending",
+          "note": "",
+          "reference": "DALMA-Ckvqyahrm",
+          "vat_amount": 0.0,
+          "vat_amount_cents": null,
+          "vat_rate": null,
+          "initiator_id": "6cda7bfd-000f-40e6-b7c6-6f74dad46bec",
+          "label_ids": [],
+          "attachment_lost": false,
+          "attachment_required": true,
+          "card_last_digits": null,
+          "category": "other_expense",
+          "id": "6992cb7f-df69-4f33-a375-e1d12b17a9f4"
+        },
+        {
+          "transaction_id": "scep-1111-1-transaction-84",
+          "amount": 31000000.44,
+          "amount_cents": 3100000044,
+          "settled_balance": 31000874.71,
+          "settled_balance_cents": 3100087471,
+          "attachment_ids": [],
+          "local_amount": 31000000.44,
+          "local_amount_cents": 3100000044,
+          "side": "credit",
+          "operation_type": "income",
+          "currency": "EUR",
+          "local_currency": "EUR",
+          "label": "SumUp Payments Limited",
+          "settled_at": "2022-07-15T10:53:54.885Z",
+          "emitted_at": "2022-07-15T08:53:54.000Z",
+          "updated_at": "2022-07-15T11:05:58.081Z",
+          "status": "completed",
+          "note": null,
+          "reference": "SUMUP PID68275 PAYOUT 210520",
+          "vat_amount": null,
+          "vat_amount_cents": null,
+          "vat_rate": null,
+          "initiator_id": null,
+          "label_ids": [],
+          "attachment_lost": false,
+          "attachment_required": true,
+          "card_last_digits": null,
+          "category": "other_income",
+          "id": "d40b271d-aab7-4cf8-8604-13de62d200f9"
+        }
+      ],
+      "meta": {
+        "current_page": 1,
+        "next_page": 2,
+        "prev_page": null,
+        "total_pages": 2,
+        "total_count": 3,
+        "per_page": 2
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/domestic-payment-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 978e46f2-b8a5-4f81-ac45-f10d32e6b764"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0032400006451CCVVX"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "d0a9b85f-9715-4d16-a33d-4323ceab5253"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      },
+      "x-jws-signature": {
+        "matches": "^[A-Za-z0-9-_=]+(\\.\\.)[A-Za-z0-9-_=]*$"
+      },
+      "x-idempotency-key": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "EndToEndIdentification": "B7F2761CREJECTED",
+              "InstructedAmount": {
+                "Amount": "10000.00",
+                "Currency": "EUR"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB29NWBK60161331926819",
+                "Name": "ACME Inc creditor"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "Remittance Unstructured"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-jws-signature": "some_signature",
+      "x-fapi-interaction-id": "d0a9b85f-9715-4d16-a33d-4323ceab5253"
+    },
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "58923",
+        "Status": "Rejected"
+      }
+    }
+  }
+}

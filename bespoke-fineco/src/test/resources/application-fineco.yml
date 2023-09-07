@@ -1,0 +1,18 @@
+lovebird:
+  fineco:
+    pagination-limit: 1000
+    base-url: https://localhost:${wiremock.server.https-port}/v1
+    consent-url: /consents
+    transactionsTimeFrameDays: 90
+    transactionsTimeFrameMinutes: 20
+    card-accounts:
+      accounts-url: /card-accounts
+      transactions-url-template: '/card-accounts/%s/transactions?bookingStatus=%s&dateFrom=%s'
+      balances-url-template: '/card-accounts/%s/balances'
+    current-accounts:
+      accounts-url: /accounts
+      transactions-url-template: '/accounts/%s/transactions?bookingStatus=%s&dateFrom=%s'
+      balances-url-template: '/accounts/%s/balances'
+    sepa-payments:
+      payment-initiation: /payments/sepa-credit-transfers
+      payment-status: '/payments/sepa-credit-transfers/%s/status'

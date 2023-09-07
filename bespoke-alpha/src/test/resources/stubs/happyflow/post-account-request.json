@@ -1,0 +1,80 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/accounts/v1/account-requests",
+    "headers": {
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "content-type": {
+        "contains": "application/json"
+      },
+      "x-ab-bank-id": {
+        "equalTo": "x-ab-bank-id"
+      },
+      "Authorization": {
+        "equalTo": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRfaWQiOiIyNWM0NDVkMDJhYzY0N2E2ODgyNWVkNDkxY2Q4NDk4NyIsInNjb3BlIjoiYWNjb3VudC1pbmZvLXNldHVwIiwidG9rZW5faWQiOiI0NmJhMjRkMS1hZDQzLTQ0YzctYmZhMy02MWI3MjdiNDZjOGEiLCJraWQiOiJENkJGOTQ3MURDQjgyRTIwOTU0REVFQTA1RUZDQzU3NThBQTQyQkRCIiwibmJmIjoxNjIwNzk4Nzk2LCJleHAiOjE2MjA4MDIzOTYsImlzcyI6IkFscGhhYmFuayBQU0QyIE9hdXRoIFNlcnZlciIsImF1ZCI6ImFjY291bnQtaW5mby1zZXR1cCJ9.CrikxPf_7qp2Dz1tDdr9iAXD6F8ac5Dd89t1brOvBgSKdzeLLebeDN5HcWyzA2kyOC9IsFh7d39t2yCuSpv3uky6zavp1KouM79Al2NFEX0yoYRecl5a0agmYgeKIUJXslozXi6qrQfeCDo4ZgbzC_AnZHq5i6jb73DWOb9j-na2Xo3OYFodwlNdEfmCBGj-WrrCxCf5YHC8bkaiWMdkId5Wrl0fAMY75FHqBvKyoIIdz9mzvSz_WiDS_9X55FkzI3hNphBZjn8wmZW_sDNHpXxpn8P3wZn9ob68kTg326GoIEec-FNtWXtK_4sTPNjicHVqnpS276rO5vC7NhUC4g"
+      },
+      "Ocp-Apim-Subscription-Key": {
+        "equalTo": "subscription-key"
+      },
+      "x-jws-signature": {
+        "matches": "^.*...*$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalTo": "\"{\\\"ProductIdentifiers\\\":null,\\\"Risk\\\":{\\\"PaymentContextCode\\\":null,\\\"MerchantCategoryCode\\\":null,\\\"MerchantCustomerIdentification\\\":null,\\\"DeliveryAddress\\\":null}}\""
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "AccountRequestId": "3536089c-266f-4306-984f-15233d711800",
+      "CreationDateTime": "2021-05-12T05:53:31.8897893+00:00",
+      "Status": "Accepted",
+      "ProductIdentifiers": [
+        {
+          "AccountCode": "ipsum qui labor",
+          "Scheme": "Card"
+        },
+        {
+          "AccountCode": "cupidatat",
+          "Scheme": "NA"
+        },
+        {
+          "AccountCode": "mollit id",
+          "Scheme": "NA"
+        },
+        {
+          "AccountCode": "voluptate sunt",
+          "Scheme": "Card"
+        }
+      ],
+      "Risk": {
+        "PaymentContextCode": "Other",
+        "MerchantCategoryCode": "et m",
+        "MerchantCustomerIdentification": "minim irure nostrud eiusmod",
+        "DeliveryAddress": {
+          "TownName": "E",
+          "Country": "AS",
+          "AddressLine": [
+            "fugiat ad do laboris ",
+            "in"
+          ],
+          "StreetName": "ad ut amet aliquip",
+          "BuildingNumber": "cul",
+          "PostCode": "et dolor adipis",
+          "CountrySubDivision": [
+            "eiusmod aliquip ad et",
+            "aliquip Lorem dolor"
+          ]
+        }
+      }
+    }
+  }
+}

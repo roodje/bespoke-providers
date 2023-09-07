@@ -1,0 +1,34 @@
+{
+  "request":{
+    "method":"GET",
+    "urlPattern":"/services/api/v1.7/_public_/dsp2/payment-requests/XyXmxIfId",
+    "headers":{
+      "Authorization":{
+        "equalTo":"Bearer payment-token"
+      },
+      "digest":{
+        "matches":"SHA-256=([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "signature":{
+        "matches": "keyId=\"([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) digest psu-ip-address x-request-id\",signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "x-request-id":{
+        "matches":"^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    }
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Request-ID": "bf6fd062-39f6-4bc5-9ebe-6e6c41558b78"
+    },
+    "jsonBody": {
+      "timestamp": "2018-03-30T16:06:27.499+0000",
+      "status": 500,
+      "error": "Internal Server Error",
+      "message": "An internal server error occurred",
+      "path": "/services/api/v1.7/_public_/dsp2/payment-requests/XyXmxIfId"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/accounts/22ed9418-0510-4b29-9d8a-b30cdb208aa4/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^(\\d{4})\\D?(0[1-9]|1[0-2])\\D?([12]\\d|0[1-9]|3[01])(\\D?([01]\\d|2[0-3])\\D?([0-5]\\d)\\D?([0-5]\\d)?\\D?(\\d{3})?)?$"
+      },
+      "toBookingDateTime" : {
+        "absent" : true
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 908b3693-23bf-41c8-898d-3846d22a6858"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0032400006451CCVVX"
+      }
+    }
+  },
+  "response": {
+    "transformers": ["response-template"],
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "22ed9418-0510-4b29-9d8a-b30cdb208aa4",
+            "Amount": {
+              "Amount": "25.00",
+              "Currency": "GBP"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "11.00",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Debit",
+              "Type": "InterimBooked"
+            },
+            "BookingDateTime": "2017-05-02T00:00:00+00:00",
+            "ChargeAmount": {
+              "Amount": "1.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "ProprietaryBankTransactionCode": {
+              "Code": "ATM",
+              "Issuer": "Revolut"
+            },
+            "Status": "Booked",
+            "TransactionId": "acd157de-f877-44f1-9190-58051bec3815",
+            "TransactionInformation": "Sad Aws Emea A1T1"
+          }
+        ]
+      },
+      "Links": {
+        "Next": "{{request.requestLine.baseUrl}}/accounts/22ed9418-0510-4b29-9d8a-b30cdb208aa4/transactions?fromBookingDateTime=2019-08-02T12:30:46.947&toBookingDateTime=2019-08-08T07:28:44.416495",
+        "Self": "{{request.requestLine.baseUrl}}/accounts/22ed9418-0510-4b29-9d8a-b30cdb208aa4/transactions"
+      },
+      "Meta": {}
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/berlingroup/v1/accounts?withBalance=true",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer access_token"
+      },
+      "Consent-ID": {
+        "matches": "VALID_CONSENT_ID"
+      },
+      "PSU-IP-Address": {
+        "matches": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "ACCOUNT_ID",
+          "name": "Main personal account",
+          "bic": "CCFRFRPP",
+          "balances": [
+            {
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": 150.02
+              },
+              "lastChangeDateTime": "2018-02-26T00:00:00",
+              "referenceDate": "2022-07-05",
+              "balanceType": "interimAvailable"
+            }
+          ],
+          "currency": "EUR",
+          "ownerName": "John Doe",
+          "cashAccountType": "CACC",
+          "iban": "FR7630056009271234567890182",
+          "_links": {
+            "account": {
+              "href": "https://xs2a-sandbox.bankvanbreda.be/berlingroup/v1/accounts/ACCOUNT_ID"
+            },
+            "balances": {
+              "href": "https://xs2a-sandbox.bankvanbreda.be/berlingroup/v1/accounts/ACCOUNT_ID/balances"
+            },
+            "transactions": {
+              "href": "https://xs2a-sandbox.bankvanbreda.be/berlingroup/v1/accounts/ACCOUNT_ID/transactions"
+            }
+          },
+          "product": "SAC"
+        },
+        {
+          "resourceId": "ACCOUNT_ID_2",
+          "name": "Personal account 2",
+          "bic": "CMCIFRPAXXX",
+          "balances": [
+            {
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": 50.02
+              },
+              "lastChangeDateTime": "2018-06-15T00:00:00",
+              "referenceDate": "2022-07-05",
+              "balanceType": "interimAvailable"
+            }
+          ],
+          "currency": "EUR",
+          "ownerName": "John Doe",
+          "cashAccountType": "CACC",
+          "iban": "FR7611808009101234567890147",
+          "_links": {
+            "account": {
+              "href": "https://xs2a-sandbox.bankvanbreda.be/berlingroup/v1/accounts/ACCOUNT_ID_2"
+            },
+            "balances": {
+              "href": "https://xs2a-sandbox.bankvanbreda.be/berlingroup/v1/accounts/ACCOUNT_ID_2/balances"
+            }
+          },
+          "product": "SAC"
+        }
+      ]
+    }
+  }
+}

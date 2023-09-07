@@ -1,0 +1,61 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/oauth2/v1/consents/b75f5ee4-6b25-41af-bb9c-31128d09151e",
+    "headers": {
+      "x-ibm-client-id": {
+        "equalTo": "0b7df55a-8f51-454e-9de8-87b9cac2aba4"
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIIDFjCCAf4CCQC6MIKO2WnC1TANBgkqhkiG9w0BAQsFADBSMQswCQYDVQQGEwJOTDEWMBQGA1UECAwNTm9vcmQtSG9sbGFuZDENMAsGA1UECgwEWW9sdDEcMBoGCSqGSIb3DQEJARYNbGVvbkB5b2x0LmNvbTAeFw0xODA5MjAwODUzMTVaFw0yMTA3MTAwODUzMTVaMEgxCzAJBgNVBAYTAk5MMRswGQYDVQQKDBJZb2x0IC0gQ29ubmVjdGlvbnMxHDAaBgkqhkiG9w0BCQEWDWxlb25AeW9sdC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDXu4pG9Fdvek5opDjk9DsgMe+vZsYVoHP3E4fDa0O9n06+wFh1qgrbctu3UNKhTiqiOuyqar9IkSIV92GO09xIjyxAWGVv8eNN2poGVRDta6zo2YLanmU1EuXcMd5hICj3l/PEJbsksFP2jNlsJsfE6ehSCdrPKcX9oYL3oCvZDohytdrHO4c+8m8/aZS1nQyhT9lyqWMcBvz9I35BE2uiVPiBKuAtZZcp0yHvvObNC/BzrZncM2LrrtCDcS6ozjotHvCbk37W+loBr6b1+jA64qv3ILDl+T7fcmUyIyBoWa5GVdmZ9Go8Gl3SOcjGx2SwtmC1V6w4DDbZkLyT6oJLAgMBAAEwDQYJKoZIhvcNAQELBQADggEBABZPEHktIG+pKoOfpeBsRF6K5ZIBbmSeRBrzJ0BOOUhr894iuHhMKku239fN3sFc0+6ylQjjFC3soBimWVcnf6AUb8ncP4FCE8oyHpZ2WPjYeXqIdTxxFPfA0l3FW18ncdIa0zSFmo5wwzhN7A2FhtCfnlI8YkatHQSv/90VMuICMZF0HTzfeuhv4z8PH6SVEa3B1uYogwwv9dCW/8amOddoO2K/aB4hS23h4TyAw1tKjN8/IHmLvE3R8LlazMJhY9J2xvYOPFq3BnM3V8vHpj/7BBWJKxWvYtbCqqVCEeG/qLQH7CmVaIX7hg5Yfurwvgwm3mujCaRNKjHjS3Jb5YQ="
+      },
+      "date": {
+        "matches": ".+"
+      },
+      "digest": {
+        "matches": ".+"
+      },
+      "signature": {
+        "matches": "(keyId=\"13416366839981261525\",algorithm=\"rsa-sha512\",headers=\"date digest x-request-id\",signature=).*"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "consentId": "b75f5ee4-6b25-41af-bb9c-31128d09151e",
+      "access": {
+        "ais.balances.read": [
+          {
+            "iban": "NL02RABO0234567891",
+            "currency": "EUR",
+            "status": "expired",
+            "validUntil": "2022-06-06"
+          }
+        ],
+        "ais.transactions.read-90days": [
+          {
+            "iban": "NL03RABO0345678912",
+            "currency": "EUR",
+            "status": "expired",
+            "validUntil": "2022-06-06"
+          }
+        ],
+        "ais.transactions.read-history": [
+          {
+            "iban": "NL04RABO0456789123",
+            "currency": "EUR",
+            "status": "expired",
+            "validUntil": "2022-06-06"
+          }
+        ]
+      }
+    }
+  }
+}

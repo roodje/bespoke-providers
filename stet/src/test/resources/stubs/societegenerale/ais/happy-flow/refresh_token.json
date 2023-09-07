@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth2/token",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Basic ZjMzMHh4eHg2ZmU4eHh4eDZlZGJ4eHh4ZDE1YXh4eHg6NTVmZnh4eHg3ZWVheHh4eDhkYzh4eHh4NGQ2MXh4eHg="
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalTo": "grant_type=refresh_token&refresh_token=2c3d535c-af8f-407e-8af1-178396a9b858"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store",
+      "Pragma": "no-cache",
+      "content-length": "1688",
+      "X-Global-Transaction-ID": "b1a442a2-6cf6-47e4-bd83-d63c4b409c4c",
+      "Strict-Transport-Security": "max-age=16070400; includeSubDomains",
+      "Set-Cookie": "TS019f9c34=01383c5c9c18f6e6a2a498a1205e6eb1cb76357089b212864042c6641a3d0a15ef5d7bf8a39c8c03c08058311184b5d03068557ccd; Path=/",
+      "Vary": "Accept-Encoding",
+      "Connection": "Keep-Alive"
+    },
+    "jsonBody": {
+      "access_token": "THE-REFRESHED-ACCESS-TOKEN",
+      "token_type": "Bearer",
+      "expires_in": 900,
+      "refresh_token": "4f53e19c-2e0e-418a-b57c-7eb94cc76ee7"
+    }
+  }
+}

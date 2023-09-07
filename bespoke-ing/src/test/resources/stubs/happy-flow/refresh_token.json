@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/ing/token",
+    "bodyPatterns": [
+      {
+        "matches": "(.*)grant_type=refresh_token&refresh_token=test-customer-refresh-token(.*)"
+      }
+    ],
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF-8)?"
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "Authorization": {
+        "matches": "Bearer (.*)"
+      },
+      "Signature": {
+        "matches": "keyId=\"example_client_id\",algorithm=\"rsa-sha256\",headers=\"(.*)\",signature=\"(.*)\""
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "test-customer-access-token",
+      "token_type": "Bearer",
+      "expires_in": 900,
+      "scope": "payment-accounts:transactions:view payment-accounts:balances:view"
+    },
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8",
+      "Cache-Control": "no-store",
+      "Pragma": "no-cache"
+    }
+  }
+}

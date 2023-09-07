@@ -1,0 +1,20 @@
+{
+  "request": {
+    "url": "/register",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "clientId": "API-REGISTRATION-SUCCESS"
+    }
+  }
+}

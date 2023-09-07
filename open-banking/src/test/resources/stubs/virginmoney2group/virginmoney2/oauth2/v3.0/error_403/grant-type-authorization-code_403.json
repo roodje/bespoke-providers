@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.0/oauth2/token",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/x-www-form-urlencoded"
+      }
+    },
+    "basicAuthCredentials": {
+      "username": "someClientId",
+      "password": "someClientSecret"
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=bd941a87-116c-46b5-915e-47ea05711734"
+      }
+    ]
+  },
+  "response": {
+    "status": 403
+  }
+}

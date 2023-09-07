@@ -1,0 +1,56 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/aisp/account-access-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "c554a9ef-47c1-4b4e-a77f-2ad770d69748"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "1238972887jdsIWNND"
+      },
+      "Content-Type": {
+        "equalTo": "application/json;charset=UTF-8"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"Data\":{\"Permissions\":[\"ReadAccountsDetail\",\"ReadBalances\",\"ReadDirectDebits\",\"ReadProducts\",\"ReadStandingOrdersDetail\",\"ReadTransactionsCredits\",\"ReadTransactionsDebits\",\"ReadTransactionsDetail\"]},\"Risk\":{}}"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "363ca7c1-9d03-4876-8766-ddefc9fd2d76",
+        "Status": "AwaitingAuthorisation",
+        "Permissions": [
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadDirectDebits",
+          "ReadProducts",
+          "ReadStandingOrdersDetail",
+          "ReadTransactionsCredits",
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail"
+        ],
+        "CreationDateTime": "2017-12-05T07:52:30.129Z",
+        "StatusUpdateDateTime": "2017-12-05T07:52:30.129Z"
+      },
+      "Risk": null,
+      "Links": {
+        "self": "/aisp/account-requests/363ca7c1-9d03-4876-8766-ddefc9fd2d76"
+      },
+      "Meta": {
+        "total-pages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

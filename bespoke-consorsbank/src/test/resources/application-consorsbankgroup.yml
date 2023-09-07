@@ -1,0 +1,4 @@
+lovebird:
+  consorsbankgroup:
+    consorsbank:
+      base-url: https://localhost:${wiremock.server.https-port}

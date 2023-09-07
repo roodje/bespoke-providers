@@ -1,0 +1,80 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/session-server",
+    "headers": {},
+    "bodyPatterns": [
+      {
+        "contains": "a1cd891ef7d76369a48df8201ccdd2d29e8911fe5d5d62fb99be705d61b15b69"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Response": [
+        {
+          "Id": {
+            "id": 1
+          }
+        },
+        {
+          "Token": {
+            "id": 1,
+            "created": "2018-09-07 07:49:35.237831",
+            "updated": "2018-09-07 07:49:35.237831",
+            "token": "sessionToken"
+          }
+        },
+        {
+          "UserApiKey": {
+            "id": 1,
+            "created": "2018-09-07 07:46:56.852887",
+            "updated": "2018-09-07 07:49:35.325012",
+            "requested_by_user": {
+              "UserPerson": {
+                "display_name": "Guy",
+                "public_nick_name": "Test",
+                "avatar": {
+                  "uuid": "647c898-88a3-852e-84b7-1d45da8728bc",
+                  "image": [
+                    {
+                      "attachment_public_uuid": "df336f4d-3301-4c3d-b379-3b333fe0f51e",
+                      "height": 1024,
+                      "width": 1024,
+                      "content_type": "image\/jpeg"
+                    }
+                  ],
+                  "anchor_uuid": "647c898-88a3-852e-84b7-1d45da8728bc"
+                },
+                "session_timeout": 604800
+              }
+            },
+            "granted_by_user": {
+              "UserPerson": {
+                "display_name": "Guy",
+                "public_nick_name": "Guy",
+                "avatar": {
+                  "uuid": "647c898-88a3-852e-84b7-1d45da8728bc",
+                  "image": [
+                    {
+                      "attachment_public_uuid": "647c898-88a3-852e-84b7-1d45da8728bc",
+                      "height": 1024,
+                      "width": 1024,
+                      "content_type": "image\/jpeg"
+                    }
+                  ],
+                  "anchor_uuid": "647c898-88a3-852e-84b7-1d45da8728bc"
+                },
+                "session_timeout": 604800
+              }
+            }
+          }
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

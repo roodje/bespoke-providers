@@ -1,0 +1,90 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/accounts/30003000000045120025007158200050-CARD%3D/transactions?dateFrom=2021-07-13T18:17:13.000Z",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-ACCESS-TOKEN"
+      },
+      "Client-Id": {
+        "equalTo": "f330xxxx6fe8xxxx6edbxxxxd15axxxx"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Signature": {
+        "equalTo": "keyId=\"https://test.qseal.certificate.com/26:c7:b8:8e:09:0b:e1:ed:04:3e:bd:58:3d:4d:78:b5:ad:ad:fa:c1.pem\",algorithm=\"rsa-sha256\",headers=\"client-id digest x-request-id\",signature=\"signed string\""
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store",
+      "Pragma": "no-cache",
+      "content-length": "1688",
+      "X-Global-Transaction-ID": "b1a442a2-6cf6-47e4-bd83-d63c4b409c4c",
+      "Strict-Transport-Security": "max-age=16070400; includeSubDomains",
+      "Set-Cookie": "TS019f9c34=01383c5c9c18f6e6a2a498a1205e6eb1cb76357089b212864042c6641a3d0a15ef5d7bf8a39c8c03c08058311184b5d03068557ccd; Path=/",
+      "Vary": "Accept-Encoding",
+      "Connection": "Keep-Alive"
+    },
+    "jsonBody": {
+      "transactions": [
+        {
+          "resourceId": "30003000000045120025007158200050-CARD",
+          "entryReference": "1234124",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "2.0"
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-12-17T00:00:00.000+01:00",
+          "valueDate": "2020-12-17T00:00:00.000+01:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "ABONNEMENT MON COMPTE EN BREF   "
+            ]
+          }
+        },
+        {
+          "resourceId": "30003000000045120025007158200050-CARD",
+          "entryReference": "1234125",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "3.0"
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "PDNG",
+          "bookingDate": "2020-12-17T00:00:00.000+01:00",
+          "valueDate": "2020-12-17T00:00:00.000+01:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "ABONNEMENT MON COMPTE EN BREF   "
+            ]
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/accounts/30003000000045120025007158200050-CARD/transactions?page\u003d1\u0026dateFrom\u003d2019-04-04T15:23:03.922Z",
+          "templated": true
+        },
+        "parent-list": {
+          "href": "/accounts"
+        },
+        "balances": {
+          "href": "/accounts/30003000000045120025007158200050-CARD/balances"
+        }
+      }
+    }
+  }
+}

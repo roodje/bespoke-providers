@@ -1,0 +1,65 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/ing/v3/accounts",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "matches": "Bearer (.*)"
+      },
+      "Signature": {
+        "matches": "keyId=\"example_client_id\",algorithm=\"rsa-sha256\",headers=\"(.*)\",signature=\"(.*)\""
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "Date": {
+        "matches": "[A-Z][a-z]{2}, [0-9]{1,2} [A-Z][a-z]{2} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} GMT"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "7de0041d-4f25-4b6c-a885-0bbeb1eab220",
+          "iban": "IT50N1234561605000323304444",
+          "maskedPan": "",
+          "name": "SANTINO",
+          "currency": "EUR",
+          "product": "Conto Arancio",
+          "_links": {
+            "balances": {
+              "href": "/v3/accounts/7de0041d-4f25-4b6c-a885-0bbeb1eab220/balances"
+            },
+            "transactions": {
+              "href": "/v2/accounts/7de0041d-4f25-4b6c-a885-0bbeb1eab220/transactions?currency=EUR"
+            }
+          }
+        },
+        {
+          "resourceId": "45e0041d-4f25-4b6c-a885-0bbeb1eab440",
+          "iban": "",
+          "maskedPan": "123456******6789",
+          "name": "Credit Card",
+          "currency": "EUR",
+          "product": "Carta di Credito Mastercard Gold",
+          "_links": {
+            "balances": {
+              "href": "/v3/accounts/45e0041d-4f25-4b6c-a885-0bbeb1eab440/balances"
+            },
+            "transactions": {
+              "href": "/v2/card-accounts/45e0041d-4f25-4b6c-a885-0bbeb1eab440/transactions"
+            }
+          }
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

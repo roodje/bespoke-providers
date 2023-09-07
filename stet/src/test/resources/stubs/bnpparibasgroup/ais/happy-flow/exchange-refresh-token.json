@@ -1,0 +1,35 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/token",
+    "headers": {
+      "Authorization": {
+        "contains": "Basic Y2xpZW50LWlkOmNsaWVudC1zZWNyZXQ="
+      },
+      "Content-Type": {
+        "contains": "application/x-www-form-urlencoded"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=refresh-token"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "X-Frame-Options": "DENY",
+      "Transfer-Encoding": "chunked",
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "access_token": "access-token",
+      "expires_in": 300,
+      "token_type": "bearer"
+    }
+  }
+}

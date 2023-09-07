@@ -1,0 +1,26 @@
+lovebird:
+  unicredit:
+    registration:
+      base-url: https://localhost:${wiremock.server.https-port}/
+    it:
+      paginationLimit: 1000
+      frequencyPerDay: 4
+      base-url: https://localhost:${wiremock.server.https-port}/
+    ro:
+      paginationLimit: 1000
+      frequencyPerDay: 4
+      base-url: https://localhost:${wiremock.server.https-port}/
+    hypovereinsbank:
+      paginationLimit: 500
+      frequencyPerDay: 4
+      base-url: https://localhost:${wiremock.server.https-port}/
+
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

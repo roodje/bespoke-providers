@@ -1,0 +1,64 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/65f13d10-dc35-5d75-891d-180dc4bc597b/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIWNndlNDJvVE1QWFNVM0tiUGVxQnZOVizgg9hirEzwSqcHpl2NfZUdxw6gQ0aaSpsk2uspfv8A5CBnthNaQdyPVfS_Tgps9Wo57i30zj4FBKwjy79b1P6qRq4xq8VCAB0YqgEsiDTV_oxjKUjp9r2Y28hJLnfdrz3b7EehCs4wXuYGL5-vMn-y6Ud0r4bDr986YZhEenqcUph7geB5LDr2MkolAAUN4x3Lpx0pxAYTnirkbVv9_mOuSzeosTeK1NC3LTUz3SpNFzdnPSzk1_uhPJGIyBeR8_zFLL7gFQwhIRc6ljqXaoB3mgu4zJ3M8Adts1bViVPkZX56yq5q-KT2_qvh8JNlPRgM2JX6sSN7lVLGrJwIkQTfOjZuzKMzN-RMn11i5kSCYYBf9KZUy0eUVBqG4JVppfrR85Hiqcbb2her5WeOAgNYm4UwzFIqZaSt6iVXc4gINWj8EV6rIj8xz2X-pbAN0w"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "6706f0a2-6ae7-46b3-8a12-815497b73c7a"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0016800001051XVBBZ"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "65f13d10-dc35-5d75-891d-180dc4bc597b",
+            "CreditDebitIndicator": "Debit",
+            "Type": "InterimAvailable",
+            "DateTime": "2020-11-18T21:44:14.342Z",
+            "Amount": {
+              "Amount": "1559.41",
+              "Currency": "GBP"
+            },
+            "CreditLine": [
+              {
+                "Included": false,
+                "Type": "Credit",
+                "Amount": {
+                  "Amount": "5900.00",
+                  "Currency": "GBP"
+                }
+              },
+              {
+                "Included": false,
+                "Type": "Available",
+                "Amount": {
+                  "Amount": "4340.59",
+                  "Currency": "GBP"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://secureapi.prod.ob.virginmoney.com/vmpsd2-psd2prod/psd2-production/open-banking/v3.1/aisp/accounts/65f13d10-dc35-5d75-891d-180dc4bc597b/balances"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

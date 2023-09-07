@@ -1,0 +1,66 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/cec/prod/psd29c/v1/accounts/436976287219713/transactions",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "x-request-id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "X-IBM-Client-Id": {
+        "equalTo": "bb07276b-0a8a-41de-b95a-6c54a67a4d1c"
+      },
+      "oauth-1": {
+        "equalTo": "TEST_ACCESS_TOKEN"
+      },
+      "consent-id": {
+        "equalTo": "c3e66a4b-d6de-4c18-9195-303397ae13c3"
+      },
+      "tpp-signature-certificate": {
+        "matches": "^MII.*$"
+      },
+      "signature": {
+        "matches": "^(keyId=\"13299021239615735660\",algorithm=\"rsa-sha512\",headers=\"digest psu-ip-address x-request-id\",signature=).*$"
+      },
+      "digest": {
+        "matches": "^sha.*$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "accept": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "RO7612345987650123456789015"
+      },
+      "transactions": {
+        "booked": [],
+        "pending": [],
+        "_links": {
+          "account": {
+            "href": "/cec/prod/psd29c/v1/accounts/436976287219713"
+          },
+          "next": {
+            "href": ""
+          }
+        }
+      }
+    }
+  }
+}

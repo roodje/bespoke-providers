@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/7cda0cfb-b99e-466a-8a1c-6dd5954ce9b9/standing-orders",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer eyJraWQiOiJKTzJQVVhfSGlTU3JLUlVMS01EcHNwMzRzaHciLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1TTJ9.eyJhdWQiOiJodHRwczpcL1wvY2TuYXBpLW5jLmN5YnNlcnZpY2VzLmNvLnVrIiwic3ViIjoiMjhmNDgxYTktOTBhYy00OWExLWEyMTItZjM5ZTk5OWViZTJjIiwib3BlbmJhbmtpbmdfaW50ZW50X2lkIjoiNjAxZjE2NjYtNTE2OC00ZTdmLTk5MzItN2MyZjI1Y2NiMDM5Iiwic2NvcGUiOiJhY2NvdW50cyBvcGVuaWQiLCJpc3MiOiJodHRwczpcL1wvY2IuYXBpLW5jLTN5YnNlcnZpY2VzLmNvLnVrIiwiZThwIjoxNjEzNjgwMTI0LCJpYXQiOjE2MTM2NzY1MjQsImNsaWVudF9pZCI6IjI4ZjQ4MWE5LTkwYWMtNDlhMS1hMjEyLWYzOWU5OTllYmUyYyIsImp0aSI6IjZmZGQzMDEyLTg3MjktNDA2Ni05MWFhLWQ0MzJiMTk4NDM3ZSJ9.ry6sChDHLvFGi1VPMCClTsV5PFlMiknsjwNjqK2UJjbHybks18UQGtdD79OXtz8kAooLLEqdidWsMjpH2p5tO3g9FTkIUBeWLUDm6jlhCL_ZYOTHmfcQl_rnC6rFq_OuHaK_EtkfiDWYI3LATckicQiDPoFry2u0D8sybJGGDRKCJoxw24cB4nLtvAK3FHYdKsI6IHU2klWnk986tdHs6GA_DOs-UIVQtNN9isIaTFJgsRgKitLEw2Bdolmpw0B2V2XcV5nq5qPuWGzdbhcIt4P-uwAxOZLkCW7ddvjveZV44enJ7DK-HagJT2dB59zhSQ3tPmrN9dKCvC-5kgTHwg"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "StandingOrder": []
+      },
+      "Links": {
+        "Self": "https://api.openbanking.virginmoney.com/open-banking/v3.1/aisp/accounts/7cda0cfb-b99e-466a-8a1c-6dd5954ce9b9/standing-orders/"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

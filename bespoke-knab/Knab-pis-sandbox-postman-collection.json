@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "09a1a060-21ae-4948-841d-b4a01f02eae6",
+		"name": "Knab PIS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "access_token client_credentials",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "34b8109c-b82f-4c0d-a0d7-41933318687f",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Z2PX@nUknioUBvGj%5U&NjNw0qgo%oTgHV#vLpxk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "0B729CC0D13A39150B1463F9804F4FB03F05887FC8202F3965F13FF253B85C94",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://www.yolt.com/callback-dev",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "34b8109c-b82f-4c0d-a0d7-41933318687f",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://login.knab.io/connect/token",
+					"protocol": "https",
+					"host": [
+						"login",
+						"knab",
+						"io"
+					],
+					"path": [
+						"connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "initiate payment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Date",
+						"value": "{{$timestamp}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Request-ID",
+						"value": "{{$guid}}"
+					},
+					{
+						"key": "PSU-IP-Address",
+						"value": "127.0.0.1"
+					},
+					{
+						"key": "TPP-Redirect-URI",
+						"value": "http://localhost/redirect-back"
+					},
+					{
+						"key": "TPP-Nok-Redirect-URI",
+						"value": "http://localhost/nok-redirect-back"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer token"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"instructedAmount\": {\n        \"currency\": \"EUR\",\n        \"amount\": \"10.00\"\n    },\n    \"creditorName\": \"Bamboo Toothbrushes Ltd.\",\n    \"creditorAccount\": {\"iban\": \"NL57KNAB9990461305\"}\n}"
+				},
+				"url": {
+					"raw": "https://api.knab.nl/openbanking-sandbox/v1/payments/instant-sepa-credit-transfers",
+					"protocol": "https",
+					"host": [
+						"api",
+						"knab",
+						"nl"
+					],
+					"path": [
+						"openbanking-sandbox",
+						"v1",
+						"payments",
+						"instant-sepa-credit-transfers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "status payment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Date",
+						"value": "{{$timestamp}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Request-ID",
+						"value": "{{$guid}}"
+					},
+					{
+						"key": "PSU-IP-Address",
+						"value": "127.0.0.1"
+					},
+					{
+						"key": "TPP-Redirect-URI",
+						"value": "http://localhost/redirect-back"
+					},
+					{
+						"key": "TPP-Nok-Redirect-URI",
+						"value": "http://localhost/nok-redirect-back"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer token"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"instructedAmount\": {\n        \"currency\": \"EUR\",\n        \"amount\": \"10.00\"\n    },\n    \"creditorName\": \"Bamboo Toothbrushes Ltd.\",\n    \"creditorAccount\": {\"iban\": \"NL57KNAB9990461305\"}\n}"
+				},
+				"url": {
+					"raw": "https://api.knab.nl/openbanking-sandbox/v1/payments/instant-sepa-credit-transfers",
+					"protocol": "https",
+					"host": [
+						"api",
+						"knab",
+						"nl"
+					],
+					"path": [
+						"openbanking-sandbox",
+						"v1",
+						"payments",
+						"instant-sepa-credit-transfers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

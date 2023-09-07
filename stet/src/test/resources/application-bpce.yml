@@ -1,0 +1,46 @@
+lovebird:
+  stet:
+    bpcegroup:
+      banquepopulaire:
+        paginationLimit: 1000
+        formStepExpiryDurationMillis: 3600000
+        registration-url: https://localhost:${wiremock.server.https-port}/stet/setting/v1/register # Registration url must be equal to first region
+        regions:
+          - code: BPBFC
+            name: "B.P Bourgogne Franche Comté"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/stet/psd2/oauth/token
+            authUrl: https://localhost:${wiremock.server.https-port}/stet/psd2/oauth/authorize
+          - code: BPAURA
+            name: "B.P AUvergne et Rhône-Alpes"
+            baseUrl: http://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/stet/psd2/oauth/token
+            authUrl: https://localhost:${wiremock.server.https-port}/stet/psd2/oauth/authorize
+      caissedepargneparticuliers:
+        paginationLimit: 1000
+        formStepExpiryDurationMillis: 3600000
+        registration-url: https://localhost:${wiremock.server.https-port}/stet/setting/v1/register # Registration url must be equal to first region
+        regions:
+          - code: BPBFC
+            name: "B.P Bourgogne Franche Comté"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/stet/psd2/oauth/token
+            authUrl: https://localhost:${wiremock.server.https-port}/stet/psd2/oauth/authorize
+          - code: BPAURA
+            name: "B.P AUvergne et Rhône-Alpes"
+            baseUrl: http://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/stet/psd2/oauth/token
+            authUrl: https://localhost:${wiremock.server.https-port}/stet/psd2/oauth/authorize
+yolt:
+  qseal-certificate-exposure:
+    enabled: true
+    base-url: https://test.qseal.certificate.com
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

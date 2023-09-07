@@ -1,0 +1,79 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/open-banking/v3.1/pisp/domestic-payments",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "3da42a4b-5e10-4807-9087-d90a8f66d997"
+      },
+      "Authorization": {
+        "equalTo": "Bearer AccessToken"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf7AeAAI"
+      },
+      "Accept": {
+        "matches": "^application/json$"
+      },
+      "x-jws-signature": {
+        "matches": "^[A-Za-z0-9-_=]+(\\.\\.)[A-Za-z0-9-_=]*$"
+      },
+      "x-idempotency-key": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "ConsentId": "f2f36954-2ef9-4c1a-999d-b8d1bbb64f4f",
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "EndToEndIdentification": "E2EDN5K3",
+              "InstructedAmount": {
+                "Amount": "0.01",
+                "Currency": "GBP"
+              },
+              "DebtorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "8272908780568576",
+                "Name": "Alex Mitchell"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "1802968485593088",
+                "Name": "Jordan Bell"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "Remi Unstr",
+                "Reference": "REF1122336789-4321"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Code": "400 BadRequest",
+      "Id": "194583923402",
+      "Message": "Bad request",
+      "Errors": [
+        {
+          "ErrorCode": "OB0400",
+          "Message": "Request is not correctly formatted",
+          "Path": "/domestic-payments",
+          "Url": "https://danske.co.uk/domestic-payments"
+        }
+      ]
+    }
+  }
+}

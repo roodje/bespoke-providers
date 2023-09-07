@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/oauth-authorizationcode-psd2/token",
+    "headers": {
+      "Content-type": {
+        "contains": "application/x-www-form-urlencoded"
+      },
+      "Accept": {
+        "matches": "application/hal\\+json;charset=utf-8"
+      },
+      "Digest": {
+        "matches": "SHA-256=([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "Signature": {
+        "matches": "keyId=\"https://test.qseal.certificate.com/[a-zA-Z0-9:]{59}.pem\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) x-request-id digest\", signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "client_id=some_client_id"
+      },
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fredirect.url"
+      },
+      {
+        "contains": "code=some_code"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/hal+json; charset=utf-8"
+    },
+    "jsonBody": {
+      "access_token": "access-token",
+      "token_type": "Bearer",
+      "expires_in": 3600,
+      "refresh_token": "refresh-token"
+    }
+  }
+}

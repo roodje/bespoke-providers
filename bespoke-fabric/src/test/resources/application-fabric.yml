@@ -1,0 +1,6 @@
+lovebird:
+  fabricgroup:
+    bancasella:
+      base-url: https://localhost:${wiremock.server.https-port}
+      onboarding-base-url: https://localhost:${wiremock.server.https-port}
+

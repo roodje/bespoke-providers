@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/register",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Content-Type": {
+        "equalTo": "application/jwt"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matches": "^[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_=]*$"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "client_id": "someClientId",
+      "client_secret": "someClientSecret"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/token",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Basic ZGE1NzU5ZDEtOGY5NS00YjMxLTgxODMtZmFiMWM2MmI1MmM1OjliZDQxMmMxLTU4ZGEtNGJlNi04MmRjLTk4MDlmNDNlZWFlOQ=="
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=5821"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fyolt.com%2F"
+      },
+      {
+        "contains": "scope=aisp"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "X-Backside-Transport": "FAIL FAIL",
+      "Connection": "Keep-Alive",
+      "Transfer-Encoding": "chunked",
+      "Content-Type": "application/json",
+      "Cache-Control": "private, no-store, no-cache, must-revalidate",
+      "Pragma": "no-cache",
+      "Content-Security-Policy": "default-src 'self'; style-src 'unsafe-inline'",
+      "Access-Control-Expose-Headers": "APIm-Debug-Trans-Id, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-Global-Transaction-ID",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST"
+    },
+    "jsonBody": {
+      "token_type": "Bearer",
+      "access_token": "af39f12f-eb22-4226-aa4e-5f68ba840c55",
+      "expires_in": 28800,
+      "consented_on": 1565340292,
+      "scope": "aisp",
+      "refresh_token": "d0710783-fb31-41af-9288-8d5b8da755e5"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/20000000000001449160/parties",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Party": [
+          {
+            "PartyId": "10000000000001621851",
+            "FullLegalName": "MR User Name2"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://telesto.api.barclays/open-banking/v3.1/aisp/accounts/20000000000001449160/parties"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

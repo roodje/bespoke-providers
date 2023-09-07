@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/v2/accounts/bbccbbcc-bbcc-bbcc-bbcc-bbccbbccbbcc/balance",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "Accept-Encoding": {
+        "contains": "gzip"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "clearedBalance": {
+        "currency": "GBP",
+        "minorUnits": 11223344
+      },
+      "effectiveBalance": {
+        "currency": "GBP",
+        "minorUnits": 11223344
+      },
+      "pendingTransactions": {
+        "currency": "GBP",
+        "minorUnits": 11223344
+      },
+      "acceptedOverdraft": {
+        "currency": "GBP",
+        "minorUnits": 11223344
+      },
+      "amount": {
+        "currency": "GBP",
+        "minorUnits": 11223344
+      }
+    }
+  }
+}

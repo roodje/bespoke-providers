@@ -1,0 +1,114 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/cec/prod/psd29c/v1/accounts?withBalance=true",
+    "headers": {
+      "x-request-id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "X-IBM-Client-Id": {
+        "equalTo": "bb07276b-0a8a-41de-b95a-6c54a67a4d1c"
+      },
+      "oauth-1": {
+        "equalTo": "TEST_ACCESS_TOKEN"
+      },
+      "consent-id": {
+        "equalTo": "c3e66a4b-d6de-4c18-9195-303397ae13c3"
+      },
+      "tpp-signature-certificate": {
+        "matches": "^MII.*$"
+      },
+      "signature": {
+        "matches": "^(keyId=\"13299021239615735660\",algorithm=\"rsa-sha512\",headers=\"digest psu-ip-address x-request-id\",signature=).*$"
+      },
+      "digest": {
+        "matches": "^sha.*$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "accept": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "436976287219712",
+          "iban": "RO7612345987650123456789014",
+          "bban": "BARC12345612345678",
+          "msisdn": "+49 170 1234567",
+          "currency": "EUR",
+          "name": "Gabriel Howard",
+          "product": "izcez",
+          "cashAccountType": "CACC",
+          "status": "enabled",
+          "bic": "AAAADEBBXXX",
+          "linkedAccounts": "3528904879450435",
+          "usage": "PRIV",
+          "details": "harofid",
+          "balances": [
+            {
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": "123"
+              },
+              "balanceType": "closingBooked",
+              "lastChangeDateTime": "2018-03-30T03:23:27.461Z",
+              "referenceDate": "2018-03-30",
+              "lastCommittedTransaction": "Takahashi"
+            }
+          ],
+          "_links": {
+            "balances": {
+              "href": "/cec/prod/psd29c/v1/accounts/436976287219712/balances"
+            },
+            "transactions": {
+              "href": "/cec/prod/psd29c/v1/accounts/436976287219712/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "436976287219713",
+          "iban": "RO7612345987650123456789015",
+          "bban": "BARC12345612345679",
+          "msisdn": "+49 170 1234567",
+          "currency": "EUR",
+          "product": "izcez",
+          "cashAccountType": "CACC",
+          "status": "enabled",
+          "bic": "AAAADEBBXXX",
+          "linkedAccounts": "3528904879450435",
+          "usage": "PRIV",
+          "details": "harofid",
+          "balances": [
+            {
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": "603"
+              },
+              "balanceType": "closingBooked",
+              "lastChangeDateTime": "2018-03-30T03:23:27.461Z",
+              "referenceDate": "2018-03-30",
+              "lastCommittedTransaction": "Takahashi"
+            }
+          ],
+          "_links": {
+            "balances": {
+              "href": "/cec/prod/psd29c/v1/accounts/436976287219713/balances"
+            },
+            "transactions": {
+              "href": "/cec/prod/psd29c/v1/accounts/436976287219713/transactions"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

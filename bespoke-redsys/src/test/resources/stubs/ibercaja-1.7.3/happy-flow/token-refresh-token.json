@@ -1,0 +1,23 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/ibercaja/token?grant_type=refresh_token&client_id=redsysClientId&refresh_token=1d3aa3a4-02f5-12eb-8309-711ae25e53e6",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "4ebf95f7-02f5-11eb-8309-411ae25e53e3",
+      "token_type": "Bearer",
+      "expires_in": 3600,
+      "refresh_token": "1d3aa3a4-02f5-12eb-8309-711ae25e53e6"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

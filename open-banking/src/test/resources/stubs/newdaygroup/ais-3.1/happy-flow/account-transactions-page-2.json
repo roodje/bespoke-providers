@@ -1,0 +1,59 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/90400/transactions",
+    "queryParameters": {
+      "pg": {
+        "equalTo": "2"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer fake-access-token"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "fake-institution-id"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "90400",
+            "TransactionReference": "Ref 2_2",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "BookingDateTime": "2020-01-01T00:00:00+00:00",
+            "Amount": {
+              "Amount": "103.00",
+              "Currency": "GBP"
+            },
+            "CardInstrument": {
+              "CardSchemeName": "MasterCard",
+              "Identification": "1234123412341234"
+            },
+            "TransactionInformation": "Cash from Aubrey 2"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.1/aisp/accounts/90400/transactions?pg=2"
+      },
+      "Meta": {
+        "TotalPages": 2
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

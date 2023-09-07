@@ -1,0 +1,2634 @@
+openapi: 3.0.1
+info:
+  version: 1.2.1
+  title: Payment Initiation (PSD2)
+  description: |-
+    # Overview
+
+    The Payment Initiation (PSD2) API is used by Third Party Payment service providers (TPPs) to initiate payments from ABN AMRO accounts. 
+    A payment can only be initiated from an account when an ABN AMRO client authorizes the payment through the consent application.
+
+    Use this API to initiate:
+
+    **Single payments:**
+      - SEPA payments
+      - SEPA standing order payments
+      - Cross-border payments
+
+    **Batch payments:**
+      - SEPA payments
+      - SEPA direct debits
+
+    A [sandbox](#section/Sandbox-access) environment is available for development and testing.
+
+    ## How the Payment Initiation (PSD2) API works
+
+    **Single payments:**
+    1. Register a payment.
+    1. Request single payment consent from the ABN AMRO account holder through the consent application.
+    1. Execute the payment.
+
+    **Batch Payments:**
+    1. Request batch payment consent from the ABN AMRO account holder through the consent application.
+    1. Send the batch payment file.
+    1. The ABN AMRO account holder authorizes the execution of the batch file using Internet Banking or Access Online.
+
+    For information on how to get authorization and use this API, see [Single payments tutorial](#section/Tutorials/Single-payments-tutorial) and [Batch payments tutorial](#section/Tutorials/Batch-payments-tutorial).
+
+    ## The consent application
+    The consent application is used to obtain consent from an ABN AMRO account holder, and grant you with third-party access to execute a registered payment, or to access account information by using, for example, an E.dentifier. This is a so-called redirect. In the consent application, the ABN AMRO client can review the payment details that were registered by you and authorize the payment.
+
+    The account holder consent process consists of three steps:
+
+    1. Log on.
+    1. Check the requested access to an account.
+    1. Authorization.
+
+    All payment initiation consents are valid for 90 days. Consent is given using Internet Banking, a Mobile Banking app, or Access Online.
+
+    The ABN AMRO client can either authorize or cancel the requested authorization. 
+
+    >**Notes:**
+    >- For details on how to access the consent application through the OAuth server, see Step 3 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial), or Step 1 of the [Batch payments tutorial](#section/Tutorials/Batch-payments-tutorial).
+    >- If an account owner is not authorized on the account number in the registered payment, they can select a different account number for which they are authorized.
+    >- The ABN AMRO client can select Dutch or English in the consent application.
+    >- A cookie is used in the consent process which must be stored in the browser of the ABN AMRO client.
+
+    ### Authorization code
+    The consent application is visible to the account owner only. It provides you with an access code for the requested authorization using an OAUTH 2.0 authorization code process.
+    This is described in Step 3 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial), and Step 1 of the [Batch payments tutorial](#section/Tutorials/Batch-payments-tutorial). Authorization is a grant on an account for one or multiple scopes.
+
+    #### Scopes in the authorization code process
+    A scope defines the type of access. For payments there are write, read, and delete scopes. Here are some rules on how scopes can be combined in the authorization code:
+    - Write scopes can be combined with read scopes.
+    - Scopes for different products cannot be combined.
+    - Write scopes cannot be combined with write scopes.
+    - Delete scopes cannot be combined with other scopes.
+
+    For more information on required scopes, see the [POST payments](#operation/postSEPAPayment) operation.
+
+    ### Error messages
+    The following table describes consent application error scenarios. The error message is returned as parameter in the URL.
+
+    | Error message | Explanation |
+    | :--- | :--- |
+    | error=access_denied# | No current accounts are available to authorize.
+    | Unexpected+Runtime+Authn+Adapter+Integration+  Problem.&error=server_error# | The user cancelled the consent process. |
+
+    An account holder may report an incident where they see the following error message in their browser, or application: "The page you are trying to access is no longer available". In this scenario, no redirect is occurring, this error message is visible to the user only, and occurs when consent flow is restarted manually. For example, by using the refresh button.
+
+    ## Generic information
+
+    - There is no duplicate check on any of the payment methods.
+    - A response is always sent. Ensure that your application does not time-out.
+    - If a 5xx or time-out occurs, it cannot be assumed the payment failed:
+        - If a POST operation fails, the payment can be safely posted again.
+        - If a PUT operation fails, check the status of the payment using GET. If the status is still 'AUTHORIZED', try to release again. If the status changes to 'INPROGRESS', 'SCHEDULED', or 'EXECUTED' the execution has succeeded. If the status is 'REJECTED', contact the bank.
+        - If a PUT operation fails, and the status cannot be checked, contact the bank.
+        - If a GET operation fails, retry later.
+    - If reposting, avoid using short retry periods to keep out of rate limiting scenarios.
+
+    ## Character set
+
+    The following character set can be used for SEPA single, batch payments, and cross-border payments.
+
+    | Character set |
+    | --- |
+    | space |
+    | ! & ' ( ) +   - . / 0 1 2 3 4 5 6 7 8 9 : ? _ ` , |
+    | aAbBcCdDeEfFgGhHiljJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ |
+    | àÀáÁâÂãÃäÄåÅæÆçÇèÈéÉêÊëËìÌíÍîÎïÏðÐñÑòÒóÓôÔõÕöÖ×øØùÙúÚûÛüÜýÝþÞßÞÿ |
+
+    >**Note:** For cross-border payments, characters may be converted; for example, the ":" and "‘"; and lines can be truncated because of differences in standards between local payment and the clearing system.
+
+
+    # Requirements
+
+    To use this API in a production environment, you must have the following:
+    - A [PSD2 license](#section/Requirements/PSD2-license) for payment initiation.
+    - An [EIDAS certificate](#section/Requirements/EIDAS-certificate).
+
+    ## PSD2 license
+    To use this API in a production environment, or if you require TTP access to ABN AMRO accounts, you must have a PSD2 license from a local competent authority. In the Netherlands, this is De Nederlandsche Bank (DNB). If you require access to accounts in other countries you must also have a license in that country. You can get access to ABN AMRO accounts in NL, GB, BE, and DE through the Developer Portal.
+
+    ## Licensing requirements
+    | API   | AISP License | PISP License | Banking License | Payment Instrument Issuing License |
+    |:---|:---:|:---:|:---:|:---:|
+    | Payment Initiation (PSD2) |   N  |  Y   |   Y  |  N |
+
+    ## EIDAS certificate
+    ABN AMRO only accepts Qualified Website Authentication Certificates (QWAC) from Qualified Trusted Service Providers (QSTPs) that are on the [trusted list with CEF Digital](https://webgate.ec.europa.eu/tl-browser/#/search/type/3). This certificate is used for identification, and is also required for OAUTH authorization when accessing APIs.
+
+    # Sandbox access
+
+    The sandbox and production environments are functionally identical. The sandbox is static, which means that you can perform all operations without making any transactions on an account. Transactions posted in the sandbox are cleaned everyday.
+
+    >**Important:** It is prohibited to use transactions that contain sensitive or private information in the sandbox. Account information in the sandbox is production like and fictive.
+
+    To use the Payment Initiation (PSD2) API in a sandbox environment, complete the following steps:
+    
+    1. Register and create an account:
+      1. Go to [ABN AMRO Developer Portal](https://developer.abnamro.com/).
+      1. Click **Sign up**.
+      1. Enter your details, and click **Create an account**.
+      1. Developer Support will send you an activation link by email.
+      1. Click the activation link.
+    1. Create an register application:
+      1. Log in to your account.
+      1. In the top navigation bar, click **My Apps**.
+      1. Click **Add a new App** or **+**.
+      1. In the **App name** field, enter a name for your application.
+      1. In the **API product** field, select **Payment Initation (PSD2) API**, and click **Submit**.
+    1. Complete the [Tutorial](#section/Tutorial).
+    1. Complete one or both of the following tutorials: [Single payments tutorial](#section/Tutorials/Single-payments-tutorial), [Batch payments tutorial](#section/Tutorials/Batch-payments-tutorial).
+
+    ## Sandbox access details
+    The following account types are available for testing:
+
+    | Account type      | International Bank Account Number (IBAN)    |
+    |:---|:---|
+    | Commercial account       | NL62ABNA9999841479 |
+    | Small commercial account | NL12ABNA9999876523 |
+    | Retail account           | NL58ABNA9999142181 |
+
+    Sandbox URL: https://<span></span>api-sandbox.abnamro.com   
+
+    Sandbox authorization URL: https://<span></span>auth-sandbox.connect.abnamro.com
+
+    Use the following credentials for the sandbox:
+
+    | Attribute    | Value for Sandbox |
+    |:---|:---|
+    | client_id    | TPP_test |
+    | API-Key      | The API Key for your app from the [Developer Portal](https://developer.abnamro.com/) |
+    | redirect_uri | https://<span></span>localhost/auth    |
+
+    |Certificate files:|
+    | ---|
+    | Download public certificate: <a href="/sites/default/files/2020-05/PSD2TPPCertificate.crt" download> Download </a> |
+    | Download private key: <a href="/sites/default/files/2020-05/PSD2TPPprivateKey.key" download> Download </a> |
+
+    > **Notes:** The sandbox handles functional error scenarios only.
+
+    # Production access
+
+    >**Important:** To use this API in a production environment, you must have a PSD2 license. For more information, see [Requirements](#section/Requirements).
+
+    To get access to production:
+
+    1. Create a new application in the developer portal.
+      >**Note:** You cannot use the same application that was previously used in the sandbox. A new application is required for the production environment.
+
+       1. In the top navigation bar, click **My Apps**.
+       1. Click **Add a new App** or **+**.
+       1. In the **App name** field, enter a name for your application.
+    1. Request Access to the Payment Initiation API (PSD2) production environment:
+        1. Go to the [Contact form](/contact).
+        1. In the **API Product** field, select **Payment Initiation API**.
+        1. In the **Support category** field, select **Access to Production**.
+        1. In the **Email** field, use the same developer e-mail that used when setting up your application.
+        1. In the **Message** field, paste the API-Key.
+        1. Fill in the remaining fields, and click **Send**.
+    1. The API Services Team will contact you about your request and request your details. They will issue you a technical setup form.
+    1. Complete the technical setup form and send this, together with your PSD2 compliant QWAC EIDAS SSL certificate, to the API Services Team.
+    1. ABN AMRO validates the technical setup form and EIDAS certificate, and starts the production access process for the PSD2 APIs.
+    1. The API Services team provides you with production access details.
+
+    >**Note:** It is not possible for account holders to get API access on their own accounts.
+
+    ## Production access details
+ 
+    Production URL: https://<span></span>api.abnamro.com
+    Production authorization URL: https://<span></span>auth.connect.abnamro.com]
+
+    Use the following credentials for production:
+
+    | Attribute    | Value for Production |
+    |:---|:---|
+    | client_id    | As supplied to you by ABN AMRO |
+    | API-Key      | The API Key for your production app from the [Developer Portal](https://developer.abnamro.com/) |
+    | redirect_uri | The URLs that you specified in your request access form |
+
+    |Certificate files:|
+    | --|
+    | Certificate file : Your QWAC EIDAS certificate  |
+    | Private key : Your private key |
+
+    # Tutorials
+
+    ## Single payments tutorial
+    This tutorial describes how to connect an application to the Payment Initiation API (PSD2) in the sandbox environment, and execute a single payment. To execute a set of payments that can be authorized at once, see [Batch payments tutorial](#section/Tutorials/Batch-payments-tutorial).
+    
+    >**Note:** Before you start this tutorial, you must complete the steps described in [Sandbox access](#section/Sandbox-access).
+    
+    >**Note:** In the production environment, the PSD2 compliant EIDAS QWAC SSL certificate, production redirect-uri, and production API-Key are used.
+
+    ### Step 1 - Request an access token for payment registration
+
+    This step uses OAUTH2.0 client credentials as an authorization method. When requesting a client credentials access token, you must authenticate yourself as a client using an SSL certificate. In the response, an access token is returned. This token is used to register a payment. For security reasons, the validity of this token is temporary.
+
+    #### Request attributes
+    You must specify the scope for the operation that is to be authorized. The possible scopes are described in the table below.
+
+    | Operation | Request for scope |
+    |:---|:---|
+    | Post (structured) SEPA payment| psd2:payment:sepa:write |
+    | Post XBorder payment |  psd2:payment:xborder:write |
+    | Post SEPA standing order payment | psd2:payment:recurrent:sepa:write |
+
+    ##### Attributes
+
+    | Attribute    | Value for Sandbox |
+    |:---|:---|
+    | client_id    | TPP_test |
+
+    ##### Certificates
+
+    | Certificate files |
+    | :--|
+    | Download public certificate: <a href="/sites/default/files/2020-05/PSD2TPPCertificate.crt" download> Download </a> |
+    | Download private key: <a href="/sites/default/files/2020-05/PSD2TPPprivateKey.key" download> Download </a> |
+
+    Sandbox URL: https://<span></span>api-sandbox.abnamro.com
+
+    #### Request examples
+
+    Request a client credentials access token to register a payment, using one of the following sample requests:
+
+    - ##### SEPA payment request
+      ```shell
+      curl -X POST https://auth-sandbox.connect.abnamro.com:8443/as/token.oauth2 \
+      -v \
+      --cert TPPCertificate.crt \
+      --key TPPprivateKey.key \
+      -H 'Cache-Control: no-cache' \
+      -H 'Content-Type: application/x-www-form-urlencoded' \
+      -d 'grant_type=client_credentials&client_id=TPP_test&scope=psd2:payment:sepa:write'
+      ```
+
+    - ##### SEPA standing order payment request
+      ```shell
+      curl -X POST https://auth-sandbox.connect.abnamro.com:8443/as/token.oauth2 \
+      -v \
+      --cert TPPCertificate.crt \
+      --key TPPprivateKey.key \
+      -H 'Cache-Control: no-cache' \
+      -H 'Content-Type: application/x-www-form-urlencoded' \
+      -d 'grant_type=client_credentials&client_id=TPP_test&scope=psd2:payment:recurrent:sepa:write'
+      ```
+
+    - ##### Cross-border payment request
+      ```shell
+      curl -X POST https://auth-sandbox.connect.abnamro.com:8443/as/token.oauth2 \
+      -v \
+      --cert TPPCertificate.crt \
+      --key TPPprivateKey.key \
+      -H 'Cache-Control: no-cache' \
+      -H 'Content-Type: application/x-www-form-urlencoded' \
+      -d 'grant_type=client_credentials&client_id=TPP_test&scope=psd2:payment:xborder:write'
+      ```
+          
+    #### Sample response
+
+    ```json
+    {
+      "token_type": "Bearer",
+      "access_token": "X1PTWZre0fnW72l263yrhAWB2FDwx3tg",
+      "expires_in": 7199
+    }
+    ```
+
+    ###  Step 2 - Register a payment
+
+    Use the `access_token` that you created in Step 1 of this tutorial to register a payment. This payment must be authorized by the account holder using the consent process described in Step 3 of this tutorial.
+
+    #### Sample requests
+
+    Register a payment using one of the following sample POST requests:
+
+    - ##### Standard SEPA payment request
+      This is a EUR payment inside the euro zone.
+
+      ```shell
+      curl -X POST https://api-sandbox.abnamro.com/v1/payments  \
+      -v \
+      -H 'Accept: application/json'  \
+      -H 'Authorization: Bearer X1PTWZre0fnW72l263yrhAWB2FDwx3tg' \
+      -H 'content-type: application/json'  \
+      -H 'API-Key: X1QTWZre0fnW72l263yrhAWB2FDwx3tg' \
+      -d '{
+      "initiatingpartyAccountNumber": "NL62ABNA9999841479",
+      "counterpartyAccountNumber": "NL12ABNA9999876523",
+      "amount": 149.99,
+      "counterpartyName": "John Doe",
+      "remittanceInfo": "Payment of invoice 123/01"
+        }'
+      ```
+
+      For more information, see the [POST payments](#operation/postSEPAPayment) operation.
+
+    - ##### Structured SEPA payment request
+
+      This is a domestic SEPA payment with structured remittance information such as acceptgiro.
+
+      ```shell
+      curl -X POST https://api-sandbox.abnamro.com/v1/payments  \
+      -v \
+      -H 'Accept: application/json'  \
+      -H 'Authorization: Bearer UTUZnSKhYEYhX9qWl03epLVC3jyD' \
+      -H 'content-type: application/json'  \
+      -H 'API-Key: X1QTWZre0fnW72l263yrhAWB2FDwx3tg' \
+      -d '{
+      "initiatingpartyAccountNumber": "NL62ABNA9999841479",
+      "counterpartyAccountNumber": "NL12ABNA9999876523",
+      "amount": 149.99,
+      "requestedExecutionDate": "2020-01-30",
+      "counterpartyName": "John Doe",
+      "structuredRemittanceInfo": {
+        "issuer": "CUR",
+        "reference": "12345"
+          }
+        }'
+      ```
+      
+      For more information, see the [POST payments](#operation/postSEPAPayment) operation.
+
+    - ##### SEPA standing order payment request
+
+      This is a repeating SEPA payment order in EUR.
+
+      ```shell
+      curl -X POST https://api-sandbox.abnamro.com/v1/payments/standingorder  \
+      -v \
+      -H 'Accept: application/json'  \
+      -H 'Authorization: Bearer X1PTWZre0fnW72l263yrhAWB2FDwx3tg' \
+      -H 'content-type: application/json'  \
+      -H 'API-Key: X1QTWZre0fnW72l263yrhAWB2FDwx3tg' \
+      -d '{
+      "startDate": "2019-07-30",
+      "endDate": "2020-06-30",
+      "frequency": "MONTHLY",
+      "payment": {
+        "initiatingpartyAccountNumber": "NL62ABNA9999841479",
+        "counterpartyAccountNumber": "NL12ABNA9999876523",
+        "counterpartyName": "John Doe",
+        "amount": 149.99,
+        "remittanceInfo": "Monthly payment"
+          }
+        }'
+      ```
+
+      For more information, see the [POST standing order](#operation/postStandingOrderPayment) operation.
+
+    - ##### Cross-border payment request
+
+      This is a non EUR payment or EUR payment outside the euro zone.
+
+      ```shell
+      curl -X POST https://api-sandbox.abnamro.com/v1/payments/xborder \
+      -v \
+      -H 'Accept: application/json'  \
+      -H 'Authorization: Bearer X1PTWZre0fnW72l263yrhAWB2FDwx3tg' \
+      -H 'content-type: application/json'  \
+      -H 'API-Key: X1QTWZre0fnW72l263yrhAWB2FDwx3tg' \
+      -d '{
+        "initiatingParty": {
+                      "accountNumber": "NL62ABNA9999841479",
+                      "accountCurrency": ""
+        },
+        "counterParty": {
+         "name": "John Doe",
+         "accountNumberType": "IBAN",
+         "accountNumber": "NL12ABNA9999876523",
+         "bankIdentifierType": "SWIFTBIC",
+        "bankIdentifier": "ABNANL2A"
+        },
+        "amount": 3.78,
+        "currency": "USD",
+        "chargesBearer": "SHA",
+        "remittanceInfo": "A text with details of the payment"
+        }'
+      ```
+
+      For more information, see the [POST xborder](#operation/postXborderPayment) operation.
+
+    #### Sample response
+
+    ```json
+    {
+      "accountNumber": "NL62ABNA9999841479",
+      "transactionId": "321463282363179XX",
+      "status": "STORED",
+      "accountHolderName": "John Doe"
+    }'
+    ```
+
+    >**Note:** You must store the `transactionId`. It is used to check the account holder authorization and to execute the authorized payment.
+
+    ### Step 3 - Obtain consent
+
+    In this step, the OAuth 2.0 authorization code flow is used to obtain consent from an ABN AMRO account holder, and grant you with third-party access to execute a registered payment. This grant is given using the [Consent application](#section/Overview/The-consent-application).
+
+    #### Request attributes
+    The table below defines the usage of attributes in a request.
+
+    | Parameter  | Description    |
+    |:---|:---|
+    | scope   | Indicates for which scope consent is requested. This can be more than one scope. You can find the available scopes in the operation table below. |
+    | transactionId | Unique ID that is generated during the registration of a payment in Step 2. |
+    | redirect_uri  | In sandbox, you must use `https://<span></span>localhost/auth`. In production, this URI must be identical to the URL configured on your request. |
+    | bank  | Denotes the bank in which the account is held. If omitted, this value will revert to `NLAA01`. See the bank parameter table below for possible values. |
+    | state | Value returned in the response that is used for session management. This parameter can, for example, be used to link the access code in the response to the `transactionId` of the payment.  **Note:** In this tutorial, the `access_token` retrieved in Step 4 does not have a `transactionId`. It is obtained in Step 5. |
+
+    | Operation | Request for scope |
+    |:---|:---|
+    | Execute SEPA payment| psd2:payment:sepa:write |
+    | Cancel SEPA payment | psd2:payment:sepa:write |
+    | Check SEPA payment status | psd2:payment:sepa:read |
+    | Execute XBorder payment |  psd2:payment:xborder:write |
+    | Execute SEPA standing order payment | psd2:payment:recurrent:sepa:write |
+    | Cancel SEPA standing order payment |psd2:payment:recurrent:sepa:delete |
+
+    | Bank parameter  | Description |
+    |:---|:---|
+    | NLAA01 | Consent for an ABNAMRO account in NL or commercial ABN AMRO account in BE, GB or DE. |
+    | BEPB01 | Consent for an ABN AMRO Belgium Private Banking accounts. |
+    | BEPB02 | Consent for an ABN AMRO Belgium Independent Asset Manager accounts. |
+
+    >**Notes:**
+    >- In the sandbox, a simplified version of the consent application is used.  This application lacks the e.dentifier authorization in favor of easier development.
+    >- For more information, see [Consent application](#section/Overview/The-consent-application)
+
+    #### Sample requests
+    All of the following examples will start the consent application. In the consent application, the ABN AMRO client reviews the payment details and authorizes the payment. Then you will receive an access code, which is used to execute the registered payment.
+
+    To request consent, direct the account holder to one of the following sample URLs, using a browser or mobile banking application:
+
+    - ##### SEPA payment consent request
+      ```
+      https://auth-sandbox.connect.abnamro.com/as/authorization.oauth2?scope=psd2:payment:sepa:write+psd2:payment:sepa:read&client_id=TPP_test&transactionId=123&response_type=code&flow=code&redirect_uri=https://localhost/auth&bank=NLAA01&state=Paymentreference123
+      ```
+
+    - ##### Standing order payment consent request
+      ```
+      https://auth-sandbox.connect.abnamro.com/as/authorization.oauth2?scope=psd2:payment:recurrent:sepa:write&client_id=TPP_test&transactionId=123&response_type=code&flow=code&redirect_uri=https://localhost/auth&bank=NLAA01&state=Paymentreference123
+      ```
+
+    - ##### SEPA standing order payment cancellation consent request
+      The account holder must provide consent to cancel a SEPA standing order.
+      ```
+      https://auth-sandbox.connect.abnamro.com/as/authorization.oauth2?scope=psd2:payment:recurrent:sepa:delete&client_id=TPP_test&transactionId=123&response_type=code&flow=code&redirect_uri=https://localhost/auth&bank=NLAA01&state=Paymentreference123
+      ```
+
+    - ##### Cross-border payment consent request
+      ```
+      https://auth-sandbox.connect.abnamro.com/as/authorization.oauth2?scope=psd2:payment:xborder:write&client_id=TPP_test&transactionId=123&response_type=code&flow=code&redirect_uri=https://localhost/auth&bank=NLAA01&state=Paymentreference123
+      ```
+
+    #### Sample response
+
+    In the response, you will receive an authorization code, which must be exchanged within 60 seconds for an `access_token` and a `refresh_token`. This is described in the next step.
+
+    ```URL
+    https://localhost/auth?code=9C6UrsGZ0Z3XJymRAOAgl7hKPLlWKUo9GBfMQQEs&state=Paymentreference123
+    ```
+
+    > **Note:** For more information, see [Consent application](#section/Overview/The-consent-application).
+
+    ### Step 4 - Exchange access code token
+
+    The authorization code you received in Step 3 must be exchanged within 60 seconds for an `access_token` and a `refresh_token`. The `access_token` is used to access the API and is valid for 2 hours. When the `access_token` has expired, the `refresh_token` can be exchanged for a new `access_token` and  `refresh_token`. For more information, see the Additional operations section of this tutorial.
+
+    #### Request attributes
+
+    | Attribute    | Description  |
+    |:---|:---|
+    | grant_type   | Indicates which type of authorization is used. It must contain 'Authorization_code'. |
+    | code   | Authorization code from Step 3. |
+    | redirect_uri | Field is mandatory when `redirect_uri` is used in Step 3. |
+
+    #### Sample request
+
+    ```shell
+    curl -X POST https://auth-sandbox.connect.abnamro.com:8443/as/token.oauth2 \
+    -v \
+    --cert TPPCertificate.crt \
+    --key TPPprivateKey.key \
+    -H 'Cache-Control: no-cache' \
+    -H 'Content-Type: application/x-www-form-urlencoded' \
+    -d 'grant_type=authorization_code&client_id=TPP_test&code=9C6UrsGZ0Z3XJymRAOAgl7hKPLlWKUo9GBfMQQEs&redirect_uri=https://localhost/auth'
+    ```
+
+    #### Sample response
+
+    ```json
+    {
+      "access_token": "GPgYglX4sO1WhzfChx4tmjr4y7Qg",
+      "refresh_token": "UHjIAzBZfLGh4dLm8cvEcH6d8BrOmCZXumOpznQBP1",
+      "token_type": "Bearer",
+      "expires_in": 7193
+    }
+    ```
+
+    ### Step 5 - Check authorization using consent information
+
+    >**Note:** A `transactionId` is needed to execute a payment. This is obtained in this step. If you used the `state` parameter to link to the `transactionId` in Step 3, proceed to Step 6 to execute the payment.
+
+    To execute an authorized payment, you must have an `access_token`, which was obtained Step 4, and the `transactionId` of the payment. By requesting consent information, the `transactionId` associated with the `access_token`, received in the previous step, can be retrieved. The scopes and initiating account number are also returned in the response.
+
+    ### Request attributes
+
+    | Attribute | Description |
+    | --- | --- |
+    | authorization | Use the `access_token` received in Step 4 and send this as a `bearer` token. |
+
+    #### Sample request
+
+    ```shell
+    curl -X GET https://api-sandbox.abnamro.com/v1/consentinfo \
+    -v \
+    -H 'Accept: application/json' \
+    -H 'API-Key: X1QTWZre0fnW72l263yrhAWB2FDwx3tg' \
+    -H 'Authorization: Bearer GPgYglX4sO1WhzfChx4tmjr4y7Qg'
+    ```
+
+    For more information, see the [GET Consentinfo](#operation/getConsentInformation) operation.
+
+    #### Sample response
+    ```json
+    {
+      "scopes": "payment:sepa:write payment:sepa:read",
+      "iban": "NL62ABNA9999841479",
+      "paymentReference": "8338L5812304793S0PD",
+      "valid": "1543931986"
+    }
+    ```
+
+    To execute the payment in the next step and to check status, store the `transactionId`.
+
+    ### Step 6 - Execute the payment
+    The registered payment must be executed using the `transactionId` and `access_token` retrieved in previous steps.
+
+    #### Sample request
+    Using one of the following sample requests, execute the registered payment using the PUT method:
+
+    - ##### SEPA or structured SEPA payment request
+      ```shell
+      curl -X PUT https://api-sandbox.abnamro.com/v1/payments/8338L5812304793S0PD \
+      -v \
+      -H 'API-Key: X1QTWZre0fnW72l263yrhAWB2FDwx3tg' \
+      -H 'Accept: application/json' \
+      -H 'Authorization: Bearer GPgYglX4sO1WhzfChx4tmjr4y7Qg' \
+      -H 'Content-Length= 0'
+      ```
+
+      For more information, see the [PUT payment](#operation/putSEPAPayment) operation.
+
+    - ##### SEPA standing order payment request
+
+      ```shell
+      curl -X PUT https://api-sandbox.abnamro.com/v1/payments/standingorder/8338L5812304793S0PD \
+      -v \
+      -H 'API-Key: X1QTWZre0fnW72l263yrhAWB2FDwx3tg' \
+      -H 'Accept: application/json' \
+      -H 'Authorization: Bearer GPgYglX4sO1WhzfChx4tmjr4y7Qg'
+      -H 'Content-Length= 0'
+      ```
+       For more information, see the [PUT standing order](#operation/putStandingOrderPayment) operation.
+
+    - ##### Xborder payment request
+
+      ```shell
+      curl -X PUT https://api-sandbox.abnamro.com/v1/payments/xborder/8338L5812304793S0PD \
+      -v \
+      -H 'API-Key: X1QTWZre0fnW72l263yrhAWB2FDwx3tg' \
+      -H 'Accept: application/json' \
+      -H 'Authorization: Bearer GPgYglX4sO1WhzfChx4tmjr4y7Qg'
+      -H 'Content-Length= 0'
+      ```
+
+      For more information, see the [PUT xborder](#operation/putXborderPayment) operation.
+
+    #### Sample response
+
+      ```json
+      {
+        "accountNumber": "NL62ABNA9999841479",
+        "transactionId": "8338L5812304793S0PD",
+        "status": "EXECUTED",
+        "accountHolderName": "John Doe"
+      }
+      ```
+
+    >**Notes:** In some scenarios the account holder can change the initiating account number during consent. For more information, see [Consent Application](#section/Overview/The-consent-application). The initiating account number is located in the `accountNumber` field of the sample response.
+
+    The status of a payment is "EXECUTED" or "REJECTED". When the status is "IN PROGRESS" the payment has not been executed yet. For more information, see the [getSEPAPayment](#operation/getSEPAPayment) operation.
+
+    ### Additional operations
+
+    #### Check payment status
+    If the status of a payment is "REJECTED" or not "EXECUTED", check the status at a later time using following sample request:
+
+    #### SEPA payment request
+
+    ```shell
+    curl -X GET https://api-sandbox.abnamro.com/v1/payments/8338L5812304793S0PD \
+    -v \
+    -H 'API-Key: X1QTWZre0fnW72l263yrhAWB2FDwx3tg' \
+    -H 'Accept: application/json'  \
+    -H 'Authorization: Bearer {your_access_token}'
+    ```
+    For more information, see the [GET payments](#operation/getSEPAPayment) operation.
+
+    #### Sample SEPA response
+
+    ```json
+    {
+      "accountNumber": "NL62ABNA9999841479",
+      "transactionId": "8338L5812304793S0PD",
+      "status": "AUTHORIZED"
+    }
+    ```
+
+    - The status of a successful payment is "EXECUTED". For a rejected payment, the status is "REJECTED". In exceptional cases, it may take several seconds for the initial intermediate status "IN PROGRESS" to be updated.
+    - There is no method to check status for a cross-border payment or standing order payment. The account holder can check the status in Internet Banking or Access Online.
+
+    #### Cancel payments
+    To cancel a released payment that has a future execution date, use one of the following samples:
+
+    - ##### Sample SEPA payment request
+      A future-dated SEPA payment can be cancelled using the `transactionId` and `access_token`.
+      Using the following sample request, execute the registered request using the DELETE operation:
+
+      ```shell
+      curl -X DELETE https://api-sandbox.abnamro.com/v1/payments/8338L5812304793S0PD \
+      -v \
+      -H 'API-Key: X1QTWZre0fnW72l263yrhAWB2FDwx3tg' \
+      -H 'Accept: application/json'  \
+      -H 'Authorization: Bearer {your_access_token}'
+      ```
+      For more information, see the [DELETE SEPA payment](#operation/deleteSEPAPayment) operation.
+
+    - ##### Sample request to cancel a SEPA standing order payment
+      A scheduled SEPA standing order payment can be cancelled using the `transactionId` and `access_token`
+
+      ```shell
+      curl -X DELETE https://api-sandbox.abnamro.com/v1/payments/standingorder/8338L5812304793S0PD \
+      -v \
+      -H 'API-Key: X1QTWZre0fnW72l263yrhAWB2FDwx3tg' \
+      -H 'Accept: application/json' \
+      -H 'Authorization: Bearer GPgYglX4sO1WhzfChx4tmjr4y7Qg'
+      -H 'Content-Length= 0'
+      ```
+
+      For more information, see the [DELETE standingorder](#operation/deleteStandingOrderPayment) operation.
+
+      Payments can be also cancelled by the account holder using Internet Banking or Access Online.
+
+    #### Refresh an access token
+    When the short-lived `access_token`, received in Step 4, expires, the long-lived `refresh_token` can be used to get a new `access_token` and a new `refresh_token`. This renders the used refresh token as invalid.
+
+    ##### Sample request
+
+    ```shell
+    curl -X POST https://auth-sandbox.connect.abnamro.com:8443/as/token.oauth2 \
+    -v \
+    --cert TPPCertificate.crt \
+    --key TPPprivateKey.key \
+    -H 'Cache-Control: no-cache' \
+    -H 'Content-Type: application/x-www-form-urlencoded' \
+    -d 'grant_type=refresh_token&client_id=TPP_test&refresh_token=UHjIAzBZfLGh4dLm8cvEcH6d8BrOmCZXumOpznQBP1&scope=psd2:payment:sepa:write+psd2:payment:sepa:read'
+    ```
+
+    ##### Sample response
+
+    ```json
+    {
+      "access_token": "{mkwAngBIJtlL9TxxNhECHV4LaBBt}",
+      "refresh_token": "{nLlBcohGqcAvs2iyQ4SAdenC5moqRh9y3NifBR3j04}",
+      "token_type": "Bearer",
+      "expires_in": 7193
+    }
+    ```
+    Store the `access_token` to access the payment API, and the `refresh_token` to request a new `access_token` when it expires.
+
+    ## Batch payments tutorial
+
+    This tutorial describes how to connect an application to the Payment Initiation API (PSD2) in the sandbox environment, and execute a batch payment. To execute a single payment, see [Single payments tutorial](#section/Tutorials/Single-payments-tutorial).
+
+    >**Note:** To complete this tutorial, you must have an account, and an application that is connected to the Payment Initiation (PSD2) API. To set this up, go to [Basics](/docs/basics), and complete Steps 2 and 3.
+
+    >**Note:** In the production environment, the PSD2 compliant EIDAS QWAC SSL certificate, production redirect-uri, and production API-Key are used.
+
+    ### Step 1 - Obtain consent
+
+    In this step, the OAuth 2.0 authorization code flow is used to obtain consent from an ABN AMRO account holder, and grant you with third-party access to register a batch payment for a specific account. This consent is given using the [Consent application](#section/Overview/The-consent-application).
+
+    #### Request attributes
+    The table below defines the usage of attributes for the sample requests.
+
+    | Attribute | Description |
+    | --- | --- |
+    | scope | Indicates for which scope authorization is requested. This can be more than one scope. You can find the available scopes in the operation table below. When sending direct debits, the account holder must have a direct debit contract with ABN AMRO. For more information, see the [postBatchPayment](#operation/postBatchPayment) operation.|
+    | client_id |In sandbox, you must use `https://localhost/auth`. In production, you will receive a `client_id` from ABN AMRO. |
+    | redirect_uri | In production, it must be identical to the URL that was configured in your request. In the sandbox, you must use `https://localhost/auth`. |
+    | bank | Denotes the bank where the account is held. This value will revert to `NLAA01` if omitted. See the bank parameter table below for possible values. |
+    | state | Value that is returned to the calling party. This is used for session management. For example, this could be a reference number, informing you that a certain account holder completed consent. |
+
+    | Operation | Request for scope |
+    |:---|:---|
+    | Post SEPA Credit Transfer (SCT) Batch| psd2:payment:batchsct:write |
+    | Post SEPA Direct Debit (SDD) Batch | psd2:payment:batchsdd:write |
+
+    | Bank  | Description |
+    | --- | ---|
+    | NLAA01 | Consent for an ABNAMRO account in NL or commercial ABN AMRO account in BE, GB, or DE. |
+    | BEPB01 | Consent for ABN AMRO Belgium Private Banking accounts. |
+    | BEPB02 | Consent for ABN AMRO Belgium Independent Asset Manager accounts. |
+
+    Sandbox URL: https://<span></span>api-sandbox.abnamro.com
+
+    >**Note:** In the sandbox, a simplified version of the consent application is used.  This application lacks the e.dentifier authorization in favor of easier development.
+
+    For more information, see [Consent application](#section/Overview/The-consent-application)
+
+    #### Sample requests
+    The following examples will start the consent application. In the consent application, the ABN AMRO client reviews and authorizes the third party to send batch payments for an initiating account, that must be selected by the account holder. As a result, you will receive an access code, which is used to register batch payments for that account.
+
+    To request consent, direct the account holder to one of the following sample URLs, using a browser or mobile banking application:
+
+    - ##### Request for a Batch SCT Payment consent
+      ```URL
+      https://auth-sandbox.connect.abnamro.com/as/authorization.oauth2?scope=psd2:payment:batchsct:write&client_id=TPP_test&response_type=code&flow=code&redirect_uri=https://localhost/auth&bank=NLAA01&state=Paymentreference123
+      ```
+
+    - ##### Request for a Batch SDD Payment consent
+      ```URL
+      https://auth-sandbox.connect.abnamro.com/as/authorization.oauth2?scope=psd2:payment:batchsdd:write&client_id=TPP_test&response_type=code&flow=code&redirect_uri=https://localhost/auth&bank=NLAA01&state=Paymentreference123
+      ```
+
+    #### Sample response
+
+    In the response, you will receive an authorization code, which must be exchanged within 60 seconds for an `access_token` and a `refresh_token`. This is described in the next step. The response for SCT and SDD files is the same.
+
+    ```URL
+    https://localhost/auth?code=9C6UrsGZ0Z3XJymRAOAgl7hKPLlWKUo9GBfMQQEs&state=Paymentreference123
+    ```
+
+    For more information, see [Consent application](#section/Overview/The-consent-application) and the [getConsentInformation](#operation/getConsentInformation) operation.
+
+    ### Step 2 - Exchange the access token
+    The authorization code received in Step 1 must be exchanged within 60 seconds for an `access_token` and a `refresh_token`. The `access_token` is used to access the API and is valid for 2 hours. When the `access_token` has expired, the `refresh_token` is used to get a new `access_token` and `refresh_token`.
+
+    #### Request attributes
+
+    | Attribute | Description |
+    | --- | --- |
+    | grant_type | Indicates which type of authorization is used. It must contain `Authorization_code`. |
+    | code | The authorization code received in Step 1. |
+    | redirect_uri | Mandatory when `redirect_uri` is used in Step 1. |
+
+    #### Certificates
+    Use the following certificates in the sample request to authenticate the account holder in the sandbox environment.
+
+    |Certificate files|
+    | :---|
+    | Download public certificate: <a href="/sites/default/files/2020-05/PSD2TPPCertificate.crt" download> Download </a> |
+    | Download private key: <a href="/sites/default/files/2020-05/PSD2TPPprivateKey.key" download> Download </a> |
+
+    #### Sample request
+
+    ```shell
+    curl -X POST -k https://auth-sandbox.connect.abnamro.com:8443/as/token.oauth2 \
+    -v \
+    --cert TPPCertificate.crt \
+    --key TPPprivateKey.key \
+    -H 'Cache-Control: no-cache' \
+    -H 'Content-Type: application/x-www-form-urlencoded' \
+    -d 'grant_type=authorization_code&client_id=TPP_test&code=9C6UrsGZ0Z3XJymRAOAgl7hKPLlWKUo9GBfMQQEs&redirect_uri=https://localhost/auth'
+    ```
+
+    #### Sample response
+
+    ```json
+    {
+      "access_token": "GPgYglX4sO1WhzfChx4tmjr4y7Qg",
+      "refresh_token": "UHjIAzBZfLGh4dLm8cvEcH6d8BrOmCZXumOpznQBP1",
+      "token_type": "Bearer",
+      "valid": 7193
+    }
+    ```
+    >**Note:** The `access_token` is needed to post the batch file in Step 4.
+
+    ### Step 3 - Check authorization using consent information
+
+    To send a batch payment, you must have an `access_token`, which was obtained in Step 2, and the initiating account number. When you request consent information, the `iban` of the initiating account number associated with the `access_token` is retrieved. Scopes are also returned in the response.
+
+    #### Sample request
+
+    ```shell
+    curl -X GET -k https://api-sandbox.abnamro.com/v1/consentinfo \
+    -v \
+    -H 'Accept: application/json' \
+    -H 'API-Key: X1QTWZre0fnW72l263yrhAWB2FDwx3tg' \
+    -H 'Authorization: Bearer GPgYglX4sO1WhzfChx4tmjr4y7Qg'
+    ```
+
+    #### Sample response
+    ```json
+    {
+      "scopes": "psd2:payment:batchsct:write psd2:payment:batchsdd:write",
+      "iban": "NL62ABNA9999841479",
+      "paymentReference": null,
+      "valid": "1543931986"
+    }
+    ```
+
+    Store the `iban`. This will be sent in the batch payment file for the initiating account in the next step.
+
+    ### Step 4 - Post the batch
+    The `iban`, you obtained in the previous step is used as the initiating account number in the SCT or SDD batch file. The initiating account number is referred to as `DbtrAcct` field in the PAIN.001 SCT file, and `CdtrAcct` field in the PAIN.008 SDD file.
+
+    Post the batch file to be processed. Use the following samples files for this tutorial: <a href="/sites/default/files/2020-04/SampleSCT.XML" download> SCT</a>, or <a href="/sites/default/files/2020-04/SampleSCT.XML" download> SDD </a>
+
+    1. GZIP the SCT or SDD file.
+    2. Encode the file in BASE64 using UTF-8.
+    3. Post the batch file as described in Sample request SCT Batch below.
+
+    #### Request attributes
+
+    | Name |Type |In |Required | Description  |
+    | --- | --- | --- | --- | --- |
+    | Authorization   | String | Header  | true | Access token to be passed as a Bearer token. Use the `access_token` obtained in Step 2. |
+    | API-Key    | String | Header   | true | The API Key for your app on the [Developer Portal](https://developer.abnamro.com/). |
+    | fileData   | String | Body     | true | A GZIP compressed SCT or SDD Batch file. The binairy GZIP file must be BASE64 encoded using UTF-8. |
+
+    For more information, see the [POST batch](#operation/postBatchPayment) operation.
+
+    #### Sample request SCT batch
+
+    >**Note:** To upload a SDD file, add a SDD file to the `fileData` field in the sample below.
+
+    ```shell
+    curl -X POST -k https://api-sandbox.abnamro.com/v1/payments/batch  \
+    -v \
+    -H 'Accept: application/json'  \
+    -H 'Authorization: Bearer X1PTWZre0fnW72l263yrhAWB2FDwx3tg' \
+    -H 'Content-Type: application/json'  \
+    -H 'API-Key: X1QTWZre0fnW72l263yrhAWB2FDwx3tg' \
+    -d '{ "sepaBatchPaymentInstruction": {
+          "fileName": "SampleSCT.xml.gz",
+          "fileData": "H4sIAAAAAAAAA7VVUXOiMBB+91c4vGsgtmoZTEdR77yqdZTe3JtDSURmJHohVnu//pagVSG093KZUch+u9/usruJ83iMN9U3JpJoyzuGVTeNKuPBlkY87Bgv3rDWNh5Jxelvg33MuARtnnSMveB2lGztRFL1xKaJsS1ZsLaPCbV3fsTrpmllv4ZRUWYARR1jLeXORuhwONQPjfpWhAiMLfRrMl4Eaxb7tYgn0ucBM0ilCstxExkLl0pPrEY8kjwTK+ib2H2n4iJQwkkSjigx02U5KNvdariC9aUXE2xaDzWzUcOWZ7Xse2zjloPO4K3J9PV55R0TAozn1xynFJvFPiZWHZtActrd6qThhzP5TpxpTJ42Ppfc92NgzCuiD81LriifrDOL5YivcqaZEFJeuN5y4C0n3vLHnrMlhsg/sILJRFLizYdKJX3/D8kDs7crxKugxVswftsUgYwbUhnMukBLNaZIZ6vS0Dhz5uw3HRwDyfvyqvgOupbfWvRfpdC4hYr12Wsk2V7oyle0UkTdIJAasnxBLkCvOyXTcRN3e9PuA6z2nXXXeoD2SAHNxyiUFundZtGEumCGER/BAPLSoHojl6TxTMcYipLuNIGUsZwCynt23LUIe4IsxoOfUOhsk9NQB4B31HdQ2tllAQ849bbwBwrP/A+rCrZiAo6yiNlVCzfu7psOutLRZFPC7nRjzRdUSJo8BbjqBu8dY/AyN06zcQZ0bvRiSFxfKoV+VS6l9A8lyyL4jC0dwLKmSZESThgOOFFpyahciMsy146Mgr8aG+syNq3mPW6UjU0Wwycp66d2rjl9bxReEikombNVPT1q4BpsQ6NlQo0nHZ3yX+z680F+uh9R8YKEMTvd1+Qvryawd+EHAAA="
+          }
+        }'
+    ```
+
+    #### Response attributes
+
+    | Name  | Type  | In  | Required  | Description  |
+    | --- | --- | --- | --- | --- |
+    | hash             | String | Body   | false  | SHA256 hash is calculated by ABN AMRO on the uncompressed file, and can be used to check integrity of the file posted. Hash is only returned for a positive status. |
+    | id               | String | Body   | false  | Unique ID generated to identify a batch. The ID is only returned for a positive status. Store the ID, it will be needed later in this tutorial. |
+    | status           | String | Body   | false  | The status of the posted batch which is 'RECEIVED' or 'REJECTED'. |
+    | authorizationUrl | String | Body   | false  | The URL for authorizing the batch for execution. |
+
+    For more information, see the [POST batch](#operation/postBatchPayment) operation.
+
+    **Status:**
+    - 'RECEIVED': The batch file has been sent to Internet Banking OR Access Online, where the account holder can authorize the execution of the batch.
+    - 'REJECTED': There is a syntax error in the XML file that must be corrected. If you cannot find the error, [contact](/contact) ABN AMRO for help.
+
+    #### Sample response
+    ```json
+    {
+        "sepaBatchPaymentInstruction": {
+            "id": "9106O2454217947S0PD;NL62ABNA9999841479",
+            "hash": "479740c87d4cf4a912f15218665b2ed48c38d19d3c6694f2581c4654b40711ef",
+            "status": "RECEIVED",
+            "authorizationUrl": "https://www.abnamro.nl/IBZ/authorizeYourBatchHere.html"
+        }
+    }
+    ```
+
+    ### Step 5 - Execute the payment
+    The batch payment file is available for authorization by the commercial account holder in Internet Banking or Access Online. The account holder must log in to Internet Banking or Access Online to authorize it.
+
+    >**Notes:**
+    >- For execution of direct debits, the account holder must have a direct debit contract.
+    >- A method for retrieving the status of the batch payment is not yet available. You can check execution of the payment by retrieving Account Information for real-time information on the booking of the batch payment. The account holder can check the status in Internet Banking or Access Online.
+
+    ### Additional operations
+
+    #### Refresh an access token
+
+    When the short-lived `access_token` received in Step 2 has expired, the long-lived `refresh_token` can be used to get a new `access_token` and a new `refresh_token`. This renders the used refresh token as invalid.
+
+    ##### Sample request
+
+    ```shell
+    curl -X POST -k https://auth-sandbox.connect.abnamro.com:8443/as/token.oauth2 \
+    -v \
+    --cert {location_of_your_certificate} \
+    --key {location_of_your_private_key} \
+    -H 'Cache-Control: no-cache' \
+    -H 'Content-Type: application/x-www-form-urlencoded' \
+    -d 'grant_type=refresh_token&client_id=TPP_test&refresh_token=UHjIAzBZfLGh4dLm8cvEcH6d8BrOmCZXumOpznQBP1&scope=psd2:payment:batchsct:write+psd2:payment:batchsdd:write'
+    ```
+
+    ##### Sample response
+
+    ```json
+    {
+      "access_token": "{mkwAngBIJtlL9TxxNhECHV4LaBBt}",
+      "refresh_token": "{nLlBcohGqcAvs2iyQ4SAdenC5moqRh9y3NifBR3j04}",
+      "token_type": "Bearer",
+      "valid": 7193
+    }
+    ```
+    Store the `access_token` and the `refresh_token` and use them to request a new `access_token` when it expires.
+
+    # Release notes
+    
+    ## Version 1.2.1
+    - Added attribute "accountHolderName" in the response message of a Payment Initiation.
+    - Added attribute "authorizationUrl" in the response message of a Batch initiation.
+
+    ## Version 1.2.0
+    - Improved documentation for new developer portal.
+    - Improved documentation based on feedback from third parties.
+    - Added Content-Length header for PUT operation.
+    - Added textual improvements based on feedback.
+    - Added Standing Order DELETE endpoint details.
+
+    ## Version 1.1.0
+
+    - Added standing payment orders.
+    - Added batch payments.
+    - Added a delete payment operation.
+    - Updated YAML file to the OpenAPI 3 specification.
+    - Added textual improvements based on feedback.
+
+    ## Version 1.0.1
+    - Sandbox is now live.
+    - Updated OAuth2 in the YAML file.
+    - Updated documentation for the Sandbox environment.
+    - Added minor improvements.
+
+servers:
+  - url: 'https://api-sandbox.abnamro.com/v1'
+    description: sandbox environment
+  - url: 'https://api.abnamro.com/v1'
+    description: production environment
+
+paths:
+  /payments:
+    post:
+      description: |-
+        Registers a (structured) SEPA payment at the bank. Before it can be executed, this payment must be authorized by the account holder through the consent application.
+
+        Use client credentials to get an `access_token` with scope `psd2:payment:sepa:write` for this operation.
+
+        For more information on authorization and samples on how to register a SEPA payment, see [Single payments tutorial](#section/Tutorials/Single-payments-tutorial)
+      operationId: postSEPAPayment
+      tags:
+      - Single payments
+      parameters:
+      - name: Authorization
+        in: header
+        description: |-
+          Client credentials 'access-token' to be passed as a bearer token.
+
+          For more information, See the Step 1 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial)
+        required: true
+        schema:
+          type: string
+          example: Bearer X1PTWZre0fnW72l263yrhAWB2FDwx3tg
+      - name: X-Request-ID
+        in: header
+        description: |-
+          Unique trace ID generated by the API consumer application. This is used to correlate
+          calls from the client application to ABN AMRO, and help when troubleshooting technical errors.
+        required: false
+        schema:
+          type: string
+          example: bc69c490-9524-413f-971a-21f1aecd9fe5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/SepaPayment'
+              - $ref: '#/components/schemas/SepaStructuredPayment'
+        required: false
+      responses:
+        '201':
+          description: |-
+            **successful operation / created**
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionStatusResponse'
+          headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+        '400':
+            $ref: '#/components/responses/400_Single_Payment'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403_Single_Payment'
+        '404':
+            $ref: '#/components/responses/404_Single_Payment'
+        '500':
+            $ref: '#/components/responses/500'
+      security:
+      - Oauth_ClientCredentials: ['psd2:payment:sepa:write']
+        Gen_ApiKey: []
+
+  /payments/{transactionId}:
+    put:
+      description: |-
+        Executes a registered SEPA payment at the bank for further processing. To obtain an `access_token` and execute the payment, it must be authorized by the account holder through the consent application.
+
+        Use the authorization code process to get an `access_token` with `scope psd2:payment:sepa:write` for this operation. The authorization for executing a SEPA payment can also be used to cancel a SEPA payment.
+
+        For more information, see Step 3 and Step 6 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial).
+      operationId: putSEPAPayment
+      tags:
+      - Single payments
+      parameters:
+      - name: transactionId
+        in: path
+        description: |-
+          Unique Transaction ID returned in response to the [POST payments](#operation/postSEPAPayment) operation. This must be released for further processing with the bank.
+        required: true
+        schema:
+          type: string
+          example: 8325P3346070108S0PD
+      - name: Authorization
+        in: header
+        description:  |-
+          Authorization code `access_token`, to be passed as a bearer token.
+
+          For more information, see Step 3 and Step 6 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial).
+        required: true
+        schema:
+          type: string
+          example: Bearer GPgYglX4sO1WhzfChx4tmjr4y7Qg
+      - name: Content-Length
+        in: header
+        description: Content length must be set to zero to indicate that the message body is empty.
+        required: true
+        schema:
+          type: string
+          example: 0
+          enum:
+            - 0
+      - name: X-Request-ID
+        in: header
+        description: |-
+          Unique Trace ID generated by the API consumer application. This is used to correlate
+          calls from the client application to ABN AMRO and helps when troubleshooting technical errors.
+        required: false
+        schema:
+          type: string
+          example: bc69c490-9524-413f-971a-21f1aecd9fe5
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionStatusResponse'
+          headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+        '400':
+            $ref: '#/components/responses/400_Single_Payment'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403_Single_Payment'
+        '404':
+            $ref: '#/components/responses/404_Single_Payment'
+        '500':
+            $ref: '#/components/responses/500'
+      security:
+      - Oauth_AuthorizationCode: ['psd2:payment:sepa:write']
+        Gen_ApiKey: []
+
+    delete:
+      description: |-
+        Cancels a payment scheduled at a future date and has a status of 'SCHEDULED'. If the future date has passed, the payment can no longer be cancelled.
+      operationId: deleteSEPAPayment
+      tags:
+      - Single payments
+      parameters:
+      - name: transactionId
+        in: path
+        description: |-
+          Unique transaction ID of the payment that is to be cancelled at the bank. The transaction ID is returned in response to the [POST payments](#operation/postSEPAPayment) operation.
+        required: true
+        schema:
+          type: string
+          example: 8325P3346070108S0PD
+      - name: Authorization
+        in: header
+        description:  |-
+          Authorization code `access_token`, to be passed as a bearer token. The authorization for executing a SEPA payment can also be used to cancel a SEPA payment.
+
+          For more information, see Step 3 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial).
+        required: true
+        schema:
+          type: string
+          example: Bearer GPgYglX4sO1WhzfChx4tmjr4y7Qg
+      - name: X-Request-ID
+        in: header
+        description: |-
+          Unique trace ID generated by the API consumer application. This is used to correlate
+          calls from the client application to ABN AMRO and help when troubleshooting tecnhnical errors.
+        required: false
+        schema:
+          type: string
+          example: bc69c490-9524-413f-971a-21f1aecd9fe5
+      responses:
+        '204':
+          description: Successful operation, no content in response.
+          headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+        '400':
+            $ref: '#/components/responses/400_Single_Payment'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403_Single_Payment'
+        '404':
+            $ref: '#/components/responses/404_Single_Payment'
+        '500':
+            $ref: '#/components/responses/500'
+      security:
+      - Oauth_AuthorizationCode: ['psd2:payment:sepa:write']
+        Gen_ApiKey: []
+
+    get:
+      description: |-
+        Retrieves the status of a payment.
+
+        For this operation, use the authorization code process to get an `access_token` with `scope psd2:payment:sepa:read`.
+             
+        For more in formation,  see Step 3 and Step 6 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial).
+      operationId: getSEPAPayment
+      tags:
+      - Single payments
+      parameters:
+      - name: transactionId
+        in: path
+        description: |-
+          Unique transaction ID of the payment for which the status must be checked. The transaction ID is returned in response from [POST payments](#operation/postSEPAPayment).
+        required: true
+        schema:
+          type: string
+          example: 8325P3346070108S0PD
+      - name: Authorization
+        in: header
+        description:  |-
+          Authorization code `access_token`, to be passed as a bearer token. For more information, see [Single payments tutorial ](#section/Tutorials/Single-payments-tutorial).
+        required: true
+        schema:
+          type: string
+          example: Bearer GPgYglX4sO1WhzfChx4tmjr4y7Qg
+      responses:
+        '200':
+          description: |-
+            **successful operation**
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionStatusResponse'
+        '400':
+            $ref: '#/components/responses/400_Single_Payment'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403_Single_Payment'
+        '404':
+            $ref: '#/components/responses/404_Single_Payment'
+        '500':
+            $ref: '#/components/responses/500'
+      security:
+      - Oauth_AuthorizationCode: ['psd2:payment:sepa:read']
+        Gen_ApiKey: []
+
+  /payments/xborder:
+    post:
+      description: |-
+        Registers a cross-border payment at the bank. This payment must be authorized by the account holder through the consent application before it can be executed.
+        This is a non EUR payment or EUR payment outside the euro zone.
+
+        For this operation, use client credentials to get an `access_token` with scope psd2:payment:xborder:write.
+        For more information on authorization and on how to register a cross-border payment, see [Single payments tutorial](#section/Tutorials/Single-payments-tutorial)
+
+        These types of payments are subject to SWIFT characterset limitations and possible truncation of fields. For more information, see [Generic information][#section/Overview/Generic-information]
+      operationId: postXborderPayment
+      tags:
+      - Single payments
+      parameters:
+      - name: Authorization
+        in: header
+        description: |-
+          Client credentials 'access-token' to be passed as a bearer token.
+
+          For more information, see [Single payments tutorial](#section/Tutorials/Single-payments-tutorial).
+        required: true
+        schema:
+          type: string
+          example: Bearer X1PTWZre0fnW72l263yrhAWB2FDwx3tg
+      - name: X-Request-ID
+        in: header
+        description: |-
+          Unique trace ID generated by the API consumer application. This is used to correlate
+          calls from the client application to ABN AMRO and helps when troubleshooting tecnhnical errors.
+        required: false
+        schema:
+          type: string
+          example: bc69c490-9524-413f-971a-21f1aecd9fe5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XBorderPayment'
+        required: true
+      responses:
+        '201':
+          description: |-
+            Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionStatusResponse'
+          headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+        '400':
+            $ref: '#/components/responses/400_Single_Payment'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403_Single_Payment'
+        '404':
+            $ref: '#/components/responses/404_Single_Payment'
+        '500':
+            $ref: '#/components/responses/500'
+      security:
+      - Oauth_ClientCredentials: ['psd2:payment:xborder:write']
+        Gen_ApiKey: []
+
+  /payments/xborder/{transactionId}:
+    put:
+      description: |-
+        Releases a registered non-SEPA payment at the bank for further processing. Authorization by the account holder
+        is needed, through consent, to obtain an `access_token`. For this operation, use the authorization code process to get an `access_token` with `scope psd2:payment:xborder:write`.
+
+        For more information, see Step 3 and Step 6 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial).
+      operationId: putXborderPayment
+      tags:
+      - Single payments
+      parameters:
+      - name: transactionId
+        in: path
+        description: |-
+          Unique transaction ID, returned in response to the [POST xborder](#operation/postxborderpayment) operation. This must be released for further processing with the bank.
+        required: true
+        schema:
+          type: string
+          example: 8338L5812304793S0PD
+      - name: Authorization
+        in: header
+        description:  |-
+          Authorization code `access_token`, to be passed as a bearer token.
+          For more information, see Step 3 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial).
+        required: true
+        schema:
+          type: string
+          example: Bearer GPgYglX4sO1WhzfChx4tmjr4y7Qg
+      - name: X-Request-ID
+        in: header
+        description: |-
+          Unique trace ID generated by the API consumer application. This is used to correlate
+          calls from the client application to ABN AMRO and makes troubleshooting tecnhnical errors easier.
+        required: false
+        schema:
+          type: string
+          example: bc69c490-9524-413f-971a-21f1aecd9fe5
+      - name: Content-Length
+        in: header
+        description: Content length must be set to zero to indicate message body is empty.
+        required: true
+        schema:
+          type: string
+          example: 0
+          enum:
+            - 0
+      responses:
+        '200':
+          description: |-
+            Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionStatusResponse'
+          headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+        '400':
+            $ref: '#/components/responses/400_Single_Payment'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403_Single_Payment'
+        '404':
+            $ref: '#/components/responses/404_Single_Payment'
+        '500':
+            $ref: '#/components/responses/500'
+      security:
+      - Oauth_AuthorizationCode: ['psd2:payment:sepa:write']
+        Gen_ApiKey: []
+
+  /payments/standingorder:
+    post:
+      description: |-
+        Registers a periodic SEPA payment at the bank. Before it can be executed, this must be authorized by the account holder through the consent application.
+
+        For this operation, use client credentials to get an `access_token` with scope psd2:payment:recurrent:sepa:write.
+        For more information, see the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial).
+
+      operationId: postStandingOrderPayment
+      tags:
+      - Single payments
+      parameters:
+      - name: Authorization
+        in: header
+        description: |-
+          Client credentials 'access-token' to be passed as a bearer token.
+
+          For more information on authorization, see Step 1 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial).
+        required: true
+        schema:
+          type: string
+          example: Bearer X1PTWZre0fnW72l263yrhAWB2FDwx3tg
+      - name: X-Request-ID
+        in: header
+        description: |-
+          Unique trace ID generated by the API consumer application. This is used to correlate
+          calls from the client application to ABN AMRO and makes troubleshooting tecnhnical errors easier.
+        required: false
+        schema:
+          type: string
+          example: bc69c490-9524-413f-971a-21f1aecd9fe5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StandingOrder'
+        required: true
+      responses:
+        '201':
+          description: |-
+            **successful operation / created**
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandingOrderResponse'
+          headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+        '400':
+            $ref: '#/components/responses/400_Standing_Order'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403_Standing_Order'
+        '404':
+            $ref: '#/components/responses/404_Standing_Order'
+        '500':
+            $ref: '#/components/responses/500'
+      security:
+      - Oauth_ClientCredentials: ['psd2:payment:recurrent:sepa:write']
+        Gen_ApiKey: []
+
+  /payments/standingorder/{transactionId}:
+    put:
+      description: |-
+        Releases a registered SEPA standing order payment at the bank. Before it can be executed, this must be authorized by the account holder through the consent application.
+             
+        For this operation, use client credentials to get an `access_token` with scope psd2:payment:recurrent:sepa:write.
+        For more information, see Step 3 and Step 6 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial).
+      operationId: putStandingOrderPayment
+      tags:
+      - Single payments
+      parameters:
+      - name: transactionId
+        in: path
+        description: |-
+          Unique transaction ID that is returned in response to the [POST standingorder](#operation/postStandingOrderPayment) operation. This must be released for further processing at the bank.
+        required: true
+        schema:
+          type: string
+          example: 8325P3346070108S0PD
+      - name: Authorization
+        in: header
+        description:  |-
+          Authorization code `access_token`, to be passed as a bearer token.
+          For more information, see Step 3 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial).
+        required: true
+        schema:
+          type: string
+          example: Bearer X1PTWZre0fnW72l263yrhAWB2FDwx3tg
+      - name: X-Request-ID
+        in: header
+        description: |-
+          Unique trace ID generated by the API consumer application. This is used to correlate
+          calls from the client application to ABN AMRO and help when troubleshooting tecnhnical errors.
+        required: false
+        schema:
+          type: string
+          example: bc69c490-9524-413f-971a-21f1aecd9fe5
+      - name: Content-Length
+        in: header
+        description: Content length must be set to zero to indicate message that the body is empty.
+        required: true
+        schema:
+          type: string
+          example: 0
+          enum:
+            - 0
+      responses:
+        '201':
+          description: |-
+            **successful operation / created**
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandingOrderResponse'
+          headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+        '400':
+            $ref: '#/components/responses/400_Standing_Order'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403_Standing_Order'
+        '404':
+            $ref: '#/components/responses/404_Standing_Order'
+        '500':
+            $ref: '#/components/responses/500'
+      security:
+      - Oauth_AuthorizationCode: ['psd2:payment:recurrent:sepa:write']
+        Gen_ApiKey: []
+
+    delete:
+      description: |-
+        Deactivates a SEPA standing order payment.
+
+        For this operation, use the authorization code process to get an `access_token` with `psd2:payment:recurrent:sepa:delete`.
+        For more information, see see Step 3 and Step 6 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial)..
+
+      operationId: deleteStandingOrderPayment
+      tags:
+      - Single payments
+      parameters:
+        - name: transactionId
+          in: path
+          description: |-
+            Unique transaction ID of the SEPA standing order payment which must be cancelled at the bank.
+            The transaction ID is returned in response to the [POST standingorder](#operation/postStandingOrderPayment) operation.
+          required: true
+          schema:
+            type: string
+            example: 8325P3346070108S0PD
+        - name: Authorization
+          in: header
+          description:  |-
+            Authorization code `access_token`, to be passed as a bearer token.
+            For more information, see Step 3 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial).
+          required: true
+          schema:
+            type: string
+            example: Bearer X1PTWZre0fnW72l263yrhAWB2FDwx3tg
+        - name: X-Request-ID
+          in: header
+          description: |-
+            Unique trace ID generated by the API consumer application. This is used to correlate
+            calls from the client application to ABN AMRO and help when troubleshooting tecnhnical errors.
+          required: false
+          schema:
+            type: string
+            example: bc69c490-9524-413f-971a-21f1aecd9fe5
+      responses:
+        '204':
+          description: Successful operation / cancelled.
+          headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+        '400':
+            $ref: '#/components/responses/400_Standing_Order'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403_Standing_Order'
+        '404':
+            $ref: '#/components/responses/404_Standing_Order'
+        '500':
+            $ref: '#/components/responses/500'
+      security:
+      - Oauth_AuthorizationCode: ['psd2:payment:recurrent:sepa:delete']
+        Gen_ApiKey: []
+
+
+  /payments/batch:
+    post:
+      description: |-
+        Sends a batch payment for further authorization by a commercial account holder in Internet Banking or Access Online. The batch payment can be sent as an SCT (PAIN.001.001.03) or SDD (pain.008.001.02) XML file. For more information, see [ABN AMRO SEPA implementation guidelines](https://www.abnamro.nl/en/commercialbanking/products/payments/sepa/downloads.html).
+
+        When delivering batch files to ABN AMRO using this API, the file must first be compressed using GZIP format. The binary file must be posted in BASE64 UTF-8 encoding.
+
+        For a commercial client, SCT files can be sent for authorization.
+        For SDD files, the account holder must have a direct debit contract.
+        When an account is not commercial, or an SDD contract is missing, the file is rejected and is not shown in Internet Banking or Access Online for authorization.
+      operationId: postBatchPayment
+      tags:
+        - Batch payments
+      parameters:
+      - name: Authorization
+        in: header
+        description: Access token, to be passed as a bearer token.
+        required: true
+        schema:
+          type: string
+          example: Bearer X1PTWZre0fnW72l263yrhAWB2FDwx3tg
+      - name: X-Request-ID
+        in: header
+        description: |-
+          Unique trace ID generated by the API consumer application. This is used to correlate
+          calls from the client application to ABN AMRO and help when troubleshooting tecnhnical errors.
+        required: false
+        schema:
+          type: string
+          example: bc69c490-9524-413f-971a-21f1aecd9fe5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Batch'
+        required: false
+      responses:
+        '201':
+          description: |-
+            **successful operation / created**
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionStatusResponse'
+          headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+        '400':
+            $ref: '#/components/responses/400_Batch_Payment'
+        '401':
+            $ref: '#/components/responses/401'
+        '403':
+            $ref: '#/components/responses/403_Batch_Payment'
+        '500':
+            $ref: '#/components/responses/500'
+      security:
+      - Oauth_AuthorizationCode: ['psd2:payment:batchsct:write', 'psd2:payment:batchsdd:write']
+        Gen_ApiKey: []
+
+  /consentinfo:
+    get:
+      description: |-
+        Describes the authorization which an access token provides to an account or resource.
+        The information returned contains information about the granted scopes, account number, or transaction ID.
+      operationId: getConsentInformation
+      tags:
+        - Consent information
+      parameters:
+        - name: Authorization
+          in: header
+          description: Access token to be passed as a bearer token.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: |-
+            Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/consentInfoResponse'
+        '401':
+            $ref: '#/components/responses/401'
+        '500':
+            $ref: '#/components/responses/500'
+      security:
+        - Oauth_AuthorizationCode: ['psd2:payment:sepa:write', 'psd2:payment:sepa:read', 'psd2:payment:xborder:write', 'psd2:payment:recurrent:sepa:write', 'psd2:payment:recurrent:sepa:delete']
+          Gen_ApiKey: []
+
+components:
+  securitySchemes:
+    Oauth_AuthorizationCode:
+      type: oauth2
+      description: |-
+        Authorization code `access_token`, to be passed as a bearer token.
+        For more information, see Step 3 of the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial) and [Consent Application](#section/Overview/The-consent-application) for limitations on scope combinations.
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://auth-sandbox.connect.abnamro.com/as/authorization.oauth2'
+          tokenUrl: 'https://auth-sandbox.connect.abnamro.com/as/token.oauth2'
+          scopes:
+            psd2:payment:sepa:write: Releases a SEPA payment after authorization
+              by the account holder. Also a scheduled SEPA payment can be cancelled using this scope.
+              You get this scope through consent from the account holder.
+            psd2:payment:sepa:read: Requests the status of a SEPA payment. You get
+              this scope through consent from the account holder.
+            psd2:payment:xborder:write: Releases a cross-border payment after authorization
+              by the account holder. You get this scope through consent from the account
+              holder.
+            psd2:payment:recurrent:sepa:write: Releases a standing payment order after authorization
+              by the account holder. You get this scope through consent from the account
+              holder.
+            psd2:payment:recurrent:sepa:delete: Deletes a standing order payment after authorization by
+              the account holder. You get this scope through consent from account holder.
+            psd2:payment:batchsct:write: Registers a SEPA SCT Batch payment file for authorization by
+              the account holder in Internet Banking or Access Online. You get this scope through consent
+              from the account holder.
+            psd2:payment:batchsdd:write: Registers a SEPA SDD Batch payment file for authorization by
+              the account holder in Internet Banking or Access Online. You get this scope through consent
+              from the account holder. The account holder must have a direct debit contract with ABN AMRO.
+    Oauth_ClientCredentials:
+      type: oauth2
+      description: |-
+        Client Credentials `access_token`, to be passed as a bearer token.
+        For more information, see the [Single payments tutorial](#section/Tutorials/Single-payments-tutorial), and [Consent Application](#section/Overview/The-consent-application) for limitations on scope combinations.
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth-sandbox.connect.abnamro.com/as/token.oauth2
+          scopes:
+            psd2:payment:sepa:write: Registers a SEPA payment for authorization.
+            psd2:payment:xborder:write: Registers a xborder payment for authorization.
+            psd2:payment:recurrent:sepa: Registers a SEPA standing order for authorization.
+    Gen_ApiKey:
+      type: apiKey
+      in: header
+      name: API-Key
+      description: Consumer key obtained after application registration on the developer portal.
+
+  schemas:
+    SepaPayment:
+      required:
+      - amount
+      - counterpartyAccountNumber
+      - counterpartyName
+      type: object
+      properties:
+        initiatingpartyAccountNumber:
+          maxLength: 34
+          type: string
+          description: |-
+            The IBAN of the ordering party initiating
+            the transaction. If omitted, the account number will be selected during
+            the authorization of the payment. If the account cannot be authorized,
+            the account holder can select a different account.
+          example: NL62ABNA9999841479
+          pattern: "^[0-9A-Z]+$"
+        counterpartyAccountNumber:
+          maxLength: 34
+          type: string
+          description: Account number, in IBAN format, of the counterparty.
+          example: NL12ABNA9999876523
+          pattern: "^[0-9A-Z]+$"
+        counterpartyName:
+          maxLength: 70
+          type: string
+          description: Name of the counterparty.
+          example: John Doe
+          pattern: "^[0-9A-Za-z !&'()+-.:?_`"
+        amount:
+          type: number
+          description: |-
+            Amount of the transaction. This value is always positive. The maximum amount is equal to that set for the online
+            banking channel Access Online or Internet Banking.
+          format: float
+          example: 100.01
+          minimum: 0.01
+          exclusiveMinimum: true
+        requestedExecutionDate:
+          type: string
+          description: |-
+            Optional date on which the payment is to be executed. This date should be no more than 364 days
+            after the current date. If the execution date is in the past, or if the requested execution date is empty,
+            then the payment will be executed immediately.  The format of the date is a ISO8601 full-date conforming
+            to RFC 3339, (CCYY-MM-DD). If there is no clearing of payments on the execution date, the payment will
+            be processed on the first available bookdate.
+          format: date
+        currency:
+          type: string
+          description: The currency of the transaction, in EUR only. If omitted,
+            EUR is assumed.
+          enum:
+          - EUR
+        remittanceInfo:
+          maxLength: 140
+          type: string
+          description: Information for the beneficiary about the payment. This type of information is 'unstructured'. A maximum of 140 characters is allowed.
+          example: Payment of invoice nr 12345/01.
+          pattern: "^[0-9A-Za-z !&'()+-.:?_`"
+
+    SepaStructuredPayment:
+      required:
+      - amount
+      - counterpartyAccountNumber
+      - counterpartyName
+      type: object
+      properties:
+        initiatingpartyAccountNumber:
+          maxLength: 34
+          type: string
+          description: |-
+            The IBAN of the ordering party initiating
+            the transaction. If omitted, the account number will be selected during
+            the authorization of the payment. If the account cannot be authorized,
+            the account holder can select a different account.
+          example: NL62ABNA9999841479
+          pattern: "^[0-9A-Z]+$"
+        counterpartyAccountNumber:
+          maxLength: 34
+          type: string
+          description: Account number of the counterparty in IBAN format.
+          example: NL12ABNA9999876523
+          pattern: "^[0-9A-Z]+$"
+        counterpartyName:
+          maxLength: 70
+          type: string
+          description: Name of the counterparty.
+          example: John Doe
+          pattern: "^[0-9A-Za-z !&'()+-.:?_`"
+        amount:
+          type: number
+          description: |-
+            Amount of the transaction. This value is always positive. The maximum amount is equal to that set for the online
+            banking channel Access Online or Internet Banking.
+          format: float
+          example: 100.01
+          minimum: 0.01
+          exclusiveMinimum: true
+        requestedExecutionDate:
+          type: string
+          description: |-
+            Optional date on which the payment is to be executed. This date should be no more than 364 days
+            after the current date. If the execution date is in the past, or if the requested execution date is empty,
+            then the payment will be executed immediately.  The format of the date is a ISO8601 full-date conforming
+            to RFC 3339, (CCYY-MM-DD). If there is no clearing of payments on the execution date, the payment will
+            be processed on the first available bookdate.
+          format: date
+        currency:
+          type: string
+          description: The currency of the transaction, in EUR only. If omitted,
+            EUR is assumed.
+          enum:
+          - EUR
+        structuredRemittanceInfo:
+          required:
+          - issuer
+          - reference
+          type: object
+          description: A group identifying structured remittance information. Either unstructured remittanceInfo or structuredRemittanceInfo can be used.
+          properties:
+            issuer:
+              type: string
+              description: 'Type if issuer: ISO = ISO Payment Reference; BBA = Belgium
+                Payment Reference; CUR = Dutch Payment Reference'
+              example: CUR
+              enum:
+              - ISO
+              - BBA
+              - CUR
+            reference:
+              maxLength: 35
+              type: string
+              description: Structured remittance information.
+              example: "5000056789012345"
+
+    TransactionStatusResponse:
+      properties:
+        accountNumber:
+          type: string
+          description: Account number of the registered transaction in IBAN format.
+          example: NL12ABNA9999876523
+        transactionId:
+          type: string
+          description: Unique transaction ID also known as `accountServicerReference`.
+          example: 8325P3346070108S0PD
+        status:
+          type: string
+          description: Status of the transaction.
+          enum:
+          - STORED
+          - AUTHORIZED
+          - FUTURE
+          - INPROGRESS
+          - SCHEDULED
+          - EXECUTED
+          - REJECTED
+          - UNKNOWN
+        accountHolderName:
+          type: string
+          description: The name of the account number of the ordering party, initiating the payment.
+          example: John Doe
+        authorizationUrl:
+          type: string
+          description: The url for authorizing the batch for execution.
+          example: https://www.abnamro.nl/IBZ/authorizeYourBatchHere.html
+
+    XBorderPayment:
+      required:
+      - amount
+      - counterParty
+      - currency
+      type: object
+      properties:
+        initiatingParty:
+          required:
+          - accountNumber
+          type: object
+          properties:
+            accountCurrency:
+              maxLength: 3
+              minLength: 3
+              type: string
+              description: |-
+                Currency of the accountNumber using ISO 4217 currency
+                code. For example, EUR or USD. If not provided, the currency of the initiating account is used.
+              example: USD
+              pattern: "^[A-Z]{3}$"
+            accountNumber:
+              maxLength: 34
+              type: string
+              description: |-
+                Account number, in IBAN format, of the ordering party initiating
+                the transaction. If omitted, the account number will be selected during
+                the authorization of the payment. If the account cannot
+                be authorized, the account holder can select a different account.
+              pattern: "^[0-9A-Z]+$"
+              example: NL62ABNA9999841479
+        counterParty:
+          required:
+          - accountNumber
+          - accountNumberType
+          - bankIdentifier
+          - bankIdentifierType
+          - name
+          type: object
+          properties:
+            accountNumberType:
+              type: string
+              description: Indicates the type of `accountNumber` used, IBAN or BBAN. BBAN is used for domestic/basic formatting.
+              enum:
+              - iban
+              - BBAN
+            bankIdentifierType:
+              type: string
+              description: |-
+                Indicates the type of bankIdentifier used; SWIFTBIC, for a BIC; UKSORTCODE, for a UK sortcode; or FEDWIRE, for a US bankcode.
+              enum:
+              - SWIFTBIC
+              - UKSORTCODE
+              - FEDWIRE
+            bankIdentifier:
+              type: string
+              description: Specifies the `BankIdentifier` for the selected `bankIdentifierType`.
+              example: ABNANL2A
+              pattern: "^[A-Z0-9]+$"
+            name:
+              maxLength: 70
+              type: string
+              description: The name of the counterparty.
+              example: John Doe
+              pattern: "^[A-Z0-9]+$"
+            accountNumber:
+              maxLength: 34
+              type: string
+              description: The IBAN or BBAN formatted account number of the counterparty,
+                as indicated by `accountNumberType`.
+              example: NL12ABNA9999876523
+              pattern: "^[A-Z0-9]+$"
+        amount:
+          type: number
+          description: |-
+            The amount of the transaction. This is always positive, the number of
+            decimals used must match the used currency.
+            The maximum amount is equal to that set for the online banking channel, Internet Banking or Access Online.
+          format: double
+          example: 100.01
+          minimum: 0.01
+          exclusiveMinimum: true
+        currency:
+          type: string
+          description: Currency of the amount, using ISO 4217 currency code.
+          example: USD
+          pattern: "^[A-Z]{3}$"
+        chargesBearer:
+          type: string
+          description: |-
+            Indicates who pays the charges related to the payment: BEN = beneficiary, OUR = initiating party, SHA = both parties share
+            the charges. If not specified, SHA is assumed. Always use SHA in EEA.
+          enum:
+          - SHA
+          - BEN
+          - OUR
+        requestedExecutionDate:
+          type: string
+          description: |-
+            Optional date on which the initiated payment is to be executed.
+            If the execution date is in the past, or if the requested execution date
+            is empty, the payment will be executed immediately. This date should
+            be no more than 364 days after the current date. The format of the date
+            is a ISO8601 full-date conforming to RFC 3339, (CCYY-MM-DD). If there
+            is no clearing of payments on the execution date, it will be processed on
+            the first available bookdate.
+          format: date
+        remittanceInfo:
+          maxLength: 140
+          type: string
+          description: Specifies the remittance information.
+          example: Payment of invoice 9876-1
+          pattern: "^[0-9A-Za-z !&'()+-.:?_`"
+
+    StandingOrder:
+      type: object
+      required:
+        - startDate
+        - frequency
+      properties:
+        startDate:
+          type: string
+          format: date
+          description: |-
+            Start date of the standing order in the format: yyyy-mm-dd. Must be the current date, or a future date up to a maximum of 30 days.
+          example: 2019-12-21
+        endDate:
+          type: string
+          format: date
+          description: |-
+            Optional end date of the standing order in the format: yyyy-mm-dd. If this value is blank, the end date is indefinite.
+          example: 2025-12-21
+        executionRule:
+          description: |-
+            Defines the behavior when a recurring payment date falls on a weekend or bank holiday.  This value is not case sensitive. It is accepted for input, but not used.
+          type: string
+          enum:
+            - following
+            - preceeding
+        frequency:
+          description: |-
+            Frequency with which the standing order is executed. The 'EventFrequencyCode' of ISO 20022 is supported.
+          type: string
+          enum:
+            - "Daily"
+            - "Weekly"
+            - "EveryTwoWeeks"
+            - "Monthly"
+            - "EveryTwoMonths"
+            - "Quarterly"
+            - "SemiAnnual"
+            - "Annual"
+        dayOfExecution:
+          type: string
+          description: Day of execution as a string. This string always consists of two characters. The field is accepted for input, but not used.
+          enum:
+            - "01"
+            - "02"
+            - "03"
+            - "04"
+            - "05"
+            - "06"
+            - "07"
+            - "08"
+            - "09"
+            - "10"
+            - "11"
+            - "12"
+            - "13"
+            - "14"
+            - "15"
+            - "16"
+            - "17"
+            - "18"
+            - "19"
+            - "20"
+            - "21"
+            - "22"
+            - "23"
+            - "24"
+            - "25"
+            - "26"
+            - "27"
+            - "28"
+            - "29"
+            - "30"
+            - "31"
+          minLength: 2
+          maxLength: 2
+        payment:
+          required:
+          - amount
+          - initiatingpartyAccountNumber
+          - counterpartyAccountNumber
+          - counterpartyName
+          type: object
+          properties:
+            initiatingpartyAccountNumber:
+              maxLength: 34
+              type: string
+              description: |-
+                Account number, in IBAN format, of the ordering part initiating the transaction. If the account cannot
+                be authorized, the account holder can select a different account.
+              example: NL62ABNA9999841479
+              pattern: "^[0-9A-Z]+$"
+            counterpartyAccountNumber:
+              maxLength: 34
+              type: string
+              description: Account number of the counterparty in IBAN format.
+              example: NL12ABNA9999876523
+              pattern: "^[0-9A-Z]+$"
+            counterpartyName:
+              maxLength: 70
+              type: string
+              description: Name of the counterparty.
+              example: John Doe
+              pattern: "^[0-9A-Za-z !&'()+-.:?_`"
+            amount:
+              type: number
+              description: |-
+                The amount of the transaction. This value is always positive. The maximum amount is equal to that set for the online
+                banking channel Internet Banking or Access Online.
+              format: float
+              example: 100.01
+              minimum: 0.01
+              exclusiveMinimum: true
+            currency:
+              type: string
+              description: |-
+                Currency of the transaction using ISO-4217 currency. EUR is supported Only. If omitted, EUR is assumed.
+              enum:
+              - EUR
+            remittanceInfo:
+              maxLength: 140
+              type: string
+              description: Information for the beneficiary about the payment.
+              example: Recurring payment for subscription 12345
+              pattern: "^[0-9A-Za-z !&'()+-.:?_`"
+
+    StandingOrderResponse:
+      type: object
+      required:
+        - transactionId
+        - status
+      properties:
+        transactionId:
+          description: |-
+            Unique transaction ID that for authorizing the standing order by the account holder. Is also required as input for PUT payments.
+          type: string
+        accountNumber:
+          description: Initiating party account number.
+          type: string
+        status:
+          description: Status of the standing order.
+          type: string
+          enum:
+            - STORED
+            - AUTHORIZED
+            - REJECTED
+
+    Batch:
+      properties:
+        sepaBatchPaymentInstruction:
+          required:
+          - fileName
+          - fileData
+          type: object
+          properties:
+            fileName:
+              maxLength: 18
+              minLength: 1
+              type: string
+              description: |-
+                Specifies the name of the batch file. A unique filename is recommended.
+              example: "sampleSCT.xml"
+            fileData:
+              type: string
+              description: |-
+                A GZIP compressed SCT or SDD Batch file. The binairy GZIP file must be BASE64 encoded using UTF-8
+              example: |-
+                H4sIAAAAAAAAA7VVUXOiMBB+91c4vGsgtmoZTEdR77yqdZTe3JtDSURmJHohVnu//pagVSG093KZUch+u9/usruJ83iMN9U3JpJoyzuGVTeNKuPBlkY87Bgv3rDWNh5Jxelvg33MuARtnnSMveB2lGztRFL1xKaJsS1ZsLaPCbV3fsTrpmllv4ZRUWYARR1jLeXORuhwONQPjfpWhAiMLfRrMl4Eaxb7tYgn0ucBM0ilCstxExkLl0pPrEY8kjwTK+ib2H2n4iJQwkkSjigx02U5KNvdariC9aUXE2xaDzWzUcOWZ7Xse2zjloPO4K3J9PV55R0TAozn1xynFJvFPiZWHZtActrd6qThhzP5TpxpTJ42Ppfc92NgzCuiD81LriifrDOL5YivcqaZEFJeuN5y4C0n3vLHnrMlhsg/sILJRFLizYdKJX3/D8kDs7crxKugxVswftsUgYwbUhnMukBLNaZIZ6vS0Dhz5uw3HRwDyfvyqvgOupbfWvRfpdC4hYr12Wsk2V7oyle0UkTdIJAasnxBLkCvOyXTcRN3e9PuA6z2nXXXeoD2SAHNxyiUFundZtGEumCGER/BAPLSoHojl6TxTMcYipLuNIGUsZwCynt23LUIe4IsxoOfUOhsk9NQB4B31HdQ2tllAQ849bbwBwrP/A+rCrZiAo6yiNlVCzfu7psOutLRZFPC7nRjzRdUSJo8BbjqBu8dY/AyN06zcQZ0bvRiSFxfKoV+VS6l9A8lyyL4jC0dwLKmSZESThgOOFFpyahciMsy146Mgr8aG+syNq3mPW6UjU0Wwycp66d2rjl9bxReEikombNVPT1q4BpsQ6NlQo0nHZ3yX+z680F+uh9R8YKEMTvd1+Qvryawd+EHAAA=
+
+    consentInfoResponse:
+      type: object
+      required:
+        - scopes
+        - iban
+        - valid
+      properties:
+        scopes:
+          description: Scopes associated with the `access_token`. This can be any scope from `securitySchemes`.
+          type: string
+          example: psd2:payment:sepa:write
+        iban:
+          description: The IBAN or account number associated with the `access_token`.
+          type: string
+          example: null
+        transactionId:
+          description: |-
+            Unique transaction ID associated with the `access_token` for registered payments. The value is 'null' when the access
+            token is for account information.
+          type: string
+          example: 8325P3346070108S0PD
+        valid:
+          description: The time that the token is valid, in Unix epoch format.
+          type: string
+          example: 1554379039
+
+    Errors:
+      title: errors
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            required:
+            - category
+            - code
+            - message
+            - reference
+            - status
+            - traceId
+            type: object
+            properties:
+              traceId:
+                type: string
+                description: Unique trace ID sent for this request.
+              reference:
+                type: string
+                description: Use this to find information on an error.
+              code:
+                type: string
+                description: Unique error code key.
+              message:
+                type: string
+                description: Understandable description for the error code key.
+              category:
+                type: string
+                description: Category of error.
+              status:
+                type: integer
+                description: HTTP code of the error.
+                format: int32
+      description: Response object of an error.
+
+  responses:
+    '400_Single_Payment':
+      description: |-
+        Bad request/parameter error.
+        Detailed error list:
+          ---
+            - MESSAGE_BAI561_0017
+                > Invalid initiating party account number.
+            - MESSAGE_BAI561_0018
+                > Invalid counter party account number.
+            - MESSAGE_BAI561_0019
+                > Initiating Party and counterparty account numbers are same.
+            - MESSAGE_BAI561_0022
+                > Remittance information has invalid character or characters.
+            - MESSAGE_BAI561_0023
+                > Counter party name has invalid character or characters.
+            - MESSAGE_BAI561_0024
+                > Amount is negative or zero.
+            - MESSAGE_BAI561_0043
+                > Currency is not 'EUR'.
+            - MESSAGE_BAI561_0060
+                > Counterparty account number is blank.
+            - MESSAGE_BAI561_0061
+                > Counterparty account number length is greater than 34.
+            - MESSAGE_BAI561_0062
+                > Counterparty account number is not alphanumeric.
+            - MESSAGE_BAI561_006
+                > Amount is mandatory.
+            - MESSAGE_BAI561_0064
+                > Amount is invalid.
+            - MESSAGE_BAI561_0065
+                > Invalid reference ID.
+            - MESSAGE_BAI561_0066
+                > Invalid request body.
+            - MESSAGE_BAI561_0067
+                > Mismatch TransactionID call and token.
+            - MESSAGE_BAI561_0068
+                > Error occurred when status for the payment is other than STORED.
+            - MESSAGE_BAI561_0070
+                > Counter party account number is greater than 70 characters.
+            - MESSAGE_BAI561_0071
+                > Counter party account number is BLANK.
+            - MESSAGE_BAI561_0072
+                > REMITTANCE info field length is greater than 140 characters.
+            - MESSAGE_BAI561_0073
+                > Account number type is invalid.
+            - MESSAGE_BAI561_0075
+                > Acccount number type not present.
+            - MESSAGE_BAI561_0076
+                > Currency is mandatory.
+            - MESSAGE_BAI561_0077
+                > Type is invalid.
+            - MESSAGE_BAI561_0078
+                > Bank indentifier type is mandatory.
+            - MESSAGE_BAI561_0079
+                > Counterparty missing in body.
+            - MESSAGE_BAI561_0080
+                > Invalid chargesbearer.
+            - MESSAGE_BAI561_0081
+                > Counter party BBAN is invalid.
+            - MESSAGE_BAI561_0084
+                > Bank identifier type not provided.
+            - MESSAGE_JA001_0001
+                > Client Id is blank.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: ERR_1100_004
+                message: An input paramater is invalid.
+                reference: https://developer.abnamro.com/get-started#authentication
+                traceId: 5d47e7b5-55b8-4b9f-b438-51ed01f92f3a
+                status: 400
+                category: BAD_REQUEST
+      headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+
+    '400_Batch_Payment':
+      description: |-
+        Bad request/parameter error.
+        Detailed error list:
+          ---
+            - MESSAGE_BAI556_0001
+                > Invalid initiating party account number.
+            - MESSAGE_BAI556_0002
+                > Batch file name provided is blank or having invalid characters.
+            - MESSAGE_BAI556_0003
+                > Batch file data does not start with xml definition ("<?xml").
+            - MESSAGE_BAI556_0013
+                > The incoming file data is not base64 encoded.
+            - MESSAGE_BAI556_0014
+                > Initiating party account number is blank or missing.
+            - MESSAGE_BAI556_0015
+                > File data is not in gzipped format.
+            - MESSAGE_BAI556_0016
+                > File Type is not in PAIN format.
+            - MESSAGE_BAI556_0017
+                > One PmtMtd tag allowed only.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: ERR_1100_004
+                message: An input paramaters is invalid.
+                reference: https://developer.abnamro.com/get-started#authentication
+                traceId: 5d47e7b5-55b8-4b9f-b438-51ed01f92f3a
+                status: 400
+                category: BAD_REQUEST
+      headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+
+
+    '400_Standing_Order':
+      description: |-
+        Bad request/parameter error.
+        Detailed error list:
+          ---
+            - MESSAGE_BAI729_0005
+                > Invalid frequency, dayOfExecution, amount, or executionRule.
+            - MESSAGE_BAI729_0008
+                > Format start date is invalid.
+            - MESSAGE_BAI729_0009
+                > Start date cannot be in past.
+            - MESSAGE_BAI729_0010
+                > Start date too far in future.
+            - MESSAGE_BAI729_0011
+                > Format end date is invalid.
+            - MESSAGE_BAI729_0012
+                > Start date cannot be greater than end date.
+            - MESSAGE_BAI729_0013
+                > Invalid initiating party account number.
+            - MESSAGE_BAI729_0014
+                > Invalid counter party account number.
+            - MESSAGE_BAI729_0015
+                > Counter party name is mandatory.
+            - MESSAGE_BAI729_0016
+                > Counter party name is too long.
+            - MESSAGE_BAI729_0018
+                > Counter party name has invalid character or characters.
+            - MESSAGE_BAI729_0019
+                > Remittance information is mandatory.
+            - MESSAGE_BAI729_0020
+                > Amount is mandatory.
+            - MESSAGE_BAI729_0021
+                > Amount is invalid.
+            - MESSAGE_BAI729_0022
+                > Amount can not be negative or zero.
+            - MESSAGE_BAI729_0023
+                > Currency not allowed or invalid.
+            - MESSAGE_BAI729_0024
+                > Remittance info field length can not be more than 140 characters.
+            - MESSAGE_BAI729_0025
+                > Remmitance info has invalid character or characters.
+            - MESSAGE_BAI729_0026
+                > Invalid day of execution provided.
+            - MESSAGE_BAI729_0029
+                > Error in JSON format
+            - MESSAGE_BAI729_0050
+                > Status of the payment does not allow execution.
+            - MESSAGE_BAI729_0052
+                > Invalid transaction ID.
+            - MESSAGE_BAI729_0053
+                > Frequency is mandatory.
+            - MESSAGE_BAI729_0054
+                > Start Date is mandatory.
+            - MESSAGE_BAI729_0055
+                > Initiating party account and counter party account can not be same.
+            - MESSAGE_BAI729_0056
+                > Payment is already cancelled.
+            - MESSAGE_BAI729_0057
+                > Stored or authorized payment can not be cancelled.
+            - MESSAGE_BAI729_0058
+                > Payment can not be cancelled.
+            - MESSAGE_BAI729_0059
+                > Standing order payment not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: ERR_1100_004
+                message: An input paramaters is invalid.
+                reference: https://developer.abnamro.com/get-started#authentication
+                traceId: 5d47e7b5-55b8-4b9f-b438-51ed01f92f3a
+                status: 400
+                category: BAD_REQUEST
+      headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+
+
+    '401':
+      description: Unauthorised.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: ERR_2002_002
+                message: The presented `access_token` is not valid or is expired.
+                reference: https://developer.abnamro.com/get-started#authentication
+                traceId: 36fa4309-fd51-4e6c-b8bc-9e1843b47cf8
+                status: 401
+                category: INVALID_ACCESS_TOKEN
+      headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+
+
+    '403_Single_Payment':
+      description: |-
+        Access Forbidden.
+        Detailed error list:
+          ---
+            - MESSAGE_BAI561_0044
+                > Token does not contain account number.
+            - MESSAGE_BAI561_0045
+                > Mismatch account number in call and token.
+            - MESSAGE_BAI561_0046
+                > Wrong scope.
+            - MESSAGE_BAI561_0047
+                > Scope unknown or missing.
+            - MESSAGE_BAI561_0048
+                > Wrong granttype for token.
+            - MESSAGE_DAO375_0004
+                > Date is out of range.
+            - MESSAGE_DAO375_0005
+                > Insufficient grant level.
+            - MESSAGE_DAO375_0006
+                > No access to account.
+            - MESSAGE_DAO375_0007
+                > Client not found.
+            - MESSAGE_DAO375_0008
+                > No access to account.
+            - MESSAGE_DAO375_0011
+                > Grant type missing or unknown.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: ERR_3002_003
+                message: Insufficient scope of the token
+                reference: https://developer.abnamro.com/api/account-information/technical-details
+                traceId: c8e372a2-5968-446c-8562-d432cf5722b1
+                status: 403
+                category: INSUFFICIENT_SCOPE
+      headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+
+    '403_Batch_Payment':
+      description: |-
+        Access Forbidden.
+        Detailed error list:
+          ---
+            - MESSAGE_BAI556_0021
+                > No scope present in authorization token.
+            - MESSAGE_BAI556_0022
+                > No account number present in authorization token.
+            - MESSAGE_BAI556_0023
+                > Wrong account number present in authorization token.
+            - MESSAGE_BAI556_0024
+                > Wrong scope is provided in authorization token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: ERR_3002_003
+                message: Insufficient token scope.
+                reference: https://developer.abnamro.com/api/account-information/technical-details
+                traceId: c8e372a2-5968-446c-8562-d432cf5722b1
+                status: 403
+                category: INSUFFICIENT_SCOPE
+      headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+
+    '403_Standing_Order':
+      description: |-
+        Access Forbidden.
+        Detailed error list:
+          ---
+            - MESSAGE_BAI729_0003
+                > Wrong scope provided in authorization token.
+            - MESSAGE_BAI729_0046
+                > API consumer is not configured to access resource.
+            - MESSAGE_BAI729_0051
+                > Token not valid for requested transaction.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: ERR_3002_003
+                message: Insufficient token scope.
+                reference: https://developer.abnamro.com/api/account-information/technical-details
+                traceId: c8e372a2-5968-446c-8562-d432cf5722b1
+                status: 403
+                category: INSUFFICIENT_SCOPE
+      headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+
+    '404_Single_Payment':
+      description: |-
+        **Not found**.
+        Detailed error list:
+          ---
+            - MESSAGE_BAI561_0030
+                > No payment details found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: ERR_4001_001
+                message: |-
+                  The requested resource was not found, or a disallowed method
+                  was used.
+                reference: https://developer.abnamro.com/overview
+                traceId: aa79f41e-ba03-4089-abf0-6113fddc924f
+                status: 404
+                category: NOT_FOUND
+      headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+
+    '404_Standing_Order':
+      description: |-
+        Not found.
+        Detailed error list:
+          ---
+            - MESSAGE_DSI001_0009
+                > No record found for given transaction ID.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: ERR_4001_001
+                message: |-
+                  The requested resource was not found, or a disallowed method
+                  was used.
+                reference: https://developer.abnamro.com/overview
+                traceId: aa79f41e-ba03-4089-abf0-6113fddc924f
+                status: 404
+                category: NOT_FOUND
+      headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+
+    '500':
+      description: Internal Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: MESSAGE_BAI560_0005
+                message: |-
+                  A technical error has occurred. Try again
+                  later. Report the following code when 
+                  contacting the [Corporate API Services Team](corporate.api.services@nl.abnamro.com): MESSAGE_BAI560_0005
+                reference: https://developer.abnamro.com/api/account-information/technical-details
+                traceId: 114b1652-e499-45b4-8328-0dc41fb266f5
+                status: 500
+                category: BACKEND_ERROR
+      headers:
+            'X-Request-ID':
+              $ref: '#/components/headers/xRequestId'
+            'Trace-Id':
+              $ref: '#/components/headers/traceId'
+
+  headers:
+    xRequestId:
+      description: Identification of the response as specified by the API consumer in the request.
+      schema:
+        type: string
+    traceId:
+      description: Unique trace ID sent for this request.
+      schema:
+        type: string

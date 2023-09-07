@@ -1,0 +1,94 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr/standing-orders",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "StandingOrder": [
+          {
+            "AccountId": "aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr",
+            "Frequency": "IntrvlWkDay:01:07",
+            "Reference": "HELP TO BUY",
+            "SupplementaryData": {
+              "FirstRecurringPaymentAmount": {
+                "Amount": "25.00",
+                "Currency": "GBP"
+              },
+              "FirstRecurringPaymentDateTime": "2020-01-26T00:00:00Z"
+            },
+            "FirstPaymentDateTime": "2020-01-19T00:00:00Z",
+            "StandingOrderStatusCode": "Inactive",
+            "FirstPaymentAmount": {
+              "Amount": "25.00",
+              "Currency": "GBP"
+            },
+            "NextPaymentAmount": {
+              "Amount": "530.00",
+              "Currency": "GBP"
+            },
+            "FinalPaymentAmount": {
+              "Amount": "0.00",
+              "Currency": "GBP"
+            },
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "113357-12038161",
+              "Name": "JACK"
+            }
+          },
+          {
+            "AccountId": "aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr",
+            "Frequency": "IntrvlWkDay:01:04",
+            "Reference": "SAVINGS ",
+            "SupplementaryData": {
+              "FirstRecurringPaymentAmount": {
+                "Amount": "20.00",
+                "Currency": "GBP"
+              },
+              "FirstRecurringPaymentDateTime": "2019-01-24T00:00:00Z"
+            },
+            "FirstPaymentDateTime": "2019-01-17T00:00:00Z",
+            "StandingOrderStatusCode": "Inactive",
+            "FirstPaymentAmount": {
+              "Amount": "20.00",
+              "Currency": "GBP"
+            },
+            "FinalPaymentAmount": {
+              "Amount": "0.00",
+              "Currency": "GBP"
+            },
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "119577-07849104",
+              "Name": "JACK"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://api.nationwide.co.uk/open-banking/v3.1/aisp/accounts/aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr/standing-orders"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

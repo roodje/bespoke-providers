@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/v1/consentinfo",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json;charset=UTF-8"
+      },
+      "Authorization": {
+        "equalTo": "Bearer throws401"
+      },
+      "API-Key": {
+        "equalTo": "7zacIF8Cu5o3XF4gUll4sRGuI2gDYiCA"
+      }
+    }
+  },
+  "response": {
+    "status": 401,
+    "headers": {
+      "Date": "Mon, 19 Aug 2019 08: 53: 32 GMT",
+      "Server": "nginx",
+      "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+      "Content-Type": "application/json;charset=UTF-8",
+      "X-Frame-Options": "DENY",
+      "X-XSS-Protection": "1;mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Connection": "keep-alive",
+      "Transfer-Encoding": "chunked",
+      "Trace-Id": "a4eca5eb-ee59-4f92-909b-8fbf02cf9f5b"
+    },
+    "jsonBody": {
+      "errors": [
+        {
+          "code": "ERR_2002_002",
+          "message": "The presented access token is not valid or expired",
+          "reference": "https://developer.abnamro.com/get-started#authentication",
+          "traceId": "c3a78599-2a50-4cd5-ae77-172eb7c2deb4",
+          "status": 401,
+          "category": "INVALID_ACCESS_TOKEN"
+        }
+      ]
+    }
+  }
+}

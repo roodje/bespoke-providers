@@ -1,0 +1,41 @@
+package com.yolt.providers.cbiglobe.bcc;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yolt.providers.cbiglobe.common.mapper.*;
+import com.yolt.providers.cbiglobe.common.service.*;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.time.Clock;
+
+@Configuration
+public class BccBeanConfigV2 {
+
+    @Bean("BccAuthenticationServiceV2")
+    public CbiGlobeAuthorizationService getAuthorizationService(BccProperties properties, Clock clock) {
+        return new CbiGlobeAuthorizationService(properties, clock);
+    }
+
+    @Bean("BccConsentRequestServiceV4")
+    public CbiGlobeConsentRequestServiceV4 getConsentRequestServiceV4(BccProperties properties, Clock clock) {
+        return new CbiGlobeConsentRequestServiceV4(properties, clock, new CurrentAccountConsentAccessCreator());
+    }
+
+    @Bean("BccHttpClientFactoryV2")
+    public CbiGlobeHttpClientFactory getHttpClientFactory(BccProperties properties,
+                                                          @Qualifier("CbiGlobe") final ObjectMapper objectMapper) {
+        return new CbiGlobeHttpClientFactory(properties, objectMapper);
+    }
+
+    @Bean("BccFetchServiceV4")
+    public CbiGlobeFetchDataServiceV3 getFetchServiceV3(BccProperties properties, Clock clock) {
+        CurrencyCodeMapper currencyCodeMapper = new CurrencyCodeMapperV1();
+        CbiGlobeAccountMapper accountMapper = new CbiGlobeAccountMapperV2(new CbiGlobeBalanceMapperV2(currencyCodeMapper),
+                new CbiGlobeTransactionMapperV2(currencyCodeMapper),
+                new CbiGlobeExtendedAccountMapperV2(currencyCodeMapper),
+                currencyCodeMapper,
+                clock);
+        return new CbiGlobeFetchDataServiceV3(properties, accountMapper, clock);
+    }
+}

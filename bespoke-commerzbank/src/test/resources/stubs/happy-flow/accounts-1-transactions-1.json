@@ -1,0 +1,85 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/berlingroup/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/transactions",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "booked"
+      },
+      "dateFrom": {
+        "matches": "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$"
+      }
+    },
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer SOME_ACCESS_TOKEN"
+      },
+      "Consent-ID": {
+        "equalTo": "1234-wertiq-983"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "192.168.16.5"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Request-ID": "1b3ab8e8-0fd5-43d2-946e-d75958b172e7"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "DE2310010010123456788"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "1234567",
+            "creditorName": "John Miles",
+            "creditorAccount": {
+              "iban": "DE67100100101306118605"
+            },
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "256.67"
+            },
+            "bookingDate": "2017-10-25",
+            "valueDate": "2017-10-26",
+            "remittanceInformationUnstructured": "Example 1"
+          },
+          {
+            "transactionId": "1234568",
+            "debtorName": "Paul Simpson",
+            "debtorAccount": {
+              "iban": "NL76RABO0359400371"
+            },
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "343.01"
+            },
+            "bookingDate": "2017-10-25",
+            "valueDate": "2017-10-26",
+            "remittanceInformationUnstructured": "Example 2"
+          }
+        ],
+        "_links": {
+          "account": {
+            "href": "/psd2/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f"
+          }
+        }
+      },
+      "_links": {
+        "next": {
+          "href": "/berlingroup/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/transactions?page=1"
+        }
+      }
+    }
+  }
+}

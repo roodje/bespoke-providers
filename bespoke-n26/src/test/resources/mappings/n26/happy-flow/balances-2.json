@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v1/berlin-group/v1/accounts/2/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "Consent-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Content-Type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "X-Request-ID": "54683c9e-1160-4bf8-9a18-5c0bda473fb1",
+      "balances": [
+        {
+          "balanceType": "expected",
+          "balanceAmount": {
+            "amount": "120.00",
+            "currency": "EUR"
+          },
+          "lastChangeDateTime": "2020-07-30T15:59:20.162Z"
+        }
+      ],
+      "account": {
+        "iban": "DE83100110012629586632"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

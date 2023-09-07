@@ -1,0 +1,55 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/joba-psd2/r1/v1/consents",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "TPP-Redirect-URI": {
+        "equalTo": "https://www.yolt.com/callback-test?state=64ed3844-8733-41fc-968e-8e3a5bd75b80"
+      },
+      "TPP-Nok-Redirect-URI": {
+        "equalTo": "https://www.yolt.com/callback-test?error=true&state=64ed3844-8733-41fc-968e-8e3a5bd75b80"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "12.34.56.78"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "{\"access\":{\"accounts\":[{\"iban\":\"DE91100000000123456789\"}],\"balances\":[{\"iban\":\"DE91100000000123456789\"}],\"transactions\":[{\"iban\":\"DE91100000000123456789\"}]}"
+      },
+      {
+        "contains": "\"recurringIndicator\":true"
+      },
+      {
+        "contains": "validUntil"
+      },
+      {
+        "contains": "\"frequencyPerDay\":4"
+      },
+      {
+        "contains": "\"combinedServiceIndicator\":false"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "consentStatus": "received",
+      "consentId": "TEST_CONSENT_ID",
+      "_links": {
+        "scaRedirect": {
+          "href": "https://login.direkt1822.de/authorize/1234?state=64ed3844-8733-41fc-968e-8e3a5bd75b80"
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

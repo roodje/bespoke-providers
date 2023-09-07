@@ -1,0 +1,41 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/psd2/v1/berlingroup-auth/token",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "apiKey": {
+        "equalTo": "TEST_API_KEY"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=invalid_code"
+      },
+      {
+        "contains": "client_id=TEST_CLIENT_ID"
+      },
+      {
+        "contains": "code_verifier=yilZ1INlFf5MqX9Q2OuvrgVI0qp6qzhDdFRqy5wnbPI%3D"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "error": "invalid_grant",
+      "error_description": "Invalid authorization code, authorization code not found"
+    }
+  }
+}

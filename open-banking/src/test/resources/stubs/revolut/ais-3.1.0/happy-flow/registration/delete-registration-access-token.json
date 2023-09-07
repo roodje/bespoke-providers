@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0032400006451CCVVX"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalTo": "grant_type=client_credentials&scope=openid+accounts"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "978e46f2-b8a5-4f81-ac45-f10d32e6b764",
+      "token_type": "Bearer",
+      "expires_in": "299"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

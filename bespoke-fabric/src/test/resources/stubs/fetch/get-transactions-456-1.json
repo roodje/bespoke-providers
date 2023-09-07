@@ -1,0 +1,140 @@
+{
+  "request": {
+    "urlPathPattern": "/api/fabrick/psd2/v1/accounts/3456/transactions",
+    "method": "GET",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "Consent-ID": {
+        "equalTo": "11111"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "iban": "IT7612548029981098765432122",
+        "bban": "BARC12345612345678",
+        "pan": "5409050000000000",
+        "maskedPan": "123456xxxxxx1234",
+        "msisdn": "+49 170 1234567",
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "bankTransactionCode": "PMNT-CCRD-POSC",
+            "bookingDate": "2021-10-27",
+            "checkId": "",
+            "creditorAccount": {
+              "bban": "",
+              "currency": "",
+              "iban": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "pan": ""
+            },
+            "creditorId": "",
+            "creditorName": "",
+            "debtorAccount": {
+              "bban": "",
+              "currency": "",
+              "iban": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "pan": ""
+            },
+            "debtorName": "",
+            "endToEndId": "",
+            "entryReference": "",
+            "exchangeRate": [
+              {
+                "currencyFrom": "",
+                "currencyTo": "",
+                "rate": "",
+                "rateContract": "",
+                "rateDate": ""
+              }
+            ],
+            "mandateId": "",
+            "proprietaryBankTransactionCode": "",
+            "purposeCode": "",
+            "remittanceInformationStructured": "",
+            "remittanceInformationUnstructured": "CB AUCHAN DAC",
+            "transactionAmount": {
+              "amount": "-200.02",
+              "currency": "EUR"
+            },
+            "transactionId": "333",
+            "ultimateCreditor": "",
+            "ultimateDebtor": "",
+            "valueDate": "2021-10-27"
+          }
+        ],
+        "pending": [
+          {
+            "bankTransactionCode": "PMNT-CCRD-POSC",
+            "bookingDate": "2021-10-26",
+            "checkId": "",
+            "creditorAccount": {
+              "bban": "",
+              "currency": "",
+              "iban": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "pan": ""
+            },
+            "creditorId": "",
+            "creditorName": "",
+            "debtorAccount": {
+              "bban": "",
+              "currency": "",
+              "iban": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "pan": ""
+            },
+            "debtorName": "",
+            "endToEndId": "",
+            "entryReference": "",
+            "exchangeRate": [
+              {
+                "currencyFrom": "",
+                "currencyTo": "",
+                "rate": "",
+                "rateContract": "",
+                "rateDate": ""
+              }
+            ],
+            "mandateId": "",
+            "proprietaryBankTransactionCode": "",
+            "purposeCode": "",
+            "remittanceInformationStructured": "",
+            "remittanceInformationUnstructured": "CB REAL DAC",
+            "transactionAmount": {
+              "amount": "-1.02",
+              "currency": "EUR"
+            },
+            "transactionId": "444",
+            "ultimateCreditor": "",
+            "ultimateDebtor": "",
+            "valueDate": "2021-10-26"
+          }
+        ]
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

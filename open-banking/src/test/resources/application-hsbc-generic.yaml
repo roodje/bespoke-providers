@@ -1,0 +1,35 @@
+lovebird:
+  hsbcgroup:
+    hsbc:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+    hsbc-corporate:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+    firstdirect:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+    marksandspencer:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

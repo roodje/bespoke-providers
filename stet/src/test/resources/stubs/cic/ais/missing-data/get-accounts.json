@@ -1,0 +1,70 @@
+{
+  "request": {
+    "urlPattern": "/([a-z-]*)/stet-psd2-api/(v\\d{1,2}\\.\\d{1,2})/accounts",
+    "method": "GET",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer ACCESS_TOKEN"
+      },
+      "Signature": {
+        "matches": "keyId=\"d3de0198-6738-4784-92d0-a3e5e0894415\", algorithm=\"rsa-sha256\", headers=\"(.*)\", signature=\"(.*)\""
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "1.1.1.1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "123",
+          "accountId": {
+            "iban": "YY64COJH41059545330222956960771321"
+          },
+          "name": "Compte de Mr et Mme Dupont",
+          "balances": [
+            {
+              "name": "Solde comptable au 12/01/2017",
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": 123.45
+              },
+              "balanceType": "CLBD"
+            }
+          ],
+          "psuStatus": "Co-account Holder",
+          "_links": {
+            "balances": {
+              "href": "/any/stet-psd2-api/v1.1/accounts/123/balances"
+            },
+            "transactions": {
+              "href": "/any/stet-psd2-api/v1.1/accounts/123/transactions"
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/any/stet-psd2-api/v2.0/accounts"
+        },
+        "endUserIdentity": {
+          "href": "/any/stet-psd2-api/v2.0/end-user-identity"
+        },
+        "beneficiaries": {
+          "href": "/any/stet-psd2-api/v2.0/trusted-beneficiaries"
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

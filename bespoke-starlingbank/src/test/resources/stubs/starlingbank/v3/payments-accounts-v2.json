@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/v2/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token-payments"
+      },
+      "Accept-Encoding": {
+        "contains": "gzip"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "accountUid": "bbccbbcc-bbcc-bbcc-bbcc-bbccbbccbbcc",
+          "defaultCategory": "ccddccdd-ccdd-ccdd-ccdd-ccddccddccdd",
+          "currency": "GBP",
+          "createdAt": "2017-05-08T12:34:21.000Z"
+        },
+        {
+          "accountUid": "bbccbbcc-bbcc-bbcc-bbcc-bbccbbccbbcd",
+          "defaultCategory": "ccddccdd-ccdd-ccdd-ccdd-ccddccddccdd",
+          "currency": "EUR",
+          "createdAt": "2017-05-08T12:34:21.000Z"
+        },
+        {
+          "accountUid": "ddccbbcc-bbcc-bbcc-bbcc-bbccbbccbbcc",
+          "defaultCategory": "ccddccdd-ccdd-ccdd-ccdd-ccddccddccdd",
+          "currency": "PLN",
+          "createdAt": "2017-05-08T12:34:21.000Z"
+        }
+      ]
+    }
+  }
+}

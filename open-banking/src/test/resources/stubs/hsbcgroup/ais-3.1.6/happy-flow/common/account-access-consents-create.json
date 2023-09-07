@@ -1,0 +1,71 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/aisp/account-access-consents",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer DEjYK7CWVFHi71RteqxmKv1NO2a"
+      },
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Permissions": [
+              "ReadParty",
+              "ReadAccountsDetail",
+              "ReadBalances",
+              "ReadDirectDebits",
+              "ReadProducts",
+              "ReadStandingOrdersDetail",
+              "ReadTransactionsCredits",
+              "ReadTransactionsDebits",
+              "ReadTransactionsDetail"
+            ]
+          },
+          "Risk": {}
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "fc08f64c-b5d1-47db-9368-17e7a7801fec",
+        "Status": "AwaitingAuthorisation",
+        "StatusUpdateDateTime": "2020-11-12T03:20:49+00:00",
+        "CreationDateTime": "2020-11-12T03:20:49+00:00",
+        "Permissions": [
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadDirectDebits",
+          "ReadProducts",
+          "ReadStandingOrdersDetail",
+          "ReadTransactionsCredits",
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail"
+        ]
+      },
+      "Links": {
+        "Self": "https://api.ob.hsbc.co.uk/obie/open-banking/v3.1/aisp/account-access-consents/fc08f64c-b5d1-47db-9368-17e7a7801fec"
+      },
+      "Meta": {
+        "TotalPages": 1
+      },
+      "Risk": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v1/accounts/1/balances",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Connection": {
+        "equalTo": "Keep-Alive",
+        "caseInsensitive": true
+      },
+      "Authorization": {
+        "equalTo": "Bearer af39f12f-eb22-4226-aa4e-5f68ba840c55"
+      },
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "jsonBody": {
+      "balances": [
+        {
+          "balanceAmount": {
+            "amount": "1.00",
+            "currency": "EUR"
+          },
+          "balanceType": "XPCD",
+          "name": "Avoir disponible"
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "https://api.labanquepostale.com/v1/accounts/1923495V029/balances"
+        },
+        "transactions": {
+          "href": "https://api.labanquepostale.com/v1/accounts/1923495V029/transactions"
+        },
+        "parent-list": {
+          "href": "https://api.labanquepostale.com/v1/accounts"
+        }
+      }
+    }
+  }
+}

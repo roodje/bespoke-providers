@@ -1,0 +1,41 @@
+{
+  "request": {
+    "url": "/psd2-api.ca-alpesprovence.fr/dsp2/v1/accounts/4/balances",
+    "method": "GET",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Connection": {
+        "equalTo": "Keep-Alive",
+        "caseInsensitive": true
+      },
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 39911f01-4613-461f-9b47-1e4ba35176e6"
+      },
+      "Date": {
+        "matches": "((Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{1,2} ... \\d{4} \\d{2}:\\d{2}:\\d{2} ...)"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Signature": {
+        "matches": "keyId=\"2b9adbd7f86bed51e23f467c25e1f887\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) x-request-id authorization accept digest date content-type\", signature=\"([A-Za-z0-9+])*(=){0,2}\""
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Accept": "application/json, application/*+json",
+      "Content-Type": "application/json; charset=UTF-8"
+    },
+    "body": "{}"
+  }
+}

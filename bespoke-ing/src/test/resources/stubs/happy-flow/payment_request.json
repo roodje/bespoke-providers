@@ -1,0 +1,78 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/ing/v1/payments/sepa-credit-transfers",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Signature": {
+        "matches": "keyId=\"example_client_id\",algorithm=\"rsa-sha256\",headers=\"(.*)\",signature=\"(.*)\""
+      },
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "Date": {
+        "matches": "[A-Z][a-z]{2}, [0-9]{1,2} [A-Z][a-z]{2} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} GMT"
+      },
+      "TPP-Redirect-URI": {
+        "equalTo": "https://www.yolt.com/callback/payment?state=66a32124-b334-4eb8-8700-d6ca9e4410a0"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "111.1.111.111"
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "Authorization": {
+        "matches": "Bearer (.*)"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "endToEndIdentification": "123456789012345",
+          "creditorAccount": {
+            "currency": "EUR",
+            "iban": "NL91ABNA0417164300"
+          },
+          "debtorAccount": {
+            "currency": "EUR",
+            "iban": "NL91ABNA0417164322"
+          },
+          "instructedAmount": {
+            "amount": "5877.78",
+            "currency": "EUR"
+          },
+          "creditorName": "Some Name",
+          "remittanceInformationUnstructured": "unstructured-information"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8",
+      "X-Request-ID": "00000000-0000-0000-0000-000000000000"
+    },
+    "jsonBody": {
+      "transactionStatus": "RCVD",
+      "paymentId": "cc04ef71-085e-468e-87bd-2881d8a03a5d",
+      "_links": {
+        "scaRedirect": "https://myaccounts.ing.com/payment-initiation/cc04ef71-085e-468e-87bd-2881d8a03a5d/NL/?TPP-Redirect-URI=https://www.yolt.com/callback/payment?state=66a32124-b334-4eb8-8700-d6ca9e4410a0",
+        "self": "/payments/sepa-credit-transfers/cc04ef71-085e-468e-87bd-2881d8a03a5d",
+        "status": "/payments/sepa-credit-transfers/cc04ef71-085e-468e-87bd-2881d8a03a5d/status",
+        "delete": "/payments/sepa-credit-transfers/cc04ef71-085e-468e-87bd-2881d8a03a5d"
+      },
+      "tppMessages": [
+        {
+          "category": "category",
+          "code": "code",
+          "text": "text",
+          "path": "path"
+        }
+      ]
+    }
+  }
+}

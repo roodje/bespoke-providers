@@ -1,0 +1,139 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/apis/open-banking/v3.1/pisp/domestic-payment-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "003882287203T83JKK"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "EndToEndIdentification": "35B64F93",
+              "InstructedAmount": {
+                "Amount": "0.01",
+                "Currency": "GBP"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "12345678901234",
+                "Name": "P. Jantje"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "SomeRandomMessage",
+                "Reference": "SomeRandomMessage2"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "331d76df48ed41229b67f062dd55e340",
+        "CreationDateTime": "2019-04-29T08:55:49.631+01:00",
+        "Status": "AwaitingAuthorisation",
+        "StatusUpdateDateTime": "2005-09-25T02:04:05.600Z",
+        "CutOffDateTime": "2011-02-14T07:07:56.334Z",
+        "ExpectedExecutionDateTime": "2011-02-22T16:52:54.125Z",
+        "ExpectedSettlementDateTime": "2012-11-01T18:40:35.805Z",
+        "Charges": [
+          {
+            "ChargeBearer": "BorneByCreditor",
+            "Type": "UK.OBIE.CHAPSOut",
+            "Amount": {
+              "Amount": "6929137535025152",
+              "Currency": "BZD"
+            }
+          }
+        ],
+        "Initiation": {
+          "InstructionIdentification": "insIdr",
+          "EndToEndIdentification": "e2e_idr",
+          "LocalInstrument": "UK.OBIE.BACS",
+          "InstructedAmount": {
+            "Amount": "10000.00",
+            "Currency": "GBP"
+          },
+          "DebtorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "3238619340865536",
+            "Name": "Owen McDaniel",
+            "SecondaryIdentification": "572898276278272"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "98765432104322",
+            "Name": "CreditorAccountName",
+            "SecondaryIdentification": "6886850702606336"
+          },
+          "CreditorPostalAddress": {
+            "AddressType": "POBox",
+            "Department": "hewijpuamaubikazako",
+            "SubDepartment": "hipalicovsotovagko",
+            "StreetName": "Wohwiw Avenue",
+            "BuildingNumber": "3994238146576384",
+            "PostCode": "J3O 6A7",
+            "TownName": "Agnes Jefferson",
+            "CountrySubDivision": "Uruguay",
+            "Country": "Tokelau",
+            "AddressLine": [
+              "juehecudewdegotgolamdeni"
+            ]
+          },
+          "RemittanceInformation": {
+            "Unstructured": "Unstructured",
+            "Reference": "SomeRandomMessage2"
+          },
+          "SupplementaryData": {}
+        },
+        "Authorisation": {
+          "AuthorisationType": "Any",
+          "CompletionDateTime": "2000-11-07T17:30:33.872Z"
+        }
+      },
+      "Risk": {
+        "PaymentContextCode": "PersonToPerson",
+        "MerchantCategoryCode": "fasl",
+        "MerchantCustomerIdentification": "8890080900939776",
+        "DeliveryAddress": {
+          "AddressLine": [
+            "lultetgutkizufibatiwujeralzasricdopwegbicuvumoriudzikasosewehhi"
+          ],
+          "StreetName": "Lekdev Court",
+          "BuildingNumber": "4485559951032320",
+          "PostCode": "T5M 1H6",
+          "TownName": "Lawrence Carter",
+          "CountrySubDivision": "naadiwilkizapsesiwucaapoliuzobuvoss",
+          "Country": "Dominican Republic"
+        }
+      },
+      "Links": {
+        "Self": "https://carme.api.generic/open-banking/v2.0/pisp/payments"
+      },
+      "Meta": {}
+    }
+  }
+}

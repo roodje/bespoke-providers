@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/auth/token",
+    "headers": {
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "content-type": {
+        "contains": "application/x-www-form-urlencoded"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalTo": "grant_type=authorization_code&code=exchange-code&client_id=client_id&client_secret=client_secret&redirect_uri=redirect-uri"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJsYW5nIjoiZWwiLCJuYW1lIjoiZ3BhcGFkb3BvdWxvcyIsInNjb3BlIjoiYWNjb3VudC1pbmZvIiwiY2xpZW50X2lkIjoiMjVjNDQ1ZDAyYWM2NDdhNjg4MjVlZDQ5MWNkODQ5ODciLCJyZXF1ZXN0IjoiMzUzNjA4OWMtMjY2Zi00MzA2LTk4NGYtMTUyMzNkNzExODAwIiwic2Vzc2lvbl9pZCI6IjM2NzhmZWRmLWMyMTctNDNmMS1iM2UyLTc1ZDEzZDRkMjNmZiIsInRva2VuX2lkIjoiZWEzZjg1YjAtNDU1Ny00YzhlLWI3ZmQtNGQ4NmEyYjY2MjBhIiwia2lkIjoiRDZCRjk0NzFEQ0I4MkUyMDk1NERFRUEwNUVGQ0M1NzU4QUE0MkJEQiIsIm5iZiI6MTYyMDc5ODk2NywiZXhwIjoxNjIwODAyNTY3LCJpc3MiOiJBbHBoYWJhbmsgUFNEMiBPYXV0aCBTZXJ2ZXIiLCJhdWQiOiJhY2NvdW50LWluZm8ifQ.O7P_CylcqY2Dd5pD3GpzR2vfizro8dS3gNWuQVneb-Mjf2f-ZvAMUk6InyvLhNx7_xyy1qZE6trgWbWBOI76PcA5CeuclolLrmO6NjUZ2AJSwxfPHtYN2wIwq1PArAzgrG0b2f5TMxiyNAm0i1SqU87FHng23it-c1SF0wtDyea54Xf6_99PEZyUX2ZzBGIGwl_dNieD9ObG1LeLJl_FPt0YBOhT1CfP9yFv4J5zzIvK__EuEwLuuIaB_cTMEp2DP_8TP_wlcUEpNvrSHq4sSiCcBoOvlQNT6VmBjVDb_y06iHmuUTr2uE72FC82iTuAZCzY7zTC4xElSmnzZ_tj7g",
+      "token_type": "bearer",
+      "expires_in": 3599,
+      "refresh_token": "8c78cb47a647421e96aa1a1a86d9c4af45b36f61c47f41fdb7bc6ffded6f9613eab52024dfc04abf94e1e78ec7ff213743f5e8aa822745a38474feb132454b48"
+    }
+  }
+}

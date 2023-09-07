@@ -1,0 +1,26 @@
+{
+  "cardAccounts": [
+    {
+      "resourceId": "456",
+      "maskedPan": "1234567891234567",
+      "currency": "USD",
+      "name": "Card Alias",
+      "product": "Multicurrency USD",
+      "status": "enabled",
+      "creditLimit": {
+        "currency": "USD",
+        "amount": 15000
+      },
+      "ownerName": "FirstName LastName",
+      "balances": [
+        {
+          "balanceType": "interimAvailable",
+          "balanceAmount": {
+            "currency": "USD",
+            "amount": 14355.78
+          }
+        }
+      ]
+    }
+  ]
+}

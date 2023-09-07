@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/pis/uk/domestic/single",
+    "headers": {
+      "client-id": {
+        "equalTo": "6f16d556-2845-45c4-a3bd-73054dacada5"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "paymentId": "f1f009fb-ec37-4612-a38e-c59c92593095"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "code": "026",
+      "message": "Payment submission rejected by bank"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

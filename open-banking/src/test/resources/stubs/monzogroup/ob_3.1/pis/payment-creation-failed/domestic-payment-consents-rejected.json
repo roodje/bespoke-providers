@@ -1,0 +1,95 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/pisp/domestic-payment-consents",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "54321"
+      },
+      "Authorization": {
+        "equalTo": "Bearer SOME_ACCESS_TOKEN"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "001580000103U9RAAU"
+      },
+      "Accept": {
+        "matches": "^application/json$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "EndToEndIdentification": "35B64F93",
+              "LocalInstrument": "UK.OBIE.FPS",
+              "InstructedAmount": {
+                "Amount": "-100.00",
+                "Currency": "GBP"
+              },
+              "DebtorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "8272908780568576",
+                "Name": "Alex Mitchell"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "1802968485593088",
+                "Name": "Jordan Bell"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "Unstructured",
+                "Reference": "Structured"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "Initiation": {
+          "InstructionIdentification": "20210202075444419-52254e2c-0d8",
+          "EndToEndIdentification": "35B64F93",
+          "LocalInstrument": "UK.OBIE.FPS",
+          "InstructedAmount": {
+            "Amount": "0.01",
+            "Currency": "GBP"
+          },
+          "DebtorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "8272908780568576",
+            "Name": "Alex Mitchell"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "1802968485593088",
+            "Name": "Jordan Bell"
+          },
+          "RemittanceInformation": {
+            "Unstructured": "Unstructured",
+            "Reference": "Structured"
+          }
+        },
+        "Authorisation": {},
+        "ConsentId": "obpispdomesticpaymentconsent_00009mynmtLy5yvfOeJjqD",
+        "CreationDateTime": "2019-09-16T12:13:55.057Z",
+        "Status": "Rejected",
+        "StatusUpdateDateTime": "2019-09-16T12:13:55.057Z"
+      },
+      "Risk": {
+        "PaymentContextCode": "PartyToParty"
+      }
+    }
+  }
+}

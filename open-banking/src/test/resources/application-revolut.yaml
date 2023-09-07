@@ -1,0 +1,19 @@
+lovebird:
+  revolut:
+    pagination-limit: 2
+    audience: https://localhost:${wiremock.server.https-port}
+    baseUrl: https://localhost:${wiremock.server.https-port}
+    oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/token
+    oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+    registrationUrl: https://localhost:${wiremock.server.https-port}/register
+    jwksRootDomain: openbanking.org.uk
+
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

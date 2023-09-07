@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 1mH7BsLRbRcGprPlzOUbdaMYiWP"
+      },
+      "Accept": {
+        "matches": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6l",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.PAN",
+                "Identification": "XXXX XXXX XXXX 2343"
+              }
+            ],
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.1/aisp/accounts/"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

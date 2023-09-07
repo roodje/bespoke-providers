@@ -1,0 +1,74 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/psd2/v2/accounts/test-resource-id/transactions/page2",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "test-consent-id"
+      },
+      "Authorization": {
+        "equalTo": "Bearer test-access-token"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "123.45.67.89"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "BE16690375703426",
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "test-transaction-id",
+            "bookingDate": "2020-02-19",
+            "valueDate": "2020-02-19",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-3.14"
+            },
+            "exchangeRate": [
+              {
+                "currencyFrom": "EUR",
+                "rateFrom": "0",
+                "currencyTo": "EUR",
+                "rateTo": "0",
+                "rateDate": "2020-02-19"
+              }
+            ],
+            "creditorName": "Test Creditor Name Two",
+            "creditorAccount": {
+              "iban": "BE16690375703426",
+              "currency": "EUR"
+            },
+            "debtorName": "Test Debtor Name Two",
+            "debtorAccount": {
+              "iban": "BE16690375703429",
+              "currency": "EUR"
+            },
+            "remittanceInformationUnstructured": "test-remittance-info-unstructured-2",
+            "remittanceInformationStructured": "test-remittance-info-structured-2",
+            "bankTransactionCode": "PMNT-RCDT-ESCT",
+            "proprietaryBankTransactionCode": "test-proprietary-bank-tx-code-2"
+          }
+        ],
+        "_links": {
+          "account": "/accounts/test-resource-id"
+        }
+      }
+    }
+  }
+}

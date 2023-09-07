@@ -1,0 +1,71 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/accounts/IT42Z0608500120000000616474_EUR/transactions",
+    "queryParameters": {
+      "dateFrom": {
+        "matches": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+      },
+      "bookingStatus": {
+        "equalTo": "booked"
+      },
+      "page": {
+        "equalTo": "2"
+      }
+    },
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "authorization": {
+        "equalTo": "Bearer o9xcq8V2zUg893gm6ROpO7XDUhaBkIOyilSHG0M11XCXFgjMPP7U6R"
+      },
+      "consent-id": {
+        "equalTo": "8c929c62-53f3-4543-97c0-0aed02b1d9bc"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "accept": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "IT42Z0608500120000000616474"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "bookingDate": "2019-02-19",
+            "remittanceInformationUnstructured": "example",
+            "remittanceInformationUnstructuredArray": [
+              [
+                "example first row",
+                "example second row"
+              ]
+            ],
+            "transactionAmount": {
+              "amount": "-2.00",
+              "currency": "EUR"
+            }
+          }
+        ],
+        "_links": {
+          "account": {
+            "href": "/v1/accounts/IT42Z0608500120000000616474_EUR"
+          },
+          "last": {
+            "href": "https://api.mediolanum.it/psd2/v1.2/bg/03062/v1/accounts/IT42Z0608500120000000616474_EUR/transactions?bookingStatus=booked&dateFrom=2019-01-01&page=2&cicsToken=97943e99-93b1-4550-8ad2-afa4f7240a21"
+          }
+        }
+      }
+    }
+  }
+}

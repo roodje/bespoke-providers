@@ -1,0 +1,13 @@
+{
+  "accounts": [
+    {
+      "resourceId": "123",
+      "iban": "IT31X0301503200000003517230",
+      "currency": "EUR",
+      "name": "Main account EUR",
+      "product": "Main account EUR",
+      "ownerName": "FirstName LastName"
+    }
+  ]
+}
+

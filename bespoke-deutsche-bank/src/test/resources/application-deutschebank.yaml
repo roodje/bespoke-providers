@@ -1,0 +1,30 @@
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+lovebird:
+  deutschebankgroup:
+    deutschebank:
+      aisBaseUrl: https://localhost:${wiremock.server.https-port}/ais/DE/DB
+      psuIdType: DE_ONLB_DB
+      paginationLimit: 40
+    postbank:
+      aisBaseUrl: https://localhost:${wiremock.server.https-port}/ais/DE/Postbank
+      psuIdType: DE_ONLB_POBA
+      paginationLimit: 40
+    deutschebankes:
+      aisBaseUrl: https://localhost:${wiremock.server.https-port}/ais/ES/DB
+      psuIdType: ES_ONLB_DB
+      paginationLimit: 40
+      corePoolSize: 2
+      consentStatusPollingInitialDelayInSeconds: 1
+      consentStatusPollingTotalDelayLimitInSeconds: 300
+    deutschebankit:
+      aisBaseUrl: https://localhost:${wiremock.server.https-port}/ais/IT/DB
+      psuIdType: IT_ONLB_DB
+      paginationLimit: 40

@@ -1,0 +1,57 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/aisp/account-access-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"Data\":{\"Permissions\":[\"ReadAccountsDetail\",\"ReadBalances\",\"ReadDirectDebits\",\"ReadProducts\",\"ReadStandingOrdersDetail\",\"ReadTransactionsCredits\",\"ReadTransactionsDebits\",\"ReadTransactionsDetail\"]},\"Risk\":{}}"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "650ac35750b8448db81cf77613dd62b5",
+        "Permissions": [
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadDirectDebits",
+          "ReadProducts",
+          "ReadStandingOrdersDetail",
+          "ReadTransactionsCredits",
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail"
+        ],
+        "CreationDateTime": "2019-08-21T09:34:15.738Z",
+        "StatusUpdateDateTime": "2019-08-21T09:34:15.738Z",
+        "Status": "AwaitingAuthorisation"
+      },
+      "Risk": {},
+      "Links": {
+        "Self": "https://api.natwest.com/open-banking/v3.1/aisp/account-access-consents/650ac35750b8448db81cf77613dd62b5"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

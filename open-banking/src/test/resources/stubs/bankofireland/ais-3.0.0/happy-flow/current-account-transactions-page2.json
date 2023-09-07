@@ -1,0 +1,60 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.0/aisp/accounts/5be63cf5-1e7d-45f9-b15d-db1dcc6d979e/transactions?fromBookingDateTime=2019-11-20T10:52:06.277Z&page=2&transactionRetrievalKey=0-201120-201120",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer j4HmjDMaBdSXUQQzN1GpdHoozGho"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "5008e82d-f5ac-42fe-8f07-a49b025f3c2e"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0011800000tfV9aBBE"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "5be63cf5-1e7d-45f9-b15d-db1dcc6d979e",
+            "TransactionId": "6F01DB115321190298767565F838DB",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2020-10-29T00:00:00+00:00",
+            "ValueDateTime": "2020-10-29T00:00:00+00:00",
+            "Amount": {
+              "Amount": "3.49",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "545"
+            },
+            "TransactionInformation": "GOOGLE",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "Expected",
+              "Amount": {
+                "Amount": "392.16",
+                "Currency": "GBP"
+              }
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Prev": "/v3.0/aisp/accounts/1/transactions?fromBookingDateTime=2019-11-20T10:52:06.277Z&page=1&transactionRetrievalKey=0-201120-201120"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

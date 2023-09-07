@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/register",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "tpp-signature-certificate": {
+        "matches": "([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matches": "^[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_=]*$"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "body": "eyJhbGciOiJQUzI1NiIsInR5cCI6IkpPU0UiLCJjdHkiOiJhcHBsaWNhdGlvbi9qc29uIiwia2lkIjoicXNSaHNOVUhYMC9UQVg0SDdCS08zQkFBZXVnPSIsImh0dHA6Ly9vcGVuYmFua2luZy5vcmcudWsvaWF0IjoxNTg0NjE4MjM4LCJodHRwOi8vb3BlbmJhbmtpbmcub3JnLnVrL2lzcyI6Ik9JRC4yLjUuNC45Nz1QU0RJRS1DQkktQzI2OTE0LCBDTj1QZXJtYW5lbnQgVFNCc2lnbiBxc2VhbCwgT1U9UGVybWFuZW50IFRTQiBwbGMsIE89UEVSTUFORU5UIFRTQiBQVUJMSUMgTElNSVRFRCBDT01QQU5ZLCBDPUlFIiwiaHR0cDovL29wZW5iYW5raW5nLm9yZy51ay90YW4iOiJhcGkucGVybWFuZW50dHNiLmllIn0.ewogICJPcmdhbmlzYXRpb25fTmFtZSI6ICJzdHJpbmciLAogICJPcmdhbmlzYXRpb25fRGVzY3JpcHRpb24iOiAic3RyaW5nIiwKICAiT3JnYW5pc2F0aW9uX1dlYnNpdGUgIjogInN0cmluZyIsCiAgIlJlZGlyZWN0X1VSSSI6ICJzdHJpbmciLAogICJBcHBsaWNhdGlvbl9OYW1lIjogInN0cmluZyIsCiAgIkFwcGxpY2F0aW9uX0Rlc2NyaXB0aW9uIjogInN0cmluZyIsCiAgIkNsaWVudF9JRCI6ICJzb21lQ2xpZW50SWQiLAogICJDbGllbnRfU2VjcmV0IjogInNvbWVDbGllbnRTZWNyZXQiLAogICJCdXNpbmVzc19Db250YWN0X05hbWUiOiAic3RyaW5nIiwKICAiQnVzaW5lc3NfQ29udGFjdF9QaG9uZSI6ICJzdHJpbmciLAogICJCdXNpbmVzc19Db250YWN0X0VtYWlsIjogInN0cmluZyIsCiAgIlRlY2huaWNhbF9Db250YWN0X05hbWUiOiAic3RyaW5nIiwKICAiVGVjaG5pY2FsX0NvbnRhY3RfUGhvbmUiOiAic3RyaW5nIiwKICAiVGVjaG5pY2FsQ29udGFjdF9FbWFpbCI6ICJzdHJpbmciLAogICJTY29wZSI6ICJzdHJpbmciCn0=.Gh9NJEuSNlETJguYf4RBEHFq_fQiR4XLQYIez3bSO4ldSEyhZcPXyONiDy3TbLV5Fv8keIdzpa006jOpVXiXTk8APMKTIIOAWUXAzS_kQoz7e44k_EfDHfhrxPu92ra9VPD0WqNBWzI3Pk9QJf8bfpz95JGqhTwWVf5RMCn-wESA99koke6f6P7DTO4sGNK0I-FG9SdEGqYNc-Sqm8-SDyXG473vQAmgI2OcI_YShHhvPqFS1recqLjNzlhJUdhXz30Ahsxt98L-bJLF8f2Tw8BHjYUOSnidCIgRvFVdKmm_wKuostVy89I4Z9MGs8lJbL1S4r1ne9O5yRzU-hXg",
+    "headers": {
+      "Content-Type": "application/jwt"
+    }
+  }
+}

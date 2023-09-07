@@ -1,0 +1,19 @@
+lovebird:
+  tsbgroup:
+    tsb:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}/apis/open-banking
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/apis/open-banking/v3.1/oauth2/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+      audience: https://tsb.com/audience
+
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/authserver/oauth/token",
+    "headers": {
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "content-type": {
+        "contains": "application/x-www-form-urlencoded"
+      }
+    },
+    "queryParameters": {
+      "grant_type": {
+        "equalTo": "authorization_code"
+      },
+      "redirect_uri": {
+        "contains": "https://yolt.com/callback/bcr"
+      },
+      "code": {
+        "equalTo": "auth-code"
+      }
+    },
+    "basicAuthCredentials": {
+      "username": "someClientId",
+      "password": "someClientSecret"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access_token": "access-token",
+      "scope": "aisp",
+      "refresh_token": "refresh-token",
+      "token_type": "bearer",
+      "expires_in": 300
+    }
+  }
+}

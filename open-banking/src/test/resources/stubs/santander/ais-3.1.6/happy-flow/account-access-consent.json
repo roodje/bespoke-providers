@@ -1,0 +1,59 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/aisp/account-access-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "1626df30-50ad-42d8-8f39-40dd95f4b15f"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      },
+      "Content-Type": {
+        "equalTo": "application/json;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"Data\": {\"Permissions\": [\"ReadParty\",\"ReadAccountsDetail\",\"ReadBalances\",\"ReadDirectDebits\",\"ReadProducts\",\"ReadStandingOrdersDetail\",\"ReadTransactionsCredits\",\"ReadTransactionsDebits\",\"ReadTransactionsDetail\"]},\"Risk\": {}}"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "Data": {
+        "TransactionFromDateTime": "2018-03-19T17:58:56+0000",
+        "Status": "AwaitingAuthorisation",
+        "Permissions": [
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadDirectDebits",
+          "ReadProducts",
+          "ReadStandingOrdersDetail",
+          "ReadTransactionsCredits",
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail",
+          "ReadParty"
+        ],
+        "CreationDateTime": "2014-12-08T17:40:58+0000",
+        "ConsentId": "363ca7c1-9d03-4876-8766-ddefc9fd2d76",
+        "StatusUpdateDateTime": "2013-07-28T07:30:52+0000"
+      },
+      "Risk": {},
+      "Meta": {},
+      "Links": {
+        "Self": "https://openbanking-ma.santander.co.uk/sanuk/external/open-banking/v3.1/aisp/account-access-consents"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

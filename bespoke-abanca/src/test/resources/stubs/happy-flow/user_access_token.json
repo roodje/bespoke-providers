@@ -1,0 +1,43 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/oauth2/token",
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=test-code"
+      },
+      {
+        "contains": "APPLICATION=22222222-2222-2222-2222-222222222222"
+      }
+    ],
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF-8)?"
+      },
+      "AuthKey": {
+        "equalTo": "33333333-3333-3333-3333-333333333333"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "new_access_token",
+      "token_type": "bearer",
+      "expires_in": 1199,
+      "refresh_token": "new_refresh_token",
+      "user": "1",
+      "username": "1",
+      "authorized_apis": "MRPH401",
+      ".issued": "Wed, 25 May 2022 10:25:44 GMT",
+      ".expires": "Wed, 25 May 2022 10:45:44 GMT"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+

@@ -1,0 +1,31 @@
+package com.yolt.providers.openbanking.ais.permanenttsbgroup.common.oauth2;
+
+import com.yolt.providers.openbanking.ais.generic2.auth.DefaultAuthMeans;
+import com.yolt.providers.openbanking.ais.permanenttsbgroup.PermanentTsbGroupSampleAuthenticationMeans;
+import com.yolt.providers.openbanking.ais.permanenttsbgroup.common.auth.PermanentTsbGroupAuthMeansBuilder;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.cert.CertificateEncodingException;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+class PermanentTsbGroupTppSignatureCertificateHeaderProducerTest {
+
+    private final PermanentTsbGroupTppSignatureCertificateHeaderProducer tppSignatureCertificateHeaderProducer = new PermanentTsbGroupTppSignatureCertificateHeaderProducer();
+
+    @Test
+    void shouldGenerateTppSignatureCertificateHeaderValue() throws IOException, URISyntaxException, CertificateEncodingException {
+        // given
+        PermanentTsbGroupSampleAuthenticationMeans authenticationMeans = new PermanentTsbGroupSampleAuthenticationMeans();
+        DefaultAuthMeans defaultAuthMeans = PermanentTsbGroupAuthMeansBuilder
+                .createAuthenticationMeansForAis(authenticationMeans.getPermanentTsbGroupSampleAuthenticationMeansForAis(), "PERMANENT_TSB");
+
+        // when
+        String tppSignatureCertificateHeaderValue = tppSignatureCertificateHeaderProducer.getTppSignatureCertificateHeaderValue(defaultAuthMeans.getSigningCertificate());
+
+        // then
+        assertThat(tppSignatureCertificateHeaderValue).isEqualTo("LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tTUlJQ016Q0NBWnlnQXdJQkFnSUpBTGlQblZzdnE4ZHNNQTBHQ1NxR1NJYjNEUUVCQlFVQU1GTXhDekFKQmdOVkJBWVRBbFZUTVF3d0NnWURWUVFJRXdObWIyOHhEREFLQmdOVkJBY1RBMlp2YnpFTU1Bb0dBMVVFQ2hNRFptOXZNUXd3Q2dZRFZRUUxFd05tYjI4eEREQUtCZ05WQkFNVEEyWnZiekFlRncweE16QXpNVGt4TlRRd01UbGFGdzB4T0RBek1UZ3hOVFF3TVRsYU1GTXhDekFKQmdOVkJBWVRBbFZUTVF3d0NnWURWUVFJRXdObWIyOHhEREFLQmdOVkJBY1RBMlp2YnpFTU1Bb0dBMVVFQ2hNRFptOXZNUXd3Q2dZRFZRUUxFd05tYjI4eEREQUtCZ05WQkFNVEEyWnZiekNCbnpBTkJna3Foa2lHOXcwQkFRRUZBQU9CalFBd2dZa0NnWUVBemRHZnhpOUNOYk1mMVVVY3ZEUWg3TVlCT3ZlSUh5YzBFMEtJYmhqSzVGa0NCVTRDaVpyYmZIYWdhVzdaRWNOMHR0M0V2cGJPTXh4Yy9aUVUyV04vcy93UHhwaDBwU2ZzZkZzVEtNNFJoVFdEMnY0ZmdrK3haaUtkMXAwK0w0aFR0cHduRXcwdVhSVmQwa2k2bXV3VjV5L1ArNUZIVWVsZHErcGdUY2d6dUs4Q0F3RUFBYU1QTUEwd0N3WURWUjBQQkFRREFnTGtNQTBHQ1NxR1NJYjNEUUVCQlFVQUE0R0JBSmlEQUF0WTBtUVFldXhXZHpMUnpYbWp2ZFN1TDlHb3lUM0JGL2pTbnB4ejUvNThkYmE4cFdlbnYzcGo0UDN3NURvT3NvMHJ6a1p5MmpFc0VpdGxWTTJtTFNiUXBNTStNVVZRQ1FvaUc2Vzl4dUNGdXhTcndQSVNwQXFFQXVWNEROb3hRS0tXbWhWditKMHB0TVdEMjVQbnB4ZXE1c1h6Z2hmSm5zbEpsUU5ELS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==");
+    }
+}

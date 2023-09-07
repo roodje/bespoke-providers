@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.2/register",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "matches": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Content-Type": {
+        "equalTo": "application/jose"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "client_id": "some-new-shiny-client-id",
+      "client_secret": "some-new-shiny-client-secret"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

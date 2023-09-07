@@ -1,0 +1,88 @@
+{
+  "request": {
+    "urlPattern": "/([a-z-]*)/stet-psd2-api/(v\\d{1,2}\\.\\d{1,2})/accounts/789/transactions\\?dateFrom=(.*)",
+    "method": "GET",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer ACCESS_TOKEN"
+      },
+      "Signature": {
+        "matches": "keyId=\"d3de0198-6738-4784-92d0-a3e5e0894415\", algorithm=\"rsa-sha256\", headers=\"(.*)\", signature=\"(.*)\""
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "1.1.1.1"
+      },
+      "Date": {
+        "matches": "[A-Za-z]+, \\d?\\d [A-Za-z]+ \\d{4} \\d{1,2}:\\d{1,2}:\\d{1,2} [A-Za-z]{3}"
+      },
+      "Host": {
+        "contains": "localhost"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "transactions": [
+        {
+          "creditDebitIndicator": "DBIT",
+          "status": "PDNG",
+          "resourceId": "R082131903858162-a9bd3758abc77f5fa4944e6e498281af-78eb6f02764d9413e9c062f0263b21b",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 5.0
+          },
+          "expectedBookingDate": "2021-11-30T00:00:00Z",
+          "transactionDate": "2021-11-14T00:00:00Z",
+          "remittanceInformation": {
+            "unstructured": [
+              "BOULANGERIE DE PSC",
+              "CORMEILLES E"
+            ]
+          }
+        },
+        {
+          "creditDebitIndicator": "DBIT",
+          "status": "PDNG",
+          "resourceId": "R082131904040419-a9bd3758abc77f5fa4944e6e498281af-78eb6f02764d9413e9c062f0263b21b",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 13.0
+          },
+          "expectedBookingDate": "2021-11-30T00:00:00Z",
+          "transactionDate": "2021-11-13T00:00:00Z",
+          "remittanceInformation": {
+            "unstructured": [
+              "CHIV'S KOY PSC",
+              "PARIS 11"
+            ]
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/any/stet-psd2-api/v2.0/accounts/789/transactions"
+        },
+        "parent-list": {
+          "href": "/any/stet-psd2-api/v2.0/accounts"
+        },
+        "balances": {
+          "href": "/any/stet-psd2-api/v2.0/accounts/789/balances"
+        },
+        "last": {
+          "href": "/any/stet-psd2-api/v2.0/accounts/789/transactions?page=last"
+        }
+      }
+    }
+  ,
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

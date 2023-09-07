@@ -1,0 +1,61 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/berlingroup/v1/consents",
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "access": {
+            "allPsd2": "allAccounts"
+          },
+          "recurringIndicator": true,
+          "frequencyPerDay": 4,
+          "combinedServiceIndicator": false,
+          "validUntil": "2022-04-01"
+        }
+      }
+    ],
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "TPP-Redirect-URI": {
+        "equalTo": "https://yolt.com/callback-acc"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "PSU-IP-Address": {
+        "matches": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "consentStatus": "received",
+      "consentId": "VALID_CONSENT_ID",
+      "_links": {
+        "scaOAuth": {
+          "href": "https://localhost:{{request.requestLine.port}}/berlingroup/.well-known/openid-configuration?authorizationId=11111111-1111-1111-1111-111111111111"
+        },
+        "scaStatus": {
+          "href": "https://localhost:{{request.requestLine.port}}/berlingroup/v1/consents/VALID_CONSENT_ID/authorisations/11111111-1111-1111-1111-111111111111"
+        },
+        "status": {
+          "href": "https://localhost:{{request.requestLine.port}}/berlingroup/v1/consents/VALID_CONSENT_ID/status"
+        },
+        "self": {
+          "href": "https://localhost:{{request.requestLine.port}}/berlingroup/v1/consents/VALID_CONSENT_ID"
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}
+

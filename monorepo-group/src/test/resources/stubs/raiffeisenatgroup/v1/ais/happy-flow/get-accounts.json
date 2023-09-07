@@ -1,0 +1,128 @@
+{
+  "request": {
+    "url": "/v1/accounts?withBalance=true",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-CLIENT-ACCESS-TOKEN"
+      },
+      "Consent-ID": {
+        "equalTo": "8edfea3a-a660-11eb-bcbc-0242ac130002"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "AT099900000000001511",
+          "iban": "AT099900000000001511",
+          "bban": null,
+          "msisdn": null,
+          "currency": "EUR",
+          "name": "Marianne Mustermann",
+          "displayName": null,
+          "product": "Giro",
+          "cashAccountType": null,
+          "status": "enabled",
+          "bic": "TESTAT99",
+          "linkedAccounts": null,
+          "usage": null,
+          "details": null,
+          "balances": [
+            {
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": "1340.55"
+              },
+              "balanceType": "forwardAvailable",
+              "creditLimitIncluded": null,
+              "lastChangeDateTime": null,
+              "referenceDate": "2022-07-06",
+              "lastCommittedTransaction": null
+            },
+            {
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": "2850.49"
+              },
+              "balanceType": "interimAvailable",
+              "creditLimitIncluded": null,
+              "lastChangeDateTime": null,
+              "referenceDate": "2022-07-05",
+              "lastCommittedTransaction": null
+            }
+          ],
+          "ownerName": null,
+          "_links": {
+            "balances": {
+              "href": "/v1/accounts/AT099900000000001511/balances"
+            },
+            "transactions": {
+              "href": "/v1/accounts/AT099900000000001511/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "AT439900000000010017",
+          "iban": "AT439900000000010017",
+          "bban": null,
+          "msisdn": null,
+          "currency": "EUR",
+          "name": "Georg Mustermann",
+          "displayName": null,
+          "product": "Giro",
+          "cashAccountType": null,
+          "status": "enabled",
+          "bic": "TESTAT99",
+          "linkedAccounts": null,
+          "usage": null,
+          "details": null,
+          "balances": [
+            {
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": "4533.55"
+              },
+              "balanceType": "forwardAvailable",
+              "creditLimitIncluded": null,
+              "lastChangeDateTime": null,
+              "referenceDate": "2022-07-06",
+              "lastCommittedTransaction": null
+            },
+            {
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": "5119.49"
+              },
+              "balanceType": "interimAvailable",
+              "creditLimitIncluded": null,
+              "lastChangeDateTime": null,
+              "referenceDate": "2022-07-05",
+              "lastCommittedTransaction": null
+            }
+          ],
+          "ownerName": null,
+          "_links": {
+            "balances": {
+              "href": "/v1/accounts/AT439900000000010017/balances"
+            },
+            "transactions": {
+              "href": "/v1/accounts/AT439900000000010017/transactions"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

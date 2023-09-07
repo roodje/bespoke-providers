@@ -1,0 +1,76 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6l/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{1,3})?$"
+      }
+    },
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 1mH7BsLRbRcGprPlzOUbdaMYiWP"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6l",
+            "Amount": {
+              "Currency": "GBP"
+            },
+            "BookingDateTime": "2019-01-17T00:00:00Z",
+            "Status": "Booked",
+            "TransactionInformation": "TOSSED LONDON",
+            "ProprietaryBankTransactionCode": {
+              "Code": ")))"
+            }
+          },
+          {
+            "AccountId": "8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6l",
+            "Amount": {
+              "Amount": "0.01"
+            },
+            "BookingDateTime": "2019-01-15T00:00:00Z",
+            "CreditDebitIndicator": "Credit",
+            "TransactionInformation": "Mrs Juniper 11134567",
+            "ProprietaryBankTransactionCode": {
+              "Code": "OBP"
+            }
+          },
+          {
+            "AccountId": "8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6l",
+            "Amount": {
+              "Amount": "0.02",
+              "Currency": "GBP"
+            },
+            "BookingDateTime": "2019-01-15T00:00:00Z",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "TransactionInformation": "Mrs Juniper 11134567",
+            "ProprietaryBankTransactionCode": {
+              "Code": "OBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.1/aisp/accounts/8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6l/transactions?fromBookingDateTime=2018-08-20T00:00:00Z"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

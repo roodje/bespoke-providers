@@ -1,0 +1,73 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/apis/open-banking/v3.1/pisp/domestic-payment-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "003882287203T83JKK"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "EndToEndIdentification": "35B64F94",
+              "InstructedAmount": {
+                "Amount": "0.01",
+                "Currency": "GBP"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "12345678901234",
+                "Name": "P. Jantje"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "SomeRandomMessage",
+                "Reference": "SomeRandomMessage2"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Code": "400 BadRequest",
+      "Id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+      "Message": "Invalid request parameters.",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Field.Missing",
+          "Message": "End to end identification is missing",
+          "Path": "Data.Initiation.InstructionIdentification",
+          "Url": "<url to the api reference for Payment Inititaion API>"
+        },
+        {
+          "ErrorCode": "UK.OBIE.Unsupported.Scheme",
+          "Message": "Scheme name supplied is not supported",
+          "Path": "Data.Initiation.CreditorAccount.SchemeName",
+          "Url": "<url to the online documentation referring supported scheme names>"
+        }
+      ]
+    }
+  }
+}

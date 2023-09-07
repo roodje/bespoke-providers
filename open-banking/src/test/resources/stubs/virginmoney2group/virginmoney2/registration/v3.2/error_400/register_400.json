@@ -1,0 +1,35 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.2/register",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/jose"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalTo": "V2hhdCBoYXRoIGdvZCB3cm91Z2h0ID8=..QnkgR2VvcmdlLCBzaGUncyBnb3QgaXQhIEJ5IEdlb3JnZSBzaGUncyBnb3QgaXQhIE5vdyBvbmNlIGFnYWluLCB3aGVyZSBkb2VzIGl0IHJhaW4"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "Code": "Some error code",
+      "Id": "someErrorId",
+      "Message": "Something went wrong",
+      "Errors": [
+        {
+          "ErrorCode": "ERR_1",
+          "Message": "Error msg",
+          "Path": "some.field.path",
+          "Url": "https://dummy.api/how-to-remediate"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

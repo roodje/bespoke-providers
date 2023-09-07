@@ -1,0 +1,54 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPattern": "/api/v2/payments/local/account/bbccbbcc-bbcc-bbcc-bbcc-bbccbbccbbcc/category/ccddccdd-ccdd-ccdd-ccdd-ccddccddccdd",
+    "headers": {
+      "Authorization": {
+        "matches": "Bearer access-token-payments;Signature keyid=\"aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) Date Digest\",signature=\"(.*)\""
+      },
+      "Date": {
+        "matches": "(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2})\\:(\\d{2})\\:(\\d{2}).(\\d{3})\\+(\\d{2})\\:(\\d{2})"
+      },
+      "Digest": {
+        "matches": "(.*)"
+      },
+      "Accept-Encoding": {
+        "contains": "gzip"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "externalIdentifier": "a unique identifier to ensure idempotency",
+          "paymentRecipient": {
+            "payeeName": "Bob's accounts",
+            "payeeType": "INDIVIDUAL",
+            "countryCode": "GB",
+            "accountIdentifier": "88888888",
+            "bankIdentifier": "666666",
+            "bankIdentifierType": "SORT_CODE"
+          },
+          "reference": "Payment reference",
+          "amount": {
+            "currency": "GBP",
+            "minorUnits": 9999.00
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "errors": [
+        {
+          "message": "Something about the validation error"
+        }
+      ],
+      "success": false
+    }
+  }
+}

@@ -1,0 +1,2 @@
+@javax.xml.bind.annotation.XmlSchema(namespace = "urn:iso:std:iso:20022:tech:xsd:camt.052.001.02", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package com.yolt.providers.sparkassenandlandesbanks.common.dto.transactions;

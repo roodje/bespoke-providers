@@ -1,0 +1,67 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/CONSENTS_API/1.0",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer access_token"
+      },
+      "Signature": {
+        "matches": "keyId=\"SN=00b88f9d5b2fabc76c\",algorithm=\"rsa-sha256\",headers=\"digest x-request-id\",signature=\"(.*)\""
+      },
+      "Digest": {
+        "equalTo": "SHA-256=CIkznlx8KlRidWjJCH4fYB6LdxJVKmekqz+gFNkQyV8="
+      },
+      "TPP-Signature-Certificate": {
+        "equalTo": "MIICMzCCAZygAwIBAgIJALiPnVsvq8dsMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzAeFw0xMzAzMTkxNTQwMTlaFw0xODAzMTgxNTQwMTlaMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzdGfxi9CNbMf1UUcvDQh7MYBOveIHyc0E0KIbhjK5FkCBU4CiZrbfHagaW7ZEcN0tt3EvpbOMxxc/ZQU2WN/s/wPxph0pSfsfFsTKM4RhTWD2v4fgk+xZiKd1p0+L4hTtpwnEw0uXRVd0ki6muwV5y/P+5FHUeldq+pgTcgzuK8CAwEAAaMPMA0wCwYDVR0PBAQDAgLkMA0GCSqGSIb3DQEBBQUAA4GBAJiDAAtY0mQQeuxWdzLRzXmjvdSuL9GoyT3BF/jSnpxz5/58dba8pWenv3pj4P3w5DoOso0rzkZy2jEsEitlVM2mLSbQpMM+MUVQCQoiG6W9xuCFuxSrwPISpAqEAuV4DNoxQKKWmhVv+J0ptMWD25Pnpxeq5sXzghfJnslJlQND"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "access": {
+            "allPsd2": "allAccounts"
+          },
+          "recurringIndicator": true,
+          "frequencyPerDay": 4,
+          "combinedServiceIndicator": false,
+          "validUntil": "2022-04-01"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "consentStatus": "received",
+      "consentId": "consentId",
+      "_links": {
+        "scaOAuth": {
+          "href": "https://localhost:{{request.requestLine.port}}/berlingroup/.well-known/openid-configuration?authorizationId=11111111-1111-1111-1111-111111111111"
+        },
+        "scaStatus": {
+          "href": "https://localhost:{{request.requestLine.port}}/berlingroup/v1/consents/VALID_CONSENT_ID/authorisations/11111111-1111-1111-1111-111111111111"
+        },
+        "status": {
+          "href": "https://localhost:{{request.requestLine.port}}/berlingroup/v1/consents/VALID_CONSENT_ID/status"
+        },
+        "self": {
+          "href": "https://localhost:{{request.requestLine.port}}/berlingroup/v1/consents/VALID_CONSENT_ID"
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}
+

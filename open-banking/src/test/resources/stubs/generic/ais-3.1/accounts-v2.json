@@ -1,0 +1,131 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken456"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "456",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Description": "string",
+            "Nickname": "Current Account",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB15AIBK12345678901235"
+              },
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "98765432109876"
+              }
+            ]
+          },
+          {
+            "AccountId": "789",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "Savings",
+            "Description": "string",
+            "Nickname": "Savings Account",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB35BARC20032611233186"
+              }
+            ]
+          },
+          {
+            "AccountId": "890",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard",
+            "Description": "string",
+            "Nickname": "Credit Card",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.PAN",
+                "Identification": "4929712289119828"
+              },
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB11BARC20038015831118"
+              }
+            ]
+          },
+          {
+            "AccountId": "890_1",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard",
+            "Description": "string",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB11BARC20038015831118"
+              }
+            ]
+          },
+          {
+            "AccountId": "890_2",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard",
+            "Description": "string",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.PAN",
+                "Identification": "4929712289119828"
+              },
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB11BARC20038015831118"
+              }
+            ]
+          },
+          {
+            "AccountId": "890_3",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard",
+            "Description": "string",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.PAN",
+                "Identification": "49XXX12289119XXX"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/aisp/accounts"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

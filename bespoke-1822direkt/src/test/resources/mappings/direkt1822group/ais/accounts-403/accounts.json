@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/joba-psd2/r1/v1/accounts",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "12345"
+      }
+    }
+  },
+  "response": {
+    "status": 403,
+    "jsonBody": {
+      "tppMessages": [
+        {
+          "category": "ERROR",
+          "code": "CONSENT_UNKNOWN",
+          "path": "/accounts",
+          "text": "Consent is unknown"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json; charset=UTF-8",
+      "X-Request-ID": "39e872b0-c662-4deb-a274-2ce2363862c6"
+    }
+  }
+}

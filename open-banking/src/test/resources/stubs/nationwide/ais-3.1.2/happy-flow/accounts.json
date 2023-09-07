@@ -1,0 +1,109 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Nickname": "070131 XXXX1605",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "02011632175602",
+                "Name": "Robin"
+              },
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB53 MIIA 0512 3633 18 5404",
+                "Name": "Robin"
+              }
+            ]
+          },
+          {
+            "AccountId": "AuauT3LMzHwjBb-BqwHupxAe16uS8nJkNC7JmIPN",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard",
+            "Nickname": "488386XXXXXX8028",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.PAN",
+                "Identification": "485432XXXXXX1023",
+                "Name": "Robin"
+              }
+            ]
+          },
+          {
+            "AccountId": "AuauT3LMzHwjBb-BqwHupxAe16uS8nJkNC7JmIPN",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB53 MIIA 0512 3633 18 5404"
+              }
+            ]
+          },
+          {
+            "AccountId": "AuauT3LMzHwjBb-BqwHupxAe16uS8nJkNC7JmIPN",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.PAN",
+                "Identification": "485432XXXXXX1023"
+              },
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB53 MIIA 0512 3633 18 5404"
+              }
+            ]
+          },
+          {
+            "AccountId": "AuauT3LMzHwjBb-BqwHupxAe16uS8nJkNC7JmIPN",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.PAN",
+                "Identification": "485432XXXXXX1023"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://api.nationwide.co.uk/open-banking/v3.1/aisp/accounts"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

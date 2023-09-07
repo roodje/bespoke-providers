@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/register",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Content-Type": {
+        "equalTo": "application/jwt"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "iss": "2qVIV55MpuKIU5URuvvoWa",
+      "iat": 1597060955,
+      "exp": 1597064555,
+      "software_id": "2qVIV55MpuKIU5URuvvoWa",
+      "client_id": "06951f38-6aed-4005-a54e-f039f978f119",
+      "token_endpoint_auth_method": "tls_client_auth",
+      "tls_client_auth_dn": "25dbb208-abbf-4df5-89aa-b669939e3ffc",
+      "id_token_signed_response_alg": "PS256",
+      "request_object_signing_alg": "PS256",
+      "redirect_uris": [
+        "https://www.yolt.com/callback/"
+      ],
+      "grant_types": [
+        "authorization_code",
+        "client_credentials"
+      ],
+      "scope": [
+        "openid",
+        "accounts",
+        "payments",
+        "fundsconfirmations"
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

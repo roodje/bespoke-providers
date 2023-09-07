@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPath": "/stet/psd2/v1.4.2/consents",
+    "headers": {
+      "Authorization": {
+        "matches": "Bearer (access-token|empty-transactions-token)"
+      },
+      "Signature": {
+        "matches": "keyId=\"THE_CLIENT_ID\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) date digest x-request-id\",signature=\"(.*)\""
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath" : "[?(@.psuIdentity == true)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "access-control-allow-origin": "https://www.api.89c3.com",
+      "access-control-expose-headers": "x-correlationid",
+      "cache-control": "max-age=0, public",
+      "connection": "Keep-Alive",
+      "content-length": "0",
+      "content-type": "application/json;charset=UTF-8",
+      "date": "Mon, 02 Dec 2019 08:33:35 GMT",
+      "digest": "",
+      "expires": "Mon, 02 Dec 2019 08:33:35 GMT",
+      "keep-alive": "timeout=5, max=299",
+      "max-forwards": "20",
+      "strict-transport-security": "max-age=63072000; includeSubdomains;",
+      "x-content-type-options": "nosniff",
+      "x-correlationid": "Id-5fcce45da0380c6d23d473b7 0",
+      "x-frame-options": "SAMEORIGIN",
+      "x-request-id": "49a17f62-6787-4042-abcd-83e9c41f575b",
+      "x-xss-protection": "1; mode=block"
+    },
+    "body": ""
+  }
+}

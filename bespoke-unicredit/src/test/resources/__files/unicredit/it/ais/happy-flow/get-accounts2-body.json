@@ -1,0 +1,34 @@
+{
+  "accounts": [
+    {
+      "resourceId": "456",
+      "iban": "DE2310010010123499999",
+      "currency": "EUR",
+      "cashAccountType": "CISH",
+      "bic": "BPKOPLPW",
+      "name": "Account-456",
+      "balance": [{
+        "balanceAmount": {
+          "currency": "EUR",
+          "amount": "4654654.78"
+        },
+        "balanceType": "expected",
+        "lastChangeDateTime": "2019-10-14T09:00:00Z",
+        "referenceDate": "2019-10-14"
+      },{
+        "balanceAmount": {
+          "currency": "EUR",
+          "amount": "2342344.89"
+        },
+        "balanceType": "interimAvailable",
+        "lastChangeDateTime": "2019-10-13T20:00:00Z",
+        "referenceDate": "2019-10-13"
+      }],
+      "_links": {
+        "next": {
+          "href": ""
+        }
+      }
+    }
+  ]
+}

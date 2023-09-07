@@ -1,0 +1,11 @@
+lovebird:
+  bcrGroup:
+    bcr:
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      tokenUrl: https://localhost:${wiremock.server.https-port}/authserver/oauth/token
+      authorizationBaseUrl: https://localhost:${wiremock.server.https-port}/authorize
+      paginationLimit: 1000
+yolt:
+  qseal-certificate-exposure:
+    enabled: true
+    base-url: https://test.qseal.certificate.com

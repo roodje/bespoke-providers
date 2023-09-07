@@ -1,0 +1,64 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/user/28196/payment-service-provider-draft-payment",
+    "headers": {
+      "Cache-Control": {
+        "equalTo": "no-cache"
+      },
+      "User-Agent": {
+        "equalTo": "yolt-user-agent"
+      },
+      "X-Bunq-Language": {
+        "equalTo": "en_US"
+      },
+      "X-Bunq-Language": {
+        "equalTo": "en_US"
+      },
+      "X-Bunq-Region": {
+        "equalTo": "nl_NL"
+      },
+      "X-Bunq-Client-Request-Id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "X-Bunq-Geolocation": {
+        "equalTo": "0 0 0 0 000"
+      },
+      "X-Bunq-Client-Authentication": {
+        "equalTo": "a3cc2d56b7d30dae471c418b16cd15d674aa06ffa9f45beae39dbb9a8ac749c9"
+      },
+      "X-Bunq-Client-Signature": {
+        "matches": "^\\S+$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "sender_iban": "NL91ABNA0417164322",
+          "counterparty_iban": "NL91ABNA0417164300",
+          "counterparty_name": "Some Name",
+          "description": "unstructured-information",
+          "amount": {
+            "value": "5877.78",
+            "currency": "EUR"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Response": [
+        {
+          "Id": {
+            "id": 12345
+          }
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPattern": "/api/v2/payments/local/account/bbccbbcc-bbcc-bbcc-bbcc-bbccbbccbbcc/category/ccddccdd-ccdd-ccdd-ccdd-ccddccddccdd",
+    "headers": {
+      "Authorization": {
+        "matches": "Bearer access-token-payments;Signature keyid=\"aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) Date Digest\", signature=\"(.*)\""
+      },
+      "Date": {
+        "matches": "(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2})\\:(\\d{2})\\:(\\d{2}).(\\d{7})(\\+\\d{2}\\:\\d{2}|Z)"
+      },
+      "Digest": {
+        "matches": "(.*)"
+      },
+      "Accept-Encoding": {
+        "contains": "gzip"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "externalIdentifier": "${json-unit.any-string}",
+          "paymentRecipient": {
+            "payeeName": "Bob's accounts",
+            "payeeType": "INDIVIDUAL",
+            "countryCode": "GB",
+            "accountIdentifier": "88888888",
+            "bankIdentifier": "608371",
+            "bankIdentifierType": "SORT_CODE"
+          },
+          "reference": "Payment reference",
+          "amount": {
+            "currency": "GBP",
+            "minorUnits": 123456
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "paymentOrderUid": "33443344-3344-3344-3344-334433443344",
+      "consentInformation": {
+        "approvalType": "NONE_REQUIRED"
+      }
+    }
+  }
+}

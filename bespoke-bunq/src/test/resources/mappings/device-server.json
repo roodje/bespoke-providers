@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/device-server",
+    "headers": {}
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Response": [
+        {
+          "Id": {
+            "id": 2523
+          }
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

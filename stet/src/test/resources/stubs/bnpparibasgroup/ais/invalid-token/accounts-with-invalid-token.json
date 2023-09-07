@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token-invalid"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "signature": {
+        "matches": "keyId=\"https://test.qseal.certificate.com/a4:62:72:3b:cc:7f:37:07:17:5d:2d:21:18:f1:e2:2a:d0:fb:79:1a.pem\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) accept authorization content-type x-request-id digest\", signature=\"(.*)\""
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    }
+  },
+  "response": {
+    "status": 401,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+
+    "jsonBody": {
+      "errorMessage": "Invalid token in authorization header"
+    }
+  }
+}

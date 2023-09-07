@@ -1,0 +1,15 @@
+{
+  "transactionStatus": "RCVD",
+  "paymentId": "1234-wertiq-983",
+  "_links": {
+    "scaRedirect": {
+      "href": "https://www.testbank.com/asdfasdfasdf"
+    },
+    "self": {
+      "href": "/v1/payments/sepa-credit-transfers/1234-wertiq983"
+    },
+    "status": {
+      "href": "/v1/payments/sepa-credit-transfers/1234-wertiq983/status"
+    }
+  }
+}

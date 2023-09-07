@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/berlin-group/v1/accounts/2/transactions",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "booked"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "Consent-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Content-Type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "X-Request-ID": "94683c9e-1160-4bf8-9a18-5c0bda473fb1",
+      "account": {
+        "iban": "DE83100110012629586632"
+      },
+      "transactions": {
+        "booked": [],
+        "_links": {
+          "account": {
+            "href": "/v1/berlin-group/v1/accounts/2"
+          }
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

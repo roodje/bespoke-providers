@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/bb/gls5/oauth2/token/1.0",
+    "headers": {
+      "Accept": {
+        "matches": "application/json"
+      },
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF-8)?"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "scope=AIS%3Aa9271b81-3229-4a1f-bf9c-758f11c1f5af"
+      },
+      {
+        "contains": "client_id=2cffdb50-2323-4be7-a2a2-70a6610f8a06"
+      },
+      {
+        "contains": "code=02e31fc1-8320-4952-bba9-8ad99fc8094"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fyolt.com%2Fcallback"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "QVQTI4OWMtZGRlYy00ZDBmLTg3YTktzYxZjk0NGZm",
+      "expires_in": 123456,
+      "token_type": "Bearer",
+      "refresh_token": "UlQ6NNWMtNWQ3YS00MWUyLTg3NTk5NmUxZDkwNTll"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+

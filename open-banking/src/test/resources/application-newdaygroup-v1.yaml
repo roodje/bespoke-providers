@@ -1,0 +1,42 @@
+lovebird:
+  newdaygroup:
+
+    amazoncreditcard:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/identity/v1.0/amazon/connect/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/identity/v1.0/amazon/connect/authorize
+    aquacreditcard:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/identity/v1.0/aqua/connect/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/identity/v1.0/aqua/connect/authorize
+    argos:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/identity/v1.0/argos/connect/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/identity/v1.0/argos/connect/authorize
+    debenhams:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/identity/v1.0/debenhams/connect/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/identity/v1.0/debenhams/connect/authorize
+    houseoffaser:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/identity/v1.0/houseoffaser/connect/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/identity/v1.0/houseoffaser/connect/authorize
+    marbles:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/identity/v1.0/marbles/connect/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/identity/v1.0/marbles/connect/authorize
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

@@ -1,0 +1,78 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/ACCOUNTS_API/v1/2002222222100/transactions?dateFrom=2022-01-01",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer access_token"
+      },
+      "Consent-ID": {
+        "matches": "VALID_CONSENT_ID"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "RO21BREL2222222222220100"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "FT20155HG4CR1",
+            "transactionAmount": {
+              "currency": "RON",
+              "amount": 50001.00
+            },
+            "bookingDate": "2020-06-01",
+            "valueDate": "2020-06-02",
+            "registerDate": "2020-07-28T10:54:01Z",
+            "remittanceInformationUnstructured": "11 from: a",
+            "debtorName": "a",
+            "debtorAccount": {
+              "resourceId": "2002107930101",
+              "iban": "RO60BREL0002002107930101"
+            },
+            "paymentId": "CC190528-A866-42B1-AD80-279B3E332E4A",
+            "transactionType": {
+              "id": 213,
+              "code": "ACLC",
+              "name": "ALTE PLATI LOCALE"
+            },
+            "theirReference": "1"
+          },
+          {
+            "transactionId": "FT20155HG4CR2",
+            "transactionAmount": {
+              "currency": "RON",
+              "amount": 50002.00
+            },
+            "bookingDate": "2020-06-02",
+            "valueDate": "2020-06-03",
+            "registerDate": "2020-07-28T10:54:02Z",
+            "remittanceInformationUnstructured": "12 from: a",
+            "debtorName": "a",
+            "debtorAccount": {
+              "resourceId": "2002107930102",
+              "iban": "RO60BREL0002002107930102"
+            },
+            "paymentId": "CC190528-A866-42B1-AD80-279B3E332E4A2",
+            "transactionType": {
+              "id": 213,
+              "code": "ACLC",
+              "name": "ALTE PLATI LOCALE"
+            },
+            "theirReference": "1"
+          }
+        ]
+      }
+    }
+  }
+}

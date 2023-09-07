@@ -1,0 +1,168 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/user/1/monetary-account?count=200",
+    "headers": {}
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Response": [
+        {
+          "MonetaryAccountExternal": {
+            "id": 4242569,
+            "created": "2022-03-16 06:12:22.337322",
+            "updated": "2022-03-16 06:12:24.037055",
+            "alias": [
+              {
+                "type": null,
+                "value": null,
+                "name": null
+              },
+              {
+                "type": null,
+                "value": null,
+                "name": null,
+                "routing_code": null,
+                "routing_code_type": null
+              }
+            ],
+            "avatar": {
+              "uuid": null,
+              "image": [
+                {
+                  "attachment_public_uuid": null,
+                  "height": null,
+                  "width": null,
+                  "content_type": null,
+                  "urls": [
+                    {
+                      "type": null,
+                      "url": null
+                    }
+                  ]
+                }
+              ],
+              "anchor_uuid": null,
+              "style": null
+            },
+            "balance": {
+              "currency": null,
+              "value": null
+            },
+            "country": null,
+            "currency": null,
+            "display_name": null,
+            "daily_limit": {
+              "currency": null,
+              "value": null
+            },
+            "description": null,
+            "public_uuid": null,
+            "status": null,
+            "sub_status": null,
+            "timezone": null,
+            "user_id": null,
+            "monetary_account_profile": null,
+            "setting": {
+              "color": null,
+              "icon": null,
+              "default_avatar_status": null,
+              "restriction_chat": null,
+              "sdd_expiration_action": null
+            },
+            "connected_cards": [],
+            "all_auto_save_id": [],
+            "total_request_pending": {
+              "currency": null,
+              "value": null
+            }
+          }
+        },
+        {
+          "MonetaryAccountBank": {
+            "id": 4957,
+            "created": "2018-09-05 12:33:43.295239",
+            "updated": "2018-09-05 12:33:43.295239",
+            "alias": [
+              {
+                "type": "PHONE_NUMBER",
+                "value": "+31675263242",
+                "name": "+31675263242"
+              },
+              {
+                "type": "EMAIL",
+                "value": "joeri.lawrence-storm@bunq.bar",
+                "name": "joeri.lawrence-storm@bunq.bar"
+              },
+              {
+                "type": "IBAN",
+                "value": "NL94BUNQ9900054180",
+                "name": "Joeri Lawrence-Storm"
+              }
+            ],
+            "avatar": {
+              "uuid": "3d693dc4-dcfc-46aa-bf7f-4c51f046f09f",
+              "image": [
+                {
+                  "attachment_public_uuid": "27e5cf04-9050-4afb-82bd-d3f270630b2c",
+                  "height": 1024,
+                  "width": 1024,
+                  "content_type": "image\/png"
+                }
+              ],
+              "anchor_uuid": "333cedd2-376a-46ef-b072-d3543189272b"
+            },
+            "balance": {
+              "currency": "EUR",
+              "value": "0.00"
+            },
+            "country": "NL",
+            "currency": "EUR",
+            "daily_limit": {
+              "currency": "EUR",
+              "value": "1000.00"
+            },
+            "daily_spent": {
+              "currency": "EUR",
+              "value": "0.00"
+            },
+            "description": "bunq account",
+            "public_uuid": "333cedd2-376a-46ef-b072-d3543189272b",
+            "status": "ACTIVE",
+            "sub_status": "NONE",
+            "timezone": "europe\/amsterdam",
+            "user_id": 2883,
+            "monetary_account_profile": {
+              "profile_fill": null,
+              "profile_drain": null,
+              "profile_action_required": "NO_ACTION_NEEDED",
+              "profile_amount_required": {
+                "currency": "EUR",
+                "value": "0.00"
+              }
+            },
+            "notification_filters": [],
+            "setting": {
+              "color": "#54C7FC",
+              "default_avatar_status": "AVATAR_DEFAULT",
+              "restriction_chat": "ALLOW_INCOMING"
+            },
+            "overdraft_limit": {
+              "currency": "EUR",
+              "value": "0.00"
+            }
+          }
+        }
+      ],
+      "Pagination": {
+        "future_url": null,
+        "newer_url": null,
+        "older_url": null
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

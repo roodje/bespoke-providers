@@ -1,0 +1,61 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6l/balances",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 1mH7BsLRbRcGprPlzOUbdaMYiWP"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6l",
+            "Amount": {
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "DateTime": "2019-08-20T12:13:57+00:00",
+            "Type": "InterimBooked"
+          },
+          {
+            "AccountId": "8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6l",
+            "Amount": {
+              "Amount": "9.00"
+            },
+            "CreditDebitIndicator": "Credit",
+            "CreditLine": [
+              {
+                "Amount": {
+                  "Amount": "0.00",
+                  "Currency": "GBP"
+                },
+                "Included": true,
+                "Type": "Temporary"
+              }
+            ],
+            "DateTime": "2019-08-20T12:13:57+00:00",
+            "Type": "InterimAvailable"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.1/aisp/accounts/8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6l/balances"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

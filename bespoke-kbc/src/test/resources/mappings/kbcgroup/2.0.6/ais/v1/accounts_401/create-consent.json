@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/psd2/v2/consents",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "TPP-Redirect-URI": {
+        "equalTo": "https://yolt.com/callback-acc"
+      },
+      "PSU-IP-Address": {
+        "matches": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "{\"access\":{\"balances\":[{\"iban\":\"BE16690375703426\"}],\"transactions\":[{\"iban\":\"BE16690375703426\"}]}"
+      },
+      {
+        "contains": "\"recurringIndicator\":true"
+      },
+      {
+        "contains": "validUntil\":\""
+      },
+      {
+        "contains": "\"frequencyPerDay\":4"
+      },
+      {
+        "contains": "\"combinedServiceIndicator\":false"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "consentStatus": "received",
+      "consentId": "test-consent-id",
+      "_links": {}
+    }
+  }
+}

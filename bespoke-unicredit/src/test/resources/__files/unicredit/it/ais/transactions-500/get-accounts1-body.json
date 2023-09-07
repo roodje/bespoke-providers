@@ -1,0 +1,18 @@
+{
+  "accounts": [
+    {
+      "resourceId": "123",
+      "iban": "DE2310010010123456789",
+      "currency": "EUR",
+      "cashAccountType": "CACC",
+      "bic": "BPKOPLPW",
+      "name": "Account-123",
+      "balance": [],
+      "_links": {
+        "next": {
+          "href": "/v1/accounts/next"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+yolt:
+  commons:
+    disableMigrationHelpers: false

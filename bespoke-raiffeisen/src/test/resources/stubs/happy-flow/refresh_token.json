@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/aisp/oauth2/token",
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=test-refresh-token"
+      }
+    ],
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF-8)?"
+      }
+    },
+    "basicAuthCredentials": {
+      "username": "22222222-2222-2222-2222-222222222222",
+      "password": "clientSecret"
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "token_type": "Bearer",
+      "access_token": "new_refreshed_access_token",
+      "expires_in": 100,
+      "consented_on": 22585362,
+      "scope": "nujapewuh",
+      "refresh_token": "new_refreshed_refresh_token",
+      "refresh_token_expires_in": 39780285
+    },
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    }
+  }
+}

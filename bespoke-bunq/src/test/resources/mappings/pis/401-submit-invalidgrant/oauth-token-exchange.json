@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/token?grant_type=authorization_code&code=someCode&redirect_uri=https://www.yolt.com/callback&client_id=aabb&client_secret=bbaa",
+    "headers": {}
+  },
+  "response": {
+    "status": 401,
+    "jsonBody": {
+      "error": "invalid_grant",
+      "error_description": "The authorization code is invalid or expired."
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

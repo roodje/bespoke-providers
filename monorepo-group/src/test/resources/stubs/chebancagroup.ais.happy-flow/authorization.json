@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/auth/oauth/v2/authorize",
+    "queryParameters": {
+      "response_type": {
+        "equalTo": "code"
+      },
+      "client_id": {
+        "equalTo": "client123"
+      },
+      "state": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "redirect_uri": {
+        "equalTo": "https://yolt.com/callback"
+      }
+    },
+    "headers": {
+      "TPP-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Signature": {
+        "equalTo": "keyId=\"YOLT_APP\",algorithm=\"rsa-sha256\",headers=\"(request-target) tpp-request-id date\",signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "Date": {
+        "matches": "^[A-Za-z]{3}, [0-9]{1,2} [A-Za-z]{3} [0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (GMT|\\+[0-9]{4})"
+      },
+      "Host": {
+        "matches": ".*"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    }
+  },
+  "response": {
+    "status": 302,
+    "headers": {
+      "Server": "Apache-Coyote/1.1",
+      "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS,HEAD",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Strict-Transport-Security": "max-age=16070400; includeSubDomains",
+      "X-Frame-Options": "Deny",
+      "Location": "https://clienti.chebanca.it/auth/oauth/v2/authorize/login?action=display&sessionID=session123&sessionData=sessionData123",
+      "cb-apitrack-id": "5478152593",
+      "Content-Type": "text/plain",
+      "Content-Length": "0",
+      "Date": "Tue, 12 Feb 2019 14:53:35 GMT"
+    }
+  }
+}

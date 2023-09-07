@@ -1,0 +1,24 @@
+{
+  "request": {
+    "url": "/v1/accounts/next",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "consentId"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "192.160.1.2"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "unicredit/it/ais/transactions-500/get-accounts2-body.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

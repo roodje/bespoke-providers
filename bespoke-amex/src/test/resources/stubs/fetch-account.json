@@ -1,0 +1,69 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/servicing/v1/member/accounts",
+    "headers": {
+      "Authorization": {
+        "matches": "MAC.id=\"9shWQjwZ0jRPIN1T2NrnQYw\",ts=\"[0-9]+\",nonce=\".+:AMEX\",mac=\".+\""
+      },
+      "x-amex-api-key": {
+        "matches": "THE-CLIENT-ID"
+      },
+      "x-amex-request-id": {
+        "matches": "[0-9a-z]{32}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-amex-request-id": "9shWQjwZ0jRPIN1T2NrnQYw"
+    },
+    "jsonBody": {
+      "identifiers": {
+        "display_account_number": "XXXX-XXXXXX-81004",
+        "is_basic": true
+      },
+      "holder": {
+        "profile": {
+          "title_name": "MR",
+          "first_name": "Nigel",
+          "last_name": "Smythe",
+          "embossed_name": "Nigel Smythe"
+        },
+        "localization_preferences": {
+          "localization_id": "nl-NL-revolve-estmt",
+          "home_country_locale": "nl-NL",
+          "currency_locale": "nl-NL",
+          "date_locale": "nl-NL",
+          "geo_country_locale": "nl-NL"
+        }
+      },
+      "product": {
+        "digital_info": {
+          "product_desc": "Product description",
+          "digital_asset_url": "https://d3live.americanexpress.com/Internet/CardArt/JAPA/au-cardasset-config/images/DAU000000000.gif"
+        },
+        "account_types": {
+          "plastic_types": [
+            "Platinum",
+            "AffinityCard"
+          ],
+          "line_of_business_type": "ConsumerCard",
+          "payment_type": "Revolve"
+        },
+        "account_eligibilities": [
+          "EStatementEligible"
+        ],
+        "account_features": {},
+        "line_of_business": {}
+      },
+      "status": {
+        "account_status": [
+          "Active"
+        ]
+      }
+    }
+  }
+}

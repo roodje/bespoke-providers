@@ -1,0 +1,678 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/v1/accounts/NL12ABNA9999876523/transactions",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer pLO93fAqqk4YxwzfjB4ziiD2EM6m"
+      },
+      "API-Key": {
+        "equalTo": "7zacIF8Cu5o3XF4gUll4sRGuI2gDYiCA"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Date": "Mon, 19 Aug 2019 08: 53: 32 GMT",
+      "Server": "nginx",
+      "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+      "Content-Type": "application/json;charset=UTF-8",
+      "X-Frame-Options": "DENY",
+      "X-XSS-Protection": "1;mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Connection": "keep-alive",
+      "Transfer-Encoding": "chunked",
+      "Trace-Id": "a2ec666a-69d0-4d46-9c9a-a66a4a7aa4c8"
+    },
+    "jsonBody": {
+      "accountNumber": "NL12ABNA9999876523",
+      "nextPageKey": "2019-08-06-22:42:51:900",
+      "transactions": [
+        {
+          "mutationCode": "654",
+          "descriptionLines": [
+            "SEPA Overboeking",
+            "IBAN: DE11140499990008401194"
+          ],
+          "transactionTimestamp":"2019-08-20-04:16:37.410",
+          "bookDate": "2019-08-20",
+          "balanceAfterMutation": 35289.28,
+          "counterPartyAccountNumber": "DE11140499990008401194",
+          "counterPartyName": "Opdrachtgever 168",
+          "amount": 2468.04,
+          "currency": "EUR",
+          "transactionId": "9855H1218554877S0AB"
+        },
+        {
+          "mutationCode": "654",
+          "descriptionLines": [
+            "SEPA Overboeking",
+            "IBAN: NL91ABNA4966693802",
+            "BIC: INGBNL2A",
+            "Naam: Nederlandse Loterij Organi",
+            "satie B.V.",
+            "Omschrijving: Gefeliciteerd, Gew",
+            "onnen met Staatsloterij, Trekkin",
+            "g 10-09-2019, 50946165.12345",
+            "Kenmerk: 50946165.12345"
+          ],
+          "transactionTimestamp":"2019-09-13-04:16:37.410",
+          "bookDate": "2019-09-13",
+          "balanceAfterMutation": 5.6,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "Nederlandse Loterij Orga",
+          "amount": 7.5,
+          "currency": "EUR",
+          "transactionId": "9256H1700956872S0AQ"
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:5GYV99   12.09.19/16.17",
+            "Deli Company BV AMSTERDA,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-12-04:16:37.410",
+          "bookDate": "2019-09-12",
+          "balanceAfterMutation": -1.9,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -5.55,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:G52G89   12.09.19/11.44",
+            "Gardencafe ING 1460 AMST,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-12-04:16:37.410",
+          "bookDate": "2019-09-12",
+          "balanceAfterMutation": 3.65,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -9.8,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:X93B8Y   11.09.19/15.12",
+            "127440 SON,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-11-04:16:37.410",
+          "bookDate": "2019-09-11",
+          "balanceAfterMutation": 13.45,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -1.6,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:35W4R8   11.09.19/13.39",
+            "Gardencafe ING 1460 AMST,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-11-04:16:37.410",
+          "bookDate": "2019-09-11",
+          "balanceAfterMutation": 15.05,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -3.86,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:G52G89   11.09.19/11.12",
+            "Gardencafe ING 1460 AMST,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-11-04:16:37.410",
+          "bookDate": "2019-09-11",
+          "balanceAfterMutation": 18.91,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -3.85,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:LTS88F   10.09.19/12.09",
+            "Gardencafe ING 1460 AMST,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-10-04:16:37.410",
+          "bookDate": "2019-09-10",
+          "balanceAfterMutation": 22.76,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -6.24,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:G52G89   10.09.19/11.03",
+            "Gardencafe ING 1460 AMST,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-10-04:16:37.410",
+          "bookDate": "2019-09-10",
+          "balanceAfterMutation": 29,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -5.95,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "944",
+          "descriptionLines": [
+            "SEPA iDEAL",
+            "IBAN: NL91ABNA4966693802",
+            "BIC: ABNANL2A",
+            "Naam: AAB RETAIL INZ TIKKIE",
+            "Omschrijving: 000128412345 00300",
+            "04380612345 Arjan NL85ABNA054538",
+            "1234",
+            "Kenmerk: 09-09-2019 11:00 003000",
+            "4380612345"
+          ],
+          "transactionTimestamp":"2019-09-09-04:16:37.410",
+          "bookDate": "2019-09-09",
+          "balanceAfterMutation": 34.95,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "AAB RETAIL INZ TIKKIE",
+          "amount": -11,
+          "currency": "EUR",
+          "transactionId": "3922000HV3J0DBJK0BI"
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:N8V36X   08.09.19/15.12",
+            "Albert Heijn 1449 SOEST ,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-09-04:16:37.410",
+          "bookDate": "2019-09-09",
+          "balanceAfterMutation": 45.95,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -18.97,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:8RG0B0   07.09.19/15.58",
+            "Thuishaven Events AMSTER,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-09-04:16:37.410",
+          "bookDate": "2019-09-09",
+          "balanceAfterMutation": 64.92,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -195,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:EP016084 07.09.19/15.55",
+            "Lockerboys B.V. Nederlan,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-09-04:16:37.410",
+          "bookDate": "2019-09-09",
+          "balanceAfterMutation": 259.92,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -11.25,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:0N0SGM   07.09.19/13.25",
+            "Vishandel Tol/deGeus AMS,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-09-04:16:37.410",
+          "bookDate": "2019-09-09",
+          "balanceAfterMutation": 271.17,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -13.4,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "247",
+          "descriptionLines": [
+            "SEPA Incasso algemeen doorlopend",
+            "Incassant: NL91ZZZ110231360000",
+            "Naam: High Five Health Promoti",
+            "Machtiging: 62099061-1",
+            "IBAN: NL91ABNA4966693802",
+            "Kenmerk: 74112345"
+          ],
+          "transactionTimestamp":"2019-09-06-04:16:37.410",
+          "bookDate": "2019-09-06",
+          "balanceAfterMutation": 284.57,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "High Five Health Promoti",
+          "amount": -18,
+          "currency": "EUR",
+          "transactionId": "9248G4337680615S0AD"
+        },
+        {
+          "mutationCode": "247",
+          "descriptionLines": [
+            "SEPA Incasso algemeen doorlopend",
+            "Incassant: NL40ZZZ593954350001",
+            "Naam: AllSecur",
+            "Machtiging: ALL0011359330.01",
+            "Omschrijving: Kenmerk: 900000003",
+            "0331338 / Periode: 2019-09-04 -",
+            "2019-10-04 / NL83ABNA0532812345",
+            "IBAN: NL91ABNA4966693802",
+            "Kenmerk: 3026.9412345"
+          ],
+          "transactionTimestamp":"2019-09-06-04:16:37.410",
+          "bookDate": "2019-09-06",
+          "balanceAfterMutation": 302.57,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "AllSecur",
+          "amount": -31.82,
+          "currency": "EUR",
+          "transactionId": "9247T4346465487S0AD"
+        },
+        {
+          "mutationCode": "658",
+          "descriptionLines": [
+            "SEPA Overboeking",
+            "IBAN: NL91ABNA4966693802",
+            "BIC: RABONL2U",
+            "Naam: Jansen Pietersen",
+            "Omschrijving: Kaartjes Elrow"
+          ],
+          "transactionTimestamp":"2019-09-05-04:16:37.410",
+          "bookDate": "2019-09-05",
+          "balanceAfterMutation": 334.39,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "Jansen Pietersen",
+          "amount": -72,
+          "currency": "EUR",
+          "transactionId": "9248M1307589532S0WP"
+        },
+        {
+          "mutationCode": "658",
+          "descriptionLines": [
+            "SEPA Overboeking",
+            "IBAN: NL91ABNA4966693802",
+            "BIC: INGBNL2A",
+            "Naam: Hr PH de Vries, Hr M Jansen",
+            "Omschrijving: Correctie"
+          ],
+          "transactionTimestamp":"2019-09-05-04:16:37.410",
+          "bookDate": "2019-09-05",
+          "balanceAfterMutation": 406.39,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "Hr PH de Vries, Hr M Jansen",
+          "amount": -49.16,
+          "currency": "EUR",
+          "transactionId": "9248M1022829325S0WP"
+        },
+        {
+          "mutationCode": "654",
+          "descriptionLines": [
+            "SEPA Overboeking",
+            "IBAN: NL91ABNA4966693802",
+            "BIC: SXPYDEHH",
+            "Naam: Stripe Payments UK Ltd",
+            "Omschrijving: TicketSwap O3W4W3",
+            "Kenmerk: NOTPROVIDED"
+          ],
+          "transactionTimestamp":"2019-09-05-04:16:37.410",
+          "bookDate": "2019-09-05",
+          "balanceAfterMutation": 455.55,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "Stripe Payments UK Ltd",
+          "amount": 38,
+          "currency": "EUR",
+          "transactionId": "9248L5416414918S0AQ"
+        },
+        {
+          "mutationCode": "654",
+          "descriptionLines": [
+            "SEPA Overboeking",
+            "IBAN: NL91ABNA4966693802",
+            "BIC: SXPYDEHH",
+            "Naam: Stripe Payments UK Ltd",
+            "Omschrijving: TicketSwap F1X1J8",
+            "Kenmerk: NOTPROVIDED"
+          ],
+          "transactionTimestamp":"2019-09-05-04:16:37.410",
+          "bookDate": "2019-09-05",
+          "balanceAfterMutation": 417.55,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "Stripe Payments UK Ltd",
+          "amount": 38,
+          "currency": "EUR",
+          "transactionId": "9248L5416517034S0AQ"
+        },
+        {
+          "mutationCode": "944",
+          "descriptionLines": [
+            "SEPA iDEAL",
+            "IBAN: NL91ABNA4966693802",
+            "BIC: ABNANL2A",
+            "Naam: AAB RETAIL INZ TIKKIE",
+            "Omschrijving: 000127409216 00300",
+            "04368749644 Arjan NL85ABNA054538",
+            "1234",
+            "Kenmerk: 05-09-2019 07:43 003000",
+            "4368749644"
+          ],
+          "transactionTimestamp":"2019-09-05-04:16:37.410",
+          "bookDate": "2019-09-05",
+          "balanceAfterMutation": 379.55,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "AAB RETAIL INZ TIKKIE",
+          "amount": -87,
+          "currency": "EUR",
+          "transactionId": "3922000HV3IOG2FG0BI"
+        },
+        {
+          "mutationCode": "654",
+          "descriptionLines": [
+            "SEPA Overboeking",
+            "IBAN: NL91ABNA4966693802",
+            "BIC: INGBNL2A",
+            "Naam: Hr PH de Vries, Hr M Jansen-Jans",
+            "zoon",
+            "Omschrijving: Voorgeschoten bran",
+            "dstof 31-8",
+            "Kenmerk: NOTPROVIDED"
+          ],
+          "transactionTimestamp":"2019-09-05-04:16:37.410",
+          "bookDate": "2019-09-05",
+          "balanceAfterMutation": 466.55,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "Hr PH de Vries, Hr M Jansen",
+          "amount": 49.16,
+          "currency": "EUR",
+          "transactionId": "9247V3504226125S0AC"
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:G52G89   04.09.19/14.11",
+            "Gardencafe ING 1460 AMST,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-04-04:16:37.410",
+          "bookDate": "2019-09-04",
+          "balanceAfterMutation": 417.39,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -4.4,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:G52G89   03.09.19/11.50",
+            "Gardencafe ING 1460 AMST,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-03-04:16:37.410",
+          "bookDate": "2019-09-03",
+          "balanceAfterMutation": 421.79,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -5.95,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "593",
+          "descriptionLines": [
+            "RENTEAFSLUITING PER 31.08",
+            "DEBETRENTE                 0,33D"
+          ],
+          "transactionTimestamp":"2019-09-03-04:16:37.410",
+          "bookDate": "2019-09-03",
+          "balanceAfterMutation": 427.74,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -0.33,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "909",
+          "descriptionLines": [
+            "Maandpremie september 2019      ",
+            "van verzekering 532812345"
+          ],
+          "transactionTimestamp":"2019-09-03-04:16:37.410",
+          "bookDate": "2019-09-03",
+          "balanceAfterMutation": 428.07,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -12.14,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:G52G89   02.09.19/11.19",
+            "Gardencafe ING 1460 AMST,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-02-04:16:37.410",
+          "bookDate": "2019-09-02",
+          "balanceAfterMutation": 440.21,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -5.95,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "247",
+          "descriptionLines": [
+            "SEPA Incasso algemeen doorlopend",
+            "Incassant: NL81ZZZ241682080000",
+            "Naam: D.S.W. Zorgverzekeraar",
+            "Machtiging: 605525196171228",
+            "Omschrijving: Kenmerk: 920812345",
+            "0200001 / Omschrijving: Premie /",
+            " september 2019",
+            "IBAN: NL91ABNA4966693802",
+            "Kenmerk: f8b41510ef3c4700a312345"
+          ],
+          "transactionTimestamp":"2019-09-02-04:16:37.410",
+          "bookDate": "2019-09-02",
+          "balanceAfterMutation": 446.16,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "D.S.W. Zorgverzekeraar",
+          "amount": -148,
+          "currency": "EUR",
+          "transactionId": "9242G4856694019S0AD"
+        },
+        {
+          "mutationCode": "247",
+          "descriptionLines": [
+            "SEPA Incasso algemeen doorlopend",
+            "Incassant: NL50ZZZ537595750000",
+            "Naam: PTC B.V.",
+            "Machtiging: 100004090",
+            "Omschrijving: Reebok Crossfit 02",
+            "0 Membership     Membership RCF0",
+            "20",
+            "IBAN: NL91ABNA4966693802",
+            "Kenmerk: EI 2019-08-21 12:40:01/"
+          ],
+          "transactionTimestamp":"2019-09-02-04:16:37.410",
+          "bookDate": "2019-09-02",
+          "balanceAfterMutation": 594.16,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "PTC B.V.",
+          "amount": -70,
+          "currency": "EUR",
+          "transactionId": "9242G4927201074S0AD"
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:N599G0   01.09.19/11.08",
+            "SHELL HOGE KWEL WIERINGE,PAS321"
+          ],
+          "transactionTimestamp":"2019-09-02-04:16:37.410",
+          "bookDate": "2019-09-02",
+          "balanceAfterMutation": 664.16,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -21,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "944",
+          "descriptionLines": [
+            "SEPA iDEAL",
+            "IBAN: NL91ABNA4966693802",
+            "BIC: ABNANL2A",
+            "Naam: AAB RETAIL INZ TIKKIE",
+            "Omschrijving: 000126244882 00300",
+            "04355488190 Humberto NL21ABNA044",
+            "0814839",
+            "Kenmerk: 31-08-2019 14:56 003000",
+            "4355412345"
+          ],
+          "transactionTimestamp":"2019-09-02-04:16:37.410",
+          "bookDate": "2019-09-02",
+          "balanceAfterMutation": 685.16,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "AAB RETAIL INZ TIKKIE",
+          "amount": -8,
+          "currency": "EUR",
+          "transactionId": "3922000HV3IBAGOU0BI"
+        },
+        {
+          "mutationCode": "123",
+          "descriptionLines": [
+            "SEPA iDEAL",
+            "IBAN: NL91ABNA4966693802",
+            "BIC: ABNANL2A",
+            "Naam: AAB RETAIL INZ TIKKIE"
+          ],
+          "transactionTimestamp":"2019-09-02-04:16:37.410",
+          "bookDate": "2019-09-02",
+          "balanceAfterMutation": 123.123,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "AAB RETAIL INZ TIKKIE",
+          "amount": -123.123,
+          "currency": "EUR",
+          "transactionId": "3922000HV3IBAGOU0BI"
+        },
+        {
+          "mutationCode": "658",
+          "descriptionLines": [
+            "SEPA Overboeking",
+            "IBAN: NL91ABNA4966693802",
+            "BIC: INGBNL2A",
+            "Omschrijving: Correctie"
+          ],
+          "transactionTimestamp":"2019-09-05-04:16:37.410",
+          "bookDate": "2019-09-05",
+          "balanceAfterMutation": 406.39,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "Has counter party name, but no Naam: description line",
+          "amount": -49.16,
+          "currency": "EUR",
+          "transactionId": "9248M1022829325S0WP"
+        },
+        {
+          "mutationCode": "658",
+          "descriptionLines": [],
+          "transactionTimestamp":"2019-09-05-04:16:37.410",
+          "bookDate": "2019-09-05",
+          "balanceAfterMutation": 406.39,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "Zero description lines",
+          "amount": -49.16,
+          "currency": "EUR",
+          "transactionId": "9248M1022829325S0WP"
+        },
+        {
+          "mutationCode": "658",
+          "descriptionLines": null,
+          "transactionTimestamp":"2019-09-05-04:16:37.410",
+          "bookDate": "2019-09-05",
+          "balanceAfterMutation": 406.39,
+          "counterPartyAccountNumber": "NL91ABNA4966693802",
+          "counterPartyName": "Null description lines",
+          "amount": -49.16,
+          "currency": "EUR",
+          "transactionId": "9248M1022829325S0WP"
+        },
+        {
+          "mutationCode": "426",
+          "descriptionLines": [
+            "BEA   NR:G52G89   02.09.19/11.19",
+            "Gardencaferegexttest ING 1460 AMST,PAS321 ABCD"
+          ],
+          "transactionTimestamp":"2019-09-02-04:16:37.410",
+          "bookDate": "2019-09-02",
+          "balanceAfterMutation": 440.21,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -5.95,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "369",
+          "descriptionLines": [
+            "BEA   NR:12345 21.09.19/16.14",
+            "Blablabla,PAS174",
+            "Land: DE"
+          ],
+          "transactionTimestamp":"2019-09-23-04:16:37.410",
+          "bookDate": "2019-09-23",
+          "balanceAfterMutation": 2213.78,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -47.5,
+          "currency": "EUR",
+          "transactionId": ""
+        },
+        {
+          "mutationCode": "369",
+          "descriptionLines": [
+            "BEA   NR:12345 21.09.19/09.53",
+            "Mr ABC anonymous,PAS174",
+            "Land: LU"
+          ],
+          "transactionTimestamp":"2019-09-23-04:16:37.410",
+          "bookDate": "2019-09-23",
+          "balanceAfterMutation": 2261.28,
+          "counterPartyAccountNumber": "",
+          "counterPartyName": "",
+          "amount": -273.4,
+          "currency": "EUR",
+          "transactionId": ""
+        }
+      ]
+    }
+  }
+}

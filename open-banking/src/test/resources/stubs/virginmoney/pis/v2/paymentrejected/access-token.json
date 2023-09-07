@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth2/token",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "12345|67890"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback%2Faff01911-7e22-4b9e-8b86-eae36cf7b732"
+      },
+      {
+        "contains": "code=test-code"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "token_type": "bearer",
+      "access_token": "SOME_ACCESS_TOKEN",
+      "expires_in": 7776000,
+      "scope": "accounts",
+      "id_token": "SOME_TOKEN_ID",
+      "consented_on": 1591975774
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

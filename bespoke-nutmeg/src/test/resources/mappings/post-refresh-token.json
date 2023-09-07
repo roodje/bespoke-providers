@@ -1,0 +1,27 @@
+{
+  "request": {
+    "url": "/oauth/token",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "grant_type": "refresh_token",
+          "client_id": "clientId",
+          "refresh_token": "REFRESH_TOKEN"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "bodyFileName": "post-refresh-token.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

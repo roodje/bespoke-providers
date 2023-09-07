@@ -1,0 +1,58 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/aisp/account-access-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "fake-institution-id"
+      },
+      "Content-Type": {
+        "equalTo": "application/json;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"Data\":{\"Permissions\":[\"ReadAccountsDetail\",\"ReadBalances\",\"ReadProducts\",\"ReadTransactionsCredits\",\"ReadTransactionsDebits\",\"ReadTransactionsDetail\"]},\"Risk\":{}}"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "7ce38ef1-1433-456a-b06c-93f7fe2badc4",
+        "ConsentType": "Aac",
+        "Permissions": [
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadProducts",
+          "ReadTransactionsCredits",
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail"
+        ],
+        "CreationDateTime": "2019-10-04T11:54:22+00:00",
+        "StatusUpdateDateTime": "2019-10-04T11:54:22+00:00",
+        "Status": "AwaitingAuthorisation"
+      },
+      "Risk": {},
+      "Links": {
+        "Self": "https://api.newdaycards.com/open-banking/v3.1/aisp/account-access-consents/7ce38ef1-1433-456a-b06c-93f7fe2badc4"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.2/register",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/jose"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalTo": "V2hhdCBoYXRoIGdvZCB3cm91Z2h0ID8=..QnkgR2VvcmdlLCBzaGUncyBnb3QgaXQhIEJ5IEdlb3JnZSBzaGUncyBnb3QgaXQhIE5vdyBvbmNlIGFnYWluLCB3aGVyZSBkb2VzIGl0IHJhaW4"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "client_id": "someClientId",
+      "client_secret": "someClientSecret",
+      "iss": "string",
+      "iat": "string",
+      "exp": "string",
+      "aud": "string",
+      "jti": "string",
+      "redirect_uris": [
+        "string"
+      ],
+      "tokenEndpointAuthMethod": "string",
+      "grant_types": [
+        "string"
+      ],
+      "responseTypes": [
+        "string"
+      ],
+      "software_id": "string",
+      "scope": "string",
+      "softwareStatement": "string",
+      "applicationType": "string",
+      "idTokenSignedResponseAlg": "string",
+      "requestObjectSigningAlg": "string",
+      "tokenEndpointAuthSigningAlg": "string"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

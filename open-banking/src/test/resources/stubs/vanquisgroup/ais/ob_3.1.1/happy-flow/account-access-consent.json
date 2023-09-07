@@ -1,0 +1,61 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/aisp/account-access-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Content-Type": {
+        "equalTo": "application/json;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"Data\":{\"Permissions\":[\"ReadAccountsDetail\",\"ReadBalances\",\"ReadTransactionsCredits\",\"ReadTransactionsDebits\",\"ReadTransactionsDetail\",\"ReadTransactionsBasic\",\"ReadAccountsBasic\",\"ReadOffers\",\"ReadStatementsBasic\",\"ReadStatementsDetail\"]},\"Risk\":{}}"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "50ca5ed5-317c-451c-8438-3b3fb91466e1",
+        "Status": "AwaitingAuthorisation",
+        "CreationDateTime": "2018-07-26T15:11:29+00:00",
+        "Permissions": [
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadTransactionsCredits",
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail",
+          "ReadTransactionsBasic",
+          "ReadAccountsBasic",
+          "ReadOffers",
+          "ReadStatementsBasic",
+          "ReadStatementsDetail"
+
+        ]
+      },
+      "Risk": {},
+      "Links": {
+        "Self": "/account-requests/50ca5ed5-317c-451c-8438-3b3fb91466e1"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

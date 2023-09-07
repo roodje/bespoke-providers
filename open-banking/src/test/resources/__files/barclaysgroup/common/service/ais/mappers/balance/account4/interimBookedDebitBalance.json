@@ -1,0 +1,19 @@
+{
+  "AccountId": "10000000000000000000",
+  "Amount": {
+    "Amount": "190.47",
+    "Currency": "GBP"
+  },
+  "CreditDebitIndicator": "Debit",
+  "CreditLine": [{
+    "Amount": {
+      "Amount": "6500.00",
+      "Currency": "GBP"
+    },
+    "Included": false,
+    "Type": "Credit"
+  }
+  ],
+  "DateTime": "2021-05-05T12:04:09Z",
+  "Type": "InterimBooked"
+}

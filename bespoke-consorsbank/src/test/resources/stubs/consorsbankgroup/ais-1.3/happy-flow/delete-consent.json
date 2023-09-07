@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/v1/consents/123",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "TEST_PSU_IP_ADDRESS"
+      }
+    }
+  },
+  "response": {
+    "status": 204
+  }
+}

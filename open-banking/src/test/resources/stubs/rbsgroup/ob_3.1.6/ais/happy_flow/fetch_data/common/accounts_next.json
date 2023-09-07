@@ -1,0 +1,68 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/next",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer test-accounts"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "1234",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Description": "test for V2",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "16004710001312",
+                "Name": "MOTEST-LBAAC2"
+              }
+            ]
+          },
+          {
+            "AccountId": "890_1",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard",
+            "Description": "string",
+            "Nickname": "Credit Card",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.PAN",
+                "Identification": "4929712289119828"
+              },
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB11BARC20038015831118"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "next"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

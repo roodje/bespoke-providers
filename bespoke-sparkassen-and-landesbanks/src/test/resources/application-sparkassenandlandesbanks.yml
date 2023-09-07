@@ -1,0 +1,19 @@
+lovebird:
+  sparkassen:
+    baseUrl: https://localhost:${wiremock.server.https-port}/
+    pagination-limit: 2000
+    departments:
+      - formValue: BERLINER_SPARKASSE
+        displayName: Berliner Sparkasse
+        bankCode: 10050000
+      - formValue: WEBERBANK
+        displayName: Weberbank
+        bankCode: 10120100
+  lbbw:
+    baseUrl: https://localhost:${wiremock.server.https-port}/
+    pagination-limit: 2000
+    bankCode: 33333333
+  nordlb:
+    baseUrl: https://localhost:${wiremock.server.https-port}/
+    pagination-limit: 2000
+    bankCode: 44444444

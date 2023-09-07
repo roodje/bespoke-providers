@@ -1,0 +1,73 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/aisp/account-access-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIWNndlNDJvVE1OWFMXM0tiUGVxQnZOVlIRUpaRVrRr8Fj_bo7uUM5QmE35jz2ouxm6aAdrypw4sB6GrzPgxJrZ_Eq-oqTjop74eOH3hJ79C9AxenrI4KoucKU7U9lPVor-cOwdjWf2xCr_y2kkIY4e0kgxffoSEA"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "6706f0a2-6ae7-46b3-8a12-815497b73c7a"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0016800001051XVBBZ"
+      },
+      "Content-Type": {
+        "contains": "application/json"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Permissions": [
+              "ReadAccountsDetail",
+              "ReadBalances",
+              "ReadDirectDebits",
+              "ReadProducts",
+              "ReadStandingOrdersDetail",
+              "ReadTransactionsCredits",
+              "ReadTransactionsDebits",
+              "ReadTransactionsDetail"
+            ]
+          },
+          "Risk": {}
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "50ca5ed5-317c-451c-8438-3b3fb91466e1",
+        "Status": "AwaitingAuthorisation",
+        "StatusUpdateDateTime": "2019-02-02T00:00:00+00:00",
+        "CreationDateTime": "2018-07-26T15:11:29+00:00",
+        "Permissions": [
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadDirectDebits",
+          "ReadStandingOrdersDetail",
+          "ReadTransactionsCredits",
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail",
+          "ReadScheduledPaymentsDetail"
+        ]
+      },
+      "Risk": {},
+      "Links": {
+        "Self": "/v3.1/aisp/account-access-consents/50ca5ed5-317c-451c-8438-3b3fb91466e1"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

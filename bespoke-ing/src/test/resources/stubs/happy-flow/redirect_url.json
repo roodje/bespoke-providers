@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/ing/authorization-server-url\\?scope=payment-accounts%3Abalances%3Aview%20payment-accounts%3Atransactions%3Aview&country_code=(.*)&redirect_uri=(.*)",
+    "headers": {
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "Authorization": {
+        "matches": "Bearer (.*)"
+      },
+      "Signature": {
+        "matches": "keyId=\"example_client_id\",algorithm=\"rsa-sha256\",headers=\"(.*)\",signature=\"(.*)\""
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "location": "http://localhost:8888/yoltbank/ing/granting/1234567/xx"
+    },
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8",
+      "Cache-Control": "no-store",
+      "Pragma": "no-cache"
+    }
+  }
+}

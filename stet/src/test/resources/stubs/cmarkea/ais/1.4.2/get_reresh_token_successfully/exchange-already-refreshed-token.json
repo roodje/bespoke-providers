@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/oauth-authorizationcode-psd2/token",
+    "headers": {
+      "Content-type": {
+        "contains": "application/x-www-form-urlencoded"
+      },
+      "Accept": {
+        "matches": "application/hal\\+json;charset=utf-8"
+      },
+      "Digest": {
+        "matches": "SHA-256=([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "Signature": {
+        "matches": "keyId=\"https://test.qseal.certificate.com/[a-zA-Z0-9:]{59}.pem\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) x-request-id digest\", signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=already-refreshed-token"
+      },
+      {
+        "contains": "client_id=some_client_id"
+      },
+      {
+        "contains": "scope=aisp"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/hal+json; charset=utf-8"
+    },
+    "jsonBody": {
+      "status": "400",
+      "path": "/oauth-authorizationcode-psd2/token",
+      "message": "Bad Request",
+      "error_code": "OAGA"
+    }
+  }
+}

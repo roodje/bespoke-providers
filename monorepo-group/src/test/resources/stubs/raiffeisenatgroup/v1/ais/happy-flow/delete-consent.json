@@ -1,0 +1,23 @@
+{
+  "request": {
+    "url": "/v1/consents/8edfea3a-a660-11eb-bcbc-0242ac130002",
+    "method": "DELETE",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-CLIENT-ACCESS-TOKEN"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      }
+    }
+  },
+  "response": {
+    "status": 204,
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

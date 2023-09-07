@@ -1,0 +1,67 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/10000000000001449160/standing-orders",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "d0a9b85f-9715-4d16-a33d-4323ceab5254"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0017440000hdQV5CCT"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "StandingOrder": [
+          {
+            "AccountId": "10000000000001449160",
+            "CreditorAccount": {
+              "Identification": "20269601871019",
+              "Name": "CLAIRE",
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber"
+            },
+            "FirstPaymentDateTime": "2019-09-16T00:00:00+01:00",
+            "Frequency": "IntrvlMnthDay:01:16",
+            "NextPaymentAmount": {
+              "Amount": "530.00",
+              "Currency": "GBP"
+            },
+            "NextPaymentDateTime": "2020-12-16T00:00:00Z",
+            "Reference": "",
+            "StandingOrderStatusCode": "Active"
+          },
+          {
+            "AccountId": "10000000000001449160",
+            "CreditorAccount": {
+              "Identification": "20300950593718",
+              "Name": "CLAIRE",
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber"
+            },
+            "FirstPaymentDateTime": "2020-09-15T00:00:00+01:00",
+            "Frequency": "IntrvlMnthDay:01:15",
+            "NextPaymentAmount": {
+              "Amount": "150.00",
+              "Currency": "GBP"
+            },
+            "NextPaymentDateTime": "2020-12-15T00:00:00Z",
+            "Reference": "",
+            "StandingOrderStatusCode": "Active"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://telesto.api.barclays/open-banking/v3.1/aisp/accounts/10000000000001449160/standing-orders"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

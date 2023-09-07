@@ -1,0 +1,84 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/10050000/v1/accounts?withBalance=true",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_ACCESS_TOKEN"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Consent-ID": {
+        "equalTo": "SOME_CONSENT_ID"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "3dc3d5b3-7023-4848-9853-f5400a64e80f",
+          "iban": "DE2310010010123456789",
+          "currency": "EUR",
+          "product": "Girokonto",
+          "balances": [
+            {
+              "balanceType": "closingBooked",
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": "500.00"
+              },
+              "referenceDate": "2020-10-25"
+            },
+            {
+              "balanceType": "interimAvailable",
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": "499.00"
+              },
+              "referenceDate": "2020-10-25"
+            }
+          ],
+          "_links": {
+            "balances": {
+              "href": "/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/balances"
+            },
+            "transactions": {
+              "href": "/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "3dc3d5b3-7023-4848-9853-f5400a64e81g",
+          "iban": "DE2310010010123456788",
+          "currency": "USD",
+          "product": "Fremdwährungskonto",
+          "name": "US Dollar Account",
+          "balances": [
+            {
+              "balanceType": "closingBooked",
+              "balanceAmount": {
+                "currency": "USD",
+                "amount": "0.00"
+              },
+              "referenceDate": "2020-10-26"
+            }
+          ],
+          "_links": {
+            "balances": {
+              "href": "/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e81g/balances"
+            }
+          }
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

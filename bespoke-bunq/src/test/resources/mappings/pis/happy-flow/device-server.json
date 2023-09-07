@@ -1,0 +1,50 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/device-server",
+    "headers": {
+      "Cache-Control": {
+        "equalTo": "no-cache"
+      },
+      "User-Agent": {
+        "equalTo": "yolt-user-agent"
+      },
+      "X-Bunq-Language": {
+        "equalTo": "en_US"
+      },
+      "X-Bunq-Language": {
+        "equalTo": "en_US"
+      },
+      "X-Bunq-Region": {
+        "equalTo": "nl_NL"
+      },
+      "X-Bunq-Client-Request-Id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "X-Bunq-Geolocation": {
+        "equalTo": "0 0 0 0 000"
+      },
+      "X-Bunq-Client-Authentication": {
+        "equalTo": "22df07d3afe4f7dc445f023413392e5329c59a4ea73847b3f043af4701251273"
+      },
+      "X-Bunq-Client-Signature": {
+        "matches": "^\\S+$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Response": [
+        {
+          "Id": {
+            "id": 2523
+          }
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

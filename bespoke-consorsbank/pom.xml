@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.yolt.providers</groupId>
+        <artifactId>providers-parent</artifactId>
+        <version>3.2.18</version>
+        <relativePath />
+    </parent>
+    <scm>
+        <connection>scm:git:https://git.yolt.io/providers/bespoke-consorsbank.git</connection>
+        <developerConnection>scm:git:https://git.yolt.io/providers/bespoke-consorsbank.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <repositories>
+        <repository>
+            <id>lovebird-aws</id>
+            <url>https://nexus.yolt.io/repository/public/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>lovebird-aws</id>
+            <url>https://nexus.yolt.io/repository/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <properties>
+        <build.number>${env.CI_PIPELINE_ID}</build.number>
+    </properties>
+    <groupId>com.yolt.providers.bespoke</groupId>
+    <artifactId>consorsbank</artifactId>
+    <version>3.0.14-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.yolt.providers</groupId>
+            <artifactId>providers-commons</artifactId>
+            <version>4.1.26</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yolt.providers</groupId>
+            <artifactId>providers-commons</artifactId>
+            <version>4.1.26</version>
+            <classifier>tests</classifier>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <generatorName>spring</generatorName>
+                    <generateApis>false</generateApis>
+                    <generateSupportingFiles>false</generateSupportingFiles>
+                    <configOptions>
+                        <java8>true</java8>
+                        <sourceFolder>swagger-generated</sourceFolder>
+                    </configOptions>
+                    <inputSpec />
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-consorsbankgroup</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/swagger/psd2-api-bnp-wagger-v1.3.6.yaml</inputSpec>
+                            <modelPackage>com.yolt.providers.consorsbankgroup.dto</modelPackage>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

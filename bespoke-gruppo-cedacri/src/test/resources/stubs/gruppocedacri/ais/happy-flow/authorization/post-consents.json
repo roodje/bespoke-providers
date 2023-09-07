@@ -1,0 +1,55 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/consents",
+    "headers": {
+      "x-request-id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "authorization": {
+        "equalTo": "Bearer o9xcq8V2zUg893gm6ROpO7XDUhaBkIOyilSHG0M11XCXFgjMPP7U6R"
+      },
+      "tpp-redirect-uri": {
+        "equalTo": "https://yolt.com/callback?state=d6290c4a-3ae9-415e-99cd-e572d0fca3f7"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.access[?(@.availableAccounts == 'allAccounts')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.recurringIndicator == true)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.combinedServiceIndicator == false)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.validUntil =~ /[0-9]{4}-[0-9]{2}-[0-9]{2}/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.frequencyPerDay == 4)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "_links": {
+        "scaRedirect": {
+          "href": "https://api.mediolanum.it:9090/consent/init?consent_id=8c929c62-53f3-4543-97c0-0aed02b1d9bc&d=eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiUlNBLU9BRVAtMjU2In0.A5WAzn0nw3g2t8yBD6k0_J9gwhhaOpJBVtm53TgWv4Goo1wkWoe4MWPlmzZeysle9sTiG3y3CbViuAqgpvH_pY-WKic2ZQgoTtJtgSexp3FN78FHrxuThrQDvzX8hC3Q2W4cJjL9n70rPwTycZaJI-GsHwGIN8Bi95AsgQk0lXMAgU2a-Zlb1lxTMHl_VXewppjhw_-Xe7jcn1V6cd3UHsfVj6oLXTM4FkhVItDO73ueFpdqWm8oTykrnCifhdt4mTGhgtSdBqDjJlyDHMzt7EtheVPXbPFcw84Y-ESXjSS1ubTZYxHNI87B0idEXXpZOIKghtN0GG4h5sjtAEO_cw.ZRkTBQ1u2GoIaWxIYiU-Bg.hKKNAvLi1_hWnCgXAsXoYGZrPpQaGw1bRPrQWMF9dXFJf_DO8cz-E3CejjqBZSkSDibT2kBfafZJkPONaPxmQTtTc6aUTfERxMqX-ImID57fOEZkiSoJz_n7ANg-tkx7BP13eW5nTyNAYryVyyaEoELwRBeTeuUbOpADsWuZV4cXXOKsdSfde0cphMj7euWtmaYFuthEzELuXAoGZDqqKu3ENhVotbzdH0n_vKUs35Y.BHls0M-oxoStLfFTPUb4lQ"
+        },
+        "scaStatus": {
+          "href": "https://api.mediolanum.it/psd2/v1.2/bg/06085/v1/consents/8c929c62-53f3-4543-97c0-0aed02b1d9bc/authorisations/e63cf977-77ac-462d-a8a1-761d64a9bda0"
+        }
+      },
+      "consentId": "8c929c62-53f3-4543-97c0-0aed02b1d9bc",
+      "consentStatus": "received"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

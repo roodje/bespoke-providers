@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback%2F68eef1a1-0b13-4d4b-9cc2-09a8b2604ca0"
+      },
+      {
+        "contains": "refresh_token=NfEtxxaLt1SavZW1s7thJ7iw0XZ"
+      },
+      {
+        "contains": "client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "2gdG4lTja4FDbPrPRY-UcUpeN5s",
+      "token_type": "Bearer",
+      "expires_in": 3599,
+      "refresh_token": "NfEtxxaLt1SavZW1s7thJ7iw0XZ",
+      "scope": "openid accounts",
+      "id_token": "eyJraWQiOiJleHRlcm5hbF7yIiwidHlwIjoiSldUIiwiYWrnIjoiUFMyNTYifQ.eyJhdF9oXXNoIjoibVZjc09GdEptTWQ4UjdOT0Y0dkxUUSIsImFjciI6InVybjpvcGVuYmFua2luZzpwc2QyOnNjYSIsImF1ZCI6IjQyZjU2YjZjLThlYjItNGNhMS1hZTdhLTdiMDVlYjMyMmQxMiIsInN1YiI6IjBjY2I3MGZjLWZlMGQtNDM1Yi1hNTMyLWNkNzIyNDliZmY5OCIsIm9wZW5iYW5raW5nX2ludGVudF9pZCI6IjBjY2I3MGZjLWZlMGQtNDM1Yi1hNTMyLWNkNzIyNDliZmY5OCIsImF1dGhfdGltZSI6MTYwNTA3ODY1NywiaXNzIjoiaHR0cHM6XC9cL2FwaS5vYi5oc2JjLmNvLnVrIiwiZXhwIjoxNjA1MTE5MzQyLCJpYXQiOjE2MDUxMTkwNDIsIm5vbmNlIjoiNTFmZmRmZmUtNTBiMy00ODQ0LWI1MTUtMDk4NmQ3YzE2MWY0In0.BpAHsNIt-JXCWxk_uWKr85PBBZm1LAvQYXsjYb6Nc7JElontG86-yYYBkllUJcKMYjyE8ayY6u_ZgFQDEJLJHtvMx9_UmOiTTi0pcm8h0vZunnplIcVzKMfJqH-vylRFf4AuhnNXzJzTBykrla0IitgZyt0RLq_d6qzV5eVfoTReo-zaeAD86KASnUR2FRsfak0fq8LcYh06BYp3AGXYnzTsSa5ySTRIHzK5BUHBBFErVGRdn4vI8M8wAlZxqmuK487Epc8FozwyFOJ_7C6FGngq5UD9V1X7tzLJyH4aEaKKef3cqMhb3Upppcfyu2TPBH-8iCmIevMt2Q_r1FIEUQ"
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "{{request.headers.x-fapi-interaction-id}}"
+    }
+  }
+}

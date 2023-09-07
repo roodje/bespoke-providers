@@ -1,0 +1,1370 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "<p><span class='font-weight-medium'>Account Financials European Union (EU)</span> provides customer-authorized, account-specific data for all American Express<sup>®</sup> proprietary Card products including Personal, Small Business and Corporate Cards for parties certified under the Payment Service Directive 2 (PSD2) legislation.<br /><br /><span class='font-weight-medium'>Available for:</span><br />Account Information Service Providers (AISPs) in Europe and the UK who have been authorised by their national competent authorities, and AISPs who have applied for such authorisation.<br /><br /><span class='font-weight-medium'>Jurisdictions:</span><br />American Express Customers in the UK and France.</p><h5 class='text-align-right'><a href='account-financials-eu.swg.v2.json' download>Download API Specification</a></h5>",
+    "version": "1.0.0",
+    "title": "Account Financials European Union (EU)",
+    "x-modified": "October 24, 2019"
+  },
+  "x-basePaths": [{
+    "basePath": "/servicing/v1"
+  }],
+  "x-security": {
+    "oneWayTLS_AppKey": false,
+    "oneWayTLS_HMAC": false,
+    "oAuth": false
+  },
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "paths": {
+    "/member/accounts": {
+      "get": {
+        "summary": "<p class='font-weight-medium'>Account</p>",
+        "operationId": "get_account",
+        "description": "<p>Returns the Card Member Account information for the requested Card/Account based on the secured input token.</p>",
+        "tags": [
+          "accounts"
+        ],
+        "parameters": [{
+          "$ref": "#/common-params/x-amex-api-key"
+        }, {
+          "$ref": "#/common-params/Authorization"
+        }, {
+          "$ref": "#/common-params/x-amex-request-id"
+        }, {
+          "name": "supplementary_account_filter",
+          "in": "query",
+          "description": "<p>By default, the response includes all the supplementary accounts. And if the value passed is <samp>exclude_supplementary_accounts</samp>, then the API excludes supplementary accounts in the response.</p>",
+          "required": false,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "<p>Successful response.</p>",
+            "schema": {
+              "$ref": "#/definitions/account"
+            },
+            "headers": {
+              "x-amex-request-id": {
+                "description": "<p>An echo of the <samp>x-amex-request-id</samp> passed in the header of the request.</p>",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "<p>Bad Request. Input validation failed. The following error codes are related to invalid authorization (access token validation).</p><table class='table-specification-description'><thead><tr><th>Code</th><th>Message</th></tr></thead><tbody><tr><td><samp>154000</samp></td><td>Request MAC is not matching with Generated MAC.</td></tr></tbody></table>",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "headers": {
+              "x-amex-request-id": {
+                "description": "An echo back of the x-amex-request-id passed in the header of the request.",
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/common-responses/401"
+          },
+          "404": {
+            "$ref": "#/common-responses/404"
+          },
+          "405": {
+            "$ref": "#/common-responses/405"
+          },
+          "429": {
+            "$ref": "#/common-responses/429"
+          },
+          "500": {
+            "$ref": "#/common-responses/500"
+          },
+          "502": {
+            "$ref": "#/common-responses/502"
+          },
+          "503": {
+            "$ref": "#/common-responses/503"
+          },
+          "504": {
+            "$ref": "#/common-responses/504"
+          }
+        },
+        "x-tryit": [{
+          "name": "Get Card Member Account information",
+          "requestHeaders": "GET /servicing/v1/member/accounts HTTP/1.1<br />Host: api2s.americanexpress.com<br />x-amex-api-key: acc1b6d2-f3d6-4e74-a855-595d46f29a3b<br />Authorization: MAC ID='9shWQjwZ0jRPIN1T2NrnQYw', ts='1485888999137', nonce='aeafc081-ffef-4c67-8abd-477b20fa45a9', mac='gVTI0lIHiKF9R9DMqIQyfJAkzlKRCQcYg4+a38QnHic='<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw<br />",
+          "responseHeaders": "HTTP/1.1 200 OK<br />Content-Type: application/json<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw",
+          "responseBody": {
+            "identifiers": {
+              "display_account_number": "XXXX-XXXXXX-81004",
+              "is_basic": true
+            },
+            "holder": {
+              "profile": {
+                "title_name": "MR",
+                "first_name": "Nigel",
+                "last_name": "Smythe",
+                "embossed_name": "Nigel Smythe"
+              },
+              "localization_preferences": {
+                "localization_id": "nl-NL-revolve-estmt",
+                "home_country_locale": "nl-NL",
+                "currency_locale": "nl-NL",
+                "date_locale": "nl-NL",
+                "geo_country_locale": "nl-NL"
+              }
+            },
+            "product": {
+              "digital_info": {
+                "digital_asset_url": "https://d3live.americanexpress.com/Internet/CardArt/JAPA/au-cardasset-config/images/DAU000000000.gif"
+              },
+              "account_types": {
+                "plastic_types": [
+                  "Platinum",
+                  "AffinityCard"
+                ],
+                "line_of_business_type": "ConsumerCard",
+                "payment_type": "Revolve"
+              },
+              "account_eligibilities": [
+                "EStatementEligible"
+              ],
+              "account_features": {},
+              "line_of_business": {}
+            },
+            "status": {
+              "account_status": [
+                "Active"
+              ]
+            }
+          },
+          "responseCode": "200",
+          "responseMessage": "OK"
+        }]
+      }
+    },
+    "/financials/statement_periods": {
+      "get": {
+        "summary": "<p class='font-weight-medium'>Statement periods</p>",
+        "description": "<p>Returns a list of all statement/billing periods online for any specific Card/Account, based on the secured input token.</p>",
+        "operationId": "statement_periods",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "financials"
+        ],
+        "parameters": [{
+          "$ref": "#/common-params/x-amex-api-key"
+        }, {
+          "$ref": "#/common-params/Authorization"
+        }, {
+          "$ref": "#/common-params/x-amex-request-id"
+        }],
+        "responses": {
+          "200": {
+            "description": "<p>Successful response.</p>",
+            "schema": {
+              "$ref": "#/definitions/StatementPeriods"
+            },
+            "headers": {
+              "x-amex-request-id": {
+                "description": "<p>An echo of the <samp>x-amex-request-id</samp> passed in the header of the request.</p>",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "<p>Bad Request. Input validation failed. The following error codes are related to invalid authorization (access token validation).</p><table class='table-specification-description'><thead><tr><th>Code</th><th>Message</th></tr></thead><tbody><tr><td><samp>154000</samp></td><td>Request MAC is not matching with Generated MAC.</td></tr></tbody></table>",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "headers": {
+              "x-amex-request-id": {
+                "description": "An echo back of the x-amex-request-id passed in the header of the request.",
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/common-responses/401"
+          },
+          "404": {
+            "$ref": "#/common-responses/404"
+          },
+          "405": {
+            "$ref": "#/common-responses/405"
+          },
+          "429": {
+            "$ref": "#/common-responses/429"
+          },
+          "500": {
+            "$ref": "#/common-responses/500"
+          },
+          "502": {
+            "$ref": "#/common-responses/502"
+          },
+          "503": {
+            "$ref": "#/common-responses/503"
+          },
+          "504": {
+            "$ref": "#/common-responses/504"
+          }
+        },
+        "x-tryit": [{
+          "name": "Get statement periods",
+          "requestHeaders": "GET /servicing/v1/financials/statement_periods HTTP/1.1<br />Host: api2s.americanexpress.com<br />x-amex-api-key: acc1b6d2-f3d6-4e74-a855-595d46f29a3b<br />Authorization: MAC ID='9shWQjwZ0jRPIN1T2NrnQYw', ts='1485888999137', nonce='aeafc081-ffef-4c67-8abd-477b20fa45a9', mac='gVTI0lIHiKF9R9DMqIQyfJAkzlKRCQcYg4+a38QnHic='<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw<br />",
+          "responseHeaders": "HTTP/1.1 200 OK<br />Content-Type: application/json<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw",
+          "responseBody": {
+            "statement_periods": [{
+              "start_date": "2017-03-02",
+              "end_date": "2017-02-03",
+              "index": 0,
+              "statement_available_indicator": false
+            }, {
+              "start_date": "2017-02-02",
+              "end_date": "2017-01-03",
+              "index": 1,
+              "statement_available_indicator": true
+            }, {
+              "start_date": "2017-01-02",
+              "end_date": "2016-12-03",
+              "index": 2,
+              "statement_available_indicator": true
+            }]
+          },
+          "responseCode": "200",
+          "responseMessage": "OK"
+        }]
+      }
+    },
+    "/financials/balances": {
+      "get": {
+        "summary": "<p class='font-weight-medium'>Statement balances</p>",
+        "operationId": "getBalances",
+        "description": "<p>Returns the balances information for the requested Card/Account based on the secured input token.</p>",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "tags": [
+          "financials"
+        ],
+        "parameters": [{
+          "$ref": "#/common-params/x-amex-api-key"
+        }, {
+          "$ref": "#/common-params/Authorization"
+        }, {
+          "$ref": "#/common-params/x-amex-request-id"
+        }, {
+          "name": "statement_end_date",
+          "in": "query",
+          "description": "<p>The statement end date for which the balances are requested. In case this is not passed then current balances will be returned by default. The input for this parameter can be determined from the <samp>statement_periods</samp> (<samp>end_date</samp>) API. The format is <samp>YYYY-MM-DD</samp>.</p>",
+          "required": false,
+          "type": "string",
+          "pattern": "^(&#92;&#92;d{4}-&#92;&#92;d{2}-&#92;&#92;d{2})$"
+        }],
+        "responses": {
+          "200": {
+            "description": "<p>Successful response.</p>",
+            "schema": {
+              "$ref": "#/definitions/Balance"
+            },
+            "headers": {
+              "x-amex-request-id": {
+                "description": "<p>An echo of the <samp>x-amex-request-id</samp> passed in the header of the request.</p>",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "<p>Bad Request. Input validation failed.<br/><samp>Access Token Validation Error Codes</samp></p><table class='table-specification-description'><thead><tr><th class='pad-3-r'>Code</th><th>Message</th></tr></thead><tbody><tr><td><samp>154000</samp></td><td>Request MAC is not matching with Generated MAC.</td></tr></tbody></table><p><samp>Data API Error Codes</samp></p><table class='table-specification-description'><thead><tr><th class='pad-3-r'>Code</th><th>Message</th></tr></thead><tbody><tr><td><samp>3003</samp></td><td>The date format should be <samp>YYYY-MM-DD</samp>.</td></tr><tr><td><samp>3004</samp></td><td>Invalid date range. Please check start_date and end_date values.</td></tr><tr><td><samp>3005</samp></td><td>Invalid pagination. Please check the offset and limit values.</td></tr><tr><td><samp>3027</samp></td><td>Requested date range exceeds the supported limit.</td></tr><tr><td><samp>3028</samp></td><td>Invalid extended_details. Please check the input values. The allowed value is <samp>Merchant</samp>.</td></tr></tbody></table></p>",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "headers": {
+              "x-amex-request-id": {
+                "description": "An echo back of the x-amex-request-id passed in the header of the request.",
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/common-responses/401"
+          },
+          "404": {
+            "$ref": "#/common-responses/404"
+          },
+          "405": {
+            "$ref": "#/common-responses/405"
+          },
+          "429": {
+            "$ref": "#/common-responses/429"
+          },
+          "500": {
+            "$ref": "#/common-responses/500"
+          },
+          "502": {
+            "$ref": "#/common-responses/502"
+          },
+          "503": {
+            "$ref": "#/common-responses/503"
+          },
+          "504": {
+            "$ref": "#/common-responses/504"
+          }
+        },
+        "x-tryit": [{
+          "name": "Get statement balances",
+          "requestHeaders": "GET /servicing/v1/financials/balances HTTP/1.1<br />Host: api2s.americanexpress.com<br />x-amex-api-key: acc1b6d2-f3d6-4e74-a855-595d46f29a3b<br />Authorization: MAC ID='9shWQjwZ0jRPIN1T2NrnQYw', ts='1485888999137', nonce='aeafc081-ffef-4c67-8abd-477b20fa45a9', mac='gVTI0lIHiKF9R9DMqIQyfJAkzlKRCQcYg4+a38QnHic='<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw<br />",
+          "responseHeaders": "HTTP/1.1 200 OK<br />Content-Type: application/json<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw",
+          "responseBody": [{
+            "last_statement_balance_amount": "55000.00",
+            "debits_balance_amount": "0.00",
+            "payments_credits_amount": "0.00",
+            "statement_balance_amount": "55000.00",
+            "payment_due_amount": "55000.00",
+            "iso_alpha_currency_code": "AUD",
+            "payment_due_date": "2014-02-15",
+            "remaining_statement_balance_amount": "55000.00"
+          }],
+          "responseCode": "200",
+          "responseMessage": "OK"
+        }]
+      }
+    },
+    "/financials/transactions": {
+      "get": {
+        "summary": "<p class='font-weight-medium'>Transactions</p>",
+        "description": "<p>Returns the list of all posted transactions for the requested Card/Account, based on the secured input token. This API is supported for either a statement/billing period or a date range (maximum of 90 days).</p>",
+        "operationId": "getTransactions",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "financials"
+        ],
+        "parameters": [{
+          "$ref": "#/common-params/x-amex-api-key"
+        }, {
+          "$ref": "#/common-params/Authorization"
+        }, {
+          "$ref": "#/common-params/x-amex-request-id"
+        }, {
+          "name": "statement_end_date",
+          "in": "query",
+          "description": "<p>The statement end date for which the transactions are requested. In case this is not passed, this API would return the transactions that got posted after the last statement cut. The input for this parameter can be determined from the <samp>statement_periods</samp> (<samp>end_date</samp>) API. The format is <samp>YYYY-MM-DD</samp>.</p>",
+          "required": false,
+          "type": "string",
+          "pattern": "^(&#92;&#92;d{4}-&#92;&#92;d{2}-&#92;&#92;d{2})$"
+        }, {
+          "name": "start_date",
+          "in": "query",
+          "description": "<p>The date from which transactions are requested (inclusive). For a date range request, populate both the start and end date and do not use <samp>statement_end_date</samp>. The format is <samp>YYYY-MM-DD</samp>.</p>",
+          "required": false,
+          "type": "string",
+          "pattern": "^(&#92;&#92;d{4}-&#92;&#92;d{2}-&#92;&#92;d{2})$"
+        }, {
+          "name": "end_date",
+          "in": "query",
+          "description": "<p>The date up to which transactions are requested (inclusive). For a date range request, populate both the start and end date and do not use <samp>statement_end_date</samp>. The format is <samp>YYYY-MM-DD</samp>.</p>",
+          "required": false,
+          "type": "string",
+          "pattern": "^(&#92;&#92;d{4}-&#92;&#92;d{2}-&#92;&#92;d{2})$"
+        }, {
+          "name": "offset",
+          "in": "query",
+          "description": "<p>Offset and limit parameters support pagination. Specify offset to indicate the start index for pagination. The default offset is 0.</p>",
+          "required": false,
+          "type": "string"
+        }, {
+          "name": "limit",
+          "in": "query",
+          "description": "<p>Offset and limit parameters support pagination. Specify a limit to indicate the page size. The default limit is 10 and the maximum is 100.</p>",
+          "required": false,
+          "type": "string"
+        }, {
+          "name": "extended_details",
+          "in": "query",
+          "description": "<p>These are the sub-resources associated with the transactions. These are comma-separated. Currently allowed values include: <samp>Merchant</samp>.</p>",
+          "required": false,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "<p>Successful response.</p>",
+            "schema": {
+              "$ref": "#/definitions/Transactions"
+            },
+            "headers": {
+              "x-amex-request-id": {
+                "description": "<p>An echo of the <samp>x-amex-request-id</samp> passed in the header of the request.</p>",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "<p>Bad Request. Input validation failed.<br/><samp>Access Token Validation Error Codes</samp></p><table class='table-specification-description'><thead><tr><th class='pad-3-r'>Code</th><th>Message</th></tr></thead><tbody><tr><td><samp>154000</samp></td><td>Request MAC is not matching with Generated MAC.</td></tr></tbody></table><p><samp>Data API Error Codes</samp></p><table class='table-specification-description'><thead><tr><th class='pad-3-r'>Code</th><th>Message</th></tr></thead><tbody><tr><td><samp>3003</samp></td><td>The date format should be <samp>YYYY-MM-DD</samp>.</td></tr><tr><td><samp>3004</samp></td><td>Invalid date range. Please check start_date and end_date values.</td></tr><tr><td><samp>3005</samp></td><td>Invalid pagination. Please check the offset and limit values.</td></tr><tr><td><samp>3027</samp></td><td>Requested date range exceeds the supported limit.</td></tr><tr><td><samp>3028</samp></td><td>Invalid extended_details. Please check the input values. The allowed value is <samp>Merchant</samp>.</td></tr></tbody></table>",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "headers": {
+              "x-amex-request-id": {
+                "description": "An echo back of the x-amex-request-id passed in the header of the request.",
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/common-responses/401"
+          },
+          "404": {
+            "$ref": "#/common-responses/404"
+          },
+          "405": {
+            "$ref": "#/common-responses/405"
+          },
+          "429": {
+            "$ref": "#/common-responses/429"
+          },
+          "500": {
+            "$ref": "#/common-responses/500"
+          },
+          "502": {
+            "$ref": "#/common-responses/502"
+          },
+          "503": {
+            "$ref": "#/common-responses/503"
+          },
+          "504": {
+            "$ref": "#/common-responses/504"
+          }
+        },
+        "x-tryit": [{
+          "name": "Get all posted transactions that belong to the input Card.",
+          "requestHeaders": "GET /servicing/v1/financials/transactions HTTP/1.1<br />Host: api2s.americanexpress.com<br />x-amex-api-key: acc1b6d2-f3d6-4e74-a855-595d46f29a3b<br />Authorization: MAC ID='9shWQjwZ0jRPIN1T2NrnQYw', ts='1485888999137', nonce='aeafc081-ffef-4c67-8abd-477b20fa45a9', mac='gVTI0lIHiKF9R9DMqIQyfJAkzlKRCQcYg4+a38QnHic='<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw<br />",
+          "responseHeaders": "HTTP/1.1 200 OK<br />Content-Type: application/json<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw",
+          "responseBody": [{
+            "total_transaction_count": "1",
+            "transactions": [{
+              "identifier": "320162240910370230",
+              "charge_date": "2016-08-10",
+              "post_date": "2016-08-10",
+              "statement_end_date": "2016-09-06",
+              "amount": "110.24",
+              "reference_number": "320162240910370230",
+              "type": "DEBIT",
+              "description": "NIGEL'S BAGEL EMPORIUM 194 0194",
+              "iso_alpha_currency_code": "USD",
+              "display_account_number": "XXXX-XXXXXX-81004",
+              "first_name": "Nigel",
+              "last_name": "Smythe",
+              "embossed_name": "Nigel Smythe",
+              "extended_details": {
+                "merchant": {
+                  "name": "NIGEL'S BAGEL EMPORIUM",
+                  "address": {
+                    "address_lines": [
+                      "18631 N 19TH AVE, 150"
+                    ]
+                  }
+                }
+              }
+            }]
+          }],
+          "responseCode": "200",
+          "responseMessage": "OK"
+        }]
+      }
+    },
+    "/financials/transactions/{identifier}": {
+      "get": {
+        "summary": "<p class='font-weight-medium'>Transaction by Identifier</p>",
+        "description": "<p>Returns core transaction details for the given identifier (identifier) for the requested Card/Account, based on the secured input token.</p>",
+        "operationId": "getTransaction",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "financials"
+        ],
+        "parameters": [{
+          "name": "identifier",
+          "in": "path",
+          "description": "<p>The unique identifier of the transaction for which additional attributes are being requested.</p>",
+          "required": true,
+          "type": "string"
+        }, {
+          "$ref": "#/common-params/x-amex-api-key"
+        }, {
+          "$ref": "#/common-params/Authorization"
+        }, {
+          "$ref": "#/common-params/x-amex-request-id"
+        }, {
+          "name": "statement_end_date",
+          "in": "query",
+          "description": "<p>The statement end date for which the transactions are requested. In case this is not passed, this API would return the transactions that were posted after the last statement cut-off date. The input for this parameter can be determined from the <samp>statement_periods</samp> (<samp>end_date</samp>) API. The format is <samp>YYYY-MM-DD</samp>.</p>",
+          "required": false,
+          "type": "string",
+          "pattern": "^(&#92;&#92;d{4}-&#92;&#92;d{2}-&#92;&#92;d{2})$"
+        }, {
+          "name": "start_date",
+          "in": "query",
+          "description": "<p>The date from which transactions are requested (inclusive). For a date range request, populate both the start and end date and do not use <samp>statement_end_date</samp>. The format is <samp>YYYY-MM-DD</samp>.</p>",
+          "required": false,
+          "type": "string",
+          "pattern": "^(&#92;&#92;d{4}-&#92;&#92;d{2}-&#92;&#92;d{2})$"
+        }, {
+          "name": "end_date",
+          "in": "query",
+          "description": "<p>The date up to which transactions are requested (inclusive). For a date range request, populate both the start and end date and do not use <samp>statement_end_date</samp>. The format is <samp>YYYY-MM-DD</samp>.</p>",
+          "required": false,
+          "type": "string",
+          "pattern": "^(&#92;&#92;d{4}-&#92;&#92;d{2}-&#92;&#92;d{2})$"
+        }, {
+          "name": "extended_details",
+          "in": "query",
+          "description": "<p>These are the sub-resources associated with the transactions. These are comma-separated. Currently allowed values include: <samp>Merchant</samp></p>",
+          "required": false,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "<p>Success.</p>",
+            "schema": {
+              "$ref": "#/definitions/Transaction"
+            },
+            "headers": {
+              "x-amex-request-id": {
+                "description": "<p>An echo of the <samp>x-amex-request-id</samp> passed in the header of the request.</p>",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "<p>Bad Request. Input validation failed.<br/><samp>Access Token Validation Error Codes</samp></p><table class='table-specification-description'><thead><tr><th class='pad-3-r'>Code</th><th>Message</th></tr></thead><tbody><tr><td><samp>154000</samp></td><td>Request MAC is not matching with Generated MAC.</td></tr></tbody></table><p><samp>Data API Error Codes</samp></p><table class='table-specification-description'><thead><tr><th class='pad-3-r'>Code</th><th>Message</th></tr></thead><tbody><tr><td><samp>3003</samp></td><td>The date format should be <samp>YYYY-MM-DD</samp>.</td></tr><tr><td><samp>3004</samp></td><td>Invalid date range. Please check start_date and end_date values.</td></tr><tr><td><samp>3005</samp></td><td>Invalid pagination. Please check the offset and limit values.</td></tr><tr><td><samp>3027</samp></td><td>Requested date range exceeds the supported limit.</td></tr><tr><td><samp>3028</samp></td><td>Invalid extended_details. Please check the input values. The allowed value is <samp>Merchant</samp>.</td></tr></tbody></table>",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "headers": {
+              "x-amex-request-id": {
+                "description": "An echo back of the x-amex-request-id passed in the header of the request.",
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/common-responses/401"
+          },
+          "404": {
+            "$ref": "#/common-responses/404"
+          },
+          "405": {
+            "$ref": "#/common-responses/405"
+          },
+          "429": {
+            "$ref": "#/common-responses/429"
+          },
+          "500": {
+            "$ref": "#/common-responses/500"
+          },
+          "502": {
+            "$ref": "#/common-responses/502"
+          },
+          "503": {
+            "$ref": "#/common-responses/503"
+          },
+          "504": {
+            "$ref": "#/common-responses/504"
+          }
+        },
+        "x-tryit": [{
+          "name": "Get all posted transactions that belong to the input Card.",
+          "requestHeaders": "GET /servicing/v1/financials/transactions/320162380113019557 HTTP/1.1<br />Host: api2s.americanexpress.com<br />x-amex-api-key: acc1b6d2-f3d6-4e74-a855-595d46f29a3b<br />Authorization: MAC ID='9shWQjwZ0jRPIN1T2NrnQYw', ts='1485888999137', nonce='aeafc081-ffef-4c67-8abd-477b20fa45a9', mac='gVTI0lIHiKF9R9DMqIQyfJAkzlKRCQcYg4+a38QnHic='<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw<br />",
+          "responseHeaders": "HTTP/1.1 200 OK<br />Content-Type: application/json<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw",
+          "responseBody": {
+            "identifier": "320162240910370230",
+            "charge_date": "2016-08-10",
+            "post_date": "2016-08-10",
+            "statement_end_date": "2016-09-06",
+            "amount": "110.24",
+            "reference_number": "320162240910370230",
+            "type": "DEBIT",
+            "description": "NIGEL'S BAGEL EMPORIUM 194 0194",
+            "iso_alpha_currency_code": "USD",
+            "display_account_number": "XXXX-XXXXXX-81004",
+            "first_name": "Nigel",
+            "last_name": "Smythe",
+            "embossed_name": "Nigel Smythe",
+            "extended_details": {
+              "merchant": {
+                "name": "NIGEL'S BAGEL EMPORIUM",
+                "address": {
+                  "address_lines": [
+                    "18631 N 19TH AVE, 150"
+                  ]
+                }
+              }
+            }
+          },
+          "responseCode": "200",
+          "responseMessage": "OK"
+        }]
+      }
+    }
+  },
+  "common-params": {
+    "x-amex-api-key": {
+      "name": "x-amex-api-key",
+      "in": "header",
+      "description": "<p>Client application key for accessing the API.</p><p>e.g., <samp>46689c51-8337-4adc-a411-f8e82705913f</samp></p>",
+      "required": true,
+      "type": "string",
+      "maxLength": 36
+    },
+    "Authorization": {
+      "name": "Authorization",
+      "in": "header",
+      "description": "<p><a internallink='true' pathname='/products/account-financials-eu/guide' hash='data-mac'>Data APIs MAC Generation</a></p>",
+      "required": true,
+      "type": "string"
+    },
+    "x-amex-request-id": {
+      "name": "x-amex-request-id",
+      "in": "header",
+      "description": "<p>Unique ID of the request.</p><p>e.g., <samp>qweas11415879145</samp></p>",
+      "required": true,
+      "type": "string",
+      "maxLength": 32
+    }
+  },
+  "common-responses": {
+    "400": {
+      "description": "<p>Bad Request. Input validation failed. The following error codes are related to invalid authorization (access token validation).</p><table class='table-specification-description'><thead><tr><th>Code</th><th>Message</th></tr></thead><tbody><tr><td><samp>154000</samp></td><td>Request MAC is not matching with Generated MAC.</td></tr></tbody></table>",
+      "schema": {
+        "$ref": "#/definitions/Error"
+      },
+      "headers": {
+        "x-amex-request-id": {
+          "description": "<p>An echo of the <samp>x-amex-request-id</samp> passed in the header of the request.</p>",
+          "type": "string"
+        }
+      }
+    },
+    "401": {
+      "description": "<p>Unauthorized. Developer application is not authorized to perform this operation.<br /><samp>Access Token Validation Error Codes</samp></p><table class='table-specification-description'><thead><tr><th>Code</th><th>Message</th></tr></thead><tbody><tr><td class='pad-3-r'><samp>154010</samp></td><td>ERR_OAS_0001] Access Token expired.</td></tr><tr><td><samp>154010</samp></td><td>[ERR_OAS_0002] Access Token revoked by user.</td></tr><tr><td><samp>154010</samp></td><td>[ERR_OAS_0007] Access Token revoked by Change Password Check.</td></tr><tr><td><samp>154010 </samp></td><td>[ERR_OAS_0008] Access Token not found.</td></tr></tbody></table>",
+      "schema": {
+        "$ref": "#/definitions/Error"
+      },
+      "headers": {
+        "x-amex-request-id": {
+          "description": "<p>An echo of the <samp>x-amex-request-id</samp> passed in the header of the request.</p>",
+          "type": "string"
+        }
+      }
+    },
+    "404": {
+      "description": "<p>Resource not found.</p>",
+      "headers": {
+        "x-amex-request-id": {
+          "description": "<p>An echo of the <samp>x-amex-request-id</samp> passed in the header of the request.</p>",
+          "type": "string"
+        }
+      }
+    },
+    "405": {
+      "description": "<p>Method not allowed.</p>",
+      "headers": {
+        "x-amex-request-id": {
+          "description": "<p>An echo of the <samp>x-amex-request-id</samp> passed in the header of the request.</p>",
+          "type": "string"
+        }
+      }
+    },
+    "429": {
+      "description": "<p>Too many requests.</p>",
+      "headers": {
+        "x-amex-request-id": {
+          "description": "<p>An echo of the <samp>x-amex-request-id</samp> passed in the header of the request.</p>",
+          "type": "string"
+        }
+      }
+    },
+    "500": {
+      "description": "<p>Internal server error.<br/><br/>Following error codes are related to authorization (access token validation).</p><table class='table-specification-description'><thead><tr><th class='pad-3-r'>Code</th><th>Message</th></tr></thead><tbody><tr><td><samp>155000</samp></td><td>Authorization server is currently not available</td></tr></tbody></table>",
+      "headers": {
+        "x-amex-request-id": {
+          "description": "<p>An echo back of the x-amex-request-id passed in the header of the request.</p>",
+          "type": "string"
+        }
+      }
+    },
+    "502": {
+      "description": "<p>The server, while acting as a gateway or proxy, received an invalid response from the upstream server it accessed in attempting to fulfill the request.</p>",
+      "headers": {
+        "x-amex-request-id": {
+          "description": "<p>An echo of the <samp>x-amex-request-id</samp> passed in the header of the request.</p>",
+          "type": "string"
+        }
+      }
+    },
+    "503": {
+      "description": "<p>Service unavailable.</p>",
+      "headers": {
+        "x-amex-request-id": {
+          "description": "<p>An echo of the <samp>x-amex-request-id</samp> passed in the header of the request.</p>",
+          "type": "string"
+        }
+      }
+    },
+    "504": {
+      "description": "<p>The service did not receive a timely response from the downstream system.</p>",
+      "headers": {
+        "x-amex-request-id": {
+          "description": "<p>An echo of the <samp>x-amex-request-id</samp> passed in the header of the request.</p>",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "account": {
+      "type": "object",
+      "required": [
+        "identifiers"
+      ],
+      "properties": {
+        "identifiers": {
+          "$ref": "#/definitions/identifier_fragment"
+        },
+        "holder": {
+          "$ref": "#/definitions/holder_fragment"
+        },
+        "product": {
+          "$ref": "#/definitions/product_fragment"
+        },
+        "status": {
+          "$ref": "#/definitions/status_fragment"
+        },
+        "supplementary_accounts": {
+
+	    "type": "array",
+	    "x-required": false,
+	    "items": {
+	    
+		"type": "object",
+		"description": "<p>Additional child accounts.</p>",
+		"required": [
+		    "identifiers"
+		],
+		"properties": {
+		    "identifiers": {
+			"$ref": "#/definitions/identifier_fragment"
+		    },
+		    "holder": {
+			"$ref": "#/definitions/holder_fragment"
+		    },
+		    "product": {
+			"$ref": "#/definitions/product_fragment"
+		    },
+		    "status": {
+			"$ref": "#/definitions/status_fragment"
+		    },
+		    "supplementary_accounts": {
+			"type": "string",
+			"description": "<p>To allocate a defined number of additional supplemental accounts.</p>"
+		    }
+		}
+		
+	    }
+        }
+      }
+    },
+    "identifier_fragment": {
+      "type": "object",
+      "description": "<p>Additional information about the Cardholder account.</p>",
+      "required": [
+        "display_account_number",
+        "is_basic"
+      ],
+      "properties": {
+        "display_account_number": {
+          "type": "string",
+          "description": "<p>A masked, 15-digit Account Number with only the last five (5) digits provided for display purposes.</p>"
+        },
+        "is_basic": {
+          "type": "boolean",
+          "description": "<p>Indicates whether the given Account token is basic or not.</p>"
+        },
+        "supplementary_account_count": {
+          "type": "integer",
+          "description": "<p>The count of supplementary accounts. This field is not available for international markets.</p>"
+        }
+      }
+    },
+    "holder_fragment": {
+      "type": "object",
+      "description": "<p>Additional information about the Card Member.</p>",
+      "properties": {
+        "profile": {
+          "x-required": false,
+          "$ref": "#/definitions/profile"
+        },
+        "localization_preferences": {
+          "x-required": false,
+          "$ref": "#/definitions/localization_preferences"
+        }
+      }
+    },
+    "product_fragment": {
+      "type": "object",
+      "description": "<p>Information collected about the Card product.</p>",
+      "properties": {
+        "digital_info": {
+          "x-required": false,
+          "$ref": "#/definitions/product_digital_info"
+        },
+        "account_types": {
+          "x-required": false,
+          "$ref": "#/definitions/account_type"
+        },
+        "account_eligibilities": {
+          "type": "array",
+          "x-required": false,
+          "items": {
+            "type": "string",
+            "description": "<p>Lists all benefits for which the selected Card is eligible.</p><p>e.g., <samp>LineOfCreditEligible</samp></p>"
+          }
+        },
+        "program_enrollments": {
+          "type": "array",
+          "x-required": false,
+          "items": {
+            "type": "string",
+            "description": "<p>Lists all programs in which a selected Card is enrolled.</p><p>e.g., <samp>PaperlessEnrolled</samp></p>"
+          }
+        },
+        "account_features": {
+          "x-required": false,
+          "$ref": "#/definitions/account_features"
+        },
+        "line_of_business": {
+          "x-required": false,
+          "$ref": "#/definitions/line_of_business"
+        }
+      }
+    },
+    "status_fragment": {
+      "type": "object",
+      "description": "<p>Collected status information about Card Members, accounts and products.</p>",
+      "properties": {
+        "account_status": {
+          "type": "array",
+          "x-required": false,
+          "items": {
+            "type": "string",
+            "description": "<p>Provides the status of a given Card Account, whether the Account is <samp>Active</samp> or <samp>Cancelled</samp>.</p>"
+          }
+        }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "description": "<p>Additional information about the Card Member's profile.</p>",
+      "properties": {
+        "title_name": {
+          "type": "string",
+          "description": "<p>The Card Member's beginning Title/Rank can be used for pre-filling the Member profile, display purposes or communication purposes.</p>",
+          "x-required": false
+        },
+        "first_name": {
+          "type": "string",
+          "description": "<p>The Card Member's first name can be used for pre-filling the Member profile, display purposes, communication purposes and Card Member authorizations for Customer Care calls.</p>",
+          "x-required": false
+        },
+        "last_name": {
+          "type": "string",
+          "description": "<p>The Card Member's last name can be used for pre-filling the Member profile, display purposes, communication purposes and Card Member authorization for Customer Care calls.</p>",
+          "x-required": false
+        },
+        "embossed_name": {
+          "type": "string",
+          "description": "<p>The name of the Cardholder embossed on the plastic. The Embossed Name can be used for display and Card authorization purposes for online transactions.</p>",
+          "x-required": false
+        }
+      }
+    },
+    "localization_preferences": {
+      "type": "object",
+      "description": "<p>Collected identification information regarding the Card Member's location.</p>",
+      "required": [
+        "home_country_locale",
+        "geo_country_locale"
+      ],
+      "properties": {
+        "home_country_locale": {
+          "type": "string",
+          "description": "<p>The Card Member's preferred language locale. Locale can be used to display a page in the Card Member's preferred language or no Member-preferred language. The Locale value is a combination of language code, underscore and country code.</p>"
+        },
+        "currency_locale": {
+          "type": "string",
+          "description": "<p>Currency Locale indicator.</p>"
+        },
+        "date_locale": {
+          "type": "string",
+          "description": "<p>Date Locale indicator.</p>"
+        },
+        "geo_country_locale": {
+          "type": "string",
+          "description": "<p>Geo Country Locale is a Card Member country locale. Locale can be used to identify the Card Member's home country.</p>"
+        },
+        "language_preference_code": {
+          "type": "string",
+          "description": "<p>The language ISO code associated with the language used by the Card Member, whether it is the market’s primary or secondary language.</p>"
+        }
+      }
+    },
+    "product_digital_info": {
+      "type": "object",
+      "description": "<p>Collected digital information about a Card product.</p>",
+      "properties": {
+        "product_desc": {
+          "type": "string",
+          "description": "<p>Provides the information on a Card Product which can be used to identify product or display purposes.</p>",
+          "x-required": false
+        },
+        "digital_asset_url": {
+          "type": "string",
+          "description": "<p>The Digital Asset URL can be used to display the Card art image for a given product.</p>",
+          "x-required": false
+        }
+      }
+    },
+    "account_type": {
+      "type": "object",
+      "description": "<p>Descriptive information about a Card product type.</p>",
+      "properties": {
+        "plastic_types": {
+          "type": "array",
+          "x-required": false,
+          "items": {
+            "type": "string",
+            "description": "<p>Provides the Card type (plastic color) of a product for a given line-of-business account. The types currently include:</p><ul class='pad-3-l'><li>Centurion</li><li>Platinum</li></ul>"
+          }
+        },
+        "line_of_business_type": {
+          "type": "string",
+          "description": "<p>Provides the product line-of-business for a given Card. The types currently include:</p><ul class='pad-3-l'><li>CorporateCard</li><li>ConsumerCard</li><li>CompanyCard</li></ul>",
+          "x-required": false
+        },
+        "payment_type": {
+          "type": "string",
+          "description": "<p>Provides a product payment type which tell what kind of payment model the Card is carrying. The types currently include:</p><ul class='pad-3-l'><li>ChargeCard</li><li>Revolve</li><li>LineOfCreditAccount</li><li>TermLoan</li><li>FlexiLoan</li></ul>",
+          "x-required": false
+        },
+        "co_brand_type": {
+          "type": "string",
+          "description": "<p>Provides a co-brand name which Amex is having a co-brand relation with external Partners.</p><p>e.g., <samp>Hilton</samp></p>",
+          "x-required": false
+        }
+      }
+    },
+    "account_features": {
+      "type": "object",
+      "description": "<p>Lists all active features on a specified account.</p>",
+      "properties": {
+        "features": {
+          "type": "array",
+          "description": "<p>Provides product features for which the product is enrolled.</p>",
+          "x-required": false,
+          "items": {
+            "$ref": "#/definitions/feature"
+          }
+        },
+        "loyalty": {
+          "$ref": "#/definitions/loyalty_program"
+        }
+      }
+    },
+    "feature": {
+      "type": "object",
+      "description": "<p>Information about the status and availability of program features.</p>",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "<p>The name of a given feature.</p>",
+          "x-required": false
+        },
+        "status_code": {
+          "type": "string",
+          "description": "<p>The Card's status code.</p>",
+          "x-required": false
+        }
+      }
+    },
+    "loyalty_program": {
+      "type": "object",
+      "description": "<p>Descriptive information about loyalty programs in which the Card Account is enrolled.</p>",
+      "properties": {
+        "program_name": {
+          "type": "string",
+          "description": "<p>Provides the name of the loyalty program with which the Card is affiliated. The types currently include:</p><ul class='pad-3-l'><li>BlueSky</li><li>DFF2</li><li>MR</li><li>NewYork</li><li>JetBlue</li><li>Clear</li><li>FirstRepublicBank</li><li>Lowes</li><li>SkyMile</li></ul>",
+          "x-required": false
+        },
+        "legal_program_name": {
+          "type": "string",
+          "description": "<p>Loyalty legal program name, such as 'Member Rewards'.</p>",
+          "x-required": false
+        },
+        "program_literal": {
+          "type": "string",
+          "description": "<p>If the loyalty program/rewards is FDMPASS, then FDMPASS is set in the <samp>program_literal</samp> field.</p>",
+          "x-required": false
+        }
+      }
+    },
+    "line_of_business": {
+      "type": "object",
+      "description": "<p>Provides Corporate or Open line-of-business product metadata.</p>",
+      "properties": {
+        "corporate": {
+          "x-required": false,
+          "$ref": "#/definitions/corporate_lob"
+        },
+        "company": {
+          "x-required": false,
+          "$ref": "#/definitions/company_lob"
+        }
+      }
+    },
+    "corporate_lob": {
+      "type": "object",
+      "description": "<p>Eligibility information for Corporate Cards.</p>",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "<p>Name of the corporation available for the Corporate Card.</p>",
+          "x-required": false
+        }
+      }
+    },
+    "company_lob": {
+      "type": "object",
+      "description": "<p>Eligibility information for Company Cards.</p>",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "<p>Name of the company available for small business cards.</p>",
+          "x-required": false
+        },
+        "legal_business_name": {
+          "type": "string",
+          "description": "<p>Legal business name of the company.</p>"
+        }
+      }
+    },
+    "StatementPeriods": {
+      "type": "object",
+      "description": "<p>Statement periods information for any specific Card/Account.</p>",
+      "x-required": false,
+      "properties": {
+        "statement_periods": {
+          "type": "array",
+          "description": "<p>Identification of a given statement period.</p>",
+          "items": {
+            "$ref": "#/definitions/StatementPeriod"
+          }
+        }
+      }
+    },
+    "StatementPeriod": {
+      "type": "object",
+      "description": "<p>Statement/billing periods available for the Card/Account.</p>",
+      "x-required": false,
+      "required": [
+        "end_date",
+        "index"
+      ],
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "description": "<p>The start date of the Statement/billing period. The format is <samp>YYYY-MM-DD</samp>.</p>"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "<p>The end date of the Statement/billing period. The format is <samp>YYYY-MM-DD</samp>.</p>"
+        },
+        "index": {
+          "type": "integer",
+          "description": "<p>The statement/billing period index/sequence number. Latest period is represented by index 0.</p>"
+        }
+      }
+    },
+    "Balance": {
+      "type": "object",
+      "description": "<p>Balances information for the requested Card/Account.</p>",
+      "properties": {
+        "iso_alpha_currency_code": {
+          "type": "string",
+          "description": "<p>The <a href='https://www.iso.org/iso-4217-currency-codes.html' target='_blank'>ISO 4217</a> alphabetic currency code.</p>"
+        },
+        "last_statement_balance_amount": {
+          "type": "string",
+          "description": "<p>The opening balance total amount. Outstanding balance at the time of cycle cut. This amount will be fully due to American Express if a charge product retains a balance, whereas if the funding source is a Revolve or Charge w/Payflex it will be used to calculate the minimum due.</p>"
+        },
+        "statement_balance_amount": {
+          "type": "string",
+          "description": "<p>The closing balance total amount will be the sum of the Last Statement Balance and all recent activity, including debits and credits. This amount represents the total balance on the Account at a given point in time and is not the same as the Balance Due to American Express.</p>"
+        },
+        "debits_balance_amount": {
+          "type": "string",
+          "description": "<p>The debits balance total amount, including purchases, fees, interest charges and loan installments that increased the balance on the account.</p>"
+        },
+        "payments_credits_amount": {
+          "type": "string",
+          "description": "<p>The payments & credits balance total amount, including payment, credits, refunds or other transactions since the last statement date that reduced the balance on the account.</p>"
+        },
+        "payment_due_amount": {
+          "type": "string",
+          "description": "<p>The minimum amount due for a revolve/flex Card and will be the payment due for the charge Cards.</p>"
+        },
+        "payment_due_date": {
+          "type": "string",
+          "description": "<p>The latest date by which a payment must be made.</p>"
+        },
+        "remaining_statement_balance_amount": {
+          "type": "string",
+          "description": "<p>The current balance, including dispute and credit adjustments.</p>"
+        }
+      }
+    },
+    "Transactions": {
+      "type": "object",
+      "description": "<p>Contains the list of transactions for requested Account ID.</p>",
+      "properties": {
+        "total_transaction_count": {
+          "type": "string",
+          "description": "<p>The total transactions count for the requested statement end.</p>"
+        },
+        "transactions": {
+          "type": "array",
+          "description": "<p>The individual transaction.</p>",
+          "items": {
+            "$ref": "#/definitions/Transaction"
+          }
+        }
+      }
+    },
+    "Transaction": {
+      "type": "object",
+      "description": "<p>Includes the core elements of a transaction along with other extended details.</p>",
+      "required": [
+        "amount",
+        "identifier"
+      ],
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "description": "<p>The unique identifier of the transaction record.</p>"
+        },
+        "charge_date": {
+          "type": "string",
+          "description": "<p>The charge date of the transaction. The format is <samp>YYYY-MM-DD</samp>.</p>"
+        },
+        "post_date": {
+          "type": "string",
+          "description": "<p>The posted date of the transaction. The format is <samp>YYYY-MM-DD</samp>.</p>"
+        },
+        "statement_end_date": {
+          "type": "string",
+          "description": "<p>The statement end date to which this transaction belongs. The format is <samp>YYYY-MM-DD</samp>.</p>"
+        },
+        "amount": {
+          "type": "string",
+          "description": "<p>The amount of the transaction.</p>"
+        },
+        "reference_number": {
+          "type": "string",
+          "description": "<p>The reference number/financial institution ID for display purposes.</p>"
+        },
+        "type": {
+          "type": "string",
+          "description": "<p>The primary classification of the transaction as a <samp>credit</samp> or <samp>debit</samp>.</p>"
+        },
+        "description": {
+          "type": "string",
+          "description": "<p>The primary description line of the transaction.</p>"
+        },
+        "iso_alpha_currency_code": {
+          "type": "string",
+          "description": "<p>The <a href='https://www.iso.org/iso-4217-currency-codes.html' target='_blank'>ISO 4217</a> alphabetic currency code of the transaction.</p>"
+        },
+        "display_account_number": {
+          "type": "string",
+          "description": "<p>A masked, 15-digit display of the Account Number of the transaction.</p><p>e.g., <samp>XXXX XXXXXX 01009</samp></p>"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "<p>The Card Member's first name.</p>"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "<p>The Card Member's last name.</p>"
+        },
+        "embossed_name": {
+          "type": "string",
+          "description": "<p>The name embossed on the Card.</p>"
+        },
+        "extended_details": {
+          "$ref": "#/definitions/ExtendedDetails"
+        },
+        "foreign_details": {
+          "type": "object",
+          "description": "<p>Foreign transaction details.</p>",
+          "properties": {
+            "amount": {
+              "type": "string",
+              "description": "<p>The amount of the transaction in the applicable foreign currency.</p>"
+            },
+            "iso_alpha_currency_code": {
+              "type": "string",
+              "description": "<p>The ISO 4217 foreign currency code description.</p>"
+            },
+            "currency_description": {
+              "type": "string",
+              "description": "<p>Foreign currency description.</p>"
+            },
+            "commission_amount": {
+              "type": "string",
+              "description": "<p>Commission amount.</p>"
+            },
+            "exchange_rate": {
+              "type": "string",
+              "description": "<p>Foreign exchange rate.</p>"
+            }
+          }
+        }
+      }
+    },
+    "ExtendedDetails": {
+      "type": "object",
+      "description": "<p>Contains extended details of a transaction. These details are provided for Merchants.</p>",
+      "x-required": false,
+      "properties": {
+        "merchant": {
+          "x-required": true,
+          "$ref": "#/definitions/Merchant"
+        }
+      }
+    },
+    "Merchant": {
+      "type": "object",
+      "description": "<p>Merchant details associated with a specific transaction.</p>",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "<p>Merchant name.</p>"
+        },
+        "address": {
+          "description": "<p>Merchant address information.</p>",
+          "$ref": "#/definitions/MerchantAddress"
+        }
+      }
+    },
+    "MerchantAddress": {
+      "type": "object",
+      "description": "<p>Merchant address information.</p>",
+      "properties": {
+        "address_lines": {
+          "type": "array",
+          "description": "<p>Address lines.</p>",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "<p>A numeric code associated with the error condition/scenario.</p>"
+        },
+        "message": {
+          "type": "string",
+          "description": "<p>A description of the error scenario.</p>"
+        }
+      }
+    }
+  },
+  "x-testInfo": [{
+    "categoryId": "Accounts",
+    "categoryName": "Accounts",
+    "description": "Get Card Member Account information.",
+    "elements": [{
+      "name": "Get basic Card Account information",
+      "method": "GET",
+      "headers": "x-amex-api-key: acc1b6d2-f3d6-4e74-a855-595d46f29a3b<br />Authorization: MAC ID='9shWQjwZ0jRPIN1T2NrnQYw', ts='1485888999137', nonce='aeafc081-ffef-4c67-8abd-477b20fa45a9', mac='gVTI0lIHiKF9R9DMqIQyfJAkzlKRCQcYg4+a38QnHic='<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw<br />",
+      "URI": "https://api.qasb.americanexpress.com/servicing/v1/member/accounts HTTP/1.1"
+    }]
+  }, {
+    "categoryId": "Statement periods",
+    "categoryName": "Statement periods",
+    "description": "Get all statement/billing periods",
+    "elements": [{
+      "name": "Get all statement/billing periods",
+      "method": "GET",
+      "headers": "x-amex-api-key: acc1b6d2-f3d6-4e74-a855-595d46f29a3b<br />Authorization: MAC ID='9shWQjwZ0jRPIN1T2NrnQYw', ts='1485888999137', nonce='aeafc081-ffef-4c67-8abd-477b20fa45a9', mac='gVTI0lIHiKF9R9DMqIQyfJAkzlKRCQcYg4+a38QnHic='<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw<br />",
+      "URI": "https://api.qasb.americanexpress.com/servicing/v1/financials/statement_periods HTTP/1.1"
+    }]
+  }, {
+    "categoryId": "Statement Balances",
+    "categoryName": "Statement Balances",
+    "description": "Get statement balances for the account",
+    "elements": [{
+      "name": "Get current balances",
+      "method": "GET",
+      "headers": "x-amex-api-key: acc1b6d2-f3d6-4e74-a855-595d46f29a3b<br />Authorization: MAC ID='9shWQjwZ0jRPIN1T2NrnQYw', ts='1485888999137', nonce='aeafc081-ffef-4c67-8abd-477b20fa45a9', mac='gVTI0lIHiKF9R9DMqIQyfJAkzlKRCQcYg4+a38QnHic='<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw<br />",
+      "URI": "https://api.qasb.americanexpress.com/servicing/v1/financials/balances HTTP/1.1"
+    }]
+  }, {
+    "categoryId": "Transactions",
+    "categoryName": "Transactions",
+    "description": "Get transactions for the account.",
+    "elements": [{
+      "name": "Get transactions that got posted after the last statement cut",
+      "method": "GET",
+      "headers": "x-amex-api-key: acc1b6d2-f3d6-4e74-a855-595d46f29a3b<br />Authorization: MAC ID='9shWQjwZ0jRPIN1T2NrnQYw', ts='1485888999137', nonce='aeafc081-ffef-4c67-8abd-477b20fa45a9', mac='gVTI0lIHiKF9R9DMqIQyfJAkzlKRCQcYg4+a38QnHic='<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw<br />",
+      "URI": "https://api.qasb.americanexpress.com/servicing/v1/financials/transactions HTTP/1.1"
+    }]
+  }, {
+    "categoryId": "Transactions by Identifier",
+    "categoryName": "Transactions by Identifier",
+    "description": "Get transactions for the Account for given identifier",
+    "elements": [{
+      "name": "Get transactions for identifier",
+      "method": "GET",
+      "headers": "x-amex-api-key: acc1b6d2-f3d6-4e74-a855-595d46f29a3b<br />Authorization: MAC ID='9shWQjwZ0jRPIN1T2NrnQYw', ts='1485888999137', nonce='aeafc081-ffef-4c67-8abd-477b20fa45a9', mac='gVTI0lIHiKF9R9DMqIQyfJAkzlKRCQcYg4+a38QnHic='<br />x-amex-request-id: 9shWQjwZ0jRPIN1T2NrnQYw<br />",
+      "URI": "https://api.qasb.americanexpress.com/servicing/v1/financials/transactions/320162380113019557 HTTP/1.1"
+    }]
+  }]
+}

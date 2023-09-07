@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/oauth2/token",
+    "queryParameters": {
+      "role": {
+        "equalTo": "DEDICATED_AISP"
+      }
+    },
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=authorization-code"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback"
+      },
+      {
+        "contains": "code_verifier"
+      },
+      {
+        "contains": "request_id=56640bfe-9a98-441a-8380-c568976eee4a"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "access-token",
+      "token_type": "bearer",
+      "refresh_token": "refresh-token",
+      "expires_in": 900
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

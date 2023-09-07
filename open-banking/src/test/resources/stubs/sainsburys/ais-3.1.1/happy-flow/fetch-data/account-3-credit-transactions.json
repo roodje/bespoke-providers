@@ -1,0 +1,96 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/af58ba4e-6471-46d5-9a3f-011e0ff91857/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{1,3}$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "contains": "Bearer accessToken"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "001728392JD873NNHY"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff6795"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "transformers": ["response-template"],
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "af58ba4e-6471-46d5-9a3f-011e0ff91857",
+            "Amount": {
+              "Amount": "30.39",
+              "Currency": "GBP"
+            },
+            "BookingDateTime": "2020-07-27T00:00:00.000Z",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "CRV*LIDL GB LANCASTER London"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "3001"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "CRV*LIDL GB LANCASTER London",
+            "TransactionReference": "676587578768"
+          },
+          {
+            "AccountId": "af58ba4e-6471-46d5-9a3f-011e0ff91857",
+            "Amount": {
+              "Amount": "16.26",
+              "Currency": "GBP"
+            },
+            "BookingDateTime": "2020-07-27T00:00:00.000Z",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "PAYPAL *UBER BV 35314369001 GBR"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "3001"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "PAYPAL *UBER BV 35314369001 GBR",
+            "TransactionReference": "7896795654"
+          },
+          {
+            "AccountId": "af58ba4e-6471-46d5-9a3f-011e0ff91857",
+            "Amount": {
+              "Amount": "62.10",
+              "Currency": "GBP"
+            },
+            "BookingDateTime": "2020-07-27T00:00:00.000Z",
+            "CreditDebitIndicator": "Debit",
+            "MerchantDetails": {
+              "MerchantName": "SAINSBURYS SACAT 0856 LANCASTER GBR"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "3001"
+            },
+            "Status": "Booked",
+            "TransactionInformation": "SAINSBURYS SACAT 0856 LANCASTER GBR",
+            "TransactionReference": "3465723432"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.1/aisp/accounts/af58ba4e-6471-46d5-9a3f-011e0ff91857/transactions?fromBookingDateTime=2017-07-26T15:12:45.467"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/pagination/v1/accounts/1/transactions",
+    "queryParameters": {
+      "page": {
+        "equalTo": "2"
+      }
+    },
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "consent-id": {
+        "equalTo": "7a7251ff-45ef-4e24-a4cc-bb77d4ba0b16"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "content-type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "DE66500105172915693295"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-0.20"
+            },
+            "bookingDate": "2020-10-03",
+            "remittanceInformationUnstructured": "Ref 12345678, Eine Beschreibung"
+          },
+          {
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-400.20"
+            },
+            "bookingDate": "2020-10-03",
+            "remittanceInformationUnstructured": "Eine Beschreibung - Tranz: Nr card 9999XXXXXX9999. Date: 23-02-2019 17:10:30"
+          }
+        ],
+        "_links": {
+          "account": {
+            "href": "https://localhost:{{request.requestLine.port}}/ais/DE/PFB/v1/accounts/1"
+          }
+        }
+      }
+    }
+  }
+}

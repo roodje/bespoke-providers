@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/register",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "matches": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+      },
+      "Content-Type": {
+        "equalTo": "application/jwt"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "client_id": "SOME_FAKE_CLIENT_ID",
+      "client_secret": "SOME_FAKE_CLIENT_SECRET"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

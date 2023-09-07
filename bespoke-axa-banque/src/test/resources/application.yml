@@ -1,0 +1,22 @@
+lovebird:
+  axagroup:
+    axabe:
+      base-url: https://localhost:${wiremock.server.https-port}
+      authorization-base-url: https://localhost:${wiremock.server.https-port}
+      transaction-pagination-limit: 100
+    bpost:
+      base-url: https://localhost:${wiremock.server.https-port}
+      authorization-base-url: https://localhost:${wiremock.server.https-port}
+      transaction-pagination-limit: 100
+    crelan:
+      base-url: https://localhost:${wiremock.server.https-port}
+      authorization-base-url: https://localhost:${wiremock.server.https-port}
+      transaction-pagination-limit: 100
+    comdirect:
+      base-url: https://localhost:${wiremock.server.https-port}
+      authorization-base-url: https://localhost:${wiremock.server.https-port}
+      transaction-pagination-limit: 100
+    keytrade:
+      base-url: https://localhost:${wiremock.server.https-port}
+      authorization-base-url: https://localhost:${wiremock.server.https-port}
+      transaction-pagination-limit: 100

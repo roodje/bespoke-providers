@@ -1,0 +1,87 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/transactions?dateFrom=1970-01-12",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer test-access-token"
+      },
+      "Signature": {
+        "matches": "keyId=\"SN=(.*)\",algorithm=\"rsa-sha256\",headers=\"request-target date digest x-request-id\",signature=\"(.*)\""
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Date": {
+        "equalTo": "Mon, 12 Jan 1970 13:46:40 GMT"
+      },
+      "Request-Target": {
+        "equalTo": "get /v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/transactions?dateFrom=1970-01-12"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "data": [
+        {
+          "type": "transactionMeResponse",
+          "id": "AEAC0A7A8486BB0F4CC262B454AD6A91F5445C430E6E72722070754016E38B03",
+          "attributes": {
+            "valueDate": "2021-06-17T10:06:15.4408693",
+            "operationDate": "2021-06-17T10:06:15.4408693",
+            "accountingDate": "2021-06-17T10:06:15.4408693",
+            "concept": "PAGO COMUNIDAD, TRF.PERIODICA: 1",
+            "amount": {
+              "value": 197.81,
+              "currency": "EUR"
+            },
+            "subsequentBalance": {
+              "value": 285570.24,
+              "currency": "EUR"
+            }
+          },
+          "links": {
+            "self": "/v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/transactions/AEAC0A7A8486BB0F4CC262B454AD6A91F5445C430E6E72722070754016E38B03"
+          }
+        },
+        {
+          "type": "transactionMeResponse",
+          "id": "5694D524D079774CC2FCB02BDA620721046358E78ED0EBADC976C0F6C26B79AE",
+          "attributes": {
+            "valueDate": "2021-08-13T11:18:19.0050758",
+            "operationDate": "2021-08-13T11:18:19.0050758",
+            "accountingDate": "2021-08-13T11:18:19.0050758",
+            "concept": "DISTRIBUCIONES FROIZ, S.A.U.,FRA 01/901/22-2102 DE 0",
+            "amount": {
+              "value": 375.93,
+              "currency": "EUR"
+            },
+            "subsequentBalance": {
+              "value": 285768.05,
+              "currency": "EUR"
+            }
+          },
+          "links": {
+            "self": "/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/transactions/5694D524D079774CC2FCB02BDA620721046358E78ED0EBADC976C0F6C26B79AE"
+          }
+        }
+      ],
+      "links": {
+        "first": "/v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/transactions?dateFrom=2021-06-09&count=20",
+        "self": "/v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/transactions?dateFrom=2021-06-09&count=20",
+        "next": "/v2/psd2/me/accounts/10486ABC01F20362F29063237FE31EFF352E759C08B608B08C944CB6E9F1F6D4/transactions?dateFrom=2021-06-09&offset=Mg%3d%3d&count=20"
+      },
+      "meta": {
+        "totalTransactions": 20,
+        "more": true
+      }
+    }
+  }
+}

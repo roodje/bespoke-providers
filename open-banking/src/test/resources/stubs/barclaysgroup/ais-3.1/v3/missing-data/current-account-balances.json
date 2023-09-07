@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/10000000000001449160/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "d0a9b85f-9715-4d16-a33d-4323ceab5254"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0017440000hdQV5CCT"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "10000000000001449160",
+            "Amount": {
+              "Amount": "13.36"
+            },
+            "CreditDebitIndicator": "Credit",
+            "DateTime": "2018-05-11T00:00:00+01:00",
+            "Type": "Expected"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://telesto.api.barclays/open-banking/v3.1/aisp/accounts/10000000000001449160/balances"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

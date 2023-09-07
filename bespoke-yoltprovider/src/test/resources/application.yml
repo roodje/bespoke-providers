@@ -1,0 +1,9 @@
+lovebird:
+  yoltprovider:
+    base-url: http://localhost:${wiremock.server.port}/
+    customer-authorization-url: http://yoltbank.io/authorize
+
+spring:
+  jackson:
+    deserialization:
+      adjust-dates-to-context-time-zone: false

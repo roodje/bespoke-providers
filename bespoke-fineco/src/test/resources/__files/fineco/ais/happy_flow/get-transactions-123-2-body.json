@@ -1,0 +1,26 @@
+{
+  "account": {
+    "iban": "IT31X0301503200000003517230"
+  },
+  "transactions": {
+    "booked": [
+      {
+        "transactionId": "MjAyMDA4MTFfNTc1MDY0ODIyNDU4MjMxNzM=",
+        "debtorName": "Mario Rossi",
+        "transactionAmount": {
+          "currency": "EUR",
+          "amount": "343.01"
+        },
+        "bookingDate": "2019-01-25",
+        "valueDate": "2019-01-26",
+        "remittanceInformationUnstructured": "causale pagamento2",
+        "remittanceInformationStructured": "Tidal",
+        "proprietaryBankTransactionCode": "W43-Pagamento Visa Debit"
+      }
+    ],
+    "_links": {
+      "account": "",
+      "next": "https://sandbox.api.finceobank.com/v1/accounts/123/transactions/next"
+    }
+  }
+}

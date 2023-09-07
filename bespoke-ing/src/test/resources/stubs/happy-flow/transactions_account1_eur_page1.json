@@ -1,0 +1,85 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/ing/v2/accounts/7de0041d-4f25-4b6c-a885-0bbeb1eab220/transactions\\?currency=EUR&dateFrom=(.*)&limit=[0-9]*",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "matches": "Bearer (.*)"
+      },
+      "Signature": {
+        "matches": "keyId=\"example_client_id\",algorithm=\"rsa-sha256\",headers=\"(.*)\",signature=\"(.*)\""
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "Date": {
+        "matches": "[A-Z][a-z]{2}, [0-9]{1,2} [A-Z][a-z]{2} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} GMT"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "iban": "NL11INGABC12345",
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "040506067668852010000000",
+            "endToEndId": "NOTPROVIDED",
+            "bookingDate": "2020-08-30",
+            "valueDate": "2020-08-30",
+            "executionDateTime": "2020-08-30T00:02:45Z",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": 5.00
+            },
+            "debtorName": "Debtor Name",
+            "debtorAccount": {
+              "bban": "INGB1234426876"
+            },
+            "transactionType": "Overschrijving",
+            "remittanceInformationUnstructured": "HAFO DEN HAAG SGRAVENHAGE NLD<br>Pasvolgnr: 111 22-01-2022 15:17<br>Transactie: 30C5S4 Term: 000001<br>Valutadatum: 23-01-2022",
+            "remittanceInformationStructured": {
+              "type": "SCOR",
+              "issuer": "ISO",
+              "reference": "RF18539007547034"
+            }
+          }
+        ],
+        "pending": [
+          {
+            "transactionId": "010303065498172720000000",
+            "endToEndId": "NOTPROVIDED",
+            "bookingDate": "2020-08-29",
+            "valueDate": "2020-08-29",
+            "executionDateTime": "2020-08-29T02:02:47Z",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": -47.13
+            },
+            "creditorName": "Creditor Name",
+            "creditorAccount": {},
+            "transactionType": "Betaalautomaat",
+            "remittanceInformationUnstructured": "Naam: T-mobile Netherlands<br>Omschrijving: 0000071511/102840<br>IBAN: NL87COBA1111000000<br>Kenmerk: Betaling toestel<br>Valutadatum: 20-01-2022",
+            "remittanceInformationStructured": {}
+          }
+        ],
+        "info": [],
+        "_links": {
+          "next": {
+            "href": "/v2/accounts/7de0041d-4f25-4b6c-a885-0bbeb1eab220/transactions?next=CQR23TABC"
+          }
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/pis/uk/domestic/consent/scheduled",
+    "headers": {
+      "client-id": {
+        "equalTo": "6f16d556-2845-45c4-a3bd-73054dacada5"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Permission": null,
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "EndToEndIdentification": "de955df0-fcee-4c58-a77d-ac4328be1ce8",
+              "LocalInstrument": null,
+              "InstructedAmount": {
+                "Amount": "123.45",
+                "Currency": "GBP"
+              },
+              "DebtorAccount": {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "7890",
+                "Name": "John Kowalsky",
+                "SecondaryIdentification": "0987"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "1234",
+                "Name": "Gall Anonim",
+                "SecondaryIdentification": "4321"
+              },
+              "CreditorPostalAddress": null,
+              "RemittanceInformation": {
+                "Unstructured": "remittanceUnstructured",
+                "Reference": null
+              },
+              "RequestedExecutionDateTime": "+999999999-12-31T23:59:59.999999999-18:00"
+            },
+            "Authorisation": null
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty",
+            "MerchantCategoryCode": null,
+            "MerchantCustomerIdentification": null,
+            "DeliveryAddress": null
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "consentUri": "http://yoltbank.io/authorize",
+      "paymentConsent": "{\"Data\":{\"ConsentId\":\"12324567890\"}}"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth/register",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "matches": "35acdd5c-ddf1-4a70-ac0f-a4322e3bc263"
+      },
+      "Content-Type": {
+        "equalTo": "application/jwt"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "client_id": "new-client-id",
+      "registration_access_token": "new-registration-access-token"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "request": {
+    "url": "/oauth2/token",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF-8)"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalTo": "code=AWASOME_CODE&client_id=THE-CLIENT-ID&client_secret=THE-CLIENT-SECRET&redirect_uri=https%3A%2F%2Fyolt.com%2Fcallback&grant_type=authorization_code"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access_token": "AWESOME-ACCESS-TOKEN",
+      "expires_in": 3600,
+      "refresh_token": "AWESOME-REFRESH-TOKEN",
+      "scope": "organization.read offline_access",
+      "token_type": "bearer"
+    }
+  }
+}

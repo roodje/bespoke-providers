@@ -1,0 +1,72 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPattern": "/psd2/register/client-id",
+    "headers": {
+      "digest": {
+        "equalTo": "SHA-256=3gIqivAxP7kwDvfmYIMKwXM1mJ7yJPVbQPBsWDckdGc="
+      },
+      "signature": {
+        "matches": "keyId=\"https://test.qseal.certificate.com/a4:62:72:3b:cc:7f:37:07:17:5d:2d:21:18:f1:e2:2a:d0:fb:79:1a.pem\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) content-type accept x-request-id authorization digest\", signature=\"(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?\""
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 87e7c450-a87b-4b2a-a512-37c8c3fc998a"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "client_id": "client-id",
+          "redirect_uris": [
+            "https://www.example.com"
+          ],
+          "token_endpoint_auth_method": "tls_client_auth",
+          "grant_types": [
+            "authorization_code",
+            "refresh_token",
+            "client_credentials"
+          ],
+          "response_types": [
+            "code"
+          ],
+          "client_name": "ING Bank N.V.",
+          "client_uri": "https://www.example.com/website",
+          "logo_uri": "https://www.example.com/logo",
+          "scope": "aisp pisp",
+          "contacts": [
+            "contact-email@example.com"
+          ],
+          "provider_legal_id": "PSDNL-DNB-B0163",
+          "jwks": {
+            "keys": [
+              {
+                "kid": "0677504b-4c38-4c77-a50e-e979205f63ec",
+                "kty": "RS256",
+                "use": "sig",
+                "x5c": [
+                  "MIIJLjCCBuagAwIBAgIQK5rb1/hr7VHiP0Z8JeH4hzA9BgkqhkiG9w0BAQowMKANMAsGCWCGSAFlAwQCA6EaMBgGCSqGSIb3DQEBCDALBglghkgBZQMEAgOiAwIBQDBbMQswCQYDVQQGEwJERTEVMBMGA1UEChMMRC1UcnVzdCBHbWJIMRwwGgYDVQQDExNELVRSVVNUIENBIDItMiAyMDE5MRcwFQYDVQRhEw5OVFJERS1IUkI3NDM0NjAeFw0xOTA4MTIxNDA3MjVaFw0yMDA4MTUxNDA3MjVaMIGCMQswCQYDVQQGEwJOTDEWMBQGA1UEChMNSU5HIEJhbmsgTi5WLjEWMBQGA1UEAxMNSU5HIEJhbmsgTi5WLjESMBAGA1UEBxMJQW1zdGVyZGFtMRgwFgYDVQRhEw9QU0ROTC1ETkItQjAxNjMxFTATBgNVBAUTDENTTTAxNjczMzk3ODCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBANc6vqvdWjHlxoXC9XYVgPWvGpIHqfBzxYzm0tDBFZwgvGnhFku5EH9ub9Ffi2cizdH/bf2gRbGH/iwedJ/wiR1n7e4sPI8oYK+m8+g1s4xv3T3rSJ3Z5jO7cUOmM7yczpR7VImPfl8MaYCiICJrl1z40GIoE29GdJAR2fJlY1jt+Mfsrp9f0uUFPbLzpzSkowB1jVaoS9PoHO6WcDbldpqaJNSqls5DinJOKRsPPrwIzPYHe2HJFAXP3aMUUyQfbRD1ykLxudT4aCvQQYIkSYIxvdS23+cbJHI8WxZGSzgfCCOckR6+LLrNn5qGCsuiD+qTDP5mls56hT+qabXqVAZPzFHLCc8zeGYLcpi3rAVjG2LXRF2uF/+2NxJ180AC6Q6/DvtBJJAhhNIGGgfiSR3PLHtgzQhYXdlCYqBT/ZzjqFvb81BDdbKSAlOzrNwx8zlqwi+JtKDsLNrtHA3n+yIY5Eamo5aUk7+wGxBIAcQ5D57dKYd1aSqWSeP98r1DQ4NiWOn6viXo7PqqOp4msjcPESbDNvKyxvj8DsoiDmOs2zS1j6DwWoEX6TXXBBje6+GnEAZ3mtyrEILRsElVWi3Oz7cBRE05b6ruXinCeG8xeFUs9NOOP4Zxjk41iPKuepaG2bIuWPJTJeGWn2yu06t19anMR9FAyfiKSs+AESudAgMBAAGjggNkMIIDYDAfBgNVHSMEGDAWgBRxEDKudHF7VI7x1qtiVK78PsC7FjCBpwYIKwYBBQUHAQMEgZowgZcwdgYGBACBmCcCMGwwTDARBgcEAIGYJwEDDAZQU1BfQUkwEQYHBACBmCcBAgwGUFNQX1BJMBEGBwQAgZgnAQQMBlBTUF9JQzARBgcEAIGYJwEBDAZQU1BfQVMMFFRoZSBOZXRoZXJsYW5kcyBCYW5rDAZOTC1ETkIwCAYGBACORgEBMBMGBgQAjkYBBjAJBgcEAI5GAQYCMIH+BggrBgEFBQcBAQSB8TCB7jA3BggrBgEFBQcwAYYraHR0cDovL2QtdHJ1c3QtY2EtMi0yLTIwMTkub2NzcC5kLXRydXN0Lm5ldDBCBggrBgEFBQcwAoY2aHR0cDovL3d3dy5kLXRydXN0Lm5ldC9jZ2ktYmluL0QtVFJVU1RfQ0FfMi0yXzIwMTkuY3J0MG8GCCsGAQUFBzAChmNsZGFwOi8vZGlyZWN0b3J5LmQtdHJ1c3QubmV0L0NOPUQtVFJVU1QlMjBDQSUyMDItMiUyMDIwMTksTz1ELVRydXN0JTIwR21iSCxDPURFP2NBQ2VydGlmaWNhdGU/YmFzZT8wcAYDVR0gBGkwZzAJBgcEAIvsQAEDMFoGCysGAQQBpTQCgRYFMEswSQYIKwYBBQUHAgEWPWh0dHA6Ly93d3cuZC10cnVzdC5uZXQvaW50ZXJuZXQvZmlsZXMvRC1UUlVTVF9DU01fUEtJX0NQUy5wZGYwgfAGA1UdHwSB6DCB5TCB4qCB36CB3IZpbGRhcDovL2RpcmVjdG9yeS5kLXRydXN0Lm5ldC9DTj1ELVRSVVNUJTIwQ0ElMjAyLTIlMjAyMDE5LE89RC1UcnVzdCUyMEdtYkgsQz1ERT9jZXJ0aWZpY2F0ZXJldm9jYXRpb25saXN0hjJodHRwOi8vY3JsLmQtdHJ1c3QubmV0L2NybC9kLXRydXN0X2NhXzItMl8yMDE5LmNybIY7aHR0cDovL2Nkbi5kLXRydXN0LWNsb3VkY3JsLm5ldC9jcmwvZC10cnVzdF9jYV8yLTJfMjAxOS5jcmwwHQYDVR0OBBYEFHFrk6cayo+4CdZiQq5EAUg+VONEMA4GA1UdDwEB/wQEAwIGQDA9BgkqhkiG9w0BAQowMKANMAsGCWCGSAFlAwQCA6EaMBgGCSqGSIb3DQEBCDALBglghkgBZQMEAgOiAwIBQAOCAgEAKmhABdx6o/xZDuuxfxCH22+h7vx+GwOq7emLkT83UYsof4HVEBGMZz9RtKH56V4ouZG98nG2K4L6RDrANT4zRDFI3VAUX8GXs70D1nF9Fe5xUfCl1+crwQmQx1QAIPkounppqzkDX/xczlDOBF554Il8YhqZFTsBwUQa/6PjPJ81AeVr8vT7ki2YPj6taIpjH005QOyD7VFdAOnEurNhbrrwo2KJmTcc1bzbk/7lVNWR8dM8bPNB+Sr+Kw1LLVsu80E95FIXmJUF4Vei6gQHsx/vXnPHs+nxtklLmhV81vg13usncZDyU3L6rYpe7NqLiFqWPn87L+1mPgIv5SXHdcdnFypvYKNs3eE2KRKyebT/T6JiRl3NAD/+8M5+ky5cJFI0I5NDwlqQCuwkF361Htie2H5663ZDpyLtGPOcuHyb0rdliSEVfZIQWv3d+1EYvyNHI0VhAX12JOXXeRR1zW6yxhscGbYh6bRmT+6b+fx6hjGAnwlfuDnP3ai12E51z1h5dP6aTQbRk+1C7CKgkHCfFEC+Edg+S4HcRJ1rrxSy3zx/CK7qb6Ln8y7RF06+uV67M1kaSiotyp0ulFHD8rO7BWBmWA8u3WofNo7SLf1bmfgHAAkKZMbEOHYtlD96rEXrsogbltWLtN0bZe4OkhzwexmJ2+qSkhAj4RuYH9k\u003d"
+                ],
+                "n": "1zq-q91aMeXGhcL1dhWA9a8akgep8HPFjObS0MEVnCC8aeEWS7kQf25v0V-LZyLN0f9t_aBFsYf-LB50n_CJHWft7iw8jyhgr6bz6DWzjG_dPetIndnmM7txQ6YzvJzOlHtUiY9-XwxpgKIgImuXXPjQYigTb0Z0kBHZ8mVjWO34x-yun1_S5QU9svOnNKSjAHWNVqhL0-gc7pZwNuV2mpok1KqWzkOKck4pGw8-vAjM9gd7YckUBc_doxRTJB9tEPXKQvG51PhoK9BBgiRJgjG91Lbf5xskcjxbFkZLOB8II5yRHr4sus2fmoYKy6IP6pMM_maWznqFP6pptepUBk_MUcsJzzN4ZgtymLesBWMbYtdEXa4X_7Y3EnXzQALpDr8O-0EkkCGE0gYaB-JJHc8se2DNCFhd2UJioFP9nOOoW9vzUEN1spICU7Os3DHzOWrCL4m0oOws2u0cDef7IhjkRqajlpSTv7AbEEgBxDkPnt0ph3VpKpZJ4_3yvUNDg2JY6fq-Jejs-qo6niayNw8RJsM28rLG-PwOyiIOY6zbNLWPoPBagRfpNdcEGN7r4acQBnea3KsQgtGwSVVaLc7PtwFETTlvqu5eKcJ4bzF4VSz0044_hnGOTjWI8q56lobZsi5Y8lMl4ZafbK7Tq3X1qcxH0UDJ-IpKz4ARK50"
+              }
+            ]
+          },
+          "context": "psd2"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "X-Frame-Options": "DENY",
+      "Transfer-Encoding": "chunked",
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "message": "Your update request has been recorded. We will contact you to confirm."
+    }
+  }
+}

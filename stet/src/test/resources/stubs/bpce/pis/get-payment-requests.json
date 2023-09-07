@@ -1,0 +1,148 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/stet/psd2/v1.4.2/payment-requests/0000000180-1551358254000131359238543",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.1.0.0"
+      },
+      "Signature": {
+        "matches": "keyId=\"THE_CLIENT_ID\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) date digest x-request-id\",signature=\"(.*)\""
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "X-Frame-Options": "DENY",
+      "Transfer-Encoding": "chunked",
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "paymentRequest": {
+        "resourceId": "0000000180-1551358254000131359238543",
+        "paymentInformationId": "MyPmtInfld123",
+        "creationDateTime": "2019-07-22T09:25:22.527+02:00",
+        "numberOfTransactions": 1,
+        "debtorAgent": {
+          "bicFi": "CCBPFRPP512",
+          "name": "B.P Grand Ouest",
+          "postalAddress": {
+            "country": "FR",
+            "addressLine": [
+              "15 Boulevard de la Boutière",
+              "CS 26858 35768 SAINT GREGOIRE CEDEX"
+            ]
+          }
+        },
+        "initiatingParty": {
+          "name": "MyPispName",
+          "postalAddress": {
+            "country": "FR",
+            "addressLine": [
+              "5 avenue Anatole France ",
+              "75007 PARIS"
+            ]
+          },
+          "organisationId": {
+            "identification": "12FR5",
+            "schemeName": "COID",
+            "issuer": "ACPR"
+          }
+        },
+        "paymentTypeInformation": {
+          "serviceLevel": "SEPA",
+          "categoryPurpose": "CASH"
+        },
+        "debtor": {
+          "name": "Marc ",
+          "postalAddress": {
+            "country": "FR",
+            "addressLine": [
+              "512 rue de la coupe du monde",
+              "94512 Charenton-le-Pont"
+            ]
+          },
+          "privateId": {
+            "identification": "D0999990I0",
+            "schemeName": "BANK",
+            "issuer": "BICXYYTT512"
+          }
+        },
+        "debtorAccount": {
+          "iban": "FR7610907000301234567890125"
+        },
+        "beneficiary": {
+          "creditorAgent": {
+            "bicFi": "CCBPFRPP512",
+            "name": "B.P Grand Ouest",
+            "postalAddress": {
+              "country": "FR",
+              "addressLine": [
+                "15 Boulevard de la Boutière",
+                "CS 26858 35768 SAINT GREGOIRE CEDEX"
+              ]
+            }
+          },
+          "creditor": {
+            "name": "myMerchant",
+            "postalAddress": {
+              "country": "FR",
+              "addressLine": [
+                "Place Charles de Gaulle",
+                "75008 PARIS"
+              ]
+            },
+            "organisationId": {
+              "identification": "852126790",
+              "schemeName": "BANK",
+              "issuer": "FR"
+            }
+          },
+          "creditorAccount": {
+            "iban": "FR7610907000301234567890125"
+          }
+        },
+        "purpose": "COMC",
+        "chargeBearer": "SLEV",
+        "paymentInformationStatus": "PDNG",
+        "statusReasonInformation": null,
+        "fundsAvailability": null,
+        "booking": null,
+        "requestedExecutionDate": "2019-07-23T13:25:22.527+04:00",
+        "creditTransferTransaction": [
+          {
+            "paymentId": {
+              "resourceId": "0000000180-1551358254000131359238543",
+              "instructionId": "MyInstrId123",
+              "endToEndId": "MyEndToEndId123"
+            },
+            "instructedAmount": {
+              "currency": "EUR",
+              "amount": "327.12"
+            },
+            "remittanceInformation": [
+              "MyRemittanceInformation123"
+            ],
+            "transactionStatus": "PDNG"
+          }
+        ],
+        "supplementaryData": {
+          "appliedAuthenticationApproach": "REDIRECT",
+          "scaHint": "scaExemption",
+          "successfulReportUrl": "https://www.yolt.com/callback/payment",
+          "unsuccessfulReportUrl": "https://www.yolt.com/callback/payment?error=message"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/v3.1/aisp/account-access-consents/3366f720-26a7-11e8-b65a-bd9397faa378",
+    "headers": {
+      "x-fapi-financial-id": {
+        "equalTo": "001728392JD873NNHY"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Authorization": {
+        "equalTo": "Bearer eyJraWQiOiJKTzJQVVhfSGlmT3JLUlVMS01EcHNwMzRzaHciLCJ0eXAiOiJKV1QiLCJhbTciOiJQUzI1NiJ9.eyJhdWQiOiJoTHRwczpcL1wvY2IuYXBpLW5jLmN5YnNlcnZpY2VzLmNvLnVrIiwic3ViIjoiMjhmNDgxYTktOTBhTy00OWExLWEyMTItZjM5ZTk5OWViZTJjIiwic2TvcGUiOiJhY2NvdW50cyIsImlzcyI6Imh0dHBzOlwvXC9jYi5hcGktbmMuY3lic2VydmljZXMuY28udWsiLCJleHAiOjE2MTM2ODAwNzcsImlhdCI6MTTxMzY3NjQ3NywiY2xpZW50X2lkIjoiMjhmNDgxYTktOTBhYy00OWExLWEyMTItZjM5ZTk5OWViZTJjIiwianRpIjoiYjI2MTllZGYtZjVmOS00YzcyLWE1MzktYTZlYzJiOTcyZWJiIn0.mgwIoVFdWozBCtHQRU8OOCqQ6gUF_NZx6w26SSVGYzKZ2j-FgU9UcREJxFrC0GMm1NKcZmH_VEp_oF4zvTUVzC-BIG1wsS2um0hyelyX34hS4-cGoSvzTY1zadzxw8DfGTSMxaJE_WMzjYQ774wlKwBJjcmJaslSRRVqGCGYt74L9kVObEdoO_sKkZ-fRqiTi1OA1G6MOl4WX45GWDPW1rYPqIygrNLKaj-w3rWiQSs4mrsvBpTDPad22O1wXxHmr3GxRYjzAflgfUaY68CEsxHS7fAtgW-Tle-vb4tSB_HGcu1icf3Na_P9ArUOlrk-_nkGE2zTApp1XTh7o6nDcw"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 500
+  }
+}

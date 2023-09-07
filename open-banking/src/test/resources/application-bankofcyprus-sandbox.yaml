@@ -1,0 +1,7 @@
+lovebird:
+  bankofcyprus:
+    baseUrl: https://openbanking.bankofcyprus.co.uk/API
+    customerAuthorizationUrl: https://openbanking.bankofcyprus.co.uk/API/authorize
+    oAuthTokenUrl: https://openbanking.bankofcyprus.co.uk/API/token
+    clientId: 6e0_eD_Nb19eyicF964QuF29kOoa
+    clientSecret: _evoR9teD7wc0d55JKgfL1dfiwga

@@ -1,0 +1,5 @@
+lovebird:
+  abancagroup:
+    abanca:
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      paginationLimit: 100

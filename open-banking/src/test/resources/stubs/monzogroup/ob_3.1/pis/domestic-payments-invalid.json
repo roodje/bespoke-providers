@@ -1,0 +1,74 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/pisp/domestic-payments",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "54321"
+      },
+      "Authorization": {
+        "equalTo": "Bearer SOME_ACCESS_TOKEN"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "001580000103U9RAAU"
+      },
+      "Accept": {
+        "matches": "^application/json$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "ConsentId": "obpispdomesticpaymentconsent_00009mynmtLy5yvfOeJjqD",
+            "Initiation": {
+              "InstructionIdentification": "20210202075444419-52254e2c-0d8",
+              "EndToEndIdentification": "35B64F93",
+              "LocalInstrument": "UK.OBIE.FPS",
+              "InstructedAmount": {
+                "Amount": "-100.00",
+                "Currency": "GBP"
+              },
+              "DebtorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "8272908780568576",
+                "Name": "Alex Mitchell"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "1802968485593088",
+                "Name": "Jordan Bell"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "Structured",
+                "Reference": "Unstructured"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Code": "OB-ERR-123",
+      "Id": "123",
+      "Message": "Invalid Confirmation Request Body",
+      "Errors": [
+        {
+          "ErrorCode": "OB-ERR-123",
+          "Message": "Invalid Confirmation Request Body",
+          "Path": "monzo/v3.1/pisp/domestic-payments",
+          "Url": "monzo/v3.1/pisp/domestic-payments"
+        }
+      ]
+    }
+  }
+}

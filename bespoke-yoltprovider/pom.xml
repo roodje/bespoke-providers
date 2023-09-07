@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.yolt.providers.bespoke</groupId>
+    <artifactId>yoltprovider</artifactId>
+    <version>4.0.20-SNAPSHOT</version>
+    <parent>
+        <groupId>com.yolt.providers</groupId>
+        <artifactId>providers-parent</artifactId>
+        <version>3.2.18</version>
+        <relativePath />
+    </parent>
+    <scm>
+        <connection>scm:git:https://git.yolt.io/providers/bespoke-yoltprovider.git</connection>
+        <developerConnection>scm:git:https://git.yolt.io/providers/bespoke-yoltprovider.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <repositories>
+        <repository>
+            <id>lovebird-aws</id>
+            <url>https://nexus.yolt.io/repository/public/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>lovebird-aws</id>
+            <url>https://nexus.yolt.io/repository/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <properties>
+        <!--suppress UnresolvedMavenProperty -->
+        <build.number>${env.CI_PIPELINE_ID}</build.number>
+        <sonar.projectKey>bespoke-yoltprovider</sonar.projectKey>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.yolt.providers</groupId>
+            <artifactId>providers-commons</artifactId>
+            <version>4.1.26</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>9.25.6</version>
+        </dependency>
+
+
+        <!-- Only for YoltProvider, do propagate trace information -->
+        <dependency>
+            <groupId>io.opentracing</groupId>
+            <artifactId>opentracing-api</artifactId>
+            <version>0.33.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.opentracing</groupId>
+            <artifactId>opentracing-mock</artifactId>
+            <version>0.33.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.yolt.providers</groupId>
+            <artifactId>providers-commons</artifactId>
+            <version>4.1.26</version>
+            <classifier>tests</classifier>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <language>spring</language>
+                    <generateApis>false</generateApis>
+                    <generateSupportingFiles>false</generateSupportingFiles>
+                    <configOptions>
+                        <java8>true</java8>
+                    </configOptions>
+                    <inputSpec />
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>pis</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/swagger/payment-initiation-3-0-0-swagger.yaml</inputSpec>
+                            <modelPackage>com.yolt.providers.yoltprovider.pis.ukdomestic.models</modelPackage>
+                            <language>spring</language>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

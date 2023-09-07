@@ -1,0 +1,91 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v1/private/customers/3610569/accounts",
+    "headers": {
+      "TPP-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Signature": {
+        "equalTo": "keyId=\"YOLT_APP\",algorithm=\"rsa-sha256\",headers=\"(request-target) tpp-request-id date\",signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "Date": {
+        "matches": "^[A-Za-z]{3}, [0-9]{1,2} [A-Za-z]{3} [0-9]{4} [0-9]{1,2}:[0-9]{2}:[0-9]{2} (GMT|\\+[0-9]{4})"
+      },
+      "Host": {
+        "matches": ".*"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer accessToken123"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Server": "Apache-Coyote/1.1",
+      "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS,HEAD",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "cb-apitrack-id": "5504891511",
+      "Cache-Control": "no-store",
+      "Pragma": "no-cache",
+      "Content-Type": "application/json",
+      "Content-Length": "366",
+      "Date": "Tue, 12 Feb 2019 16:06:27 GMT",
+      "Connection": "close",
+      "Strict-Transport-Security": "max-age=16070400; includeSubDomains"
+    },
+    "jsonBody": {
+      "result": {
+        "messages": [],
+        "flushMessages": true,
+        "outcome": "SUCCESS",
+        "requestId": "requestId123",
+        "result": true
+      },
+      "data": {
+        "accounts": [
+          {
+            "accountId": "account123",
+            "product": {
+              "code": "AZIM",
+              "description": "desc123"
+            },
+            "currency": "EUR",
+            "iban": "IT60X0542811101000000123123",
+            "name": "Product nickname123"
+          },
+          {
+            "accountId": "account456",
+            "product": {
+              "code": "CAPC",
+              "description": "desc456"
+            },
+            "currency": "EUR",
+            "iban": "IT60X0542811101000000123456",
+            "name": "Product nickname456"
+          }
+        ]
+      },
+      "_links": {
+        "self": {
+          "href": " ",
+          "method": "GET"
+        },
+        "curies": [
+          {
+            "href": "https://external-api.chebanca.io/private/customers/3610569/accounts",
+            "name": "accounts"
+          }
+        ]
+      },
+      "_embedded": {}
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/v3.1/aisp/account-access-consents/3366f720-26a7-11e8-b65a-bd9397faa378",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIWNndlNDJvVE1OWFMXM0tiUGVxQnZOVlIRUpaRVrRr8Fj_bo7uUM5QmE35jz2ouxm6aAdrypw4sB6GrzPgxJrZ_Eq-oqTjop74eOH3hJ79C9AxenrI4KoucKU7U9lPVor-cOwdjWf2xCr_y2kkIY4e0kgxffoSEA"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "6706f0a2-6ae7-46b3-8a12-815497b73c7a"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0016800001051XVBBZ"
+      },
+      "Accept": {
+        "absent": true
+      }
+    }
+  },
+  "response": {
+    "status": 204,
+    "headers": {
+      "x-fapi-interaction-id": "12345"
+    }
+  }
+}

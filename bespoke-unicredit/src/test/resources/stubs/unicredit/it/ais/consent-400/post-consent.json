@@ -1,0 +1,50 @@
+{
+  "request": {
+    "url": "/v1/consents",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "PSU-ID-Type": {
+        "equalTo": "HVB_ONLINEBANKING"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "^[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}$"
+      },
+      "TPP-Redirect-URI": {
+        "matches": "^https:\\/\\/www\\.yolt\\.com\\/callback-acc\\?state=[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}$"
+      },
+      "PSU-IP-Address": {
+        "matches": "^([0-9]{1,3}\\.){3}[0-9]{1,3}$"
+      },
+      "TPP-Redirect-Preferred": {
+        "equalTo": "true"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.access[?(@.allPsd2 == 'allAccounts')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.recurringIndicator == true)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.validUntil =~ /[0-9]{4}-[0-9]{2}-[0-9]{2}/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.frequencyPerDay == 4)]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "bodyFileName": "unicredit/it/ais/consent-400/post-consent-400-body.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

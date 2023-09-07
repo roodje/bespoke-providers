@@ -1,0 +1,91 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 7531d7a8-7f5e-4bde-ae07-a5c587458ad7"
+      },
+      "Accept": {
+        "matches": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800001ZEZ3yAAH"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "E179385A-3774-499C-8D61-142783AB943C",
+            "Currency": "EUR",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Description": "Switch Current Account",
+            "Nickname": "Joe Bloggs Reg Saver",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "IE79IPBS99066012344321"
+              }
+            ],
+            "Servicer": {
+              "SchemeName": "UK.OBIE.BICFI",
+              "Identification": "IPBSIE2D"
+            }
+          },
+          {
+            "AccountId": "EC26D95F-6DDC-44E3-82C1-BA1145D7CEA6",
+            "Currency": "EUR",
+            "AccountType": "Personal",
+            "AccountSubType": "Savings",
+            "Description": "Savings Account",
+            "Nickname": "John's Savings Account",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "IE79IPBS99066012344323"
+              }
+            ],
+            "Servicer": {
+              "SchemeName": "UK.OBIE.BICFI",
+              "Identification": "IPBSIE2D"
+            }
+          },
+          {
+            "AccountId": "4339903A-0493-43CA-A855-EDAF40CD2835",
+            "Currency": "EUR",
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard",
+            "Description": "Credit Card",
+            "Nickname": "Paul's Credit Card A/C",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.PAN",
+                "Identification": "xxxx 1881"
+              }
+            ],
+            "Servicer": {
+              "SchemeName": "UK.OBIE.BICFI",
+              "Identification": "IPBSIE2D"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://developer.permanenttsb.ie/psd2api/ptsb/open-banking/v3.1/aisp/accounts",
+        "Last": "https://developer.permanenttsb.ie/psd2api/ptsb/open-banking/v3.1/aisp/accounts"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

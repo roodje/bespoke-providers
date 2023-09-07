@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/v1/payments/sepa-credit-transfers",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "PSU-IP-Address": {
+        "matches": "\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b"
+      },
+      "TPP-Redirect-URI": {
+        "equalTo": "https://www.yolt.com/callback/payment?state=fakeState"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "instructedAmount": {
+            "currency": "EUR",
+            "amount": "123.5"
+          },
+          "debtorAccount": {
+            "iban": "IT31X0301503200000003517230"
+          },
+          "creditorName": "Walter Bianchi",
+          "creditorAccount": {
+            "iban": "DE02100100109307118603"
+          },
+          "remittanceInformationUnstructured": "causale pagamento"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "transactionStatus": "RCVD",
+      "paymentId": "1234-wertiq-983",
+      "_links": {
+        "scaRedirect": "https://www.finecobank.com/1234-wertiq-983"
+      }
+    }
+  }
+}

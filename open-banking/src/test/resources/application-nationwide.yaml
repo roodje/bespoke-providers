@@ -1,0 +1,20 @@
+lovebird:
+  nationwide:
+    pagination-limit: 2
+    baseUrl: https://localhost:${wiremock.server.https-port}
+    oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth/token
+    oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+    paymentsUrl: https://localhost:${wiremock.server.https-port}/payments
+    paymentSubmissionsUrl: https://localhost:${wiremock.server.https-port}/payment-submissions
+    refreshTokenExpiredMessage: placeholder
+    registrationUrl: https://localhost:${wiremock.server.https-port}/register
+    audience: https://someregistrationaudience.com/v1.1
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

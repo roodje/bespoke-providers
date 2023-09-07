@@ -1,0 +1,39 @@
+{
+  "request": {
+    "url": "/v1/accounts/CTR%7C1271339%7C12345678901%7C1%7C2%7C1%7C12345678901/balances",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "traceId"
+      },
+      "Consent-ID": {
+        "equalTo": "consentId"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-ACCESS-TOKEN"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "iban": "FR7612548029981234567890122",
+        "currency": "978"
+      },
+      "balances": [
+        {
+          "balanceAmount": {
+            "currency": "978",
+            "amount": 19868.38
+          },
+          "lastChangeDateTime": "2020-11-03T00:00:00",
+          "balanceType": "closingBooked"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

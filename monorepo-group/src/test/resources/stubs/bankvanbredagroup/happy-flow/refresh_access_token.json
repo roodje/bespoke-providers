@@ -1,0 +1,35 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/berlingroup/v1/token",
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=refresh_token"
+      },
+      {
+        "contains": "client_id=PSDNL-SBX-1234512345"
+      }
+    ],
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF-8)?"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "new_access_token",
+      "token_type": "Bearer",
+      "expires_in": 3600,
+      "scope": "AIS:VALID_CONSENT_ID"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+

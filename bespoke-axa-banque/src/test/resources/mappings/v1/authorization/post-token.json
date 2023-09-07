@@ -1,0 +1,44 @@
+{
+  "request": {
+    "url": "/v1/token",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matches": ".*client_id=PSDFI-FINFSA-2988.*"
+      },
+      {
+        "matches": ".*code=11111aa1-0000-1111-2222-3a333aa3aa3a.*"
+      },
+      {
+        "matches": ".*code_verifier=codeVerifier.*"
+      },
+      {
+        "matches": ".*grant_type=authorization_code.*"
+      },
+      {
+        "matches": ".*redirect_uri=https%3AbaseUri.com.*"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "THE-ACCESS-TOKEN",
+      "expires_in": 900,
+      "refresh_token": "2c3d535c-af8f-407e-8af1-178396a9b858",
+      "scope": "token scope",
+      "token_type": "Bearer"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

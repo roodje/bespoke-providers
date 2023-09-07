@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/apis/open-banking/v3.1/aisp/accounts",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+      },
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "Accept": {
+        "matches": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "003882287203T83JKK"
+      }
+    }
+  },
+  "response": {
+    "status": 500,
+    "jsonBody": {
+      "Code": "500",
+      "Id": "9b1a68f6-320c-425b-ac04-bb00f7207735",
+      "Message": "Internal Server Error",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.UnexpectedError",
+          "Message": "Internal Server Error"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

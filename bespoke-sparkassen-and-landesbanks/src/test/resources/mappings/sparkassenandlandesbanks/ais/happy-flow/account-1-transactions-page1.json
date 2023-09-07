@@ -1,0 +1,41 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/10050000/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/transactions",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "deltaList": {
+        "equalTo": "false"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_ACCESS_TOKEN"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Accept": {
+        "equalTo": "application/xml"
+      },
+      "Consent-ID": {
+        "equalTo": "SOME_CONSENT_ID"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/xml"
+    },
+    "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.052.001.02\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"          xsi:schemaLocation=\"urn:iso:std:iso:20022:tech:xsd:camt.052.001.02 camt.052.001.02.xsd\">    <BkToCstmrAcctRpt>        <GrpHdr>            <MsgId>camt52_20210119123123__ONLINEBA</MsgId>            <CreDtTm>2021-01-19T12:31:23+01:00</CreDtTm>            <MsgPgntn>                <PgNb>1</PgNb>                <LastPgInd>true</LastPgInd>            </MsgPgntn>        </GrpHdr>        <Rpt>            <Id>camt052_ONLINEBA</Id>            <ElctrncSeqNb>00000</ElctrncSeqNb>            <CreDtTm>2021-01-19T12:31:23+01:00</CreDtTm>            <Acct>                <Id>                    <IBAN>DE12345678910111213145</IBAN>                </Id>                <Ccy>EUR</Ccy>                <Svcr>                    <FinInstnId>                        <BIC>FRSPDE66XXX</BIC>                        <Nm>SPARKASSE ABC</Nm>                        <Othr>                            <Id>1232323232323</Id>                            <Issr>UmsStId</Issr>                        </Othr>                    </FinInstnId>                </Svcr>            </Acct>            <Bal>                <Tp>                    <CdOrPrtry>                        <Cd>PRCD</Cd>                    </CdOrPrtry>                </Tp>                <Amt Ccy=\"EUR\">500.00</Amt>                <CdtDbtInd>CRDT</CdtDbtInd>                <Dt>                    <Dt>2020-10-20</Dt>                </Dt>            </Bal>            <Bal>                <Tp>                    <CdOrPrtry>                        <Cd>CLBD</Cd>                    </CdOrPrtry>                </Tp>                <Amt Ccy=\"EUR\">499.99</Amt>                <CdtDbtInd>CRDT</CdtDbtInd>                <Dt>                    <Dt>2021-01-19</Dt>                </Dt>            </Bal>            <Ntry>                <Amt Ccy=\"EUR\">256.67</Amt>                <CdtDbtInd>CRDT</CdtDbtInd>                <Sts>BOOK</Sts>                <BookgDt>                    <Dt>2020-10-25</Dt>                </BookgDt>                <ValDt>                    <Dt>2020-10-26</Dt>                </ValDt>                <AcctSvcrRef>NONREF</AcctSvcrRef>                <BkTxCd/>                <NtryDtls>                    <TxDtls>                        <Refs>                            <EndToEndId>1234567</EndToEndId>                            <Prtry>                                <Tp>FI-ABCDEF-ID</Tp>                                <Ref>2020-10-25-12.03.14.193233</Ref>                            </Prtry>                        </Refs>                        <BkTxCd>                            <Prtry>                                <Cd>NDDT+110+000+011</Cd>                                <Issr>DK</Issr>                            </Prtry>                        </BkTxCd>                        <RltdPties>                            <Dbtr>                                <Nm>ISSUER</Nm>                            </Dbtr>                            <DbtrAcct>                                <Id>                                    <IBAN>DE12345678910111213145</IBAN>                                </Id>                            </DbtrAcct>                            <Cdtr>                                <Nm>John Miles</Nm>                            </Cdtr>                            <CdtrAcct>                                <Id>                                    <IBAN>DE67100100101306118605</IBAN>                                </Id>                            </CdtrAcct>                            <UltmtCdtr>                                <Nm>SHOP ABCDEFG</Nm>                            </UltmtCdtr>                        </RltdPties>                        <RltdAgts>                            <DbtrAgt>                                <FinInstnId>                                    <BIC>BICABC00XXX</BIC>                                </FinInstnId>                            </DbtrAgt>                            <CdtrAgt>                                <FinInstnId>                                    <BIC>BICXYZFF100</BIC>                                </FinInstnId>                            </CdtrAgt>                        </RltdAgts>                        <Purp>                            <Cd>IDCP</Cd>                        </Purp>                        <RmtInf>                            <Ustrd>Example 1</Ustrd>                        </RmtInf>                    </TxDtls>                </NtryDtls>                <AddtlNtryInf>KARTENZAHLUNG</AddtlNtryInf>            </Ntry>            <Ntry>                <Amt Ccy=\"EUR\">343.01</Amt>                <CdtDbtInd>DBIT</CdtDbtInd>                <Sts>PDNG</Sts>                <BookgDt>                    <Dt>2020-10-25</Dt>                </BookgDt>                <ValDt>                    <Dt>2020-10-25</Dt>                </ValDt>                <AcctSvcrRef>NONREF</AcctSvcrRef>                <BkTxCd/>                <NtryDtls>                    <TxDtls>                        <Refs>                            <Prtry>                                <Tp>FI-ABCXZX-ID</Tp>                                <Ref>2020-10-25-13.12.34.123456</Ref>                            </Prtry>                        </Refs>                        <BkTxCd>                            <Prtry>                                <Cd>NTRF+123+4554+321</Cd>                                <Issr>DK</Issr>                            </Prtry>                        </BkTxCd>                        <RltdPties>                            <Dbtr>                                <Nm>Some debtor</Nm>                            </Dbtr>                            <DbtrAcct>                                <Id>                                    <IBAN>DE1234554321123321000</IBAN>                                </Id>                            </DbtrAcct>                            <Cdtr>                                <Nm>John Doe</Nm>                            </Cdtr>                            <CdtrAcct>                                <Id>                                    <IBAN>DE12345678910111213145</IBAN>                                </Id>                            </CdtrAcct>                        </RltdPties>                        <RltdAgts>                            <DbtrAgt>                                <FinInstnId>                                    <BIC>ABCDEF22XXX</BIC>                                </FinInstnId>                            </DbtrAgt>                            <CdtrAgt>                                <FinInstnId>                                    <BIC>FABCDE63XZY</BIC>                                </FinInstnId>                            </CdtrAgt>                        </RltdAgts>                        <RmtInf>                            <Ustrd>Example 2</Ustrd>                        </RmtInf>                    </TxDtls>                </NtryDtls>                <AddtlNtryInf>Some transfer</AddtlNtryInf>            </Ntry>        </Rpt>    </BkToCstmrAcctRpt></Document>"
+  }
+}

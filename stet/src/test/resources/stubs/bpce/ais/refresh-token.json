@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/stet/psd2/oauth/token",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "client_id=THE_CLIENT_ID"
+      },
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=refresh-token"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "X-Frame-Options": "DENY",
+      "Transfer-Encoding": "chunked",
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "access_token": "access-token",
+      "expires_in": 300,
+      "token_type": "Bearer",
+      "scope": "aisp offline_access",
+      "refresh_token": "refresh-token"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/123/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer test-accounts"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "123",
+            "Amount": {
+              "Amount": "1230.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2020-12-14T08:31:37.295Z",
+            "CreditLine": [
+              {
+                "Included": true,
+                "Amount": {
+                  "Amount": "1000.00",
+                  "Currency": "GBP"
+                },
+                "Type": "Pre-Agreed"
+              }
+            ]
+          },
+          {
+            "AccountId": "123",
+            "Amount": {
+              "Amount": "57.36",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "Expected",
+            "DateTime": "2020-12-14T08:31:37.295Z"
+          },          {
+            "AccountId": "123",
+            "Amount": {
+              "Amount": "22.22",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimCleared",
+            "DateTime": "2020-12-14T08:31:37.295Z"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://api.alphabank.com/open-banking/v3.1/aisp/accounts/123/balances/"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

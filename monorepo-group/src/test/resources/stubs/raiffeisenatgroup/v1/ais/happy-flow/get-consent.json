@@ -1,0 +1,58 @@
+{
+  "request": {
+    "url": "/v1/consents/8edfea3a-a660-11eb-bcbc-0242ac130002",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-CLIENT-ACCESS-TOKEN"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access": {
+        "accounts": [
+          {
+            "iban": "AT959900000000012476",
+            "bban": null,
+            "pan": null,
+            "maskedPan": null,
+            "msisdn": null,
+            "currency": null
+          },
+          {
+            "iban": "AT079900000000070029",
+            "bban": null,
+            "pan": null,
+            "maskedPan": null,
+            "msisdn": null,
+            "currency": null
+          }
+        ],
+        "balances": [],
+        "transactions": [],
+        "additionalInformation": null,
+        "availableAccounts": null,
+        "availableAccountsWithBalance": null,
+        "allPsd2": null,
+        "restrictedTo": null
+      },
+      "recurringIndicator": false,
+      "validUntil": "2022-06-27",
+      "frequencyPerDay": 1,
+      "lastActionDate": "2022-06-26",
+      "consentStatus": "valid",
+      "_links": null
+    }
+  }
+}

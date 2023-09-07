@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/v3.0/aisp/account-access-consents/50ca5ed5-317c-451c-8438-3b3fb91466e1",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer x0JyV5AVqsTWBRY5n89GGiAXqLMB"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "5008e82d-f5ac-42fe-8f07-a49b025f3c2e"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0011800000tfV9aBBE"
+      }
+    }
+  },
+  "response": {
+    "status": 204
+  }
+}

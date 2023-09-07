@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v1/accounts",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "consentExpired"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "TEST_PSU_IP_ADDRESS"
+      }
+    }
+  },
+  "response": {
+    "status": 401,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "tppMessages": [
+        {
+          "category": "ERROR",
+          "code": "CONSENT_EXPIRED",
+          "path": null,
+          "text": "The consent was created by this TPP but has expired and needs to be renewed"
+        }
+      ],
+      "_links": null
+    }
+  }
+}

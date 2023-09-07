@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/psd2-ie/.well-known/openid-configuration"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "some key": "some-value"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

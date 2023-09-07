@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/user/28196/oauth-client/633/callback-url/693",
+    "headers": {
+      "X-Bunq-Client-Authentication": {
+        "matches": "a3cc2d56b7d30dae471c418b16cd15d674aa06ffa9f45beae39dbb9a8ac749c9"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {},
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

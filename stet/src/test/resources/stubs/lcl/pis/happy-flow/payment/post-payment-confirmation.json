@@ -1,0 +1,99 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/pisp/1.0/payment-requests/123/confirmation",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Signature": {
+        "matches": "keyId=\"57960876493606644482050706203694200967\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) digest date\", signature=\"(.*)\""
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{12}"
+      },
+      "Date": {
+        "matches": "[A-Z][a-z]{2}, [0-9]{1,2} [A-Z][a-z]{2} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} CES?T"
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "psuAuthenticationFactor": "${json-unit.any-string}"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "X-Frame-Options": "DENY",
+      "Transfer-Encoding": "chunked",
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "_links": {
+        "confirmation": {
+          "href": "v1/payment-requests/123/confirmation"
+        },
+        "self": {
+          "href": "v1/payment-requests/123"
+        }
+      },
+      "paymentRequest": {
+        "paymentInformationStatus": "PDNG",
+        "creationDateTime": "2018-03-31T13:25:22.527+02:00",
+        "requestedExecutionDate": "2016-12-31T00:00:00.000+01:00",
+        "creditTransferTransaction": [
+          {
+            "paymentId": {
+              "instructionId": "instruction-id"
+            },
+            "instructedAmount": {
+              "amount": "124.35",
+              "currency": "EUR"
+            },
+            "remittanceInformation": {
+              "unstructured": [
+                "MyRemittanceInformation"
+              ]
+            }
+          }
+        ],
+        "creditor": {
+          "name": "myMerchant"
+        },
+        "creditorAccount": {
+          "iban": "FR7613807008043001965406128"
+        },
+        "debtorAccount": {
+          "iban": "FR7613807008043001965406129"
+        },
+        "initiatingParty": {
+          "name": "MyPreferredPisp"
+        },
+        "numberOfTransactions": 1,
+        "paymentInformationId": "MyPmtInfId",
+        "paymentTypeInformation": {
+          "serviceLevel": "SEPA"
+        },
+        "supplementaryData": {
+          "acceptedAuthenticationApproach": [
+            "REDIRECT"
+          ],
+          "successfulReportUrl": "http://myPisp/PaymentSuccess/",
+          "unsuccessfulReportUrl": "http://myPisp/PaymentFailure/"
+        }
+      }
+    }
+  }
+}

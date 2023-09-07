@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/token.oauth2",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d0a9b85f-9715-4d16-a33d-4323ceab5254"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0017440000hdQV5CCT"
+      },
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF\\-8)?"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "client_id=someClientId"
+      },
+      {
+        "contains": "refresh_token=refreshToken"
+      },
+      {
+        "contains": "client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer"
+      },
+      {
+        "contains": "client_assertion=eyJhbGciOiJQUzI1NiIsImtpZCI6InNpZ25pbmcta2V5LWhlYWRlci1pZCIsInR5cCI6IkpXVCJ9."
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "eyJhbGciOiJkxVIiLCJlbmMiOiJBMjU2R0NNIiwiY3R5IjoiSldUIiwicGkuYXRtIjoiCSJ9..vG_C0m_tK_03UnpO.6Qm2A4xusMJogqiZS2dkTih9CtHiZaqXjZG9Ph9C1zVSuaiGa-Mw9w50A-TxBsnYF6vJdo-7khJvZAzfJnhXprSI89WwY9wqL91uqcwv8eOqE3OWuJ1VDGYxPnMebIPgFzpojNq5lIk5X6DbQWdlv2eHqFY9t7wkOg1szQkIsHUmVTPez_RaIXF-bNNbeITHoycj_Ii4KvHuv6yUpY7Lzo5pJ3AGzc6-Yv2uE9rv0PMhP-nnaXusHD1cb9anSLQ4RvYTLXDp3TezsUhEu-nw7CvmvLI9pYC8qiBNFCkgkzt2sXng_rFW4Ua2OTt6NFC9iWFtiF165Wm611Wwbd46dtT59vL4RCPd0g_iemqSNuB8dtuKrb0CcJR8lb7HNwBbXq63lH8YLTWjKg49rvok9wvj-NvNXEt_vmS5QizsrDAMpHTyBIaZPZSJHdXbpJICKKcFcJlvthggPzfBHfsYBdMrS1YEtvURP8Wr5TiuO0KsJHGWmyIzRy4vwkaiXBUnvx_qGj0Kuvwn6VNxJQHA7wGoy7tRibxhMS73isX3C7gty-NZPi8-GlmtSd1dqQwXZadbZS8emXbt9a6s-1OgJt7ebS9O95Lt-QY2Jzv1shqbl9u9FqlWQyCNq_Ai9ITneAZpMbVXdqXoK8ppxHgqoHyuwEYYY_iSTgriVTy4oQsaZI6_0JTOmK9MhBgpON3_XWx0ydHqCB-8oy7fU_2QjmPXMYfHBkar4uKBt8aYWUsfKuPINXVpjc5nqJW-LwPBumMinCR8PsEqJO63RoVwVdBGMhIFvPaeFxtnGk-rQatL2CdGryVcY4OGBZlDN0AQrRT-6geFY2E33Tx6ewYBSLKQYbc1vIiQDWXVqSvO5REB_aEurAm-uJarcyTwZRXUnRKMaC-SeJj7nNRVpj-eblakq-PVOGSUj3qUmALb5IOTr4OX7pINOiQS1BTBYl77lxqH4Lqm1rGlLGJLKBsXUKtwicGg_ED2X3FdGAUa2hP44mGufwmFKxnR0WHvWIVjr-Sla1K9h9UszgJpIXBtoYzUf_WgfIdtuOB8P8u85J-InqzPe85AGQyDQvZ5PofIkgHcVzcF1auypsnJIfzRwNP_esappXHZmjKp6b3Ewkz3R9BfkY9le4KK4KYAJck4kONXiixuqaLvkqjSnkcjbPlW9AWfTO4HYlg9vu0by_7L9YtdDQ6k3133npvyHDnEFAR0GFpiSWFqyUPP2OTxxPai4g1R2YkN5a6VRmGTUIPYIU7SAdW7icjpRu-LEhWygLU71tvC9_TRrFp79UBuwpYcDQMLRfw0uW0RT1XPBml_aEZpyuqGkwgX1C_gA05D7GuF-WJjciicMbBLCY9MdHN4SCukMUTY7zsjryPcFITRvmqU6H4FutiJwpi0eOMM-gIoVlUfh6V8Lt__UOl5n-G921WXI7TWvrA_9FDmY-d36YpjAdREnr33D4acD0iVJPiKEeHrK13VLy_PWYPKByrXCCEKTMdWcMebQfkSTJL1sUoiIYVEt5Y7sTgHYnInzX1ZmJDi91Dt9Ri4P4wJMt3hJ-LvgCUQ3F1pRRzZcwfA0QPINCbBRz4mYTHgz519-fM0a5zzksDj_mmF2KQPPY5sHundFTAxbvyIojc4tZCAooLj2CQamfAujLF7fAzKO_1Kp83Rp4BYM3_Rtv3-2jdhQx1y0ZF0LWLxhTWQWA.Uxqv97K6w-DAe_WVTwOQeA",
+      "refresh_token": "mvHiKUZ1wIng1sxQPh587uX3Sl96E5NfXYus7drViL",
+      "token_type": "Bearer",
+      "expires_in": 1799
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

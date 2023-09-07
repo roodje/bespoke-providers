@@ -1,0 +1,44 @@
+lovebird:
+  stet:
+    cicgroup:
+      cic:
+        pagination-limit: 500
+        registrationUrl: http://localhost:${wiremock.server.port}/cic/oauth2/registrations
+        regions:
+          - code: CIC
+            name: "Crédit Industriel et Commercial"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: http://localhost:${wiremock.server.port}/cic/oauth2/token
+            authUrl: http://localhost:${wiremock.server.port}/oauth2/fr/banque/oauth2_authorization.aspx
+      creditmutuel:
+        pagination-limit: 500
+        registrationUrl: http://localhost:${wiremock.server.port}/cm/oauth2/registrations
+        regions:
+          - code: CREDITMUTUEL
+            name: "Credit Mutuel"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: http://localhost:${wiremock.server.port}/cm/oauth2/token
+            authUrl: http://localhost:${wiremock.server.port}/oauth2/fr/banque/oauth2_authorization.aspx
+      beobank:
+        pagination-limit: 500
+        registrationUrl: http://localhost:${wiremock.server.port}/beobank/oauth2/registrations
+        regions:
+          - code: BEOBANK
+            name: "Beobank"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: http://localhost:${wiremock.server.port}/beobank/oauth2/token
+            authUrl: http://localhost:${wiremock.server.port}/oauth2/{lang}/banque/oauth2_authorization.aspx
+
+yolt:
+  qseal-certificate-exposure:
+    enabled: true
+    base-url: https://test.qseal.certificate.com
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

@@ -1,0 +1,55 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/as/token.oauth2",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800001ZEZ3yAAH"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "tpp-signature-certificate": {
+        "matches": "([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*"
+      }
+    },
+    "basicAuthCredentials": {
+      "username": "someClientId",
+      "password": "someClientSecret"
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "scope=openid+accounts"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback"
+      },
+      {
+        "contains": "code=9b892f60-f5b3-11eb-9a03-0242ac130003"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "7531d7a8-7f5e-4bde-ae07-a5c587458ad7",
+      "token_type": "Bearer",
+      "expires_in": 7776000,
+      "scope": "openid accounts",
+      "id_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiIsImtpZCI6InFzUmhzTlVIWDAvVEFYNEg3QktPM0JBQWV1Zz0ifQ.ew0KICJpc3MiOiAiaHR0cHM6Ly9kZXZlbG9wZXIucGVybWFuZW50dGIuaWUvcHNkMmFwaSIsDQogImlhdCI6IDE1OTE5NjA2MDgsDQogInN1YiI6ICIwMTYwNjE4MjM0IiwNCiAiYWNyIjogInVybjpvcGVuYmFua2luZzpwc2QyOnNjYSIsDQogIm9wZW5iYW5raW5nX2ludGVudF9pZCI6ICIyQjZFMTRCNy1GNEE4LTQ2OTAtQjRBMS0yMkUyOUI4RkY5OTUiLA0KICJhdWQiOiAibDdkYzRlZTA3MGNjMDI0ZjcwOGFmM2JmODA4OTA3MDNiMSIsDQogIm5vbmNlIjogImJlZGE5ZWM0LTllMjQtNDI3MC1iNGY2LTA4MjI4N2U0OGNjYSIsDQogImV4cCI6IDE1OTIwNDcwMDgsDQogInNfaGFzaCI6ICIyOWVTMGZiUkZwVVNvU3paRlJjbTZBIiwgDQogImNfaGFzaCI6ICJneHNkaUxETVQyQ0w1UFJSeHlGN2dnIiwNCiAiYXpwIjogImw3ZGM0ZWUwNzBjYzAyNGY3MDhhZjNiZjgwODkwNzAzYjEiLA0KICJhdXRoX3RpbWUiOiAxNTkxOTYwNDI2DQp9.2DB_CrGAygWS4f7KUMC_37wgjYgt-R1G4hJ5IcCFjkcPrKLGAo8_YsO1g-raFStUqYtNXOWGzweMCAG8E9ckbBTzezJBz_N0bIfXtsy9HuNmiyeXzvRPmRN1r488AwzvXdZY7dqA15DLeb3YXMGL8WkaNANSv3KUKbLis7g_TTE4-tpQ4R-dHEsJ1gKkeG64ubTRTdQMdLp4YzJIO-oSv6cnHIfv0wKpIk2r9BZP6b3zDifFvxBro1nafzgt7k5IB9TvXaPYWTBzPfMH4gFohIDlbeSGVJ7h6e_TuOt-Mud-h-I5_bIlnGec0nheM35IhPf1pM_pBSmL4kLfESM3xw",
+      "id_token_type": "urn:ietf:params:oauth:grant-type:jwt-bearer"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

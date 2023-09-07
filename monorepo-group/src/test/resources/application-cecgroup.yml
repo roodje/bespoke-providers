@@ -1,0 +1,5 @@
+lovebird:
+  cecgroup:
+    cec:
+      baseUrl: https://localhost:${wiremock.server.https-port}/cec/prod
+      paginationLimit: 1000

@@ -1,0 +1,83 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/pisp/domestic-payment-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Initiation": {
+              "InstructionIdentification": "insIdr",
+              "EndToEndIdentification": "e2e_idr",
+              "InstructedAmount": {
+                "Amount": "10000.00",
+                "Currency": "GBP"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SORTCODEACCOUNTNUMBER",
+                "Identification": "98765432104322",
+                "Name": "CreditorAccountName"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "Unstructured"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "Initiation": {
+          "InstructionIdentification": "insIdr",
+          "EndToEndIdentification": "e2e_idr",
+          "InstructedAmount": {
+            "Amount": "10000.00",
+            "Currency": "GBP"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SORTCODEACCOUNTNUMBER",
+            "Identification": "98765432104322",
+            "Name": "CreditorAccountName"
+          },
+          "RemittanceInformation": {
+            "Unstructured": "Unstructured"
+          }
+        },
+        "ConsentId": "GENERIC-P-PAYMENT_ID",
+        "Status": "Pending",
+        "CreationDateTime": "2019-04-29T08:55:49.631+01:00"
+      },
+      "Risk": {
+        "PaymentContextCode": "PersonToPerson"
+      },
+      "Links": {
+        "Self": "https://carme.api.generic/open-banking/v2.0/pisp/payments"
+      },
+      "Meta": {}
+    }
+  }
+}

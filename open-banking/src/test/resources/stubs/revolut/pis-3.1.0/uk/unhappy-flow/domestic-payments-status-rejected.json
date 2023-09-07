@@ -1,0 +1,63 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/domestic-payment-consents/58920",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 978e46f2-b8a5-4f81-ac45-f10d32e6b764"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0032400006451CCVVX"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "d0a9b85f-9715-4d16-a33d-4323ceab5253"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-jws-signature": "some_signature",
+      "x-fapi-interaction-id": "d0a9b85f-9715-4d16-a33d-4323ceab5253"
+    },
+    "jsonBody": {
+      "Data": {
+        "DomesticPaymentId": "7290-005",
+        "ConsentId": "58925",
+        "CreationDateTime": "2020-12-02T00:20:50Z",
+        "Status": "Rejected",
+        "StatusUpdateDateTime": "2020-12-02T00:20:50Z",
+        "Initiation": {
+          "InstructionIdentification": "${json-unit.any-string}",
+          "EndToEndIdentification": "B7F2761C",
+          "InstructedAmount": {
+            "Amount": "10000.00",
+            "Currency": "GBP"
+          },
+          "DebtorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "20581634112471",
+            "Name": "ACME Inc debtor"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "98765432104322",
+            "Name": "ACME Inc creditor"
+          },
+          "RemittanceInformation": {
+            "Unstructured": "Remittance Unstructured",
+            "Reference": "REF0123456789-0123"
+          }
+        }
+      },
+      "Links": {
+        "Self": "{{request.requestLine.baseUrl}}/domestic-payments/7290-003"
+      },
+      "Meta": {}
+    }
+  }
+}

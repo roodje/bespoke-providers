@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/v2/accounts/bbccbbcc-bbcc-bbcc-bbcc-bbccbbccbbcd/identifiers",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "Accept-Encoding": {
+        "contains": "gzip"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accountIdentifier": "01234552",
+      "bankIdentifier": "608371",
+      "iban": "GB80SRLG60837101234552",
+      "bic": "SRLGGB2L",
+      "accountIdentifiers": [
+        {
+          "identifierType": "IBAN_BIC",
+          "bankIdentifier": "SRLGGB2L",
+          "accountIdentifier": "GB80SRLG60837101234552"
+        },
+        {
+          "identifierType": "SORT_CODE",
+          "bankIdentifier": "608371",
+          "accountIdentifier": "01234552"
+        }
+      ]
+    }
+  }
+}

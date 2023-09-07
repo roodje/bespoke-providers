@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth-token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "1626df30-50ad-42d8-8f39-40dd95f4b15f"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      },
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF\\-8)?"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "redirect_uri=redirect"
+      },
+      {
+        "contains": "refresh_token=qx3scq02pKLSkSJklsjDJwi8SJN82kSD44tGLSLKjsiojw89mDMUIHMDSIUyw89m2DuTlkCwRFxY0xSsKQuYAC6BinbvjksHMFIsihmsiuHMISUIW88w78SMJI8smjKMSJHKJSHMWIWSHIUGWUIgukwgjhskjshhkjsjkdhmsjkhdgshjhgsfsdfwefefwsefsegsdgsdfasjhguiynGUYFGU"
+      },
+      {
+        "contains": "client_id=422a2265-a061-4007-99b3-ceeb64e85077"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4",
+      "refresh_token": "qx3scq02pKLSkSJklsjDJwi8SJN82kSD44tGLSLKjsiojw89mDMUIHMDSIUyw89m2DuTlkCwRFxY0xSsKQuYAC6BinbvjksHMFIsihmsiuHMISUIW88w78SMJI8smjKMSJHKJSHMWIWSHIUGWUIgukwgjhskjshhkjsjkdhmsjkhdgshjhgsfsdfwefefwsefsegsdgsdfasjhguiynGUYFGU",
+      "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IlFPblRLV1BBdjNHSFk0cm1ic0JacjMifQ.eyJzdWIiOiIzNzRmZGY0Yjg1ZGQ0OTdiYTE4ZmQyMGZjYmViNDdiNSIsImF1ZCI6InpjUUFCU1lZYnRBbGpMRkFzSFJ3bCIsImp0aSI6Inpqb2pWR21aTmJwMXlsR0hrNFdBMWQiLCJpc3MiOiJodHRwczpcL1wvc2VjdXJlMS5yYnMuY28udWsiLCJpYXQiOjE1MTc0OTc2MjYsImV4cCI6MTUxNzQ5NzkyNiwibm9uY2UiOiI1YmNiYjFlMS00MmE2LTQ3ZGYtYWRmYi1lNThkMzkzZTM5MWQiLCJhdXRoX3RpbWUiOjE1MTc0OTc2MjYsImNfaGFzaCI6Ikw5SUFxTFRCeWtkRERCckpkR0ZqSUEifQ.Y43JyBUfPbcmV9H0waEWczRyezUbFJ0njOt7jivFSxNzNgeZzOxg9S6GoazC9PSK-F6OuP6L6m8NqUjNgPlC0hCRM3goyayhjXIBIeACLZdVtuRNKYsW7TaOLtTMuYXhxEQeXWmhU-1g593K0OtQzmBBrx_Z01fpjoQglD6hiZr6hmJNtFxOom4Gr7M26rApNUDC3hFVQaNSeZ1PwDYN1guVN73xFkKs9gS94L69N9cBnQ5nAwJPccMwx3fuB3Y3_UqE59plyJyU0Opm2X7zkdvlREzi6u93ZosqdlJKKPwYFkQanaLmv2IrA0PQ6TT4GhfC3doxe4RIYafWWPs2Gw",
+      "token_type": "Bearer",
+      "expires_in": 599,
+      "refresh_token_expires_in": 31536000,
+      "scope": "openid payments accounts",
+      "consented_on": 1574107032
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "{{request.headers.x-fapi-interaction-id}}"
+    }
+  }
+}

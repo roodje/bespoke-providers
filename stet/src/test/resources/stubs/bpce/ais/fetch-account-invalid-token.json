@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/stet/psd2/v1.4.2/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer invalid-access-token"
+      },
+      "Signature": {
+        "contains": "keyId=\"THE_CLIENT_ID\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) date digest x-request-id\",signature=\"(.*)\""
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 401,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+
+    "jsonBody": {
+      "errorMessage": "Invalid token in authorization header"
+    }
+  }
+}

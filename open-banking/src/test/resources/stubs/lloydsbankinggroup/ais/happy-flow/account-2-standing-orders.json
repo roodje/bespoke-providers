@@ -1,0 +1,61 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/v3.1/aisp/accounts/2b99602d-88c8-4bb9-b9a4-de0c39b9975e/standing-orders",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "c554a9ef-47c1-4b4e-a77f-2ad770d69748"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "1238972887jdsIWNND"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "StandingOrder": [
+          {
+            "AccountId": "160047-10001311",
+            "StandingOrderId": "Ben3",
+            "Frequency": "EvryWorkgDay",
+            "Reference": "Towbar Club 2 - We Love Towbars",
+            "FirstPaymentDateTime": "2017-08-12T00:00:00+00:00",
+            "FirstPaymentAmount": {
+              "Amount": "0.57",
+              "Currency": "GBP"
+            },
+            "NextPaymentDateTime": "2017-08-13T00:00:00+00:00",
+            "NextPaymentAmount": {
+              "Amount": "0.56",
+              "Currency": "GBP"
+            },
+            "FinalPaymentDateTime": "2027-08-12T00:00:00+00:00",
+            "FinalPaymentAmount": {
+              "Amount": "0.56",
+              "Currency": "GBP"
+            },
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "80200112345678",
+              "Name": "Mrs Juniper"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://api.lloyds.co.uk/open-banking/v3.1/aisp/accounts/22289/standing-orders/"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+lovebird:
+  rbsgroup:
+    coutts:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      baseUrlPis: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth-token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+      audience: test
+    rbs:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      baseUrlPis: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth-token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+    natwest:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      baseUrlPis: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth-token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+    ulsterbank:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      baseUrlPis: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth-token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+    rbs-corporate:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      baseUrlPis: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth-token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+    natwest-corporate:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      baseUrlPis: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth-token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      registrationUrl: https://localhost:${wiremock.server.https-port}/register
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

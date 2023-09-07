@@ -1,0 +1,545 @@
+{
+  "basePath" : "/psd2/regiobank",
+  "definitions" : {
+    "BulkPaymentStatus" : {
+      "type" : "object",
+      "properties" : {
+        "groupStatus" : {
+          "$ref" : "#/definitions/TransactionStatus"
+        },
+        "originalMessageIdentification" : {
+          "description" : "Point to point reference, as assigned by the original initiating party, to unambiguously identify the original mandate request message.",
+          "example" : "MIPI-123456789RI-123456789",
+          "type" : "string"
+        },
+        "originalPaymentsInformationAndStatus" : {
+          "description" : "A list of original payments including payment information.",
+          "items" : {
+            "$ref" : "#/definitions/OriginalPaymentInformationAndStatus"
+          },
+          "type" : "array"
+        },
+        "statusReasonInformation" : {
+          "$ref" : "#/definitions/StatusReasonInformation"
+        }
+      },
+      "description" : "The status of a bulk payment based on elements from pain.002.001.03."
+    },
+    "OriginalPaymentInformationAndStatus" : {
+      "type" : "object",
+      "properties" : {
+        "originalPaymentInformationIdentification" : {
+          "description" : "Unique identification, as assigned by the original sending party, to unambiguously identify the original payment information group.",
+          "example" : "BIPI-123456789RI-123456789",
+          "type" : "string"
+        },
+        "paymentInformationStatus" : {
+          "$ref" : "#/definitions/TransactionStatus"
+        },
+        "statusReasonInformation" : {
+          "$ref" : "#/definitions/StatusReasonInformation"
+        },
+        "transactionsInformationAndStatus" : {
+          "description" : "List of transactions including detailed information.",
+          "items" : {
+            "$ref" : "#/definitions/TransactionInformationAndStatus"
+          },
+          "type" : "array"
+        }
+      },
+      "description" : "Status information about the original batch payments."
+    },
+    "PaymentStatus" : {
+      "type" : "object",
+      "properties" : {
+        "transactionStatus" : {
+          "$ref" : "#/definitions/TransactionStatus"
+        }
+      },
+      "description" : "Http response body returned after a payment status has been requested."
+    },
+    "StatusReasonInformation" : {
+      "type" : "string",
+      "description" : "Additional reason information for a specific status conform ISO20022 standard.",
+      "enum" : [ "AC02", "AC03", "AC04", "AC06", "AG01", "AM04", "MS03", "RR03" ],
+      "example" : "AC04"
+    },
+    "TppMessage" : {
+      "type" : "object",
+      "properties" : {
+        "category" : {
+          "description" : "Error category.",
+          "type" : "string"
+        },
+        "code" : {
+          "description" : "Error code.",
+          "type" : "string"
+        },
+        "text" : {
+          "description" : "Additional error information.",
+          "type" : "string"
+        }
+      },
+      "description" : "Error model for the TPP."
+    },
+    "TransactionInformationAndStatus" : {
+      "type" : "object",
+      "properties" : {
+        "originalEndToEndIdentification" : {
+          "description" : "Unique identification, as assigned by the original initiating party, to unambiguously identify the original transaction.",
+          "example" : "RCUR-0-40239498-369-2018-12-03",
+          "type" : "string"
+        },
+        "originalInstructionIdentification" : {
+          "description" : "Unique identification, as assigned by the original instructing party for the original instructed party, to unambiguously identify the original instruction.",
+          "example" : "INNDNL2U20101004000042800000011",
+          "type" : "string"
+        },
+        "statusReasonInformation" : {
+          "$ref" : "#/definitions/StatusReasonInformation"
+        },
+        "transactionStatus" : {
+          "$ref" : "#/definitions/TransactionStatus"
+        }
+      },
+      "description" : "Status information about individual transactions within a batch payment."
+    },
+    "TransactionStatus" : {
+      "type" : "string",
+      "description" : "Status of the payment transaction following the ISO Payment Status Code.",
+      "enum" : [ "ACCC", "ACCP", "ACSC", "ACSP", "ACTC", "ACWC", "CANC", "PART", "PATC", "PDNG", "RCVD", "RJCT", "UNKNOWN" ],
+      "example" : "ACSC"
+    }
+  },
+  "host" : "PSD.bancairediensten.nl",
+  "info" : {
+    "description" : "Defines the Berlin Group endpoints /payments/sepa-credit-transfers/{payment-id}/status and /bulk-payments/pain.001-sepa-credit-transfers/{payment-id}/status, and the de Volksbank endpoint /deferred-payments/sepa-credit-transfers/{payment-id}/status.",
+    "title" : "RegioBank Payment Status Services v1.1",
+    "version" : "1.1"
+  },
+  "paths" : {
+    "/v1.1/bulk-payments/pain.001-sepa-credit-transfers/{payment-id}/status" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "description" : "Based on the Berlin Group API Get Transaction Status Request and pain002 bulk transaction status response. No custom response header is provided (only default HTTPS).",
+        "operationId" : "getBulkPaymentStatus",
+        "parameters" : [ {
+          "name" : "payment-id",
+          "in" : "path",
+          "description" : "The identifier of a payment.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "Describes the data contained in the body; application/json.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "X-Request-ID",
+          "in" : "header",
+          "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "client-id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/BulkPaymentStatus"
+            }
+          },
+          "400" : {
+            "description" : "Bad request. The request cannot be processed due to something that is perceived to be a client error (e.g. malformed request syntax or missing or invalid parameters).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden. The server understood the request but refuses to authorize it (e.g. due to an invalid token or invalid scope, or a violated security policy).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "404" : {
+            "description" : "Not found. The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "406" : {
+            "description" : "Not Acceptable. Cannot generate the content that is specified in the Accept header.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "415" : {
+            "description" : "Unsupported media type. The supplied media type is not supported.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          }
+        },
+        "security" : [ {
+          "portal_api_key" : [ ]
+        } ],
+        "summary" : "Returns a payment status report for a bulk payment, much like a pain002.",
+        "tags" : [ "PIS" ]
+      },
+      "parameters" : [ ]
+    },
+    "/v1.1/deferred-payments/sepa-credit-transfers/{payment-id}/status" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "description" : "Based on the Berlin Group API Get Transaction Status Request. No custom response header is provided (only default HTTPS).",
+        "operationId" : "getDeferredPaymentStatus",
+        "parameters" : [ {
+          "name" : "payment-id",
+          "in" : "path",
+          "description" : "The identifier of a payment.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "Describes the data contained in the body; application/json.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "X-Request-ID",
+          "in" : "header",
+          "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "client-id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/PaymentStatus"
+            }
+          },
+          "400" : {
+            "description" : "Bad request. The request cannot be processed due to something that is perceived to be a client error (e.g. malformed request syntax or missing or invalid parameters).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden. The server understood the request but refuses to authorize it (e.g. due to an invalid token or invalid scope, or a violated security policy).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "404" : {
+            "description" : "Not found. The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "406" : {
+            "description" : "Not Acceptable. Cannot generate the content that is specified in the Accept header.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "415" : {
+            "description" : "Unsupported media type. The supplied media type is not supported.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          }
+        },
+        "security" : [ {
+          "portal_api_key" : [ ]
+        } ],
+        "summary" : "Returns the payment request status for a deferred payment.",
+        "tags" : [ "PIS" ]
+      },
+      "parameters" : [ ]
+    },
+    "/v1.1/payments/sepa-credit-transfers/{payment-id}/status" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "description" : "Based on the Berlin Group API Get Transaction Status Request. No custom response header is provided (only default HTTPS).",
+        "operationId" : "getOneTimePaymentStatus",
+        "parameters" : [ {
+          "name" : "payment-id",
+          "in" : "path",
+          "description" : "The identifier of a payment.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "Describes the data contained in the body; application/json.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "X-Request-ID",
+          "in" : "header",
+          "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "client-id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/PaymentStatus"
+            }
+          },
+          "400" : {
+            "description" : "Bad request. The request cannot be processed due to something that is perceived to be a client error (e.g. malformed request syntax or missing or invalid parameters).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden. The server understood the request but refuses to authorize it (e.g. due to an invalid token or invalid scope, or a violated security policy).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "404" : {
+            "description" : "Not found. The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "406" : {
+            "description" : "Not Acceptable. Cannot generate the content that is specified in the Accept header.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "415" : {
+            "description" : "Unsupported media type. The supplied media type is not supported.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          }
+        },
+        "security" : [ {
+          "portal_api_key" : [ ]
+        } ],
+        "summary" : "Returns the payment transaction status for a one time direct and one time agended payment.",
+        "tags" : [ "PIS" ]
+      },
+      "parameters" : [ ]
+    }
+  },
+  "schemes" : [ "https" ],
+  "securityDefinitions" : {
+    "portal_api_key" : {
+      "in" : "header",
+      "name" : "apiKey",
+      "type" : "apiKey"
+    }
+  },
+  "swagger" : "2.0",
+  "tags" : [ {
+    "name" : "PIS"
+  } ]
+}

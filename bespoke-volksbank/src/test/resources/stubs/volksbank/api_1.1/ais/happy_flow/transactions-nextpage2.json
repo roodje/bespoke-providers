@@ -1,0 +1,62 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v1.1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/transactions?bookingStatus=booked&limit=2000&pageDirection=next&entryReferenceFrom=20171026-30026082",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "matches": "Bearer 3fb45310-e2bb-11ea-87d0-0242ac130003"
+      },
+      "Consent-ID": {
+        "equalTo": "CONSENT_ID"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "iban": "NL86SNSB0256012733",
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "entryReference": "20171026-30000011",
+            "endToEndId": "01234512345678901234567890123456789",
+            "mandateId": "",
+            "creditorId": "",
+            "bookingDate": "2017-10-26",
+            "valueDate": "2017-10-26",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-300.00"
+            },
+            "creditorName": "Constant Kaanen",
+            "creditorAccount": {
+              "iban": "NL64SNSB0123456789"
+            },
+            "remittanceInformationUnstructured": "Uw toelage 3",
+            "purposeCode": "",
+            "bankTransactionCode": 1,
+            "proprietaryBankTransactionCode": "FNGI"
+          }
+        ],
+        "_links": {
+          "account": {
+            "href": "/v1.1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f"
+          }
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+

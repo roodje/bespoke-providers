@@ -1,0 +1,136 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/platform/enabler/psd2orchestrator/ais/2.3.2/card-accounts/1/transactions",
+    "queryParameters": {
+      "booking_status": {
+        "equalTo": "booked"
+      },
+      "date_from": {
+        "matches": ".+"
+      },
+      "date_to": {
+        "matches": ".+"
+      },
+      "offset": {
+        "equalTo": "1"
+      },
+      "limit": {
+        "matches": ".+"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 00000000-0000-0000-0000-000000000000"
+      },
+      "Accept": {
+        "equalTo": "JSON"
+      },
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      },
+      "consent-id": {
+        "equalTo": "3"
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "aspsp-code": {
+        "matches": "^.+$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "date": {
+        "matches": "^[a-zA-Z]{3},\\s[0-9]{1,2}\\s[a-zA-Z]{3}\\s[0-9]{4}\\s(2[0-3]|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])\\sUTC$"
+      },
+      "digest": {
+        "equalTo": "sha-512=slspTLTetp6gCkw88xE5BIAbYBXllWvQGahXCx/h1gQOlE7zze4W0KRlA8puZZol8hz5zt3BPzUqPJgTjBXWrw=="
+      },
+      "signature": {
+        "matches": "keyId=\"13299021239615735660\",algorithm=\"rsa-sha512\",headers=\"date digest x-request-id\",signature=\"([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*\""
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIICMzCCAZygAwIBAgIJALiPnVsvq8dsMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzAeFw0xMzAzMTkxNTQwMTlaFw0xODAzMTgxNTQwMTlaMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzdGfxi9CNbMf1UUcvDQh7MYBOveIHyc0E0KIbhjK5FkCBU4CiZrbfHagaW7ZEcN0tt3EvpbOMxxc/ZQU2WN/s/wPxph0pSfsfFsTKM4RhTWD2v4fgk+xZiKd1p0+L4hTtpwnEw0uXRVd0ki6muwV5y/P+5FHUeldq+pgTcgzuK8CAwEAAaMPMA0wCwYDVR0PBAQDAgLkMA0GCSqGSIb3DQEBBQUAA4GBAJiDAAtY0mQQeuxWdzLRzXmjvdSuL9GoyT3BF/jSnpxz5/58dba8pWenv3pj4P3w5DoOso0rzkZy2jEsEitlVM2mLSbQpMM+MUVQCQoiG6W9xuCFuxSrwPISpAqEAuV4DNoxQKKWmhVv+J0ptMWD25Pnpxeq5sXzghfJnslJlQND"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "maskedPan": "4929 ******** 6962",
+        "msisdn": "+393125665412",
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "cardTransactionId": "1",
+            "terminalId": "123",
+            "transactionDate": "2018-02-23",
+            "bookingDate": "2018-02-23",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "10"
+            },
+            "exchangeRate": [
+              {
+                "currencyFrom": "EUR",
+                "rateFrom": "1",
+                "currencyTo": "EUR",
+                "rateTo": "1",
+                "rateDate": "2018-02-23",
+                "rateContract": "2018-02-23"
+              }
+            ],
+            "originalAmount": {
+              "currency": "EUR",
+              "amount": "10"
+            },
+            "markupFee": {
+              "currency": "EUR",
+              "amount": "0"
+            },
+            "markupFeePercentage": "0",
+            "cardAcceptorId": "1234",
+            "cardAcceptorAddress": {
+              "street": "teststreet",
+              "buildingNumber": "321",
+              "city": "testcity",
+              "postalCode": "12345",
+              "country": "Italy"
+            },
+            "cardAcceptorCategoryCode": null,
+            "maskedPan": "4929 ******** 6962",
+            "transactionDetails": "test transaction details",
+            "invoiced": true,
+            "proprietaryBankTransactionCode": "ACOP"
+          }
+        ],
+        "_links": {
+          "account": {
+            "href": "/card-accounts/1"
+          }
+        }
+      },
+      "balances": [
+        {
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": "30"
+          },
+          "balanceType": "authorised",
+          "lastChangeDateTime": "2018-07-31T11:08:05+01:00",
+          "referenceDate": "2018-07-30T00:00Z",
+          "lastCommittedTransaction": "0061b71e-792d-4d57-ac98-8849071ab597"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "cpaas-total-pages": "2",
+      "cpaas-total-elements": "2"
+    }
+  }
+}

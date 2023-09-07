@@ -1,0 +1,35 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/v1/accounts/NL12ABNA9999876523/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer pLO93fAqqk4YxwzfjB4ziiD2EM6m"
+      },
+      "API-Key": {
+        "equalTo": "7zacIF8Cu5o3XF4gUll4sRGuI2gDYiCA"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Date": "Mon, 19 Aug 2019 08: 53: 32 GMT",
+      "Server": "nginx",
+      "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+      "Content-Type": "application/json;charset=UTF-8",
+      "X-Frame-Options": "DENY",
+      "X-XSS-Protection": "1;mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "Connection": "keep-alive",
+      "Transfer-Encoding": "chunked",
+      "Trace-Id": "3e6b0f5c-c6a1-42f9-95ba-6f939b66e1d6"
+    },
+    "jsonBody": {
+      "accountNumber": "NL12ABNA9999876523",
+      "currency": "EUR",
+      "balanceType": "BOOKBALANCE",
+      "amount": 16.03
+    }
+  }
+}

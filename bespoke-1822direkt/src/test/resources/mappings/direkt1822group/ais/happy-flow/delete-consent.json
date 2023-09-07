@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "DELETE",
+    "urlPattern": "/joba-psd2/r1/v1/consents/12345",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "12.34.56.78"
+      }
+    }
+  },
+  "response": {
+    "status": 204
+  }
+}

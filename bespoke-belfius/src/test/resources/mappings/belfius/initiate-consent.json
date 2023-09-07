@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/consent-uris",
+    "queryParameters": {
+      "scope": {
+        "equalTo": "AIS"
+      },
+      "iban": {
+        "equalTo": "BE80350454678790"
+      }
+    },
+    "headers": {
+      "Code-Challenge-Method": {
+        "matches": "S256"
+      },
+      "Code-Challenge": {
+        "matches": ".*"
+      },
+      "Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Accept": {
+        "equalTo": "application/vnd.belfius.api+json; version=3"
+      },
+      "Accept-Language": {
+        "equalTo": "en"
+      },
+      "Client-ID": {
+        "equalTo": "SOME_CLIENT_ID"
+      },
+      "Redirect-URI": {
+        "equalTo": "https://www.yolt.com/callback-acc"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": [{
+        "language": "en",
+        "consent_uri": "https://www.belfius.be/common/en/fw/generic/launcher.html?appkey=APP_KEY&apptoken=rdger6e5325drte5635trwe45rew5wr345we5"
+    }],
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

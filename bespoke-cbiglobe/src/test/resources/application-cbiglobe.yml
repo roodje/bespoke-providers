@@ -1,0 +1,94 @@
+lovebird:
+  cbiglobe:
+    posteitaliane:
+      baseUrl: https://localhost:${wiremock.server.https-port}/platform/enabler/psd2orchestrator/ais
+      basePaymentsUrl: https://localhost:${wiremock.server.https-port}/platform/enabler/psd2orchestrator/pis
+      tokenUrl: https://localhost:${wiremock.server.https-port}/auth/oauth/v2/token
+      transactionsPaginationLimit: 40
+      consentValidityInDays: 90
+      frequencyPerDay: 4
+      aspsps:
+        - code: ASPSP_MM_01
+          identifier: posteitaliane
+          productCode: ASPSP_PRODUCT_001
+          displayName: banca di credito
+    intesasanpaolo:
+      baseUrl: https://localhost:${wiremock.server.https-port}/platform/enabler/psd2orchestrator/ais
+      basePaymentsUrl: https://localhost:${wiremock.server.https-port}/platform/enabler/psd2orchestrator/pis
+      tokenUrl: https://localhost:${wiremock.server.https-port}/auth/oauth/v2/token
+      transactionsPaginationLimit: 100
+      consentValidityInDays: 90
+      frequencyPerDay: 4
+      aspsps:
+        - code: ASPSP_MM_01
+          identifier: intesasanpaolo
+          productCode: ASPSP_PRODUCT_001
+          displayName: banca di credito
+    bnl:
+      baseUrl: https://localhost:${wiremock.server.https-port}/platform/enabler/psd2orchestrator/ais
+      tokenUrl: https://localhost:${wiremock.server.https-port}/auth/oauth/v2/token
+      transactionsPaginationLimit: 100
+      consentValidityInDays: 90
+      frequencyPerDay: 4
+      aspsps:
+        - code: ASPSP_MM_01
+          identifier: bnl
+          productCode: ASPSP_PRODUCT_001
+          displayName: banca di credito
+    bpm:
+      baseUrl: https://localhost:${wiremock.server.https-port}/platform/enabler/psd2orchestrator/ais
+      tokenUrl: https://localhost:${wiremock.server.https-port}/auth/oauth/v2/token
+      transactionsPaginationLimit: 100
+      consentValidityInDays: 90
+      frequencyPerDay: 4
+      aspsps:
+        - code: ASPSP_MM_01
+          identifier: bpm
+          productCode: ASPSP_PRODUCT_001
+          displayName: banca di credito
+    montepaschisiena:
+      baseUrl: https://localhost:${wiremock.server.https-port}/platform/enabler/psd2orchestrator/ais
+      tokenUrl: https://localhost:${wiremock.server.https-port}/auth/oauth/v2/token
+      transactionsPaginationLimit: 100
+      consentValidityInDays: 90
+      frequencyPerDay: 4
+      aspsps:
+        - code: ASPSP_MM_01
+          identifier: montepaschisiena
+          productCode: ASPSP_PRODUCT_001
+          displayName: banca di credito
+    bancawidiba:
+      baseUrl: https://localhost:${wiremock.server.https-port}/platform/enabler/psd2orchestrator/ais
+      tokenUrl: https://localhost:${wiremock.server.https-port}/auth/oauth/v2/token
+      transactionsPaginationLimit: 100
+      consentValidityInDays: 90
+      frequencyPerDay: 4
+      aspsps:
+        - code: ASPSP_MM_01
+          identifier: bancawidiba
+          productCode: ASPSP_PRODUCT_001
+          displayName: banca di credito
+    bcc:
+      baseUrl: https://localhost:${wiremock.server.https-port}/platform/enabler/psd2orchestrator/ais
+      tokenUrl: https://localhost:${wiremock.server.https-port}/auth/oauth/v2/token
+      transactionsPaginationLimit: 100
+      consentValidityInDays: 90
+      frequencyPerDay: 4
+      aspsps:
+        - code: ASPSP_MM_01
+          productCode: ASPSP_PRODUCT_001
+          displayName: banca di credito 1
+        - code: ASPSP_MM_01
+          productCode: ASPSP_PRODUCT_001
+          displayName: banca di credito 2
+    nexi:
+      baseUrl: https://localhost:${wiremock.server.https-port}/platform/enabler/psd2orchestrator/ais
+      tokenUrl: https://localhost:${wiremock.server.https-port}/auth/oauth/v2/token
+      transactionsPaginationLimit: 40
+      consentValidityInDays: 90
+      frequencyPerDay: 4
+      aspsps:
+        - code: ASPSP_MM_01
+          identifier: nexi
+          productCode: ASPSP_PRODUCT_001
+          displayName: nexipayments

@@ -1,0 +1,5 @@
+lovebird:
+  knabgroup:
+    knab:
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      authorizationUrl: https://localhost:${wiremock.server.https-port}

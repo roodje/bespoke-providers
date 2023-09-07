@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/as/auth-code-url",
+    "queryParameters": {
+      "scope": {
+        "equalTo": "openid accounts"
+      },
+      "redirect_uri": {
+        "equalTo": "https%3A%2F%2Fwww.yolt.com%2Fcallback"
+      },
+      "request": {
+        "equalTo": "V2hhdCBoYXRoIGdvZCB3cm91Z2h0ID8%3D..QnkgR2VvcmdlLCBzaGUncyBnb3QgaXQhIEJ5IEdlb3JnZSBzaGUncyBnb3QgaXQhIE5vdyBvbmNlIGFnYWluLCB3aGVyZSBkb2VzIGl0IHJhaW4"
+      },
+      "client_id": {
+        "equalTo": "someClientId"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "https://developer.permanenttsb.ie/psd2api/authorize?redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback&client_id=someClientId&scope=openid accounts&response_mode=form_post&response_type=code%20id_token&nonce=39cf47aa-2248-4464-99c1-66323a6f8983&request=V2hhdCBoYXRoIGdvZCB3cm91Z2h0ID8%3D..QnkgR2VvcmdlLCBzaGUncyBnb3QgaXQhIEJ5IEdlb3JnZSBzaGUncyBnb3QgaXQhIE5vdyBvbmNlIGFnYWluLCB3aGVyZSBkb2VzIGl0IHJhaW4&state=022a271a-7ccb-443f-bd83-56a5e1066bdf",
+    "headers": {
+      "Content-Type": "text/xml;charset=UTF-8"
+    }
+  }
+}

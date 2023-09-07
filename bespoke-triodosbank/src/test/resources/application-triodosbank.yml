@@ -1,0 +1,6 @@
+lovebird:
+  triodosbank:
+    nl:
+      baseUrl: https://localhost:${wiremock.server.https-port}/xs2a-bg/nl
+      tokenUrl: https://localhost:${wiremock.server.https-port}/auth/nl/v1/token
+      transactionsPaginationLimit: 40

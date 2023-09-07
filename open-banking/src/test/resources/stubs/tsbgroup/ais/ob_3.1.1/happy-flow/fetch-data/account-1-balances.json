@@ -1,0 +1,83 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/apis/open-banking/v3.1/aisp/accounts/9e1b14ba-5923-4ba2-bf2a-e910b1d3438e/balances",
+    "headers": {
+      "x-fapi-financial-id": {
+        "equalTo": "003882287203T83JKK"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+      },
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+    },
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "122",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2018-07-21T11:50:03+01:00",
+            "Amount": {
+              "Amount": "1.00",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "124",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2018-07-21T11:50:03+01:00",
+            "Amount": {
+              "Amount": "2.00",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "125",
+            "CreditDebitIndicator": "Credit",
+            "Type": "ClosingAvailable",
+            "DateTime": "2018-07-22T11:50:03+01:00",
+            "Amount": {
+              "Amount": "1.00",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "126",
+            "CreditDebitIndicator": "Credit",
+            "Type": "PreviouslyClosedBooked",
+            "DateTime": "2018-07-23T11:50:03+01:00",
+            "Amount": {
+              "Amount": "1.00",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/aisp/accounts/9e1b14ba-5923-4ba2-bf2a-e910b1d3438e/balances",
+        "First": "/aisp/accounts/9e1b14ba-5923-4ba2-bf2a-e910b1d3438e/balances",
+        "Prev": "",
+        "Next": "",
+        "Last": "/aisp/accounts/9e1b14ba-5923-4ba2-bf2a-e910b1d3438e/balances"
+      },
+      "Meta": {
+        "TotalPages": 2
+      }
+    }
+  }
+}

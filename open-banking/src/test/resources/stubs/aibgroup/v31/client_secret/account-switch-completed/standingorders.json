@@ -1,0 +1,62 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/123/standing-orders",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf9VgAAI"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "StandingOrder": [
+          {
+            "AccountId": "123",
+            "StandingOrderId": "000001",
+            "Frequency": "IntrvlMnthDay:01:01",
+            "Reference": "119 UV F3 C.HEANEY",
+            "FirstPaymentDateTime": "2016-04-01T00:00:00.000Z",
+            "NextPaymentDateTime": "2016-04-01T00:00:00.000Z",
+            "FinalPaymentDateTime": "2016-07-01T00:00:00.000Z",
+            "StandingOrderStatusCode": "Inactive",
+            "FirstPaymentAmount": {
+              "Amount": "235.00",
+              "Currency": "GBP"
+            },
+            "NextPaymentAmount": {
+              "Amount": "0.00",
+              "Currency": "GBP"
+            },
+            "FinalPaymentAmount": {
+              "Amount": "235.00",
+              "Currency": "GBP"
+            },
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "95061120076953",
+              "Name": "DOUGLAS DOUGLAS"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/accounts/22289/standing-orders/"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

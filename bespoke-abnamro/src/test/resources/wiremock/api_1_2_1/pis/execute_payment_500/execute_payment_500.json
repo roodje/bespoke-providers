@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPattern": "/v1/payments/8325P3346070108S0PD",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer GPgYglX4sO1WhzfChx4tmjr4y7Qg"
+      },
+      "API-Key": {
+        "equalTo": "7zacIF8Cu5o3XF4gUll4sRGuI2gDYiCA"
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Content-Length": {
+        "equalTo": "0"
+      }
+    }
+  },
+  "response": {
+    "status": 500,
+    "headers": {
+      "X-Request-ID": "a8da60a1-4a81-4c59-bf24-a257244c2fd0",
+      "Trace-Id": "07ca8f04-9847-4e11-bd30-cd7d2a92961d"
+    },
+    "jsonBody": {
+      "errors": [
+        {
+          "code": "MESSAGE_BAI560_0005",
+          "message": "A technical error has occurred. Try again\nlater. Report the following code when \ncontacting the [Corporate API Services Team](corporate.api.services@nl.abnamro.com): MESSAGE_BAI560_0005",
+          "reference": "https://developer.abnamro.com/api/account-information/technical-details",
+          "traceId": "114b1652-e499-45b4-8328-0dc41fb266f5",
+          "status": 500,
+          "category": "BACKEND_ERROR"
+        }
+      ]
+    }
+  }
+}

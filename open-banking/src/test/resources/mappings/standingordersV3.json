@@ -1,0 +1,69 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v3+\\.[0-9]+/aisp/accounts/123/standing-orders",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^(12345|[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12})$"
+      },
+      "x-fapi-financial-id": {
+        "contains": "test"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "StandingOrder": [
+          {
+            "AccountId": "123",
+            "StandingOrderId": "Ben3",
+            "Frequency": "IntrvlMnthDay:01:26",
+            "Reference": "Towbar Club 2 - We Love Towbars",
+            "FirstPaymentDateTime": "2017-08-12T00:00:00+00:00",
+            "FirstPaymentAmount": {
+              "Amount": "0.57",
+              "Currency": "GBP"
+            },
+            "NextPaymentDateTime": "2017-08-13T00:00:00+00:00",
+            "NextPaymentAmount": {
+              "Amount": "0.56",
+              "Currency": "GBP"
+            },
+            "FinalPaymentDateTime": "2027-08-12T00:00:00+00:00",
+            "FinalPaymentAmount": {
+              "Amount": "0.56",
+              "Currency": "GBP"
+            },
+            "CreditorAccount": {
+              "SchemeName": "SortCodeAccountNumber",
+              "Identification": "80200112345678",
+              "Name": "Mrs Juniper"
+            },
+            "SupplementaryData": {
+              "FirstRecurringPaymentAmount": {
+                "Amount": "0.49",
+                "Currency": "GBP"
+              },
+              "FirstRecurringPaymentDateTime": "2019-08-26T00:00:00Z"
+            },
+            "StandingOrderStatusCode": "Inactive"
+          }
+        ]
+      },
+      "Links": {
+        "Self": ""
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,3531 @@
+components:
+  responses:
+    INTERNAL_SERVER_ERROR_500:
+      description: Internal Server Error
+      headers:
+        Location:
+          description: Location of the created resource.
+          schema:
+            type: string
+        X-Request-Id:
+          description: ID of the request, unique to the call, as determined by the
+            initiating party.
+          schema:
+            type: string
+    SERVICE_UNAVAILABLE_503:
+      description: Service Unavailable
+      headers:
+        Location:
+          description: Location of the created resource.
+          schema:
+            type: string
+        X-Request-Id:
+          description: ID of the request, unique to the call, as determined by the
+            initiating party.
+          schema:
+            type: string
+  schemas:
+    CreateConsentRequest:
+      properties:
+        access:
+          description: Requested access services. The sub attributes with the tags
+            "accounts", "balances" and "transactions" are accepted for this request.
+            At least one tag must be present when it is used. Sub attributes "accounts",
+            "balances", "transactions", "additionalInformation", "availableAccounts",
+            "availableAccountsWithBalance" and "allPsd2" are accepted for this request.
+          properties:
+            accounts:
+              description: Is asking for detailed account information. If the array
+                is empty, the TPP is asking for an accessible account list. This may
+                be restricted in a **PSU/ASPSP** authorization dialogue. If the array
+                is empty, also the arrays for balances or transactions shall be empty,
+                if used.
+              items:
+                properties:
+                  bban:
+                    description: This data elements is used for payment accounts which
+                      have no IBAN.
+                    type: string
+                  currency:
+                    description: Currency code (ISO 4217).
+                    type: string
+                  iban:
+                    description: The International Bank Account Number.
+                    type: string
+                  maskedPan:
+                    description: Primary Account Number (PAN) of a card in a masked
+                      form.
+                    type: string
+                  msisdn:
+                    description: An alias to access a payment account via a registered
+                      mobile phone number.
+                    type: string
+                  pan:
+                    description: Primary Account Number (PAN) of a card, can be tokenised
+                      by the ASPSP due to PCI DSS requirements. This field is not
+                      used in v1 release.
+                    type: string
+                type: object
+              type: array
+            additionalInformation:
+              description: Is asking for additional information as added within this
+                structured object. The usage of this data element requires at least
+                one of the entries `accounts`, `transactions` or `balances` also to
+                be contained in the object.
+              properties:
+                ownerName:
+                  description: Is asking for account owner name of the accounts referenced
+                    within.
+                  items:
+                    properties:
+                      bban:
+                        description: This data elements is used for payment accounts
+                          which have no IBAN.
+                        type: string
+                      currency:
+                        description: Currency code (ISO 4217).
+                        type: string
+                      iban:
+                        description: The International Bank Account Number.
+                        type: string
+                      maskedPan:
+                        description: Primary Account Number (PAN) of a card in a masked
+                          form.
+                        type: string
+                      msisdn:
+                        description: An alias to access a payment account via a registered
+                          mobile phone number.
+                        type: string
+                      pan:
+                        description: Primary Account Number (PAN) of a card, can be
+                          tokenised by the ASPSP due to PCI DSS requirements. This
+                          field is not used in v1 release.
+                        type: string
+                    type: object
+                  type: array
+              type: object
+            allPsd2:
+              description: The values `all-accounts`, `allAccounts` and `allAccountsWithOwnerName`
+                are valid for this field. It indicates that user is asking for detailed
+                accounts, balances and transactions information. Value `all-accounts`
+                is `deprecated`.
+              type: string
+            availableAccounts:
+              description: The values `all-accounts`, `allAccounts` and `allAccountsWithOwnerName`
+                are valid for this field. It indicates that user is asking for detailed
+                account information. Value `all-accounts` is `deprecated`.
+              type: string
+            availableAccountsWithBalance:
+              description: The values `all-accounts`, `allAccounts` and `allAccountsWithOwnerName`
+                are valid for this field. It indicates that user is asking for detailed
+                accounts and balances information. Value `all-accounts` is `deprecated`.
+              type: string
+            balances:
+              description: Is asking for balances of the addressed accounts. If the
+                array is empty, the TPP is asking for the balances of all accessible
+                account lists. This may be restricted in a PSU/ASPSP authorization
+                dialogue. If the array is empty, also the arrays for accounts or transactions
+                shall be empty, if used.
+              items:
+                properties:
+                  bban:
+                    description: This data elements is used for payment accounts which
+                      have no IBAN.
+                    type: string
+                  currency:
+                    description: Currency code (ISO 4217).
+                    type: string
+                  iban:
+                    description: The International Bank Account Number.
+                    type: string
+                  maskedPan:
+                    description: Primary Account Number (PAN) of a card in a masked
+                      form.
+                    type: string
+                  msisdn:
+                    description: An alias to access a payment account via a registered
+                      mobile phone number.
+                    type: string
+                  pan:
+                    description: Primary Account Number (PAN) of a card, can be tokenised
+                      by the ASPSP due to PCI DSS requirements. This field is not
+                      used in v1 release.
+                    type: string
+                type: object
+              type: array
+            transactions:
+              description: Is asking for transactions of the addressed accounts. If
+                the array is empty, the TPP is asking for the transactions of all
+                accessible account lists. This may be restricted in a PSU/ASPSP authorization
+                dialogue. If the array is empty, also the arrays for accounts or balances
+                shall be empty, if used.
+              items:
+                properties:
+                  bban:
+                    description: This data elements is used for payment accounts which
+                      have no IBAN.
+                    type: string
+                  currency:
+                    description: Currency code (ISO 4217).
+                    type: string
+                  iban:
+                    description: The International Bank Account Number.
+                    type: string
+                  maskedPan:
+                    description: Primary Account Number (PAN) of a card in a masked
+                      form.
+                    type: string
+                  msisdn:
+                    description: An alias to access a payment account via a registered
+                      mobile phone number.
+                    type: string
+                  pan:
+                    description: Primary Account Number (PAN) of a card, can be tokenised
+                      by the ASPSP due to PCI DSS requirements. This field is not
+                      used in v1 release.
+                    type: string
+                type: object
+              type: array
+          type: object
+        combinedServiceIndicator:
+          description: This is not supported.
+          type: boolean
+        frequencyPerDay:
+          description: This field indicates the requested maximum frequency for an
+            access without PSU involvement per day. For a one-off access, this attribute
+            is set to "1". The frequency needs to be greater equal to one. If not
+            otherwise agreed bilaterally between TPP and ASPSP, the frequency is less
+            equal to bank's default value of the tpp.
+          type: number
+        recurringIndicator:
+          description: '`true` if the consent is for recurring access to the account
+            data, `false` if the consent is for one access to the account data.'
+          type: boolean
+        validUntil:
+          description: This parameter is requesting a valid until date for the requested
+            consent. The content is the local **ASPSP** date in ISODate Format, e.g.
+            2017-10-30. If the date is greater than authorized, the consent object
+            to be retrieved by the GET Consent request will contain the adjusted date.
+          type: string
+      required:
+      - frequencyPerDay
+      - recurringIndicator
+      - validUntil
+      - access
+      title: CreateConsentRequest
+      type: object
+    CreateConsentResponse:
+      properties:
+        _links:
+          description: A list of hyperlinks to be recognised by the TPP.
+          properties:
+            scaOAuth:
+              description: In case of a SCA OAuth2 Approach, this is the link where
+                the configuration of the Authorisation Server can be retrieved. The
+                configuration follows the OAuth 2.0 Authorisation Server Metadata
+                specification.
+              properties:
+                href:
+                  description: link of the resource
+                  type: string
+              type: object
+            scaStatus:
+              description: The link to retrieve the scaStatus of the corresponding
+                authorisation sub-resource. This link is only contained, if an authorisation
+                sub-resource has been already created.
+              properties:
+                href:
+                  description: link of the resource
+                  type: string
+              required:
+              - href
+              type: object
+            selectAuthenticationMethod:
+              description: This is a link to a resource, where the TPP can select
+                the applicable strong customer authentication methods for the PSU,
+                if there were several available authentication methods.
+              properties:
+                href:
+                  description: link of the resource
+                  type: string
+              required:
+              - href
+              type: object
+            self:
+              description: The link to the consent initiation resource created by
+                this request. This link can be used to retrieve the resource data.
+              properties:
+                href:
+                  description: link of the resource
+                  type: string
+              required:
+              - href
+              type: object
+            status:
+              description: The link to retrieve the transaction status of the consent
+                initiation
+              properties:
+                href:
+                  description: link of the resource
+                  type: string
+              required:
+              - href
+              type: object
+          required:
+          - scaStatus
+          - self
+          - status
+          type: object
+        consentId:
+          description: Identification of the consent resource as it is used in the
+            API structure. Shall be contained, if a consent resource was generated.
+          type: string
+        consentStatus:
+          description: 'Status of the consent. The following consentStatus are supported
+            during the lifecycle of the consent :
+
+            - `received` : The consent data have been received and are technically
+            correct. The data is not authorised yet.
+
+            - `rejected` : The consent data have been rejected e.g. since no successful
+            authorisation has taken place.
+
+            - `valid` : The consent is accepted and valid for GET account data calls
+            and others as specified in the consent object.
+
+            - `revokedByPsu` : The consent has been revoked by the PSU towards the
+            ASPSP.
+
+            - `expired` : The consent expired.
+
+            - `terminatedByTpp` : The corresponding TPP has terminated the consent
+            by applying the DELETE method to the consent resource.'
+          type: string
+        scaMethods:
+          description: This data element might be contained, if SCA is required and
+            if the PSU has a choice between different authentication methods. If this
+            data element is contained, then there is also an hyperlink of type "selectAuthenticationMethods"
+            contained in the response body. These methods shall be presented towards
+            the PSU for selection by the TPP.
+          items:
+            properties:
+              authenticationMethodId:
+                description: An identification provided by the ASPSP for the later
+                  identification of the authentication method selection
+                type: string
+              authenticationType:
+                description: Unique identifier of the sca method
+                type: string
+              authenticationVersion:
+                description: Depending on the "authenticationType". This version can
+                  be used by differentiating authentication tools used within performing
+                  OTP generation in the same authentication type. This version can
+                  be referred to in the ASPSP’s documentation.
+                type: string
+              explanation:
+                description: A brief description of the method
+                type: string
+              name:
+                description: Explicit name of the method (usually for visualization
+                  purpose)
+                type: string
+            required:
+            - authenticationMethodId
+            - authenticationType
+            - explanation
+            - name
+            type: object
+          type: array
+      required:
+      - consentId
+      - consentStatus
+      - _links
+      title: CreateConsentResponse
+      type: object
+    GetAuthorisationResponse:
+      properties:
+        scaStatus:
+          description: "Status of the authorisation. The following scaStatus are supported\
+            \ during the lifecycle of the authorisation :\n - `received` : An authorisation\
+            \ resource has been created successfully.\n - `scaMethodSelected` : The\
+            \ PSU/TPP has selected the related SCA routine. If the SCA method is chosen\
+            \ implicitly since only one SCA method is available, then this is the\
+            \ first status reported instead of \\\"received\\\".\n - `finalised` :\
+            \ The SCA routine has been finalised successfully.\n - `failed` : The\
+            \ SCA routine failed."
+          type: string
+      required:
+      - scaStatus
+      title: GetAuthorisationResponse
+      type: object
+    GetAuthorisationsResponse:
+      properties:
+        authorisationIds:
+          description: List of authorisation ids for a consent
+          items:
+            type: string
+          type: array
+      required:
+      - authorisationIds
+      title: GetAuthorisationsResponse
+      type: object
+    GetConsentResponse:
+      properties:
+        access:
+          description: Requested access services. Only the sub attributes with the
+            tags "accounts", "balances", "transactions", availableAccounts, availableAccountsWithBalance
+            and allPsd2are accepted for this request.
+          properties:
+            accounts:
+              description: Is asking for detailed account information. If the array
+                is empty, the TPP is asking for an accessible account list. This may
+                be restricted in a **PSU/ASPSP** authorization dialogue. If the array
+                is empty, also the arrays for balances or transactions shall be empty,
+                if used.
+              items:
+                properties:
+                  bban:
+                    description: This data elements is used for payment accounts which
+                      have no IBAN.
+                    type: string
+                  currency:
+                    description: Currency code (ISO 4217).
+                    type: string
+                  iban:
+                    description: The International Bank Account Number.
+                    type: string
+                  maskedPan:
+                    description: Primary Account Number (PAN) of a card in a masked
+                      form.
+                    type: string
+                  msisdn:
+                    description: An alias to access a payment account via a registered
+                      mobile phone number.
+                    type: string
+                  pan:
+                    description: Primary Account Number (PAN) of a card, can be tokenised
+                      by the ASPSP due to PCI DSS requirements. This field is not
+                      used in v1 release.
+                    type: string
+                type: object
+              type: array
+            additionalInformation:
+              description: Is asking for additional information as added within this
+                structured object. The usage of this data element requires at least
+                one of the entries `accounts`, `transactions` or `balances` also to
+                be contained in the object.
+              properties:
+                ownerName:
+                  description: Is asking for account owner name of the accounts referenced
+                    within.
+                  items:
+                    properties:
+                      bban:
+                        description: This data elements is used for payment accounts
+                          which have no IBAN.
+                        type: string
+                      currency:
+                        description: Currency code (ISO 4217).
+                        type: string
+                      iban:
+                        description: The International Bank Account Number.
+                        type: string
+                      maskedPan:
+                        description: Primary Account Number (PAN) of a card in a masked
+                          form.
+                        type: string
+                      msisdn:
+                        description: An alias to access a payment account via a registered
+                          mobile phone number.
+                        type: string
+                      pan:
+                        description: Primary Account Number (PAN) of a card, can be
+                          tokenised by the ASPSP due to PCI DSS requirements. This
+                          field is not used in v1 release.
+                        type: string
+                    type: object
+                  type: array
+              type: object
+            allPsd2:
+              description: The values `all-accounts`, `allAccounts` and `allAccountsWithOwnerName`
+                are valid for this field. It indicates that user is asking for detailed
+                accounts, balances and transactions information. Value `all-accounts`
+                is `deprecated`.
+              type: string
+            availableAccounts:
+              description: The values `all-accounts`, `allAccounts` and `allAccountsWithOwnerName`
+                are valid for this field. It indicates that user is asking for detailed
+                account information. Value `all-accounts` is `deprecated`.
+              type: string
+            availableAccountsWithBalance:
+              description: The values `all-accounts`, `allAccounts` and `allAccountsWithOwnerName`
+                are valid for this field. It indicates that user is asking for detailed
+                accounts and balances information. Value `all-accounts` is `deprecated`.
+              type: string
+            balances:
+              description: Is asking for balances of the addressed accounts. If the
+                array is empty, the TPP is asking for the balances of all accessible
+                account lists. This may be restricted in a PSU/ASPSP authorization
+                dialogue. If the array is empty, also the arrays for accounts or transactions
+                shall be empty, if used.
+              items:
+                properties:
+                  bban:
+                    description: This data elements is used for payment accounts which
+                      have no IBAN.
+                    type: string
+                  currency:
+                    description: Currency code (ISO 4217).
+                    type: string
+                  iban:
+                    description: The International Bank Account Number.
+                    type: string
+                  maskedPan:
+                    description: Primary Account Number (PAN) of a card in a masked
+                      form.
+                    type: string
+                  msisdn:
+                    description: An alias to access a payment account via a registered
+                      mobile phone number.
+                    type: string
+                  pan:
+                    description: Primary Account Number (PAN) of a card, can be tokenised
+                      by the ASPSP due to PCI DSS requirements. This field is not
+                      used in v1 release.
+                    type: string
+                type: object
+              type: array
+            transactions:
+              description: Is asking for transactions of the addressed accounts. If
+                the array is empty, the TPP is asking for the transactions of all
+                accessible account lists. This may be restricted in a PSU/ASPSP authorization
+                dialogue. If the array is empty, also the arrays for accounts or balances
+                shall be empty, if used.
+              items:
+                properties:
+                  bban:
+                    description: This data elements is used for payment accounts which
+                      have no IBAN.
+                    type: string
+                  currency:
+                    description: Currency code (ISO 4217).
+                    type: string
+                  iban:
+                    description: The International Bank Account Number.
+                    type: string
+                  maskedPan:
+                    description: Primary Account Number (PAN) of a card in a masked
+                      form.
+                    type: string
+                  msisdn:
+                    description: An alias to access a payment account via a registered
+                      mobile phone number.
+                    type: string
+                  pan:
+                    description: Primary Account Number (PAN) of a card, can be tokenised
+                      by the ASPSP due to PCI DSS requirements. This field is not
+                      used in v1 release.
+                    type: string
+                type: object
+              type: array
+          type: object
+        combinedServiceIndicator:
+          description: This is not supported.
+          type: boolean
+        consentStatus:
+          description: 'Status of the consent. The following consentStatus are supported
+            during the lifecycle of the consent :
+
+            - `received` : The consent data have been received and are technically
+            correct. The data is not authorised yet.
+
+            - `rejected` : The consent data have been rejected e.g. since no successful
+            authorisation has taken place.
+
+            - `valid` : The consent is accepted and valid for GET account data calls
+            and others as specified in the consent object.
+
+            - `revokedByPsu` : The consent has been revoked by the PSU towards the
+            ASPSP.
+
+            - `expired` : The consent expired.
+
+            - `terminatedByTpp` : The corresponding TPP has terminated the consent
+            by applying the DELETE method to the consent resource.'
+          type: string
+        frequencyPerDay:
+          description: This field indicates the requested maximum frequency for an
+            access without PSU involvement per day. For a one-off access, this attribute
+            is set to "1". The frequency needs to be greater equal to one. If not
+            otherwise agreed bilaterally between TPP and ASPSP, the frequency is less
+            equal to 4.
+          type: number
+        lastActionDate:
+          description: This date is containing the date of the last action on the
+            consent object either through the XS2A interface or the **PSU/ASPSP**
+            interface having an impact on the status.
+          type: string
+        recurringIndicator:
+          description: '`true` if the consent is for recurring access to the account
+            data, `false` if the consent is for one access to the account data.'
+          type: boolean
+        validUntil:
+          description: This parameter is requesting a valid until date for the requested
+            consent. The content is the local **ASPSP** date in ISODate Format, e.g.
+            2017-10-30. If the date is greater than authorized, the consent object
+            to be retrieved by the GET Consent request will contain the adjusted date.
+          type: string
+      required:
+      - consentStatus
+      - frequencyPerDay
+      - lastActionDate
+      - recurringIndicator
+      - validUntil
+      - access
+      title: GetConsentResponse
+      type: object
+    GetConsentStatusResponse:
+      properties:
+        consentStatus:
+          description: 'Status of the consent. The following consentStatus are supported
+            during the lifecycle of the consent :
+
+            - `received` : The consent data have been received and are technically
+            correct. The data is not authorised yet.
+
+            - `rejected` : The consent data have been rejected e.g. since no successful
+            authorisation has taken place.
+
+            - `valid` : The consent is accepted and valid for GET account data calls
+            and others as specified in the consent object.
+
+            - `revokedByPsu` : The consent has been revoked by the PSU towards the
+            ASPSP.
+
+            - `expired` : The consent expired.
+
+            - `terminatedByTpp` : The corresponding TPP has terminated the consent
+            by applying the DELETE method to the consent resource.'
+          type: string
+      required:
+      - consentStatus
+      title: GetConsentStatusResponse
+      type: object
+    SelectScaMethodRequest:
+      properties:
+        authenticationMethodId:
+          description: An identification provided by the ASPSP for the later identification
+            of the authentication method selection.
+          type: string
+      required:
+      - authenticationMethodId
+      title: SelectScaMethodRequest
+      type: object
+    SelectScaMethodResponse:
+      properties:
+        _links:
+          description: scaOAuth hyperlink recognised by the TPP. In case of a SCA
+            OAuth2 Approach, the ASPSP is transmitting the URI where the configuration
+            of the Authorisation Server can be retrieved. The configuration follows
+            the OAuth 2.0 Authorisation Server Metadata specification.
+          properties:
+            scaOAuth:
+              description: In case of a SCA OAuth2 Approach, the ASPSP is transmitting
+                the URI where the configuration of the Authorisation Server can be
+                retrieved. The configuration follows the OAuth 2.0 Authorisation Server
+                Metadata specification.
+              properties:
+                href:
+                  description: link of the resource
+                  type: string
+              required:
+              - href
+              type: object
+          required:
+          - scaOAuth
+          type: object
+        chosenScaMethod:
+          description: Type of the authentication method.
+          properties:
+            authenticationMethodId:
+              description: An identification provided by the ASPSP for the later identification
+                of the authentication method selection
+              type: string
+            authenticationType:
+              description: Unique identifier of the sca method
+              type: string
+            authenticationVersion:
+              description: Depending on the "authenticationType". This version can
+                be used by differentiating authentication tools used within performing
+                OTP generation in the same authentication type. This version can be
+                referred to in the ASPSP’s documentation.
+              type: string
+            explanation:
+              description: A brief description of the method
+              type: string
+            name:
+              description: Explicit name of the method (usually for visualization
+                purpose)
+              type: string
+          required:
+          - authenticationMethodId
+          - authenticationType
+          type: object
+        scaStatus:
+          description: "Status of the authorisation. The following scaStatus are supported\
+            \ during the lifecycle of the authorisation :\n - `received` : An authorisation\
+            \ resource has been created successfully.\n - `scaMethodSelected` : The\
+            \ PSU/TPP has selected the related SCA routine. If the SCA method is chosen\
+            \ implicitly since only one SCA method is available, then this is the\
+            \ first status reported instead of \\\"received\\\".\n - `finalised` :\
+            \ The SCA routine has been finalised successfully.\n - `failed` : The\
+            \ SCA routine failed."
+          type: string
+      required:
+      - scaStatus
+      - _links
+      - chosenScaMethod
+      title: SelectScaMethodResponse
+      type: object
+    error:
+      properties:
+        tppMessages:
+          description: NextGenPSD2 specific definition of reporting error information
+            in case of a HTTP error code
+          items:
+            properties:
+              category:
+                description: Category of the TPP message category. Possible values
+                  are `ERROR` and `WARNING`.
+                type: string
+              code:
+                description: Message codes defined for AIS, HTTP Error code
+                type: string
+              path:
+                description: Field name or param causing error.
+                type: string
+              text:
+                description: Additional explaining text to the TPP.
+                type: string
+            required:
+            - category
+            - code
+            type: object
+          type: array
+      title: error
+      type: object
+  securitySchemes:
+    apiKey:
+      description: Your personal API Key
+      in: header
+      name: apiKey
+      type: apiKey
+info:
+  description: "The **Consent Management Service (AIS)** allows a **TPP** to register\
+    \ the consent of a customer to access the account information and transaction\
+    \ history of his or her consented checking accounts.\r\nThe design of these APIs\
+    \ is in accordance with the international **Berlin Group NextGenPSD2 standard**,\
+    \ version 1.3.\r\n\r\nIn this Consent Management Service (AIS) are included the\
+    \ endpoints for the following functionalities:\r\n- Initiate a consent\r\n- Retrieve\
+    \ a consent by id\r\n- Retrieve consent status by id\r\n- Delete a consent\r\n\
+    - Retrieve authorisations for a consent\r\n- Retrieve an authorisation for a consent\r\
+    \n- Update an authorisation for a consent with selected sca method\r\n\r\nThis\
+    \ new version supports the Article 10 and the Article 36.5(b) related to the Regulatory\
+    \ Technical Standard (RTS).\r\nThis means that:\r\n- It is not possible to create\
+    \ a consent with a validity date than exceed 90 days after the creation date.\r\
+    \n- Only the first JWT (access_token) obtained via the consent authorisation can\
+    \ be used to have more that 90 days of transactions in the past. The JWT obtained\
+    \ by refresh_token will allow to have only 90 days of transactions.\r\n- Account\
+    \ information can be requested only 4 times in a 24-hour period if the IP-Address\
+    \ of the PSU is not present in the request (PSU-IP-Address).\r\n- It is now possible\
+    \ to create a consent without specifying account references and selecting the\
+    \ accounts at ASPSP side.\r\n\r\nSee the guide in the Documentation section for\
+    \ a detailed explanation of how to use the Account Information Service.\r\n\r\n\
+    # Transport Layer\r\n\r\nThe communication between the **TPP** and the **ASPSP**\
+    \ is always secured by using a TLS-connection using TLS version 1.2.\r\n\r\nThe\
+    \ TLS-connection has to be established always including client (i.e. **TPP**)\
+    \ authentication.\r\nFor this authentication the **TPP** has to use a qualified\
+    \ certificate for website authentication (QWAC).\r\nThis qualified certificate\
+    \ has to be issued by a qualified trust service provider according to the eIDAS\
+    \ regulation.\r\nThe content of the certificate has to be compliant with the requirements\
+    \ of EBA-RTS.\r\nThe certificate of the **TPP** has to indicate all roles the\
+    \ **TPP** is authorized to use.\r\n\r\n# Actors\r\n\r\n- **Third Party Providers\
+    \ (TPP)**: A party other than an **ASPSP** that provides payment related services.\r\
+    \n- **Payment Service User (PSU)**: A natural or legal person making use of a\
+    \ payment service as a payee, payer or both (PSD2 Article 4(10)).\r\n- **Account\
+    \ Servicing Payment Service Provider (ASPSP)**: An **ASPSP** is a PSP that provides\
+    \ and maintains a payment account for a **Payment Service User** (PSD 2 Article\
+    \ 4(15)).\r\n\r\n# Sequence diagram\r\n\r\nSequence diagram can be found [here](https://media-dxp-delivery.s3-eu-west-1.amazonaws.com/2019.2.1/actAsAspsp_Berlin%2BGroup_AIS_Sequence%2BDiagram%2B-%2BAccount%2BInformation.svg).\r\
+    \n"
+  title: NextGenPSD2 - Consent Management for Accounts Information
+  version: '1.5'
+openapi: 3.0.1
+paths:
+  /:
+    post:
+      description: 'This API creates a consent resource, defining access rights to
+        dedicated accounts defined by the Payment Service User. These accounts are
+        addressed explicitly in the method as parameters as a core function.
+
+        Following features present in the international Berlin Group NextGenPSD2 standard(version
+        1.3) are not implemented :
+
+        - Parameter "combinedServiceIndicator": This is not supported.
+
+
+        The consent model that allows the PSU to select the dedicated accounts on
+        `ASPSP` side is now supported. Other models are supported.
+
+        - availableAccounts
+
+        - availableAccountsWithBalance
+
+        - allPsd2'
+      operationId: Request for a consent having access of all accounts
+      parameters:
+      - description: ID of the request, unique to the call, as determined by the initiating
+          party.
+        example: 99391c7e-ad88-49ec-a2ad-99ddcb1f7721
+        in: header
+        name: X-Request-Id
+        required: true
+        schema:
+          type: string
+      - description: It contains a Hash of the message body. The only hash algorithms
+          that may be used to calculate the Digest within the context of this specification
+          are SHA-256 and SHA-512 as defined in [RFC5843].
+        example: SHA-256=nUZtr6r++lSWwzbhWEsUyyZx8FiKDq+ILOAozyt6+E4=
+        in: header
+        name: digest
+        required: true
+        schema:
+          type: string
+      - description: A signature of the request by the **TPP** on application level.
+        example: keyId="SN=4145e06efda52dc2,CA=EMAILADDRESS=rootCA@root.com, OU=DxP,
+          O=SBS, L=Paris, ST=Paris, C=FR",algorithm="rsa-sha256",headers="digest x-request-id",signature="OVEwbp8wmfHvAGGF+GCVH3qntJH53L9krz6HF4RAALMONEUYipu/IdXin1HWZXEpeIjNTpDSi1djxd4UbGaS66eVe/E9IDPhkOkBt+d8x3hF2Kyl3dSolo+uplMpeSTEdxUar+v0Y1TzQyGVgwcvieI1wyu5EhtklW+czy947DGfn2aCVR72OnIM0Glszwu0Y23SYv6c4mCsusFVZTrvwNR2HDKQsyTsi/3EWuljJ+vP/GwsTSIg/vP0Tlor7fiJEHTv6qTkhcqY8OfOtFzkfU0UvyqnoClH3jtNugHm1r1IkiICKGA5eT9fCoZQADx7BvClT/wYM7YM8/2om1ObxA=="
+        in: header
+        name: signature
+        required: true
+        schema:
+          type: string
+      - description: The certificate used for signing the request, in pem format.
+        example: "-----BEGIN CERTIFICATE-----\n    MIIERzCCAy+gAwIBAgIIQUXgbv2lLcIwDQYJKoZIhvcNAQELBQAwaTELMAkGA1UE\n\
+          \    BhMCRlIxDjAMBgNVBAgTBVBhcmlzMQ4wDAYDVQQHEwVQYXJpczEMMAoGA1UEChMD\n\
+          \    U0JTMQwwCgYDVQQLEwNEeFAxHjAcBgkqhkiG9w0BCQEWD3Jvb3RDQUByb290LmNv\n\
+          \    bTAeFw0xOTAyMTQxMzU4MDBaFw0yODEyMTkxODAwMDBaMIGSMQswCQYDVQQGEwJG\n\
+          \    UjEOMAwGA1UECBMFUGFyaXMxDjAMBgNVBAcTBVBhcmlzMQwwCgYDVQQKEwNTQlMx\n\
+          \    DDAKBgNVBAsTA0R4UDEMMAoGA1UEAxMDU0JTMR4wHAYJKoZIhvcNAQkBFg9yb290\n\
+          \    Q0FAcm9vdC5jb20xGTAXBgNVBGETEFBTREJFLUFJUy0xMjM0NTYwggEiMA0GCSqG\n\
+          \    SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCyB1NOqlS7X/XOZyoMPXHhDG8c8VyVC6sC\n\
+          \    M6dW2rTkQEr4fm57fi3bdPjMTBRFB+dRNcERyWUSWiE85LW9UWcMIORltL59utio\n\
+          \    1dySGUV+DRKffLAoe2jyhq5iWsU6WvK3kVcqLddXMfgdSB+qgYhQqCK6mpOilhdG\n\
+          \    BE6nFbF4M4+sTGL/0ncW4eGqAIsk6VvCEjuXtLabeE0Ji2BSekQnYMgu0qEXkwcg\n\
+          \    TPkMw1topWz3VNAgN0aGAOMAN0piFBGayoLVGqoLd3eD4Xk/EzFkt3/XBYZ1TSaF\n\
+          \    1jevtwrscrbnIrajfg1R36a5gJAUZpweT3RvpIVsYDBdCSUbCPsjAgMBAAGjgcgw\n\
+          \    gcUwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUQHK9dnN045oBeO2Be73LDTJU\n\
+          \    VlswCwYDVR0PBAQDAgEGMBQGA1UdIAQNMAswCQYHBACL7EABATA9BggrBgEFBQcB\n\
+          \    AwQxMC8wLQYGBACBmCcCMCMwEzARBgcEAIGYJwEDDAZQU1BfQUkMBEF1dGgMBkZy\n\
+          \    YW5jZTARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0\n\
+          \    aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAgPKZSlIVmemajqUe290ecKQ3HLd4\n\
+          \    KruOMEqpJoIOPRF9zIXe9RQb7qwbYpP0tweL4tA8eEdkwz7dxOwno/75GeCb5vVo\n\
+          \    1GDbeOecgIyEMjEPyxoTtuo1qr07GIcVXmx/aOMLoZXAbKq1Tg2SU+876z1YlBs8\n\
+          \    4n4hloJeWpkbKOTQkzfmTWW1AtLrBnU7KFhKdC1s5g/EyVz063lscSJNg07/i+n2\n\
+          \    LSvrOptLOogZ92EcuVB6t7/3tmp6lIptMxoTNwZee8mqDI7ogUxcZUxGpAJzG6Ub\n\
+          \    2qmL9KvMFjKTMhfyuTG8xx+4EN+VsduIxe/7/0nM5zQFwEZvPX1CQizAzQ==\n    -----END\
+          \ CERTIFICATE-----"
+        in: header
+        name: tpp-signature-certificate
+        required: true
+        schema:
+          type: string
+      - description: The forwarded IP Address header field consists of the corresponding
+          HTTP request IP Address field between **PSU** and **TPP**.
+        example: 127.0.0.1
+        in: header
+        name: psu-ip-address
+        required: true
+        schema:
+          type: string
+      - description: Client ID of the PSU in the ASPSP client interface.
+        in: header
+        name: psu-id
+        required: false
+        schema:
+          type: string
+      - description: Type of the PSU-ID, needed in scenarios where PSUs have several
+          PSU-IDs as access possibility.
+        in: header
+        name: psu-id-type
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Port header field consists of the corresponding
+          HTTP request IP Port field between **PSU** and **TPP**, if available.
+        in: header
+        name: psu-ip-port
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept header fields consist of the corresponding
+          HTTP request Accept header fields between **PSU** and **TPP**, if available.
+        in: header
+        name: psu-accept
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Charset header fields consist of the
+          corresponding HTTP request Accept-Charset header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-charset
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Encoding header fields consist of the
+          corresponding HTTP request Accept-Encoding header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-encoding
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Language header fields consist of the
+          corresponding HTTP request Accept-Language header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-language
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Agent header field of the HTTP request between
+          **PSU** and **TPP**, if available.
+        in: header
+        name: psu-user-agent
+        required: false
+        schema:
+          type: string
+      - description: 'HTTP method used at the **PSU** – **TPP** interface, if available.Possible
+          values : GET, POST, PUT, PATCH, DELETE.'
+        in: header
+        name: psu-http-method
+        required: false
+        schema:
+          type: string
+      - description: UUID identifies either a device or a device dependant application
+          installation. In case of an installation identification this ID need to
+          be unaltered until removal from device.
+        in: header
+        name: psu-device-id
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Geo Location of the corresponding HTTP request
+          between **PSU** and **TPP** if available.
+        in: header
+        name: psu-geo-location
+        required: false
+        schema:
+          type: string
+      - description: Indicates the size of the entity-body, in bytes, sent to the
+          recipient
+        example: '156'
+        in: header
+        name: Content-Length
+        required: false
+        schema:
+          type: string
+      - description: Media type of the payload
+        example: application/json
+        in: header
+        name: Content-Type
+        required: true
+        schema:
+          type: string
+      - description: Contains the date and time at which the message was originated
+        example: Sun, 06 Aug 2017 15:05:37 GMT
+        in: header
+        name: Date
+        required: false
+        schema:
+          type: string
+      - description: The apiKey is a token that a client provides when making API
+          calls.
+        example: 3fdd7da3-03ae-4fd5-bf0b-d09bc018cde1
+        in: header
+        name: apiKey
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Request for a consent having access of all accounts:
+                value: "{\r\n  \"validUntil\" : \"2020-12-12\",\r\n  \"frequencyPerDay\"\
+                  \ : 4,\r\n  \"recurringIndicator\" : true,\r\n  \"access\" : {\r\
+                  \n    \"availableAccounts\" : \"allAccounts\"\r\n  }\r\n}"
+              Request for a consent having access of all accounts with balances:
+                value: "{\r\n  \"validUntil\" : \"2020-12-12\",\r\n  \"frequencyPerDay\"\
+                  \ : 4,\r\n  \"recurringIndicator\" : true,\r\n  \"access\" : {\r\
+                  \n    \"availableAccountsWithBalance\" : \"allAccounts\"\r\n  }\r\
+                  \n}"
+              Request for a consent having access of all accounts with deprecated model:
+                value: "{\r\n  \"validUntil\" : \"2020-12-12\",\r\n  \"frequencyPerDay\"\
+                  \ : 4,\r\n  \"recurringIndicator\" : true,\r\n  \"access\" : {\r\
+                  \n    \"availableAccounts\" : \"all-accounts\"\r\n  }\r\n}"
+              Request for a consent having access of all accounts with owner name:
+                value: "{\r\n  \"validUntil\" : \"2020-12-12\",\r\n  \"frequencyPerDay\"\
+                  \ : 4,\r\n  \"recurringIndicator\" : true,\r\n  \"access\" : {\r\
+                  \n    \"availableAccounts\" : \"allAccountsWithOwnerName\"\r\n \
+                  \ }\r\n}"
+              Request for a consent having access of all psd2:
+                value: "{\r\n  \"validUntil\" : \"2020-12-12\",\r\n  \"frequencyPerDay\"\
+                  \ : 4,\r\n  \"recurringIndicator\" : true,\r\n  \"access\" : {\r\
+                  \n    \"allPsd2\" : \"allAccounts\"\r\n  }\r\n}"
+              Request for a consent on dedicated accounts:
+                value: "{\r\n  \"validUntil\" : \"2020-12-12\",\r\n  \"frequencyPerDay\"\
+                  \ : 4,\r\n  \"recurringIndicator\" : true,\r\n  \"access\" : {\r\
+                  \n    \"accounts\" : [ {\r\n      \"iban\" : \"BE12999000661892\"\
+                  \r\n    }, {\r\n      \"iban\" : \"BE60999000126170\"\r\n    },\
+                  \ {\r\n      \"iban\" : \"BE98999000661993\"\r\n    }, {\r\n   \
+                  \   \"iban\" : \"BE27999000126473\"\r\n    }, {\r\n      \"iban\"\
+                  \ : \"BE35999000297437\"\r\n    }, {\r\n      \"iban\" : \"FR7630004015240000096421772\"\
+                  \r\n    }, {\r\n      \"iban\" : \"BE35999000578737\"\r\n    },\
+                  \ {\r\n      \"iban\" : \"BE56999000651788\"\r\n    } ],\r\n   \
+                  \ \"balances\" : [ {\r\n      \"iban\" : \"BE12999000661892\"\r\n\
+                  \    }, {\r\n      \"iban\" : \"BE60999000126170\"\r\n    }, {\r\
+                  \n      \"iban\" : \"BE98999000661993\"\r\n    }, {\r\n      \"\
+                  iban\" : \"BE27999000126473\"\r\n    }, {\r\n      \"iban\" : \"\
+                  BE35999000297437\"\r\n    }, {\r\n      \"iban\" : \"FR7630004015240000096421772\"\
+                  \r\n    }, {\r\n      \"iban\" : \"BE35999000578737\"\r\n    },\
+                  \ {\r\n      \"iban\" : \"BE56999000651788\"\r\n    } ],\r\n   \
+                  \ \"transactions\" : [ {\r\n      \"iban\" : \"BE12999000661892\"\
+                  \r\n    }, {\r\n      \"iban\" : \"BE60999000126170\"\r\n    },\
+                  \ {\r\n      \"iban\" : \"BE98999000661993\"\r\n    }, {\r\n   \
+                  \   \"iban\" : \"BE27999000126473\"\r\n    }, {\r\n      \"iban\"\
+                  \ : \"BE35999000297437\"\r\n    }, {\r\n      \"iban\" : \"FR7630004015240000096421772\"\
+                  \r\n    }, {\r\n      \"iban\" : \"BE35999000578737\"\r\n    },\
+                  \ {\r\n      \"iban\" : \"BE56999000651788\"\r\n    } ]\r\n  }\r\
+                  \n}"
+              Request for a consent on dedicated accounts including owner name:
+                value: "{\r\n  \"validUntil\" : \"2020-12-12\",\r\n  \"frequencyPerDay\"\
+                  \ : 4,\r\n  \"recurringIndicator\" : true,\r\n  \"access\" : {\r\
+                  \n    \"accounts\" : [ {\r\n      \"iban\" : \"BE12999000661892\"\
+                  \r\n    }, {\r\n      \"iban\" : \"BE98999000661993\"\r\n    },\
+                  \ {\r\n      \"iban\" : \"BE60999000126170\"\r\n    }, {\r\n   \
+                  \   \"iban\" : \"BE27999000126473\"\r\n    }, {\r\n      \"bban\"\
+                  \ : \"ABN12999000661892\"\r\n    }, {\r\n      \"bban\" : \"ABN98999000661993\"\
+                  \r\n    }, {\r\n      \"bban\" : \"ABN60999000126170\"\r\n    },\
+                  \ {\r\n      \"bban\" : \"ABN27999000126473\"\r\n    } ],\r\n  \
+                  \  \"additionalInformation\" : {\r\n      \"ownerName\" : [ {\r\n\
+                  \        \"iban\" : \"BE12999000661892\"\r\n      }, {\r\n     \
+                  \   \"iban\" : \"BE98999000661993\"\r\n      }, {\r\n        \"\
+                  iban\" : \"BE60999000126170\"\r\n      }, {\r\n        \"iban\"\
+                  \ : \"BE27999000126473\"\r\n      }, {\r\n        \"bban\" : \"\
+                  ABN12999000661892\"\r\n      }, {\r\n        \"bban\" : \"ABN98999000661993\"\
+                  \r\n      }, {\r\n        \"bban\" : \"ABN60999000126170\"\r\n \
+                  \     }, {\r\n        \"bban\" : \"ABN27999000126473\"\r\n     \
+                  \ } ]\r\n    }\r\n  }\r\n}"
+              Request for a consent with account selection by psu:
+                value: "{\r\n  \"validUntil\" : \"2020-12-12\",\r\n  \"frequencyPerDay\"\
+                  \ : 4,\r\n  \"recurringIndicator\" : true,\r\n  \"access\" : {\r\
+                  \n    \"accounts\" : [ ],\r\n    \"balances\" : [ ],\r\n    \"transactions\"\
+                  \ : [ ]\r\n  }\r\n}"
+              Request for a consent with account selection by psu with owner name:
+                value: "{\r\n  \"validUntil\" : \"2020-12-12\",\r\n  \"frequencyPerDay\"\
+                  \ : 4,\r\n  \"recurringIndicator\" : true,\r\n  \"access\" : {\r\
+                  \n    \"accounts\" : [ ],\r\n    \"balances\" : [ ],\r\n    \"transactions\"\
+                  \ : [ ],\r\n    \"additionalInformation\" : {\r\n      \"ownerName\"\
+                  \ : [ ]\r\n    }\r\n  }\r\n}"
+              Request for an one-off consent:
+                value: "{\r\n  \"validUntil\" : \"2020-12-11\",\r\n  \"frequencyPerDay\"\
+                  \ : 1,\r\n  \"recurringIndicator\" : false,\r\n  \"access\" : {\r\
+                  \n    \"accounts\" : [ {\r\n      \"iban\" : \"BE12999000661892\"\
+                  \r\n    }, {\r\n      \"iban\" : \"BE60999000126170\"\r\n    },\
+                  \ {\r\n      \"iban\" : \"BE98999000661993\"\r\n    }, {\r\n   \
+                  \   \"iban\" : \"BE27999000126473\"\r\n    }, {\r\n      \"iban\"\
+                  \ : \"BE35999000297437\"\r\n    }, {\r\n      \"iban\" : \"FR7630004015240000096421772\"\
+                  \r\n    }, {\r\n      \"iban\" : \"BE35999000578737\"\r\n    },\
+                  \ {\r\n      \"iban\" : \"BE56999000651788\"\r\n    } ],\r\n   \
+                  \ \"balances\" : [ {\r\n      \"iban\" : \"BE12999000661892\"\r\n\
+                  \    }, {\r\n      \"iban\" : \"BE60999000126170\"\r\n    }, {\r\
+                  \n      \"iban\" : \"BE98999000661993\"\r\n    }, {\r\n      \"\
+                  iban\" : \"BE27999000126473\"\r\n    }, {\r\n      \"iban\" : \"\
+                  BE35999000297437\"\r\n    }, {\r\n      \"iban\" : \"FR7630004015240000096421772\"\
+                  \r\n    }, {\r\n      \"iban\" : \"BE35999000578737\"\r\n    },\
+                  \ {\r\n      \"iban\" : \"BE56999000651788\"\r\n    } ],\r\n   \
+                  \ \"transactions\" : [ {\r\n      \"iban\" : \"BE12999000661892\"\
+                  \r\n    }, {\r\n      \"iban\" : \"BE60999000126170\"\r\n    },\
+                  \ {\r\n      \"iban\" : \"BE98999000661993\"\r\n    }, {\r\n   \
+                  \   \"iban\" : \"BE27999000126473\"\r\n    }, {\r\n      \"iban\"\
+                  \ : \"BE35999000297437\"\r\n    }, {\r\n      \"iban\" : \"FR7630004015240000096421772\"\
+                  \r\n    }, {\r\n      \"iban\" : \"BE35999000578737\"\r\n    },\
+                  \ {\r\n      \"iban\" : \"BE56999000651788\"\r\n    } ]\r\n  }\r\
+                  \n}"
+              Wrong request for a consent with an iban only for owner name:
+                value: "{\r\n  \"validUntil\" : \"2020-12-12\",\r\n  \"frequencyPerDay\"\
+                  \ : 4,\r\n  \"recurringIndicator\" : true,\r\n  \"access\" : {\r\
+                  \n    \"accounts\" : [ {\r\n      \"iban\" : \"BE12999000661892\"\
+                  \r\n    } ],\r\n    \"balances\" : [ {\r\n      \"iban\" : \"BE12999000661892\"\
+                  \r\n    } ],\r\n    \"transactions\" : [ {\r\n      \"iban\" : \"\
+                  BE12999000661892\"\r\n    } ],\r\n    \"additionalInformation\"\
+                  \ : {\r\n      \"ownerName\" : [ {\r\n        \"iban\" : \"BE98999000661993\"\
+                  \r\n      } ]\r\n    }\r\n  }\r\n}"
+              Wrong request for a consent with mandatory fields missing:
+                value: "{\r\n  \"frequencyPerDay\" : 4,\r\n  \"recurringIndicator\"\
+                  \ : true,\r\n  \"access\" : { }\r\n}"
+              Wrong request for a consent with only owner name for psu selection:
+                value: "{\r\n  \"validUntil\" : \"2020-12-12\",\r\n  \"frequencyPerDay\"\
+                  \ : 4,\r\n  \"recurringIndicator\" : true,\r\n  \"access\" : {\r\
+                  \n    \"additionalInformation\" : {\r\n      \"ownerName\" : [ ]\r\
+                  \n    }\r\n  }\r\n}"
+            schema:
+              $ref: '#/components/schemas/CreateConsentRequest'
+      responses:
+        '201':
+          content:
+            application/json:
+              examples:
+                Response of a consent having access of all accounts:
+                  value: "{\r\n  \"consentId\" : \"5c6cfd499d1a512c38bb09ac\",\r\n\
+                    \  \"consentStatus\" : \"received\",\r\n  \"scaMethods\" : [ {\r\
+                    \n    \"authenticationType\" : \"M2\",\r\n    \"authenticationMethodId\"\
+                    \ : \"M2\",\r\n    \"name\" : \"Authentication M2\",\r\n    \"\
+                    explanation\" : \"Provide random code challenge for payment authentication\
+                    \ flow\"\r\n  }, {\r\n    \"authenticationType\" : \"itsme\",\r\
+                    \n    \"authenticationMethodId\" : \"itsme\",\r\n    \"name\"\
+                    \ : \"ITsme\",\r\n    \"explanation\" : \"Itsme allows a user\
+                    \ to authenticate via app\"\r\n  } ],\r\n  \"_links\" : {\r\n\
+                    \    \"self\" : {\r\n      \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac\"\
+                    \r\n    },\r\n    \"status\" : {\r\n      \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac/status\"\
+                    \r\n    },\r\n    \"selectAuthenticationMethod\" : {\r\n     \
+                    \ \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    },\r\n    \"scaStatus\" : {\r\n      \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    }\r\n  }\r\n}"
+                Response of a consent having access of all accounts with balances:
+                  value: "{\r\n  \"consentId\" : \"5c6cfd499d1a512c38bb09ac\",\r\n\
+                    \  \"consentStatus\" : \"received\",\r\n  \"scaMethods\" : [ {\r\
+                    \n    \"authenticationType\" : \"M2\",\r\n    \"authenticationMethodId\"\
+                    \ : \"M2\",\r\n    \"name\" : \"Authentication M2\",\r\n    \"\
+                    explanation\" : \"Provide random code challenge for payment authentication\
+                    \ flow\"\r\n  }, {\r\n    \"authenticationType\" : \"itsme\",\r\
+                    \n    \"authenticationMethodId\" : \"itsme\",\r\n    \"name\"\
+                    \ : \"ITsme\",\r\n    \"explanation\" : \"Itsme allows a user\
+                    \ to authenticate via app\"\r\n  } ],\r\n  \"_links\" : {\r\n\
+                    \    \"self\" : {\r\n      \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac\"\
+                    \r\n    },\r\n    \"status\" : {\r\n      \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac/status\"\
+                    \r\n    },\r\n    \"selectAuthenticationMethod\" : {\r\n     \
+                    \ \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    },\r\n    \"scaStatus\" : {\r\n      \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    }\r\n  }\r\n}"
+                Response of a consent having access of all accounts with deprecated model:
+                  value: "{\r\n  \"consentId\" : \"5c6cfd499d1a512c38bb09ac\",\r\n\
+                    \  \"consentStatus\" : \"received\",\r\n  \"scaMethods\" : [ {\r\
+                    \n    \"authenticationType\" : \"M2\",\r\n    \"authenticationMethodId\"\
+                    \ : \"M2\",\r\n    \"name\" : \"Authentication M2\",\r\n    \"\
+                    explanation\" : \"Provide random code challenge for payment authentication\
+                    \ flow\"\r\n  }, {\r\n    \"authenticationType\" : \"itsme\",\r\
+                    \n    \"authenticationMethodId\" : \"itsme\",\r\n    \"name\"\
+                    \ : \"ITsme\",\r\n    \"explanation\" : \"Itsme allows a user\
+                    \ to authenticate via app\"\r\n  } ],\r\n  \"_links\" : {\r\n\
+                    \    \"self\" : {\r\n      \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac\"\
+                    \r\n    },\r\n    \"status\" : {\r\n      \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac/status\"\
+                    \r\n    },\r\n    \"selectAuthenticationMethod\" : {\r\n     \
+                    \ \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    },\r\n    \"scaStatus\" : {\r\n      \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    }\r\n  }\r\n}"
+                Response of a consent having access of all accounts with owner name:
+                  value: "{\r\n  \"consentId\" : \"5f4f670d4247633805c1bb0b\",\r\n\
+                    \  \"consentStatus\" : \"received\",\r\n  \"scaMethods\" : [ {\r\
+                    \n    \"authenticationType\" : \"M2\",\r\n    \"authenticationMethodId\"\
+                    \ : \"M2\",\r\n    \"name\" : \"Authentication M2\",\r\n    \"\
+                    explanation\" : \"Provide random code challenge for payment authentication\
+                    \ flow\"\r\n  }, {\r\n    \"authenticationType\" : \"itsme\",\r\
+                    \n    \"authenticationMethodId\" : \"itsme\",\r\n    \"name\"\
+                    \ : \"ITsme\",\r\n    \"explanation\" : \"Itsme allows a user\
+                    \ to authenticate via app\"\r\n  } ],\r\n  \"_links\" : {\r\n\
+                    \    \"self\" : {\r\n      \"href\" : \"/v1/consents/5f4f670d4247633805c1bb0b\"\
+                    \r\n    },\r\n    \"status\" : {\r\n      \"href\" : \"/v1/consents/5f4f670d4247633805c1bb0b/status\"\
+                    \r\n    },\r\n    \"selectAuthenticationMethod\" : {\r\n     \
+                    \ \"href\" : \"/v1/consents/5f4f670d4247633805c1bb0b/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    },\r\n    \"scaStatus\" : {\r\n      \"href\" : \"/v1/consents/5f4f670d4247633805c1bb0b/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    }\r\n  }\r\n}"
+                Response of a consent having access of all psd2:
+                  value: "{\r\n  \"consentId\" : \"5c6cfd499d1a512c38bb09ac\",\r\n\
+                    \  \"consentStatus\" : \"received\",\r\n  \"scaMethods\" : [ {\r\
+                    \n    \"authenticationType\" : \"M2\",\r\n    \"authenticationMethodId\"\
+                    \ : \"M2\",\r\n    \"name\" : \"Authentication M2\",\r\n    \"\
+                    explanation\" : \"Provide random code challenge for payment authentication\
+                    \ flow\"\r\n  }, {\r\n    \"authenticationType\" : \"itsme\",\r\
+                    \n    \"authenticationMethodId\" : \"itsme\",\r\n    \"name\"\
+                    \ : \"ITsme\",\r\n    \"explanation\" : \"Itsme allows a user\
+                    \ to authenticate via app\"\r\n  } ],\r\n  \"_links\" : {\r\n\
+                    \    \"self\" : {\r\n      \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac\"\
+                    \r\n    },\r\n    \"status\" : {\r\n      \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac/status\"\
+                    \r\n    },\r\n    \"selectAuthenticationMethod\" : {\r\n     \
+                    \ \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    },\r\n    \"scaStatus\" : {\r\n      \"href\" : \"/v1/consents/5c6cfd499d1a512c38bb09ac/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    }\r\n  }\r\n}"
+                Response of a consent on dedicated accounts:
+                  value: "{\r\n  \"consentId\" : \"5c5d5ac118bc652b0ecbfcc7\",\r\n\
+                    \  \"consentStatus\" : \"received\",\r\n  \"scaMethods\" : [ {\r\
+                    \n    \"authenticationType\" : \"M2\",\r\n    \"authenticationMethodId\"\
+                    \ : \"M2\",\r\n    \"name\" : \"Authentication M2\",\r\n    \"\
+                    explanation\" : \"Provide random code challenge for payment authentication\
+                    \ flow\"\r\n  }, {\r\n    \"authenticationType\" : \"itsme\",\r\
+                    \n    \"authenticationMethodId\" : \"itsme\",\r\n    \"name\"\
+                    \ : \"ITsme\",\r\n    \"explanation\" : \"Itsme allows a user\
+                    \ to authenticate via app\"\r\n  } ],\r\n  \"_links\" : {\r\n\
+                    \    \"self\" : {\r\n      \"href\" : \"/v1/consents/5c5d5ac118bc652b0ecbfcc7\"\
+                    \r\n    },\r\n    \"status\" : {\r\n      \"href\" : \"/v1/consents/5c5d5ac118bc652b0ecbfcc7/status\"\
+                    \r\n    },\r\n    \"selectAuthenticationMethod\" : {\r\n     \
+                    \ \"href\" : \"/v1/consents/5c5d5ac118bc652b0ecbfcc7/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    },\r\n    \"scaStatus\" : {\r\n      \"href\" : \"/v1/consents/5c5d5ac118bc652b0ecbfcc7/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    }\r\n  }\r\n}"
+                Response of a consent on dedicated accounts including owner name:
+                  value: "{\r\n  \"consentId\" : \"5f572bf2a95fc42fd6b6fd6d\",\r\n\
+                    \  \"consentStatus\" : \"received\",\r\n  \"scaMethods\" : [ {\r\
+                    \n    \"authenticationType\" : \"M2\",\r\n    \"authenticationMethodId\"\
+                    \ : \"M2\",\r\n    \"name\" : \"Authentication M2\",\r\n    \"\
+                    explanation\" : \"Provide random code challenge for payment authentication\
+                    \ flow\"\r\n  }, {\r\n    \"authenticationType\" : \"itsme\",\r\
+                    \n    \"authenticationMethodId\" : \"itsme\",\r\n    \"name\"\
+                    \ : \"ITsme\",\r\n    \"explanation\" : \"Itsme allows a user\
+                    \ to authenticate via app\"\r\n  } ],\r\n  \"_links\" : {\r\n\
+                    \    \"self\" : {\r\n      \"href\" : \"/v1/consents/5f572bf2a95fc42fd6b6fd6d\"\
+                    \r\n    },\r\n    \"status\" : {\r\n      \"href\" : \"/v1/consents/5f572bf2a95fc42fd6b6fd6d/status\"\
+                    \r\n    },\r\n    \"selectAuthenticationMethod\" : {\r\n     \
+                    \ \"href\" : \"/v1/consents/5f572bf2a95fc42fd6b6fd6d/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    },\r\n    \"scaStatus\" : {\r\n      \"href\" : \"/v1/consents/5f572bf2a95fc42fd6b6fd6d/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    }\r\n  }\r\n}"
+                Response of a consent on dedicated accounts with scaOAuth:
+                  value: "{\r\n  \"consentId\": \"5c5d5ac118bc652b0ecbfdd6\",\r\n\
+                    \  \"consentStatus\": \"received\",\r\n  \"_links\": {\r\n   \
+                    \ \"scaOAuth\": {\r\n      \"href\": \"https://localhost/psd2/v1/berlingroup-auth/.well-known/oauth-authorization-server\"\
+                    \r\n    },\r\n    \"self\": {\r\n      \"href\": \"/v1/consents/5c5d5ac118bc652b0ecbfcc7\"\
+                    \r\n    },\r\n    \"status\": {\r\n      \"href\": \"/v1/consents/5c5d5ac118bc652b0ecbfcc7/status\"\
+                    \r\n    },\r\n    \"scaStatus\": {\r\n      \"href\": \"/v1/consents/5c5d5ac118bc652b0ecbfcc7/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    }\r\n  }\r\n}"
+                Response of a consent with account selection by psu:
+                  value: "{\r\n  \"consentId\" : \"5e1735ad942c2e82b0cef5fb\",\r\n\
+                    \  \"consentStatus\" : \"received\",\r\n  \"scaMethods\" : [ {\r\
+                    \n    \"authenticationType\" : \"M2\",\r\n    \"authenticationMethodId\"\
+                    \ : \"M2\",\r\n    \"name\" : \"Authentication M2\",\r\n    \"\
+                    explanation\" : \"Provide random code challenge for payment authentication\
+                    \ flow\"\r\n  }, {\r\n    \"authenticationType\" : \"itsme\",\r\
+                    \n    \"authenticationMethodId\" : \"itsme\",\r\n    \"name\"\
+                    \ : \"ITsme\",\r\n    \"explanation\" : \"Itsme allows a user\
+                    \ to authenticate via app\"\r\n  } ],\r\n  \"_links\" : {\r\n\
+                    \    \"self\" : {\r\n      \"href\" : \"/v1/consents/5e1735ad942c2e82b0cef5fb\"\
+                    \r\n    },\r\n    \"status\" : {\r\n      \"href\" : \"/v1/consents/5e1735ad942c2e82b0cef5fb/status\"\
+                    \r\n    },\r\n    \"selectAuthenticationMethod\" : {\r\n     \
+                    \ \"href\" : \"/v1/consents/5e1735ad942c2e82b0cef5fb/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    },\r\n    \"scaStatus\" : {\r\n      \"href\" : \"/v1/consents/5e1735ad942c2e82b0cef5fb/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    }\r\n  }\r\n}"
+                Response of a consent with account selection by psu with owner name:
+                  value: "{\r\n  \"consentId\" : \"5f55db4aeb9a456ddf596ae5\",\r\n\
+                    \  \"consentStatus\" : \"received\",\r\n  \"scaMethods\" : [ {\r\
+                    \n    \"authenticationType\" : \"M2\",\r\n    \"authenticationMethodId\"\
+                    \ : \"M2\",\r\n    \"name\" : \"Authentication M2\",\r\n    \"\
+                    explanation\" : \"Provide random code challenge for payment authentication\
+                    \ flow\"\r\n  }, {\r\n    \"authenticationType\" : \"itsme\",\r\
+                    \n    \"authenticationMethodId\" : \"itsme\",\r\n    \"name\"\
+                    \ : \"ITsme\",\r\n    \"explanation\" : \"Itsme allows a user\
+                    \ to authenticate via app\"\r\n  } ],\r\n  \"_links\" : {\r\n\
+                    \    \"self\" : {\r\n      \"href\" : \"/v1/consents/5f55db4aeb9a456ddf596ae5\"\
+                    \r\n    },\r\n    \"status\" : {\r\n      \"href\" : \"/v1/consents/5f55db4aeb9a456ddf596ae5/status\"\
+                    \r\n    },\r\n    \"selectAuthenticationMethod\" : {\r\n     \
+                    \ \"href\" : \"/v1/consents/5f55db4aeb9a456ddf596ae5/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    },\r\n    \"scaStatus\" : {\r\n      \"href\" : \"/v1/consents/5f55db4aeb9a456ddf596ae5/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    }\r\n  }\r\n}"
+                Response of an one-off consent:
+                  value: "{\r\n  \"consentId\" : \"5e046b4c526c01f974d88edf\",\r\n\
+                    \  \"consentStatus\" : \"received\",\r\n  \"scaMethods\" : [ {\r\
+                    \n    \"authenticationType\" : \"M2\",\r\n    \"authenticationMethodId\"\
+                    \ : \"M2\",\r\n    \"name\" : \"Authentication M2\",\r\n    \"\
+                    explanation\" : \"Provide random code challenge for payment authentication\
+                    \ flow\"\r\n  }, {\r\n    \"authenticationType\" : \"itsme\",\r\
+                    \n    \"authenticationMethodId\" : \"itsme\",\r\n    \"name\"\
+                    \ : \"ITsme\",\r\n    \"explanation\" : \"Itsme allows a user\
+                    \ to authenticate via app\"\r\n  } ],\r\n  \"_links\" : {\r\n\
+                    \    \"self\" : {\r\n      \"href\" : \"/v1/consents/5e046b4c526c01f974d88edf\"\
+                    \r\n    },\r\n    \"status\" : {\r\n      \"href\" : \"/v1/consents/5e046b4c526c01f974d88edf/status\"\
+                    \r\n    },\r\n    \"selectAuthenticationMethod\" : {\r\n     \
+                    \ \"href\" : \"/v1/consents/5e046b4c526c01f974d88edf/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    },\r\n    \"scaStatus\" : {\r\n      \"href\" : \"/v1/consents/5e046b4c526c01f974d88edf/authorisations/507f191e810c19729de860ea\"\
+                    \r\n    }\r\n  }\r\n}"
+              schema:
+                $ref: '#/components/schemas/CreateConsentResponse'
+          description: Created
+          headers:
+            ASPSP-Multiple-Consent-Support:
+              description: Indicates multiple consents support. Present only if multiple
+                consents is enabled for the tpp
+              schema:
+                type: string
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Date:
+              description: 'Current date matching RFC7231 (ex : Mon, 04 Jun 2018 15:25:31
+                GMT).'
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+            aspsp-sca-approach:
+              description: This data element must be contained, if the SCA Approach
+                is already fixed. Only `REDIRECT` will be returned.
+              schema:
+                type: string
+        '400':
+          content:
+            application/json:
+              examples:
+                Response of a consent with an iban only for owner name:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"Request\
+                    \ field are not matching the API documentation\"\r\n  } ]\r\n}"
+                Response of a consent with invalid digest header:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"Invalid\
+                    \ Digest header value\",\r\n    \"path\" : \"digest\"\r\n  } ]\r\
+                    \n}"
+                Response of a consent with mandatory fields missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"Invalid\
+                    \ request payload\",\r\n    \"path\" : \"validUntil\"\r\n  } ]\r\
+                    \n}"
+                Response of a consent with only owner name for psu selection:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"Request\
+                    \ field are not matching the API documentation\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '401':
+          content:
+            application/json:
+              examples:
+                Response of a consent with Tpp having blocked status:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The Tpp is blocked at ASPSP level\"\r\n  } ]\r\n}"
+                Response of a consent with Tpp having invalid Tpp authority status:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"The Tpp does not have the correct authorization status\"\r\
+                    \n  } ]\r\n}"
+                Response of a consent with Tpp having no accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The Tpp does not have the requested ASPSP accreditation\"\r\
+                    \n  } ]\r\n}"
+                Response of a consent with Tpp having no national accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"ROLE_INVALID\",\r\n    \"text\" : \"The\
+                    \ Tpp does not have the requested national accreditation\"\r\n\
+                    \  } ]\r\n}"
+                Response of a consent with invalid certificate:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"The contents of the QWAC are not matching PSD2 general PSD2\
+                    \ or attribute requirements\"\r\n  } ]\r\n}"
+                Response of a consent with invalid signature header:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"SIGNATURE_INVALID\",\r\n    \"text\" : \"\
+                    Application layer eIDAS Signature for TPP authentication is not\
+                    \ correct\",\r\n    \"path\" : \"signature\"\r\n  } ]\r\n}"
+                Response of a consent with tpp-signature-certificate missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_MISSING\",\r\n    \"text\" :\
+                    \ \"Required tpp-signature-certificate header was not specified\"\
+                    ,\r\n    \"path\" : \"tpp-signature-certificate\"\r\n  } ]\r\n\
+                    }"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '500':
+          $ref: '#/components/responses/INTERNAL_SERVER_ERROR_500'
+        '503':
+          $ref: '#/components/responses/SERVICE_UNAVAILABLE_503'
+      summary: Initiate a consent
+      tags:
+      - Consents
+  /{consentId}:
+    delete:
+      description: The TPP can delete an account information consent object if needed
+        (using the "consentId").
+      operationId: Request for deletion of a consent
+      parameters:
+      - description: ID of the consent retrieved by the Establish Consent process
+        in: path
+        name: consentId
+        required: true
+        schema:
+          type: string
+      - description: ID of the request, unique to the call, as determined by the initiating
+          party.
+        example: 99391c7e-ad88-49ec-a2ad-99ddcb1f7721
+        in: header
+        name: X-Request-Id
+        required: true
+        schema:
+          type: string
+      - description: It contains a Hash of the message body. The only hash algorithms
+          that may be used to calculate the Digest within the context of this specification
+          are SHA-256 and SHA-512 as defined in [RFC5843].
+        example: SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+        in: header
+        name: digest
+        required: true
+        schema:
+          type: string
+      - description: A signature of the request by the **TPP** on application level.
+        example: keyId="SN=4145e06efda52dc2,CA=EMAILADDRESS=rootCA@root.com, OU=DxP,
+          O=SBS, L=Paris, ST=Paris, C=FR",algorithm="rsa-sha256",headers="digest x-request-id",signature="Ts7gUo4afmgu2WC/5iUeJBzesmRXTtJV9vZf8msWnDM6kSUZLyoWt891XJTyARIyRwWIHD3u1U+UehWlcJw57alhG1IE2q5IS27PJlLlQpbaIqwGuGcrFZJIcfTiosHAsuwzJr5jOTzd66TbwO+OqwswalcpQ5t2Y2FC0rG8UXUvw165aXTuj7q4mMhZ6drxd8KD+x461W4j10uMSqfNAMcaLJrXoaw59k2LmoVub5zYew/rq2ImdCa8FBQ0/VQTH5IBlOuXXq715K2m0hltU2jYJy7Bf7ccY69U4ZrLNP8fCyblD8T+B+7b7HNfDjL2iIKFL0xQWwpoj8/K0i1VFg=="
+        in: header
+        name: signature
+        required: true
+        schema:
+          type: string
+      - description: The certificate used for signing the request, in pem format.
+        example: "-----BEGIN CERTIFICATE-----\n    MIIERzCCAy+gAwIBAgIIQUXgbv2lLcIwDQYJKoZIhvcNAQELBQAwaTELMAkGA1UE\n\
+          \    BhMCRlIxDjAMBgNVBAgTBVBhcmlzMQ4wDAYDVQQHEwVQYXJpczEMMAoGA1UEChMD\n\
+          \    U0JTMQwwCgYDVQQLEwNEeFAxHjAcBgkqhkiG9w0BCQEWD3Jvb3RDQUByb290LmNv\n\
+          \    bTAeFw0xOTAyMTQxMzU4MDBaFw0yODEyMTkxODAwMDBaMIGSMQswCQYDVQQGEwJG\n\
+          \    UjEOMAwGA1UECBMFUGFyaXMxDjAMBgNVBAcTBVBhcmlzMQwwCgYDVQQKEwNTQlMx\n\
+          \    DDAKBgNVBAsTA0R4UDEMMAoGA1UEAxMDU0JTMR4wHAYJKoZIhvcNAQkBFg9yb290\n\
+          \    Q0FAcm9vdC5jb20xGTAXBgNVBGETEFBTREJFLUFJUy0xMjM0NTYwggEiMA0GCSqG\n\
+          \    SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCyB1NOqlS7X/XOZyoMPXHhDG8c8VyVC6sC\n\
+          \    M6dW2rTkQEr4fm57fi3bdPjMTBRFB+dRNcERyWUSWiE85LW9UWcMIORltL59utio\n\
+          \    1dySGUV+DRKffLAoe2jyhq5iWsU6WvK3kVcqLddXMfgdSB+qgYhQqCK6mpOilhdG\n\
+          \    BE6nFbF4M4+sTGL/0ncW4eGqAIsk6VvCEjuXtLabeE0Ji2BSekQnYMgu0qEXkwcg\n\
+          \    TPkMw1topWz3VNAgN0aGAOMAN0piFBGayoLVGqoLd3eD4Xk/EzFkt3/XBYZ1TSaF\n\
+          \    1jevtwrscrbnIrajfg1R36a5gJAUZpweT3RvpIVsYDBdCSUbCPsjAgMBAAGjgcgw\n\
+          \    gcUwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUQHK9dnN045oBeO2Be73LDTJU\n\
+          \    VlswCwYDVR0PBAQDAgEGMBQGA1UdIAQNMAswCQYHBACL7EABATA9BggrBgEFBQcB\n\
+          \    AwQxMC8wLQYGBACBmCcCMCMwEzARBgcEAIGYJwEDDAZQU1BfQUkMBEF1dGgMBkZy\n\
+          \    YW5jZTARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0\n\
+          \    aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAgPKZSlIVmemajqUe290ecKQ3HLd4\n\
+          \    KruOMEqpJoIOPRF9zIXe9RQb7qwbYpP0tweL4tA8eEdkwz7dxOwno/75GeCb5vVo\n\
+          \    1GDbeOecgIyEMjEPyxoTtuo1qr07GIcVXmx/aOMLoZXAbKq1Tg2SU+876z1YlBs8\n\
+          \    4n4hloJeWpkbKOTQkzfmTWW1AtLrBnU7KFhKdC1s5g/EyVz063lscSJNg07/i+n2\n\
+          \    LSvrOptLOogZ92EcuVB6t7/3tmp6lIptMxoTNwZee8mqDI7ogUxcZUxGpAJzG6Ub\n\
+          \    2qmL9KvMFjKTMhfyuTG8xx+4EN+VsduIxe/7/0nM5zQFwEZvPX1CQizAzQ==\n    -----END\
+          \ CERTIFICATE-----"
+        in: header
+        name: tpp-signature-certificate
+        required: true
+        schema:
+          type: string
+      - description: The forwarded IP Address header field consists of the corresponding
+          HTTP request IP Address field between **PSU** and **TPP**.
+        example: 127.0.0.1
+        in: header
+        name: psu-ip-address
+        required: false
+        schema:
+          type: string
+      - description: Client ID of the PSU in the ASPSP client interface.
+        in: header
+        name: psu-id
+        required: false
+        schema:
+          type: string
+      - description: Type of the PSU-ID, needed in scenarios where PSUs have several
+          PSU-IDs as access possibility.
+        in: header
+        name: psu-id-type
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Port header field consists of the corresponding
+          HTTP request IP Port field between **PSU** and **TPP**, if available.
+        example: '87877'
+        in: header
+        name: psu-ip-port
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept header fields consist of the corresponding
+          HTTP request Accept header fields between **PSU** and **TPP**, if available.
+        example: application/json
+        in: header
+        name: psu-accept
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Charset header fields consist of the
+          corresponding HTTP request Accept-Charset header fields between **PSU**
+          and **TPP**, if available.
+        example: utf-8
+        in: header
+        name: psu-accept-charset
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Encoding header fields consist of the
+          corresponding HTTP request Accept-Encoding header fields between **PSU**
+          and **TPP**, if available.
+        example: gzip, deflat
+        in: header
+        name: psu-accept-encoding
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Language header fields consist of the
+          corresponding HTTP request Accept-Language header fields between **PSU**
+          and **TPP**, if available.
+        example: en-US
+        in: header
+        name: psu-accept-language
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Agent header field of the HTTP request between
+          **PSU** and **TPP**, if available.
+        example: Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0
+        in: header
+        name: psu-user-agent
+        required: false
+        schema:
+          type: string
+      - description: 'HTTP method used at the **PSU** – **TPP** interface, if available.Possible
+          values : GET, POST, PUT, PATCH, DELETE.'
+        example: GET
+        in: header
+        name: psu-http-method
+        required: false
+        schema:
+          type: string
+      - description: UUID identifies either a device or a device dependant application
+          installation. In case of an installation identification this ID need to
+          be unaltered until removal from device.
+        example: 8cb184d9-f90b-4994-abce-ba8079d1c505
+        in: header
+        name: psu-device-id
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Geo Location of the corresponding HTTP request
+          between **PSU** and **TPP** if available.
+        example: US
+        in: header
+        name: psu-geo-location
+        required: false
+        schema:
+          type: string
+      - description: Marker used by the server to advertise its support of partial
+          requests
+        example: application/json
+        in: header
+        name: Accept
+        required: false
+        schema:
+          type: string
+      - description: Holds Bearer information
+        example: Bearer sona
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: Contains the date and time at which the message was originated
+        example: Sun, 06 Aug 2017 15:05:37 GMT
+        in: header
+        name: Date
+        required: false
+        schema:
+          type: string
+      - description: The apiKey is a token that a client provides when making API
+          calls.
+        example: 3fdd7da3-03ae-4fd5-bf0b-d09bc018cde1
+        in: header
+        name: apiKey
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Date:
+              description: 'Current date matching RFC7231 (ex : Mon, 04 Jun 2018 15:25:31
+                GMT).'
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '400':
+          content:
+            application/json:
+              examples:
+                Response of deletion of a consent with digest header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"A required\
+                    \ HTTP header was not specified\",\r\n    \"path\" : \"digest\"\
+                    \r\n  } ]\r\n}"
+                Response of deletion of a consent with missing headers:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"A required\
+                    \ HTTP header was not specified\",\r\n    \"path\" : \"x-client-certificate\"\
+                    \r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '401':
+          content:
+            application/json:
+              examples:
+                Response of deletion of a consent with TPP having blocked status:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The TPP is blocked at ASPSP level\"\r\n  } ]\r\n}"
+                Response of deletion of a consent with TPP having invalid Tpp authority status:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"The TPP does not have the correct authorization status\"\r\
+                    \n  } ]\r\n}"
+                Response of deletion of a consent with Tpp having no accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The TPP does not have the requested ASPSP accreditation\"\r\
+                    \n  } ]\r\n}"
+                Response of deletion of a consent with Tpp having no national accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"ROLE_INVALID\",\r\n    \"text\" : \"The\
+                    \ TPP does not have the requested national accreditation\"\r\n\
+                    \  } ]\r\n}"
+                Response of deletion of a consent with invalid token:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"TOKEN_INVALID\",\r\n    \"text\" : \"Client\
+                    \ does not have sufficient permission. This can happen because\
+                    \ the user doesn''t match the type of users supported by this\
+                    \ API.\"\r\n  } ]\r\n}"
+                Response of deletion of a consent with signature header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"SIGNATURE_MISSING\",\r\n    \"text\" : \"\
+                    Required signature header was not specified\",\r\n    \"path\"\
+                    \ : \"signature\"\r\n  } ]\r\n}"
+                Response of deletion of a consent with tpp-signature-certificate missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_MISSING\",\r\n    \"text\" :\
+                    \ \"Required tpp-signature-certificate header was not specified\"\
+                    ,\r\n    \"path\" : \"tpp-signature-certificate\"\r\n  } ]\r\n\
+                    }"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '403':
+          content:
+            application/json:
+              examples:
+                Response of deletion of a consent when consent not found:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CONSENT_UNKNOWN\",\r\n    \"text\" : \"\
+                    The Consent-ID cannot be matched by the ASPSP relative to the\
+                    \ TPP\"\r\n  } ]\r\n}"
+                Response of deletion of a consent with bad consent id:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CONSENT_UNKNOWN\",\r\n    \"text\" : \"\
+                    The Consent-ID cannot be matched by the ASPSP relative to the\
+                    \ TPP\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '500':
+          $ref: '#/components/responses/INTERNAL_SERVER_ERROR_500'
+        '503':
+          $ref: '#/components/responses/SERVICE_UNAVAILABLE_503'
+      summary: Delete a consent
+      tags:
+      - Consents
+    get:
+      description: This endpoint returns the content of an account information consent
+        object.
+      operationId: Request to retrieve a consent
+      parameters:
+      - description: ID of the consent retrieved by the Establish Consent process
+        in: path
+        name: consentId
+        required: true
+        schema:
+          type: string
+      - description: ID of the request, unique to the call, as determined by the initiating
+          party.
+        example: 99391c7e-ad88-49ec-a2ad-99ddcb1f7721
+        in: header
+        name: X-Request-Id
+        required: true
+        schema:
+          type: string
+      - description: It contains a Hash of the message body. The only hash algorithms
+          that may be used to calculate the Digest within the context of this specification
+          are SHA-256 and SHA-512 as defined in [RFC5843].
+        example: SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+        in: header
+        name: digest
+        required: true
+        schema:
+          type: string
+      - description: A signature of the request by the **TPP** on application level.
+        example: keyId="SN=4145e06efda52dc2,CA=EMAILADDRESS=rootCA@root.com, OU=DxP,
+          O=SBS, L=Paris, ST=Paris, C=FR",algorithm="rsa-sha256",headers="digest x-request-id",signature="Ts7gUo4afmgu2WC/5iUeJBzesmRXTtJV9vZf8msWnDM6kSUZLyoWt891XJTyARIyRwWIHD3u1U+UehWlcJw57alhG1IE2q5IS27PJlLlQpbaIqwGuGcrFZJIcfTiosHAsuwzJr5jOTzd66TbwO+OqwswalcpQ5t2Y2FC0rG8UXUvw165aXTuj7q4mMhZ6drxd8KD+x461W4j10uMSqfNAMcaLJrXoaw59k2LmoVub5zYew/rq2ImdCa8FBQ0/VQTH5IBlOuXXq715K2m0hltU2jYJy7Bf7ccY69U4ZrLNP8fCyblD8T+B+7b7HNfDjL2iIKFL0xQWwpoj8/K0i1VFg=="
+        in: header
+        name: signature
+        required: true
+        schema:
+          type: string
+      - description: The certificate used for signing the request, in pem format.
+        example: "-----BEGIN CERTIFICATE-----\n    MIIERzCCAy+gAwIBAgIIQUXgbv2lLcIwDQYJKoZIhvcNAQELBQAwaTELMAkGA1UE\n\
+          \    BhMCRlIxDjAMBgNVBAgTBVBhcmlzMQ4wDAYDVQQHEwVQYXJpczEMMAoGA1UEChMD\n\
+          \    U0JTMQwwCgYDVQQLEwNEeFAxHjAcBgkqhkiG9w0BCQEWD3Jvb3RDQUByb290LmNv\n\
+          \    bTAeFw0xOTAyMTQxMzU4MDBaFw0yODEyMTkxODAwMDBaMIGSMQswCQYDVQQGEwJG\n\
+          \    UjEOMAwGA1UECBMFUGFyaXMxDjAMBgNVBAcTBVBhcmlzMQwwCgYDVQQKEwNTQlMx\n\
+          \    DDAKBgNVBAsTA0R4UDEMMAoGA1UEAxMDU0JTMR4wHAYJKoZIhvcNAQkBFg9yb290\n\
+          \    Q0FAcm9vdC5jb20xGTAXBgNVBGETEFBTREJFLUFJUy0xMjM0NTYwggEiMA0GCSqG\n\
+          \    SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCyB1NOqlS7X/XOZyoMPXHhDG8c8VyVC6sC\n\
+          \    M6dW2rTkQEr4fm57fi3bdPjMTBRFB+dRNcERyWUSWiE85LW9UWcMIORltL59utio\n\
+          \    1dySGUV+DRKffLAoe2jyhq5iWsU6WvK3kVcqLddXMfgdSB+qgYhQqCK6mpOilhdG\n\
+          \    BE6nFbF4M4+sTGL/0ncW4eGqAIsk6VvCEjuXtLabeE0Ji2BSekQnYMgu0qEXkwcg\n\
+          \    TPkMw1topWz3VNAgN0aGAOMAN0piFBGayoLVGqoLd3eD4Xk/EzFkt3/XBYZ1TSaF\n\
+          \    1jevtwrscrbnIrajfg1R36a5gJAUZpweT3RvpIVsYDBdCSUbCPsjAgMBAAGjgcgw\n\
+          \    gcUwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUQHK9dnN045oBeO2Be73LDTJU\n\
+          \    VlswCwYDVR0PBAQDAgEGMBQGA1UdIAQNMAswCQYHBACL7EABATA9BggrBgEFBQcB\n\
+          \    AwQxMC8wLQYGBACBmCcCMCMwEzARBgcEAIGYJwEDDAZQU1BfQUkMBEF1dGgMBkZy\n\
+          \    YW5jZTARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0\n\
+          \    aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAgPKZSlIVmemajqUe290ecKQ3HLd4\n\
+          \    KruOMEqpJoIOPRF9zIXe9RQb7qwbYpP0tweL4tA8eEdkwz7dxOwno/75GeCb5vVo\n\
+          \    1GDbeOecgIyEMjEPyxoTtuo1qr07GIcVXmx/aOMLoZXAbKq1Tg2SU+876z1YlBs8\n\
+          \    4n4hloJeWpkbKOTQkzfmTWW1AtLrBnU7KFhKdC1s5g/EyVz063lscSJNg07/i+n2\n\
+          \    LSvrOptLOogZ92EcuVB6t7/3tmp6lIptMxoTNwZee8mqDI7ogUxcZUxGpAJzG6Ub\n\
+          \    2qmL9KvMFjKTMhfyuTG8xx+4EN+VsduIxe/7/0nM5zQFwEZvPX1CQizAzQ==\n    -----END\
+          \ CERTIFICATE-----"
+        in: header
+        name: tpp-signature-certificate
+        required: true
+        schema:
+          type: string
+      - description: The forwarded IP Address header field consists of the corresponding
+          HTTP request IP Address field between **PSU** and **TPP**.
+        in: header
+        name: psu-ip-address
+        required: false
+        schema:
+          type: string
+      - description: Client ID of the PSU in the ASPSP client interface.
+        in: header
+        name: psu-id
+        required: false
+        schema:
+          type: string
+      - description: Type of the PSU-ID, needed in scenarios where PSUs have several
+          PSU-IDs as access possibility.
+        in: header
+        name: psu-id-type
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Port header field consists of the corresponding
+          HTTP request IP Port field between **PSU** and **TPP**, if available.
+        in: header
+        name: psu-ip-port
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept header fields consist of the corresponding
+          HTTP request Accept header fields between **PSU** and **TPP**, if available.
+        in: header
+        name: psu-accept
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Charset header fields consist of the
+          corresponding HTTP request Accept-Charset header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-charset
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Encoding header fields consist of the
+          corresponding HTTP request Accept-Encoding header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-encoding
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Language header fields consist of the
+          corresponding HTTP request Accept-Language header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-language
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Agent header field of the HTTP request between
+          **PSU** and **TPP**, if available.
+        in: header
+        name: psu-user-agent
+        required: false
+        schema:
+          type: string
+      - description: 'HTTP method used at the **PSU** – **TPP** interface, if available.Possible
+          values : GET, POST, PUT, PATCH, DELETE.'
+        in: header
+        name: psu-http-method
+        required: false
+        schema:
+          type: string
+      - description: UUID identifies either a device or a device dependant application
+          installation. In case of an installation identification this ID need to
+          be unaltered until removal from device.
+        in: header
+        name: psu-device-id
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Geo Location of the corresponding HTTP request
+          between **PSU** and **TPP** if available.
+        in: header
+        name: psu-geo-location
+        required: false
+        schema:
+          type: string
+      - description: Contains the date and time at which the message was originated
+        example: Sun, 06 Aug 2017 15:05:37 GMT
+        in: header
+        name: Date
+        required: false
+        schema:
+          type: string
+      - description: The apiKey is a token that a client provides when making API
+          calls.
+        example: 3fdd7da3-03ae-4fd5-bf0b-d09bc018cde1
+        in: header
+        name: apiKey
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Response of retrieve a consent:
+                  value: "{\r\n  \"access\" : {\r\n    \"accounts\" : [ {\r\n    \
+                    \  \"iban\" : \"BE12999000661892\"\r\n    }, {\r\n      \"iban\"\
+                    \ : \"BE98999000661993\"\r\n    }, {\r\n      \"iban\" : \"BE60999000126170\"\
+                    \r\n    }, {\r\n      \"iban\" : \"BE27999000126473\"\r\n    },\
+                    \ {\r\n      \"iban\" : \"BE35999000297437\"\r\n    }, {\r\n \
+                    \     \"iban\" : \"FR7630004015240000096421772\"\r\n    }, {\r\
+                    \n      \"iban\" : \"BE35999000578737\"\r\n    }, {\r\n      \"\
+                    iban\" : \"BE56999000651788\"\r\n    } ],\r\n    \"balances\"\
+                    \ : [ {\r\n      \"iban\" : \"BE12999000661892\"\r\n    }, {\r\
+                    \n      \"iban\" : \"BE98999000661993\"\r\n    }, {\r\n      \"\
+                    iban\" : \"BE60999000126170\"\r\n    }, {\r\n      \"iban\" :\
+                    \ \"BE27999000126473\"\r\n    }, {\r\n      \"iban\" : \"BE35999000297437\"\
+                    \r\n    }, {\r\n      \"iban\" : \"FR7630004015240000096421772\"\
+                    \r\n    }, {\r\n      \"iban\" : \"BE35999000578737\"\r\n    },\
+                    \ {\r\n      \"iban\" : \"BE56999000651788\"\r\n    } ],\r\n \
+                    \   \"transactions\" : [ {\r\n      \"iban\" : \"BE12999000661892\"\
+                    \r\n    }, {\r\n      \"iban\" : \"BE98999000661993\"\r\n    },\
+                    \ {\r\n      \"iban\" : \"BE60999000126170\"\r\n    }, {\r\n \
+                    \     \"iban\" : \"BE27999000126473\"\r\n    }, {\r\n      \"\
+                    iban\" : \"BE35999000297437\"\r\n    }, {\r\n      \"iban\" :\
+                    \ \"FR7630004015240000096421772\"\r\n    }, {\r\n      \"iban\"\
+                    \ : \"BE35999000578737\"\r\n    }, {\r\n      \"iban\" : \"BE56999000651788\"\
+                    \r\n    } ]\r\n  },\r\n  \"recurringIndicator\" : true,\r\n  \"\
+                    validUntil\" : \"2050-02-09\",\r\n  \"frequencyPerDay\" : 4,\r\
+                    \n  \"lastActionDate\" : \"2019-02-08\",\r\n  \"consentStatus\"\
+                    \ : \"valid\"\r\n}"
+                Response of retrieve a consent with BBAN:
+                  value: "{\r\n  \"access\" : {\r\n    \"accounts\" : [ {\r\n    \
+                    \  \"iban\" : \"BE12999000661892\"\r\n    }, {\r\n      \"iban\"\
+                    \ : \"BE98999000661993\"\r\n    }, {\r\n      \"iban\" : \"BE60999000126170\"\
+                    \r\n    }, {\r\n      \"iban\" : \"BE27999000126473\"\r\n    },\
+                    \ {\r\n      \"bban\" : \"ABN12999000661892\"\r\n    }, {\r\n\
+                    \      \"bban\" : \"ABN98999000661993\"\r\n    }, {\r\n      \"\
+                    bban\" : \"ABN60999000126170\"\r\n    }, {\r\n      \"bban\" :\
+                    \ \"ABN27999000126473\"\r\n    } ],\r\n    \"balances\" : [ {\r\
+                    \n      \"iban\" : \"BE12999000661892\"\r\n    }, {\r\n      \"\
+                    iban\" : \"BE98999000661993\"\r\n    }, {\r\n      \"iban\" :\
+                    \ \"BE60999000126170\"\r\n    }, {\r\n      \"iban\" : \"BE27999000126473\"\
+                    \r\n    }, {\r\n      \"bban\" : \"ABN12999000661892\"\r\n   \
+                    \ }, {\r\n      \"bban\" : \"ABN98999000661993\"\r\n    }, {\r\
+                    \n      \"bban\" : \"ABN60999000126170\"\r\n    }, {\r\n     \
+                    \ \"bban\" : \"ABN27999000126473\"\r\n    } ],\r\n    \"transactions\"\
+                    \ : [ {\r\n      \"iban\" : \"BE12999000661892\"\r\n    }, {\r\
+                    \n      \"iban\" : \"BE98999000661993\"\r\n    }, {\r\n      \"\
+                    iban\" : \"BE60999000126170\"\r\n    }, {\r\n      \"iban\" :\
+                    \ \"BE27999000126473\"\r\n    }, {\r\n      \"bban\" : \"ABN12999000661892\"\
+                    \r\n    }, {\r\n      \"bban\" : \"ABN98999000661993\"\r\n   \
+                    \ }, {\r\n      \"bban\" : \"ABN60999000126170\"\r\n    }, {\r\
+                    \n      \"bban\" : \"ABN27999000126473\"\r\n    } ]\r\n  },\r\n\
+                    \  \"recurringIndicator\" : true,\r\n  \"validUntil\" : \"2069-03-26\"\
+                    ,\r\n  \"frequencyPerDay\" : 4,\r\n  \"lastActionDate\" : \"2019-03-26\"\
+                    ,\r\n  \"consentStatus\" : \"valid\"\r\n}"
+                Response of retrieve a consent with all access:
+                  value: "{\r\n  \"access\" : {\r\n    \"allPsd2\" : \"allAccounts\"\
+                    \r\n  },\r\n  \"recurringIndicator\" : true,\r\n  \"validUntil\"\
+                    \ : \"2069-02-20\",\r\n  \"frequencyPerDay\" : 4,\r\n  \"combinedServiceIndicator\"\
+                    \ : false,\r\n  \"lastActionDate\" : \"2019-02-20\",\r\n  \"consentStatus\"\
+                    \ : \"valid\"\r\n}"
+                Response of retrieve a consent with all access owner name:
+                  value: "{\r\n  \"access\" : {\r\n    \"availableAccounts\" : \"\
+                    allAccountsWithOwnerName\"\r\n  },\r\n  \"recurringIndicator\"\
+                    \ : true,\r\n  \"validUntil\" : \"2070-09-03\",\r\n  \"frequencyPerDay\"\
+                    \ : 4,\r\n  \"combinedServiceIndicator\" : false,\r\n  \"lastActionDate\"\
+                    \ : \"2020-09-03\",\r\n  \"consentStatus\" : \"valid\"\r\n}"
+                Response of retrieve a consent with owner name:
+                  value: "{\r\n  \"access\" : {\r\n    \"accounts\" : [ {\r\n    \
+                    \  \"iban\" : \"BE12999000661892\"\r\n    }, {\r\n      \"iban\"\
+                    \ : \"BE98999000661993\"\r\n    }, {\r\n      \"iban\" : \"BE60999000126170\"\
+                    \r\n    }, {\r\n      \"iban\" : \"BE27999000126473\"\r\n    },\
+                    \ {\r\n      \"iban\" : \"BE35999000297437\"\r\n    }, {\r\n \
+                    \     \"iban\" : \"FR7630004015240000096421772\"\r\n    }, {\r\
+                    \n      \"iban\" : \"BE35999000578737\"\r\n    }, {\r\n      \"\
+                    iban\" : \"BE56999000651788\"\r\n    } ],\r\n    \"additionalInformation\"\
+                    \ : {\r\n      \"ownerName\" : [ {\r\n        \"iban\" : \"BE12999000661892\"\
+                    \r\n      }, {\r\n        \"iban\" : \"BE98999000661993\"\r\n\
+                    \      }, {\r\n        \"iban\" : \"BE60999000126170\"\r\n   \
+                    \   }, {\r\n        \"iban\" : \"BE27999000126473\"\r\n      },\
+                    \ {\r\n        \"iban\" : \"BE35999000297437\"\r\n      }, {\r\
+                    \n        \"iban\" : \"FR7630004015240000096421772\"\r\n     \
+                    \ }, {\r\n        \"iban\" : \"BE35999000578737\"\r\n      },\
+                    \ {\r\n        \"iban\" : \"BE56999000651788\"\r\n      } ]\r\n\
+                    \    }\r\n  },\r\n  \"recurringIndicator\" : true,\r\n  \"validUntil\"\
+                    \ : \"2070-09-03\",\r\n  \"frequencyPerDay\" : 4,\r\n  \"lastActionDate\"\
+                    \ : \"2020-09-03\",\r\n  \"consentStatus\" : \"valid\"\r\n}"
+                Response of retrieve a consent with psu selection of accounts:
+                  value: "{\r\n  \"access\" : {\r\n    \"accounts\" : [ {\r\n    \
+                    \  \"iban\" : \"BE12999000661892\"\r\n    }, {\r\n      \"iban\"\
+                    \ : \"BE98999000661993\"\r\n    }, {\r\n      \"iban\" : \"BE60999000126170\"\
+                    \r\n    }, {\r\n      \"iban\" : \"BE27999000126473\"\r\n    },\
+                    \ {\r\n      \"iban\" : \"BE35999000297437\"\r\n    }, {\r\n \
+                    \     \"iban\" : \"FR7630004015240000096421772\"\r\n    }, {\r\
+                    \n      \"iban\" : \"BE35999000578737\"\r\n    }, {\r\n      \"\
+                    iban\" : \"BE56999000651788\"\r\n    } ],\r\n    \"balances\"\
+                    \ : [ {\r\n      \"iban\" : \"BE12999000661892\"\r\n    }, {\r\
+                    \n      \"iban\" : \"BE98999000661993\"\r\n    }, {\r\n      \"\
+                    iban\" : \"BE60999000126170\"\r\n    }, {\r\n      \"iban\" :\
+                    \ \"BE27999000126473\"\r\n    }, {\r\n      \"iban\" : \"BE35999000297437\"\
+                    \r\n    }, {\r\n      \"iban\" : \"FR7630004015240000096421772\"\
+                    \r\n    }, {\r\n      \"iban\" : \"BE35999000578737\"\r\n    },\
+                    \ {\r\n      \"iban\" : \"BE56999000651788\"\r\n    } ],\r\n \
+                    \   \"transactions\" : [ {\r\n      \"iban\" : \"BE12999000661892\"\
+                    \r\n    }, {\r\n      \"iban\" : \"BE98999000661993\"\r\n    },\
+                    \ {\r\n      \"iban\" : \"BE60999000126170\"\r\n    }, {\r\n \
+                    \     \"iban\" : \"BE27999000126473\"\r\n    }, {\r\n      \"\
+                    iban\" : \"BE35999000297437\"\r\n    }, {\r\n      \"iban\" :\
+                    \ \"FR7630004015240000096421772\"\r\n    }, {\r\n      \"iban\"\
+                    \ : \"BE35999000578737\"\r\n    }, {\r\n      \"iban\" : \"BE56999000651788\"\
+                    \r\n    } ]\r\n  },\r\n  \"recurringIndicator\" : true,\r\n  \"\
+                    validUntil\" : \"2050-02-09\",\r\n  \"frequencyPerDay\" : 4,\r\
+                    \n  \"lastActionDate\" : \"2019-02-08\",\r\n  \"consentStatus\"\
+                    \ : \"valid\"\r\n}"
+                Response of retrieve an one-off consent:
+                  value: "{\r\n  \"access\" : {\r\n    \"accounts\" : [ {\r\n    \
+                    \  \"pan\" : \"BE12999000661892\"\r\n    }, {\r\n      \"bban\"\
+                    \ : \"BE98999000661993\"\r\n    }, {\r\n      \"maskedPan\" :\
+                    \ \"BE60999000126170\"\r\n    }, {\r\n      \"iban\" : \"BE27999000126473\"\
+                    \r\n    }, {\r\n      \"iban\" : \"BE35999000297437\"\r\n    },\
+                    \ {\r\n      \"iban\" : \"FR7630004015240000096421772\"\r\n  \
+                    \  }, {\r\n      \"iban\" : \"BE35999000578737\"\r\n    }, {\r\
+                    \n      \"iban\" : \"BE56999000651788\"\r\n    } ],\r\n    \"\
+                    balances\" : [ {\r\n      \"pan\" : \"BE12999000661892\"\r\n \
+                    \   }, {\r\n      \"bban\" : \"BE98999000661993\"\r\n    }, {\r\
+                    \n      \"maskedPan\" : \"BE60999000126170\"\r\n    }, {\r\n \
+                    \     \"iban\" : \"BE27999000126473\"\r\n    }, {\r\n      \"\
+                    iban\" : \"BE35999000297437\"\r\n    }, {\r\n      \"iban\" :\
+                    \ \"FR7630004015240000096421772\"\r\n    }, {\r\n      \"iban\"\
+                    \ : \"BE35999000578737\"\r\n    }, {\r\n      \"iban\" : \"BE56999000651788\"\
+                    \r\n    } ],\r\n    \"transactions\" : [ {\r\n      \"pan\" :\
+                    \ \"BE12999000661892\"\r\n    }, {\r\n      \"bban\" : \"BE98999000661993\"\
+                    \r\n    }, {\r\n      \"maskedPan\" : \"BE60999000126170\"\r\n\
+                    \    }, {\r\n      \"iban\" : \"BE27999000126473\"\r\n    }, {\r\
+                    \n      \"iban\" : \"BE35999000297437\"\r\n    }, {\r\n      \"\
+                    iban\" : \"FR7630004015240000096421772\"\r\n    }, {\r\n     \
+                    \ \"iban\" : \"BE35999000578737\"\r\n    }, {\r\n      \"iban\"\
+                    \ : \"BE56999000651788\"\r\n    } ]\r\n  },\r\n  \"recurringIndicator\"\
+                    \ : false,\r\n  \"validUntil\" : \"2020-06-25\",\r\n  \"frequencyPerDay\"\
+                    \ : 1,\r\n  \"lastActionDate\" : \"2020-06-25\",\r\n  \"consentStatus\"\
+                    \ : \"expired\"\r\n}"
+              schema:
+                $ref: '#/components/schemas/GetConsentResponse'
+          description: OK
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Date:
+              description: 'Current date matching RFC7231 (ex : Mon, 04 Jun 2018 15:25:31
+                GMT).'
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '400':
+          content:
+            application/json:
+              examples:
+                Response of retrieve a consent with bad psu-accept header:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"The\
+                    \ value provided for one of the HTTP headers was not in the correct\
+                    \ format\",\r\n    \"path\" : \"psu-accept\"\r\n  } ]\r\n}"
+                Response of retrieve a consent with digest header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"A required\
+                    \ HTTP header was not specified\",\r\n    \"path\" : \"digest\"\
+                    \r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '401':
+          content:
+            application/json:
+              examples:
+                Response of retrieve a consent with Tpp having blocked status:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The Tpp is blocked at ASPSP level\"\r\n  } ]\r\n}"
+                Response of retrieve a consent with Tpp having invalid Tpp authority status:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"The Tpp does not have the correct authorization status\"\r\
+                    \n  } ]\r\n}"
+                Response of retrieve a consent with Tpp having no accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The Tpp does not have the requested ASPSP accreditation\"\r\
+                    \n  } ]\r\n}"
+                Response of retrieve a consent with Tpp having no national accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"ROLE_INVALID\",\r\n    \"text\" : \"The\
+                    \ Tpp does not have the requested national accreditation\"\r\n\
+                    \  } ]\r\n}"
+                Response of retrieve a consent with invalid certificate:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"The contents of the QWAC are not matching PSD2 general PSD2\
+                    \ or attribute requirements\"\r\n  } ]\r\n}"
+                Response of retrieve a consent with signature header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"SIGNATURE_MISSING\",\r\n    \"text\" : \"\
+                    Required signature header was not specified\",\r\n    \"path\"\
+                    \ : \"signature\"\r\n  } ]\r\n}"
+                Response of retrieve a consent with tpp-signature-certificate missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_MISSING\",\r\n    \"text\" :\
+                    \ \"Required tpp-signature-certificate header was not specified\"\
+                    ,\r\n    \"path\" : \"tpp-signature-certificate\"\r\n  } ]\r\n\
+                    }"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '403':
+          content:
+            application/json:
+              examples:
+                Response of retrieve a consent when consent not found:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CONSENT_UNKNOWN\",\r\n    \"text\" : \"\
+                    Consent id does not exist\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '500':
+          $ref: '#/components/responses/INTERNAL_SERVER_ERROR_500'
+        '503':
+          $ref: '#/components/responses/SERVICE_UNAVAILABLE_503'
+      summary: Retrieve a consent by id
+      tags:
+      - Consents
+  /{consentId}/authorisations:
+    get:
+      description: This method is used to get a list of authorisations sub-resources
+        ids for a consent.
+      operationId: Request to retrieve authorisations
+      parameters:
+      - description: ID of the consent retrieved by the "Establish Consent process"
+        in: path
+        name: consentId
+        required: true
+        schema:
+          type: string
+      - description: ID of the request, unique to the call, as determined by the initiating
+          party.
+        example: 99391c7e-ad88-49ec-a2ad-99ddcb1f7721
+        in: header
+        name: X-Request-Id
+        required: true
+        schema:
+          type: string
+      - description: It contains a Hash of the message body. The only hash algorithms
+          that may be used to calculate the Digest within the context of this specification
+          are SHA-256 and SHA-512 as defined in [RFC5843].
+        example: SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+        in: header
+        name: digest
+        required: true
+        schema:
+          type: string
+      - description: A signature of the request by the **TPP** on application level.
+        example: keyId="SN=4145e06efda52dc2,CA=EMAILADDRESS=rootCA@root.com, OU=DxP,
+          O=SBS, L=Paris, ST=Paris, C=FR",algorithm="rsa-sha256",headers="digest x-request-id",signature="Ts7gUo4afmgu2WC/5iUeJBzesmRXTtJV9vZf8msWnDM6kSUZLyoWt891XJTyARIyRwWIHD3u1U+UehWlcJw57alhG1IE2q5IS27PJlLlQpbaIqwGuGcrFZJIcfTiosHAsuwzJr5jOTzd66TbwO+OqwswalcpQ5t2Y2FC0rG8UXUvw165aXTuj7q4mMhZ6drxd8KD+x461W4j10uMSqfNAMcaLJrXoaw59k2LmoVub5zYew/rq2ImdCa8FBQ0/VQTH5IBlOuXXq715K2m0hltU2jYJy7Bf7ccY69U4ZrLNP8fCyblD8T+B+7b7HNfDjL2iIKFL0xQWwpoj8/K0i1VFg=="
+        in: header
+        name: signature
+        required: true
+        schema:
+          type: string
+      - description: The certificate used for signing the request, in pem format.
+        example: "-----BEGIN CERTIFICATE-----\n    MIIERzCCAy+gAwIBAgIIQUXgbv2lLcIwDQYJKoZIhvcNAQELBQAwaTELMAkGA1UE\n\
+          \    BhMCRlIxDjAMBgNVBAgTBVBhcmlzMQ4wDAYDVQQHEwVQYXJpczEMMAoGA1UEChMD\n\
+          \    U0JTMQwwCgYDVQQLEwNEeFAxHjAcBgkqhkiG9w0BCQEWD3Jvb3RDQUByb290LmNv\n\
+          \    bTAeFw0xOTAyMTQxMzU4MDBaFw0yODEyMTkxODAwMDBaMIGSMQswCQYDVQQGEwJG\n\
+          \    UjEOMAwGA1UECBMFUGFyaXMxDjAMBgNVBAcTBVBhcmlzMQwwCgYDVQQKEwNTQlMx\n\
+          \    DDAKBgNVBAsTA0R4UDEMMAoGA1UEAxMDU0JTMR4wHAYJKoZIhvcNAQkBFg9yb290\n\
+          \    Q0FAcm9vdC5jb20xGTAXBgNVBGETEFBTREJFLUFJUy0xMjM0NTYwggEiMA0GCSqG\n\
+          \    SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCyB1NOqlS7X/XOZyoMPXHhDG8c8VyVC6sC\n\
+          \    M6dW2rTkQEr4fm57fi3bdPjMTBRFB+dRNcERyWUSWiE85LW9UWcMIORltL59utio\n\
+          \    1dySGUV+DRKffLAoe2jyhq5iWsU6WvK3kVcqLddXMfgdSB+qgYhQqCK6mpOilhdG\n\
+          \    BE6nFbF4M4+sTGL/0ncW4eGqAIsk6VvCEjuXtLabeE0Ji2BSekQnYMgu0qEXkwcg\n\
+          \    TPkMw1topWz3VNAgN0aGAOMAN0piFBGayoLVGqoLd3eD4Xk/EzFkt3/XBYZ1TSaF\n\
+          \    1jevtwrscrbnIrajfg1R36a5gJAUZpweT3RvpIVsYDBdCSUbCPsjAgMBAAGjgcgw\n\
+          \    gcUwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUQHK9dnN045oBeO2Be73LDTJU\n\
+          \    VlswCwYDVR0PBAQDAgEGMBQGA1UdIAQNMAswCQYHBACL7EABATA9BggrBgEFBQcB\n\
+          \    AwQxMC8wLQYGBACBmCcCMCMwEzARBgcEAIGYJwEDDAZQU1BfQUkMBEF1dGgMBkZy\n\
+          \    YW5jZTARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0\n\
+          \    aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAgPKZSlIVmemajqUe290ecKQ3HLd4\n\
+          \    KruOMEqpJoIOPRF9zIXe9RQb7qwbYpP0tweL4tA8eEdkwz7dxOwno/75GeCb5vVo\n\
+          \    1GDbeOecgIyEMjEPyxoTtuo1qr07GIcVXmx/aOMLoZXAbKq1Tg2SU+876z1YlBs8\n\
+          \    4n4hloJeWpkbKOTQkzfmTWW1AtLrBnU7KFhKdC1s5g/EyVz063lscSJNg07/i+n2\n\
+          \    LSvrOptLOogZ92EcuVB6t7/3tmp6lIptMxoTNwZee8mqDI7ogUxcZUxGpAJzG6Ub\n\
+          \    2qmL9KvMFjKTMhfyuTG8xx+4EN+VsduIxe/7/0nM5zQFwEZvPX1CQizAzQ==\n    -----END\
+          \ CERTIFICATE-----"
+        in: header
+        name: tpp-signature-certificate
+        required: true
+        schema:
+          type: string
+      - description: The forwarded IP Address header field consists of the corresponding
+          HTTP request IP Address field between **PSU** and **TPP**.
+        in: header
+        name: psu-ip-address
+        required: false
+        schema:
+          type: string
+      - description: Client ID of the PSU in the ASPSP client interface.
+        in: header
+        name: psu-id
+        required: false
+        schema:
+          type: string
+      - description: Type of the PSU-ID, needed in scenarios where PSUs have several
+          PSU-IDs as access possibility.
+        in: header
+        name: psu-id-type
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Port header field consists of the corresponding
+          HTTP request IP Port field between **PSU** and **TPP**, if available.
+        in: header
+        name: psu-ip-port
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept header fields consist of the corresponding
+          HTTP request Accept header fields between **PSU** and **TPP**, if available.
+        in: header
+        name: psu-accept
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Charset header fields consist of the
+          corresponding HTTP request Accept-Charset header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-charset
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Encoding header fields consist of the
+          corresponding HTTP request Accept-Encoding header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-encoding
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Language header fields consist of the
+          corresponding HTTP request Accept-Language header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-language
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Agent header field of the HTTP request between
+          **PSU** and **TPP**, if available.
+        in: header
+        name: psu-user-agent
+        required: false
+        schema:
+          type: string
+      - description: 'HTTP method used at the **PSU** – **TPP** interface, if available.Possible
+          values : GET, POST, PUT, PATCH, DELETE.'
+        in: header
+        name: psu-http-method
+        required: false
+        schema:
+          type: string
+      - description: UUID identifies either a device or a device dependant application
+          installation. In case of an installation identification this ID need to
+          be unaltered until removal from device.
+        in: header
+        name: psu-device-id
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Geo Location of the corresponding HTTP request
+          between **PSU** and **TPP** if available.
+        in: header
+        name: psu-geo-location
+        required: false
+        schema:
+          type: string
+      - description: Contains the date and time at which the message was originated
+        example: Sun, 06 Aug 2017 15:05:37 GMT
+        in: header
+        name: Date
+        required: false
+        schema:
+          type: string
+      - description: The apiKey is a token that a client provides when making API
+          calls.
+        example: 3fdd7da3-03ae-4fd5-bf0b-d09bc018cde1
+        in: header
+        name: apiKey
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Response of retrieve authorisations:
+                  value: "{\r\n  \"authorisationIds\" : [ \"507f191e810c19729de860ea\"\
+                    \ ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/GetAuthorisationsResponse'
+          description: OK
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Date:
+              description: 'Current date matching RFC7231 (ex : Mon, 04 Jun 2018 15:25:31
+                GMT).'
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '400':
+          content:
+            application/json:
+              examples:
+                Response of retrieve authorisations with digest header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"A required\
+                    \ HTTP header was not specified\",\r\n    \"path\" : \"digest\"\
+                    \r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '401':
+          content:
+            application/json:
+              examples:
+                Response of retrieve authorisations with invalid certificate:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"The contents of the QWAC are not matching PSD2 general PSD2\
+                    \ or attribute requirements\"\r\n  } ]\r\n}"
+                Response of retrieve authorisations with signature header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"SIGNATURE_MISSING\",\r\n    \"text\" : \"\
+                    Required signature header was not specified\",\r\n    \"path\"\
+                    \ : \"signature\"\r\n  } ]\r\n}"
+                Response of retrieve authorisations with tpp-signature-certificate missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_MISSING\",\r\n    \"text\" :\
+                    \ \"Required tpp-signature-certificate header was not specified\"\
+                    ,\r\n    \"path\" : \"tpp-signature-certificate\"\r\n  } ]\r\n\
+                    }"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '403':
+          content:
+            application/json:
+              examples:
+                Response of retrieve authorisations with invalid consent id:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CONSENT_UNKNOWN\",\r\n    \"text\" : \"\
+                    Invalid identifier format for consent id\",\r\n    \"path\" :\
+                    \ \"consentId\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '404':
+          content:
+            application/json:
+              examples:
+                Response of retrieve authorisations for non existing consent:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"RESOURCE_UNKNOWN\",\r\n    \"text\" : \"\
+                    Multiple or no authorisations matching resourceId\"\r\n  } ]\r\
+                    \n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '500':
+          $ref: '#/components/responses/INTERNAL_SERVER_ERROR_500'
+        '503':
+          $ref: '#/components/responses/SERVICE_UNAVAILABLE_503'
+      summary: Retrieve authorisations for a consent
+      tags:
+      - Consents
+  /{consentId}/authorisations/{authorisationId}:
+    get:
+      description: This method is used to get the scaStatus of an authorisation, related
+        to a consent, by its authorisation id.
+      operationId: Request to retrieve authorisation
+      parameters:
+      - description: ID of the consent retrieved by the "Establish Consent process"
+        in: path
+        name: consentId
+        required: true
+        schema:
+          type: string
+      - description: ID of the authorisation
+        in: path
+        name: authorisationId
+        required: true
+        schema:
+          type: string
+      - description: ID of the request, unique to the call, as determined by the initiating
+          party.
+        example: 99391c7e-ad88-49ec-a2ad-99ddcb1f7721
+        in: header
+        name: X-Request-Id
+        required: true
+        schema:
+          type: string
+      - description: It contains a Hash of the message body. The only hash algorithms
+          that may be used to calculate the Digest within the context of this specification
+          are SHA-256 and SHA-512 as defined in [RFC5843].
+        example: SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+        in: header
+        name: digest
+        required: true
+        schema:
+          type: string
+      - description: A signature of the request by the **TPP** on application level.
+        example: keyId="SN=4145e06efda52dc2,CA=EMAILADDRESS=rootCA@root.com, OU=DxP,
+          O=SBS, L=Paris, ST=Paris, C=FR",algorithm="rsa-sha256",headers="digest x-request-id",signature="Ts7gUo4afmgu2WC/5iUeJBzesmRXTtJV9vZf8msWnDM6kSUZLyoWt891XJTyARIyRwWIHD3u1U+UehWlcJw57alhG1IE2q5IS27PJlLlQpbaIqwGuGcrFZJIcfTiosHAsuwzJr5jOTzd66TbwO+OqwswalcpQ5t2Y2FC0rG8UXUvw165aXTuj7q4mMhZ6drxd8KD+x461W4j10uMSqfNAMcaLJrXoaw59k2LmoVub5zYew/rq2ImdCa8FBQ0/VQTH5IBlOuXXq715K2m0hltU2jYJy7Bf7ccY69U4ZrLNP8fCyblD8T+B+7b7HNfDjL2iIKFL0xQWwpoj8/K0i1VFg=="
+        in: header
+        name: signature
+        required: true
+        schema:
+          type: string
+      - description: The certificate used for signing the request, in pem format.
+        example: "-----BEGIN CERTIFICATE-----\n    MIIERzCCAy+gAwIBAgIIQUXgbv2lLcIwDQYJKoZIhvcNAQELBQAwaTELMAkGA1UE\n\
+          \    BhMCRlIxDjAMBgNVBAgTBVBhcmlzMQ4wDAYDVQQHEwVQYXJpczEMMAoGA1UEChMD\n\
+          \    U0JTMQwwCgYDVQQLEwNEeFAxHjAcBgkqhkiG9w0BCQEWD3Jvb3RDQUByb290LmNv\n\
+          \    bTAeFw0xOTAyMTQxMzU4MDBaFw0yODEyMTkxODAwMDBaMIGSMQswCQYDVQQGEwJG\n\
+          \    UjEOMAwGA1UECBMFUGFyaXMxDjAMBgNVBAcTBVBhcmlzMQwwCgYDVQQKEwNTQlMx\n\
+          \    DDAKBgNVBAsTA0R4UDEMMAoGA1UEAxMDU0JTMR4wHAYJKoZIhvcNAQkBFg9yb290\n\
+          \    Q0FAcm9vdC5jb20xGTAXBgNVBGETEFBTREJFLUFJUy0xMjM0NTYwggEiMA0GCSqG\n\
+          \    SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCyB1NOqlS7X/XOZyoMPXHhDG8c8VyVC6sC\n\
+          \    M6dW2rTkQEr4fm57fi3bdPjMTBRFB+dRNcERyWUSWiE85LW9UWcMIORltL59utio\n\
+          \    1dySGUV+DRKffLAoe2jyhq5iWsU6WvK3kVcqLddXMfgdSB+qgYhQqCK6mpOilhdG\n\
+          \    BE6nFbF4M4+sTGL/0ncW4eGqAIsk6VvCEjuXtLabeE0Ji2BSekQnYMgu0qEXkwcg\n\
+          \    TPkMw1topWz3VNAgN0aGAOMAN0piFBGayoLVGqoLd3eD4Xk/EzFkt3/XBYZ1TSaF\n\
+          \    1jevtwrscrbnIrajfg1R36a5gJAUZpweT3RvpIVsYDBdCSUbCPsjAgMBAAGjgcgw\n\
+          \    gcUwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUQHK9dnN045oBeO2Be73LDTJU\n\
+          \    VlswCwYDVR0PBAQDAgEGMBQGA1UdIAQNMAswCQYHBACL7EABATA9BggrBgEFBQcB\n\
+          \    AwQxMC8wLQYGBACBmCcCMCMwEzARBgcEAIGYJwEDDAZQU1BfQUkMBEF1dGgMBkZy\n\
+          \    YW5jZTARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0\n\
+          \    aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAgPKZSlIVmemajqUe290ecKQ3HLd4\n\
+          \    KruOMEqpJoIOPRF9zIXe9RQb7qwbYpP0tweL4tA8eEdkwz7dxOwno/75GeCb5vVo\n\
+          \    1GDbeOecgIyEMjEPyxoTtuo1qr07GIcVXmx/aOMLoZXAbKq1Tg2SU+876z1YlBs8\n\
+          \    4n4hloJeWpkbKOTQkzfmTWW1AtLrBnU7KFhKdC1s5g/EyVz063lscSJNg07/i+n2\n\
+          \    LSvrOptLOogZ92EcuVB6t7/3tmp6lIptMxoTNwZee8mqDI7ogUxcZUxGpAJzG6Ub\n\
+          \    2qmL9KvMFjKTMhfyuTG8xx+4EN+VsduIxe/7/0nM5zQFwEZvPX1CQizAzQ==\n    -----END\
+          \ CERTIFICATE-----"
+        in: header
+        name: tpp-signature-certificate
+        required: true
+        schema:
+          type: string
+      - description: The forwarded IP Address header field consists of the corresponding
+          HTTP request IP Address field between **PSU** and **TPP**.
+        in: header
+        name: psu-ip-address
+        required: false
+        schema:
+          type: string
+      - description: Client ID of the PSU in the ASPSP client interface.
+        in: header
+        name: psu-id
+        required: false
+        schema:
+          type: string
+      - description: Type of the PSU-ID, needed in scenarios where PSUs have several
+          PSU-IDs as access possibility.
+        in: header
+        name: psu-id-type
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Port header field consists of the corresponding
+          HTTP request IP Port field between **PSU** and **TPP**, if available.
+        in: header
+        name: psu-ip-port
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept header fields consist of the corresponding
+          HTTP request Accept header fields between **PSU** and **TPP**, if available.
+        in: header
+        name: psu-accept
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Charset header fields consist of the
+          corresponding HTTP request Accept-Charset header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-charset
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Encoding header fields consist of the
+          corresponding HTTP request Accept-Encoding header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-encoding
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Language header fields consist of the
+          corresponding HTTP request Accept-Language header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-language
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Agent header field of the HTTP request between
+          **PSU** and **TPP**, if available.
+        in: header
+        name: psu-user-agent
+        required: false
+        schema:
+          type: string
+      - description: 'HTTP method used at the **PSU** – **TPP** interface, if available.Possible
+          values : GET, POST, PUT, PATCH, DELETE.'
+        in: header
+        name: psu-http-method
+        required: false
+        schema:
+          type: string
+      - description: UUID identifies either a device or a device dependant application
+          installation. In case of an installation identification this ID need to
+          be unaltered until removal from device.
+        in: header
+        name: psu-device-id
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Geo Location of the corresponding HTTP request
+          between **PSU** and **TPP** if available.
+        in: header
+        name: psu-geo-location
+        required: false
+        schema:
+          type: string
+      - description: Contains the date and time at which the message was originated
+        example: Sun, 06 Aug 2017 15:05:37 GMT
+        in: header
+        name: Date
+        required: false
+        schema:
+          type: string
+      - description: The apiKey is a token that a client provides when making API
+          calls.
+        example: 3fdd7da3-03ae-4fd5-bf0b-d09bc018cde1
+        in: header
+        name: apiKey
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Response of retrieve authorisation:
+                  value: "{\r\n  \"scaStatus\" : \"scaMethodSelected\"\r\n}"
+              schema:
+                $ref: '#/components/schemas/GetAuthorisationResponse'
+          description: OK
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Date:
+              description: 'Current date matching RFC7231 (ex : Mon, 04 Jun 2018 15:25:31
+                GMT).'
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '400':
+          content:
+            application/json:
+              examples:
+                Response of retrieve authorisation with digest header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"A required\
+                    \ HTTP header was not specified\",\r\n    \"path\" : \"digest\"\
+                    \r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '401':
+          content:
+            application/json:
+              examples:
+                Response of retrieve authorisation with invalid certificate:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"The contents of the QWAC are not matching PSD2 general PSD2\
+                    \ or attribute requirements\"\r\n  } ]\r\n}"
+                Response of retrieve authorisation with signature header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"SIGNATURE_MISSING\",\r\n    \"text\" : \"\
+                    Required signature header was not specified\",\r\n    \"path\"\
+                    \ : \"signature\"\r\n  } ]\r\n}"
+                Response of retrieve authorisation with tpp-signature-certificate missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_MISSING\",\r\n    \"text\" :\
+                    \ \"Required tpp-signature-certificate header was not specified\"\
+                    ,\r\n    \"path\" : \"tpp-signature-certificate\"\r\n  } ]\r\n\
+                    }"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '403':
+          content:
+            application/json:
+              examples:
+                Response of retrieve authorisation with invalid authorization id:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"RESOURCE_UNKNOWN\",\r\n    \"text\" : \"\
+                    Invalid identifier format for resource id\",\r\n    \"path\" :\
+                    \ \"authorisationId\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '404':
+          content:
+            application/json:
+              examples:
+                Response of retrieve authorisation for non existing authorisation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"RESOURCE_UNKNOWN\",\r\n    \"text\" : \"\
+                    The specified resource does not exist\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '500':
+          $ref: '#/components/responses/INTERNAL_SERVER_ERROR_500'
+        '503':
+          $ref: '#/components/responses/SERVICE_UNAVAILABLE_503'
+      summary: Retrieve an authorisation for a consent
+      tags:
+      - Consents
+    put:
+      description: 'This method update PSU data on the consent resource if needed.
+
+        It is used to support the selection of the authentication method by the PSU.'
+      operationId: Request for redirect authentication approach
+      parameters:
+      - description: ID of the consent retrieved by the "Establish Consent process".
+        in: path
+        name: consentId
+        required: true
+        schema:
+          type: string
+      - description: ID of the authorisation.
+        in: path
+        name: authorisationId
+        required: true
+        schema:
+          type: string
+      - description: ID of the request, unique to the call, as determined by the initiating
+          party.
+        example: 99391c7e-ad88-49ec-a2ad-99ddcb1f7721
+        in: header
+        name: X-Request-Id
+        required: true
+        schema:
+          type: string
+      - description: It contains a Hash of the message body. The only hash algorithms
+          that may be used to calculate the Digest within the context of this specification
+          are SHA-256 and SHA-512 as defined in [RFC5843].
+        example: SHA-256=mqRffXA6U3uzXRqNOyR9Z5ad9tE3NImv30HQcFSarhE=
+        in: header
+        name: digest
+        required: true
+        schema:
+          type: string
+      - description: A signature of the request by the **TPP** on application level.
+        example: keyId="SN=4145e06efda52dc2,CA=EMAILADDRESS=rootCA@root.com, OU=DxP,
+          O=SBS, L=Paris, ST=Paris, C=FR",algorithm="rsa-sha256",headers="digest x-request-id",signature="Mvfbfw6sUcmE4KbN4HwoAISl4l9Sjef2ZPXmR8IcXWrYNcq6tjIKCvrB4Rv7LO8Qcbs5WV6IHtO6yIX0nQUktRzf55nJle52Xylgg+fRvZ7wbTcEj4VYG4w0ScI594ROoaylCwq5ayMevgyDXgeUdIfJRMkDV3zPQUrSId1Ruk1H3Xs0jySXwU9b6ydAQWJEpm5+PuhZ/i8v2vt5T3DGkYJiQmfmCVyFotHSvgj/lES5JSJfxMOz3df/CCSibahtv5zdbYIX0dJOfBhac4ojA43A+GtEGB1Q2DbreBlHUU5erK/ql/E5Zhtt1+uAJE+bHdX1kF46kQ46W9nlrXoBCQ=="
+        in: header
+        name: signature
+        required: true
+        schema:
+          type: string
+      - description: The certificate used for signing the request, in pem format.
+        example: "-----BEGIN CERTIFICATE-----\n    MIIERzCCAy+gAwIBAgIIQUXgbv2lLcIwDQYJKoZIhvcNAQELBQAwaTELMAkGA1UE\n\
+          \    BhMCRlIxDjAMBgNVBAgTBVBhcmlzMQ4wDAYDVQQHEwVQYXJpczEMMAoGA1UEChMD\n\
+          \    U0JTMQwwCgYDVQQLEwNEeFAxHjAcBgkqhkiG9w0BCQEWD3Jvb3RDQUByb290LmNv\n\
+          \    bTAeFw0xOTAyMTQxMzU4MDBaFw0yODEyMTkxODAwMDBaMIGSMQswCQYDVQQGEwJG\n\
+          \    UjEOMAwGA1UECBMFUGFyaXMxDjAMBgNVBAcTBVBhcmlzMQwwCgYDVQQKEwNTQlMx\n\
+          \    DDAKBgNVBAsTA0R4UDEMMAoGA1UEAxMDU0JTMR4wHAYJKoZIhvcNAQkBFg9yb290\n\
+          \    Q0FAcm9vdC5jb20xGTAXBgNVBGETEFBTREJFLUFJUy0xMjM0NTYwggEiMA0GCSqG\n\
+          \    SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCyB1NOqlS7X/XOZyoMPXHhDG8c8VyVC6sC\n\
+          \    M6dW2rTkQEr4fm57fi3bdPjMTBRFB+dRNcERyWUSWiE85LW9UWcMIORltL59utio\n\
+          \    1dySGUV+DRKffLAoe2jyhq5iWsU6WvK3kVcqLddXMfgdSB+qgYhQqCK6mpOilhdG\n\
+          \    BE6nFbF4M4+sTGL/0ncW4eGqAIsk6VvCEjuXtLabeE0Ji2BSekQnYMgu0qEXkwcg\n\
+          \    TPkMw1topWz3VNAgN0aGAOMAN0piFBGayoLVGqoLd3eD4Xk/EzFkt3/XBYZ1TSaF\n\
+          \    1jevtwrscrbnIrajfg1R36a5gJAUZpweT3RvpIVsYDBdCSUbCPsjAgMBAAGjgcgw\n\
+          \    gcUwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUQHK9dnN045oBeO2Be73LDTJU\n\
+          \    VlswCwYDVR0PBAQDAgEGMBQGA1UdIAQNMAswCQYHBACL7EABATA9BggrBgEFBQcB\n\
+          \    AwQxMC8wLQYGBACBmCcCMCMwEzARBgcEAIGYJwEDDAZQU1BfQUkMBEF1dGgMBkZy\n\
+          \    YW5jZTARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0\n\
+          \    aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAgPKZSlIVmemajqUe290ecKQ3HLd4\n\
+          \    KruOMEqpJoIOPRF9zIXe9RQb7qwbYpP0tweL4tA8eEdkwz7dxOwno/75GeCb5vVo\n\
+          \    1GDbeOecgIyEMjEPyxoTtuo1qr07GIcVXmx/aOMLoZXAbKq1Tg2SU+876z1YlBs8\n\
+          \    4n4hloJeWpkbKOTQkzfmTWW1AtLrBnU7KFhKdC1s5g/EyVz063lscSJNg07/i+n2\n\
+          \    LSvrOptLOogZ92EcuVB6t7/3tmp6lIptMxoTNwZee8mqDI7ogUxcZUxGpAJzG6Ub\n\
+          \    2qmL9KvMFjKTMhfyuTG8xx+4EN+VsduIxe/7/0nM5zQFwEZvPX1CQizAzQ==\n    -----END\
+          \ CERTIFICATE-----"
+        in: header
+        name: tpp-signature-certificate
+        required: true
+        schema:
+          type: string
+      - description: The forwarded IP Address header field consists of the corresponding
+          HTTP request IP Address field between **PSU** and **TPP**.
+        example: 127.0.0.1
+        in: header
+        name: psu-ip-address
+        required: false
+        schema:
+          type: string
+      - description: Client ID of the PSU in the ASPSP client interface.
+        in: header
+        name: psu-id
+        required: false
+        schema:
+          type: string
+      - description: Type of the PSU-ID, needed in scenarios where PSUs have several
+          PSU-IDs as access possibility.
+        in: header
+        name: psu-id-type
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Port header field consists of the corresponding
+          HTTP request IP Port field between **PSU** and **TPP**, if available.
+        in: header
+        name: psu-ip-port
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept header fields consist of the corresponding
+          HTTP request Accept header fields between **PSU** and **TPP**, if available.
+        in: header
+        name: psu-accept
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Charset header fields consist of the
+          corresponding HTTP request Accept-Charset header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-charset
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Encoding header fields consist of the
+          corresponding HTTP request Accept-Encoding header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-encoding
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Language header fields consist of the
+          corresponding HTTP request Accept-Language header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-language
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Agent header field of the HTTP request between
+          **PSU** and **TPP**, if available.
+        in: header
+        name: psu-user-agent
+        required: false
+        schema:
+          type: string
+      - description: 'HTTP method used at the **PSU** – **TPP** interface, if available.Possible
+          values : GET, POST, PUT, PATCH, DELETE.'
+        in: header
+        name: psu-http-method
+        required: false
+        schema:
+          type: string
+      - description: UUID identifies either a device or a device dependant application
+          installation. In case of an installation identification this ID need to
+          be unaltered until removal from device.
+        in: header
+        name: psu-device-id
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Geo Location of the corresponding HTTP request
+          between **PSU** and **TPP** if available.
+        in: header
+        name: psu-geo-location
+        required: false
+        schema:
+          type: string
+      - description: Indicates the size of the entity-body, in bytes, sent to the
+          recipient
+        example: '42'
+        in: header
+        name: Content-Length
+        required: false
+        schema:
+          type: string
+      - description: Media type of the payload
+        example: application/json
+        in: header
+        name: Content-Type
+        required: true
+        schema:
+          type: string
+      - description: Contains the date and time at which the message was originated
+        example: Sun, 06 Aug 2017 15:05:37 GMT
+        in: header
+        name: Date
+        required: false
+        schema:
+          type: string
+      - description: The apiKey is a token that a client provides when making API
+          calls.
+        example: 3fdd7da3-03ae-4fd5-bf0b-d09bc018cde1
+        in: header
+        name: apiKey
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Request for redirect authentication approach:
+                value: "{\r\n  \"authenticationMethodId\" : \"itsme\"\r\n}"
+              Wrong request for redirect authentication approach with invalid sca method:
+                value: "{\r\n  \"authenticationMethodId\" : \"M2\"\r\n}"
+            schema:
+              $ref: '#/components/schemas/SelectScaMethodRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Response of redirect authentication approach:
+                  value: "{\r\n  \"scaStatus\" : \"scaMethodSelected\",\r\n  \"chosenScaMethod\"\
+                    \ : {\r\n    \"authenticationType\" : \"itsme\",\r\n    \"authenticationMethodId\"\
+                    \ : \"itsme\"\r\n  },\r\n  \"_links\" : {\r\n    \"scaOAuth\"\
+                    \ : {\r\n      \"href\" : \"https://localhost/psd2/v1/berlingroup-auth/.well-known/oauth-authorization-server\"\
+                    \r\n    }\r\n  }\r\n}"
+              schema:
+                $ref: '#/components/schemas/SelectScaMethodResponse'
+          description: OK
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Date:
+              description: 'Current date matching RFC7231 (ex : Mon, 04 Jun 2018 15:25:31
+                GMT).'
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+            aspsp-sca-approach:
+              description: This data element must be contained, if the SCA Approach
+                is already fixed. Only `REDIRECT` will be returned.
+              schema:
+                type: string
+        '400':
+          content:
+            application/json:
+              examples:
+                Response of redirect authentication approach for already approved authorisation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"RESOURCE_UNKNOWN\",\r\n    \"text\" : \"\
+                    No signature awaited\"\r\n  } ]\r\n}"
+                Response of redirect authentication approach with invalid digest:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"Invalid\
+                    \ Digest header value\",\r\n    \"path\" : \"digest\"\r\n  } ]\r\
+                    \n}"
+                Response of redirect authentication approach with invalid sca method:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"SCA_METHOD_UNKNOWN\",\r\n    \"text\" :\
+                    \ \"The selected sca method is not part of the available methods.\"\
+                    \r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '401':
+          content:
+            application/json:
+              examples:
+                Response of redirect authentication approach with Tpp having blocked status:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The Tpp is blocked at ASPSP level\"\r\n  } ]\r\n}"
+                Response of redirect authentication approach with Tpp having invalid Tpp authority status:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"The Tpp does not have the correct authorization status\"\r\
+                    \n  } ]\r\n}"
+                Response of redirect authentication approach with Tpp having no accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The Tpp does not have the requested ASPSP accreditation\"\r\
+                    \n  } ]\r\n}"
+                Response of redirect authentication approach with Tpp having no national accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"ROLE_INVALID\",\r\n    \"text\" : \"The\
+                    \ Tpp does not have the requested national accreditation\"\r\n\
+                    \  } ]\r\n}"
+                Response of redirect authentication approach with invalid certificates:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"Qwac and Qseal certificates are not issued for same TPP\"\r\
+                    \n  } ]\r\n}"
+                Response of redirect authentication approach with invalid signature:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"SIGNATURE_INVALID\",\r\n    \"text\" : \"\
+                    Application layer eIDAS Signature for TPP authentication is not\
+                    \ correct\",\r\n    \"path\" : \"signature\"\r\n  } ]\r\n}"
+                Response of redirect authentication approach with tpp-signature-certificate missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_MISSING\",\r\n    \"text\" :\
+                    \ \"Required tpp-signature-certificate header was not specified\"\
+                    ,\r\n    \"path\" : \"tpp-signature-certificate\"\r\n  } ]\r\n\
+                    }"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '403':
+          content:
+            application/json:
+              examples:
+                Response of redirect authentication approach with bad authorisation id:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"RESOURCE_UNKNOWN\",\r\n    \"text\" : \"\
+                    Invalid identifier format for resource id\",\r\n    \"path\" :\
+                    \ \"authorisationId\"\r\n  } ]\r\n}"
+                Response of redirect authentication approach with invalid authorisation id:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"RESOURCE_UNKNOWN\",\r\n    \"text\" : \"\
+                    The resource is unknown\"\r\n  } ]\r\n}"
+                Response of redirect authentication approach with invalid consent id:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"RESOURCE_UNKNOWN\",\r\n    \"text\" : \"\
+                    The resource is unknown\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '404':
+          content:
+            application/json:
+              examples:
+                Response of redirect authentication approach with non existing authorisation id:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"RESOURCE_UNKNOWN\",\r\n    \"text\" : \"\
+                    The specified resource does not exist\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '500':
+          $ref: '#/components/responses/INTERNAL_SERVER_ERROR_500'
+        '503':
+          $ref: '#/components/responses/SERVICE_UNAVAILABLE_503'
+      summary: Update an authorisation for a consent with selected sca method
+      tags:
+      - Consents
+  /{consentId}/status:
+    get:
+      description: This endpoint returns the status of an account information consent
+        resource.
+      operationId: Request to retrieve a consent status
+      parameters:
+      - description: ID of the consent retrieved by the Establish Consent process.
+        in: path
+        name: consentId
+        required: true
+        schema:
+          type: string
+      - description: ID of the request, unique to the call, as determined by the initiating
+          party.
+        example: 99391c7e-ad88-49ec-a2ad-99ddcb1f7721
+        in: header
+        name: X-Request-Id
+        required: true
+        schema:
+          type: string
+      - description: It contains a Hash of the message body. The only hash algorithms
+          that may be used to calculate the Digest within the context of this specification
+          are SHA-256 and SHA-512 as defined in [RFC5843].
+        example: SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+        in: header
+        name: digest
+        required: true
+        schema:
+          type: string
+      - description: A signature of the request by the **TPP** on application level.
+        example: keyId="SN=4145e06efda52dc2,CA=EMAILADDRESS=rootCA@root.com, OU=DxP,
+          O=SBS, L=Paris, ST=Paris, C=FR",algorithm="rsa-sha256",headers="digest x-request-id",signature="Ts7gUo4afmgu2WC/5iUeJBzesmRXTtJV9vZf8msWnDM6kSUZLyoWt891XJTyARIyRwWIHD3u1U+UehWlcJw57alhG1IE2q5IS27PJlLlQpbaIqwGuGcrFZJIcfTiosHAsuwzJr5jOTzd66TbwO+OqwswalcpQ5t2Y2FC0rG8UXUvw165aXTuj7q4mMhZ6drxd8KD+x461W4j10uMSqfNAMcaLJrXoaw59k2LmoVub5zYew/rq2ImdCa8FBQ0/VQTH5IBlOuXXq715K2m0hltU2jYJy7Bf7ccY69U4ZrLNP8fCyblD8T+B+7b7HNfDjL2iIKFL0xQWwpoj8/K0i1VFg=="
+        in: header
+        name: signature
+        required: true
+        schema:
+          type: string
+      - description: The certificate used for signing the request, in pem format.
+        example: "-----BEGIN CERTIFICATE-----\n    MIIERzCCAy+gAwIBAgIIQUXgbv2lLcIwDQYJKoZIhvcNAQELBQAwaTELMAkGA1UE\n\
+          \    BhMCRlIxDjAMBgNVBAgTBVBhcmlzMQ4wDAYDVQQHEwVQYXJpczEMMAoGA1UEChMD\n\
+          \    U0JTMQwwCgYDVQQLEwNEeFAxHjAcBgkqhkiG9w0BCQEWD3Jvb3RDQUByb290LmNv\n\
+          \    bTAeFw0xOTAyMTQxMzU4MDBaFw0yODEyMTkxODAwMDBaMIGSMQswCQYDVQQGEwJG\n\
+          \    UjEOMAwGA1UECBMFUGFyaXMxDjAMBgNVBAcTBVBhcmlzMQwwCgYDVQQKEwNTQlMx\n\
+          \    DDAKBgNVBAsTA0R4UDEMMAoGA1UEAxMDU0JTMR4wHAYJKoZIhvcNAQkBFg9yb290\n\
+          \    Q0FAcm9vdC5jb20xGTAXBgNVBGETEFBTREJFLUFJUy0xMjM0NTYwggEiMA0GCSqG\n\
+          \    SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCyB1NOqlS7X/XOZyoMPXHhDG8c8VyVC6sC\n\
+          \    M6dW2rTkQEr4fm57fi3bdPjMTBRFB+dRNcERyWUSWiE85LW9UWcMIORltL59utio\n\
+          \    1dySGUV+DRKffLAoe2jyhq5iWsU6WvK3kVcqLddXMfgdSB+qgYhQqCK6mpOilhdG\n\
+          \    BE6nFbF4M4+sTGL/0ncW4eGqAIsk6VvCEjuXtLabeE0Ji2BSekQnYMgu0qEXkwcg\n\
+          \    TPkMw1topWz3VNAgN0aGAOMAN0piFBGayoLVGqoLd3eD4Xk/EzFkt3/XBYZ1TSaF\n\
+          \    1jevtwrscrbnIrajfg1R36a5gJAUZpweT3RvpIVsYDBdCSUbCPsjAgMBAAGjgcgw\n\
+          \    gcUwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUQHK9dnN045oBeO2Be73LDTJU\n\
+          \    VlswCwYDVR0PBAQDAgEGMBQGA1UdIAQNMAswCQYHBACL7EABATA9BggrBgEFBQcB\n\
+          \    AwQxMC8wLQYGBACBmCcCMCMwEzARBgcEAIGYJwEDDAZQU1BfQUkMBEF1dGgMBkZy\n\
+          \    YW5jZTARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0\n\
+          \    aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAgPKZSlIVmemajqUe290ecKQ3HLd4\n\
+          \    KruOMEqpJoIOPRF9zIXe9RQb7qwbYpP0tweL4tA8eEdkwz7dxOwno/75GeCb5vVo\n\
+          \    1GDbeOecgIyEMjEPyxoTtuo1qr07GIcVXmx/aOMLoZXAbKq1Tg2SU+876z1YlBs8\n\
+          \    4n4hloJeWpkbKOTQkzfmTWW1AtLrBnU7KFhKdC1s5g/EyVz063lscSJNg07/i+n2\n\
+          \    LSvrOptLOogZ92EcuVB6t7/3tmp6lIptMxoTNwZee8mqDI7ogUxcZUxGpAJzG6Ub\n\
+          \    2qmL9KvMFjKTMhfyuTG8xx+4EN+VsduIxe/7/0nM5zQFwEZvPX1CQizAzQ==\n    -----END\
+          \ CERTIFICATE-----"
+        in: header
+        name: tpp-signature-certificate
+        required: true
+        schema:
+          type: string
+      - description: The forwarded IP Address header field consists of the corresponding
+          HTTP request IP Address field between **PSU** and **TPP**.
+        in: header
+        name: psu-ip-address
+        required: false
+        schema:
+          type: string
+      - description: Client ID of the PSU in the ASPSP client interface.
+        in: header
+        name: psu-id
+        required: false
+        schema:
+          type: string
+      - description: Type of the PSU-ID, needed in scenarios where PSUs have several
+          PSU-IDs as access possibility.
+        in: header
+        name: psu-id-type
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Port header field consists of the corresponding
+          HTTP request IP Port field between **PSU** and **TPP**, if available.
+        in: header
+        name: psu-ip-port
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept header fields consist of the corresponding
+          HTTP request Accept header fields between **PSU** and **TPP**, if available.
+        in: header
+        name: psu-accept
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Charset header fields consist of the
+          corresponding HTTP request Accept-Charset header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-charset
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Encoding header fields consist of the
+          corresponding HTTP request Accept-Encoding header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-encoding
+        required: false
+        schema:
+          type: string
+      - description: The forwarded IP Accept-Language header fields consist of the
+          corresponding HTTP request Accept-Language header fields between **PSU**
+          and **TPP**, if available.
+        in: header
+        name: psu-accept-language
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Agent header field of the HTTP request between
+          **PSU** and **TPP**, if available.
+        in: header
+        name: psu-user-agent
+        required: false
+        schema:
+          type: string
+      - description: 'HTTP method used at the **PSU** – **TPP** interface, if available.Possible
+          values : GET, POST, PUT, PATCH, DELETE.'
+        in: header
+        name: psu-http-method
+        required: false
+        schema:
+          type: string
+      - description: UUID identifies either a device or a device dependant application
+          installation. In case of an installation identification this ID need to
+          be unaltered until removal from device.
+        in: header
+        name: psu-device-id
+        required: false
+        schema:
+          type: string
+      - description: The forwarded Geo Location of the corresponding HTTP request
+          between **PSU** and **TPP** if available.
+        in: header
+        name: psu-geo-location
+        required: false
+        schema:
+          type: string
+      - description: Contains the date and time at which the message was originated
+        example: Sun, 06 Aug 2017 15:05:37 GMT
+        in: header
+        name: Date
+        required: false
+        schema:
+          type: string
+      - description: The apiKey is a token that a client provides when making API
+          calls.
+        example: 3fdd7da3-03ae-4fd5-bf0b-d09bc018cde1
+        in: header
+        name: apiKey
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Response of retrieve a consent status:
+                  value: "{\r\n  \"consentStatus\" : \"valid\"\r\n}"
+              schema:
+                $ref: '#/components/schemas/GetConsentStatusResponse'
+          description: OK
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Date:
+              description: 'Current date matching RFC7231 (ex : Mon, 04 Jun 2018 15:25:31
+                GMT).'
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '400':
+          content:
+            application/json:
+              examples:
+                Response of retrieve a consent status with bad psu-accept header:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"The\
+                    \ value provided for one of the HTTP headers was not in the correct\
+                    \ format\",\r\n    \"path\" : \"psu-accept\"\r\n  } ]\r\n}"
+                Response of retrieve a consent status with digest header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"FORMAT_ERROR\",\r\n    \"text\" : \"A required\
+                    \ HTTP header was not specified\",\r\n    \"path\" : \"digest\"\
+                    \r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '401':
+          content:
+            application/json:
+              examples:
+                Response of retrieve a consent status with Tpp having blocked status:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The Tpp is blocked at ASPSP level\"\r\n  } ]\r\n}"
+                Response of retrieve a consent status with Tpp having invalid Tpp authority status:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"The Tpp does not have the correct authorization status\"\r\
+                    \n  } ]\r\n}"
+                Response of retrieve a consent status with Tpp having no accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_BLOCKED\",\r\n    \"text\" :\
+                    \ \"The Tpp does not have the requested ASPSP accreditation\"\r\
+                    \n  } ]\r\n}"
+                Response of retrieve a consent status with Tpp having no national accreditation:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"ROLE_INVALID\",\r\n    \"text\" : \"The\
+                    \ Tpp does not have the requested national accreditation\"\r\n\
+                    \  } ]\r\n}"
+                Response of retrieve a consent status with invalid certificate:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_INVALID\",\r\n    \"text\" :\
+                    \ \"The contents of the QWAC are not matching PSD2 general PSD2\
+                    \ or attribute requirements\"\r\n  } ]\r\n}"
+                Response of retrieve a consent status with signature header missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"SIGNATURE_MISSING\",\r\n    \"text\" : \"\
+                    Required signature header was not specified\",\r\n    \"path\"\
+                    \ : \"signature\"\r\n  } ]\r\n}"
+                Response of retrieve a consent status with tpp-signature-certificate missing:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CERTIFICATE_MISSING\",\r\n    \"text\" :\
+                    \ \"Required tpp-signature-certificate header was not specified\"\
+                    ,\r\n    \"path\" : \"tpp-signature-certificate\"\r\n  } ]\r\n\
+                    }"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Unauthorized
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '403':
+          content:
+            application/json:
+              examples:
+                Response of retrieve a consent status when consent not found:
+                  value: "{\r\n  \"tppMessages\" : [ {\r\n    \"category\" : \"ERROR\"\
+                    ,\r\n    \"code\" : \"CONSENT_UNKNOWN\",\r\n    \"text\" : \"\
+                    Consent id does not exist\"\r\n  } ]\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Forbidden
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Location of the created resource.
+              schema:
+                type: string
+            X-Request-Id:
+              description: ID of the request, unique to the call, as determined by
+                the initiating party.
+              schema:
+                type: string
+        '500':
+          $ref: '#/components/responses/INTERNAL_SERVER_ERROR_500'
+        '503':
+          $ref: '#/components/responses/SERVICE_UNAVAILABLE_503'
+      summary: Retrieve consent status by id
+      tags:
+      - Consents
+security:
+- apiKey: []
+servers:
+- url: https://api.payments.argenta.be/berlingroup/v1/consents
+tags:
+- description: Consent's API
+  name: Consents

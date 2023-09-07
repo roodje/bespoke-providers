@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/bt/sb/oauth-prd/register",
+    "headers": {
+      "accept": {
+        "equalTo": "application/json"
+      },
+      "content-type": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "redirect_uris": [
+            "https://client-redirect.yts.yolt.io"
+          ],
+          "company_name": "TPP Corporation",
+          "client_name": "TPP Application",
+          "company_url": "https://yolt.com",
+          "contact_person": "Contact TPP",
+          "email_address": "contact.tpp@test.com",
+          "phone_number": "+40700000000"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "client_id": "registered-client-id",
+      "client_secret": "registered-client-secret"
+    }
+  }
+}

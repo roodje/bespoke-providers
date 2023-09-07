@@ -1,0 +1,29 @@
+{
+  "request": {
+    "url": "/oauth/token",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "grant_type": "authorization_code",
+          "client_id": "clientId",
+          "code_verifier": "6965646a-e758-4478-8b22-312a96472b856965646a-e758-4478-8b22-312a96472b85",
+          "code": "authorization_code",
+          "redirect_uri": "https://www.yolt.com/callback"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "bodyFileName": "post-token.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

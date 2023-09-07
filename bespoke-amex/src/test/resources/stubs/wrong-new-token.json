@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/apiplatform/v2/oauth/token/mac",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Authentication": {
+        "matches": "MAC.id=\"THE-CLIENT-ID\",ts=\"[0-9]+\",nonce=\"[0-9a-z-]+:AMEX\",mac=\".+\""
+      },
+      "x-amex-api-key": {
+        "contains": "THE-CLIENT-ID"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "code=THE-WRONG-CODE"
+      },
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "scope_list=MEMBER_ACCT_INFO%2CFINS_STP_DTLS%2CFINS_BAL_INFO%2CFINS_TXN_INFO"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Flocalhost%2Fredirect"
+      }
+    ]
+  },
+  "response": {
+    "status": 401,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    }
+  }
+}
+

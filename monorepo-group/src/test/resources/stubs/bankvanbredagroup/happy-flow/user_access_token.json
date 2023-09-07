@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/berlingroup/v1/token",
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=test-code"
+      },
+      {
+        "contains": "client_id=PSDNL-SBX-1234512345"
+      },
+      {
+        "matches": ".*&code_verifier=[a-zA-Z0-9_=].*&.*"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fyolt.com%2Fcallback-acc"
+      }
+    ],
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF-8)?"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "new_access_token",
+      "token_type": "Bearer",
+      "expires_in": 3600,
+      "refresh_token": "new_refresh_token",
+      "scope": "AIS:VALID_CONSENT_ID"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.yolt.providers</groupId>
+        <artifactId>providers-parent</artifactId>
+        <version>3.2.18</version>
+        <relativePath />
+    </parent>
+    <scm>
+        <connection>scm:git:https://git.yolt.io/providers/bespoke-commerzbank.git</connection>
+        <developerConnection>scm:git:https://git.yolt.io/providers/bespoke-commerzbank.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <repositories>
+        <repository>
+            <id>lovebird-aws</id>
+            <url>https://nexus.yolt.io/repository/public/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>lovebird-aws</id>
+            <url>https://nexus.yolt.io/repository/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <properties>
+        <!--suppress UnresolvedMavenProperty -->
+        <build.number>${env.CI_PIPELINE_ID}</build.number>
+    </properties>
+    <groupId>com.yolt.providers.bespoke</groupId>
+    <artifactId>commerzbank</artifactId>
+    <version>1.0.14-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.yolt.providers</groupId>
+            <artifactId>providers-commons</artifactId>
+            <version>4.1.26</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yolt.providers</groupId>
+            <artifactId>providers-commons</artifactId>
+            <classifier>tests</classifier>
+            <type>test-jar</type>
+            <version>4.1.26</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+<build>
+    <plugins>
+<!--
+        <plugin>
+            <groupId>org.openapitools</groupId>
+            <artifactId>openapi-generator-maven-plugin</artifactId>
+            <configuration>
+                <generatorName>spring</generatorName>
+                <generateApis>false</generateApis>
+                <generateSupportingFiles>false</generateSupportingFiles>
+                <configOptions>
+                    <java8>true</java8>
+                    <sourceFolder>swagger-generated</sourceFolder>
+                </configOptions>
+                <inputSpec>${project.basedir}/psd2-api v1.3.11-2021-10-01v1.yaml</inputSpec>
+
+            </configuration>
+
+            <executions>
+                <execution>
+                    <id>generate-pekaosa-auth</id>
+                    <goals>
+                        <goal>generate</goal>
+                    </goals>
+                    <configuration>
+                        <inputSpec>${project.basedir}/psd2-api v1.3.11-2021-10-01v1.yaml</inputSpec>
+                        <modelPackage>com.yolt.providers.pekaosagroup.dto.auth</modelPackage>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+-->
+
+
+    </plugins>
+</build>
+</project>

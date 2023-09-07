@@ -1,0 +1,53 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/v1/payments",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer pLO93fAqqk4YxwzfjB4ziiD2EM6m"
+      },
+      "API-Key": {
+        "equalTo": "7zacIF8Cu5o3XF4gUll4sRGuI2gDYiCA"
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "initiatingpartyAccountNumber": "",
+          "counterpartyAccountNumber": "NL12ABNA9999876523",
+          "counterpartyName": "John Doe",
+          "amount": 149.99,
+          "remittanceInfo": "Payment of invoice 123/01"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "X-Request-ID": "a8da60a1-4a81-4c59-bf24-a257244c2fd0",
+      "Trace-Id": "07ca8f04-9847-4e11-bd30-cd7d2a92961d"
+    },
+    "jsonBody": {
+      "errors": [
+        {
+          "code": "ERR_1100_004",
+          "message": "An input paramater is invalid.",
+          "reference": "https://developer.abnamro.com/get-started#authentication",
+          "traceId": "5d47e7b5-55b8-4b9f-b438-51ed01f92f3a",
+          "status": 400,
+          "category": "BAD_REQUEST"
+        }
+      ]
+    }
+  }
+}

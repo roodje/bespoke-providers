@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/apiplatform/v8/oauth/token/bearer",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded"
+      },
+      "x-amex-api-key": {
+        "equalTo": "THE-CLIENT-ID"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "client_id=THE-CLIENT-ID&client_secret=THE-CLIENT-SECRET&grant_type=authorization_code&code=received-authorization-code&scope=accounts&redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback&code_verifier=hfetMftkPquoW3zXKA0JYph8PepHXRpJppIaWp75xEYW"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "access_token": "19697e0a-c9f1-11ec-9d64-0242ac120002",
+      "token_type": "bearer",
+      "expires_in": 86400,
+      "refresh_token": "ae45eabc-c9f2-11ec-9d64-0242ac120002",
+      "scope": "accounts"
+    }
+  }
+}

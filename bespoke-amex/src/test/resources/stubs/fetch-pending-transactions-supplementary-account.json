@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/servicing/v1/financials/transactions",
+    "queryParameters": {
+      "offset": {
+        "matches": "0"
+      },
+      "limit": {
+        "matches": "5"
+      },
+      "status": {
+        "matches": "pending"
+      },
+      "extended_details": {
+        "matches": "merchant"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "matches": "MAC.id=\"9shWQjwZ0jRPIN1T2NrnQYw\",ts=\"[0-9]+\",nonce=\".+:AMEX\",mac=\".+\""
+      },
+      "x-amex-api-key": {
+        "matches": "THE-CLIENT-ID-2"
+      },
+      "x-amex-request-id": {
+        "matches": "[0-9a-z]{32}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-amex-request-id": "9shWQjwZ0jRPIN1T2NrnQYw"
+    },
+    "jsonBody": [
+      {
+        "total_transaction_count": "0",
+        "transactions": []
+      }
+    ]
+  }
+}

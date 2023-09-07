@@ -1,0 +1,74 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/AuauT3LMzHwjBb-BqwHupxAe16uS8nJkNC7JmIPN/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "Aua4T3LMzHwtBb-BqtHupxAe16tS8nJkNC7JtIPN",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2020-12-03T08:58:46.365Z",
+            "Amount": {
+              "Amount": "696.79",
+              "Currency": "GBP"
+            },
+            "CreditLine": [
+              {
+                "Included": false,
+                "Type": "Pre-Agreed",
+                "Amount": {
+                  "Amount": "2000.00",
+                  "Currency": "GBP"
+                }
+              },
+              {
+                "Included": false,
+                "Type": "Emergency",
+                "Amount": {
+                  "Amount": "2009.0",
+                  "Currency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "AccountId": "Aua4T3LMzHwtBb-BqtHupxAe16tS8nJkNC7JtIPN",
+            "CreditDebitIndicator": "Credit",
+            "Type": "ClosingAvailable",
+            "DateTime": "2020-12-03T08:58:46.365Z",
+            "Amount": {
+              "Amount": "696.79",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://api.nationwide.co.uk/open-banking/v3.1/aisp/accounts/AuauT3LMzHwjBb-BqwHupxAe16uS8nJkNC7JmIPN/balances"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

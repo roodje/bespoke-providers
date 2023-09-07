@@ -1,0 +1,83 @@
+{
+  "request": {
+    "url": "/v3.0/pisp/domestic-payment-consents",
+    "method": "POST",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer DEjYK7CWVFHi71RteqxmKv1NO2a"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0011800000tfV9aBBE"
+      },
+      "Accept": {
+        "matches": "^application/json$"
+      },
+      "x-jws-signature": {
+        "matches": "^.*...*$"
+      },
+      "x-idempotency-key": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "content-type": {
+        "matches": "^application/json;charset=UTF-8$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "EndToEndIdentification": "END1234",
+              "InstructedAmount": {
+                "Amount": "0.01",
+                "Currency": "GBP"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "98765432109876",
+                "Name": "P. Jantje"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "Unstructured",
+                "Reference": "MalformedPayment"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        },
+        "ignoreArrayOrder": true
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "Code": "400 BadRequest",
+      "Id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+      "Message": "Invalid request parameters.",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Field.Missing",
+          "Message": "End to end identification is missing",
+          "Path": "Data.Initiation.InstructionIdentification",
+          "Url": "<url to the api reference for Payment Inititaion API>"
+        },
+        {
+          "ErrorCode": "UK.OBIE.Unsupported.Scheme",
+          "Message": "Scheme name supplied is not supported",
+          "Path": "Data.Initiation.CreditorAccount.SchemeName",
+          "Url": "<url to the online documentation referring supported scheme names>"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    }
+  }
+}

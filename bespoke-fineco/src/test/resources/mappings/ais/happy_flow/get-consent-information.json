@@ -1,0 +1,21 @@
+{
+  "request": {
+    "url": "/v1/consents/consentId",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "PSU-IP-Address": {
+        "matches": "[12]\\.[12]\\.[12]\\.[12]"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "fineco/ais/happy_flow/get-consent-information.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

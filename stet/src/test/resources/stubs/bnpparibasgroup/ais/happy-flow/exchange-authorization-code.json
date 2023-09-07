@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/token",
+    "headers": {
+      "Authorization": {
+        "contains": "Basic Y2xpZW50LWlkOmNsaWVudC1zZWNyZXQ="
+      },
+      "Content-Type": {
+        "contains": "application/x-www-form-urlencoded"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=auth_code"
+      },
+      {
+        "contains": "redirect_uri=http%3A%2F%2Fyolt.com%2Fredirect%2Fbnp-paribas"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "X-Frame-Options": "DENY",
+      "Transfer-Encoding": "chunked",
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "access_token": "access-token",
+      "refresh_token": "refresh-token",
+      "expires_in": 300,
+      "token_type": "bearer"
+    }
+  }
+}

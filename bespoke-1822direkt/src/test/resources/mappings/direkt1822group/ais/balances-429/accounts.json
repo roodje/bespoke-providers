@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/joba-psd2/r1/v1/accounts",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "12345"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "12.34.56.78"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "75647ea0-0d3a-442c-8046-bf415b20a9f6",
+          "iban": "DE72500502011234567897",
+          "currency": "EUR",
+          "name": "Sample Name 1",
+          "product": "Current Account",
+          "cashAccountType": "CACC",
+          "bic": "HELADEF1822",
+          "ownerName": "John Smith",
+          "_links": {
+            "balances": {
+              "href": "/accounts/75647ea0-0d3a-442c-8046-bf415b20a9f6/balances"
+            },
+            "transactions": {
+              "href": "/accounts/75647ea0-0d3a-442c-8046-bf415b20a9f6/transactions"
+            }
+          }
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json; charset=UTF-8",
+      "X-Request-ID": "39e872b0-c662-4deb-a274-2ce2363862c6"
+    }
+  }
+}

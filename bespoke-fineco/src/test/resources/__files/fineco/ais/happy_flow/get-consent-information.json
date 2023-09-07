@@ -1,0 +1,46 @@
+{
+  "access": {
+    "accounts": [
+      {
+        "iban": "IT31X0301503200000003517230",
+        "bban": null,
+        "pan": null,
+        "maskedPan": null,
+        "msisdn": null
+
+      },
+      {
+        "maskedPan": "5127 1234 5678 8392"
+      }
+    ],
+    "balances": [
+      {
+        "iban": "IT31X0301503200000003517230",
+        "bban": null,
+        "pan": null,
+        "maskedPan": null,
+        "msisdn": null,
+        "currency": "EUR"
+      }
+    ],
+    "transactions": [
+      {
+        "iban": "IT31X0301503200000003517230",
+        "bban": null,
+        "pan": null,
+        "maskedPan": null,
+        "msisdn": null,
+        "currency": "EUR"
+      },
+      {
+        "maskedPan": "5127 1234 5678 8392",
+        "currency": "EUR"
+      }
+    ]
+  },
+  "recurringIndicator": "true",
+  "validUntil": "2019-05-01",
+  "frequencyPerDay": "4",
+  "consentStatus": "valid",
+  "lastActionDate": "2019-03-01"
+}

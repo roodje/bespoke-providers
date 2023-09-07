@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth/token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "Authorization": {
+        "absent": true
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=refreshToken"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "CrMr1bH8rFR3aJDzrnG8RrjgaXYp",
+      "token_type": "Bearer",
+      "expires_in": 1799,
+      "scope": "openid accounts",
+      "id_token": "eyJraWQiOiI3cWZCb1c2QUdnbm9VU0FmTEhqWWJLLW83TlUiLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJhdF9oYXNoIjoiemc5TE02ZEhsWEI0clR6M05qeFRuUSIsInN1YiI6IkFDQ18xXzVfZDdmNjYxMDAtMGI0MS0xMWViLTlmYzItNzc5MDQ4MDllNGU4IiwiYXVkIjoiVWh0em9rSUl3eUszUmFQM3RWY2ZFWEFHMTdLRzhxMEQiLCJvcGVuYmFua2luZ19pbnRlbnRfaWQiOiJBQ0NfMV81X2Q3ZjY2MTAwLTBiNDEtMTFlYi05ZmMyLTc3OTA0ODA5ZTRlrCIsImlzcyI6Imh0dHBzOlwvXC9hcGkubmF0aWrud2lkZS5jby51a1wvb3Blbi1iYW5raW5nXC92MS4xIiwiZXhwIjoxNjA2OTg3NzI0LCJpYXQiOjE2MDY5ODU5MjQsIm5vbmNlIjoiNTUyODg3NTUtZDAwYy00Y2ZkLTkzNGYtOWFlNThhYzAxY2Y3In0.w2FNAvX7LzAofSbem6WWhLHgbSEilbJpR8AfW2Hxi8cK-Ij6UDb_mWpl96MBaAuL97Ct2WY-pCsZqcKMxz42CKUOtxPpXojZf2AzfIv-2DnRfdKp25siAFHAzztFCyVANCTMRg1325s80JE4KzskuB71TAmIsRI3Wg_j_egH3N5M1kwNSm6ZrDXRnfJ4Ebm6_IargFlZA3eacRXqYDtg21ZdpRWdrr35qerWZ4hJC2Jy1-dpPb3GDyddDCojMum78aDHrCHsmWiQak5a9dl-TBdLq7gNpKTMckUYrrrgeqogGnwZ_lSucewJ6SUqzqt99ImIoq1H_EeZUoTI9IhoPQ"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

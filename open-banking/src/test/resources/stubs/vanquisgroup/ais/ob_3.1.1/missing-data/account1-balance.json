@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/123/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "123",
+            "Amount": {
+              "Amount": "1.00"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "OpeningCleared",
+            "DateTime": "2018-07-21T11:50:03+01:00"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.1/aisp/accounts/123/balances"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

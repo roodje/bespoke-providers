@@ -1,0 +1,10 @@
+{
+  "AccountId": "10000000000000000000",
+  "Amount": {
+    "Amount": "182.97",
+    "Currency": "GBP"
+  },
+  "CreditDebitIndicator": "Credit",
+  "DateTime": "2021-05-05T12:04:09Z",
+  "Type": "InterimCleared"
+}

@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/EC26D95F-6DDC-44E3-82C1-BA1145D7CEA6/direct-debits",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 7531d7a8-7f5e-4bde-ae07-a5c587458ad7"
+      },
+      "Accept": {
+        "matches": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800001ZEZ3yAAH"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "DirectDebit": [
+          {
+            "AccountId": "EC26D95F-6DDC-44E3-82C1-BA1145D7CEA6",
+            "DirectDebitId": "IE77ZZZ010101",
+            "MandateIdentification": "VFIE00011406101812010101",
+            "DirectDebitStatusCode": "Active",
+            "Name": "Vodafone Ireland Ltd",
+            "PreviousPaymentDateTime": "2018-01-16T00:00:00+00:00"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://developer.permanenttsb.ie/psd2api/ptsb/open-banking/v3.1/aisp/accounts/EC26D95F-6DDC-44E3-82C1-BA1145D7CEA6/direct-debits",
+        "Last": "https://developer.permanenttsb.ie/psd2api/ptsb/open-banking/v3.1/aisp/accounts/EC26D95F-6DDC-44E3-82C1-BA1145D7CEA6/direct-debits"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

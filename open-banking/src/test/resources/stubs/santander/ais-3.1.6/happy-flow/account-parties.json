@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/db5002d3-13cf-48fb-96f1-8ee074795181/parties",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "1626df30-50ad-42d8-8f39-40dd95f4b15f"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Meta": {
+        "TotalPages": 1
+      },
+      "Links": {
+        "Self": "https://openbanking-ma.santander.co.uk/sanuk/external/open-banking/v3.1/aisp/accounts/3c16b74d-78c8-492e-b0e1-68a7dac9e2b6/party"
+      },
+      "Data": {
+        "Party": [
+          {
+            "PartyId": "5e58170d-1698-40ab-83d0-53a12a7c689a",
+            "Name": "MR User Name Surname"
+          }
+        ]
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

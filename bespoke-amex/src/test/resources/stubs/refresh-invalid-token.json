@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/apiplatform/v1/oauth/token/refresh/mac",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Authentication": {
+        "matches": "MAC.id=\"THE-CLIENT-ID\",ts=\"[0-9]+\",nonce=\"[0-9a-z-]+:AMEX\",mac=\".+\""
+      },
+      "x-amex-api-key": {
+        "contains": "THE-CLIENT-ID"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=INVALID-REFRESH-TOKEN"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "errorType": "invalid_grant",
+      "errorDescription": "refresh token is not valid",
+      "errorCode": "154001",
+      "moreInfo": ""
+    }
+  }
+}

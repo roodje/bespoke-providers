@@ -1,0 +1,125 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/92198f42-4726-12fd-ad55-b93b04192121/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "contains": "Bearer accessToken"
+      },
+      "x-fapi-financial-id": {
+        "contains": "001728392JD873NNHY"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "92198f42-4726-12fd-ad55-b93b04192121",
+            "TransactionId": "7a4c4103-715c-4df7-81ba-bc212596f3a2",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Pending",
+            "BookingDateTime": "2021-02-18T19:17:27+00:00",
+            "TransactionInformation": "For new bow",
+            "Amount": {
+              "Amount": "170.75",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "Transfer"
+            },
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "ClosingAvailable",
+              "Amount": {
+                "Amount": "53.67",
+                "Currency": "GBP"
+              }
+            },
+            "DebtorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "82311230011773"
+            }
+          },
+          {
+            "AccountId": "92198f42-4726-12fd-ad55-b93b04192121",
+            "TransactionId": "84073d1d-8cb6-4e69-8012-764d81b11c78",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "BookingDateTime": "2021-02-17T00:00:00+00:00",
+            "TransactionInformation": "More arrows",
+            "Amount": {
+              "Amount": "879.00",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "Transfer"
+            },
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "ClosingAvailable",
+              "Amount": {
+                "Amount": "689.12",
+                "Currency": "GBP"
+              }
+            },
+            "DebtorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "82631220013773"
+            }
+          },
+          {
+            "AccountId": "92198f42-4726-12fd-ad55-b93b04192121",
+            "TransactionId": "996113a8-e07c-4318-8797-2184563117d3",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2021-02-16T00:00:00+00:00",
+            "TransactionInformation": "New arrows",
+            "Amount": {
+              "Amount": "31.31",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "Direct Debit"
+            },
+            "Balance": {
+              "CreditDebitIndicator": "Debit",
+              "Type": "ClosingAvailable",
+              "Amount": {
+                "Amount": "189.88",
+                "Currency": "GBP"
+              }
+            },
+            "DebtorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "82613220013773"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://cb.api-nc.cybservices.co.uk/open-banking/v3.1/aisp/accounts/92198f42-4726-12fd-ad55-b93b04192121/transactions?fromBookingDateTime=2020-02-18T19:28:45Z&page=1"
+      },
+      "Meta": {
+        "FirstAvailableDateTime": "2020-02-18T19:28:45+00:00",
+        "LastAvailableDateTime": "2021-02-18T19:28:46+00:00"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

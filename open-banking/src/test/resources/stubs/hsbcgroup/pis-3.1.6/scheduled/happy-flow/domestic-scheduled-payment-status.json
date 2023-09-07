@@ -1,0 +1,58 @@
+{
+  "request": {
+    "url": "/v3.1/pisp/domestic-scheduled-payments/0000f7f237ee4e6eaff0c3df18246676",
+    "method": "GET",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer DEjYK7CWVFHi71RteqxmKv1NO2a"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      },
+      "x-idempotency-key": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "Data": {
+        "DomesticScheduledPaymentId": "0000f7f237ee4e6eaff0c3df18246676",
+        "ConsentId": "462d1a04-4g74-42d7-ba69-0bbe1e5fef68",
+        "CreationDateTime": "2002-02-23T21:54:55.852Z",
+        "Status": "InitiationCompleted",
+        "StatusUpdateDateTime": "2019-01-28T16:45:25.907Z",
+        "Initiation": {
+          "InstructionIdentification": "20200515101750462-522347ee-5e0",
+          "EndToEndIdentification": "35B64F93",
+          "RequestedExecutionDateTime": "2022-02-01T00:00:00Z",
+          "InstructedAmount": {
+            "Amount": "0.01",
+            "Currency": "GBP"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "1802968485593088",
+            "Name": "Jordan Bell"
+          },
+          "RemittanceInformation": {
+            "Unstructured": "Remittance Unstructured",
+            "Reference": "REF0123456789-0123"
+          },
+          "CreditorPostalAddress": {}
+        }
+      },
+      "Links": {
+        "Self": "/v3.1/pisp/domestic-scheduled-payments/0000f7f237ee4e6eaff0c3df18246676"
+      },
+      "Meta": {}
+    }
+  }
+}

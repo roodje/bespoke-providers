@@ -1,0 +1,43 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/yoltbank/openbanking/token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=iVuATHQHLIjtGjeuxtBj6Gfnd8o"
+      },
+      {
+        "contains": "client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "3zHagXZSPyA6sifIDmqwZ0hLlqq",
+      "token_type": "Bearer",
+      "expires_in": 299,
+      "refresh_token": "NfEtxxaLt1SavZW1s7thJ7iw0XZ",
+      "scope": "openid accounts",
+      "id_token": "eyJraWQiOiJleHRlcm5hbF8yKiwidHlwIjoiSldUIiwiYWxnIjoiUFMyNTYifQ.eyJhdF9oYXNoIjoiVFhsN2ozSkR0N1lISWdTa1FqdjltUSIsImFjciI6ItVybjpvcGVuYmFua2luZzpwc2QyOnNjYSIsImF1ZCI6IjQyZjU2YjZjLThlYjItNGNhMS1hZTdhLTdiMDVlYjMyMnQxMiIsInN1YiI6IjgwMDY4OWE0LTA2ODktNGQzOC04YTE1LWI50DA4MTIwOWY2MCIsIm9wZW5iYW5raW5nX2ludGVudF9pZCI6IjgwMDY4OWE0LTA2ODktNGQzOC04YTE1LWI5ODA4MTIwOWY2MCIsImF1dGhfdGltZSI6MTYwNTE1MTI5MSwiaXNzIjoiaHR0cHM6XC9cL2FwaS5vYi5oc2JjLmNvLnVrIiwiZXhwIjoxNjA1MTUxNTk0LCJpYXQiOjE2MDUxNTEyOTQsIm5vbmNlIjoiYmFkMGU4MjUtZWY4Mi00NjFhLTkzNzgtZGE1N2RkMmUyNjRmIn0.u3_wgdRDIuTtFxRRYkHQpktc_wNEtk2tIwP1cpYBygVMeGI-bwe-6nfRNm-OwHS64EIybtOFIxjHtjjnt4lSUjvkGh5wYBB_MAXVUMLTDLS5oylBTDRUBtaKsxMn4IfGvQkvXiUC7entrZrmGF2vzc1pb2rJM0LqN5y7GvOznaFi8i1nLf3UvkiJFoqAKYOT3yuRpw1ZLaDjyP1oPctihk52iRT8hPz50KkBPVjTxtl2hG_4-JCDSv0qxLnuVLNRtgOhj6DP_-MscZmEZe6ZtSfOAG2zcC1A0NeES2jf_L068ZqyqXtMdPuRahAwjHHn3iZ0d9qQI1LicTYoF-9JAQ"
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "x-jws-signature": "eyJhbGciOiJSUzM4NCIsImtpZCI6InlvbHRiYW5rIiwiamt1IjoiIiwiYjY0IjpmYWxzZSwiY3JpdCI6WyJiNjQiXX0..KFCburFR_jgiTs1qb-Io2rVIEdMuxDHjBC5sO_TPcV47pUd05lprbtg085csPtbjEVXzSpYdHFzso-t_XYiJDLU746VLggBaN9Vb3IMyAR51rrZy41adlAqiHTULb9_rywxl1Ba7zH-3uYLG5dJg_HOjbxy4qUa4w6QmfXpG_9ehSyZ4-J2Kca-_hq1y79eyGssx9ARy60zsPRD2JyHyBNj0VRC4eiBY8Oe3BrHarTH6a45bRD6T73qtbVGkvzK46C91QQOZAEhTswic7p_8enh_z7ewQOukN459HzbsOZq2j4RmWdzI63AHJXAu_7uhdr54rt8qh2bwSjIr84xeH3UCubtmTU7-nSq3esGvpoJRHb9pS08IRAIa4qo7XXWPsca30p0Mrbz8cQw1V1-gI7tx_ozOCBGzgeGfKPDSTVLRGGmFrzvuCRpaFiXanzvcWI9XmyGVYUBTGedpt5tzQnfY-g7JbJZ2dNzuVYlwPp36xMSdws8C_ez6mn5BGpEBk-sPnABexSZ1NTjXzNC-wLD2ErnbXl2Vc0jIBySbFOLkoSrmXXnOyqELXGx4A0CDG8AbDojfdyKEtbI02NoArlBYp0fVC6vieGSExQc1mxQ3r_7LPesoFhcS-FtSf3FbKDHH0YlqeI7eAuQIyYrdqS9yIYHQKJt3VRIZACLuZ9w"
+    }
+  }
+}

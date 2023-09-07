@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/servicing/v1/financials/balances",
+    "headers": {
+      "Authorization": {
+        "matches": "MAC.id=\"9shWQjwZ0jRPIN1T2NrnQYw\",ts=\"[0-9]+\",nonce=\".+:AMEX\",mac=\".+\""
+      },
+      "x-amex-api-key": {
+        "matches": "THE-CLIENT-ID"
+      },
+      "x-amex-request-id": {
+        "matches": "[0-9a-z]{32}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type":  "application/json",
+      "x-amex-request-id":  "9shWQjwZ0jRPIN1T2NrnQYw"
+    },
+    "jsonBody": [
+      {
+        "last_statement_balance_amount": "55000.00",
+        "debits_balance_amount": "0.00",
+        "payments_credits_amount": "0.00",
+        "statement_balance_amount": "55000.00",
+        "payment_due_amount": "55000.00",
+        "iso_alpha_currency_code": "AUD",
+        "payment_due_date": "2014-02-15",
+        "remaining_statement_balance_amount": "55000.00"
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/platform/enabler/psd2orchestrator/pis/2.3.2/payments/sepa-credit-transfers/SOME-PROVIDER-STATE/status",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Authorization": {
+        "equalTo": "Bearer PAYMENT-CLIENT-ACCESS-TOKEN"
+      },
+      "aspsp-code": {
+        "matches": "ASPSP_MM_01"
+      },
+      "digest": {
+        "equalTo": "sha-512=z4PhNX7vuL3xVChQ1m2AB9Yg5AULVxXcg/SpIdNs6c5H0NE8XYXysP+DGNKHfuwvY7kxvUdBeoGlODJ6+SfaPg=="
+      },
+      "signature": {
+        "matches": "keyId=\"13299021239615735660\",algorithm=\"rsa-sha512\",headers=\"date digest x-request-id\",signature=\"([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*\""
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIICMzCCAZygAwIBAgIJALiPnVsvq8dsMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzAeFw0xMzAzMTkxNTQwMTlaFw0xODAzMTgxNTQwMTlaMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzdGfxi9CNbMf1UUcvDQh7MYBOveIHyc0E0KIbhjK5FkCBU4CiZrbfHagaW7ZEcN0tt3EvpbOMxxc/ZQU2WN/s/wPxph0pSfsfFsTKM4RhTWD2v4fgk+xZiKd1p0+L4hTtpwnEw0uXRVd0ki6muwV5y/P+5FHUeldq+pgTcgzuK8CAwEAAaMPMA0wCwYDVR0PBAQDAgLkMA0GCSqGSIb3DQEBBQUAA4GBAJiDAAtY0mQQeuxWdzLRzXmjvdSuL9GoyT3BF/jSnpxz5/58dba8pWenv3pj4P3w5DoOso0rzkZy2jEsEitlVM2mLSbQpMM+MUVQCQoiG6W9xuCFuxSrwPISpAqEAuV4DNoxQKKWmhVv+J0ptMWD25Pnpxeq5sXzghfJnslJlQND"
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json",
+      "Location": "",
+      "ASPSP-SCA-Approach": "REDIRECT",
+      "X-Request-ID": "a8da60a1-4a81-4c59-bf24-a257244c2fd0"
+    },
+    "jsonBody": {
+      "errorManagement": {
+        "errorCode": "PSD2_01.000.A0002",
+        "errorDescription": "Missing header parameter: aspsp-code"
+      },
+      "psuMessage": "SomePsuMessage",
+      "tppMessages": [
+        {
+          "category": "ERROR",
+          "code": "400",
+          "path": "/platform/enabler/psd2orchestrator/pis/3.0.0/payments/sepa-credit-transfers/SOME-PAYMENT-ID",
+          "text": "Missing header parameter"
+        }
+      ]
+    }
+  }
+}

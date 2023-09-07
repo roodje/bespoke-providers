@@ -1,0 +1,113 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/bt/sb/bt-psd2-aisp-prd/v1/accounts",
+    "queryParameters": {
+      "withBalance": {
+        "equalTo": "true"
+      }
+    },
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "consent-id": {
+        "equalTo": "100"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "content-type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "iban": "RO01BTRLRONCRT9HFEDEHEZE",
+          "resourceId": "1",
+          "currency": "RON",
+          "product": "Cont de disponibil 1",
+          "name": "Cont de disponibil 1",
+          "cashAccountType": "CurrentAccount",
+          "balances": [
+            {
+              "balanceType": "expected",
+              "creditLimitIncluded": false,
+              "balanceAmount": {
+                "currency": "RON",
+                "amount": 510.10
+              },
+              "referenceDate": "2019-02-28"
+            },
+            {
+              "balanceType": "expected",
+              "creditLimitIncluded": true,
+              "balanceAmount": {
+                "currency": "RON",
+                "amount": 1510.10
+              },
+              "referenceDate": "2019-02-28"
+            }
+          ],
+          "_links": {
+            "balances": {
+              "href": "https://apistorebt.ro/bt/sb/bt-psd2-aisp-prd/v1/accounts/1/balances"
+            },
+            "transactions": {
+              "href": "https://apistorebt.ro/bt/sb/bt-psd2-aisp-prd/v1/accounts/1/transactions"
+            }
+          }
+        },
+        {
+          "iban": "RO02BTRLEURCRT0ABCDEFGHI",
+          "resourceId": "2",
+          "currency": "RON",
+          "product": "Cont de disponibil 2",
+          "name": "Cont de disponibil 2",
+          "cashAccountType": "CurrentAccount",
+          "balances": [
+            {
+              "balanceType": "expected",
+              "creditLimitIncluded": false,
+              "balanceAmount": {
+                "currency": "RON",
+                "amount": 50.10
+              },
+              "referenceDate": "2019-02-28"
+            },
+            {
+              "balanceType": "expected",
+              "creditLimitIncluded": true,
+              "balanceAmount": {
+                "currency": "RON",
+                "amount": 150.10
+              },
+              "referenceDate": "2019-02-28"
+            }
+          ],
+          "_links": {
+            "balances": {
+              "href": "https://localhost:{{request.requestLine.port}}/bt/sb/bt-psd2-aisp-prd/v1/accounts/2/balances"
+            },
+            "transactions": {
+              "href": "https://localhost:{{request.requestLine.port}}/bt/sb/bt-psd2-aisp-prd/v1/accounts/2/transactions"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

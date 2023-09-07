@@ -1,0 +1,79 @@
+{
+  "request": {
+    "url": "/v2/organization",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer AWESOME-ACCESS-TOKEN"
+      },
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Signature": {
+        "matches": "keyId=\"https:\\/\\/test.qseal.certificate.com\\/5f:18:d2:93:04:36:f7:d3:8b:91:11:d8:85:ac:62:0c:06:e9:54:02.pem\",algorithm=\"rsa-sha256\",headers=\"content-type psu-ip-address digest\",signature=\"(.+)\""
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "organization": {
+        "slug": "scep-1111",
+        "legal_name": "SCEP",
+        "bank_accounts": [
+          {
+            "slug": "scep-1111-bank-account-3",
+            "iban": "FR7616958000013097751007940",
+            "bic": "QNTOFRP1XXX",
+            "currency": "EUR",
+            "balance": 28.0,
+            "balance_cents": 2800,
+            "authorized_balance": 28.0,
+            "authorized_balance_cents": 2800,
+            "name": "TEST STAGING",
+            "updated_at": "2022-07-13T00:00:18.278Z",
+            "status": "active"
+          },
+          {
+            "slug": "scep-1111-bank-account-1",
+            "iban": "FR7616958000015974423718064",
+            "bic": "QNTOFRP1XXX",
+            "currency": "EUR",
+            "balance": 31000876.08,
+            "balance_cents": 3100087608,
+            "authorized_balance": 30788971.25,
+            "authorized_balance_cents": 3078897125,
+            "name": "Compte principal",
+            "updated_at": "2022-07-26T11:07:18.682Z",
+            "status": "active"
+          },
+          {
+            "slug": "scep-1111-bank-account-112121",
+            "iban": "FR7616958000015974423718064",
+            "bic": "QNTOFRP1XXX",
+            "currency": "EUR",
+            "balance": 31000876.08,
+            "balance_cents": 3100087608,
+            "authorized_balance": 30788971.25,
+            "authorized_balance_cents": 3078897125,
+            "name": "Compte principal",
+            "updated_at": "2022-07-26T11:07:18.682Z",
+            "status": "closed"
+          }
+        ]
+      }
+    }
+  }
+}

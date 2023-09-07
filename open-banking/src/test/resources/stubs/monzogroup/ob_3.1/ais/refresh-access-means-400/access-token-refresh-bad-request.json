@@ -1,0 +1,33 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/token",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token&refresh_token=invalidatedRefreshToken"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "error": "invalid_request",
+      "error_description": "Refresh token has been invalidated",
+      "error_params": {
+        "original_error_code": "bad_request.refresh_token.invalid",
+        "refresh_token_id": "reftok_1234567890"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

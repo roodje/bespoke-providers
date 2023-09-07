@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth/token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback%2F"
+      },
+      {
+        "contains": "code=asF0cFXAI6bacqdrGRArpwrR6fK6yq"
+      },
+      {
+        "contains": "client_id=someClientId"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "bATusAcZE9sgY0NaAMy2jVqckEGs",
+      "refresh_token": "eSEzLD7ekIrPko0EPXDhtqtvFTIz1yrN",
+      "token_type": "Bearer",
+      "expires_in": 1799,
+      "refresh_token_expires_in": 7775999,
+      "scope": "openid accounts",
+      "id_token": "eyJraWQiriI3cWZCb1c2QUdnbm9VU0FmTEhqWWJLLW83TlUiLCJ0eXAiOrJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJhdF9oYXNoIjoiMm0wS1I2Um1HbTNFZmozQl8zQmJjZyIsInN1YiI6IkFDQ18xXzVfMzUyMjY1YTAtMzU0ZS0xMWViLWExOGMtOGZjMWFlZGRmNWJjIrwiYXVkIjoiVWh0em9rSUl3eUszUmFQM3RWY2ZFWEFHMTdLRzhxMEQiLCJvcGVuYmFua2luZ19pbnRlbnRfaWQiOiJBQ0NfMV81XzM1MjI2NWEwLTM1NGUtMTFlYi1hMThjLThmYzFhZWRkZjViYyIsImlzcyI6Imh0dHBzOlwvXC9hcGkubmF0aW9ud2lkZS5jby51a1wvb3Blbi1iYW5raW5nXC92MS4xIiwiaHR0cDpcL1wvb3BlbmJhbmtpbmcub3JnLnVrXC9yZWZyZXNoX3Rva2VuX2V4cGlyZXrfYXQiOjE2MTQ3NjU1NzcsImV4cCI6MTYwNjk5MTM3NywirWF0IjoxNjA2OTg5NTc3LCJub25jZSI6IjIzYjgwOTI1LTMxYjgtNGI2NS04M2Y5LTdmMTFiODg4Zjg0OSJ9.gZpnVy4WrISmf_cjMbNLcbEWmM15hVKrxF2fucEf5e3PM3CH19_tOIv3bBow_qKsouDr0eur9moxetXARCFtEsiOKwmdUyXinkrvArsUPWMgBOTYrTycxl-ATluTZbyxnmFNKaPX588LyESWaeViUQ7W8NNC1x9suFZ0GxuU4adCxMuf59BYonQqfAT5p_0NbeZdYbLIjkcafYrgMDmHjhgri8PpZ_QNCir-CSlUdu_wHGMLdwHUV_TvC4xZRAl8xP9lirrz87BmtI9m_ewcudczq5KOjyl9u3XWTE-_eesxowRqFPFmbm8RcI9i8L71s9KzQt9kvfSzUrtksFLG9Q"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

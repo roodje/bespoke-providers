@@ -1,0 +1,61 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/aisp/account-access-consents",
+    "headers": {
+      "x-client-id": {
+        "equalTo": "THE-CLIENT-ID"
+      },
+      "x-amex-api-key": {
+        "equalTo": "THE-CLIENT-ID"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "Authorization": {
+        "equalTo": "Bearer client-access-token"
+      },
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"Data\": {\"Permissions\": [\"ReadAccountsBasic\",\"ReadAccountsDetail\",\"ReadBalances\",\"ReadProducts\",\"ReadStatementsBasic\",\"ReadStatementsDetail\",\"ReadTransactionsBasic\",\"ReadTransactionsCredits\",\"ReadTransactionsDebits\",\"ReadTransactionsDetail\"]},\"Risk\": {}}"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "urn-amex-intent-88379",
+        "CreationDateTime": "2021-05-02T00:00:00+00:00",
+        "Status": "AwaitingAuthorization",
+        "StatusUpdateDateTime": "2021-05-02T00:00:00+00:00",
+        "Permissions": [
+          "ReadAccountsBasic",
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadProducts",
+          "ReadStatementsBasic",
+          "ReadStatementsDetail",
+          "ReadTransactionsBasic",
+          "ReadTransactionsCredits",
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail"
+        ]
+      },
+      "Risk": {},
+      "Links": {
+        "Self": "https://openamex.americanexpress.com/open-banking/v3.1/aisp/account-access-consents"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

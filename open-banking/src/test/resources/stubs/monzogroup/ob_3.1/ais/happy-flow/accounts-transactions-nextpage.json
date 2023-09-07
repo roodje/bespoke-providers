@@ -1,0 +1,63 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/22289/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "equalTo": "2018-09-16T12:24:47.026Z"
+      },
+      "pageStart": {
+        "equalTo": "2019-01-25T12:18:54.199Z"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer Az90SAOJklae"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "93bac548-d2de-4546-b106-880a5018460d"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "93bac548-d2de-4546-b106-880a5018460d"
+    },
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "22289",
+            "TransactionId": "tx_222",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2021-02-06T13:43:29.734Z",
+            "TransactionInformation": "Morrisons Petrol Station",
+            "Amount": {
+              "Amount": "0.3000",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "mastercard",
+              "Issuer": "Monzo"
+            },
+            "SupplementaryData": {
+              "Declined": false,
+              "RawTransactionDescription": "W M MORRISON PETROL BRISTOL GBR"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://openbanking.monzo.com/open-banking/v3.1/aisp/accounts/22289/transactions/"
+      },
+      "Meta": {
+        "TotalPages": 2,
+        "FirstAvailableDateTime": "2017-05-03T00:00:00+00:00",
+        "LastAvailableDateTime": "2017-12-03T00:00:00+00:00"
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/register",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Basic dXNlcjE6cGFzczE="
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "redirect_uris": [
+            "https://yolt.com/"
+          ],
+          "token_endpoint_auth_method": "tls_client_auth",
+          "grant_types": [
+            "authorization_code"
+          ],
+          "client_name": "ING Bank N.V.",
+          "scope": "aisp pisp",
+          "contacts": [
+            "a@b.com"
+          ],
+          "provider_legal_id": "PSDNL-DNB-B0163",
+          "description": "Application for ING Bank N.V. client with aisp pisp scope(s)"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "client_id": "da5759d1-8f95-4b31-8183-fab1c62b52c5",
+      "client_secret": "9bd412c1-58da-4be6-82dc-9809f43eeae9",
+      "client_id_issued_at": "9999999999000",
+      "client_secret_expires_at": "0",
+      "redirect_uris": [
+        "https://myTPP-App.fr/dsp2/callback.html"
+      ],
+      "token_endpoint_auth_method": "tls_client_auth",
+      "grant_types": [
+        "authorization_code"
+      ],
+      "client_name": "MyTPP-App",
+      "contacts": [
+        "myTPP-App.support@myTPP-corp.com"
+      ],
+      "provider_legal_id": "PSDFR-ACPR-99999",
+      "response_types": [
+        "code"
+      ],
+      "scope": "aisp pisp"
+    }
+  }
+}

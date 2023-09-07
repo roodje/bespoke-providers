@@ -1,0 +1,97 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/4339903A-0493-43CA-A855-EDAF40CD2835/balances",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 7531d7a8-7f5e-4bde-ae07-a5c587458ad7"
+      },
+      "Accept": {
+        "matches": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800001ZEZ3yAAH"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "4339903A-0493-43CA-A855-EDAF40CD2835",
+            "Amount": {
+              "Amount": "2262.17",
+              "Currency": "EUR"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2018-02-06T07:32:08+00:00",
+            "CreditLine": [
+              {
+                "Amount": {
+                  "Amount": "5000",
+                  "Currency": "EUR"
+                },
+                "Included": true,
+                "Type": "Credit"
+              }
+            ]
+          },
+          {
+            "AccountId": "4339903A-0493-43CA-A855-EDAF40CD2835",
+            "Amount": {
+              "Amount": "1000",
+              "Currency": "EUR"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "Information",
+            "DateTime": "2018-02-06T07:32:08+00:00",
+            "CreditLine": [
+              {
+                "Amount": {
+                  "Amount": "5000",
+                  "Currency": "EUR"
+                },
+                "Included": true,
+                "Type": "Credit"
+              }
+            ]
+          },
+          {
+            "AccountId": "4339903A-0493-43CA-A855-EDAF40CD2835",
+            "Amount": {
+              "Amount": "1000",
+              "Currency": "EUR"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "ClosingBooked",
+            "DateTime": "2018-02-06T07:32:08+00:00",
+            "CreditLine": [
+              {
+                "Amount": {
+                  "Amount": "5000",
+                  "Currency": "EUR"
+                },
+                "Included": true,
+                "Type": "Credit"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://developer.permanenttsb.ie/psd2api/ptsb/open-banking/v3.1/aisp/accounts/4339903A-0493-43CA-A855-EDAF40CD2835/balances",
+        "Last": "https://developer.permanenttsb.ie/psd2api/ptsb/open-banking/v3.1/aisp/accounts/4339903A-0493-43CA-A855-EDAF40CD2835/balances"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

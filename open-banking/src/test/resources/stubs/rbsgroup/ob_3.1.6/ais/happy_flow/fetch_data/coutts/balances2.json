@@ -1,0 +1,71 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/1234/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer test-accounts"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "transformers": [
+      "response-template"
+    ],
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "4.20",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2018-03-06T00:00:00Z"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "2.27",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "OpeningAvailable",
+            "DateTime": "2018-03-06T00:00:00Z"
+          },
+          {
+            "AccountId": "123",
+            "Amount": {
+              "Amount": "13.37",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Type": "InterimAvailable",
+            "DateTime": "2018-03-06T00:00:00Z"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://apis.aibgb.co.uk:443//api/open-banking/v3.1/123/balances"
+      },
+      "Meta": {
+        "TotalPages": 2
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

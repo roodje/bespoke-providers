@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/28rolohnjgfmdpzzltpie2my76ypcshztfk6/parties",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer rNs2kF3cpk1gD2WjWBmWbrO1vN1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Party": [
+          {
+            "PartyId": "a276dc39-2b2e-3610-9f9f-cf7185178fcb",
+            "PartyType": "Sole",
+            "Name": "User Name",
+            "FullLegalName": "User Full Legal Name"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/v3.1/aisp/accounts/28rolohnjgfmdpzzltpie2my76ypcshztfk6/parties",
+        "First": "",
+        "Prev": "",
+        "Next": "",
+        "Last": ""
+      },
+      "Meta": {
+        "TotalPages": 0,
+        "FirstAvailableDateTime": "2021-05-20T08:26:32.355Z",
+        "LastAvailableDateTime": "2021-05-20T08:26:32.355Z"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

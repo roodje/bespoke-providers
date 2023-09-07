@@ -1,0 +1,34 @@
+lovebird:
+  stet:
+    bnpparibasgroup:
+      bnpparibas:
+        paginationLimit: 1000
+        registrationUrl: https://localhost:${wiremock.server.https-port}/psd2/register
+        regions:
+          - code: BNP_PARIBAS
+            name: "Bnp Paribas"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/token
+            authUrl: https://localhost:${wiremock.server.https-port}/authorize
+      hellobank:
+        paginationLimit: 1000
+        registrationUrl: https://localhost:${wiremock.server.https-port}/psd2/register
+        regions:
+          - code: HELLO_BANK
+            name: "Hello Bank"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/token
+            authUrl: https://localhost:${wiremock.server.https-port}/authorize
+yolt:
+  qseal-certificate-exposure:
+    enabled: true
+    base-url: https://test.qseal.certificate.com
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

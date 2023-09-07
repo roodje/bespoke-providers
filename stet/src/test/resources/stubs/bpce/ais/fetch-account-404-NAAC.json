@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/stet/psd2/v1.4.2/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token-NAAC"
+      },
+      "Signature": {
+        "matches": "keyId=\"THE_CLIENT_ID\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) date digest x-request-id\",signature=\"(.*)\""
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 404,
+    "headers": {
+      "Date": "Wed, 07 Apr 2021 21:51:12 GMT",
+      "Server": "JBoss-EAP/7",
+      "Set-Cookie": "LB_APA_BAPI_PRO=rd2o00000000000000000000ffff647b5114o39080; path=/; Httponly",
+      "Max-Forwards": "20",
+      "Via": "1.0 bilpwsg383.dom101.prdres ()",
+      "X-CorrelationID": "Id-4f296e60eddef229e15b9264 0",
+      "Digest": "SHA-256=T41ZuEQpn/+E1O+fjEIs+1Hbzs92b/1wDy1AbVUjvKI=",
+      "Signature": "keyId=\"https://www.17515.live.api.89c3.com/api/keyid/certificate_4456680addae92c3976ac2131538eebff3401968fb316f311aa0f2a9209e4dce\",algorithm=\"rsa-sha256\",headers=\"digest date content-type x-request-id (request-target)\",signature=\"gzBxNBzJ7W+DVL7wBVUBWg6XVVX52EURuHz7ot+ZOnphRRpvmm89oOyuQEpwXeFlyi5jPgyHWlVuo8kEb90Dm9MxhMaVk50Ml0M1HEEFS4jVptpGZSs7tHXFwWxriclD2tVi2pgR99G5Z0hVHQkE2Sc5eQKa63L97sHMkLND5ww+uZksHB8+/lG/DgDk4dja11Z4fbQhy4Ia/DdZP8L2cN4mvOyL5Mhz2w8fyQEVRfV3pWS++CQKEa/c77NcuYtDgcR/Ma6lrX/wbEVGlIS3CBFhAAB4weDgyuAksuc4Zjpa6BbFT266Xzo/yXz5SAZ9I4Ob2OpzB3a7odClm2MEVw==\"",
+      "Vary": "Accept-Encoding",
+      "X-Application-Context": "application",
+      "X-Powered-By": "Undertow/1",
+      "X-Request-ID": "5f732ec8-3f51-4023-9884-2e2e0bace7fc",
+      "Content-Type": "application/json;charset=UTF-8",
+      "Keep-Alive": "timeout=5, max=298",
+      "Connection": "Keep-Alive",
+      "Transfer-Encoding": "chunked"
+    },
+    "jsonBody": {
+      "timestamp": "2021-05-27 14:07:11.000000000",
+      "status": 404,
+      "message": "NAAC",
+      "path": "/stet/psd2/v1.4.2/accounts"
+    }
+  }
+}

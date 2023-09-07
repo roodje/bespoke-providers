@@ -1,0 +1,101 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/session-server",
+    "headers": {
+      "Cache-Control": {
+        "equalTo": "no-cache"
+      },
+      "User-Agent": {
+        "equalTo": "yolt-user-agent"
+      },
+      "X-Bunq-Language": {
+        "equalTo": "en_US"
+      },
+      "X-Bunq-Region": {
+        "equalTo": "nl_NL"
+      },
+      "X-Bunq-Client-Request-Id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "X-Bunq-Geolocation": {
+        "equalTo": "0 0 0 0 000"
+      },
+      "X-Bunq-Client-Authentication": {
+        "equalTo": "22df07d3afe4f7dc445f023413392e5329c59a4ea73847b3f043af4701251273"
+      },
+      "X-Bunq-Client-Signature": {
+        "matches": "^\\S+$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "\"secret\":\"6fa459de8951067c68605df354172298df0c1f06b4737aa7ac5531b1de9fe2eb\""
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Response": [
+        {
+          "Id": {
+            "id": 6372800
+          }
+        },
+        {
+          "Token": {
+            "id": 6372800,
+            "created": "2020-05-18 10:05:14.666005",
+            "updated": "2020-05-18 10:05:14.666005",
+            "token": "a3cc2d56b7d30dae471c418b16cd15d674aa06ffa9f45beae39dbb9a8ac749c9"
+          }
+        },
+        {
+          "UserPaymentServiceProvider": {
+            "id": 28196,
+            "created": "2020-02-04 09:31:10.150359",
+            "updated": "2020-02-04 09:31:10.150359",
+            "alias": [
+              {
+                "type": "CERTIFICATE_DISTINGUISHED_NAME",
+                "value": "/CN=My App PISP AISP/C=NL",
+                "name": "My App PISP AISP"
+              }
+            ],
+            "avatar": {
+              "uuid": "74eed52f-704c-4896-a5b9-40ac8ca85607",
+              "image": [
+                {
+                  "attachment_public_uuid": "7289c222-d94d-4a95-b363-0d00b2a00f65",
+                  "height": 1023,
+                  "width": 1024,
+                  "content_type": "image/png"
+                }
+              ],
+              "anchor_uuid": "148c4a01-762e-4fac-9bb7-c24086803479"
+            },
+            "status": "ACTIVE",
+            "sub_status": "NONE",
+            "public_uuid": "148c4a01-762e-4fac-9bb7-c24086803479",
+            "display_name": "My App PISP AISP",
+            "public_nick_name": "My App PISP AISP",
+            "language": "en_US",
+            "region": "en_US",
+            "session_timeout": 324000,
+            "daily_limit_without_confirmation_login": {
+              "currency": "EUR",
+              "value": "250.00"
+            },
+            "relations": [],
+            "notification_filters": [],
+            "certificate_distinguished_name": "/CN=My App PISP AISP/C=NL"
+          }
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

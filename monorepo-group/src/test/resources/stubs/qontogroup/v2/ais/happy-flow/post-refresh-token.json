@@ -1,0 +1,29 @@
+{
+  "request": {
+    "url": "/oauth2/token",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF-8)"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalTo": "refresh_token=AWESOME-REFRESH-TOKEN&client_id=THE-CLIENT-ID&client_secret=THE-CLIENT-SECRET&grant_type=refresh_token"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access_token": "SHINNY-NEW-ACCESS-TOKEN",
+      "expires_in": 3599,
+      "refresh_token": "SHINNY-NEW-REFRESH-TOKEN",
+      "scope": "organization.read offline_access",
+      "token_type": "bearer"
+    }
+  }
+}

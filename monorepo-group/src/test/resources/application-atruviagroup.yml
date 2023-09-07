@@ -1,0 +1,13 @@
+lovebird:
+  atruviagroup:
+    volksbankenraiffeisen:
+      paginationLimit: 100
+      regionalBankList:
+        - code: 82064188
+          bic: GENODEF1WE1
+          name: "VR Bank Weimar eG"
+          baseUrl: https://localhost:${wiremock.server.https-port}
+        - code: 21762550
+          bic: GENODEF1HUM
+          name: "VR Bank Westküste eG"
+          baseUrl: https://localhost:${wiremock.server.https-port}

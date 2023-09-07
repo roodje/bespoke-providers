@@ -1,0 +1,56 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2020-12-03T10:38:37.325Z",
+            "Amount": {
+              "Amount": "1458.16",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2020-12-03T10:38:37.325Z",
+            "Amount": {
+              "Amount": "1458.16",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://api.nationwide.co.uk/open-banking/v3.1/aisp/accounts/aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr/balances"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

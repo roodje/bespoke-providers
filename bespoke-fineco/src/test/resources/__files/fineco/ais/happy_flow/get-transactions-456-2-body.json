@@ -1,0 +1,25 @@
+{
+  "cardAccount": {
+    "maskedPan": "1234567891234567"
+  },
+  "cardTransactions": {
+    "booked": [
+      {
+        "cardTransactionId": "3b5d3cd3-3207-8484-3589-f08e46a0046a",
+        "transactionAmount": {
+          "currency": "EUR",
+          "amount": "-256.67"
+        },
+        "transactionDetails":"causale pagamento2",
+        "transactionDate": "2019-01-25",
+        "bookingDate": "2019-11-05",
+        "maskedPAN": "1234567891234567",
+        "invoiced": true
+      }
+    ],
+    "_links": {
+      "cardAccount": "",
+      "next": "negativePath"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "DELETE",
+    "urlPathPattern": "/v1/consents/800000022",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    }
+  },
+  "response": {
+    "status": 204
+  }
+}

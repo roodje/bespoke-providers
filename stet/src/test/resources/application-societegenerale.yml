@@ -1,0 +1,115 @@
+lovebird:
+  stet:
+    societegeneralegroup:
+      pri:
+        pagination-limit: 500
+        regions:
+          - code: SOCIETE_GENERALE_PRI
+            name: "Societe Generale Particuliers"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            pisBaseUrl: https://localhost:${wiremock.server.https-port}/payments
+            tokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+            authUrl: https://localhost:${wiremock.server.https-port}/oauth2/authorize
+      pro:
+        pagination-limit: 500
+        regions:
+          - code: SOCIETE_GENERALE_PRO
+            name: "Societe Generale Professionnels"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            pisBaseUrl: https://localhost:${wiremock.server.https-port}/payments
+            tokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+            authUrl: https://localhost:${wiremock.server.https-port}/oauth2/authorize
+      ent:
+        pagination-limit: 500
+        regions:
+          - code: SOCIETE_GENERALE_ENT
+            name: "Societe Generale Entreprises"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            pisBaseUrl: https://localhost:${wiremock.server.https-port}/payments
+            tokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+            authUrl: https://localhost:${wiremock.server.https-port}/oauth2/authorize
+      creditdunord:
+        pagination-limit: 500
+        regions:
+          - code: CREDIT_DU_NORD
+            name: "Credit du Nord"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+            authUrl: https://localhost:${wiremock.server.https-port}/oauth2/authorize
+      banquecourtois:
+        pagination-limit: 500
+        regions:
+          - code: BANQUE_COURTOIS
+            name: "Banque Courtois"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+            authUrl: https://localhost:${wiremock.server.https-port}/oauth2/authorize
+      banquekolb:
+        pagination-limit: 500
+        regions:
+          - code: BANQUE_KOLB
+            name: "Banque Kolb"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+            authUrl: https://localhost:${wiremock.server.https-port}/oauth2/authorize
+      banquelaydernier:
+        pagination-limit: 500
+        regions:
+          - code: BANQUE_LAYDERNIER
+            name: "Banque Laydernier"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+            authUrl: https://localhost:${wiremock.server.https-port}/oauth2/authorize
+      banquenuger:
+        pagination-limit: 500
+        regions:
+          - code: BANQUE_NUGER
+            name: "Banque Nuger"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+            authUrl: https://localhost:${wiremock.server.https-port}/oauth2/authorize
+      banquerhonealpes:
+        pagination-limit: 500
+        regions:
+          - code: BANQUE_RHONE_ALPES
+            name: "Banque Rhône-Alpes"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+            authUrl: https://localhost:${wiremock.server.https-port}/oauth2/authorize
+      banquetarneaud:
+        pagination-limit: 500
+        regions:
+          - code: BANQUE_TARNEAUD
+            name: "Banque Tarneaud"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+            authUrl: https://localhost:${wiremock.server.https-port}/oauth2/authorize
+      societedebanquemonaco:
+        pagination-limit: 500
+        regions:
+          - code: SOCIETE_DE_BANQUE_MONACO
+            name: "Société de Banque Monaco"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+            authUrl: https://localhost:${wiremock.server.https-port}/oauth2/authorize
+      societemarseillaisedecredit:
+        pagination-limit: 500
+        regions:
+          - code: SOCIETE_MARSEILLAISE_DE_CREDIT
+            name: "Société Marseillaise de Crédit"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+            authUrl: https://localhost:${wiremock.server.https-port}/oauth2/authorize
+yolt:
+  qseal-certificate-exposure:
+    enabled: true
+    base-url: https://test.qseal.certificate.com
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

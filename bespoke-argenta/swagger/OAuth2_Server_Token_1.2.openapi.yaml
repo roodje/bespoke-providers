@@ -1,0 +1,263 @@
+components:
+  schemas:
+    accessTokenResponse:
+      properties:
+        access_token:
+          description: Access Token bound to the scope as requested in the authorization
+            request and confirmed by the PSU.
+          type: string
+        expires_in:
+          description: The lifetime of the access token in seconds.
+          type: number
+        jti:
+          description: identifier of the token
+          type: string
+        refresh_token:
+          description: Refresh Token, which can be utilised to obtain a fresh access
+            tokens in case the previous access token expired or was revoked. Especially
+            useful in the context of AIS and CIS, also this is an optional field for
+            refresh_token grant type.
+          type: string
+        scope:
+          description: oauth2 scope
+          type: string
+        token_type:
+          description: Set to "Bearer".
+          type: string
+      required:
+      - access_token
+      - token_type
+      title: accessTokenResponse
+      type: object
+    error:
+      properties:
+        error:
+          description: 'Error codes defined for Oauth2 as per RFC6749. Possible values:
+            invalid_request, invalid_token, insufficient_scope, unauthorized_client,
+            access_denied, unsupported_response_type, invalid_scope, server_error
+            and temporarily_unavailable'
+          type: string
+        error_description:
+          description: Error message description for error, used to assist the client
+            developer in understanding the error that occurred.
+          type: string
+        error_uri:
+          description: URI for web page with information about the error, used to
+            provide the client developer with additional information about the error.
+          type: string
+      required:
+      - error
+      title: error
+      type: object
+  securitySchemes:
+    apiKey:
+      description: Your personal API Key
+      in: header
+      name: apiKey
+      type: apiKey
+info:
+  description: "These APIs allow a **TPP** to use **Strong Customer Authentication\
+    \ (SCA)** following the OAuth2 standard, and to retrieve the tokens necessary\
+    \ for accessing the other APIs.\r\nThe design of these APIs is in accordance with\
+    \ the international Berlin Group NextGenPSD2 standard, version 1.3.\r\n  \r\n\
+    Included in this OAuth2 Authorization Server are endpoints for the following functionalities,\
+    \ which is defined in [RFC6750](https://tools.ietf.org/html/rfc6750) :  \r\n \
+    \ \r\n- Obtain refresh & access tokens\r\n\r\nHere are the step to follow :\r\n\
+    \r\n##### Integrated OAuth in the Use Case SCA for AIS/CBPII:\r\n- The AIS/CBPII\
+    \ consent data is posted to the consents endpoint.\r\n- The OAuth2 protocol is\
+    \ used with the \"Authorization Code Grant\" flow to get the consent authorized\
+    \ by the PSU, while using the \"scope\" attribute in OAuth2 to refer to the data\
+    \ from the first step.  \r\n- The TPP can use the access token received during\
+    \ the OAuth2 protocol to access the /accounts endpoint for authorized account\
+    \ information for the validity period of the authorized consent.  \r\n\r\n#####\
+    \ Integrated OAuth in the Use Case SCA for PIS:  \r\n- The payment data is posted\
+    \ to the corresponding payment initiation endpoint.  \r\n- The OAuth2 protocol\
+    \ is used with the \"Authorization Code Grant\" flow to process the payment authorized\
+    \ by the PSU, while using the \"scope\" attribute in OAuth2 to refer to the data\
+    \ from the first step.  \r\n- The corresponding payment is then automatically\
+    \ initiated by the ASPSP after a successful authorization by the PSU.\r\n\r\n\
+    ##### Integrated OAuth in the Use Case SCA for SBS:  \r\n- The signing basket\
+    \ data is posted to the corresponding signing basket initiation endpoint.  \r\n\
+    - The OAuth2 protocol is used with the \"Authorization Code Grant\" flow to process\
+    \ the signing basket authorized by the PSU, while using the \"scope\" attribute\
+    \ in OAuth2 to refer to the data from the first step.  \r\n- The corresponding\
+    \ signing basket is then automatically initiated by the ASPSP after a successful\
+    \ authorization by the PSU.  \r\n\r\nSee the guide in the Documentation section\
+    \ for a detailed explanation of how to use the OAuth2 Authorization Server.\r\n\
+    \r\n# Transport Layer\r\n\r\nThe communication between the **TPP** and the **ASPSP**\
+    \ is always secured by using a TLS-connection using TLS version 1.2.\r\n\r\nThe\
+    \ TLS-connection has to be established always including client (i.e. **TPP**)\
+    \ authentication. For this authentication the **TPP** has to use a qualified certificate\
+    \ for website authentication (QWAC). This qualified certificate has to be issued\
+    \ by a qualified trust service provider according to the eIDAS regulation. The\
+    \ content of the certificate has to be compliant with the requirements of EBA-RTS.\
+    \ The certificate of the **TPP** has to indicate all roles the **TPP** is authorized\
+    \ to use.\r\n\r\n# Actors\r\n\r\n - **Third Party Providers**: A party other than\
+    \ an **ASPSP** that provides payment related services.\r\n - **Payment Service\
+    \ User (PSU)**: A natural or legal person making use of a payment service as a\
+    \ payee, payer or both (PSD2 Article 4(10)).\r\n - **Account Servicing Payment\
+    \ Service Provider (ASPSP)**: An **ASPSP** is a PSP that provides and maintains\
+    \ a payment account for a **Payment Service User** (PSD 2 Article 4(15)).\r\n\r\
+    \n# Sequence diagram\r\n  \r\nThere is no sequence diagram for this service.\r\
+    \n  \r\n# Error management\r\n\r\nThe authorization server responds with an error\
+    \ as per defined in [RFC6749](https://tools.ietf.org/html/rfc6749) for more information\
+    \ on this."
+  title: NextGenPSD2 - OAuth2 Server Token
+  version: '1.2'
+openapi: 3.0.1
+paths:
+  /:
+    post:
+      description: 'The TPP sends a `POST` request to the token endpoint in order
+        to exchange the authorization code provided in the authorization response
+        for an access token and, optionally, a refresh token.
+
+
+        This endpoint is implementation of an OAuth 2.0 Authorization Bearer Token
+        specification as defined in `RFC6750`.
+
+
+        The TPP is authenticated during this request by utilising `Oauth 2.0 Mutual
+        TLS Client Authentication and Certificate Bound Access Tokens` in conjunction
+        with the TPP’s eIDAS certificate.'
+      operationId: Response of retrieve access token using authorization_code
+      parameters:
+      - description: 'Value supported is : `application/x-www-form-urlencoded`'
+        example: application/x-www-form-urlencoded;charset=UTF-8
+        in: header
+        name: Content-Type
+        required: true
+        schema:
+          type: string
+      - description: Indicates the size of the entity-body, in bytes, sent to the
+          recipient
+        example: '171'
+        in: header
+        name: Content-Length
+        required: false
+        schema:
+          type: string
+      - description: The apiKey is a token that a client provides when making API
+          calls.
+        example: 3fdd7da3-03ae-4fd5-bf0b-d09bc018cde1
+        in: header
+        name: apiKey
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            examples:
+              Response of retrieve access token using authorization_code:
+                value: grant_type=authorization_code&client_id=PSDBE-AIS-123456&redirect_uri=https%3A%2F%2Fazure.microsoft.com%2Ffr-fr%2Foverview%2Fwhat-is-azure%2F&code=xsSvIi&code_verifier=456
+              Response of retrieve access token using expired refresh_token:
+                value: grant_type=refresh_token&refresh_token=token_expired
+              Response of retrieve access token using refresh_token:
+                value: grant_type=refresh_token&refresh_token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..tIJdrW_OMKFuprRLS7vAlg.Vy_ifGUGodY9dq1bQZWXkW3-fUdLFTewoCtILQQL6_qlqjL1YBUXWBHhWR4_Gf-d65t2WWQi-yYnN94mY9yNL2huj9ZdnNFU-xiHKM6-x37pxNXrTmKfbqyy4C8GH6uvuL6T-RPsIv6WcnrY_IZWIc_6nUGz3Oy4FXGKiz0sElaHW1cEI1b7TQ4qxHHQcNDh0TDG9k-1L0wDZEDPu9HGH2HbrjQps6nOkIAmKxYj0nUktRMGfvooNluGkM1Gk5nKoGIaRvRBFfF02PyJg5701ZM77X3Xeh3AZe4dKIf6lj_AP9SSZP_Y5cOYUA4R5Mqv6yiB-arywP-nNWjNkmkI8MSpBqueIxOgObW1iSMOClcT0J1Tpc1Eo8O-VYTU8CEpso0RHhl9TPn_CvlRH9zT1lWSV9j81Vsako3EPGaCpj_rIBd5zcpnDDuVj2z7aB0lQ-3Udi5U6qu4E6joB6PeUQ3iqSMrU5RV1NEmkXHuIDcvS5I6yBDdj5vDdttEvcU2_gb_ZKg5afuoKb_a2qNtA5eXSZeuafZhJg6bFGZnYfY-ITtRDR9xeUlIvMDL93ZWRpDkJW6wd9zPQ4jkYGlQDKbWLmOx6hKNEGywypRQFtcBK4nLBoqcjx6GpTwPIFlkZgiZn8jEf4A_-WQpaeDH53gXovuLMm4sQj-wm0gpu8vfIphDbTiXZvKUn1G6_P7JB7l-61MHQHxzmz_0cQ6wGswBZTy5IMxrsvfpJ8esGtliW6wsURxDZreil3E04UiieRbwOCLKW_s9XlY_SeTif_UQK9ruZzf6pkkAnyRsw6jJDWTFfRhsBhubPP-cblwMBw5SUh8LtqbSNjSUwhwGaq-28oRVSlHOMF37LjcjXZZLUUFUM-KwXzlsxlRxRS-9BZDvTdpLtyvEDi0lLrk9OUxIrlJYpeHzdNgkmuNlK1OBfGdR-MmWIwwZ3d1zbw6qgYK-OeihnJtdEoxZY60McoBmBfruWMxZDJUKWeLzIspa8M0PBNuo-R3RfCmZlXpPsWFnjXF1PBxE8BUqiJHakYP0SYUwPpkboJZWfen39lxhPzJkk8s8afjh79vTryBOgv0qk8WwQFFgnh4wkEefBSpe7v8EY6qPF3IixFL7w3dA378HoTRgh9uyE63_9WWdPva3j4yGHh_cYbjNONAtkuowEx0aDtbgzjuH5HZh4aDgztj3MvpP3NCo2y2sSTiicBpaBjC451dvU19FWOP-hmPR6YeKcKMI5q_sZfcVFXI0ZYAldNkmj8PvF60P90Bdbc_LkAe0wyndz4fmv3TjcMvUtc529qQw4ElH-h2UUKXsfw3bgF6PQvt3334f8q19U1tFPfmrVT9qfT8jDE9w6RQOCospukub-0jSV897HQKCDVsBrhRAszmQrl0hkRHvl4WQAZDC_Td_PIJRHZDInUhaDrhCr5yjo9NTa4gNeoSY7vea7vN-CeS5uvOyy7fl2XqXVrtu3a_-du8QNeVzwCN4K5ZbdG98_M5OOnOR9a-MY__0Z62Hfr_v-sOZbghVsmD98tjjLth0UJ15QJFWx5xtTjE_NRaVMZgN_aSQiKccG07mElvxK3oVRU-Jf3nVMQjwx8Q53UW2qcplYSWfh3sDy42n_5a5nT0I1tcyu2GugVKdoXiHdC-sMPD_hyDmCAt4NZ6BFehazaS5bE1h9fyfBbDsv3tPjIo6YHZZLwuMv9WoUc-Wsfxkf0ViDIxAjvdvaEUHI-rUDmQxwESSKmgZpWVRBM_-d8X_vzTR6oe9212q13L9awpIt0VwbDj-5qvI6qasVmPl2Nga3S6mjxLd2iVSf6icwKLEderP-INuYR2l9krih8lLMs0O8we1OLWJN6sAHAjebnqe8yhQqlqgbWu4cjhlXkhrwGAJ0McPa3rwqtJOiQB0-vCZ6ITwfMsFCKq5wuWFZViFrF7RW2GAXaqz7XNCJQalYDeFn6yUrZRe_1XvPkjf4z4Ay4x0wylgiePSQtWPZIYLL2z0bujdGir6g2Fx9IuYvltyELVSSflelOL35VQjPh5BPAc44pPW9L0HpjZAl4ImLV6YarinJ-bBnUIawL1auS-h3wZgNIj4C-hzrBrBLi3ODERGw3iWX_vDOrAJ5LtFE6kxAis6y91_SJw1FILuc3EqGBdZMNn-q3rXE3LKUtApXHpSqRpC23xeFLk33DRhB3zD--SOF2LmygJJEPWESaY79EZZIitd4drbl4ZWo-1qWajZP1-jONA7jJhi2u4USjXzOQOdFctu3POz3ja7SKRRT1jtq_dGmMJAPp3pAbkhUaQmvV7Bo_AWhNFdL-hnL61k-2PMLsYlBLrBbGdR-AgUljk-vPzH9kJw1e-egnuYgfWFRYS9LEwQJ8qg-A1NijFKZdPZnH7OvErprZJfiDlxbUQ.Sq5Ng5qK_DHlUVKefh2M0A
+              Response of retrieve access token with invalid authorization_code:
+                value: grant_type=authorization_code&client_id=PSDBE-AIS-123456&code=invalid_code&code_verifier=789&redirect_uri=https%3A%2F%2Fazure.microsoft.com%2Ffr-fr%2Foverview%2Fwhat-is-azure%2F
+              Response of retrieve access token with invalid_client:
+                value: grant_type=authorization_code&client_id=badClientId&redirect_uri=https%3A%2F%2Fazure.microsoft.com%2Ffr-fr%2Foverview%2Fwhat-is-azure%2F&code=xsSvIi&code_verifier=456
+            schema:
+              properties:
+                client_id:
+                  description: "OrganizationIdentifier as provided in the eIDAS certificate\
+                    \ (mandatory for access token). The organizationIdentifier attribute\
+                    \ shall contain information using the following structure in the\
+                    \ order presented in the section `client_id` format below.\nThe\
+                    \ client_id attribute shall contain information using the following\
+                    \ structure in the presented order:\n - \"PSD\" as 3 character\
+                    \ legal person identity type reference\n - 2 character ISO 3166\
+                    \ country code representing the NCA country\n - hyphen-minus \"\
+                    -\"\n - 2-8 character NCA identifier (A-Z uppercase only, no separator)\n\
+                    \ - hyphen-minus \"-\"\n - PSP identifier (authorization number\
+                    \ as specified by NCA)"
+                  type: string
+                code:
+                  description: Authorization code from the authorization response
+                    (mandatory for access token).
+                  type: string
+                code_verifier:
+                  description: PKCE verifier according to cryptographic RFC 7636 (https://tools.ietf.org/html/rfc7636)
+                    used to prevent code injection attacks (mandatory for access token).
+                  type: string
+                grant_type:
+                  description: '`authorization_code` is recommended to retrieve access
+                    token using authorisation code
+
+
+                    `refresh_token` is recommended to retrieve a new access token
+                    from refresh token.'
+                  type: string
+                redirect_uri:
+                  description: The exact uri of the TPP where the OAuth2 server redirected
+                    the user agent to for this particular transaction (mandatory for
+                    access token).
+                  type: string
+                refresh_token:
+                  description: Refresh Token retrieved with Access Token (mandatory
+                    for refresh token).
+                  type: string
+              required:
+              - grant_type
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                Response of retrieve access token using authorization_code:
+                  value: "{\r\n  \"scope\" : \"PIS\",\r\n  \"jti\" : \"edrrgz\",\r\
+                    \n  \"access_token\" : \"a00000000000000000000003\",\r\n  \"expires_in\"\
+                    \ : 45688888888,\r\n  \"token_type\" : \"Bearer\",\r\n  \"refresh_token\"\
+                    \ : \"a00000000000000000000003\"\r\n}"
+                Response of retrieve access token using refresh_token:
+                  value: "{\r\n  \"scope\" : \"PIS\",\r\n  \"jti\" : \"edrrgz\",\r\
+                    \n  \"access_token\" : \"a00000000000000000000003\",\r\n  \"expires_in\"\
+                    \ : 45688888888,\r\n  \"token_type\" : \"Bearer\"\r\n}"
+              schema:
+                $ref: '#/components/schemas/accessTokenResponse'
+          description: OK
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+        '400':
+          content:
+            application/json:
+              examples:
+                Response of retrieve access token using expired refresh_token:
+                  value: "{\r\n  \"error\" : \"invalid_grant\",\r\n  \"error_description\"\
+                    \ : \"refresh token is expired\"\r\n}"
+                Response of retrieve access token with invalid authorization_code:
+                  value: "{\r\n  \"error\" : \"invalid_grant\",\r\n  \"error_description\"\
+                    \ : \"Invalid authorization code, authorization code not found\"\
+                    \r\n}"
+                Response of retrieve access token with invalid_client:
+                  value: "{\r\n  \"error\" : \"invalid_client\",\r\n  \"error_description\"\
+                    \ : \"Client id 'badClientId' in request does not match with the\
+                    \ certificate one 'PSDBE-AIS-123456'\"\r\n}"
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Media type of the payload
+              schema:
+                type: string
+            Location:
+              description: Indicates the URL to redirect a page to
+              schema:
+                type: string
+      summary: Retrieves an access token
+      tags:
+      - Token
+security:
+- apiKey: []
+servers:
+- url: https://api.payments.argenta.be/psd2/v1/berlingroup-auth/token
+tags:
+- description: OAuh2 Token's API
+  name: Token

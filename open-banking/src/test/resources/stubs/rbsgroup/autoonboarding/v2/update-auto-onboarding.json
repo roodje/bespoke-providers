@@ -1,0 +1,26 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "/register/SOME_FAKE_CLIENT_ID",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "matches": "54321"
+      },
+      "Content-Type": {
+        "equalTo": "application/jwt"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "client_id": "SOME_FAKE_CLIENT_ID"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

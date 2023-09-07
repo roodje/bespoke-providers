@@ -1,0 +1,263 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/123/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{1,3}$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer test-accounts"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "0.01",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "TO 10001338",
+            "TransactionReference": "2011101221283807",
+            "BookingDateTime": "2020-11-10T12:21:28Z",
+            "ValueDateTime": "2020-11-11T03:49:00Z",
+            "ProprietaryBankTransactionCode": {
+              "Code": "SBT"
+            }
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "0.01",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "TransactionInformation": "FROM 10001265",
+            "BookingDateTime": "2017-03-23T00:00:00+00:00",
+            "ProprietaryBankTransactionCode": {
+              "Code": "SBT"
+            }
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "15.13",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "TO 10001575",
+            "BookingDateTime": "2012-11-02T00:00:00+00:00",
+            "ProprietaryBankTransactionCode": {
+              "Code": "SBT"
+            }
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "7.87",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "TransactionInformation": "NONREF            831400O00254290   RAINBOW MOTEST-L  BAAC              INTER A/C TFR",
+            "BookingDateTime": "2012-10-25T00:00:00+01:00",
+            "ProprietaryBankTransactionCode": {
+              "Code": "ITL"
+            }
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "4.31",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "11JUN A/C 10001311",
+            "BookingDateTime": "2012-07-16T00:00:00+01:00",
+            "ProprietaryBankTransactionCode": {
+              "Code": "CHG TO"
+            }
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "12.95",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "01JUN A/C 10001311",
+            "BookingDateTime": "2012-06-18T00:00:00+01:00",
+            "ProprietaryBankTransactionCode": {
+              "Code": "CHG TO"
+            }
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "1.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "836100 23MAY 1010",
+            "BookingDateTime": "2012-05-23T00:00:00+01:00"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "1.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "TransactionInformation": "836100 22MAY 1035",
+            "BookingDateTime": "2012-05-22T00:00:00+01:00"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "12.95",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "01MAY A/C 10001311",
+            "BookingDateTime": "2012-05-17T00:00:00+01:00",
+            "ProprietaryBankTransactionCode": {
+              "Code": "CHG TO"
+            }
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "1.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "836100 19APR 1044",
+            "BookingDateTime": "2012-04-19T00:00:00+01:00"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "1.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "TransactionInformation": "836100 18APR 1050",
+            "BookingDateTime": "2012-04-18T00:00:00+01:00"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "12.53",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "30MAR A/C 10001311",
+            "BookingDateTime": "2012-04-16T00:00:00+01:00",
+            "ProprietaryBankTransactionCode": {
+              "Code": "CHG TO"
+            }
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "1.78",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "TransactionInformation": "S/C REFUND",
+            "BookingDateTime": "2012-03-21T00:00:00+00:00",
+            "ProprietaryBankTransactionCode": {
+              "Code": "CHG TO"
+            }
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "1000.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "836100 20MAR 1057",
+            "BookingDateTime": "2012-03-20T00:00:00+00:00"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "1.78",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionInformation": "05FEB A/C 10001311",
+            "BookingDateTime": "2012-03-19T00:00:00+00:00",
+            "ProprietaryBankTransactionCode": {
+              "Code": "CHG TO"
+            }
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "1000.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "TransactionInformation": "836100 19MAR 1138",
+            "BookingDateTime": "2012-03-19T00:00:00+00:00"
+          },
+          {
+            "AccountId": "1234",
+            "Amount": {
+              "Amount": "50.00",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "TransactionInformation": "FROM 10001575",
+            "BookingDateTime": "2012-02-28T00:00:00+00:00",
+            "ProprietaryBankTransactionCode": {
+              "Code": "SBT"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://api.rbs.co.uk/accounts/160047-10001311/transactions"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

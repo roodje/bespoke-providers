@@ -1,0 +1,95 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/psd2/v2/accounts/1/transactions",
+    "queryParameters": {
+      "dateFrom": {
+        "matches": "^\\d{4}-\\d{2}-\\d{2}$"
+      },
+      "index": {
+        "absent": true
+      }
+    },
+    "headers": {
+      "authorization": {
+        "equalTo": "Bearer b343aa01-ea3c-4fe5-9658-944c82cb7683"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "signature": {
+        "matches": "keyId=\"https://test.qseal.certificate.com/a4:62:72:3b:cc:7f:37:07:17:5d:2d:21:18:f1:e2:2a:d0:fb:79:1a.pem\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) \\(created\\) \\(expires\\) host x-request-id digest\",\\(created\\)=(\\d*),\\(expires\\)=(\\d*),signature=\"([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*\""
+    },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "transactions": [
+        {
+          "resourceId": "1",
+          "entryReference": "1001",
+          "transactionAmount": {
+            "amount": "-12.25",
+            "currency": "EUR"
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "transactionDate": "2019-02-26",
+          "bookingDate": "2019-02-27",
+          "valueDate": "2019-02-28",
+          "remittanceInformation":
+          {
+            "unstructured": [
+              "transaction-information-1001"
+            ]
+          }
+        },
+        {
+          "resourceId": "1",
+          "entryReference": "1002",
+          "transactionAmount": {
+            "amount": "245.50",
+            "currency": "EUR"
+          },
+          "creditDebitIndicator": "CRDT",
+          "status": "BOOK",
+          "bookingDate": "2019-02-27",
+          "valueDate": "2019-02-28"
+        },
+        {
+          "resourceId": "1",
+          "entryReference": "1002",
+          "transactionAmount": {
+            "amount": "245.50",
+            "currency": "EUR"
+          },
+          "creditDebitIndicator": "CRDT",
+          "status": "RJCT",
+          "bookingDate": "2019-02-27",
+          "valueDate": "2019-02-28"
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "accounts/1/transactions"
+        },
+        "parent-list": {
+          "href": "accounts"
+        },
+        "balances": {
+          "href": "accounts/1/balances"
+        },
+        "next": {
+          "href": "/accounts/1/transactions?index=2%7C20091231%7C2009-12-31-12.12.12.000012%7C96%7C272%7C272&dateFrom=2009-12-31&dateTo=2009-12-31"
+        }
+      }
+    }
+  }
+}

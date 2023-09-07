@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/v1/consentinfo",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json;charset=UTF-8"
+      },
+      "Authorization": {
+        "equalTo": "Bearer throws429"
+      },
+      "API-Key": {
+        "equalTo": "7zacIF8Cu5o3XF4gUll4sRGuI2gDYiCA"
+      }
+    }
+  },
+  "response": {
+    "status": 429,
+    "headers": {
+      "Date": "Tue, 30 Mar 2021 05:20:14 GMT",
+      "Content-Type": "application/json",
+      "Content-Length": "409",
+      "Connection": "keep-alive",
+      "Trace-Id": "293329a1-f7a5-4583-8051-03b94007b90e"
+    },
+    "jsonBody": {
+      "errors": [
+        {
+          "code": "ERR_7002_001",
+          "message": "Rate limit violation",
+          "reference": "https://developer.abnamro.com",
+          "traceId": "293329a1-f7a5-4583-8051-03b94007b90e",
+          "status": 429,
+          "category": "TOO_MANY_REQUESTS"
+        }
+      ]
+    }
+  }
+}

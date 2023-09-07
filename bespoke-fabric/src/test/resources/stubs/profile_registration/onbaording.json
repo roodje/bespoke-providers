@@ -1,0 +1,26 @@
+{
+  "request": {
+    "urlPattern": "/onboarding/.*",
+    "method": "POST",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "content-type": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+            "aisp": true,
+            "piisp": false,
+            "pisp": true
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201
+  }
+}

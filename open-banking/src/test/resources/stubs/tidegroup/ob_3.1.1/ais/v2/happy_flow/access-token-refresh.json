@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth2/token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "matches": "12345|67890"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=refreshToken"
+      },
+      {
+        "contains": "client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer"
+      },
+      {
+        "contains": "client_assertion="
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "SOME_ACCESS_TOKEN",
+      "refresh_token": "SOME_REFRESH_TOKEN",
+      "scope": "openid accounts",
+      "state": "cf7f8a18-6e32-457c-b495-8164e6613f91",
+      "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IlVxQjFYZDNoV0x3UW9qamZNZHZnTDRFVU9XNCJ9.eyJzdWIiOiI1MGNhNWVkNS0zMTdjLTQ1MWMtODQzOC0zYjNmYjkxNDY2ZTEiLCJhY3IiOiJ1cm46b3BlbmJhbmtpbmc6cHNkMjpzY2EiLCJvcGVuYmFua2luZ19pbnRlbnRfaWQiOiI1MGNhNWVkNS0zMTdjLTQ1MWMtODQzOC0zYjNmYjkxNDY2ZTEiLCJhdWQiOiI1djh4T1haR2dBc0N3UVEzdTBEV0U4IiwianRpIjoiSTNrZWt4cjdVWThYaXozUWFVQWlNYSIsImlzcyI6Imh0dHBzOlwvXC9hdXRoLm9iYXBpLmJhbmtvZmlyZWxhbmQuY29tIiwiaWF0IjoxNTMyNjE3OTUzLCJleHAiOjE1MzI2NTM5NTMsIm5vbmNlIjoiNDZmYzIwZjgtZDI3Yi00YWFkLWJlNWItOTdhMjVkNzQ1ZjQ3IiwiYXV0aF90aW1lIjoxNTMyNjE3OTQ3LCJjX2hhc2giOiJQQzdURVJoNHE0Z3VZbWpEcGJtUHJnIiwic19oYXNoIjoibWhaQ3VjTmtvYmMwczBhUTdZMlNHdyJ9.QOl__F51Kds1vmiV4ZU6q7Goj3rXBtAjI698aocrtB1N1IJNZyUy0R9GoTvsqyJ5rnnoWjbFt_5QC7wEdWEVEPH0OQiImMdVERke7aj7Gd_u_JbEMz9u5s-bl43UHNeUl3peZLx10F5GrK1qyfpHWlqZLe0XGrDjNWMmI2JWpyktLu77ElONhUo71kPS4D2lLUvtQyA9_q1ImUkYEO78rfRSD6eupI5yWBWvV_O4jxJ93j5OMmQBXA3-oLcVbcJDAbpzQ9aF5Ms63weUcUnI2zfjbDs-VCoHJg2uEOoCydPgL66lwmX7k_3Tq1qy4tACGeOuXrdEvC3lRdf4SGHgEw",
+      "token_type": "Bearer",
+      "expires_in": 388800
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

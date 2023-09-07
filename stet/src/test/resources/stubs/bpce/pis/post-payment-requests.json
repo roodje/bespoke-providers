@@ -1,0 +1,105 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/stet/psd2/v1.4.2/payment-requests",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/json"
+      },
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Signature": {
+        "matches": "keyId=\"THE_CLIENT_ID\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) date digest x-request-id\",signature=\"(.*)\""
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "Date": {
+        "matches": "[A-Za-z]+, \\d?\\d [A-Za-z]+ \\d{4} \\d{1,2}:\\d{1,2}:\\d{1,2} [A-Za-z]{3}"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.paymentInformationId =~ /[a-zA-Z0-9]{32}/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.creationDateTime =~ /[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}Z/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.numberOfTransactions == 1)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.chargeBearer == 'SLEV')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.requestedExecutionDate == '2020-01-01T08:00:00.000+01:00')]"
+      },
+      {
+        "matchesJsonPath": "$.paymentTypeInformation[?(@.serviceLevel == 'SEPA')]"
+      },
+      {
+        "matchesJsonPath": "$.paymentTypeInformation[?(@.categoryPurpose == 'CASH')]"
+      },
+      {
+        "matchesJsonPath": "$.beneficiary.creditor[?(@.name == 'myMerchant')]"
+      },
+      {
+        "matchesJsonPath": "$.beneficiary.creditorAccount[?(@.iban == 'FR7613807008043001965406128')]"
+      },
+      {
+        "matchesJsonPath": "$.debtorAccount[?(@.iban == 'FR7610907000301234567890125')]"
+      },
+      {
+        "matchesJsonPath": "$.supplementaryData[?(@.successfulReportUrl == 'https://www.yolt.com/callback/payment?state=1')]"
+      },
+      {
+        "matchesJsonPath": "$.supplementaryData[?(@.unsuccessfulReportUrl == 'https://www.yolt.com/callback/payment?state=1&error=wrong')]"
+      },
+      {
+        "matchesJsonPath": "$.supplementaryData[?(@.acceptedAuthenticationApproach.[0] == 'REDIRECT')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].paymentId[?(@.instructionId =~ /[a-zA-Z0-9]{32}/i)]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].instructedAmount[?(@.currency == 'EUR')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].instructedAmount[?(@.amount == '10.51')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].remittanceInformation[?(@.unstructured.[0] == 'MyRemittanceInformation123')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].paymentId[?(@.instructionId =~ /[a-zA-Z0-9]{0,50}/i)]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].paymentId[?(@.endToEndId == 'b678bef5-dd48-4df1-81d2-1b14e5ca4e01')]"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "X-Frame-Options": "DENY",
+      "Transfer-Encoding": "chunked",
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "appliedAuthenticationApproach": "REDIRECT",
+      "_links": {
+        "consentApproval": {
+          "href": "https://bpce.com/psuId?paymentRequestRessourceId=0000000180-1551358254000131359238543&nonce=Id-2ed9775ce61639e9a3c94ecc",
+          "templated": null
+        }
+      }
+    }
+  }
+}

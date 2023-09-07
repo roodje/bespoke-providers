@@ -1,0 +1,68 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/psd2/v1/accounts/TE0000001/transactions",
+    "queryParameters": {
+      "page": {
+        "equalTo": "1"
+      }
+    },
+    "headers": {
+      "Accept": {
+        "matches": "application/hal\\+json;charset=utf-8;version=1.4.2"
+      },
+      "Digest": {
+        "matches": "SHA-256=([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "Signature": {
+        "matches": "keyId=\"https://test.qseal.certificate.com/[a-zA-Z0-9:]{59}.pem\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) x-request-id digest psu-ip-address\", signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "X-Request-ID": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Authorization": {
+        "matches": "Bearer accessToken123456700"
+      },
+      "psu-ip-address": {
+        "matches": "127.0.0.1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "transactions": [
+        {
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": 2.65
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2020-03-18T00:00:00",
+          "valueDate": "2020-03-18T00:00:00",
+          "transactionDate": "2020-03-16T00:00:00",
+          "remittanceInformation": {
+            "unstructured": [
+              "ECH PRET 0709000009102"
+            ]
+          }
+        }
+      ],
+      "_links": {
+        "first": {
+          "href": "/psd2/v1/accounts/TE0000001/transactions?page=0"
+        },
+        "last": {
+          "href": "/psd2/v1/accounts/TE0000001/transactions?page=1"
+        },
+        "self": {
+          "href": "/psd2/v1/accounts/TE0000001/transactions?page=1"
+        }
+      }
+    }
+  }
+}

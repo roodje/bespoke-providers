@@ -1,0 +1,90 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/platform/enabler/psd2orchestrator/ais/2.3.2/accounts/2/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 00000000-0000-0000-0000-000000000000"
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      },
+      "consent-id": {
+        "equalTo": "4"
+      },
+      "aspsp-code": {
+        "matches": "^.+$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "date": {
+        "matches": "^[a-zA-Z]{3},\\s[0-9]{1,2}\\s[a-zA-Z]{3}\\s[0-9]{4}\\s(2[0-3]|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])\\sUTC$"
+      },
+      "digest": {
+        "equalTo": "sha-512=slspTLTetp6gCkw88xE5BIAbYBXllWvQGahXCx/h1gQOlE7zze4W0KRlA8puZZol8hz5zt3BPzUqPJgTjBXWrw=="
+      },
+      "signature": {
+        "matches": "keyId=\"13299021239615735660\",algorithm=\"rsa-sha512\",headers=\"date digest x-request-id\",signature=\"([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*\""
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIICMzCCAZygAwIBAgIJALiPnVsvq8dsMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzAeFw0xMzAzMTkxNTQwMTlaFw0xODAzMTgxNTQwMTlaMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzdGfxi9CNbMf1UUcvDQh7MYBOveIHyc0E0KIbhjK5FkCBU4CiZrbfHagaW7ZEcN0tt3EvpbOMxxc/ZQU2WN/s/wPxph0pSfsfFsTKM4RhTWD2v4fgk+xZiKd1p0+L4hTtpwnEw0uXRVd0ki6muwV5y/P+5FHUeldq+pgTcgzuK8CAwEAAaMPMA0wCwYDVR0PBAQDAgLkMA0GCSqGSIb3DQEBBQUAA4GBAJiDAAtY0mQQeuxWdzLRzXmjvdSuL9GoyT3BF/jSnpxz5/58dba8pWenv3pj4P3w5DoOso0rzkZy2jEsEitlVM2mLSbQpMM+MUVQCQoiG6W9xuCFuxSrwPISpAqEAuV4DNoxQKKWmhVv+J0ptMWD25Pnpxeq5sXzghfJnslJlQND"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "iban": "IT22T22222222222",
+        "currency": "EUR"
+      },
+      "balances": [
+        {
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": "3328.15"
+          },
+          "balanceType": "authorised",
+          "lastChangeDateTime": "2020-09-28T20:46:12.000Z",
+          "referenceDate": "2020-04-02"
+        },
+        {
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": "2328.15"
+          },
+          "balanceType": "closingBooked",
+          "lastChangeDateTime": "2020-09-28T20:46:12.000Z",
+          "referenceDate": "2020-04-02"
+        },
+        {
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": "1328.15"
+          },
+          "balanceType": "available",
+          "lastChangeDateTime": "2020-09-28T20:46:12.000Z",
+          "referenceDate": "2020-04-02"
+        },
+        {
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": "328.15"
+          },
+          "balanceType": "expected",
+          "lastChangeDateTime": "2020-09-28T20:46:12.000Z",
+          "referenceDate": "2020-04-02"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "cpaas-total-pages": "1",
+      "cpaas-total-elements": "1"
+    }
+  }
+}

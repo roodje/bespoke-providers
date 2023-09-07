@@ -1,0 +1,19 @@
+lovebird:
+  tescobank:
+    pagination-limit: 2
+    baseUrl: https://localhost:${wiremock.server.https-port}
+    oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth-token
+    oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+    registrationUrl: https://localhost:${wiremock.server.https-port}/register
+    registrationAudience: https://localhost:${wiremock.server.https-port}
+    audience: audience
+
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

@@ -1,0 +1,20 @@
+{
+  "request": {
+    "url": "/v1/consents/consentId",
+    "method": "DELETE",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "X-Request-ID": {
+        "equalTo": "traceId"
+      }
+    }
+  },
+  "response": {
+    "status": 204
+  }
+}

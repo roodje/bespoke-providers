@@ -1,0 +1,57 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/aisp/account-access-consents",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json;charset=UTF-8"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": "{'Data':{'Permissions':['ReadAccountsDetail','ReadBalances','ReadDirectDebits','ReadProducts','ReadStandingOrdersDetail','ReadTransactionsCredits','ReadTransactionsDebits','ReadTransactionsDetail']},'Risk':{}}"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "12345"
+    },
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "obaispaccountinformationconsent_0000A48QKMa8mFaTN9Y0LA",
+        "Status": "AwaitingAuthorisation",
+        "StatusUpdateDateTime": "2021-02-10T15:23:52.829Z",
+        "CreationDateTime": "2021-02-10T15:23:51.829Z",
+        "Permissions": [
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadDirectDebits",
+          "ReadProducts",
+          "ReadStandingOrdersDetail",
+          "ReadTransactionsCredits",
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail",
+          "ReadOffers",
+          "ReadPAN",
+          "ReadParty",
+          "ReadPartyPSU",
+          "ReadScheduledPaymentsDetail",
+          "ReadStatementsDetail"
+        ],
+        "ExpirationDateTime": "2017-08-02T00:00:00+00:00",
+        "TransactionFromDateTime": "2017-05-03T00:00:00+00:00",
+        "TransactionToDateTime": "2017-12-03T00:00:00+00:00"
+      },
+      "Risk": {},
+      "Links": {
+        "Self": "https://openbanking.monzo.com/open-banking/v3.1/aisp/account-access-consents/obaispaccountinformationconsent_0000A48QKMa8mFaTN9Y0LA"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    }
+  }
+}

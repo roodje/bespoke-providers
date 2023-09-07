@@ -1,0 +1,46 @@
+# Eclipse
+.classpath
+.project
+.factorypath
+.springBeans
+.settings/
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/
+build/
+bin/
+
+# macOS
+.DS_Store
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.m2
+
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!/.mvn/wrapper/maven-wrapper.jar
+
+#other
+logback.xml
+
+# Keep these cert's and private key out of version control
+*.crt
+*.cer
+*.pem
+*.csr
+*.p12
+*.key
+
+
+!/src/test/resources/certificates/yolt_certificate.pem

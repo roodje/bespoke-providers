@@ -1,0 +1,100 @@
+{
+  "request": {
+    "url": "/v1/accounts/AT099900000000001511/transactions?bookingStatus=both&dateFrom=2022-01-01",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-CLIENT-ACCESS-TOKEN"
+      },
+      "Consent-ID": {
+        "equalTo": "8edfea3a-a660-11eb-bcbc-0242ac130002"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "AT099900000000001511",
+        "bban": null,
+        "pan": null,
+        "maskedPan": null,
+        "msisdn": null,
+        "currency": null
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "22123461",
+            "entryReference": null,
+            "endToEndId": null,
+            "mandateId": null,
+            "checkId": null,
+            "creditorId": "CreditorID2",
+            "bookingDate": "2022-07-05",
+            "valueDate": "2022-07-06",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-1533.11"
+            },
+            "currencyExchange": null,
+            "creditorName": "Georg Mustermann",
+            "creditorAccount": {
+              "iban": "AT439900000000010017",
+              "bban": null,
+              "pan": null,
+              "maskedPan": null,
+              "msisdn": null,
+              "currency": null
+            },
+            "creditorAgent": null,
+            "ultimateCreditor": null,
+            "debtorName": "Marianne Mustermann",
+            "debtorAccount": {
+              "iban": "AT099900000000001511",
+              "bban": null,
+              "pan": null,
+              "maskedPan": null,
+              "msisdn": null,
+              "currency": null
+            },
+            "debtorAgent": null,
+            "ultimateDebtor": null,
+            "remittanceInformationUnstructured": "Salary",
+            "remittanceInformationUnstructuredArray": null,
+            "remittanceInformationStructured": null,
+            "remittanceInformationStructuredArray": null,
+            "additionalInformation": null,
+            "additionalInformationStructured": null,
+            "purposeCode": null,
+            "bankTransactionCode": null,
+            "proprietaryBankTransactionCode": null,
+            "balanceAfterTransaction": null,
+            "_links": null
+          }
+        ],
+        "pending": [],
+        "information": null,
+        "_links": {
+          "account": {
+            "href": "/v1/accounts/AT099900000000001511"
+          },
+          "next": {
+            "href": "/v1/accounts/AT099900000000001511/transactionsNextPage"
+          }
+        }
+      },
+      "balances": null,
+      "_links": null
+    }
+  }
+}

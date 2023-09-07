@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/identity/v1.0/[0-9A-Za-z]+/connect/token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "matches": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "fake-institution-id"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fwww.yolt.com%2Fcallback%2F81c0374e-838a-42dc-8739-6f04b268a17c"
+      },
+      {
+        "contains": "code=fake-auth-code"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "SOME_ACCESS_TOKEN",
+      "refresh_token": "SOME_REFRESH_TOKEN",
+      "id_token": "fake-id-token",
+      "token_type": "Bearer",
+      "expires_in": 60000
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

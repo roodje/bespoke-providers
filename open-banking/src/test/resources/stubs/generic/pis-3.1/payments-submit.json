@@ -1,0 +1,66 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/pisp/domestic-payments",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer SOME_ACCESS_TOKEN"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "ConsentId": "GENERIC-P-PAYMENT_ID",
+            "Initiation": {
+              "InstructionIdentification": "insIdr",
+              "EndToEndIdentification": "e2e_idr",
+              "InstructedAmount": {
+                "Amount": "10000.00",
+                "Currency": "GBP"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SORTCODEACCOUNTNUMBER",
+                "Identification": "98765432104322",
+                "Name": "CreditorAccountName"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "Unstructured"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "DomesticPaymentId": "PAYMENT_SUBMISSION_ID",
+        "ConsentId": "GENERIC-P-PAYMENT_ID",
+        "Status": "AcceptedSettlementInProcess",
+        "CreationDateTime": "2017-06-05T15:15:22+00:00"
+      },
+      "Links": {
+        "Self": "https://carme.api.generic/open-banking/v2.0/pisp/payments"
+      },
+      "Meta": {}
+    }
+  }
+}

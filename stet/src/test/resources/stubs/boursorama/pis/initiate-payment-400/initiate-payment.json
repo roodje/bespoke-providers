@@ -1,0 +1,75 @@
+{
+  "request":{
+    "method":"POST",
+    "urlPattern":"/services/api/v1.7/_public_/dsp2/payment-requests",
+    "headers":{
+      "Authorization":{
+        "equalTo":"Bearer payment-token"
+      },
+      "digest":{
+        "matches":"SHA-256=([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*"
+      },
+      "signature":{
+        "matches": "keyId=\"([A-Za-z0-9+\\/\r\n])*(=){0,2}([\r\n])*\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) digest psu-ip-address x-request-id\",signature=\"VEVTVC1FTkNPREVELVNJR05BVFVSRQ==\""
+      },
+      "x-request-id":{
+        "matches":"^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    },
+    "bodyPatterns":[
+      {
+        "matchesJsonPath": "$[?(@.paymentInformationId =~ /[a-zA-Z0-9\\-]{32,36}/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.numberOfTransactions == 1)]"
+      },
+      {
+        "matchesJsonPath": "$.initiatingParty[?(@.name == 'John Debtor')]"
+      },
+      {
+        "matchesJsonPath": "$.paymentTypeInformation[?(@.serviceLevel == 'SEPA')]"
+      },
+      {
+        "matchesJsonPath": "$.beneficiary.creditor[?(@.name == 'myMerchant')]"
+      },
+      {
+        "matchesJsonPath": "$.beneficiary.creditorAccount[?(@.iban == 'FR7640618802500004082626224')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.requestedExecutionDate =~ /2020\\-01\\-01T08\\:00\\:00\\.000\\+0[1,2]\\:00/i)]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].paymentId[?(@.instructionId =~ /[a-zA-Z0-9\\-]{32,36}/i)]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].instructedAmount[?(@.currency == 'EUR')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].instructedAmount[?(@.amount == '124.35')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].remittanceInformation[?(@.unstructured.[0] == 'Motif du virement')]"
+      },
+      {
+        "matchesJsonPath": "$.supplementaryData[?(@.successfulReportUrl == 'https://www.yolt.com/callback/payment?state=state')]"
+      },
+      {
+        "matchesJsonPath": "$.supplementaryData[?(@.unsuccessfulReportUrl == 'https://www.yolt.com/callback/payment?state=state&error=wrong')]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Request-ID": "9bf5d67b-1e7b-49c0-94b1-b8a8145dcec6"
+    },
+    "jsonBody": {
+      "timestamp": "2018-03-30T16:06:27.499+0000",
+      "status": 400,
+      "error": "Bad Request",
+      "message": "The format of the input is not valid",
+      "path": "/services/api/v1.7/_public_/dsp2/payment-requests"
+    }
+  }
+}

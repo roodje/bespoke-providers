@@ -1,0 +1,60 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/apis/open-banking/v3.1/aisp/account-access-consents/527ed751-dabc-46f2-86a5-8b0acab6ee8b",
+    "headers": {
+      "x-fapi-financial-id": {
+        "equalTo": "003882287203T83JKK"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "87da2798-f7e2-4823-80c1-3c03344b8f13"
+      },
+      "Authorization": {
+        "equalTo": "Bearer SOME_RANDOM_ACCESS_TOKEN"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "527ed751-dabc-46f2-86a5-8b0acab6ee8b",
+        "CreationDateTime": "2018-07-26T15:11:29.123Z",
+        "Status": "Authorised",
+        "StatusUpdateDateTime": "2019-07-31T05:50:28.130Z",
+        "Permissions": [
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadDirectDebits",
+          "ReadProducts",
+          "ReadStandingOrdersDetail",
+          "ReadTransactionsCredits",
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail",
+          "ReadTransactionsBasic",
+          "ReadStandingOrdersBasic",
+          "ReadAccountsBasic"
+        ],
+        "ExpirationDateTime": "2019-07-31T05:50:28.130Z",
+        "TransactionFromDateTime": "2019-07-31T05:50:28.130Z",
+        "TransactionToDateTime": "2019-07-31T05:50:28.130Z"
+      },
+      "Risk": {},
+      "Links": {
+        "Self": "/account-requests/50ca5ed5-317c-451c-8438-3b3fb91466e1",
+        "First": "string",
+        "Prev": "string",
+        "Next": "string",
+        "Last": "string"
+      },
+      "Meta": {
+        "TotalPages": 1,
+        "FirstAvailableDateTime": "2019-08-05T05:50:25.669Z",
+        "LastAvailableDateTime": "2019-08-05T05:50:25.669Z"
+      }
+    }
+  }
+}

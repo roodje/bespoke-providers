@@ -1,0 +1,96 @@
+lovebird:
+  stet:
+    cmarkeagroup:
+      fortuneo:
+        pagination-limit: 500
+        regions:
+          - code: FORTUNEO
+            name: "FORTUNEO"
+            baseUrl: http://localhost:${wiremock.server.port}/
+            tokenUrl: http://localhost:${wiremock.server.port}/oauth-authorizationcode-psd2/token
+            authUrl: http://localhost:${wiremock.server.port}/authorize
+      axa:
+        pagination-limit: 500
+        regions:
+          - code: AXA_BANQUE
+            name: "AXA_BANQUE"
+            baseUrl: http://localhost:${wiremock.server.port}/
+            tokenUrl: http://localhost:${wiremock.server.port}/oauth-authorizationcode-psd2/token
+            authUrl: http://localhost:${wiremock.server.port}/authorize
+      allianzbanque:
+        pagination-limit: 500
+        regions:
+          - code: ALLIANZ_BANQUE
+            name: "Allianz Banque"
+            baseUrl: http://localhost:${wiremock.server.port}/
+            tokenUrl: http://localhost:${wiremock.server.port}/oauth-authorizationcode-psd2/token
+            authUrl: http://localhost:${wiremock.server.port}/authorize
+      arkeabanqueentreprises:
+        pagination-limit: 500
+        regions:
+          - code: ARKEA_BANQUE_ENTREPRISES
+            name: "Arkéa Banque Entreprises et Institutionnels"
+            baseUrl: http://localhost:${wiremock.server.port}/
+            tokenUrl: http://localhost:${wiremock.server.port}/oauth-authorizationcode-psd2/token
+            authUrl: http://localhost:${wiremock.server.port}/authorize
+      arkeabanqueprivee:
+        pagination-limit: 500
+        regions:
+          - code: ARKEA_BANQUE_PRIVEE
+            name: "Arkéa Banque Privée"
+            baseUrl: http://localhost:${wiremock.server.port}/
+            tokenUrl: http://localhost:${wiremock.server.port}/oauth-authorizationcode-psd2/token
+            authUrl: http://localhost:${wiremock.server.port}/authorize
+      arkeabankingservices:
+        pagination-limit: 500
+        regions:
+          - code: ARKEA_BANKING_SERVICES
+            name: "Arkéa Banking Services"
+            baseUrl: http://localhost:${wiremock.server.port}/
+            tokenUrl: http://localhost:${wiremock.server.port}/oauth-authorizationcode-psd2/token
+            authUrl: http://localhost:${wiremock.server.port}/authorize
+      bpe:
+        pagination-limit: 500
+        regions:
+          - code: BPE_BANK
+            name: "BPE"
+            baseUrl: http://localhost:${wiremock.server.port}/
+            tokenUrl: http://localhost:${wiremock.server.port}/oauth-authorizationcode-psd2/token
+            authUrl: http://localhost:${wiremock.server.port}/authorize
+      creditmutueldebretagne:
+        pagination-limit: 500
+        regions:
+          - code: CREDIT_MUTUEL_DE_BRETAGNE
+            name: "Crédit Mutuel de Bretagne"
+            baseUrl: http://localhost:${wiremock.server.port}/
+            tokenUrl: http://localhost:${wiremock.server.port}/oauth-authorizationcode-psd2/token
+            authUrl: http://localhost:${wiremock.server.port}/authorize
+      creditmutueldusudouest:
+        pagination-limit: 500
+        regions:
+          - code: CREDIT_MUTUEL_DU_SUD_OUEST
+            name: "Crédit Mutuel du Sud-Ouest"
+            baseUrl: http://localhost:${wiremock.server.port}/
+            tokenUrl: http://localhost:${wiremock.server.port}/oauth-authorizationcode-psd2/token
+            authUrl: http://localhost:${wiremock.server.port}/authorize
+      maxbank:
+        pagination-limit: 500
+        regions:
+          - code: MAX_BANK
+            name: "Max"
+            baseUrl: http://localhost:${wiremock.server.port}/
+            tokenUrl: http://localhost:${wiremock.server.port}/oauth-authorizationcode-psd2/token
+            authUrl: http://localhost:${wiremock.server.port}/authorize
+yolt:
+  qseal-certificate-exposure:
+    enabled: true
+    base-url: https://test.qseal.certificate.com
+  management:
+    metrics:
+      export:
+        prometheus:
+          enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

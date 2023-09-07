@@ -1,0 +1,889 @@
+{
+  "basePath" : "/psd2/asnbank",
+  "definitions" : {
+    "AccountReference" : {
+      "type" : "object",
+      "required" : [ "iban" ],
+      "properties" : {
+        "currency" : {
+          "description" : "ISO 4217 Alpha 3 currency code.",
+          "enum" : [ "EUR" ],
+          "type" : "string"
+        },
+        "iban" : {
+          "description" : "IBAN is an internationally agreed system of identifying bank accounts across national borders.",
+          "example" : "NL30RBRB0442482011",
+          "type" : "string"
+        }
+      },
+      "description" : "Account identification based on IBAN"
+    },
+    "Amount" : {
+      "type" : "object",
+      "required" : [ "amount", "currency" ],
+      "properties" : {
+        "amount" : {
+          "description" : "The amount given with fractional digits, where fractions must be compliant to the currency definition.",
+          "example" : "500.15",
+          "type" : "string"
+        },
+        "currency" : {
+          "description" : "ISO 4217 Alpha 3 currency code.",
+          "enum" : [ "EUR" ],
+          "type" : "string"
+        }
+      },
+      "description" : "An amount represented as a combination of currency and amount."
+    },
+    "InitiateDeferredPaymentRequest" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/InitiatePaymentRequest"
+      }, {
+        "type" : "object",
+        "required" : [ "endDate" ],
+        "properties" : {
+          "endDate" : {
+            "description" : "End date (in CEST).",
+            "example" : "2018-01-30",
+            "type" : "string"
+          }
+        },
+        "description" : "Http request body required for the deferred payment initiation process."
+      } ]
+    },
+    "InitiateOneTimePaymentRequest" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/InitiatePaymentRequest"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "requestedExecutionDate" : {
+            "description" : "Requested execution date (in CEST).",
+            "example" : "2018-01-30",
+            "type" : "string"
+          }
+        },
+        "description" : "Http request body required for the one-time-direct and one-time-agended payment initiation process."
+      } ]
+    },
+    "InitiatePaymentRequest" : {
+      "type" : "object",
+      "required" : [ "creditorAccount", "creditorName", "instructedAmount" ],
+      "properties" : {
+        "creditorAccount" : {
+          "$ref" : "#/definitions/AccountReference"
+        },
+        "creditorAgent" : {
+          "description" : "Financial institution servicing an account for the creditor.",
+          "type" : "string"
+        },
+        "creditorName" : {
+          "description" : "Party to which an amount of money is due. Name by which a party is known and which is usually used to identify that party.",
+          "maxLength" : 70,
+          "minLength" : 1,
+          "type" : "string"
+        },
+        "debtorAccount" : {
+          "$ref" : "#/definitions/AccountReference"
+        },
+        "endToEndIdentification" : {
+          "description" : "Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain.",
+          "maxLength" : 35,
+          "minLength" : 1,
+          "type" : "string"
+        },
+        "instructedAmount" : {
+          "$ref" : "#/definitions/Amount"
+        },
+        "issuerSRI" : {
+          "description" : "If the Dutch Structured Communication is used the following value must be used as Issuer 'CUR'.",
+          "maxLength" : 35,
+          "minLength" : 1,
+          "type" : "string"
+        },
+        "remittanceInformationStructured" : {
+          "description" : "Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in a STRUCTURED form.",
+          "maxLength" : 35,
+          "minLength" : 1,
+          "type" : "string"
+        },
+        "remittanceInformationUnstructured" : {
+          "description" : "Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an UNstructured form.",
+          "maxLength" : 140,
+          "minLength" : 1,
+          "type" : "string"
+        },
+        "ultimateCreditor" : {
+          "description" : "Ultimate party to which an amount of money is due.",
+          "maxLength" : 70,
+          "minLength" : 1,
+          "type" : "string"
+        },
+        "ultimateCreditorId" : {
+          "description" : "Ultimate party to which an amount of money is due.",
+          "type" : "string"
+        }
+      },
+      "description" : "Http request body required for the payment initiation process."
+    },
+    "InitiatePaymentResponse" : {
+      "type" : "object",
+      "properties" : {
+        "_links" : {
+          "$ref" : "#/definitions/PaymentLinks"
+        },
+        "paymentId" : {
+          "description" : "Resource identification of the generated payment initiation resource.",
+          "example" : "1234-wertiq-983",
+          "type" : "string"
+        },
+        "transactionStatus" : {
+          "description" : "Status of the received payment initiation following the ISO Payment Status Code.",
+          "enum" : [ "ACCC", "ACSC", "CANC", "PDNG", "RCVD", "REJECTED", "UNKNOWN" ],
+          "example" : "RCVD",
+          "type" : "string"
+        }
+      },
+      "description" : "Http response body returned after a payment has been initiated."
+    },
+    "InitiatePeriodicPaymentRequest" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/InitiatePaymentRequest"
+      }, {
+        "type" : "object",
+        "required" : [ "frequency", "startDate" ],
+        "properties" : {
+          "endDate" : {
+            "description" : "Date (in CEST) that indicates when a payment expires.",
+            "example" : "2020-02-20",
+            "format" : "date",
+            "type" : "string"
+          },
+          "frequency" : {
+            "description" : "The frequency of the recurring payment resulting from this standing order.",
+            "enum" : [ "Weekly", "EveryFourWeeks", "Monthly", "Quarterly", "SemiAnnual", "Annual" ],
+            "example" : "Weekly",
+            "type" : "string"
+          },
+          "startDate" : {
+            "description" : "The first applicable day of execution starting from this date is the first payment.",
+            "example" : "2020-01-30",
+            "format" : "date",
+            "type" : "string"
+          }
+        },
+        "description" : "Data for creating a periodic payment."
+      } ]
+    },
+    "InitiateRecurringPaymentRequest" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/InitiatePaymentRequest"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "endDate" : {
+            "description" : "End date (in CEST).",
+            "example" : "2018-01-30",
+            "type" : "string"
+          }
+        },
+        "description" : "Http request body required for the recurring payment initiation process."
+      } ]
+    },
+    "Link" : {
+      "type" : "object",
+      "properties" : {
+        "href" : {
+          "type" : "string"
+        }
+      },
+      "description" : "Provides a URL"
+    },
+    "PaymentLinks" : {
+      "type" : "object",
+      "properties" : {
+        "scaOAuth" : {
+          "$ref" : "#/definitions/Link"
+        },
+        "status" : {
+          "$ref" : "#/definitions/Link"
+        }
+      },
+      "description" : "Hyperlinks properties to be recognised by the TPP."
+    },
+    "TppMessage" : {
+      "type" : "object",
+      "properties" : {
+        "category" : {
+          "description" : "Error category.",
+          "type" : "string"
+        },
+        "code" : {
+          "description" : "Error code.",
+          "type" : "string"
+        },
+        "text" : {
+          "description" : "Additional error information.",
+          "type" : "string"
+        }
+      },
+      "description" : "Error model for the TPP."
+    }
+  },
+  "host" : "PSD.bancairediensten.nl",
+  "info" : {
+    "description" : "Defining the BERLIN GROUP endpoint payments/{payment-product} and the Volksbank-specific endpoints deferred-payments/{payment-product} and recurring-payments/{payment-product}.",
+    "title" : "ASN Bank Payment Initiation Services",
+    "version" : "1.0"
+  },
+  "paths" : {
+    "/v1/deferred-payments/sepa-credit-transfers" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "description" : "Based on the Berlin Group API Payment Initiation with JSON encoding of the Payment Instruction. No custom response header is provided (only default HTTPS).",
+        "operationId" : "initiateDeferredPayment",
+        "parameters" : [ {
+          "description" : "Data for creating a deferred payment.",
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/InitiateDeferredPaymentRequest"
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "Describes the data contained in the body; application/json.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "X-Request-ID",
+          "in" : "header",
+          "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "client_id: identification of the TPP with de Volksbank.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "PSU-IP-Address",
+          "in" : "header",
+          "description" : "The forwarded IP Address header field consists of the corresponding HTTP request IP Address field between PSU and TPP. If not available, the TPP shall use the IP Address used by the TPP when submitting this request.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "TPP-Redirect-URI",
+          "in" : "header",
+          "description" : "URI of the TPP, where the transaction flow shall be redirected to after a redirect.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "201" : {
+            "description" : "Resource has been created.",
+            "headers" : {
+              "ASPSP-SCA-Approach" : {
+                "description" : "Always filled with value REDIRECT.",
+                "type" : "string"
+              },
+              "Location" : {
+                "description" : "Location of the created resource. In case of AIS and CAF: {url endpoint}/{consentId}. In case of PIS: {url endpoint}/{paymentId}.",
+                "type" : "string"
+              },
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/InitiatePaymentResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad request. The request cannot be processed due to something that is perceived to be a client error (e.g. malformed request syntax or missing or invalid parameters).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden. The server understood the request but refuses to authorize it (e.g. due to an invalid token or invalid scope, or a violated security policy).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "404" : {
+            "description" : "Not found. The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "406" : {
+            "description" : "Not Acceptable. Cannot generate the content that is specified in the Accept header.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "415" : {
+            "description" : "Unsupported media type. The supplied media type is not supported.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          }
+        },
+        "security" : [ {
+          "portal_api_key" : [ ]
+        } ],
+        "summary" : "Initiates a request for a deferred payment. Creates a deferred payment initiation request at the ASPSP. Returns output which contains TransactionStatus, paymentID and links.",
+        "tags" : [ "PIS" ]
+      },
+      "parameters" : [ ]
+    },
+    "/v1/payments/sepa-credit-transfers" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "description" : "Based on the Berlin Group API Payment Initiation with JSON encoding of the Payment Instruction. No custom response header is provided (only default HTTPS).",
+        "operationId" : "initiateOneTimeDirectPayment",
+        "parameters" : [ {
+          "description" : "Data for creating a payment.",
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/InitiateOneTimePaymentRequest"
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "Describes the data contained in the body; application/json.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "X-Request-ID",
+          "in" : "header",
+          "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "client_id: identification of the TPP with de Volksbank.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "PSU-IP-Address",
+          "in" : "header",
+          "description" : "The forwarded IP Address header field consists of the corresponding HTTP request IP Address field between PSU and TPP. If not available, the TPP shall use the IP Address used by the TPP when submitting this request.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "TPP-Redirect-URI",
+          "in" : "header",
+          "description" : "URI of the TPP, where the transaction flow shall be redirected to after a redirect.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "201" : {
+            "description" : "Resource has been created.",
+            "headers" : {
+              "ASPSP-SCA-Approach" : {
+                "description" : "Always filled with value REDIRECT.",
+                "type" : "string"
+              },
+              "Location" : {
+                "description" : "Location of the created resource. In case of AIS and CAF: {url endpoint}/{consentId}. In case of PIS: {url endpoint}/{paymentId}.",
+                "type" : "string"
+              },
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/InitiatePaymentResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad request. The request cannot be processed due to something that is perceived to be a client error (e.g. malformed request syntax or missing or invalid parameters).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden. The server understood the request but refuses to authorize it (e.g. due to an invalid token or invalid scope, or a violated security policy).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "404" : {
+            "description" : "Not found. The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "406" : {
+            "description" : "Not Acceptable. Cannot generate the content that is specified in the Accept header.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "415" : {
+            "description" : "Unsupported media type. The supplied media type is not supported.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          }
+        },
+        "security" : [ {
+          "portal_api_key" : [ ]
+        } ],
+        "summary" : "Initiates a request for a one time direct payment. Creates a one time direct or a one time agended payment initiation request at the ASPSP. Returns output which contains TransactionStatus, paymentID and links.",
+        "tags" : [ "PIS" ]
+      },
+      "parameters" : [ ]
+    },
+    "/v1/periodic-payments/sepa-credit-transfers" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "description" : "Based on the Berlin Group API Payment Initiation with JSON encoding of the Payment Instruction. No custom response header is provided (only default HTTPS).",
+        "operationId" : "initiatePeriodicPayment",
+        "parameters" : [ {
+          "description" : "Data for creating a periodic payment.",
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/InitiatePeriodicPaymentRequest"
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "Describes the data contained in the body; application/json.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "X-Request-ID",
+          "in" : "header",
+          "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "client_id: identification of the TPP with de Volksbank.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "PSU-IP-Address",
+          "in" : "header",
+          "description" : "The forwarded IP Address header field consists of the corresponding HTTP request IP Address field between PSU and TPP. If not available, the TPP shall use the IP Address used by the TPP when submitting this request.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "TPP-Redirect-URI",
+          "in" : "header",
+          "description" : "URI of the TPP, where the transaction flow shall be redirected to after a redirect.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "201" : {
+            "description" : "Resource has been created.",
+            "headers" : {
+              "ASPSP-SCA-Approach" : {
+                "description" : "Always filled with value REDIRECT.",
+                "type" : "string"
+              },
+              "Location" : {
+                "description" : "Location of the created resource. In case of AIS and CAF: {url endpoint}/{consentId}. In case of PIS: {url endpoint}/{paymentId}.",
+                "type" : "string"
+              },
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/InitiatePaymentResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad request. The request cannot be processed due to something that is perceived to be a client error (e.g. malformed request syntax or missing or invalid parameters).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden. The server understood the request but refuses to authorize it (e.g. due to an invalid token or invalid scope, or a violated security policy).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "404" : {
+            "description" : "Not found. The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "406" : {
+            "description" : "Not Acceptable. Cannot generate the content that is specified in the Accept header.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "415" : {
+            "description" : "Unsupported media type. The supplied media type is not supported.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          }
+        },
+        "security" : [ {
+          "portal_api_key" : [ ]
+        } ],
+        "summary" : "Initiates a request for a periodic payment. Creates a periodic payment initiation request at the ASPSP. Returns output which contains TransactionStatus, paymentID and links.",
+        "tags" : [ "PIS" ]
+      },
+      "parameters" : [ ]
+    },
+    "/v1/recurring-payments/sepa-credit-transfers" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "description" : "Based on the Berlin Group API Payment Initiation with JSON encoding of the Payment Instruction. No custom response header is provided (only default HTTPS).",
+        "operationId" : "initiateRecurringPayment",
+        "parameters" : [ {
+          "description" : "Data for creating a recurring payment.",
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/InitiateRecurringPaymentRequest"
+          }
+        }, {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "Describes the data contained in the body; application/json.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "X-Request-ID",
+          "in" : "header",
+          "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "client_id: identification of the TPP with de Volksbank.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "PSU-IP-Address",
+          "in" : "header",
+          "description" : "The forwarded IP Address header field consists of the corresponding HTTP request IP Address field between PSU and TPP. If not available, the TPP shall use the IP Address used by the TPP when submitting this request.",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "TPP-Redirect-URI",
+          "in" : "header",
+          "description" : "URI of the TPP, where the transaction flow shall be redirected to after a redirect.",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "201" : {
+            "description" : "Resource has been created.",
+            "headers" : {
+              "ASPSP-SCA-Approach" : {
+                "description" : "Always filled with value REDIRECT.",
+                "type" : "string"
+              },
+              "Location" : {
+                "description" : "Location of the created resource. In case of AIS and CAF: {url endpoint}/{consentId}. In case of PIS: {url endpoint}/{paymentId}.",
+                "type" : "string"
+              },
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/InitiatePaymentResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad request. The request cannot be processed due to something that is perceived to be a client error (e.g. malformed request syntax or missing or invalid parameters).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized. The request has not been applied because it lacks valid authentication credentials for the target resource.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "403" : {
+            "description" : "Forbidden. The server understood the request but refuses to authorize it (e.g. due to an invalid token or invalid scope, or a violated security policy).",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "404" : {
+            "description" : "Not found. The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "406" : {
+            "description" : "Not Acceptable. Cannot generate the content that is specified in the Accept header.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "415" : {
+            "description" : "Unsupported media type. The supplied media type is not supported.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "headers" : {
+              "X-Request-ID" : {
+                "description" : "ID of the request, unique to the call, as determined by the initiating party.",
+                "type" : "string"
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/TppMessage"
+            }
+          }
+        },
+        "security" : [ {
+          "portal_api_key" : [ ]
+        } ],
+        "summary" : "Initiates a request for a recurring payment. Creates a recurring payment initiation request at the ASPSP. Returns output which contains TransactionStatus, paymentID and links.",
+        "tags" : [ "PIS" ]
+      },
+      "parameters" : [ ]
+    }
+  },
+  "schemes" : [ "https" ],
+  "securityDefinitions" : {
+    "portal_api_key" : {
+      "in" : "header",
+      "name" : "apiKey",
+      "type" : "apiKey"
+    }
+  },
+  "swagger" : "2.0",
+  "tags" : [ {
+    "name" : "PIS"
+  } ]
+}

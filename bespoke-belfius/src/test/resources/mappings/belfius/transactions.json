@@ -1,0 +1,78 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/accounts/SOME_LOGICAL_ID/transactions",
+    "queryParameters": {
+      "date_from": {
+        "matches": "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer BELFIUS_ACCESS_TOKEN"
+      },
+      "Accept": {
+        "equalTo": "application/vnd.belfius.api+json; version=2"
+      },
+      "Client-ID": {
+        "equalTo": "SOME_CLIENT_ID"
+      },
+      "Accept-Language": {
+        "equalTo": "en"
+      },
+      "Redirect-URI": {
+        "equalTo": "REDIRECT_URL"
+      },
+      "Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "_embedded": {
+        "transactions": [
+          {
+            "transaction_ref": "081721I000088",
+            "amount": "123.12",
+            "currency": "EUR",
+            "execution_date": "2020-01-01",
+            "value_date": "2020-01-01",
+            "counterparty_account": "BE80350454678791",
+            "counterparty_info": "TEST ACCOUNT",
+            "communication": "012-34567-890",
+            "communication_type": "FREETEXT",
+            "remittance_info": "REMITTANCE INFO"
+          },
+          {
+            "transaction_ref": "081721I000089",
+            "amount": "-100.12",
+            "currency": "EUR",
+            "execution_date": "2020-01-02",
+            "counterparty_account": "BE80350454678791",
+            "counterparty_info": "TEST ACCOUNT",
+            "communication": "012-34567-890",
+            "communication_type": "FREETEXT",
+            "remittance_info": "REMITTANCE INFO"
+          }
+        ],
+        "next_page_key": "783j23kj2hkj2h42u492424nh24924k2"
+      },
+      "_links": {
+        "self": {
+          "href": "SOME_LINK",
+          "templated": "boolean"
+        },
+        "account": {
+          "href": "string",
+          "templated": "boolean"
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+

@@ -1,0 +1,124 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/xs2a-bg/(uk|nl|be_fr|be_nl)/v1/accounts/2/transactions",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "dateFrom": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "signature": {
+        "matches": "keyId=\"SN=b88f9d5b2fabc76c,CA=CN=foo, OU=foo, O=foo, L=foo, ST=foo, C=US\",algorithm=\"rsa-sha256\",headers=\"digest x-request-id\",signature=\"([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*\""
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "consent-id": {
+        "equalTo": "consent-id"
+      },
+      "content-type": {
+        "matches": "application/json"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIICMzCCAZygAwIBAgIJALiPnVsvq8dsMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzAeFw0xMzAzMTkxNTQwMTlaFw0xODAzMTgxNTQwMTlaMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzdGfxi9CNbMf1UUcvDQh7MYBOveIHyc0E0KIbhjK5FkCBU4CiZrbfHagaW7ZEcN0tt3EvpbOMxxc/ZQU2WN/s/wPxph0pSfsfFsTKM4RhTWD2v4fgk+xZiKd1p0+L4hTtpwnEw0uXRVd0ki6muwV5y/P+5FHUeldq+pgTcgzuK8CAwEAAaMPMA0wCwYDVR0PBAQDAgLkMA0GCSqGSIb3DQEBBQUAA4GBAJiDAAtY0mQQeuxWdzLRzXmjvdSuL9GoyT3BF/jSnpxz5/58dba8pWenv3pj4P3w5DoOso0rzkZy2jEsEitlVM2mLSbQpMM+MUVQCQoiG6W9xuCFuxSrwPISpAqEAuV4DNoxQKKWmhVv+J0ptMWD25Pnpxeq5sXzghfJnslJlQND"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "NL37INGB2952671982"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "21",
+            "bookingDate": "2019-02-26",
+            "valueDate": "2019-02-26",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "31.07"
+            },
+            "debtorName": "Mr John",
+            "debtorAccount": {
+              "iban": "NL07INGB9227934553"
+            },
+            "remittanceInformationUnstructured": "remitInfo",
+            "proprietaryBankTransactionCode": "OV"
+          },
+          {
+            "transactionId": "22",
+            "bookingDate": "2019-02-26",
+            "valueDate": "2019-02-26",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "9.18"
+            },
+            "creditorName": "Ms Joanna",
+            "creditorAccount": {
+              "iban": "NL56ABNA4937453297"
+            },
+            "remittanceInformationUnstructured": "moreRemitInfo",
+            "proprietaryBankTransactionCode": "OV"
+          },
+          {
+            "transactionId": "23",
+            "bookingDate": "2019-02-26",
+            "valueDate": "2019-02-26",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "6.67"
+            },
+            "creditorName": "Ms Joanna",
+            "creditorAccount": {
+              "iban": "NL56ABNA4937453297"
+            },
+            "proprietaryBankTransactionCode": "OV"
+          }
+        ],
+        "pending": [
+          {
+            "bookingDate": "2020-10-03",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "10.36"
+            },
+            "creditorAccount": {},
+            "remittanceInformationUnstructured": "Test 12345",
+            "proprietaryBankTransactionCode": "BA"
+          },
+          {
+            "bookingDate": "2020-10-03",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "78.76"
+            },
+            "creditorAccount": {},
+            "remittanceInformationUnstructured": "Test 67890",
+            "proprietaryBankTransactionCode": "BA"
+          }
+        ],
+        "_links": {
+          "account": "/nl/v1/accounts/2"
+        }
+      }
+    }
+  }
+}

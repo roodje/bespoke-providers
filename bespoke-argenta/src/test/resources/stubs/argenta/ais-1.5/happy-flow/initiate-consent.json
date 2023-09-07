@@ -1,0 +1,79 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/berlingroup/v1/consents",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "digest": {
+        "matches": ".+"
+      },
+      "signature": {
+        "matches": "keyId=\"SN=.+,CA=.+\",algorithm=\"rsa-sha512\",headers=\"digest x-request-id\",signature=\".+\""
+      },
+      "TPP-signature-certificate": {
+        "matches": "^-----BEGIN CERTIFICATE-----    [^\n]+-----END CERTIFICATE-----$"
+      },
+      "psu-ip-address": {
+        "equalTo": "192.168.0.1"
+      },
+      "apiKey": {
+        "equalTo": "TEST_API_KEY"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": {
+          "expression": "$.recurringIndicator",
+          "equalTo": "true"
+        }
+      },
+      {
+        "matchesJsonPath": {
+          "expression": "$.access.allPsd2",
+          "equalTo": "allAccounts"
+        }
+      },
+      {
+        "matchesJsonPath": {
+          "expression": "$.frequencyPerDay",
+          "equalTo": "4"
+        }
+      },
+      {
+        "matchesJsonPath": {
+          "expression": "$.validUntil",
+          "matches": "\\d{4}-\\d{2}-\\d{2}"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "consentId": "TEST_CONSENT_ID",
+      "consentStatus": "received",
+      "_links": {
+        "scaOAuth": {
+          "href": "https://localhost/psd2/v1/berlingroup-auth/.well-known/oauth-authorization-server"
+        },
+        "self": {
+          "href": "/v1/consents/TEST_CONSENT_ID"
+        },
+        "status": {
+          "href": "/v1/consents/TEST_CONSENT_ID/status"
+        },
+        "scaStatus": {
+          "href": "/v1/consents/TEST_CONSENT_ID/authorisations/507f191e810c19729de860ea"
+        }
+      }
+    }
+  }
+}

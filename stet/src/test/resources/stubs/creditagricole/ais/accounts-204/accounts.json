@@ -1,0 +1,19 @@
+{
+  "id": "076a8723-fc21-360b-80e5-9d7a3b84a4cd",
+  "request": {
+    "url": "/psd2-api.ca-alpesprovence.fr/dsp2/v1/accounts",
+    "method": "GET",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 45469c64-c222-4a0e-badd-9c13ed764d6d"
+      }
+    }
+  },
+  "response": {
+    "status": 204,
+    "body": "",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

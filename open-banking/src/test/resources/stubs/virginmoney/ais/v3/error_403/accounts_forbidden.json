@@ -1,0 +1,10 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/.*/accounts"
+  },
+  "response": {
+    "status": 403,
+    "body": "forbidden"
+  }
+}

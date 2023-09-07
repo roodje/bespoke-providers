@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/xs2a/OLB/v1/accounts",
+    "headers": {
+      "x-request-id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "consent-id": {
+        "equalTo": "7a7251ff-45ef-4e24-a4cc-bb77d4ba0b16"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "accept": {
+        "matches": "application/json"
+      },
+      "content-type": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "cashAccountType": "CACC",
+          "resourceId": "1",
+          "iban": "DE66500105172915693295",
+          "currency": "EUR"
+        },
+        {
+          "cashAccountType": "CACC",
+          "resourceId": "2",
+          "iban": "DE97500105176141527356",
+          "currency": "EUR"
+        }
+      ]
+    }
+  }
+}

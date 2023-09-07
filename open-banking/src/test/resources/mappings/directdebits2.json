@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "(/v[0-9]+\\.[0-9]+)?/accounts/1234/direct-debits",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^(12345|[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12})$"
+      },
+      "x-fapi-financial-id": {
+        "contains": "test"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "DirectDebit": [
+          {
+            "AccountId": "160047-10001311",
+            "DirectDebitId": "DD03",
+            "MandateIdentification": "Caravanners",
+            "DirectDebitStatusCode": "Active",
+            "Name": "Towbar Club 3 - We Love Towbars",
+            "PreviousPaymentDateTime": "2017-04-05T10:43:07+00:00",
+            "PreviousPaymentAmount": {
+              "Amount": "0.57",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/accounts/22289/direct-debits/"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

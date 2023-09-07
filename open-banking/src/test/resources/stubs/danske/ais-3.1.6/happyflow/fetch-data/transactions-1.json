@@ -1,0 +1,491 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/open-banking/v3.1/aisp/accounts/77f5cb47-fb53-49e7-acd7-f8ed17ba4396/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{1,3}$"
+      },
+      "toBookingDateTime": {
+        "absent": true
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AccessToken"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf7AeAAI"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "551c6cce-fc16-49b9-8b16-ab66fea5eb35"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "TransactionId": "1251f8ea-ef80-4ab7-8cae-e9bc0fe656da",
+            "TransactionReference": "0496224001",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Pending",
+            "TransactionMutability": "Mutable",
+            "BookingDateTime": "2020-10-16T00:00:00Z",
+            "ValueDateTime": "2020-10-16T00:00:00Z",
+            "Amount": {
+              "Amount": "1.80",
+              "Currency": "GBP"
+            },
+            "BankTransactionCode": {
+              "Code": "CustomerCardTransactions",
+              "SubCode": "NotAvailable"
+            },
+            "CardInstrument": {
+              "CardSchemeName": "MasterCard",
+              "AuthorisationType": "Contactless",
+              "Identification": "007379XXXXXX1625"
+            },
+            "TransactionInformation": "Cafe Mauds ))))",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information",
+              "Amount": {
+                "Amount": "749.10",
+                "Currency": "GBP"
+              }
+            },
+            "MerchantDetails": {
+              "MerchantName": "Cafe Mauds ))))",
+              "MerchantCategoryCode": "5814"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "TransactionId": "129aa3f1-417c-4299-922d-6a2a77688ef5",
+            "TransactionReference": "458L029433",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "TransactionMutability": "Mutable",
+            "BookingDateTime": "2020-10-20T00:00:00Z",
+            "ValueDateTime": "2020-10-20T00:00:00Z",
+            "Amount": {
+              "Amount": "600.00",
+              "Currency": "GBP"
+            },
+            "BankTransactionCode": {
+              "Code": "ReceivedCreditTransfers",
+              "SubCode": "DomesticCreditTransfer"
+            },
+            "TransactionInformation": "From Danske Freedom",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information",
+              "Amount": {
+                "Amount": "1190.82",
+                "Currency": "GBP"
+              }
+            },
+            "DebtorAgent": {
+              "SchemeName": "UK.OBIE.BICFI",
+              "Identification": "00BADKKK"
+            },
+            "DebtorAccount": {
+              "Name": "MR JOSHUA M LYNESS"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "TransactionId": "12a13995-fe13-492c-ba63-3973238adac8",
+            "TransactionReference": "0510761235",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionMutability": "Mutable",
+            "BookingDateTime": "2020-10-19T00:00:00Z",
+            "ValueDateTime": "2020-10-19T00:00:00Z",
+            "Amount": {
+              "Amount": "20.00",
+              "Currency": "GBP"
+            },
+            "BankTransactionCode": {
+              "Code": "CustomerCardTransactions",
+              "SubCode": "CashWithdrawal"
+            },
+            "CardInstrument": {
+              "CardSchemeName": "MasterCard",
+              "Identification": "007379XXXXXX1625"
+            },
+            "TransactionInformation": "AIB Dollingstown",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information",
+              "Amount": {
+                "Amount": "729.10",
+                "Currency": "GBP"
+              }
+            },
+            "MerchantDetails": {
+              "MerchantName": "AIB Dollingstown",
+              "MerchantCategoryCode": "6011"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "TransactionId": "129c0198-d5d8-4996-b485-b4ef06db881f",
+            "TransactionReference": "0504500117",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionMutability": "Mutable",
+            "BookingDateTime": "2020-10-19T00:00:00Z",
+            "ValueDateTime": "2020-10-19T00:00:00Z",
+            "Amount": {
+              "Amount": "26.30",
+              "Currency": "GBP"
+            },
+            "BankTransactionCode": {
+              "Code": "CustomerCardTransactions",
+              "SubCode": "NotAvailable"
+            },
+            "CardInstrument": {
+              "CardSchemeName": "MasterCard",
+              "AuthorisationType": "Contactless",
+              "Identification": "007379XXXXXX5171"
+            },
+            "TransactionInformation": "New Haven Cafe ))))",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information",
+              "Amount": {
+                "Amount": "702.80",
+                "Currency": "GBP"
+              }
+            },
+            "MerchantDetails": {
+              "MerchantName": "New Haven Cafe ))))",
+              "MerchantCategoryCode": "5812"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "TransactionId": "121c1674-4b73-4f44-8ea4-50ce2b8e93e7",
+            "TransactionReference": "0506791501",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionMutability": "Mutable",
+            "BookingDateTime": "2020-10-19T00:00:00Z",
+            "ValueDateTime": "2020-10-19T00:00:00Z",
+            "Amount": {
+              "Amount": "3.90",
+              "Currency": "GBP"
+            },
+            "BankTransactionCode": {
+              "Code": "CustomerCardTransactions",
+              "SubCode": "NotAvailable"
+            },
+            "CardInstrument": {
+              "CardSchemeName": "MasterCard",
+              "AuthorisationType": "Contactless",
+              "Identification": "007379XXXXXX1625"
+            },
+            "TransactionInformation": "Supervalu Lisburn ))))",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information",
+              "Amount": {
+                "Amount": "698.90",
+                "Currency": "GBP"
+              }
+            },
+            "MerchantDetails": {
+              "MerchantName": "Supervalu Lisburn ))))",
+              "MerchantCategoryCode": "5411"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "TransactionId": "12adc438-4130-49dd-85ee-043dc74fbaed",
+            "TransactionReference": "0506391637",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionMutability": "Mutable",
+            "BookingDateTime": "2020-10-19T00:00:00Z",
+            "ValueDateTime": "2020-10-19T00:00:00Z",
+            "Amount": {
+              "Amount": "47.34",
+              "Currency": "GBP"
+            },
+            "BankTransactionCode": {
+              "Code": "CustomerCardTransactions",
+              "SubCode": "NotAvailable"
+            },
+            "CardInstrument": {
+              "CardSchemeName": "MasterCard",
+              "Identification": "007379XXXXXX1625"
+            },
+            "TransactionInformation": "402 RUSSELLS SHOP 4",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information",
+              "Amount": {
+                "Amount": "651.56",
+                "Currency": "GBP"
+              }
+            },
+            "MerchantDetails": {
+              "MerchantName": "402 RUSSELLS SHOP 4",
+              "MerchantCategoryCode": "5541"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "TransactionId": "12e47f59-15d3-4e04-9f00-430f11e31937",
+            "TransactionReference": "0B62103D",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionMutability": "Mutable",
+            "BookingDateTime": "2020-10-20T00:00:00Z",
+            "ValueDateTime": "2020-10-20T00:00:00Z",
+            "Amount": {
+              "Amount": "39.25",
+              "Currency": "GBP"
+            },
+            "BankTransactionCode": {
+              "Code": "IssuedDirectDebits",
+              "SubCode": "DirectDebitPayment"
+            },
+            "TransactionInformation": "HITACHI CAPITAL",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information",
+              "Amount": {
+                "Amount": "612.31",
+                "Currency": "GBP"
+              }
+            },
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "00025021411276"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "TransactionId": "12d2f230-73b9-4d60-a639-fe7b5fa90c10",
+            "TransactionReference": "0511316987",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionMutability": "Mutable",
+            "BookingDateTime": "2020-10-20T00:00:00Z",
+            "ValueDateTime": "2020-10-20T00:00:00Z",
+            "Amount": {
+              "Amount": "15.50",
+              "Currency": "GBP"
+            },
+            "BankTransactionCode": {
+              "Code": "CustomerCardTransactions",
+              "SubCode": "NotAvailable"
+            },
+            "CardInstrument": {
+              "CardSchemeName": "MasterCard",
+              "AuthorisationType": "Contactless",
+              "Identification": "007379XXXXXX5171"
+            },
+            "TransactionInformation": "LI?S CHINESE HOT FOO ))))",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information",
+              "Amount": {
+                "Amount": "596.81",
+                "Currency": "GBP"
+              }
+            },
+            "MerchantDetails": {
+              "MerchantName": "LI?S CHINESE HOT FOO ))))",
+              "MerchantCategoryCode": "5814"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "TransactionId": "12944260-1f7d-4c8f-980b-3058338a1b6d",
+            "TransactionReference": "0512795197",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionMutability": "Mutable",
+            "BookingDateTime": "2020-10-20T00:00:00Z",
+            "ValueDateTime": "2020-10-20T00:00:00Z",
+            "Amount": {
+              "Amount": "5.99",
+              "Currency": "GBP"
+            },
+            "BankTransactionCode": {
+              "Code": "CustomerCardTransactions",
+              "SubCode": "NotAvailable"
+            },
+            "CardInstrument": {
+              "CardSchemeName": "MasterCard",
+              "AuthorisationType": "Contactless",
+              "Identification": "007379XXXXXX1625"
+            },
+            "TransactionInformation": "Morrow Lurgan Ltd ))))",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information",
+              "Amount": {
+                "Amount": "590.82",
+                "Currency": "GBP"
+              }
+            },
+            "MerchantDetails": {
+              "MerchantName": "Morrow Lurgan Ltd ))))",
+              "MerchantCategoryCode": "5541"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "TransactionId": "124c0133-adc9-4e33-9a14-439f4632505d",
+            "TransactionReference": "457Q029698",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionMutability": "Mutable",
+            "BookingDateTime": "2020-10-22T00:00:00Z",
+            "ValueDateTime": "2020-10-23T00:00:00Z",
+            "Amount": {
+              "Amount": "6.00",
+              "Currency": "GBP"
+            },
+            "BankTransactionCode": {
+              "Code": "IssuedCreditTransfers",
+              "SubCode": "DomesticCreditTransfer"
+            },
+            "TransactionInformation": "Transfer",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information",
+              "Amount": {
+                "Amount": "1184.82",
+                "Currency": "GBP"
+              }
+            },
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "00096018145087"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "TransactionId": "12257624-2373-48b1-9b30-1f909e6c2d00",
+            "TransactionReference": "511U029693",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionMutability": "Mutable",
+            "BookingDateTime": "2020-10-22T00:00:00Z",
+            "ValueDateTime": "2020-10-23T00:00:00Z",
+            "Amount": {
+              "Amount": "11.00",
+              "Currency": "GBP"
+            },
+            "BankTransactionCode": {
+              "Code": "IssuedCreditTransfers",
+              "SubCode": "DomesticCreditTransfer"
+            },
+            "TransactionInformation": "Hollys pole",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information",
+              "Amount": {
+                "Amount": "1173.82",
+                "Currency": "GBP"
+              }
+            },
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "00012881114666"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "TransactionId": "12dedcb2-a9d2-49a5-9c2f-8e585be2356b",
+            "TransactionReference": "0058EA1C",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionMutability": "Mutable",
+            "BookingDateTime": "2020-10-26T00:00:00Z",
+            "ValueDateTime": "2020-10-26T00:00:00Z",
+            "Amount": {
+              "Amount": "79.61",
+              "Currency": "GBP"
+            },
+            "BankTransactionCode": {
+              "Code": "IssuedDirectDebits",
+              "SubCode": "DirectDebitPayment"
+            },
+            "TransactionInformation": "CLOSE - AUTOLINE",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information",
+              "Amount": {
+                "Amount": "1094.21",
+                "Currency": "GBP"
+              }
+            },
+            "CreditorAccount": {
+              "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+              "Identification": "00040020008441"
+            }
+          },
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "TransactionId": "12476907-f165-4d8d-b2ae-5bfa575c5079",
+            "TransactionReference": "0529906727",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "TransactionMutability": "Mutable",
+            "BookingDateTime": "2020-10-26T00:00:00Z",
+            "ValueDateTime": "2020-10-26T00:00:00Z",
+            "Amount": {
+              "Amount": "120.12",
+              "Currency": "GBP"
+            },
+            "BankTransactionCode": {
+              "Code": "CustomerCardTransactions",
+              "SubCode": "NotAvailable"
+            },
+            "CardInstrument": {
+              "CardSchemeName": "MasterCard",
+              "Identification": "007379XXXXXX1625"
+            },
+            "TransactionInformation": "Lidl Ni Ltd",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "Information",
+              "Amount": {
+                "Amount": "974.09",
+                "Currency": "GBP"
+              }
+            },
+            "MerchantDetails": {
+              "MerchantName": "Lidl Ni Ltd",
+              "MerchantCategoryCode": "5411"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/open-banking/v3.1/aisp/accounts/77f5cb47-fb53-49e7-acd7-f8ed17ba4396/transactions?fromBookingDateTime=2020-10-16T00:00:00.000&toBookingDateTime=2020-12-09T00:00:00&pg=4ff4055e-5a98-43d9-b558-28b2a014e88b&int=0fae21b1-9b8a-4cad-b994-d1610a6be5cc",
+        "First": "/open-banking/v3.1/aisp/accounts/77f5cb47-fb53-49e7-acd7-f8ed17ba4396/transactions?fromBookingDateTime=2020-10-16T00:00:00.000&toBookingDateTime=2020-12-09T00:00:00&pg=4ff4055e-5a98-43d9-b558-28b2a014e88b&int=0fae21b1-9b8a-4cad-b994-d1610a6be5cc",
+        "Next": "{{request.requestLine.baseUrl}}/open-banking/v3.1/aisp/accounts/77f5cb47-fb53-49e7-acd7-f8ed17ba4396/transactions?fromBookingDateTime=2020-10-16T00:00:00.000&toBookingDateTime=2020-12-09T00:00:00&pg=1260aeb8-6d71-4cdf-a526-835fa6fa54c2&int=0fae21b1-9b8a-4cad-b994-d1610a6be5cc"
+      },
+      "Meta": {}
+    },
+    "transformers": ["response-template"],
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "{{request.headers.x-fapi-interaction-id}}"
+    }
+  }
+}

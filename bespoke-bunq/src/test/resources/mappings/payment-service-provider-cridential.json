@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/payment-service-provider-credential",
+    "headers": {}
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Response": [
+        {
+          "CredentialPasswordIp": {
+            "id": 184760,
+            "created": "2020-05-18 10:00:00.363462",
+            "updated": "2020-05-18 10:00:00.363462",
+            "status": "PENDING_FIRST_USE",
+            "expiry_time": "2020-05-18 11:00:00.363345",
+            "token_value": "6fa459de8951067c68605df354172298df0c1f06b4737aa7ac5531b1de9fe2eb",
+            "permitted_device": null
+          }
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

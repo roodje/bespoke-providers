@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth/token",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF-8)?"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "code=someCode"
+      },
+      {
+        "contains": "client_id=someClientId"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fyolt.com%2Fcallback"
+      },
+      {
+        "contains": "grant_type=authorization_code"
+      }
+    ]
+  },
+  "response": {
+    "status": 401
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "request": {
+    "url": "/v1/accounts/8EAAC7F4F3E75F786FB71B7C111111/balances",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "traceId"
+      },
+      "Consent-ID": {
+        "equalTo": "consentId"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-ACCESS-TOKEN"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.1.2"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "maskedPan": "426354XXXXXX7716",
+        "currency": "EUR"
+      },
+      "balances": [
+        {
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": 0.0
+          },
+          "referenceDate": "2020-12-07",
+          "balanceType": "closingBooked"
+        },
+        {
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": 500.0
+          },
+          "referenceDate": "2020-12-07",
+          "balanceType": "expected"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

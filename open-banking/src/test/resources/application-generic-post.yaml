@@ -1,0 +1,4 @@
+lovebird:
+  generic:
+    baseUrl: https://localhost:${wiremock.server.https-port}/open-banking/v2.0
+    oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/open-banking/private/oauth2/token

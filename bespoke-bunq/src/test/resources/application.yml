@@ -1,0 +1,15 @@
+lovebird:
+  bunq:
+    base-url: http://localhost:${wiremock.server.port}/
+    our-external-ip-address: 127.0.0.1
+    oauth-token-url: http://localhost:${wiremock.server.port}/v1/token
+    oauth-authorization-base-url: https://oauth.bunq.com/auth
+    accountsPerPage: 200
+    transactionsPerPage: 200
+
+spring:
+  jackson:
+    deserialization:
+      adjust-dates-to-context-time-zone: false
+  main:
+    web-application-type: none

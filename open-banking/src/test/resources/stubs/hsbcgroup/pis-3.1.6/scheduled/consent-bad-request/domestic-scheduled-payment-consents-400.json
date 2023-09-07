@@ -1,0 +1,78 @@
+{
+  "request": {
+    "url": "/v3.1/pisp/domestic-scheduled-payment-consents",
+    "method": "POST",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer DEjYK7CWVFHi71RteqxmKv1NO2a"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "00162010018e22KCTR"
+      },
+      "Content-Type": {
+        "equalTo": "application/json;charset=UTF-8"
+      },
+      "x-idempotency-key": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Permission": "Create",
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "RequestedExecutionDateTime": "${json-unit.regex}^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+              "EndToEndIdentification": "",
+              "InstructedAmount": {
+                "Amount": "0.01",
+                "Currency": "GBP"
+              },
+              "DebtorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "8272908780568576",
+                "Name": "Alex Mitchell"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "1802968485593088",
+                "Name": "Jordan Bell"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "Remittance Unstructured",
+                "Reference": "REF0123456789-0123"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        },
+        "ignoreArrayOrder": true
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "Code": "400 BadRequest",
+      "Id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+      "Message": "Invalid request parameters.",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Field.Missing",
+          "Message": "End to end identification is missing",
+          "Path": "Data.Initiation.InstructionIdentification",
+          "Url": "<url to the api reference for Payment Inititaion API>"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    }
+  }
+}

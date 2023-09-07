@@ -1,0 +1,60 @@
+{
+  "request": {
+    "url": "/api/fabrick/psd2/v1/accounts",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "11111"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "1234",
+          "name": "MLLE VALENTINE MABIRE",
+          "currency": "EUR",
+          "iban": "IT7612548029981234567890122",
+          "_links": {
+            "account": {
+              "href": "https://psdgw-sella.fabrick.com/api/fabrick/psd2/v1/accounts/CTR%25257C1271339%25257C12345678901%25257C1%25257C2%25257C1%25257C12345678901"
+            },
+            "balances": {
+              "href": "https://psdgw-sella.fabrick.com/api/fabrick/psd2/v1/accounts/CTR%7C1271339%7C12345678901%7C1%7C2%7C1%7C12345678901/balances"
+            },
+            "transactions": {
+              "href": "https://psdgw-sella.fabrick.com/api/fabrick/psd2/v1/accounts/CTR%25257C1271339%25257C12345678901%25257C1%25257C2%25257C1%25257C12345678901/transactions"
+            }
+          },
+          "product": "Compte Courant"
+        },
+        {
+          "resourceId": "3456",
+          "name": "MLLE VALENTINE MABIRE",
+          "currency": "EUR",
+          "iban": "IT7612548029981098765432122",
+          "_links": {
+            "account": {
+              "href": "https://psdgw-sella.fabrick.com/api/fabrick/psd2/v1/accounts/CTR%25257C1271339%25257C10987654321%25257C1%25257C2%25257C1%25257C10987654321"
+            },
+            "balances": {
+              "href": "https://psdgw-sella.fabrick.com/api/fabrick/psd2/v1/accounts/CTR%7C1271339%7C10987654321%7C1%7C2%7C1%7C10987654321/balances"
+            },
+            "transactions": {
+              "href": "https://psdgw-sella.fabrick.com/api/fabrick/psd2/v1/accounts/CTR%25257C1271339%25257C10987654321%25257C1%25257C2%25257C1%25257C10987654321/transactions"
+            }
+          },
+          "product": "Compte Courant"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

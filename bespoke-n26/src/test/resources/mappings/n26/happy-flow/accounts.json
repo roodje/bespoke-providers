@@ -1,0 +1,88 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/berlin-group/v1/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "Consent-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "Accept": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "X-Request-ID": "54683c9e-1160-4bf8-9a18-5c0bda473fb1",
+      "accounts": [
+        {
+          "resourceId": "1",
+          "iban": "DE73100110012629586632",
+          "currency": "EUR",
+          "product": "Space",
+          "name": "Trip to Australia",
+          "cashAccountType": "CACC",
+          "status": "enabled",
+          "usage": "PRIV",
+          "ownerName": "Name of owner",
+          "_links": {
+            "balances": {
+              "href": "/v1/berlin-group/v1/accounts/1/balances"
+            },
+            "transactions": {
+              "href": "/v1/berlin-group/v1/accounts/1/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "2",
+          "currency": "EUR",
+          "product": "Space",
+          "cashAccountType": "CACC",
+          "status": "enabled",
+          "usage": "PRIV",
+          "_links": {
+            "balances": {
+              "href": "/v1/berlin-group/v1/accounts/2/balances"
+            },
+            "transactions": {
+              "href": "/v1/berlin-group/v1/accounts/2/transactions"
+            }
+          }
+        },
+        {
+          "resourceId": "3",
+          "currency": "EUR",
+          "product": "Space",
+          "cashAccountType": "CACC",
+          "status": "deleted",
+          "usage": "PRIV",
+          "_links": {
+            "balances": {
+              "href": "/v1/berlin-group/v1/accounts/3/balances"
+            },
+            "transactions": {
+              "href": "/v1/berlin-group/v1/accounts/3/transactions"
+            }
+          }
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

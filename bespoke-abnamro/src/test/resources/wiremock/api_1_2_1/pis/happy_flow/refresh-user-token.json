@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/as/token.oauth2",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalTo": "grant_type=refresh_token&client_id=TPP_test&refresh_token=GPgYglX4sO1WhzfChx4tmjr4y7Qh"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "token_type": "Bearer",
+      "access_token": "GPgYglX4sO1WhzfChx4tmjr4y7Qi",
+      "refresh_token": "GPgYglX4sO1WhzfChx4tmjr4y7Qj",
+      "expires_in": 7193
+    }
+  }
+}

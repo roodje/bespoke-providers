@@ -1,0 +1,58 @@
+lovebird:
+  lloydsgroup:
+    lloyds:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      paymentsUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      issuer: https://www.yolt.com
+      audience: lyds
+    bankofscotland:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      paymentsUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      issuer: https://www.yolt.com
+      audience: bos
+    halifax:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      paymentsUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      issuer: https://www.yolt.com
+      audience: hfx
+    lloyds-corporate:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      paymentsUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      issuer: https://www.yolt.com
+      audience: lyds
+    bankofscotland-corporate:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      paymentsUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      issuer: https://www.yolt.com
+      audience: bos
+    mbna-credit-card:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize/personal
+      issuer: https://www.yolt.com
+      audience: mbn
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

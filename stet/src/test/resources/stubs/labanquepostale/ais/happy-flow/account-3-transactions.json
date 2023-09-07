@@ -1,0 +1,62 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1/accounts/3/transactions",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Connection": {
+        "equalTo": "Keep-Alive",
+        "caseInsensitive": true
+      },
+      "Authorization": {
+        "equalTo": "Bearer af39f12f-eb22-4226-aa4e-5f68ba840c55"
+      },
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "jsonBody": {
+      "_links": {
+        "self": {
+          "href": "https://api.labanquepostale.com/v1/accounts/3"
+        },
+        "parent-list": {
+          "href": "https://api.labanquepostale.com/v1/accounts"
+        },
+        "balances": {
+          "href": "https://api.labanquepostale.com/v1/accounts/3/balances"
+        }
+      },
+      "transactions": [
+        {
+          "bookingDate": "2020-04-30",
+          "transactionDate": "2020-04-28",
+          "creditDebitIndicator": "DBIT",
+          "remittanceInformation": [
+            "GEANT BB840",
+            null,
+            null,
+            null
+          ],
+          "status": "OTHR",
+          "transactionAmount": {
+            "amount": "8.42",
+            "currency": "EUR"
+          }
+        }
+      ]
+    }
+  }
+}

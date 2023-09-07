@@ -1,0 +1,62 @@
+{
+  "request": {
+    "url": "/v1/consents",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "TPP-Redirect-URI": {
+        "equalTo": "https://yolt.com/callback?state=0fa8b824-fb95-11ec-b939-0242ac120002"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-CLIENT-ACCESS-TOKEN"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.0.1"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.access[?(@.availableAccounts == 'allAccounts')]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.recurringIndicator == true)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.validUntil =~ /[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}/)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.frequencyPerDay == '4')]"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "consentStatus": "valid",
+      "consentId": "8edfea3a-a660-11eb-bcbc-0242ac130002",
+      "scaMethods": null,
+      "chosenScaMethod": null,
+      "challengeData": null,
+      "psuMessage": null,
+      "_links": {
+        "scaRedirect": {
+          "href": "https://sandbox.raiffeisen.at/psd2-sandbox-ui/sandbox-ui/?consent_id=8edfea3a-a660-11eb-bcbc-0242ac130002&redirectBackUrl=https%3A%2F%2Fwww.yolt.com%2Fcallback%3Fstate%3D0fa8b824-fb95-11ec-b939-0242ac120002"
+        },
+        "self": {
+          "href": "/v1/consents/8edfea3a-a660-11eb-bcbc-0242ac130002"
+        },
+        "status": {
+          "href": "/v1/consents/8edfea3a-a660-11eb-bcbc-0242ac130002/status"
+        }
+      }
+    }
+  }
+}

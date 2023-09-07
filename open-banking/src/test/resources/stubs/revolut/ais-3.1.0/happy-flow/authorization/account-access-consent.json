@@ -1,0 +1,73 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/account-access-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 978e46f2-b8a5-4f81-ac45-f10d32e6b764"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0032400006451CCVVX"
+      },
+      "Content-Type": {
+        "equalTo": "application/json;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson" : {
+          "Data": {
+            "Permissions": [
+              "ReadAccountsDetail",
+              "ReadBalances",
+              "ReadDirectDebits",
+              "ReadStandingOrdersDetail",
+              "ReadTransactionsCredits",
+              "ReadTransactionsDebits",
+              "ReadTransactionsDetail"
+            ]
+          },
+          "Risk": {}
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "50ca5ed5-317c-451c-8438-3b3fb91466e1",
+        "Status": "AwaitingAuthorisation",
+        "CreationDateTime": "2018-07-26T15:11:29+00:00",
+        "Permissions": [
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadDirectDebits",
+          "ReadStandingOrdersDetail",
+          "ReadTransactionsCredits",
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail",
+          "ReadTransactionsBasic",
+          "ReadStandingOrdersBasic",
+          "ReadAccountsBasic"
+        ]
+      },
+      "Risk": {},
+      "Links": {
+        "Self": "/account-requests/50ca5ed5-317c-451c-8438-3b3fb91466e1"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken000-1"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "fault": "EMPTY_RESPONSE"
+  }
+}

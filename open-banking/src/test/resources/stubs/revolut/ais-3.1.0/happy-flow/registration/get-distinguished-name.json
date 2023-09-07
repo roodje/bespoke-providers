@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/distinguished-name",
+    "headers": {
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "tls_client_auth_dn": "organizationIdentifier=PSDNL-YOLT-6885ef16,CN=2kiXQyo0podjW2somjHo67,OU=001570000113UAvAAM,O=Yolt,C=NL"
+    }
+  }
+}

@@ -1,0 +1,311 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v1/accounts/1/transactions",
+    "queryParameters": {
+      "dateFrom": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}$"
+      },
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "pageIndex": {
+        "equalTo": "1"
+      }
+    },
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "123"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "TEST_PSU_IP_ADDRESS"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "DE60760300800500123456",
+        "bban": null,
+        "pan": null,
+        "maskedPan": null,
+        "msisdn": null,
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "6229d2b9-9cb8-45d7-b60c-54e4aca4d029",
+            "entryReference": null,
+            "endToEndId": "DD-30-2019-01-21",
+            "mandateId": "23466",
+            "checkId": null,
+            "creditorId": "DE02ZZZ00000527225",
+            "bookingDate": "2019-01-23",
+            "valueDate": "2019-01-23",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-1259"
+            },
+            "currencyExchange": null,
+            "creditorName": "Gerhard Hartmann GmbH TV - Video - Hifi",
+            "creditorAccount": {
+              "iban": "DE41760695590000000140",
+              "bban": "",
+              "pan": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "currency": "EUR"
+            },
+            "ultimateCreditor": "",
+            "debtorName": "DE21760300800400500502",
+            "debtorAccount": {
+              "iban": "DE60760300800500123456",
+              "bban": "",
+              "pan": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "currency": "EUR"
+            },
+            "ultimateDebtor": "DE21760300800400500502",
+            "remittanceInformationUnstructured": "Lastschrift v 18.1.",
+            "remittanceInformationStructured": "Lastschrift v 18.1.",
+            "additionalInformation": null,
+            "purposeCode": "OTHR",
+            "bankTransactionCode": "5",
+            "proprietaryBankTransactionCode": "5",
+            "_links": null
+          },
+          {
+            "transactionId": "4ae2f85a-c624-4756-8352-d8ee556d03e0",
+            "entryReference": null,
+            "endToEndId": "65122378000381100000000000",
+            "mandateId": "94616",
+            "checkId": null,
+            "creditorId": "DE69ZZZ00000078170",
+            "bookingDate": "2019-02-13",
+            "valueDate": "2019-02-13",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-88.8"
+            },
+            "currencyExchange": null,
+            "creditorName": "VG MUSTERFELD",
+            "creditorAccount": {
+              "iban": "DE24762510200810000414",
+              "bban": "",
+              "pan": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "currency": "EUR"
+            },
+            "ultimateCreditor": "",
+            "debtorName": "DE21760300800400500502",
+            "debtorAccount": {
+              "iban": "DE60760300800500123456",
+              "bban": "",
+              "pan": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "currency": "EUR"
+            },
+            "ultimateDebtor": "DE21760300800400500502",
+            "remittanceInformationUnstructured": "VG MUSTERFELD//MUSTERFELD/DE 2019-02-12T09:45:58 Folgenr.000 Verfalld.2020-12",
+            "remittanceInformationStructured": "VG MUSTERFELD//MUSTERFELD/DE 2019-02-12T09:45:58 Folgenr.000 Verfalld.2020-12",
+            "additionalInformation": null,
+            "purposeCode": "OTHR",
+            "bankTransactionCode": "5",
+            "proprietaryBankTransactionCode": "5",
+            "_links": null
+          },
+          {
+            "transactionId": "f59f9bcb-3bed-41e7-aba9-3447b22a4a20",
+            "entryReference": null,
+            "endToEndId": "",
+            "mandateId": "",
+            "checkId": null,
+            "creditorId": "",
+            "bookingDate": "2019-01-14",
+            "valueDate": "2019-01-14",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-32.15"
+            },
+            "currencyExchange": null,
+            "creditorName": "DM-DROGERIE MARKT",
+            "creditorAccount": {
+              "iban": "DE00760300800922904916",
+              "bban": "",
+              "pan": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "currency": "EUR"
+            },
+            "ultimateCreditor": "",
+            "debtorName": "DE21760300800400500502",
+            "debtorAccount": {
+              "iban": "DE60760300800500123456",
+              "bban": "",
+              "pan": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "currency": "EUR"
+            },
+            "ultimateDebtor": "DE21760300800400500502",
+            "remittanceInformationUnstructured": "VISA13016010MUSTERSHAUSEN         32,15EUR0,000000000010.01.        0,00 10355912",
+            "remittanceInformationStructured": "VISA13016010MUSTERSHAUSEN         32,15EUR0,000000000010.01.        0,00 10355912",
+            "additionalInformation": null,
+            "purposeCode": "OTHR",
+            "bankTransactionCode": "5",
+            "proprietaryBankTransactionCode": "5",
+            "_links": null
+          },
+          {
+            "transactionId": "ce7c1288-193b-42d7-9286-aabfd3eda5d0",
+            "entryReference": null,
+            "endToEndId": "NOTPROVIDED",
+            "mandateId": "",
+            "checkId": null,
+            "creditorId": "",
+            "bookingDate": "2019-01-02",
+            "valueDate": "2019-01-02",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-50"
+            },
+            "currencyExchange": null,
+            "creditorName": "Juliana Mustern",
+            "creditorAccount": {
+              "iban": "DE71760300800980713541",
+              "bban": "",
+              "pan": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "currency": "EUR"
+            },
+            "ultimateCreditor": "",
+            "debtorName": "DE21760300800400500502",
+            "debtorAccount": {
+              "iban": "DE60760300800500123456",
+              "bban": "",
+              "pan": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "currency": "EUR"
+            },
+            "ultimateDebtor": "DE21760300800400500502",
+            "remittanceInformationUnstructured": "Parvest Wasser                     0988713543 007000 A14XZ1",
+            "remittanceInformationStructured": "Parvest Wasser                     0988713543 007000 A14XZ1",
+            "additionalInformation": null,
+            "purposeCode": "OTHR",
+            "bankTransactionCode": "5",
+            "proprietaryBankTransactionCode": "5",
+            "_links": null
+          },
+          {
+            "transactionId": "95fe058a-2bdd-42a8-a4fa-93945a8e72a1",
+            "entryReference": null,
+            "endToEndId": "",
+            "mandateId": "",
+            "checkId": null,
+            "creditorId": "",
+            "bookingDate": "2019-02-15",
+            "valueDate": "2019-02-15",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-11.4"
+            },
+            "currencyExchange": null,
+            "creditorName": "MUELLER LTD. & CO. KG",
+            "creditorAccount": {
+              "iban": "DE00760300800922904916",
+              "bban": "",
+              "pan": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "currency": "EUR"
+            },
+            "ultimateCreditor": "",
+            "debtorName": "DE21760300800400500502",
+            "debtorAccount": {
+              "iban": "DE60760300800500123456",
+              "bban": "",
+              "pan": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "currency": "EUR"
+            },
+            "ultimateDebtor": "DE21760300800400500502",
+            "remittanceInformationUnstructured": "VISA13016010MUSTERSHAUSEN         11,40EUR0,000000000013.02.        0,00 10355912",
+            "remittanceInformationStructured": "VISA13016010MUSTERSHAUSEN         11,40EUR0,000000000013.02.        0,00 10355912",
+            "additionalInformation": null,
+            "purposeCode": "OTHR",
+            "bankTransactionCode": "5",
+            "proprietaryBankTransactionCode": "5",
+            "_links": null
+          },
+          {
+            "transactionId": "ee718fbd-afc5-48b9-98c9-fe50354a038a",
+            "entryReference": null,
+            "endToEndId": "",
+            "mandateId": "",
+            "checkId": null,
+            "creditorId": "",
+            "bookingDate": "2019-01-18",
+            "valueDate": "2019-01-18",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-12.55"
+            },
+            "currencyExchange": null,
+            "creditorName": "MUELLER LTD. & CO. KG",
+            "creditorAccount": {
+              "iban": "DE00760300800922904916",
+              "bban": "",
+              "pan": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "currency": "EUR"
+            },
+            "ultimateCreditor": "",
+            "debtorName": "DE21760300800400500502",
+            "debtorAccount": {
+              "iban": "DE60760300800500123456",
+              "bban": "",
+              "pan": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "currency": "EUR"
+            },
+            "ultimateDebtor": "DE21760300800400500502",
+            "remittanceInformationUnstructured": "VISA13016010MUSTERSHAUSEN         12,55EUR0,000000000016.01.        0,00 10355912",
+            "remittanceInformationStructured": "VISA13016010MUSTERSHAUSEN         12,55EUR0,000000000016.01.        0,00 10355912",
+            "additionalInformation": null,
+            "purposeCode": "OTHR",
+            "bankTransactionCode": "5",
+            "proprietaryBankTransactionCode": "5",
+            "_links": null
+          }
+        ],
+        "pending": null,
+        "_links": {
+          "account": {
+            "href": "http://xs2a-sndbx.consorsbank.de/v1/accounts/1"
+          }
+        }
+      },
+      "balances": null,
+      "_links": {}
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/pisp/domestic-payment-consents",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "Data": {
+        "Status": "Rejected"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "DELETE",
+    "urlPathPattern": "/xs2a/OLB/v1/consents/7a7251ff-45ef-4e24-a4cc-bb77d4ba0b16",
+    "headers": {
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    }
+  },
+  "response": {
+    "status": 204,
+    "headers": {
+      "x-request-id": "99391c7e-ad88-49ec-a2ad-99ddcb1f7757"
+    }
+  }
+}

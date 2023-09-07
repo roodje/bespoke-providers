@@ -1,0 +1,99 @@
+{
+  "request": {
+    "url": "/v3.1/pisp/domestic-payments",
+    "method": "POST",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer gktvoeyJhbGciOiJSUzI1NiIsImtpZCI6InE0LTIwMTctbTEtQk9TIn0.eyJpc3MiOiJsbG95ZHMiLCJwcml2YXRlIjoiQUFJa01ETTVOREptWlRVdE9HTmlNaTAwTnpWbUxXSXdNVEl0TkRneVpqTTBaVEV4WXpJNTIxc0xZVE5TcF9Cc2ZsQnZVSHRubERSNjdUa3hkQ1VBM0ZRenE1QWlQVjlXelljRlB3d09BUTY2THFnMVRWWXY5eGFFOVZHSmY1eWl4c1pvR29VSkJjaENVXzZtQk5BaDd3TGxmUHl4Z3d0eGRaX3NFSEFGT2Jha1gtc2ZOQ1V3LWk0QVhtN2xUT1J0QlBjdEx4UFpEM1BJLU9TTUUzQllpeXR6VFJUcGZtT2ZxOEt2TmN1bXVMV1UtdC0ycHpsbjdZOHhIaGlCTnhMQ0lhUk5XZmxuWllVcURvVEkyOEk3Z0FVeUhLbTlueFNZcXY0VENrU004OHB6dVhVY2Y3UlJ1RDI0S1Q4M2wxZUxoR1F3Slc3TmdPZWZWRWtzMzRtYWlrWXhUMldPajBpUlhXWmRBampZZnNjQ2M4RHREYUYwOFFSMUJLRFJlNHZoSkdwQUJpZW9RZkthLWJIRGxBMjJvb1F2aTUweEwzRG5vdnlkcDBIV25lc0ZoNHlqbWlSZ1dlWk9lYWRFdXhqNXdKMnAxeHBVNkJoWEg1VFByRGdOUlJaZUJ3WnJUZFJ2NWJPUFNIaGI3SXNBOUF5NC01bU41SzJsQ0k3SkVobHJVN2RLeUlhdW9nIn0.c7dc4sSJvIjcYbxgiMp886bvezAwkLuZXEnQbfUhdVzL2i1mKts5PeDBsYAFErg6zyT1Q9aBzFsMgez7G3KarDJrBx1Wsd6mIKxnENbYkCmBtHYzxGkRmLciL4qB60IAMhHLSz9XCNz-OfHYEUffeY9kwwpaW2ibA7av5Q2ZB7PEmSa41bXiuTZal7MMCGRZzWfJppSA_rLhl-xCuIgyGdNVY0uF4wKqD6GWjqTEry3era3NoNvHatde1gFIUqkYiMw3XSv5IfulT-_YLanGHKe_S6JsGijAPhLT5DRz5V0ijXPzCwe2-wDHS95dgrGzSFk1QE23AeVwsWXwkNG2vQ"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "1238972887jdsIWNND"
+      },
+      "Content-Type": {
+        "equalTo": "application/json;charset=UTF-8"
+      },
+      "x-idempotency-key": {
+        "matches": "^[a-zA-Z0-9]{32}$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "ConsentId": "bec2bc664f984571b5a20ea666a7d0c1",
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "EndToEndIdentification": "35B64F93",
+              "InstructedAmount": {
+                "Amount": "0.01",
+                "Currency": "GBP"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "12345678901234",
+                "Name": "P. Jantje"
+              },
+              "RemittanceInformation": {
+                "Reference": "SomeRandomMessage"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        },
+        "ignoreArrayOrder": true
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "Data": {
+        "DomesticPaymentId": "e23f5d5cd08d44c3993243ad3f19d56e",
+        "ConsentId": "bec2bc664f984571b5a20ea666a7d0c1",
+        "CreationDateTime": "2019-08-20T13:09:13.372Z",
+        "Status": "AcceptedSettlementInProcess",
+        "StatusUpdateDateTime": "2019-08-20T13:09:14.413Z",
+        "Initiation": {
+          "InstructionIdentification": "h3ce0bdd-3460-48c0-ae63-b0981",
+          "EndToEndIdentification": "524a62e9-d",
+          "InstructedAmount": {
+            "Amount": "0.01",
+            "Currency": "GBP"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "41141266529926",
+            "Name": "John Doe"
+          },
+          "RemittanceInformation": {
+            "Reference": "Unstructured"
+          }
+        }
+      },
+      "Links": {
+        "Self": "https://api.lloyds.co.uk/open-banking/v3.1/pisp/domestic-payments/e23f5d5cd08d44c3993243ad3f19d56e"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Frame-Options": "DENY",
+      "x-fapi-interaction-id": "4afceace-6ba4-4894-9441-aaef7f7a9004",
+      "Set-Cookie": [
+        "f5avrbbbbbbbbbbbbbbbb=JFBCGNCOGHBBMHDMLMJKJPBNKGGJDKBFDHKPEFLPIHGIFOPENNJNLFKDOAONFOCIPMEDJCBPAGPJODPABOFAGPCAENOMJGLKLLLABGPJOGBDEAPHIINEOIHMIGKOFNFN; HttpOnly; secure; Domain=api.natwest.com; Path=/open-banking/v1.1",
+        "f5avrbbbbbbbbbbbbbbbb=FKHECGAFBCFNKMPEAKHBLCNPELEHKEAMIMPOOIHKLIKGPNKLJJDJOICLEEKFJMFGCGPDMJONAGFKINEEJLFAFCMJENFNOPAKGKGFCOPNGJDFGOPLMIJLBLGFABLKOAPA; HttpOnly; secure"
+      ],
+      "Content-Type": "application/json;charset=UTF-8",
+      "Date": "Mon, 28 Jan 2019 10:16:51 GMT",
+      "Server": ""
+    }
+  }
+}

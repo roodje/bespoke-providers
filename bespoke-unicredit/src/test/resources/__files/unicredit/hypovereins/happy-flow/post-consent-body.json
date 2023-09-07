@@ -1,0 +1,9 @@
+{
+  "consentStatus": "received",
+  "consentId": "c3a1880e-cd10-4833-8edb-3296beee5247",
+  "_links": {
+    "scaRedirect": {
+      "href": "https://authorization.api-sandbox.unicredit.eu:8403/sandbox/psd2/bg/loginPSD2_BG.html?consentId=c3a1880e-cd10-4833-8edb-3296beee5247&correlationid=cSvzeI&country=DE"
+    }
+  }
+}

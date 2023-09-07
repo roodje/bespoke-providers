@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer Az90SAOJklae"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "93bac548-d2de-4546-b106-880a5018460d"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "93bac548-d2de-4546-b106-880a5018460d"
+    },
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "22289",
+            "Status": "Enabled",
+            "StatusUpdateDateTime": "2019-01-01T06:06:06+00:00",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "80200110203345",
+                "SecondaryIdentification": "00021"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://openbanking.monzo.com/open-banking/v3.1/aisp/accounts/"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/v1.1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/transactions",
+    "queryParameters": {
+      "bookingStatus": {
+        "equalTo": "booked"
+      },
+      "limit": {
+        "equalTo": "2000"
+      },
+      "dateFrom": {
+        "matches": "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$"
+      }
+    },
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "matches": "Bearer 3fb45310-e2bb-11ea-87d0-0242ac130003"
+      },
+      "Consent-ID": {
+        "equalTo": "CONSENT_ID"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "iban": "NL86SNSB0256012733",
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "entryReference": "20190101-33263746",
+            "endToEndId": "12345678901234567890123456789012345",
+            "mandateId": "",
+            "creditorId": "",
+            "bookingDate": "2017-10-25",
+            "valueDate": "2017-10-25",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-256.67"
+            },
+            "creditorName": "Constant Kaanen",
+            "creditorAccount": {
+              "iban": "NL64SNSB0123456789"
+            },
+            "debtorName": "",
+            "remittanceInformationUnstructured": "Uw toelage",
+            "remittanceInformationStructured": {
+              "reference": "1345-1231-1232-6456",
+              "referenceIssuer": "CUR"
+            },
+            "purposeCode": "",
+            "bankTransactionCode": 3723,
+            "proprietaryBankTransactionCode": "FNGI"
+          },
+          {
+            "entryReference": "20190101-33263747",
+            "endToEndId": "12345678901234567890123456789012346",
+            "mandateId": "",
+            "creditorId": "",
+            "bookingDate": "2017-10-25",
+            "valueDate": "2017-10-25",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "999.99"
+            },
+            "debtorAccount": {
+              "iban": "NL64SNSB0123456789"
+            },
+            "remittanceInformationStructured": {
+              "reference": "1234-1234-1234-1234",
+              "referenceIssuer": "CUR"
+            },
+            "purposeCode": "",
+            "bankTransactionCode": 2754,
+            "proprietaryBankTransactionCode": "FNGI"
+          }
+        ],
+        "_links": {
+          "account": {
+            "href": "/psd2/snsbank/v1.1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f"
+          },
+          "next": {
+            "href": "/psd2/snsbank/v1.1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/transactions?bookingStatus=booked&limit=2000&pageDirection=next&entryReferenceFrom=20171026-30026081"
+          },
+          "previous": {
+            "href": "/psd2/snsbank/v1.1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/transactions?bookingStatus=booked&limit=2000&pageDirection=previous&entryReferenceFrom=20170117-30000010"
+          }
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+

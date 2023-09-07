@@ -1,0 +1,194 @@
+{
+  "request": {
+    "url": "/psd2-api.ca-alpesprovence.fr/dsp2/v1/accounts",
+    "method": "GET",
+    "headers": {
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "Connection": {
+        "equalTo": "Keep-Alive",
+        "caseInsensitive": true
+      },
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 39911f01-4613-461f-9b47-1e4ba35176e6"
+      },
+      "Date": {
+        "matches": "((Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{1,2} ... \\d{4} \\d{2}:\\d{2}:\\d{2} ...)"
+      },
+      "Digest": {
+        "equalTo": "SHA-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU="
+      },
+      "Signature": {
+        "matches": "keyId=\"2b9adbd7f86bed51e23f467c25e1f887\", algorithm=\"rsa-sha256\", headers=\"\\(request-target\\) x-request-id authorization accept digest date content-type\", signature=\"([A-Za-z0-9+])*(=){0,2}\""
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Accept": "application/json, application/*+json",
+      "Content-Type": "application/json; charset=UTF-8"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "1",
+          "accountId": {
+            "iban": "FR7617806004800000010000149",
+            "currency": "EUR",
+            "area": {
+              "areaId": "423908fsodij091ud021093290ufr924",
+              "areaLabel": "M.OU MME NAMDRA CENUMUKIA"
+            }
+          },
+          "name": "M.OU MME NAMDRA CENUMUKIA",
+          "cashAccountType": "CACC",
+          "balances": [
+            {
+              "name": "Accounting Balance",
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": "89530.92"
+              },
+              "balanceType": "CLBD",
+              "referenceDate": "2019-01-30"
+            }
+          ],
+          "_links": {
+            "balances": {
+              "href": "/psd2-api.ca-alpesprovence.fr/v1/accounts/1/balances",
+              "templated": false
+            },
+            "transactions": {
+              "href": "/psd2-api.ca-alpesprovence.fr/v1/accounts/1/transactions",
+              "templated": false
+            }
+          }
+        },
+        {
+          "resourceId": "2",
+          "accountId": {
+            "iban": "FR7617806004800000010000252",
+            "currency": "EUR"
+          },
+          "name": "MR CENUMUKIA NAMDRA",
+          "cashAccountType": "CACC",
+          "balances": [
+            {
+              "name": "Accounting Balance",
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": "2343.63"
+              },
+              "balanceType": "CLBD",
+              "lastChangeDateTime": null,
+              "referenceDate": "2019-01-30",
+              "lastCommitedTransaction": null
+            }
+          ],
+          "psuStatus": null,
+          "_links": {
+            "balances": {
+              "href": "/psd2-api.ca-alpesprovence.fr/v1/accounts/2/balances",
+              "templated": false
+            },
+            "transactions": {
+              "href": "/psd2-api.ca-alpesprovence.fr/v1/accounts/2/transactions",
+              "templated": false
+            }
+          }
+        },
+        {
+          "resourceId": "3",
+          "accountId": {
+            "currency": "EUR",
+            "other": {
+              "identification": "1300000000003573228",
+              "schemeName": "CPAN",
+              "issuer": "AGRIFRPP878"
+            }
+          },
+          "name": "M. NAMDRA CENUMUKIA",
+          "details": "active",
+          "linkedAccount": "FR7617806004800000010000149",
+          "cashAccountType": "CARD",
+          "product": "Gold Dual Sociétaire DD",
+          "balances": [
+            {
+              "name": "Instant Balance 01/2019",
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": "-1855.89"
+              },
+              "balanceType": "XPCD",
+              "referenceDate": "2019-01-30"
+            },
+            {
+              "name": "Instant Balance 02/2019",
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": "-606.13"
+              },
+              "balanceType": "XPCD",
+              "referenceDate": "2019-01-30"
+            }
+          ],
+          "_links": {
+            "balances": {
+              "href": "/psd2-api.ca-alpesprovence.fr/v1/accounts/3/balances",
+              "templated": false
+            },
+            "transactions": {
+              "href": "/psd2-api.ca-alpesprovence.fr/v1/accounts/3/transactions",
+              "templated": false
+            }
+          }
+        },
+        {
+          "resourceId": "4",
+          "accountId": {
+            "iban": "FR7617806004800000010000458",
+            "currency": "CHF"
+          },
+          "name": "Compte CHF",
+          "cashAccountType": "CACC",
+          "balances": [
+            {
+              "name": "Accounting Balance",
+              "balanceAmount": {
+                "currency": "CHF",
+                "amount": "733.63"
+              },
+              "balanceType": "CLBD",
+              "referenceDate": "2019-01-30"
+            }
+          ],
+          "_links": {
+            "balances": {
+              "href": "/psd2-api.ca-alpesprovence.fr/v1/accounts/4/balances",
+              "templated": false
+            },
+            "transactions": {
+              "href": "/psd2-api.ca-alpesprovence.fr/v1/accounts/4/transactions",
+              "templated": false
+            }
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "/psd2-api.ca-alpesprovence.fr/v1/accounts",
+          "templated": false
+        },
+        "beneficiaries": "/psd2-api.ca-alpesprovence.fr/v1/trusted-beneficiaries"
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/.*/accounts"
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "Message": "Invalid Consent"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

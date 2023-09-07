@@ -1,0 +1,65 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0017440000hdQV5CCT"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "10000000000001449160",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Description": "Current Account",
+            "Account": [
+              {
+                "Identification": "10272100577464",
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber"
+              },
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB18TPFL40442013153181"
+              }
+            ]
+          },
+          {
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB15AIBK12345678901235"
+              }
+            ],
+            "AccountId": "10000000000000947108",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "Savings"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://ob.api.tescobank.com/open-banking/v3.1/aisp/accounts"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

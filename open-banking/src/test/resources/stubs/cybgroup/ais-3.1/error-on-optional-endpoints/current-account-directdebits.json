@@ -1,0 +1,34 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/92198f42-4726-12fd-ad55-b93b04192121/direct-debits",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "x-fapi-financial-id": {
+        "contains": "001728392JD873NNHY"
+      }
+    }
+  },
+  "response": {
+    "status": 500,
+    "jsonBody": {
+      "Code": "500 Internal Server Error",
+      "Id": "705f58f4-3263-4c29-86c0-41081066bf9f",
+      "Message": "Unexpected error occured",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.UnexpectedError",
+          "Message": "There was a problem processing your request. Please try again later"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

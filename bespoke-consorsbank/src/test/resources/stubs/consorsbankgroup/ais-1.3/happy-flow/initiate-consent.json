@@ -1,0 +1,78 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/consents",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "TPP-Redirect-URI": {
+        "equalTo": "https://www.yolt.com/callback?state=randomState"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "TEST_PSU_IP_ADDRESS"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": {
+          "expression": "$.recurringIndicator",
+          "equalTo": "true"
+        }
+      },
+      {
+        "matchesJsonPath": {
+          "expression": "$.combinedServiceIndicator",
+          "equalTo": "false"
+        }
+      },
+      {
+        "matchesJsonPath": {
+          "expression": "$.access",
+          "equalToJson": "{\n \"accounts\": [],\n \"balances\": [],\n \"transactions\": []\n }"
+        }
+      },
+      {
+        "matchesJsonPath": {
+          "expression": "$.frequencyPerDay",
+          "equalTo": "4"
+        }
+      },
+      {
+        "contains": "validUntil"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "consentStatus": "received",
+      "consentId": "123",
+      "scaMethods": [],
+      "_links": {
+        "scaStatus": {
+          "href": "https://xs2a.dab-bank.de/v1/consents/123"
+        },
+        "scaRedirect": {
+          "href": "https://b2b.dabbank.de/Zahlungsverkehr/Freigabe_Kontozugriff/index.xhtml?redirect_id=321&consent_id=123"
+        },
+        "self": {
+          "href": "https://xs2a.dab-bank.de/v1/consents/123"
+        },
+        "status": {
+          "href": "https://xs2a.dab-bank.de/v1/consents/123"
+        }
+      }
+    }
+
+  }
+}

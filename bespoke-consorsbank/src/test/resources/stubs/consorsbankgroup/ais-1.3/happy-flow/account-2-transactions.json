@@ -1,0 +1,121 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v1/accounts/2/transactions",
+    "queryParameters": {
+      "dateFrom": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}$"
+      },
+      "bookingStatus": {
+        "equalTo": "both"
+      }
+    },
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "123"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "TEST_PSU_IP_ADDRESS"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "DE98701204008538752000",
+        "bban": null,
+        "pan": null,
+        "maskedPan": null,
+        "msisdn": null,
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "8508921e-2cd4-43e8-ba1e-26b143307927",
+            "entryReference": "",
+            "endToEndId": "",
+            "mandateId": "",
+            "checkId": "",
+            "creditorId": "",
+            "bookingDate": "2019-02-04",
+            "valueDate": "2019-02-04",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-100"
+            },
+            "currencyExchange": null,
+            "creditorName": "Robert Betzel",
+            "creditorAccount": {
+              "iban": "DE45760365682870018759",
+              "bban": "",
+              "pan": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "currency": "EUR"
+            },
+            "ultimateCreditor": "",
+            "debtorName": "Isabella Ionescu",
+            "debtorAccount": {
+              "iban": "DE98701204008538752000",
+              "bban": "",
+              "pan": "",
+              "maskedPan": "",
+              "msisdn": "",
+              "currency": "EUR"
+            },
+            "ultimateDebtor": "Isabella Ionescu",
+            "remittanceInformationUnstructured": "Alles Gute zum Geburstag DATUM 04.02.2018, 21.21 UHR1.TAN 598233",
+            "remittanceInformationStructured": "Alles Gute zum Geburstag DATUM 04.02.2018, 21.21 UHR1.TAN 598233",
+            "additionalInformation": null,
+            "purposeCode": null,
+            "bankTransactionCode": "",
+            "proprietaryBankTransactionCode": "",
+            "_links": null
+          }
+        ],
+        "pending": [
+          {
+            "transactionId": "20210510-11111111-1-1",
+            "endToEndId": "trn-01d11111111e111d ",
+            "mandateId": " ",
+            "creditorId": " ",
+            "valueDate": "2021-05-11",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-2.96"
+            },
+            "creditorName": "DIE FIRMA, Vaduz, Liechtenstein;",
+            "creditorAccount": {
+              "iban": "LT0000000000000000000",
+              "currency": "EUR"
+            },
+            "debtorAccount": {
+              "iban": "DE0000000000000000000000",
+              "currency": "EUR"
+            },
+            "remittanceInformationUnstructured": "111110 - 1111111 ",
+            "proprietaryBankTransactionCode": "Lastschrift (Einzugsermächtigung)"
+          }
+        ],
+        "_links": {
+          "account": {
+            "href": "http://xs2a-sndbx.consorsbank.de/v1/accounts/2"
+          }
+        }
+      },
+      "balances": null,
+      "_links": {}
+    }
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/ing/v3/accounts/(7de0041d-4f25-4b6c-a885-0bbeb1eab220|45e0041d-4f25-4b6c-a885-0bbeb1eab440)/balances",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "matches": "Bearer (.*)"
+      },
+      "Signature": {
+        "matches": "keyId=\"example_client_id\",algorithm=\"rsa-sha256\",headers=\"(.*)\",signature=\"(.*)\""
+      },
+      "Digest": {
+        "matches": "SHA-256=(.*)"
+      },
+      "Date": {
+        "matches": "[A-Z][a-z]{2}, [0-9]{1,2} [A-Z][a-z]{2} [0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2} GMT"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "iban": "IT50N1234561605000323304444",
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "abcdefgh123456==",
+            "bookingDate": "2020-09-30",
+            "valueDate": "2020-09-30",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-738.94"
+            },
+            "remittanceInformationUnstructured": "Rimborso finanziamento n. 1534321 ",
+            "remittanceInformationStructured": {
+              "type": "SCOR",
+              "issuer": "ISO",
+              "reference": "RF18539007547034"
+            },
+            "_links": {
+              "transactionDetails": {
+                "href": "/accounts/12345678-9ff7-39ca-8277-f0e738061e9c/transactions/abcdefgh123456=="
+              }
+            }
+          },
+          {
+            "transactionId": "123456abcderg==",
+            "bookingDate": "2020-09-29",
+            "valueDate": "2020-09-29",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "+250.00"
+            },
+            "remittanceInformationUnstructured": "Bonifico del 29.09.20 ",
+            "remittanceInformationStructured": {
+              "type": "SCOR",
+              "issuer": "ISO",
+              "reference": "RF18539007547034"
+            },
+            "_links": {
+              "transactionDetails": {
+                "href": "/accounts/12345678f-9ff7-39ca-8277-f0e738061e9c/transactions/123456abcderg=="
+              }
+            }
+          },
+          {
+            "transactionId": "ABCDEFGH12345678==",
+            "bookingDate": "2020-09-14",
+            "valueDate": "2020-09-14",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "+500.00"
+            },
+            "remittanceInformationUnstructured": "Bonifico del 14.09.20",
+            "remittanceInformationStructured": {
+              "type": "SCOR",
+              "issuer": "ISO",
+              "reference": "RF18539007547034"
+            },
+            "_links": {
+              "transactionDetails": {
+                "href": "/accounts/abcdef123-9ff7-39ca-8277-f0e738061e9c/transactions/ABCDEFGH12345678=="
+              }
+            }
+          }
+        ],
+        "_links": {
+          "account": {
+            "href": "/accounts/abcdef123-9ff7-39ca-8277-f0e738061e9c"
+          }
+        }
+      },
+      "balances": [
+        {
+          "balanceAmount": {
+            "currency": "EUR",
+            "amount": "547.60"
+          },
+          "balanceType": "expected",
+          "referenceDate": "2020-10-07"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

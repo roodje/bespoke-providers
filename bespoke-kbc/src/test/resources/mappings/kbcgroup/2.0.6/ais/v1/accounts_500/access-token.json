@@ -1,0 +1,41 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/ASK/oauth/token/1",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded(;charset=UTF\\-8)?"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "client_id=PSDNL-ABC-12345"
+      },
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "redirect_uri=https://yolt.com/callback-acc"
+      },
+      {
+        "contains": "code=test-code"
+      },
+      {
+        "contains": "code_verifier=test-code-verifier"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access_token":"test-access-token",
+      "expires_in":1800,
+      "token_type":"bearer",
+      "refresh_token":"test-refresh-token",
+      "scope":"AIS"
+    }
+  }
+}

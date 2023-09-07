@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth-token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0011800000tfV9aBBE"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "redirect_uri=https%3A%2F%2Fyolt.com%2Fcallback-test"
+      },
+      {
+        "contains": "code=iVuATHQHLIjtGjeuxtBj6Gfnd8o"
+      },
+      {
+        "contains": "client_id=someClientId"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "3zHagXZSPyA6sifIDmqwZ0hLlqq",
+      "token_type": "Bearer",
+      "expires_in": 3599,
+      "refresh_token": "NfEtxxaLt1SavZW1s7thJ7iw0XZ",
+      "scope": "openid payments",
+      "id_token": "eyJraWQiOiJleHRlcm5hbF8yKiwidHlwIjoiSldUIiwiYWxnIjoiUFMyNTYifQ.eyJhdF9oYXNoIjoiVFhsN2ozSkR0N1lISWdTa1FqdjltUSIsImFjciI6ItVybjpvcGVuYmFua2luZzpwc2QyOnNjYSIsImF1ZCI6IjQyZjU2YjZjLThlYjItNGNhMS1hZTdhLTdiMDVlYjMyMnQxMiIsInN1YiI6IjgwMDY4OWE0LTA2ODktNGQzOC04YTE1LWI50DA4MTIwOWY2MCIsIm9wZW5iYW5raW5nX2ludGVudF9pZCI6IjgwMDY4OWE0LTA2ODktNGQzOC04YTE1LWI5ODA4MTIwOWY2MCIsImF1dGhfdGltZSI6MTYwNTE1MTI5MSwiaXNzIjoiaHR0cHM6XC9cL2FwaS5vYi5oc2JjLmNvLnVrIiwiZXhwIjoxNjA1MTUxNTk0LCJpYXQiOjE2MDUxNTEyOTQsIm5vbmNlIjoiYmFkMGU4MjUtZWY4Mi00NjFhLTkzNzgtZGE1N2RkMmUyNjRmIn0.u3_wgdRDIuTtFxRRYkHQpktc_wNEtk2tIwP1cpYBygVMeGI-bwe-6nfRNm-OwHS64EIybtOFIxjHtjjnt4lSUjvkGh5wYBB_MAXVUMLTDLS5oylBTDRUBtaKsxMn4IfGvQkvXiUC7entrZrmGF2vzc1pb2rJM0LqN5y7GvOznaFi8i1nLf3UvkiJFoqAKYOT3yuRpw1ZLaDjyP1oPctihk52iRT8hPz50KkBPVjTxtl2hG_4-JCDSv0qxLnuVLNRtgOhj6DP_-MscZmEZe6ZtSfOAG2zcC1A0NeES2jf_L068ZqyqXtMdPuRahAwjHHn3iZ0d9qQI1LicTYoF-9JAQ"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

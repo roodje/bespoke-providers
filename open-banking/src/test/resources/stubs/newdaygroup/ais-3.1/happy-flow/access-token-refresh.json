@@ -1,0 +1,41 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/identity/v1.0/[0-9A-Za-z]+/connect/token",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "matches": "12345"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "fake-institution-id"
+      },
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=fake-refresh-token"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "access_token": "SOME_ACCESS_TOKEN",
+      "id_token": "fake-id-token",
+      "token_type": "Bearer",
+      "expires_in": 600,
+      "refresh_token" : "refreshed-fake-token"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

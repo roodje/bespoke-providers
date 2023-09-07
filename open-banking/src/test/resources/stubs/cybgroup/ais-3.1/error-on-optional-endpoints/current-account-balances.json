@@ -1,0 +1,76 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/92198f42-4726-12fd-ad55-b93b04192121/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "001728392JD873NNHY"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "92198f42-4726-12fd-ad55-b93b04192121",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2021-02-18T19:28:45.792Z",
+            "Amount": {
+              "Amount": "53.67",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "92198f42-4726-12fd-ad55-b93b04192121",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimCleared",
+            "DateTime": "2021-02-18T19:28:45.796Z",
+            "Amount": {
+              "Amount": "53.67",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "92198f42-4726-12fd-ad55-b93b04192121",
+            "CreditDebitIndicator": "Credit",
+            "Type": "PreviouslyClosedBooked",
+            "DateTime": "2021-02-18T19:28:45.796Z",
+            "Amount": {
+              "Amount": "680.49",
+              "Currency": "GBP"
+            }
+          },
+          {
+            "AccountId": "92198f42-4726-12fd-ad55-b93b04192121",
+            "CreditDebitIndicator": "Credit",
+            "Type": "ClosingCleared",
+            "DateTime": "2021-02-18T19:28:45.796Z",
+            "Amount": {
+              "Amount": "680.49",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://cb.api-nc.cybservices.co.uk/open-banking/v3.1/aisp/accounts/92198f42-4726-12fd-ad55-b93b04192121/balances/"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

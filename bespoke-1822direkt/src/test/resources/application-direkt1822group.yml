@@ -1,0 +1,5 @@
+lovebird:
+  direkt1822group:
+    direkt1822:
+      baseUrl: https://localhost:${wiremock.server.https-port}/joba-psd2
+      paginationLimit: 200

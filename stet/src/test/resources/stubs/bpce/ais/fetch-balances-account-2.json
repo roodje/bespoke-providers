@@ -1,0 +1,66 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/stet/psd2/v1.4.2/accounts/175150009204004305180/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token2"
+      },
+      "Signature": {
+        "matches": "keyId=\"THE_CLIENT_ID\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) date digest x-request-id\",signature=\"(.*)\""
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "strict-transport-security": "max-age=63072000; includeSubdomains;",
+      "x-content-type-options": "nosniff",
+      "digest": "SHA-256=g9mY6JCBjQiRrjP9iNXU8YJiSbRe+UjUhhJG4c7GNKE=",
+      "signature": "the signature",
+      "connection": "Keep-Alive",
+      "max-forwards": "20",
+      "content-length": "551",
+      "x-xss-protection": "1; mode=block",
+      "x-request-id": "49a17f62-6787-4042-abcd-83e9c41f575b",
+      "x-correlationid": "Id-9a9bc25db67a0e663adbe60f 0",
+      "date": "Wed, 06 Nov 2019 10:08:26 GMT",
+      "x-frame-options": "SAMEORIGIN",
+      "content-type": "application/json;charset=UTF-8",
+      "access-control-allow-origin": "https://www.api.89c3.com",
+      "access-control-expose-headers": "x-correlationid",
+      "cache-control": "max-age=0, public",
+      "keep-alive": "timeout=5, max=299",
+      "expires": "Wed, 06 Nov 2019 10:08:26 GMT"
+    },
+    "jsonBody": {
+      "balances": [
+        {
+          "balanceType": "VALU",
+          "name": "Solde comptable au 05/11/2019",
+          "balanceAmount": {
+            "amount": "-150.00",
+            "currency": "EUR"
+          }
+        }
+      ],
+      "_links": {
+        "self": {
+          "templated": false,
+          "href": "/stet/psd2/v1.4.2/accounts/175150009204004305180/balances"
+        },
+        "transactions": {
+          "templated": true,
+          "href": "/stet/psd2/v1.4.2/accounts/175150009204004305180/transactions"
+        },
+        "parent-list": {
+          "templated": false,
+          "href": "/stet/psd2/v1.4.2/accounts"
+        }
+      }
+    }
+  }
+}

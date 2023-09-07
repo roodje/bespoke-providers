@@ -1,0 +1,3124 @@
+swagger: '2.0'
+info:
+  version: 2.0.6
+  title: KBC/CBC PSD2 API Account Information Services
+  description: 'PSD2 requires banks to share certain account information via AISPs at the specific request of the account holders. It also places specific requirements on these AISPs to ensure the security of those account holders. Any specifications according to the optional request parameters of the Berlin Group NextGenPSD2 Framework Implementation Guidelines V1.1 that are not mentioned in this document should be considered as unsupported. However, in most cases sending such parameters will not lead to any errors.'
+  contact:
+    name: PSD2 API Support
+    url: 'https://developer.kbc.be/'
+    email: PSD2@kbc.be
+host: openapi.kbc-group.com
+basePath: /psd2/v2
+schemes:
+  - https
+securityDefinitions:
+  oauth2:
+    type: oauth2
+    flow: accessCode
+    scopes:
+      'AIS:<Consent-Id>': Get the Account Information - Balances and Transactions
+    authorizationUrl: 'https://idp.kbc.com/ASK/oauth/authorize/1'
+    tokenUrl: 'https://openapi.kbc-group.com/ASK/oauth/token/1'
+produces:
+  - application/json
+paths:
+  /consents:
+    post:
+      operationId: POST_consents
+      summary: Account Information Consent Request
+      tags:
+        - Consents
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      description: 'Create a consent resource, defining access rights to dedicated accounts of a given PSU-ID. These accounts are addressed explicitly in the method as parameters as a core function.'
+      parameters:
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              access:
+                type: object
+                description: |-
+                  For v2.0.0, KBC only supports one single IBAN in Balances, Transactions or Both.
+                  Not supported: multiple IBANs, different IBANs in balances vs transactions and other access types (allPsd2 and allAvailable).
+                properties:
+                  balances:
+                    type: array
+                    items:
+                      title: accountReference
+                      type: object
+                      description: Account identification
+                      properties:
+                        iban:
+                          type: string
+                          pattern: '^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$'
+                        currency:
+                          type: string
+                          description: An ISO 4217 Currency code.
+                          pattern: '^[A-Z]{3}$'
+                      required:
+                        - iban
+                  transactions:
+                    type: array
+                    items:
+                      title: accountReference
+                      type: object
+                      description: Account identification
+                      properties:
+                        iban:
+                          type: string
+                          pattern: '^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$'
+                        currency:
+                          type: string
+                          description: An ISO 4217 Currency code.
+                          pattern: '^[A-Z]{3}$'
+                      required:
+                        - iban
+              recurringIndicator:
+                type: boolean
+              validUntil:
+                type: string
+                format: date
+              frequencyPerDay:
+                type: integer
+                description: This field indicates the requested maximum frequency for access to account without PSU involvement per day.
+                minimum: 1
+                exclusiveMinimum: true
+                maximum: 4
+                example: 4
+              combinedServiceIndicator:
+                type: boolean
+                description: Only false is supported at KBC.
+            required:
+              - access
+              - recurringIndicator
+              - validUntil
+              - frequencyPerDay
+              - combinedServiceIndicator
+        - name: Authorization
+          in: header
+          description: 'Bearer token containing TPP client id, if applicable (portal registered)'
+          required: false
+          type: string
+        - name: X-Request-ID
+          in: header
+          description: 'ID of the request, unique to the call, as determined by the initiating party.'
+          required: true
+          type: string
+          format: uuid
+        - name: TPP-Redirect-URI
+          in: header
+          description: 'URI of the TPP, where the transaction flow shall be redirected to after a Redirect.'
+          required: true
+          type: string
+          format: uri
+        - name: PSU-IP-Address
+          in: header
+          description: The forwarded IP Address header field consists of the corresponding HTTP request IP Address field between PSU and TPP.
+          required: true
+          type: string
+          format: ipv4
+        - name: PSU-IP-Port
+          in: header
+          description: 'The forwarded IP Port header field consists of the corresponding HTTP request IP Port field between PSU and TPP, if available.'
+          required: false
+          type: string
+          format: ''
+        - name: PSU-Accept
+          in: header
+          description: 'The forwarded IP Accept header fields consist of the corresponding HTTP request Accept header fields between PSU and TPP, if available.'
+          required: false
+          type: string
+        - name: PSU-Accept-Charset
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-Accept-Encoding
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-Accept-Language
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-User-Agent
+          in: header
+          description: 'The forwarded Agent header field of the HTTP request between PSU and TPP, if available.'
+          required: false
+          type: string
+        - name: PSU-Http-Method
+          in: header
+          description: 'HTTP method used at the PSU – TPP interface, if available.'
+          required: false
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+        - name: PSU-Device-ID
+          in: header
+          description: |-
+            UUID (Universally Unique Identifier) for a device, which is used by the PSU, if available.
+            UUID identifies either a device or a device dependant application installation. In case of an installation identification this ID need to be unaltered until removal from device.
+          required: false
+          type: string
+        - name: PSU-Geo-Location
+          in: header
+          description: The forwarded Geo Location of the corresponding HTTP request between PSU and TPP if available.
+          required: false
+          type: string
+      responses:
+        '201':
+          description: A Successfull consent request is created
+          schema:
+            type: object
+            properties:
+              consentStatus:
+                type: string
+                description: Authentication status of the consent
+                enum:
+                  - received
+                  - rejected
+                  - valid
+                  - revokedByPsu
+                  - expired
+                  - terminatedByTpp
+              consentId:
+                type: string
+                description: Identification of the consent resource as it is used in the API structure
+              _links:
+                type: object
+                description: ''
+                properties: {}
+            required:
+              - consentStatus
+              - _links
+          headers:
+            Location:
+              description: Location of the created resource
+              type: string
+              format: uri-reference
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+            ASPSP-SCA-Approach:
+              description: KBC will only support "REDIRECT"
+              type: string
+              enum:
+                - EMBEDDED
+                - DECOUPLED
+                - REDIRECT
+        '400':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '401':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '403':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '404':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '405':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '406':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '429':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '500':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '503':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+  /accounts:
+    get:
+      operationId: GET_accounts
+      summary: Read Account List
+      tags:
+        - Account Information
+      produces:
+        - application/json
+      description: 'Reads a list of bank accounts, with balances where required. It is assumed that a consent of the PSU to this access is already given and stored on the ASPSP system. The addressed list of accounts depends then on the PSU ID and the stored consent addressed by consentId, respectively the OAuth2 access token.'
+      parameters:
+        - name: withBalance
+          in: query
+          description: 'If contained, this function reads the details of the addressed account including the booking balance, if granted by the PSU''s consent and if supported by ASPSP. This data element might be ignored by the ASPSP.'
+          required: false
+          type: boolean
+        - name: X-Request-ID
+          in: header
+          description: 'ID of the request, unique to the call, as determined by the initiating party.'
+          required: true
+          type: string
+          format: uuid
+        - name: Consent-ID
+          in: header
+          description: Shall be contained since "Establish Consent Transaction" was performed via this API before.
+          required: true
+          type: string
+        - name: PSU-IP-Address
+          in: header
+          description: The forwarded IP Address header field consists of the corresponding HTTP request IP Address field between PSU and TPP.
+          required: false
+          type: string
+          format: ipv4
+        - name: PSU-IP-Port
+          in: header
+          description: 'The forwarded IP Port header field consists of the corresponding HTTP request IP Port field between PSU and TPP, if available.'
+          required: false
+          type: string
+          format: ''
+        - name: PSU-Accept
+          in: header
+          description: 'The forwarded IP Accept header fields consist of the corresponding HTTP request Accept header fields between PSU and TPP, if available.'
+          required: false
+          type: string
+        - name: PSU-Accept-Charset
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-Accept-Encoding
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-Accept-Language
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-User-Agent
+          in: header
+          description: 'The forwarded Agent header field of the HTTP request between PSU and TPP, if available.'
+          required: false
+          type: string
+        - name: PSU-Http-Method
+          in: header
+          description: 'HTTP method used at the PSU – TPP interface, if available.'
+          required: false
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+        - name: PSU-Device-ID
+          in: header
+          description: |-
+            UUID (Universally Unique Identifier) for a device, which is used by the PSU, if available.
+            UUID identifies either a device or a device dependant application installation. In case of an installation identification this ID need to be unaltered until removal from device.
+          required: false
+          type: string
+        - name: PSU-Geo-Location
+          in: header
+          description: The forwarded Geo Location of the corresponding HTTP request between PSU and TPP if available.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: A Successfull accounts response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              accounts:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    resourceId:
+                      type: string
+                      description: 'This is the data element to be used in the path when retrieving data from a dedicated account, cp. Section 6.6.3 or Section 6.6.4 below. This shall be filled, if addressable resource are created by the ASPSP on the /accounts or /card-accounts endpoint.'
+                      maxLength: 35
+                    iban:
+                      type: string
+                      description: 'This data element can be used in the body of the Consent Request Message for retrieving account access consent from this payment account, cp. Section 6.3.'
+                      pattern: '^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$'
+                    currency:
+                      type: string
+                      description: An ISO 4217 Currency code.
+                      pattern: '^[A-Z]{3}$'
+                    name:
+                      type: string
+                      description: Name of the account given by the bank or the PSU in Online-Banking
+                      maxLength: 35
+                    product:
+                      type: string
+                      description: 'Product Name of the Bank for this account, proprietary definition'
+                      maxLength: 35
+                    cashAccountType:
+                      type: string
+                      description: ExternalCashAccountType1Code from ISO 20022
+                      minLength: 1
+                      maxLength: 4
+                    balances:
+                      type: array
+                      items:
+                        title: balance
+                        type: object
+                        description: Balance information
+                        properties:
+                          balanceAmount:
+                            title: amount
+                            type: object
+                            properties:
+                              currency:
+                                type: string
+                                description: An ISO 4217 Currency code.
+                                pattern: '^[A-Z]{3}$'
+                              amount:
+                                type: string
+                                description: |-
+                                  The amount given with fractional digits, where fractions must be compliant to the currency definition. Up to 14 significant figures. Negative amounts are signed by minus.
+                                  The decimal separator is a dot.
+                                  Example: Valid representations for EUR with up to two decimals are:
+                                  * 1056
+                                  * 5768.2
+                                  * -1.50
+                                  * 5877.78
+                          balanceType:
+                            type: string
+                            description: |-
+                              Current possibilities: closingBooked, expected, authorised, openingBooked, interimAvailable, forwardAvailable.
+                              Only closingBooked is currently supported by KBC.
+                        required:
+                          - balanceAmount
+                          - balanceType
+                    _links:
+                      type: object
+                      description: ''
+                      properties:
+                        balances:
+                          type: string
+                          format: uri-reference
+                          description: ''
+                        transactions:
+                          type: string
+                          format: uri-reference
+                          description: ''
+                  required:
+                    - currency
+            required:
+              - accounts
+        '400':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '401':
+          description: |-
+            An error response.
+            For the consents we distinct 2 types: invalid and expired ones. The error code is updated to make that distinction.
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '403':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '404':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '405':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '406':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '429':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '500':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '503':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+      security:
+        - oauth2:
+            - 'AIS:<Consent-Id>'
+  '/accounts/{account-id}':
+    get:
+      operationId: GET_accountDetails
+      summary: Read Account Details
+      tags:
+        - Account Information
+      produces:
+        - application/json
+      description: |-
+        Reads details about an account, with balances where required. It is assumed that a consent of the PSU to this access is already given and stored on the ASPSP system. The addressed details of this account depends then on the stored consent addressed by consentId, respectively the OAuth2 access token.
+        NOTE: The account-id can represent a multicurrency account. In this case the currency code is set to "XXX".
+      parameters:
+        - name: account-id
+          in: path
+          description: This identification is denoting the addressed account. The account-id is retrieved by using a "Read Account List" call. The account-id is the "resourceId" attribute of the account structure. Its value is constant at least throughout the lifecycle of a given consent.
+          required: true
+          type: string
+          maxLength: 35
+        - name: withBalance
+          in: query
+          description: 'If contained, this function reads the details of the addressed account including the booking balance, if granted by the PSU''s consent and if supported by ASPSP. This data element might be ignored by the ASPSP.'
+          required: false
+          type: boolean
+        - name: X-Request-ID
+          in: header
+          description: 'ID of the request, unique to the call, as determined by the initiating party.'
+          required: true
+          type: string
+          format: uuid
+        - name: Consent-ID
+          in: header
+          description: Shall be contained since "Establish Consent Transaction" was performed via this API before.
+          required: true
+          type: string
+        - name: PSU-IP-Address
+          in: header
+          description: The forwarded IP Address header field consists of the corresponding HTTP request IP Address field between PSU and TPP.
+          required: false
+          type: string
+          format: ipv4
+        - name: PSU-IP-Port
+          in: header
+          description: 'The forwarded IP Port header field consists of the corresponding HTTP request IP Port field between PSU and TPP, if available.'
+          required: false
+          type: string
+          format: ''
+        - name: PSU-Accept
+          in: header
+          description: 'The forwarded IP Accept header fields consist of the corresponding HTTP request Accept header fields between PSU and TPP, if available.'
+          required: false
+          type: string
+        - name: PSU-Accept-Charset
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-Accept-Encoding
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-Accept-Language
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-User-Agent
+          in: header
+          description: 'The forwarded Agent header field of the HTTP request between PSU and TPP, if available.'
+          required: false
+          type: string
+        - name: PSU-Http-Method
+          in: header
+          description: 'HTTP method used at the PSU – TPP interface, if available.'
+          required: false
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+        - name: PSU-Device-ID
+          in: header
+          description: |-
+            UUID (Universally Unique Identifier) for a device, which is used by the PSU, if available.
+            UUID identifies either a device or a device dependant application installation. In case of an installation identification this ID need to be unaltered until removal from device.
+          required: false
+          type: string
+        - name: PSU-Geo-Location
+          in: header
+          description: The forwarded Geo Location of the corresponding HTTP request between PSU and TPP if available.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: A Successfull accountDetails response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              account:
+                type: object
+                properties:
+                  resourceId:
+                    type: string
+                    description: 'This is the data element to be used in the path when retrieving data from a dedicated account, cp. Section 6.6.3 or Section 6.6.4 below. This shall be filled, if addressable resource are created by the ASPSP on the /accounts or /card-accounts endpoint.'
+                    maxLength: 35
+                  iban:
+                    type: string
+                    description: 'This data element can be used in the body of the Consent Request Message for retrieving account access consent from this payment account, cp. Section 6.3.'
+                    pattern: '^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$'
+                  currency:
+                    type: string
+                    description: An ISO 4217 Currency code.
+                    pattern: '^[A-Z]{3}$'
+                  name:
+                    type: string
+                    description: Name of the account given by the bank or the PSU in Online-Banking
+                    maxLength: 35
+                  product:
+                    type: string
+                    description: 'Product Name of the Bank for this account, proprietary definition'
+                    maxLength: 35
+                  cashAccountType:
+                    type: string
+                    description: ExternalCashAccountType1Code from ISO 20022
+                    minLength: 1
+                    maxLength: 4
+                  balances:
+                    type: array
+                    items:
+                      title: balance
+                      type: object
+                      description: Balance information
+                      properties:
+                        balanceAmount:
+                          title: amount
+                          type: object
+                          properties:
+                            currency:
+                              type: string
+                              description: An ISO 4217 Currency code.
+                              pattern: '^[A-Z]{3}$'
+                            amount:
+                              type: string
+                              description: |-
+                                The amount given with fractional digits, where fractions must be compliant to the currency definition. Up to 14 significant figures. Negative amounts are signed by minus.
+                                The decimal separator is a dot.
+                                Example: Valid representations for EUR with up to two decimals are:
+                                * 1056
+                                * 5768.2
+                                * -1.50
+                                * 5877.78
+                        balanceType:
+                          type: string
+                          description: |-
+                            Current possibilities: closingBooked, expected, authorised, openingBooked, interimAvailable, forwardAvailable.
+                            Only closingBooked is currently supported by KBC.
+                      required:
+                        - balanceAmount
+                        - balanceType
+                  _links:
+                    type: object
+                    description: ''
+                    properties:
+                      balances:
+                        type: string
+                        format: uri-reference
+                        description: ''
+                      transactions:
+                        type: string
+                        format: uri-reference
+                        description: ''
+                required:
+                  - currency
+        '400':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '401':
+          description: |-
+            An error response.
+            For the consents we distinct 2 types: invalid and expired ones. The error code is updated to make that distinction.
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '403':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '404':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '405':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '406':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '429':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '500':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '503':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+      security:
+        - oauth2:
+            - 'AIS:<Consent-Id>'
+  '/accounts/{account-id}/balances':
+    get:
+      operationId: GET_accountBalances
+      summary: Read Balance
+      tags:
+        - Account Information
+      produces:
+        - application/json
+      description: Reads account data from a given account addressed by "account-id".
+      parameters:
+        - name: account-id
+          in: path
+          description: This identification is denoting the addressed account. The account-id is retrieved by using a "Read Account List" call. The account-id is the "resourceId" attribute of the account structure. Its value is constant at least throughout the lifecycle of a given consent.
+          required: true
+          type: string
+          maxLength: 35
+        - name: X-Request-ID
+          in: header
+          description: 'ID of the request, unique to the call, as determined by the initiating party.'
+          required: true
+          type: string
+          format: uuid
+        - name: Consent-ID
+          in: header
+          description: Shall be contained since "Establish Consent Transaction" was performed via this API before.
+          required: true
+          type: string
+        - name: PSU-IP-Address
+          in: header
+          description: The forwarded IP Address header field consists of the corresponding HTTP request IP Address field between PSU and TPP.
+          required: false
+          type: string
+          format: ipv4
+        - name: PSU-IP-Port
+          in: header
+          description: 'The forwarded IP Port header field consists of the corresponding HTTP request IP Port field between PSU and TPP, if available.'
+          required: false
+          type: string
+          format: ''
+        - name: PSU-Accept
+          in: header
+          description: 'The forwarded IP Accept header fields consist of the corresponding HTTP request Accept header fields between PSU and TPP, if available.'
+          required: false
+          type: string
+        - name: PSU-Accept-Charset
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-Accept-Encoding
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-Accept-Language
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-User-Agent
+          in: header
+          description: 'The forwarded Agent header field of the HTTP request between PSU and TPP, if available.'
+          required: false
+          type: string
+        - name: PSU-Http-Method
+          in: header
+          description: 'HTTP method used at the PSU – TPP interface, if available.'
+          required: false
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+        - name: PSU-Device-ID
+          in: header
+          description: |-
+            UUID (Universally Unique Identifier) for a device, which is used by the PSU, if available.
+            UUID identifies either a device or a device dependant application installation. In case of an installation identification this ID need to be unaltered until removal from device.
+          required: false
+          type: string
+        - name: PSU-Geo-Location
+          in: header
+          description: The forwarded Geo Location of the corresponding HTTP request between PSU and TPP if available.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: A Successfull accountBalances response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              account:
+                title: accountReference
+                type: object
+                description: Account identification
+                properties:
+                  iban:
+                    type: string
+                    pattern: '^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$'
+                  currency:
+                    type: string
+                    description: An ISO 4217 Currency code.
+                    pattern: '^[A-Z]{3}$'
+                required:
+                  - iban
+              balances:
+                type: array
+                items:
+                  title: balance
+                  type: object
+                  description: Balance information
+                  properties:
+                    balanceAmount:
+                      title: amount
+                      type: object
+                      properties:
+                        currency:
+                          type: string
+                          description: An ISO 4217 Currency code.
+                          pattern: '^[A-Z]{3}$'
+                        amount:
+                          type: string
+                          description: |-
+                            The amount given with fractional digits, where fractions must be compliant to the currency definition. Up to 14 significant figures. Negative amounts are signed by minus.
+                            The decimal separator is a dot.
+                            Example: Valid representations for EUR with up to two decimals are:
+                            * 1056
+                            * 5768.2
+                            * -1.50
+                            * 5877.78
+                    balanceType:
+                      type: string
+                      description: |-
+                        Current possibilities: closingBooked, expected, authorised, openingBooked, interimAvailable, forwardAvailable.
+                        Only closingBooked is currently supported by KBC.
+                  required:
+                    - balanceAmount
+                    - balanceType
+            required:
+              - balances
+        '400':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '401':
+          description: |-
+            An error response.
+            For the consents we distinct 2 types: invalid and expired ones. The error code is updated to make that distinction.
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '403':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '404':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '405':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '406':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '429':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '500':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '503':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+      security:
+        - oauth2:
+            - 'AIS:<Consent-Id>'
+  '/accounts/{account-id}/transactions':
+    get:
+      operationId: GET_accountTransactions
+      summary: Read Transaction List
+      tags:
+        - Account Information
+      produces:
+        - application/json
+      description: Reads account data from a given account addressed by "account-id".
+      parameters:
+        - name: account-id
+          in: path
+          description: This identification is denoting the addressed account. The account-id is retrieved by using a "Read Account List" call. The account-id is the "resourceId" attribute of the account structure. Its value is constant at least throughout the lifecycle of a given consent.
+          required: true
+          type: string
+          maxLength: 35
+        - name: dateFrom
+          in: query
+          description: 'Starting date (inclusive the date dateFrom) of the transaction list, mandated if no delta access is required'
+          required: false
+          type: string
+          format: date
+        - name: dateTo
+          in: query
+          description: 'End date (inclusive the data dateTo) of the transaction list, default is now if not given.'
+          required: false
+          type: string
+          format: date
+        - name: entryReferenceFrom
+          in: query
+          description: |-
+            This data attribute is indicating that the AISP is in favour to get all transactions after the transaction  with  identification entryReferenceFrom alternatively to the above defined period. This is a implementation of a delta access.
+            If this data element is contained, the entries "dateFrom" and "dateTo" might be ignored by the ASPSP if a delta report is supported.
+          required: false
+          type: string
+        - name: bookingStatus
+          in: query
+          description: Only "booked" is supported by KBC
+          required: false
+          type: string
+          enum:
+            - booked
+        - name: X-Request-ID
+          in: header
+          description: 'ID of the request, unique to the call, as determined by the initiating party.'
+          required: true
+          type: string
+          format: uuid
+        - name: Consent-ID
+          in: header
+          description: Shall be contained since "Establish Consent Transaction" was performed via this API before.
+          required: true
+          type: string
+        - name: PSU-IP-Address
+          in: header
+          description: The forwarded IP Address header field consists of the corresponding HTTP request IP Address field between PSU and TPP.
+          required: false
+          type: string
+          format: ipv4
+        - name: PSU-IP-Port
+          in: header
+          description: 'The forwarded IP Port header field consists of the corresponding HTTP request IP Port field between PSU and TPP, if available.'
+          required: false
+          type: string
+          format: ''
+        - name: PSU-Accept
+          in: header
+          description: 'The forwarded IP Accept header fields consist of the corresponding HTTP request Accept header fields between PSU and TPP, if available.'
+          required: false
+          type: string
+        - name: PSU-Accept-Charset
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-Accept-Encoding
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-Accept-Language
+          in: header
+          description: See PSU-Accept
+          required: false
+          type: string
+        - name: PSU-User-Agent
+          in: header
+          description: 'The forwarded Agent header field of the HTTP request between PSU and TPP, if available.'
+          required: false
+          type: string
+        - name: PSU-Http-Method
+          in: header
+          description: 'HTTP method used at the PSU – TPP interface, if available.'
+          required: false
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+        - name: PSU-Device-ID
+          in: header
+          description: |-
+            UUID (Universally Unique Identifier) for a device, which is used by the PSU, if available.
+            UUID identifies either a device or a device dependant application installation. In case of an installation identification this ID need to be unaltered until removal from device.
+          required: false
+          type: string
+        - name: PSU-Geo-Location
+          in: header
+          description: The forwarded Geo Location of the corresponding HTTP request between PSU and TPP if available.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: A Successfull accountTransactions response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              account:
+                title: accountReference
+                type: object
+                description: Account identification
+                properties:
+                  iban:
+                    type: string
+                    pattern: '^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$'
+                  currency:
+                    type: string
+                    description: An ISO 4217 Currency code.
+                    pattern: '^[A-Z]{3}$'
+                required:
+                  - iban
+              transactions:
+                title: accountReport
+                type: object
+                description: Account Report
+                properties:
+                  booked:
+                    type: array
+                    items:
+                      title: transaction
+                      type: object
+                      description: Transaction information
+                      properties:
+                        transactionId:
+                          type: string
+                        bookingDate:
+                          type: string
+                          description: The Date when an entry is posted to an account on the ASPSPs books.
+                          format: date
+                        valueDate:
+                          type: string
+                          description: The Date at which assets become available to the account owner in case of a credit
+                          format: date
+                        transactionAmount:
+                          title: amount
+                          type: object
+                          properties:
+                            currency:
+                              type: string
+                              description: An ISO 4217 Currency code.
+                              pattern: '^[A-Z]{3}$'
+                            amount:
+                              type: string
+                              description: |-
+                                The amount given with fractional digits, where fractions must be compliant to the currency definition. Up to 14 significant figures. Negative amounts are signed by minus.
+                                The decimal separator is a dot.
+                                Example: Valid representations for EUR with up to two decimals are:
+                                * 1056
+                                * 5768.2
+                                * -1.50
+                                * 5877.78
+                        exchangeRate:
+                          type: array
+                          items:
+                            title: exchangeRate
+                            type: object
+                            properties:
+                              currencyFrom:
+                                type: string
+                                description: An ISO 4217 Currency code.
+                                pattern: '^[A-Z]{3}$'
+                              rateFrom:
+                                type: string
+                                description: ''
+                              currencyTo:
+                                type: string
+                                description: An ISO 4217 Currency code.
+                                pattern: '^[A-Z]{3}$'
+                              rateTo:
+                                type: string
+                                description: ''
+                              rateDate:
+                                type: string
+                                description: ''
+                                format: date
+                            required:
+                              - currencyFrom
+                              - rateFrom
+                              - currencyTo
+                              - rateTo
+                              - rateDate
+                        creditorName:
+                          type: string
+                          description: Name  of the creditor if a “debited” transaction
+                          maxLength: 70
+                        creditorAccount:
+                          title: accountReference
+                          type: object
+                          description: Account identification
+                          properties:
+                            iban:
+                              type: string
+                              pattern: '^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$'
+                            currency:
+                              type: string
+                              description: An ISO 4217 Currency code.
+                              pattern: '^[A-Z]{3}$'
+                          required:
+                            - iban
+                        debtorName:
+                          type: string
+                          description: Name  of the debtor if a "credited" transaction
+                          maxLength: 70
+                        debtorAccount:
+                          title: accountReference
+                          type: object
+                          description: Account identification
+                          properties:
+                            iban:
+                              type: string
+                              pattern: '^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$'
+                            currency:
+                              type: string
+                              description: An ISO 4217 Currency code.
+                              pattern: '^[A-Z]{3}$'
+                          required:
+                            - iban
+                        remittanceInformationUnstructured:
+                          type: string
+                          description: ''
+                          maxLength: 140
+                        remittanceInformationStructured:
+                          type: string
+                          description: ''
+                          maxLength: 140
+                        bankTransactionCode:
+                          description: |2-
+                             Bank transaction code as used by the ASPSP and using the sub elements of this structured code defined by ISO 20022. 
+                            This code type is concatenating the three ISO20022 Codes  * Domain Code,  * Family Code, and  * SubFamiliy Code  by hyphens, resulting in "DomainCode"-"FamilyCode"-"SubFamilyCode".
+                          type: string
+                          example: PMNT-RCDT-ESCT
+                        proprietaryBankTransactionCode:
+                          description: ' Proprietary bank transaction code as used within a community or within an ASPSP e.g.  for MT94x based transaction reports.'
+                          type: string
+                          maxLength: 35
+                      required:
+                        - transactionAmount
+                  _links:
+                    type: object
+                    description: ''
+                    properties:
+                      account:
+                        type: string
+                        description: 'A link to an account, which can be directly used for retrieving account information from this dedicated account.'
+                        format: uri-reference
+                      next:
+                        type: string
+                        description: Navigation link for paginated account reports
+                        format: uri-reference
+                    required:
+                      - account
+                required:
+                  - booked
+                  - _links
+        '400':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '401':
+          description: |-
+            An error response.
+            For the consents we distinct 2 types: invalid and expired ones. The error code is updated to make that distinction.
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '403':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '404':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '405':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '406':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '429':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '500':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+        '503':
+          description: An error response
+          headers:
+            X-Request-ID:
+              description: 'ID of the request, unique to the call, as determined by the initiating party.'
+              type: string
+          schema:
+            type: object
+            properties:
+              tppMessages:
+                type: array
+                items:
+                  title: tppMessageInformation
+                  type: object
+                  properties:
+                    category:
+                      type: string
+                      description: ''
+                      enum:
+                        - ERROR
+                        - WARNING
+                    code:
+                      type: string
+                      description: ''
+                    text:
+                      description: Additional explaining text to the TPP.
+                      type: string
+                      maxLength: 512
+                  required:
+                    - category
+                    - code
+            required:
+              - tppMessages
+      security:
+        - oauth2:
+            - 'AIS:<Consent-Id>'
+parameters:
+  withBalance:
+    name: withBalance
+    in: query
+    description: 'If contained, this function reads the details of the addressed account including the booking balance, if granted by the PSU''s consent and if supported by ASPSP. This data element might be ignored by the ASPSP.'
+    required: false
+    type: boolean
+  account-id:
+    name: account-id
+    in: path
+    description: This identification is denoting the addressed account. The account-id is retrieved by using a "Read Account List" call. The account-id is the "resourceId" attribute of the account structure. Its value is constant at least throughout the lifecycle of a given consent.
+    required: true
+    type: string
+    maxLength: 35
+  Authorization:
+    name: Authorization
+    in: header
+    description: 'Bearer token containing TPP client id, if applicable (portal registered)'
+    required: false
+    type: string
+  X-Request-ID:
+    name: X-Request-ID
+    in: header
+    description: 'ID of the request, unique to the call, as determined by the initiating party.'
+    required: true
+    type: string
+    format: uuid
+  Consent-ID:
+    name: Consent-ID
+    in: header
+    description: Shall be contained since "Establish Consent Transaction" was performed via this API before.
+    required: true
+    type: string
+  PSU-IP-Address:
+    name: PSU-IP-Address
+    in: header
+    description: The forwarded IP Address header field consists of the corresponding HTTP request IP Address field between PSU and TPP.
+    required: false
+    type: string
+    format: ipv4
+  PSU-IP-Port:
+    name: PSU-IP-Port
+    in: header
+    description: 'The forwarded IP Port header field consists of the corresponding HTTP request IP Port field between PSU and TPP, if available.'
+    required: false
+    type: string
+    format: ''
+  PSU-Accept:
+    name: PSU-Accept
+    in: header
+    description: 'The forwarded IP Accept header fields consist of the corresponding HTTP request Accept header fields between PSU and TPP, if available.'
+    required: false
+    type: string
+  PSU-Accept-Charset:
+    name: PSU-Accept-Charset
+    in: header
+    description: See PSU-Accept
+    required: false
+    type: string
+  PSU-Accept-Encoding:
+    name: PSU-Accept-Encoding
+    in: header
+    description: See PSU-Accept
+    required: false
+    type: string
+  PSU-Accept-Language:
+    name: PSU-Accept-Language
+    in: header
+    description: See PSU-Accept
+    required: false
+    type: string
+  PSU-User-Agent:
+    name: PSU-User-Agent
+    in: header
+    description: 'The forwarded Agent header field of the HTTP request between PSU and TPP, if available.'
+    required: false
+    type: string
+  PSU-Http-Method:
+    name: PSU-Http-Method
+    in: header
+    description: 'HTTP method used at the PSU – TPP interface, if available.'
+    required: false
+    type: string
+    enum:
+      - GET
+      - POST
+      - PUT
+      - PATCH
+      - DELETE
+  PSU-Device-ID:
+    name: PSU-Device-ID
+    in: header
+    description: |-
+      UUID (Universally Unique Identifier) for a device, which is used by the PSU, if available.
+      UUID identifies either a device or a device dependant application installation. In case of an installation identification this ID need to be unaltered until removal from device.
+    required: false
+    type: string
+  PSU-Geo-Location:
+    name: PSU-Geo-Location
+    in: header
+    description: The forwarded Geo Location of the corresponding HTTP request between PSU and TPP if available.
+    required: false
+    type: string
+responses:
+  Error:
+    description: An error response
+    headers:
+      X-Request-ID:
+        description: 'ID of the request, unique to the call, as determined by the initiating party.'
+        type: string
+    schema:
+      type: object
+      properties:
+        tppMessages:
+          type: array
+          items:
+            title: tppMessageInformation
+            type: object
+            properties:
+              category:
+                type: string
+                description: ''
+                enum:
+                  - ERROR
+                  - WARNING
+              code:
+                type: string
+                description: ''
+              text:
+                description: Additional explaining text to the TPP.
+                type: string
+                maxLength: 512
+            required:
+              - category
+              - code
+      required:
+        - tppMessages
+  Error401:
+    description: |-
+      An error response.
+      For the consents we distinct 2 types: invalid and expired ones. The error code is updated to make that distinction.
+    headers:
+      X-Request-ID:
+        description: 'ID of the request, unique to the call, as determined by the initiating party.'
+        type: string
+    schema:
+      type: object
+      properties:
+        tppMessages:
+          type: array
+          items:
+            title: tppMessageInformation
+            type: object
+            properties:
+              category:
+                type: string
+                description: ''
+                enum:
+                  - ERROR
+                  - WARNING
+              code:
+                type: string
+                description: ''
+              text:
+                description: Additional explaining text to the TPP.
+                type: string
+                maxLength: 512
+            required:
+              - category
+              - code
+      required:
+        - tppMessages
+definitions:
+  accountDetails:
+    type: object
+    properties:
+      resourceId:
+        type: string
+        description: 'This is the data element to be used in the path when retrieving data from a dedicated account, cp. Section 6.6.3 or Section 6.6.4 below. This shall be filled, if addressable resource are created by the ASPSP on the /accounts or /card-accounts endpoint.'
+        maxLength: 35
+      iban:
+        type: string
+        description: 'This data element can be used in the body of the Consent Request Message for retrieving account access consent from this payment account, cp. Section 6.3.'
+        pattern: '^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$'
+      currency:
+        type: string
+        description: An ISO 4217 Currency code.
+        pattern: '^[A-Z]{3}$'
+      name:
+        type: string
+        description: Name of the account given by the bank or the PSU in Online-Banking
+        maxLength: 35
+      product:
+        type: string
+        description: 'Product Name of the Bank for this account, proprietary definition'
+        maxLength: 35
+      cashAccountType:
+        type: string
+        description: ExternalCashAccountType1Code from ISO 20022
+        minLength: 1
+        maxLength: 4
+      balances:
+        type: array
+        items:
+          title: balance
+          type: object
+          description: Balance information
+          properties:
+            balanceAmount:
+              title: amount
+              type: object
+              properties:
+                currency:
+                  type: string
+                  description: An ISO 4217 Currency code.
+                  pattern: '^[A-Z]{3}$'
+                amount:
+                  type: string
+                  description: |-
+                    The amount given with fractional digits, where fractions must be compliant to the currency definition. Up to 14 significant figures. Negative amounts are signed by minus.
+                    The decimal separator is a dot.
+                    Example: Valid representations for EUR with up to two decimals are:
+                    * 1056
+                    * 5768.2
+                    * -1.50
+                    * 5877.78
+            balanceType:
+              type: string
+              description: |-
+                Current possibilities: closingBooked, expected, authorised, openingBooked, interimAvailable, forwardAvailable.
+                Only closingBooked is currently supported by KBC.
+          required:
+            - balanceAmount
+            - balanceType
+      _links:
+        type: object
+        description: ''
+        properties:
+          balances:
+            type: string
+            format: uri-reference
+            description: ''
+          transactions:
+            type: string
+            format: uri-reference
+            description: ''
+    required:
+      - currency
+  accountReport:
+    title: accountReport
+    type: object
+    description: Account Report
+    properties:
+      booked:
+        type: array
+        items:
+          title: transaction
+          type: object
+          description: Transaction information
+          properties:
+            transactionId:
+              type: string
+            bookingDate:
+              type: string
+              description: The Date when an entry is posted to an account on the ASPSPs books.
+              format: date
+            valueDate:
+              type: string
+              description: The Date at which assets become available to the account owner in case of a credit
+              format: date
+            transactionAmount:
+              title: amount
+              type: object
+              properties:
+                currency:
+                  type: string
+                  description: An ISO 4217 Currency code.
+                  pattern: '^[A-Z]{3}$'
+                amount:
+                  type: string
+                  description: |-
+                    The amount given with fractional digits, where fractions must be compliant to the currency definition. Up to 14 significant figures. Negative amounts are signed by minus.
+                    The decimal separator is a dot.
+                    Example: Valid representations for EUR with up to two decimals are:
+                    * 1056
+                    * 5768.2
+                    * -1.50
+                    * 5877.78
+            exchangeRate:
+              type: array
+              items:
+                title: exchangeRate
+                type: object
+                properties:
+                  currencyFrom:
+                    type: string
+                    description: An ISO 4217 Currency code.
+                    pattern: '^[A-Z]{3}$'
+                  rateFrom:
+                    type: string
+                    description: ''
+                  currencyTo:
+                    type: string
+                    description: An ISO 4217 Currency code.
+                    pattern: '^[A-Z]{3}$'
+                  rateTo:
+                    type: string
+                    description: ''
+                  rateDate:
+                    type: string
+                    description: ''
+                    format: date
+                required:
+                  - currencyFrom
+                  - rateFrom
+                  - currencyTo
+                  - rateTo
+                  - rateDate
+            creditorName:
+              type: string
+              description: Name  of the creditor if a “debited” transaction
+              maxLength: 70
+            creditorAccount:
+              title: accountReference
+              type: object
+              description: Account identification
+              properties:
+                iban:
+                  type: string
+                  pattern: '^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$'
+                currency:
+                  type: string
+                  description: An ISO 4217 Currency code.
+                  pattern: '^[A-Z]{3}$'
+              required:
+                - iban
+            debtorName:
+              type: string
+              description: Name  of the debtor if a "credited" transaction
+              maxLength: 70
+            debtorAccount:
+              title: accountReference
+              type: object
+              description: Account identification
+              properties:
+                iban:
+                  type: string
+                  pattern: '^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$'
+                currency:
+                  type: string
+                  description: An ISO 4217 Currency code.
+                  pattern: '^[A-Z]{3}$'
+              required:
+                - iban
+            remittanceInformationUnstructured:
+              type: string
+              description: ''
+              maxLength: 140
+            remittanceInformationStructured:
+              type: string
+              description: ''
+              maxLength: 140
+            bankTransactionCode:
+              description: |2-
+                 Bank transaction code as used by the ASPSP and using the sub elements of this structured code defined by ISO 20022. 
+                This code type is concatenating the three ISO20022 Codes  * Domain Code,  * Family Code, and  * SubFamiliy Code  by hyphens, resulting in "DomainCode"-"FamilyCode"-"SubFamilyCode".
+              type: string
+              example: PMNT-RCDT-ESCT
+            proprietaryBankTransactionCode:
+              description: ' Proprietary bank transaction code as used within a community or within an ASPSP e.g.  for MT94x based transaction reports.'
+              type: string
+              maxLength: 35
+          required:
+            - transactionAmount
+      _links:
+        type: object
+        description: ''
+        properties:
+          account:
+            type: string
+            description: 'A link to an account, which can be directly used for retrieving account information from this dedicated account.'
+            format: uri-reference
+          next:
+            type: string
+            description: Navigation link for paginated account reports
+            format: uri-reference
+        required:
+          - account
+    required:
+      - booked
+      - _links
+  transaction:
+    title: transaction
+    type: object
+    description: Transaction information
+    properties:
+      transactionId:
+        type: string
+      bookingDate:
+        type: string
+        description: The Date when an entry is posted to an account on the ASPSPs books.
+        format: date
+      valueDate:
+        type: string
+        description: The Date at which assets become available to the account owner in case of a credit
+        format: date
+      transactionAmount:
+        title: amount
+        type: object
+        properties:
+          currency:
+            type: string
+            description: An ISO 4217 Currency code.
+            pattern: '^[A-Z]{3}$'
+          amount:
+            type: string
+            description: |-
+              The amount given with fractional digits, where fractions must be compliant to the currency definition. Up to 14 significant figures. Negative amounts are signed by minus.
+              The decimal separator is a dot.
+              Example: Valid representations for EUR with up to two decimals are:
+              * 1056
+              * 5768.2
+              * -1.50
+              * 5877.78
+      exchangeRate:
+        type: array
+        items:
+          title: exchangeRate
+          type: object
+          properties:
+            currencyFrom:
+              type: string
+              description: An ISO 4217 Currency code.
+              pattern: '^[A-Z]{3}$'
+            rateFrom:
+              type: string
+              description: ''
+            currencyTo:
+              type: string
+              description: An ISO 4217 Currency code.
+              pattern: '^[A-Z]{3}$'
+            rateTo:
+              type: string
+              description: ''
+            rateDate:
+              type: string
+              description: ''
+              format: date
+          required:
+            - currencyFrom
+            - rateFrom
+            - currencyTo
+            - rateTo
+            - rateDate
+      creditorName:
+        type: string
+        description: Name  of the creditor if a “debited” transaction
+        maxLength: 70
+      creditorAccount:
+        title: accountReference
+        type: object
+        description: Account identification
+        properties:
+          iban:
+            type: string
+            pattern: '^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$'
+          currency:
+            type: string
+            description: An ISO 4217 Currency code.
+            pattern: '^[A-Z]{3}$'
+        required:
+          - iban
+      debtorName:
+        type: string
+        description: Name  of the debtor if a "credited" transaction
+        maxLength: 70
+      debtorAccount:
+        title: accountReference
+        type: object
+        description: Account identification
+        properties:
+          iban:
+            type: string
+            pattern: '^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$'
+          currency:
+            type: string
+            description: An ISO 4217 Currency code.
+            pattern: '^[A-Z]{3}$'
+        required:
+          - iban
+      remittanceInformationUnstructured:
+        type: string
+        description: ''
+        maxLength: 140
+      remittanceInformationStructured:
+        type: string
+        description: ''
+        maxLength: 140
+      bankTransactionCode:
+        description: |2-
+           Bank transaction code as used by the ASPSP and using the sub elements of this structured code defined by ISO 20022. 
+          This code type is concatenating the three ISO20022 Codes  * Domain Code,  * Family Code, and  * SubFamiliy Code  by hyphens, resulting in "DomainCode"-"FamilyCode"-"SubFamilyCode".
+        type: string
+        example: PMNT-RCDT-ESCT
+      proprietaryBankTransactionCode:
+        description: ' Proprietary bank transaction code as used within a community or within an ASPSP e.g.  for MT94x based transaction reports.'
+        type: string
+        maxLength: 35
+    required:
+      - transactionAmount
+  accountReference:
+    title: accountReference
+    type: object
+    description: Account identification
+    properties:
+      iban:
+        type: string
+        pattern: '^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$'
+      currency:
+        type: string
+        description: An ISO 4217 Currency code.
+        pattern: '^[A-Z]{3}$'
+    required:
+      - iban
+  balance:
+    title: balance
+    type: object
+    description: Balance information
+    properties:
+      balanceAmount:
+        title: amount
+        type: object
+        properties:
+          currency:
+            type: string
+            description: An ISO 4217 Currency code.
+            pattern: '^[A-Z]{3}$'
+          amount:
+            type: string
+            description: |-
+              The amount given with fractional digits, where fractions must be compliant to the currency definition. Up to 14 significant figures. Negative amounts are signed by minus.
+              The decimal separator is a dot.
+              Example: Valid representations for EUR with up to two decimals are:
+              * 1056
+              * 5768.2
+              * -1.50
+              * 5877.78
+      balanceType:
+        type: string
+        description: |-
+          Current possibilities: closingBooked, expected, authorised, openingBooked, interimAvailable, forwardAvailable.
+          Only closingBooked is currently supported by KBC.
+    required:
+      - balanceAmount
+      - balanceType
+  amount:
+    title: amount
+    type: object
+    properties:
+      currency:
+        type: string
+        description: An ISO 4217 Currency code.
+        pattern: '^[A-Z]{3}$'
+      amount:
+        type: string
+        description: |-
+          The amount given with fractional digits, where fractions must be compliant to the currency definition. Up to 14 significant figures. Negative amounts are signed by minus.
+          The decimal separator is a dot.
+          Example: Valid representations for EUR with up to two decimals are:
+          * 1056
+          * 5768.2
+          * -1.50
+          * 5877.78
+  exchangeRate:
+    title: exchangeRate
+    type: object
+    properties:
+      currencyFrom:
+        type: string
+        description: An ISO 4217 Currency code.
+        pattern: '^[A-Z]{3}$'
+      rateFrom:
+        type: string
+        description: ''
+      currencyTo:
+        type: string
+        description: An ISO 4217 Currency code.
+        pattern: '^[A-Z]{3}$'
+      rateTo:
+        type: string
+        description: ''
+      rateDate:
+        type: string
+        description: ''
+        format: date
+    required:
+      - currencyFrom
+      - rateFrom
+      - currencyTo
+      - rateTo
+      - rateDate
+  tppMessageInformation:
+    title: tppMessageInformation
+    type: object
+    properties:
+      category:
+        type: string
+        description: ''
+        enum:
+          - ERROR
+          - WARNING
+      code:
+        type: string
+        description: ''
+      text:
+        description: Additional explaining text to the TPP.
+        type: string
+        maxLength: 512
+    required:
+      - category
+      - code

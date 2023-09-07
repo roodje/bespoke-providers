@@ -1,0 +1,57 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/installation",
+    "headers": {
+      "Cache-Control": {
+        "equalTo": "no-cache"
+      },
+      "User-Agent": {
+        "equalTo": "yolt-user-agent"
+      },
+      "X-Bunq-Language": {
+        "equalTo": "en_US"
+      },
+      "X-Bunq-Language": {
+        "equalTo": "en_US"
+      },
+      "X-Bunq-Region": {
+        "equalTo": "nl_NL"
+      },
+      "X-Bunq-Client-Request-Id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "X-Bunq-Geolocation": {
+        "equalTo": "0 0 0 0 000"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Response": [
+        {
+          "Id": {
+            "id": 4916
+          }
+        },
+        {
+          "Token": {
+            "id": 16469,
+            "created": "2018-08-29 13:48:17.580620",
+            "updated": "2018-08-29 13:48:17.580620",
+            "token": "22df07d3afe4f7dc445f023413392e5329c59a4ea73847b3f043af4701251273"
+          }
+        },
+        {
+          "ServerPublicKey": {
+            "server_public_key": "-----BEGIN PUBLIC KEY-----\\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx+m7kQOG3aOSj9WgzXP\\/\\nbOqrQYPpdglVjY9+FICITl89GzcsYFuT+68VU6nKrEEeBRdW+67gXwVoRghhsuIY\\nqgDqY2Yf\\/8wW8VyrmJm5BPj+HPpItKvAcZMfJJ4aw7M7R4J3qJafkOZegGbgser3\\nKyXkAavwm3G7boYNYflnEOt5Jsr0VxhkNa84ssvaViCdvCYn0KcQkQmIZXNi2gHb\\nufSm0rZfbZBRfxJ+HBl7nd2GZcbvHcKib9TgQkFrYI\\/Uq36pPuEgqHwIi\\/ghC3\\/y\\nAyzNZ+SmpQ7IPskP5irgEWCLLyJWbPmG9lDbmcVTCUPTAuHeuyCWu18\\/POsKdXoR\\npwIDAQAB\\n-----END PUBLIC KEY-----\\n"
+          }
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

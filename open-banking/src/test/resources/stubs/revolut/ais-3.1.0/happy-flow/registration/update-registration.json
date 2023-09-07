@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "/register/06951f38-6aed-4005-a54e-f039f978f119",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/jwt"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 978e46f2-b8a5-4f81-ac45-f10d32e6b764"
+      },
+      "x-fapi-interaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matches": "^[^\".]+\\.[^.]+\\.[^.]*[^\"]$"
+      }
+    ]
+  },
+  "response": {
+    "status": 200
+  }
+}

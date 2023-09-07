@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/aWgzYIajjaEa_49a30WqJndaislDY_8Z4aPl7Izr/parties",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Party": [
+          {
+            "PartyId": "a276dc39-2b2e-3610-9f9f-cf7185178fcb",
+            "PartyType": "Sole",
+            "Name": "User Name"
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://api.nationwide.co.uk/open-banking/v3.1/aisp/accounts/dZm0jDUayY3vO6X8MwmlQUcpDGHUXQnwVpiq7MFv/parties",
+        "First": "",
+        "Prev": "",
+        "Next": "",
+        "Last": ""
+      },
+      "Meta": {
+        "TotalPages": 0,
+        "FirstAvailableDateTime": "2021-05-20T08:26:32.355Z",
+        "LastAvailableDateTime": "2021-05-20T08:26:32.355Z"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

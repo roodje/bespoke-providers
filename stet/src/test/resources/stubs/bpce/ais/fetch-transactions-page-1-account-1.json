@@ -1,0 +1,166 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/stet/psd2/v1.4.2/accounts/175150009204004305180/transactions",
+    "queryParameters": {
+      "dateFrom": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]Z$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token"
+      },
+      "Signature": {
+        "matches": "keyId=\"THE_CLIENT_ID\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) date digest x-request-id\",signature=\"(.*)\""
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "strict-transport-security": "max-age=63072000; includeSubdomains;",
+      "x-content-type-options": "nosniff",
+      "digest": "SHA-256=Ty6/L+OyIopLZqZ5vX6s0jf2sISDg6wuavHIMCCH8Cg=",
+      "signature": "the signature",
+      "connection": "Keep-Alive",
+      "max-forwards": "20",
+      "x-xss-protection": "1; mode=block",
+      "x-request-id": "49a17f62-6787-4042-abcd-83e9c41f575b",
+      "x-correlationid": "Id-5d9dc25d0e80a742d6a05718 0",
+      "date": "Wed, 06 Nov 2019 10:15:57 GMT",
+      "x-frame-options": "SAMEORIGIN",
+      "content-type": "application/json;charset=UTF-8",
+      "access-control-allow-origin": "https://www.api.89c3.com",
+      "access-control-expose-headers": "x-correlationid",
+      "cache-control": "max-age=0, public",
+      "keep-alive": "timeout=5, max=299",
+      "expires": "Wed, 06 Nov 2019 10:15:57 GMT"
+    },
+    "jsonBody": {
+      "_links": {
+        "balances": {
+          "templated": false,
+          "href": "/stet/psd2/v1.4.2/accounts/175150009204004305180/balances"
+        },
+        "self": {
+          "templated": true,
+          "href": "/stet/psd2/v1.4.2/accounts/175150009204004305180/transactions"
+        },
+        "parent-list": {
+          "templated": false,
+          "href": "/stet/psd2/v1.4.2/accounts"
+        },
+        "last": {
+          "href": "/stet/psd2/v1.4.2/accounts/175150009204004305180/transactions?dateFrom=2019-09-18&dateTo=2019-11-01&page=last"
+        },
+        "next": {
+          "href": "{{request.requestLine.baseUrl}}/stet/psd2/v1.4.2/accounts/175150009204004305180/transactions?dateFrom=2019-11-20T01:01:01Z&page=2"
+        }
+      },
+      "transactions": [
+        {
+          "resourceId": "202200400005BD27-4IWGLUT",
+          "entryReference": "202200400005BD27-4IWGLUT",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "3.99"
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2022-08-25T00:00:00+0200",
+          "valueDate": "2022-04-08",
+          "transactionDate": "2022-04-08",
+          "remittanceInformation": {
+            "unstructured": [
+              "070422 CB****7401",
+              "TooGoodToG al4kDK toogoodtogo.",
+              "3,99EUR 1 EURO = 1,000000"
+            ]
+          }
+        },
+        {
+          "resourceId": "202200400004BD27-7486180",
+          "entryReference": "202200400004BD27-7486180",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "40.00"
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2022-04-07T00:00:00+0200",
+          "valueDate": "2022-04-07",
+          "transactionDate": "2022-04-07",
+          "remittanceInformation": {
+            "unstructured": [
+              "VIR M OREL RIVALS",
+              "courses Franprix"
+            ]
+          }
+        },
+        {
+          "resourceId": "202200400003BD27-7551918",
+          "entryReference": "202200400003BD27-7551918",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "400.00"
+          },
+          "creditDebitIndicator": "CRDT",
+          "status": "BOOK",
+          "bookingDate": "2022-04-07T00:00:00+0200",
+          "valueDate": "2022-04-05",
+          "transactionDate": "2022-04-05",
+          "remittanceInformation": {
+            "unstructured": [
+              "VIR MME ELVIA ARELLANO O",
+              "Virement vers Compte De Depot"
+            ]
+          }
+        },
+        {
+          "resourceId": "202200400002BD27-09TJIS2",
+          "entryReference": "202200400002BD27-09TJIS2",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "49.00"
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "BOOK",
+          "bookingDate": "2022-04-07T00:00:00+0200",
+          "valueDate": "2022-04-06",
+          "transactionDate": "2022-04-06",
+          "remittanceInformation": {
+            "unstructured": [
+              "PRLV SEPA Free Telecom",
+              "Free HautDebit 1102333700",
+              "38800486"
+            ]
+          }
+        },
+        {
+          "resourceId": "202200400001BD27-09T56UE",
+          "entryReference": "202200400001BD27-09T56UE",
+          "transactionAmount": {
+            "currency": "EUR",
+            "amount": "17.41"
+          },
+          "creditDebitIndicator": "DBIT",
+          "status": "OTHR",
+          "remittanceInformation": {
+            "unstructured": [
+              "PRLV SEPA Mega Energie S",
+              "",
+              "MF011168/001"
+            ]
+          }
+        }
+      ]
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}

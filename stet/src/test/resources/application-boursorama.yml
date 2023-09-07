@@ -1,0 +1,24 @@
+lovebird:
+  stet:
+    boursoramagroup:
+      boursorama:
+        pagination-limit: 500
+        regions:
+          - code: BOURSORAMA
+            name: "Boursorama"
+            baseUrl: https://localhost:${wiremock.server.https-port}
+            tokenUrl: https://localhost:${wiremock.server.https-port}/services/api/v1.7/_public_/authentication/oauth/
+            authUrl: https://sandbox.auth.boursorama.com/authorization/
+yolt:
+  qseal-certificate-exposure:
+    enabled: true
+    base-url: https://test.qseal.certificate.com
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

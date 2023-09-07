@@ -1,0 +1,57 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/yoltbank/openbanking/pisp/domestic-payments",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 3zHagXZSPyA6sifIDmqwZ0hLlqq"
+      },
+      "Accept": {
+        "matches": "^application/json$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "ConsentId": "bbbbc664f984571b5a20ea666a7d0c1",
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "EndToEndIdentification": "FEF32557",
+              "InstructedAmount": {
+                "Amount": "-100.00",
+                "Currency": "GBP"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.SORTCODEACCOUNTNUMBER",
+                "Identification": "1802968485593088",
+                "Name": "Jordan Bell"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "PaymentToReject"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "PartyToParty"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-jws-signature": "eyJhbGciOiJSUzM4NCIsImtpZCI6InlvbHRiYW5rIiwiamt1IjoiIiwiYjY0IjpmYWxzZSwiY3JpdCI6WyJiNjQiXX0..oMbkUIFaFVFF1DwMxAcsXhUp1kxDI5Zq6c-_3J013Cs6lG7oLk8s1mVkb2JVecBpgqHbIrpvTIWOWEqcNZyyqvU3OU1DUYBmskBCPowtCsAmhpWxpNDL03MTnctoWZDU7i3d_Sumr0BlC-3hV0beTIkJOsSSPIAnAE7ZWpn8voxgXwUbu7gpc2QE_izyrii0wwu5mkGIC5-KfPI5svdffU7azFBBV0PLFWEIDOcIYKkvyM36AcaiksgTI0GS1UTGikzJR2UX1Q96_iDjkcbWven8gJfvtBEtcmjkYf49ZszflkxzIJEF0ONWhMYb3q5g3pUeQ8ii3iUiGCL1cTFt5HE_1J8sPqNmg9j4wnY4XtbZTiXHe5eNxbljy6f7Wz1l6a9DCcXFseB-BA6n_xFKuR1eclzTjInJ2xWxtbFaUojfgUGwN4x3486qYog-_vZ9x8D8qqqBXqXWTEE7tnjLfYpUFOqmgNLTixH7YF23YUAvHd6XjDgxUZZqMb2rx9SuB9ShNChlyKVsn6tQkU95bZrcZ7y8-a2qkPStgJekWTIyVZGdsIUal6sfQeKfm0oFj5HCtIBIDKW4Q_etHAjfMd3eF9Byd8rIAqH_E_dWkypR6TTORkVMPDyySBH5YUhiM0G-tf3ktMS9O2dA00CTKNPs6pOpL7IUCbw-BT7coKM"
+    },
+    "jsonBody": {
+      "Data": {
+        "Status": "Rejected"
+      }
+    }
+  }
+}

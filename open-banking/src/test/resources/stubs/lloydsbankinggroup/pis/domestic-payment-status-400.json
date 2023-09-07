@@ -1,0 +1,45 @@
+{
+  "request": {
+    "url": "/v3.1/pisp/domestic-payments/e23f5d5cd08d44c3993243ad3f19d56f",
+    "method": "GET",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4"
+      },
+      "Accept": {
+        "contains": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "1238972887jdsIWNND"
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "Code": "400 BadRequest",
+      "Id": "2b5f0fb2-730b-11e8-adc0-fa7ae01bbebc",
+      "Message": "Payment rejected",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Rules.AfterCutOffDateTime",
+          "Message": "{payment-order} consent / resource received after CutOffDateTime",
+          "Url": "<url to the api reference for Payment Inititaion API>"
+        }
+      ]
+    },
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Frame-Options": "DENY",
+      "x-fapi-interaction-id": "4afceace-6ba4-4894-9441-aaef7f7a9004",
+      "Set-Cookie": [
+        "f5avrbbbbbbbbbbbbbbbb=JFBCGNCOGHBBMHDMLMJKJPBNKGGJDKBFDHKPEFLPIHGIFOPENNJNLFKDOAONFOCIPMEDJCBPAGPJODPABOFAGPCAENOMJGLKLLLABGPJOGBDEAPHIINEOIHMIGKOFNFN; HttpOnly; secure; Domain=api.natwest.com; Path=/open-banking/v1.1",
+        "f5avrbbbbbbbbbbbbbbbb=FKHECGAFBCFNKMPEAKHBLCNPELEHKEAMIMPOOIHKLIKGPNKLJJDJOICLEEKFJMFGCGPDMJONAGFKINEEJLFAFCMJENFNOPAKGKGFCOPNGJDFGOPLMIJLBLGFABLKOAPA; HttpOnly; secure"
+      ],
+      "Content-Type": "application/json;charset=UTF-8",
+      "Date": "Mon, 28 Jan 2019 10:16:51 GMT",
+      "Server": ""
+    }
+  }
+}

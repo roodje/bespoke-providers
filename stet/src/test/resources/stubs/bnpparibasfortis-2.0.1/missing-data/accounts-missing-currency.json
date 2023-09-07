@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/psd2/v2/accounts",
+    "headers": {
+      "authorization": {
+        "equalTo": "Bearer b343aa01-ea3c-4fe5-9658-944c82cb7683"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "signature": {
+        "matches": "keyId=\"https://test.qseal.certificate.com/a4:62:72:3b:cc:7f:37:07:17:5d:2d:21:18:f1:e2:2a:d0:fb:79:1a.pem\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) \\(created\\) \\(expires\\) host x-request-id digest\",\\(created\\)=(\\d*),\\(expires\\)=(\\d*),signature=\"([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*\""
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "1",
+          "accountId": {
+            "iban": "FR1420041010050500013M02606"
+          },
+          "bicFi": "FR5614508000403253837283C51",
+          "name": "Account One",
+          "usage": "PRIV",
+          "cashAccountType": "CACC",
+          "psuStatus": "Co-account Holder",
+          "_links": {}
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "accounts"
+        }
+      }
+    }
+  }
+}

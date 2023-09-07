@@ -1,0 +1,18 @@
+{
+  "accounts": [
+    {
+      "resourceId": "456",
+      "iban": "DE2310010010123499999",
+      "currency": "EUR",
+      "cashAccountType": "CISH",
+      "bic": "BPKOPLPW",
+      "name": "Account-456",
+      "balance": [],
+      "_links": {
+        "next": {
+          "href": ""
+        }
+      }
+    }
+  ]
+}

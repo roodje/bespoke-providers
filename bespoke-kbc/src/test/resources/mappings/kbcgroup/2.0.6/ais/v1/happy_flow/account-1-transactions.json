@@ -1,0 +1,80 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/psd2/v2/accounts/test-resource-id/transactions",
+    "queryParameters": {
+      "dateFrom": {
+        "matches": ".+"
+      }
+    },
+    "headers": {
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Consent-ID": {
+        "equalTo": "test-consent-id"
+      },
+      "Authorization": {
+        "equalTo": "Bearer test-access-token"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "123.45.67.89"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "account": {
+        "iban": "BE16690375703426",
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "test-transaction-id",
+            "bookingDate": "2020-02-18",
+            "valueDate": "2020-02-18",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "11.22"
+            },
+            "exchangeRate": [
+              {
+                "currencyFrom": "EUR",
+                "rateFrom": "0",
+                "currencyTo": "EUR",
+                "rateTo": "0",
+                "rateDate": "2020-02-18"
+              }
+            ],
+            "creditorName": "Test Creditor Name",
+            "creditorAccount": {
+              "iban": "BE16690375703426",
+              "currency": "EUR"
+            },
+            "debtorName": "Test Debtor Name",
+            "debtorAccount": {
+              "iban": "BE16690375703427",
+              "currency": "EUR"
+            },
+            "remittanceInformationUnstructured": "test-remittance-info-unstructured",
+            "remittanceInformationStructured": "test-remittance-info-structured",
+            "bankTransactionCode": "PMNT-RCDT-ESCT",
+            "proprietaryBankTransactionCode": "test-proprietary-bank-tx-code"
+          }
+        ],
+        "_links": {
+          "account": "/accounts/test-resource-id",
+          "next": "/psd2/v2/accounts/test-resource-id/transactions/page2"
+        }
+      }
+    }
+  }
+}

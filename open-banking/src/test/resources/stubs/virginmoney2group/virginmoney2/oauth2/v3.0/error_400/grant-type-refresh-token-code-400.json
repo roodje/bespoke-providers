@@ -1,0 +1,43 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.0/oauth2/token",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/x-www-form-urlencoded"
+      }
+    },
+    "basicAuthCredentials": {
+      "username": "someClientId",
+      "password": "someClientSecret"
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=refresh_token"
+      },
+      {
+        "contains": "refresh_token=616c0fea-5b17-49ef-8159-5db18a211a69"
+      },
+      {
+        "contains": "openid+accounts"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "Code": "400 BadRequest",
+      "Id": "3ec12f81-78b5-4ed9-877f-f759fbc8c5ad",
+      "Message": "The request is invalid",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Request.Invalid",
+          "Message": "The request is invalid"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

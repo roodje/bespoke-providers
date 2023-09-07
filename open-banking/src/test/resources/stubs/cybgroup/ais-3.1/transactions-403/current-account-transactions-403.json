@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/92198f42-4726-12fd-ad55-b93b04192121/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "001728392JD873NNHY"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 403,
+    "jsonBody": {
+      "Code": "403 Forbidden",
+      "Id": "008ab526-b00f-433a-b3b7-47e5cf33033f",
+      "Message": "Access Forbidden",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Forbidden",
+          "Message": "Access Forbidden"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

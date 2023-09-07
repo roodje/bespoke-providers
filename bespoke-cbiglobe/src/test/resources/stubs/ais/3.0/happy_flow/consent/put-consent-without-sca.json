@@ -1,0 +1,84 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPathPattern": "/platform/enabler/psd2orchestrator/ais/2.3.2/consents/(1|2)",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 00000000-0000-0000-0000-000000000000"
+      },
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "operation-name": {
+        "equalTo": "updatePsuData"
+      },
+      "aspsp-code": {
+        "equalTo": "ASPSP_MM_01"
+      },
+      "date": {
+        "matches": "^[a-zA-Z]{3},\\s[0-9]{1,2}\\s[a-zA-Z]{3}\\s[0-9]{4}\\s(2[0-3]|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])\\sUTC$"
+      },
+      "tpp-redirect-uri": {
+        "matches": "^https://yolt.com/callback-acc\\?state=[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "digest": {
+        "equalTo": "sha-512=avW6z7ycFHIe1AUx2owUushIA6gst/wkTo+Dd1fOX7hQwgOwbe3XGPt0/DN2MnG6JTEc+NAZwxERsPs5Dophdw=="
+      },
+      "signature": {
+        "matches": "keyId=\"13299021239615735660\",algorithm=\"rsa-sha512\",headers=\"date digest tpp-redirect-uri x-request-id\",signature=\"([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*\""
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIICMzCCAZygAwIBAgIJALiPnVsvq8dsMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzAeFw0xMzAzMTkxNTQwMTlaFw0xODAzMTgxNTQwMTlaMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzdGfxi9CNbMf1UUcvDQh7MYBOveIHyc0E0KIbhjK5FkCBU4CiZrbfHagaW7ZEcN0tt3EvpbOMxxc/ZQU2WN/s/wPxph0pSfsfFsTKM4RhTWD2v4fgk+xZiKd1p0+L4hTtpwnEw0uXRVd0ki6muwV5y/P+5FHUeldq+pgTcgzuK8CAwEAAaMPMA0wCwYDVR0PBAQDAgLkMA0GCSqGSIb3DQEBBQUAA4GBAJiDAAtY0mQQeuxWdzLRzXmjvdSuL9GoyT3BF/jSnpxz5/58dba8pWenv3pj4P3w5DoOso0rzkZy2jEsEitlVM2mLSbQpMM+MUVQCQoiG6W9xuCFuxSrwPISpAqEAuV4DNoxQKKWmhVv+J0ptMWD25Pnpxeq5sXzghfJnslJlQND"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "authenticationMethodId"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json",
+      "aspsp-sca-approach": "REDIRECT"
+    },
+    "jsonBody": {
+      "psuId": "psu-id",
+      "psuIdType": "psu-type",
+      "psuCorporateId": "psu-corporate-id",
+      "psuCorporateIdType": "psu-corporate-id-type",
+      "chosenScaMethod": {
+        "authenticationType": "SMS_OTP",
+        "authenticationMethodId": "2.0",
+        "authenticationVersion": "2",
+        "name": "jod-idp-retail",
+        "explanation": "none"
+      },
+      "consentStatus": "RCVD",
+      "psuCredentials": {
+        "aspspProductCode": "ASPSP_PRODUCT_001",
+        "credentialsDetails": [
+          {
+            "credentialDetailId": "CDETT001",
+            "isSecret": "true"
+          }
+        ]
+      },
+      "_links": {
+        "updatePsuAuthentication": {
+          "href": "/consents/(1|2)"
+        },
+        "self": {
+          "href": "/consents/(1|2)"
+        },
+        "scaRedirect": {
+          "href": "https://cbiglobe.it/clientlogin?id=some-id"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "x-client-id": {
+        "equalTo": "THE-CLIENT-ID"
+      },
+      "x-amex-api-key": {
+        "equalTo": "THE-CLIENT-ID"
+      },
+      "Authorization": {
+        "equalTo": "Bearer user-access-token"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "22289",
+            "Status": "Enabled",
+            "Currency": "GBP",
+            "AccountType": "Business",
+            "AccountSubType": "ChargeCard",
+            "Description": "American Express® Green Card",
+            "OpeningDate": "2021-10-13",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.PAN",
+                "Identification": "XXXX-XXXXXX-21003",
+                "Name": "John Doe"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "{{request.requestLine.baseUrl}}/v3.1/aisp/accounts"
+      },
+      "Meta": {
+        "TotalPages": "1"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

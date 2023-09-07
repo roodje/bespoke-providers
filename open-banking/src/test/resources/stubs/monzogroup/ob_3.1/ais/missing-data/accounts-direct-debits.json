@@ -1,0 +1,33 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/22289/direct-debits",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer Az90SAOJklae"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "93bac548-d2de-4546-b106-880a5018460d"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "93bac548-d2de-4546-b106-880a5018460d"
+    },
+    "jsonBody": {
+      "Data": {
+        "DirectDebit": [
+        ]
+      },
+      "Links": {
+        "Self": "https://api.alphabank.com/openbanking.monzo.com/v3.1/aisp/accounts/22289/direct-debits/"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    }
+  }
+}

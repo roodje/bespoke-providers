@@ -1,0 +1,60 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/yoltbank/openbanking/aisp/accounts/l8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6/balances",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "93bac548-d2de-4546-b106-880a5018460d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 3zHagXZSPyA6sifIDmqwZ0hLlqq"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "l8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2020-11-11T00:00:00+00:00",
+            "Amount": {
+              "Amount": "12000.00",
+              "Currency": "GBP"
+            },
+            "CreditLine": [
+              {
+                "Included": true,
+                "Type": "Credit",
+                "Amount": {
+                  "Amount": "12000.00",
+                  "Currency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "AccountId": "l8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6",
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2020-11-11T00:00:00+00:00",
+            "Amount": {
+              "Amount": "0.00",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "/yoltbank/openbanking/aisp/accounts/l8zlqg6kt9moi1f5pu5jfh43p68s3c1l3ca6/balances"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

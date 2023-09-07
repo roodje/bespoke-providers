@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/mtls-oauth-token",
+    "headers": {
+      "Accept-Encoding": {
+        "contains": "gzip"
+      },
+      "Content-Type": {
+        "contains": "application/x-www-form-urlencoded"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "client_id=api-key"
+      },
+      {
+        "contains": "client_secret=api-secret"
+      },
+      {
+        "contains": "grant_type=authorization_code"
+      },
+      {
+        "contains": "code=auth-code"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "X-Frame-Options": "DENY",
+      "Transfer-Encoding": "chunked",
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "access_token": "access-token",
+      "refresh_token": "refresh-token",
+      "expires_in": 300,
+      "token_type": "Bearer"
+    }
+  }
+}

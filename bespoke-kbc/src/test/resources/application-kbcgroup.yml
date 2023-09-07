@@ -1,0 +1,12 @@
+lovebird:
+  kbcgroup:
+    kbcbank:
+      pagination-limit: 1000
+      base-url: https://localhost:${wiremock.server.https-port}/psd2/v2
+      authorization-url: https://localhost:${wiremock.server.https-port}/ASK/oauth/authorize/1
+      token-url: https://localhost:${wiremock.server.https-port}/ASK/oauth/token/1
+    cbcbank:
+      pagination-limit: 1000
+      base-url: https://localhost:${wiremock.server.https-port}/psd2/v2
+      authorization-url: https://localhost:${wiremock.server.https-port}/ASK/oauth/authorize/1
+      token-url: https://localhost:${wiremock.server.https-port}/ASK/oauth/token/1

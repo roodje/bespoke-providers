@@ -1,0 +1,14 @@
+include:
+  - {project: backend/global-ci-files, ref: master, file: /public/libraries/library-providers-parent.gitlab-ci.yml}
+
+variables:
+  BUILD_TOOL: maven
+  YDT_IMAGE: yolt-deployment-tools-jdk17
+
+########### Release ###########
+release:
+  when: on_success
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /\[maven-release-plugin\].+/
+      - $UPDATED_LIBRARY_NAME

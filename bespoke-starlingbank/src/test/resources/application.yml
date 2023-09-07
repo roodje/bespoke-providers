@@ -1,0 +1,14 @@
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+lovebird:
+  starlingbank:
+    baseUrl: http://localhost:${wiremock.server.port}
+    oAuthTokenUrl: http://localhost:${wiremock.server.port}/mtls-oauth-token
+    oAuthAuthorizationBaseUrl: http://localhost:${wiremock.server.port}/authorize

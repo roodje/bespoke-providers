@@ -1,0 +1,24 @@
+{
+  "pots": [
+    {
+      "uuid": "31728d06-474f-45fb-a5fd-e73f0333face",
+      "name": "pot name",
+      "currentValue": 1006.5,
+      "wrapper": {
+        "key": "GIA/ISA",
+        "displayName": "GIA/ISA"
+      },
+      "investmentStyle": "FIXED|MANAGED"
+    },
+    {
+      "uuid": "31728d06-474f-45fb-a5fd-e73f0333facf",
+      "name": "pot name2",
+      "currentValue": 106.5,
+      "wrapper": {
+        "key": "PENSION",
+        "displayName": "PENSION"
+      },
+      "investmentStyle": "FIXED|MANAGED"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/kutxabank/token?grant_type=refresh_token&client_id=redsysClientId&refresh_token=437f67ad-c0a8-419a-a868-7a3296a15ccf",
+    "headers": {
+      "Content-Type": {
+        "matches": "application/x-www-form-urlencoded"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "token_type": "Bearer"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

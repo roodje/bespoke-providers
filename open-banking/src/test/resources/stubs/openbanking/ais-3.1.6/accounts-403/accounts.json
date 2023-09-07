@@ -1,0 +1,34 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/yoltbank/openbanking/aisp/accounts",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "93bac548-d2de-4546-b106-880a5018460d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer Zm7n1jlnv3XaDzElTXO3D3Dimeg"
+      },
+      "Accept": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 403,
+    "jsonBody": {
+      "Code": "403",
+      "Id": "553a1558-8aea-453d-8cf7-5dca6e9b9d9f",
+      "Message": "Access for requested data is forbidden",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Field.Invalid",
+          "Message": "Forbidden"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/c2b7c559-5024-491b-b7e7-4730fc6465c5/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "contains": "Bearer AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4"
+      },
+      "x-fapi-financial-id": {
+        "contains": "00162010018e22KCTR"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "1626df30-50ad-42d8-8f39-40dd95f4b15f"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "c2b7c559-5024-491b-b7e7-4730fc6465c5",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2017-11-06T00:00:00Z",
+            "Amount": {
+              "Amount": "0.01",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "TFR",
+              "Issuer": "LBG:DSP"
+            },
+            "TransactionInformation": "O BOSFOUR",
+            "Balance": {
+              "Amount": {
+                "Amount": "0.01",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            }
+          },
+          {
+            "AccountId": "c2b7c559-5024-491b-b7e7-4730fc6465c5",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "BookingDateTime": "2017-11-06T00:00:00Z",
+            "Amount": {
+              "Amount": "0.01",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "TFR",
+              "Issuer": "LBG:DSP"
+            },
+            "TransactionInformation": "O BOSFOUR",
+            "Balance": {
+              "Amount": {
+                "Amount": "0.02",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            }
+          },
+          {
+            "AccountId": "c2b7c559-5024-491b-b7e7-4730fc6465c5",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "BookingDateTime": "2017-10-26T00:00:00Z",
+            "TransactionId": "d406fc449370541d5bd1dd25966647f9",
+            "Amount": {
+              "Amount": "0.01",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "TFR",
+              "Issuer": "LBG:DSP"
+            },
+            "TransactionInformation": "O BOSFOUR",
+            "Balance": {
+              "Amount": {
+                "Amount": "0.01",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            }
+          },
+          {
+            "AccountId": "c2b7c559-5024-491b-b7e7-4730fc6465c5",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2017-08-21T00:00:00Z",
+            "TransactionId": "76e4b50fe3e854c154475ecffb48ce14",
+            "Amount": {
+              "Amount": "0.03",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "TFR",
+              "Issuer": "LBG:DSP"
+            },
+            "TransactionInformation": "B TESTMARMALADETWE",
+            "Balance": {
+              "Amount": {
+                "Amount": "0.00",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            }
+          },
+          {
+            "AccountId": "c2b7c559-5024-491b-b7e7-4730fc6465c5",
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "BookingDateTime": "2017-07-28T00:00:00Z",
+            "TransactionId": "f9918fe846fc2cc598a228e344d39982",
+            "Amount": {
+              "Amount": "0.03",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Issuer": "LBG:DSP"
+            },
+            "TransactionInformation": "INTEREST (GROSS)",
+            "Balance": {
+              "Amount": {
+                "Amount": "0.03",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            }
+          },
+          {
+            "AccountId": "c2b7c559-5024-491b-b7e7-4730fc6465c5",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2017-06-27T00:00:00Z",
+            "TransactionId": "b6028a0669f3aa6a1264ff7fd6073b98",
+            "Amount": {
+              "Amount": "10.00",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "TFR",
+              "Issuer": "LBG:DSP"
+            },
+            "TransactionInformation": "B TESTMARMALADETWE",
+            "BankTransactionCode": {
+              "Code": "IssuedCreditTransfers",
+              "SubCode": "AutomaticTransfer"
+            },
+            "Balance": {
+              "Amount": {
+                "Amount": "0.00",
+                "Currency": "GBP"
+              },
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimBooked"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://openbanking-ma.santander.co.uk/sanuk/external/open-banking/v3.1/aisp/accounts/c2b7c559-5024-491b-b7e7-4730fc6465c5/transactions?fromBookingDateTime=2017-07-26T15:12:45.467Z&page=1"
+      },
+      "Meta": {
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/stet/psd2/v1.4.2/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer access-token2"
+      },
+      "Signature": {
+        "matches": "keyId=\"THE_CLIENT_ID\",algorithm=\"rsa-sha256\",headers=\"\\(request-target\\) date digest x-request-id\",signature=\"(.*)\""
+      },
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "strict-transport-security": "max-age=63072000; includeSubdomains;",
+      "x-content-type-options": "nosniff",
+      "digest": "SHA-256=w5XgTvvjjcVd77LWV1QBRuVztwcHwUOUfmcZeBzMvpU=",
+      "signature": "the signature",
+      "connection": "Keep-Alive",
+      "max-forwards": "20",
+      "content-length": "1247",
+      "x-xss-protection": "1; mode=block",
+      "x-request-id": "321",
+      "x-correlationid": "Id-619ac25d09801420b081e109 0",
+      "date": "Wed, 06 Nov 2019 10:03:13 GMT",
+      "x-frame-options": "SAMEORIGIN",
+      "content-type": "application/json;charset=UTF-8",
+      "access-control-allow-origin": "https://www.api.89c3.com",
+      "access-control-expose-headers": "x-correlationid",
+      "cache-control": "max-age=0, public",
+      "keep-alive": "timeout=5, max=299",
+      "expires": "Wed, 06 Nov 2019 10:03:13 GMT"
+    },
+    "jsonBody": {
+      "_links": {
+        "self": {
+          "templated": false,
+          "href": "/stet/psd2/v1.4.2/accounts"
+        }
+      },
+      "accounts": [
+        {
+          "cashAccountType": "CACC",
+          "accountId": {
+            "iban": "FR7610907000301234567890126"
+          },
+          "resourceId": "175150009204004305180",
+          "_links": {
+            "balances": {
+              "templated": false,
+              "href": "/stet/psd2/v1.4.2/accounts/175150009204004305180/balances"
+            },
+            "transactions": {
+              "templated": true,
+              "href": "/stet/psd2/v1.4.2/accounts/175150009204004305180/transactions"
+            }
+          },
+          "usage": "PRIV",
+          "psuStatus": "Account Holder",
+          "name": "LEA SANDBOXA",
+          "currency": "EUR"
+        }
+      ]
+    }
+  }
+}

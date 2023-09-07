@@ -1,0 +1,73 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/payment-requests",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer client-credentials-token"
+      },
+      "Digest": {
+        "matches": "^(.*)"
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.paymentInformationId =~ /[a-zA-Z0-9]{32}/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.creationDateTime =~ /^(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:Z|[+-][01]\\d:[0-5]\\d)$/i)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.numberOfTransactions == 1)]"
+      },
+      {
+        "matchesJsonPath": "$.initiatingParty[?(@.name == 'Yolt')]"
+      },
+      {
+        "matchesJsonPath": "$.paymentTypeInformation[?(@.serviceLevel == 'SEPA')]"
+      },
+      {
+        "matchesJsonPath": "$.beneficiary.creditor[?(@.name == 'myMerchant')]"
+      },
+      {
+        "matchesJsonPath": "$.beneficiary.creditorAccount[?(@.iban == 'FR7630004030160000003778069')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].paymentId[?(@.instructionId =~ /[a-zA-Z0-9]{32}/i)]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].instructedAmount[?(@.currency == 'EUR')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0].instructedAmount[?(@.amount == '124.35')]"
+      },
+      {
+        "matchesJsonPath": "$.creditTransferTransaction.[0][?(@.remittanceInformation.[0] == 'MyRemittanceInformation')]"
+      },
+      {
+        "matchesJsonPath": "$.supplementaryData[?(@.successfulReportUrl == 'https://www.yolt.com/callback/payment?state=state')]"
+      },
+      {
+        "matchesJsonPath": "$.supplementaryData[?(@.unsuccessfulReportUrl == 'https://www.yolt.com/callback/payment?state=state')]"
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json;charset=utf-8",
+      "X-Request-ID": "a77a60a1-23e1-4c59-bf24-a23d244c2fd0",
+      "Trace-Id": "07ca8f04-9847-e3f1-bd30-cd7e0092961d"
+    },
+    "jsonBody": {
+      "timestamp": "2018-03-30T16:06:27.499+0000",
+      "status": 400,
+      "error": "Bad Request",
+      "message": "Missing request header 'Digest' for method parameter of type String",
+      "path": "/v1/payment-requests"
+    }
+  }
+}

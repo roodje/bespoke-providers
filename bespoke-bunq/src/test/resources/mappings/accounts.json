@@ -1,0 +1,394 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/user/2459/monetary-account?count=200",
+    "headers": {}
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Response": [
+        {
+          "MonetaryAccountBank": {
+            "currency": "string",
+            "description": "MonetaryAccountBank",
+            "daily_limit": {
+              "value": "string",
+              "currency": "string"
+            },
+            "status": "string",
+            "sub_status": "string",
+            "reason": "string",
+            "reason_description": "string",
+            "notification_filters": [
+              {
+                "notification_delivery_method": "string",
+                "notification_target": "string",
+                "category": "string"
+              }
+            ],
+            "setting": {
+              "color": "string",
+              "default_avatar_status": "string",
+              "restriction_chat": "string"
+            },
+            "id": 0,
+            "created": "string",
+            "updated": "string",
+            "avatar": {
+              "uuid": "string",
+              "anchor_uuid": "string",
+              "image": [
+                {
+                  "attachment_public_uuid": "string",
+                  "content_type": "string",
+                  "height": 0,
+                  "width": 0
+                }
+              ]
+            },
+            "daily_spent": {
+              "value": "string",
+              "currency": "string"
+            },
+            "overdraft_limit": {
+              "value": "string",
+              "currency": "string"
+            },
+            "balance": {
+              "value": "1",
+              "currency": "string"
+            },
+            "alias": [
+              {
+                "type": "IBAN",
+                "value": "NL58BUNQ123456789",
+                "name": null
+              }
+            ],
+            "public_uuid": "string",
+            "user_id": 0,
+            "monetary_account_profile": {
+              "profile_fill": {
+                "status": "string",
+                "balance_preferred": {
+                  "value": "string",
+                  "currency": "string"
+                },
+                "balance_threshold_low": {
+                  "value": "string",
+                  "currency": "string"
+                },
+                "method_fill": "string",
+                "issuer": {
+                  "bic": "string",
+                  "name": "string"
+                }
+              },
+              "profile_drain": {
+                "status": "string",
+                "balance_preferred": {
+                  "value": "string",
+                  "currency": "string"
+                },
+                "balance_threshold_high": {
+                  "value": "string",
+                  "currency": "string"
+                },
+                "savings_account_alias": {
+                  "iban": "string",
+                  "display_name": "string",
+                  "avatar": {
+                    "uuid": "string",
+                    "anchor_uuid": "string",
+                    "image": [
+                      {
+                        "attachment_public_uuid": "string",
+                        "content_type": "string",
+                        "height": 0,
+                        "width": 0
+                      }
+                    ]
+                  },
+                  "label_user": {
+                    "uuid": "string",
+                    "display_name": "string",
+                    "country": "string",
+                    "avatar": {
+                      "uuid": "string",
+                      "anchor_uuid": "string",
+                      "image": [
+                        {
+                          "attachment_public_uuid": "string",
+                          "content_type": "string",
+                          "height": 0,
+                          "width": 0
+                        }
+                      ]
+                    },
+                    "public_nick_name": "string"
+                  },
+                  "country": "string",
+                  "bunq_me": {
+                    "type": "string",
+                    "value": "string",
+                    "name": "string"
+                  },
+                  "is_light": true,
+                  "swift_bic": "string",
+                  "swift_account_number": "string"
+                }
+              }
+            }
+          }
+        },
+        {
+          "MonetaryAccountJoint": {
+            "currency": "string",
+            "description": "MonetaryAccountJoint",
+            "daily_limit": {
+              "value": "string",
+              "currency": "string"
+            },
+            "overdraft_limit": {
+              "value": "string",
+              "currency": "string"
+            },
+            "alias": [
+              {
+                "type": "string",
+                "value": "string",
+                "name": "string"
+              }
+            ],
+            "status": "string",
+            "sub_status": "string",
+            "reason": "string",
+            "reason_description": "string",
+            "all_co_owner": [
+              {
+                "alias": {
+                  "uuid": "string",
+                  "display_name": "string",
+                  "country": "string",
+                  "avatar": {
+                    "uuid": "string",
+                    "anchor_uuid": "string",
+                    "image": [
+                      {
+                        "attachment_public_uuid": "string",
+                        "content_type": "string",
+                        "height": 0,
+                        "width": 0
+                      }
+                    ]
+                  },
+                  "public_nick_name": "string"
+                },
+                "status": "string"
+              }
+            ],
+            "notification_filters": [
+              {
+                "notification_delivery_method": "string",
+                "notification_target": "string",
+                "category": "string"
+              }
+            ],
+            "setting": {
+              "color": "string",
+              "default_avatar_status": "string",
+              "restriction_chat": "string"
+            },
+            "id": 0,
+            "created": "string",
+            "updated": "string",
+            "avatar": {
+              "uuid": "string",
+              "anchor_uuid": "string",
+              "image": [
+                {
+                  "attachment_public_uuid": "string",
+                  "content_type": "string",
+                  "height": 0,
+                  "width": 0
+                }
+              ]
+            },
+            "daily_spent": {
+              "value": "string",
+              "currency": "string"
+            },
+            "balance": {
+              "value": "2",
+              "currency": "string"
+            },
+            "public_uuid": "string",
+            "user_id": 0,
+            "monetary_account_profile": {
+              "profile_fill": {
+                "status": "string",
+                "balance_preferred": {
+                  "value": "string",
+                  "currency": "string"
+                },
+                "balance_threshold_low": {
+                  "value": "string",
+                  "currency": "string"
+                },
+                "method_fill": "string",
+                "issuer": {
+                  "bic": "string",
+                  "name": "string"
+                }
+              },
+              "profile_drain": {
+                "status": "string",
+                "balance_preferred": {
+                  "value": "string",
+                  "currency": "string"
+                },
+                "balance_threshold_high": {
+                  "value": "string",
+                  "currency": "string"
+                },
+                "savings_account_alias": {
+                  "iban": "string",
+                  "display_name": "string",
+                  "avatar": {
+                    "uuid": "string",
+                    "anchor_uuid": "string",
+                    "image": [
+                      {
+                        "attachment_public_uuid": "string",
+                        "content_type": "string",
+                        "height": 0,
+                        "width": 0
+                      }
+                    ]
+                  },
+                  "label_user": {
+                    "uuid": "string",
+                    "display_name": "string",
+                    "country": "string",
+                    "avatar": {
+                      "uuid": "string",
+                      "anchor_uuid": "string",
+                      "image": [
+                        {
+                          "attachment_public_uuid": "string",
+                          "content_type": "string",
+                          "height": 0,
+                          "width": 0
+                        }
+                      ]
+                    },
+                    "public_nick_name": "string"
+                  },
+                  "country": "string",
+                  "bunq_me": {
+                    "type": "string",
+                    "value": "string",
+                    "name": "string"
+                  },
+                  "is_light": true,
+                  "swift_bic": "string",
+                  "swift_account_number": "string"
+                }
+              }
+            }
+          }
+        },
+        {
+          "MonetaryAccountLight": {
+            "currency": "string",
+            "description": "MonetaryAccountLight",
+            "daily_limit": {
+              "value": "string",
+              "currency": "string"
+            },
+            "status": "string",
+            "sub_status": "string",
+            "reason": "string",
+            "reason_description": "string",
+            "notification_filters": [
+              {
+                "notification_delivery_method": "string",
+                "notification_target": "string",
+                "category": "string"
+              }
+            ],
+            "setting": {
+              "color": "string",
+              "default_avatar_status": "string",
+              "restriction_chat": "string"
+            },
+            "id": 0,
+            "created": "string",
+            "updated": "string",
+            "avatar": {
+              "uuid": "string",
+              "anchor_uuid": "string",
+              "image": [
+                {
+                  "attachment_public_uuid": "string",
+                  "content_type": "string",
+                  "height": 0,
+                  "width": 0
+                }
+              ]
+            },
+            "daily_spent": {
+              "value": "string",
+              "currency": "string"
+            },
+            "balance": {
+              "value": "3",
+              "currency": "string"
+            },
+            "alias": [
+              {
+                "type": "string",
+                "value": "string",
+                "name": "string"
+              }
+            ],
+            "public_uuid": "string",
+            "user_id": 0,
+            "balance_maximum": {
+              "value": "string",
+              "currency": "string"
+            },
+            "budget_month_used": {
+              "value": "string",
+              "currency": "string"
+            },
+            "budget_month_maximum": {
+              "value": "string",
+              "currency": "string"
+            },
+            "budget_year_used": {
+              "value": "string",
+              "currency": "string"
+            },
+            "budget_year_maximum": {
+              "value": "string",
+              "currency": "string"
+            },
+            "budget_withdrawal_year_used": {
+              "value": "string",
+              "currency": "string"
+            },
+            "budget_withdrawal_year_maximum": {
+              "value": "string",
+              "currency": "string"
+            }
+          }
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

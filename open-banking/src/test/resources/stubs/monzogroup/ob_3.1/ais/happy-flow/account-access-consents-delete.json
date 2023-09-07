@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "DELETE",
+    "url": "/v3.1/aisp/account-access-consents/363ca7c1-9d03-4876-8766-ddefc9fd2d76",
+    "headers": {
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 204,
+    "headers": {
+      "x-fapi-interaction-id": "12345"
+    }
+  }
+}

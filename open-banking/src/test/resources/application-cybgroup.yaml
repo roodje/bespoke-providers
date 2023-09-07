@@ -1,0 +1,30 @@
+lovebird:
+  cybgroup:
+    clydesdale:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      registrationUrl: https://localhost:${wiremock.server.https-port}/v3.2/register
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      institutionId: 001728392JD873NNHY
+      issuer: fake-issuer
+      audience: audience
+    yorkshire:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      registrationUrl: https://localhost:${wiremock.server.https-port}/v3.2/register
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth2/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+      institutionId: 001728392JD873NNHY
+      issuer: fake-issuer
+      audience: audience
+
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

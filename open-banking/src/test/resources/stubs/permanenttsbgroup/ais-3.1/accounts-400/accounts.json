@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "4afee8d0-e417-4cff-b0b2-cd69f8dcc82e"
+      },
+      "Authorization": {
+        "equalTo": "Bearer 7531d7a8-7f5e-4bde-ae07-a5c587458ad7"
+      },
+      "Accept": {
+        "matches": "application/json"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800001ZEZ3yAAH"
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "jsonBody": {
+      "Code": "400",
+      "Id": "553a1558-8aea-453d-8cf7-5dca6e9b9d9f",
+      "Message": "Request has malformed, missing or non-compliant JSON body, URL parameters or header fields.",
+      "Errors": [
+        {
+          "ErrorCode": "UK.OBIE.Field.Invalid",
+          "Message": "Bad Request"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

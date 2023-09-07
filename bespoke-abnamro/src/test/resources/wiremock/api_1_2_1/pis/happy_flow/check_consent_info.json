@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/v1/consentinfo",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer GPgYglX4sO1WhzfChx4tmjr4y7Qg"
+      },
+      "API-Key": {
+        "equalTo": "7zacIF8Cu5o3XF4gUll4sRGuI2gDYiCA"
+      },
+      "Content-Type": {
+        "equalTo": "application/json"
+      },
+      "Accept": {
+        "equalTo": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "scopes": "psd2:payment:sepa:write",
+      "iban": "NL62ABNA9999841479",
+      "transactionId": "8325P3346070108S0PD",
+      "valid": "1543931986"
+    }
+  }
+}

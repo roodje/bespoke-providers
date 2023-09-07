@@ -1,0 +1,130 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/platform/enabler/psd2orchestrator/ais/2.4.0/accounts/2/transactions",
+    "queryParameters": {
+      "booking_status": {
+        "equalTo": "booked"
+      },
+      "date_from": {
+        "matches": ".+"
+      },
+      "date_to": {
+        "matches": ".+"
+      },
+      "offset": {
+        "equalTo": "1"
+      },
+      "limit": {
+        "matches": ".+"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer 00000000-0000-0000-0000-000000000000"
+      },
+      "Accept": {
+        "equalTo": "JSON"
+      },
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      },
+      "consent-id": {
+        "equalTo": "4"
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "aspsp-code": {
+        "matches": "^.+$"
+      },
+      "psu-ip-address": {
+        "equalTo": "127.0.0.1"
+      },
+      "date": {
+        "matches": "^[a-zA-Z]{3},\\s[0-9]{1,2}\\s[a-zA-Z]{3}\\s[0-9]{4}\\s(2[0-3]|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])\\sUTC$"
+      },
+      "digest": {
+        "equalTo": "sha-512=slspTLTetp6gCkw88xE5BIAbYBXllWvQGahXCx/h1gQOlE7zze4W0KRlA8puZZol8hz5zt3BPzUqPJgTjBXWrw=="
+      },
+      "signature": {
+        "matches": "keyId=\"13299021239615735660\",algorithm=\"rsa-sha512\",headers=\"date digest x-request-id\",signature=\"([A-Za-z0-9+/\r\n])*(=){0,2}([\r\n])*\""
+      },
+      "tpp-signature-certificate": {
+        "equalTo": "MIICMzCCAZygAwIBAgIJALiPnVsvq8dsMA0GCSqGSIb3DQEBBQUAMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzAeFw0xMzAzMTkxNTQwMTlaFw0xODAzMTgxNTQwMTlaMFMxCzAJBgNVBAYTAlVTMQwwCgYDVQQIEwNmb28xDDAKBgNVBAcTA2ZvbzEMMAoGA1UEChMDZm9vMQwwCgYDVQQLEwNmb28xDDAKBgNVBAMTA2ZvbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAzdGfxi9CNbMf1UUcvDQh7MYBOveIHyc0E0KIbhjK5FkCBU4CiZrbfHagaW7ZEcN0tt3EvpbOMxxc/ZQU2WN/s/wPxph0pSfsfFsTKM4RhTWD2v4fgk+xZiKd1p0+L4hTtpwnEw0uXRVd0ki6muwV5y/P+5FHUeldq+pgTcgzuK8CAwEAAaMPMA0wCwYDVR0PBAQDAgLkMA0GCSqGSIb3DQEBBQUAA4GBAJiDAAtY0mQQeuxWdzLRzXmjvdSuL9GoyT3BF/jSnpxz5/58dba8pWenv3pj4P3w5DoOso0rzkZy2jEsEitlVM2mLSbQpMM+MUVQCQoiG6W9xuCFuxSrwPISpAqEAuV4DNoxQKKWmhVv+J0ptMWD25Pnpxeq5sXzghfJnslJlQND"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "account": {
+        "iban": "IT64T9963419517392002692724",
+        "bban": "IT,X0542811101,000000123456",
+        "pan": "4929 0399 2800 6962",
+        "maskedPan": "4929 ******** 6962",
+        "msisdn": "+393125665412",
+        "currency": "EUR"
+      },
+      "transactions": {
+        "booked": [
+          {
+            "transactionId": "238423983748973",
+            "bookingDate": "2020-09-28",
+            "valueDate": "2020-09-28",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-246.70"
+            },
+            "remittanceInformationUnstructured": "RIMBORSO RATA",
+            "_links": {
+              "transactionDetails": {
+                "href": "/accounts/2/transactions/238423983748973"
+              }
+            }
+          },
+          {
+            "transactionId": "3920528230480238",
+            "bookingDate": "2020-09-09",
+            "valueDate": "2020-09-09",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "620.00"
+            },
+            "remittanceInformationUnstructured": "BONIFICO A VOSTRO FAVORE",
+            "_links": {
+              "transactionDetails": {
+                "href": "/accounts/2/transactions/3920528230480238"
+              }
+            }
+          },
+          {
+            "transactionId": "3498575977293474",
+            "bookingDate": "2020-08-27",
+            "valueDate": "2020-08-27",
+            "transactionAmount": {
+              "currency": "EUR",
+              "amount": "-246.70"
+            },
+            "remittanceInformationUnstructured": "RIMBORSO RATA MUTUO BANCOPOSTA",
+            "_links": {
+              "transactionDetails": {
+                "href": "/accounts/2/transactions/3498575977293474"
+              }
+            }
+          }
+        ],
+        "_links": {
+          "account": {
+            "href": "/accounts/2"
+          }
+        }
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "cpaas-total-pages": "1",
+      "cpaas-total-elements": "4"
+    }
+  }
+}

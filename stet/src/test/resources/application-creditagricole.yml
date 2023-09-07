@@ -1,0 +1,221 @@
+lovebird:
+  stet:
+    creditagricolegroup:
+      creditagricole:
+        paginationLimit: 1000
+        registrationUrl: https://localhost:${wiremock.server.https-port}/psd2_actor_registration/v1/tpp_consumers
+        formStepExpiryDurationMillis: 3600000
+        regions:
+          - code: CAM_ALPES_PROVENCE
+            name: "Alpes Provence"
+            baseUrl: https://localhost:${wiremock.server.https-port}/psd2-api.ca-alpesprovence.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.https-port}/psd2-api.ca-alpesprovence.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-alpesprovence/authorize
+          - code: CAM_ALSACE_VOSGES
+            name: "Alsace-Vosges"
+            baseUrl: https://localhost:${wiremock.server.https-port}/psd2-api.ca-alsace-vosges.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.https-port}/psd2-api.ca-alsace-vosges.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-alsace-vosges/authorize
+          - code: CAM_ANJOU_MAINE
+            name: "Anjou Maine"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-anjou-maine.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-anjou-maine.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-anjou-maine/authorize
+          - code: CAM_AQUITAINE
+            name: "Aquitaine"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-aquitaine.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-aquitaine.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-aquitaine/authorize
+          - code: CAM_ATLANTIQUE_VENDEE
+            name: "Atlantique Vendée"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-atlantique-vendee.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-atlantique-vendee.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-atlantique-vendee/authorize
+          - code: CAM_BRIE_PICARDIE
+            name: "Brie Picardie"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-briepicardie.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-briepicardie.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-briepicardie/authorize
+          - code: CAM_CENTRE_FRANCE
+            name: "Centre France"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-centrefrance.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-centrefrance.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-centrefrance/authorize
+          - code: CAM_CENTRE_LOIRE
+            name: "Centre Loire"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-centreloire.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-centreloire.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-centreloire/authorize
+          - code: CAM_CENTRE_OUEST
+            name: "Centre Ouest"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-centreouest.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-centreouest.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-centreouest/authorize
+          - code: CAM_CENTRE_EST
+            name: "Centre Est"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-centrest.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-centrest.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-centrest/authorize
+          - code: CAM_CHAMPAGNE_BOURGOGNE
+            name: "Champagne Bourgogne"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-cb.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-cb.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-cb/authorize
+          - code: CAM_CHARENTE_MARITIME_DEUX_SEVRES
+            name: "Charente-Maritime Deux-Sèvres"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-cmds.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-cmds.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-cmds/authorize
+          - code: CAM_CHARENTE_PERIGORD
+            name: "Charente Périgord"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-charente-perigord.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-charente-perigord.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-charente-perigord/authorize
+          - code: CAM_CORSE
+            name: "Corse"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-corse.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-corse.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-corse/authorize
+          - code: CAM_COTES_DARMOR
+            name: "Côtes d'Armor"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-cotesdarmor.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-cotesdarmor.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-cotesdarmor/authorize
+          - code: CAM_DES_SAVOIE
+            name: "Des Savoie"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-des-savoie.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-des-savoie.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-des-savoie/authorize
+          - code: CAM_FINISTERE
+            name: "Finistere"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-finistere.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-finistere.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-finistere/authorize
+          - code: CAM_FRANCHE_COMTE
+            name: "Franche-Comté"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-franchecomte.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-franchecomte.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-franchecomte/authorize
+          - code: CAM_GUADELOUPE
+            name: "Guadeloupe"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-guadeloupe.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-guadeloupe.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-guadeloupe/authorize
+          - code: CAM_ILE_DE_FRANCE
+            name: "Ile-de-France"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-paris.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-paris.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-paris/authorize
+          - code: CAM_ILLE_ET_VILAINE
+            name: "Ille-et-Vilaine"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-illeetvilaine.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-illeetvilaine.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-illeetvilaine/authorize
+          - code: CAM_LANGUEDOC
+            name: "Languedoc"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-languedoc.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-languedoc.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-languedoc/authorize
+          - code: CAM_LOIRE_HAUTE_LOIRE
+            name: "Loire Haute Loire"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-loirehauteloire.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-loirehauteloire.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-loirehauteloire/authorize
+          - code: CAM_LORRAINE
+            name: "Lorraine"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-lorraine.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-lorraine.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-lorraine/authorize
+          - code: CAM_MARTINIQUE_GUYANE
+            name: "Martinique Guyane"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-martinique.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-martinique.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-martinique/authorize
+          - code: CAM_MORBIHAN
+            name: "Morbihan"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-morbihan.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-morbihan.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-morbihan/authorize
+          - code: CAM_NORD_DE_FRANCE
+            name: "Nord de France"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-norddefrance.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-norddefrance.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-norddefrance/authorize
+          - code: CAM_NORD_EST
+            name: "Nord Est"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-nord-est.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-nord-est.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-nord-est/authorize
+          - code: CAM_NORD_MIDI_PYRENEES
+            name: "Nord Midi-Pyrénées"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-nmp.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-nmp.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-nmp/authorize
+          - code: CAM_NORMANDIE
+            name: "Normandie"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-normandie.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-normandie.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-normandie/authorize
+          - code: CAM_NORMANDIE_SEINE
+            name: "Normandie Seine"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-normandie-seine.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-normandie-seine.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-normandie-seine/authorize
+          - code: CAM_PROVENCE_COTE_DAZUR
+            name: "Provence Côte d'Azur"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-pca.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-pca.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-pca/authorize
+          - code: CAM_PYRENEES_GASCOGNE
+            name: "Pyrénées Gascogne"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-pyrenees-gascogne.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-pyrenees-gascogne.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-pyrenees-gascogne/authorize
+          - code: CAM_REUNION
+            name: "Réunion"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-reunion.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-reunion.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-reunion/authorize
+          - code: CAM_SUD_MEDITERRANEE
+            name: "Sud Méditerranée"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-sudmed.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-sudmed.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-sudmed/authorize
+          - code: CAM_SUD_RHONE_ALPES
+            name: "Sud Rhône Alpes"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-sudrhonealpes.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-sudrhonealpes.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-sudrhonealpes/authorize
+          - code: CAM_TOULOUSE_31
+            name: "Toulouse 31"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-toulouse31.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-toulouse31.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-toulouse31/authorize
+          - code: CAM_TOURRAINE_POITOU
+            name: "Tourraine Poitou"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-tourainepoitou.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-tourainepoitou.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-tourainepoitou/authorize
+          - code: CAM_VAL_DE_FRANCE
+            name: "Val de France"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-valdefrance.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.ca-valdefrance.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.credit-agricole.fr/ca-valdefrance/authorize
+          - code: CAM_BANQUE_CHALUS
+            name: "Banque Chalus"
+            baseUrl: https://localhost:${wiremock.server.port}/psd2-api.banque-chalus.fr/dsp2/v1
+            tokenUrl: https://localhost:${wiremock.server.port}/psd2-api.banque-chalus.fr/authentication/v1/openid/token
+            authUrl: https://psd2-portal.banque-chalus.fr/banque-chalus/authorize
+yolt:
+  qseal-certificate-exposure:
+    enabled: true
+    base-url: https://test.qseal.certificate.com
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

@@ -1,0 +1,84 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "c554a9ef-47c1-4b4e-a77f-2ad770d69748"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "1238972887jdsIWNND"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "transformers": ["response-template"],
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "110f7ec6-b395-41fa-af30-3bd7b984a38d",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Description": "string",
+            "Account": [
+              {                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "80496010738761"
+              }
+            ]
+          },
+          {
+            "AccountId": "2b99602d-88c8-4bb9-b9a4-de0c39b9975e",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "Savings",
+            "Description": "string",
+            "Nickname": "Savings Account",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "80496010738762"
+              }
+            ]
+          },
+          {
+            "AccountId": "37fe236a-cb65-44f8-a8d8-f9a477f8ec0d",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CreditCard",
+            "Description": "string",
+            "Nickname": "Credit Card",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.PAN",
+                "Identification": "80496010738763"
+              },
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "80496010738763"
+              }
+            ]
+          }
+        ]
+      },
+      "Meta": {
+        "TotalPages": 2
+      },
+      "Links": {
+        "Self": "https://luat01-authorise-api.bankofscotland.co.uk/luat01/lbg/bos/open-banking/v3.1/aisp/accounts",
+        "Next": "{{request.requestLine.baseUrl}}/v3.1/aisp/accounts/next"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

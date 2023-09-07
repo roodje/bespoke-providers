@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/tpp",
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "email": "info@ttp.com",
+          "redirect_url": {
+            "AISP": [
+              "https://yolt.com/callback"
+            ],
+            "PISP": [
+              "https://yolt.com/callback"
+            ],
+            "CISP": [
+              "https://yolt.com/callback"
+            ]
+          },
+          "cancel_link": "https://www.test.com"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "uuid": "f123456b-4bc6-331e-a8b6-ba806a549c62",
+      "AISP": {
+        "redirect_url": [
+          "https://yolt.com/callback"
+        ],
+        "client_id": "8843e662-c45c-63c8-342e-123456f6bcef",
+        "client_secret": "cb31234f-1b8a-3b45-a132-ad4be4efb4dc",
+        "email": "info@ttp.com"
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

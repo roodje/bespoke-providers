@@ -1,0 +1,72 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v3.1/pisp/domestic-payments",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer bATusAcZE9sgY0NaAMy2jVqckEGs"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "test"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "ConsentId": "DIP_1_8_4c645ed0-3451-14eb-aa49-e342fc814dbd",
+            "Initiation": {
+              "InstructionIdentification": "${json-unit.any-string}",
+              "EndToEndIdentification": "FEF32557",
+              "InstructedAmount": {
+                "Amount": "-100.00",
+                "Currency": "GBP"
+              },
+              "DebtorAccount": {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "8272908780568576",
+                "Name": "Alex Mitchell"
+              },
+              "CreditorAccount": {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "1802968485593088",
+                "Name": "Jordan Bell"
+              },
+              "RemittanceInformation": {
+                "Unstructured": "Payment"
+              }
+            }
+          },
+          "Risk": {
+            "PaymentContextCode": "Other"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Code": "OB-ERR-123",
+      "Id": "123",
+      "Message": "Invalid Confirmation Request Body",
+      "Errors": [
+        {
+          "ErrorCode": "OB-ERR-123",
+          "Message": "Invalid Confirmation Request Body",
+          "Path": "nationwide/v3.1/pisp/domestic-payments",
+          "Url": "nationwide/v3.1/pisp/domestic-payments"
+        }
+      ]
+    }
+  }
+}

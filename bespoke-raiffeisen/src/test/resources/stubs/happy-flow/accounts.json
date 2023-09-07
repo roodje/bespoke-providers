@@ -1,0 +1,107 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/psd2-accounts-api-1.3.2-rbro/v1/accounts?withBalance=true",
+    "headers": {
+      "X-Request-ID": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "Authorization": {
+        "equalTo": "Bearer test-access-token"
+      },
+      "client_id": {
+        "matches": "22222222-2222-2222-2222-222222222222"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody":  {
+      "accounts": [
+        {
+          "resourceId": "EX09999991",
+          "iban": "AT611904300234573201",
+          "currency": "EUR",
+          "name": "Main Account1",
+          "product": "Main Product1",
+          "cashAccountType": "CACC",
+          "bic": "DABAIE1D",
+          "balances": [
+            {
+              "balanceType": "expected",
+              "balanceAmount": {
+                "amount": "157505546092544",
+                "currency": "EUR"
+              },
+              "referenceDate": "2017-01-25"
+            },
+            {
+              "balanceType": "expected",
+              "balanceAmount": {
+                "amount": "8216935980335104",
+                "currency": "EUR"
+              },
+              "referenceDate": "2017-01-26"
+            },
+            {
+              "balanceType": "interimAvailable",
+              "balanceAmount": {
+                "amount": "8623802514669568",
+                "currency": "EUR"
+              },
+              "referenceDate": "2017-01-25"
+            }
+          ],
+          "_links": {
+            "balances": "/v1/psd2-accounts-api-1.3.2-rbro/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/balances",
+            "transactions": "/v1/psd2-accounts-api-1.3.2-rbro/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/transactions"
+          },
+          "ownerName": "John Doe"
+        },
+        {
+          "resourceId": "EX09999992",
+          "iban": "AT611904300234573202",
+          "currency": "EUR",
+          "name": "Main Account2",
+          "product": "Main Product2",
+          "cashAccountType": "SVGS",
+          "bic": "DABAIE2D",
+          "balances": [
+            {
+              "balanceType": "expected",
+              "balanceAmount": {
+                "amount": "5181686765584384",
+                "currency": "EUR"
+              },
+              "referenceDate": "2017-02-25"
+            },
+            {
+              "balanceType": "interimAvailable",
+              "balanceAmount": {
+                "amount": "7751577808928768",
+                "currency": "EUR"
+              },
+              "referenceDate": "2017-02-25"
+            },
+            {
+              "balanceType": "interimAvailable",
+              "balanceAmount": {
+                "amount": "6953610925572096",
+                "currency": "EUR"
+              },
+              "referenceDate": "2017-02-25"
+            }
+          ],
+          "_links": {
+            "balances": "/v1/psd2-accounts-api-1.3.2-rbro/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/balances",
+            "transactions": "/v1/psd2-accounts-api-1.3.2-rbro/v1/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f/transactions"
+          },
+          "ownerName": "John Doe"
+        }
+      ]
+    }
+  }
+}

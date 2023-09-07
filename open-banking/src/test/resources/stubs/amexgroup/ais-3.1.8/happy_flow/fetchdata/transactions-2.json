@@ -1,0 +1,73 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/22289/transactions",
+    "queryParameters": {
+      "page": {
+        "equalTo": "1"
+      }
+    },
+    "headers": {
+      "x-client-id": {
+        "equalTo": "THE-CLIENT-ID"
+      },
+      "x-amex-api-key": {
+        "equalTo": "THE-CLIENT-ID"
+      },
+      "Authorization": {
+        "equalTo": "Bearer user-access-token"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "12345"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "22289",
+            "TransactionId": "789",
+            "TransactionReference": "Ref 3",
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2021-04-07T10:43:07+00:00",
+            "TransactionInformation": "Cash from Stefan",
+            "AddressLine": "Coventry",
+            "Amount": {
+              "Amount": "12.00",
+              "Currency": "GBP"
+            },
+            "CurrencyExchange": {
+              "SourceCurrency": "",
+              "ExchangeRate": "0"
+            },
+            "MerchantDetails": {
+              "MerchantName": "ABCMerchant",
+              "MerchantCategoryCode": "PAYM"
+            },
+            "CardInstrument": {
+              "CardSchemeName": "AmericanExpress",
+              "Name": "John Doe",
+              "Identification": "XXXX-XXXXXX-21009"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "{{request.requestLine.baseUrl}}/v3.1/aisp/accounts/22289/transactions?page=1"
+      },
+      "Meta": {
+        "TotalPages": 2
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

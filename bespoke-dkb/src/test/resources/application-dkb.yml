@@ -1,0 +1,4 @@
+lovebird:
+  dkbgroup:
+    dkb:
+      baseUrl: https://localhost:${wiremock.server.https-port}

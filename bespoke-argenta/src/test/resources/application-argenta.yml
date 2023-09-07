@@ -1,0 +1,5 @@
+lovebird:
+  argentagroup:
+    argenta:
+      base-url: https://localhost:${wiremock.server.https-port}
+      paginationLimit: 500

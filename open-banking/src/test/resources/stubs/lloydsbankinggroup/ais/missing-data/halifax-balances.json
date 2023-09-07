@@ -1,0 +1,72 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/110f7ec6-b395-41fa-af30-3bd7b984a38d/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "00000000-8cea-412d-b6ed-04aeb924eace"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "1238972887jdsIWNND"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "110f7ec6-b395-41fa-af30-3bd7b984a38d",
+            "Amount": {
+              "Amount": "1025.88",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimAvailable",
+            "DateTime": "2018-01-19T10:33:00+00:00",
+            "CreditLine": [
+              {
+                "Included": true,
+                "Amount": {
+                  "Amount": "10.00",
+                  "Currency": "GBP"
+                }
+              }
+            ]
+          },
+          {
+            "AccountId": "9b153464-5eb8-444e-aa2b-d8021dc759a8",
+            "Amount": {
+              "Amount": "25.88",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "Type": "InterimBooked",
+            "DateTime": "2018-01-19T10:33:00+00:00",
+            "CreditLine": [
+              {
+                "Included": false
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://authorise-api.halifax-online.co.uk/prod01/lbg/hfx/open-banking/v3.1/aisp/accounts/9b153464-5eb8-444e-aa2b-d8021dc759a8/balances"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

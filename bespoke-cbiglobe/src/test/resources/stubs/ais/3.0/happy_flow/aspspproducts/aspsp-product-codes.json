@@ -1,0 +1,55 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/platform/enabler/psd2orchestrator/tpp/aspsps/2.3.2/",
+    "queryParameters": {
+      "aspsp_code": {
+        "equalTo": "ASPSP_MM_01"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "matches": "^Bearer [a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "cpaas-transaction-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "aspsps": [
+        {
+          "id": "1b635a3e-2e67-4989-9215-51a619e49298",
+          "aspspCode": "ASPSP_MM_01",
+          "businessName": "ASPSP_MM_01",
+          "status": "1",
+          "attribute": [
+            {
+              "attributeName": "country",
+              "attributeValue": "IT"
+            }
+          ],
+          "creationDate": "2019-04-01T13:14:20.834-0400",
+          "updatedDate": "2019-04-01T13:14:20.834-0400",
+          "aspspProductsList": [
+            {
+              "aspspProductCode": "ASPSP_PRODUCT_MM_01",
+              "aspspProductDescription": "ASPSP_PRODUCT_MM_01",
+              "aspspProductUuid": "27bad234-7e9d-4251-b939-d26f23357930"
+            },
+            {
+              "aspspProductCode": "ASPSP_PRODUCT_MM_02",
+              "aspspProductDescription": "ASPSP_PRODUCT_MM_02",
+              "aspspProductUuid": "ed05c6ee-db84-4236-8e2a-6a666124197c"
+            }
+          ]
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

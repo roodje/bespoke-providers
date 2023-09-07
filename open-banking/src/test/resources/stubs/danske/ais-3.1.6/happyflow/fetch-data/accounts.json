@@ -1,0 +1,56 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/open-banking/v3.1/aisp/accounts",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AccessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "551c6cce-fc16-49b9-8b16-ab66fea5eb35"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf7AeAAI"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "transformers": [
+      "response-template"
+    ],
+    "jsonBody": {
+      "Data": {
+        "Account": [
+          {
+            "AccountId": "77f5cb47-fb53-49e7-acd7-f8ed17ba4396",
+            "Currency": "GBP",
+            "AccountType": "Personal",
+            "AccountSubType": "CurrentAccount",
+            "Account": [
+              {
+                "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                "Identification": "56037150203998"
+              },
+              {
+                "SchemeName": "UK.OBIE.IBAN",
+                "Identification": "GB33DABA56037150203998"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://obp-api.danskebank.com/open-banking/v3.1/aisp/accounts/"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "x-fapi-interaction-id": "{{request.headers.x-fapi-interaction-id}}"
+    }
+  }
+}

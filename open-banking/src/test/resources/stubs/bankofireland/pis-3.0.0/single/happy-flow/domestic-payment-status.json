@@ -1,0 +1,60 @@
+{
+  "request": {
+    "url": "/v3.0/pisp/domestic-payments/e23f5d5cd08d44c3993243ad3f19d56e",
+    "method": "GET",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "d10f24f4-032a-4843-bfc9-22b599c7ae2d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer DEjYK7CWVFHi71RteqxmKv1NO2a"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0011800000tfV9aBBE"
+      },
+      "Accept": {
+        "matches": "^application/json$"
+      },
+      "x-idempotency-key": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-4[a-zA-Z0-9]{3}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "DomesticPaymentId": "e23f5d5cd08d44c3993243ad3f19d56e",
+        "ConsentId": "331d76df48ed41229b67f062dd55e340",
+        "CreationDateTime": "2019-08-20T13:09:13.372Z",
+        "Status": "AcceptedCreditSettlementCompleted",
+        "StatusUpdateDateTime": "2019-08-20T13:09:14.413Z",
+        "Initiation": {
+          "InstructionIdentification": "h3ce0bdd-3460-48c0-ae63-b0981",
+          "EndToEndIdentification": "524a62e9-d",
+          "InstructedAmount": {
+            "Amount": "0.01",
+            "Currency": "GBP"
+          },
+          "CreditorAccount": {
+            "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+            "Identification": "41141266529926",
+            "Name": "John Doe"
+          },
+          "RemittanceInformation": {
+            "Reference": "Unstructured"
+          }
+        }
+      },
+      "Links": {
+        "Self": "https://api.natwest.com/open-banking/v3.1/pisp/domestic-payments/e23f5d5cd08d44c3993243ad3f19d56e"
+      },
+      "Meta": {
+        "TotalPages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    }
+  }
+}

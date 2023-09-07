@@ -1,0 +1,53 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/yoltbank/openbanking/aisp/account-access-consents",
+    "headers": {
+      "x-fapi-interaction-id": {
+        "equalTo": "93bac548-d2de-4546-b106-880a5018460d"
+      },
+      "Authorization": {
+        "equalTo": "Bearer DEjYK7CWVFHi71RteqxmKv1NO2a"
+      },
+      "Content-Type": {
+        "matches": "application/json(;charset=UTF\\-8)?"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "Data": {
+            "Permissions": [
+              "ReadAccountsBasic"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "fc08f64c-b5d1-47db-9368-17e7a7801fec",
+        "Status": "AwaitingAuthorisation",
+        "StatusUpdateDateTime": "2020-11-12T03:20:49+00:00",
+        "CreationDateTime": "2020-11-12T03:20:49+00:00",
+        "Permissions": [
+          "ReadAccountsBasic"
+        ]
+      },
+      "Links": {
+        "Self": "/yoltbank/openbanking/aisp/account-access-consents/fc08f64c-b5d1-47db-9368-17e7a7801fec"
+      },
+      "Meta": {
+        "TotalPages": 1
+      },
+      "Risk": {}
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "x-jws-signature": "eyJhbGciOiJSUzM4NCIsImtpZCI6InlvbHRiYW5rIiwiamt1IjoiIiwiYjY0IjpmYWxzZSwiY3JpdCI6WyJiNjQiXX0..OqyhZviE5BjjQD8Jz5N2JbFPieKtK7fN2EK1Fl4fQHAUmcwhdM7XDbc9L97YmXITIUaWqxMdr4sZG8HjvDI73pOeQj1RsW0mdweTcFjcTRmJVvWzqS4r6NcW8jxDRo_p9THZmk1iyxMGeqhmd1XTSfDvfBrSDisyucQv2GCrKPHzQoztfdpTCeO9psFiYGTHzdoJa8PvFTEuWEg3a9V4Oin5LFApmm6yvzGhtnBsCQpFc7ZHwHeN5z5UeBJtKCsuxHJ4o7TiPuKKN61wGxhWqY3rFi5Nt2PTqkzgI7CgwWspDTdV9bnmsZQTzr4yHxkR80cVAgQ6Ha4-Rt7ybxxLUMovQVdJcTF5VO3fOwD9Xjz0_MoDCERKIKfgh-HkuVzfacVDJIa9l-8oC_jztJSEr9QksSFL8JnBlY1VMlZtjeP07LdUYxLGGLhurlIswwA-Yaq_5RsSuUxATnGlnAJnBoZLd8oxnDQg0vmNnItbFFSyQFabnE2sFQa4XJcL_lNyMAsODyK1nGZf-ydssvewjIAcgCepSxL_kRZCD5UzXOzPoz4FbeK4086Swh7LOhGFIeORBDagdkLUCl6FCHi1Cu3sdcD2rW0Z9xkMQR_sBjN14cQcyfKEgz4ttfDPoaS1sMxmdrfqRY9yiK8LygEa1ogLd76SFiZYmD_2c3kdSUk"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.1/aisp/accounts/10000000000001449160/direct-debits",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer accessToken"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "d0a9b85f-9715-4d16-a33d-4323ceab5254"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0017440000hdQV5CCT"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "DirectDebit": [
+          {
+            "AccountId": "10000000000001449160",
+            "DirectDebitStatusCode": "Active",
+            "MandateIdentification": "17",
+            "Name": "PAYMENT",
+            "PreviousPaymentAmount": {
+              "Amount": "39.98",
+              "Currency": "GBP"
+            },
+            "PreviousPaymentDateTime": "2020-11-04T00:00:00Z"
+          },
+          {
+            "AccountId": "10000000000001449160",
+            "DirectDebitStatusCode": "Active",
+            "MandateIdentification": "12",
+            "Name": "BARCLAYCARD",
+            "PreviousPaymentAmount": {
+              "Amount": "0.00",
+              "Currency": "GBP"
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://telesto.api.barclays/open-banking/v3.1/aisp/accounts/10000000000001449160/direct-debits"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

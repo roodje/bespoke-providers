@@ -1,0 +1,58 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/third-party-onboarding/v1/third-party",
+    "headers": {
+      "content-type": {
+        "equalTo": "application/json"
+      },
+      "x-request-id": {
+        "matches": "^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$"
+      },
+      "x-jws-signature": {
+        "matches": "^[A-Za-z0-9-_=]+\\.\\.[A-Za-z0-9-_.+\\/=]*$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "clientName": "Yolt Application",
+          "clientDescription": "Third Party Provider",
+          "clientVersion": "1",
+          "redirectUris": [
+            "https://yolt.com/callback"
+          ],
+          "uri": "https://www.yolt.com/",
+          "clientContacts": {
+            "contactType": "Business",
+            "firstName": "John",
+            "lastName": "Smith",
+            "email": "example@yolt.com",
+            "phone": "0001123321123"
+          },
+          "tppContacts": {
+            "email": "example@yolt.com",
+            "phone": "0001123321123",
+            "website": "https://www.yolt.com/"
+          }
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "jsonBody": {
+      "grantedRoles": [
+        "pisp",
+        "aisp"
+      ],
+      "clientSecretExpiresAt": 0,
+      "clientIdIssuedAt": 1565712924549,
+      "clientId": "registered-client-id",
+      "clientSecret": "registered-client-secret"
+    }
+  }
+}

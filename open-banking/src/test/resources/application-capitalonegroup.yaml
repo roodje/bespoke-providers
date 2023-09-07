@@ -1,0 +1,17 @@
+lovebird:
+  capitalonegroup:
+    capitalone:
+      audience: test-audience
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/oauth/token
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}/authorize
+
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

@@ -1,0 +1,92 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v3.0/aisp/accounts/82802014-b8ee-497f-88fa-848187020e9d/balances",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer j4HmjDMaBdSXUQQzN1GpdHoozGho"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "5008e82d-f5ac-42fe-8f07-a49b025f3c2e"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0011800000tfV9aBBE"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "Data": {
+        "Balance": [
+          {
+            "AccountId": "82802014-b8ee-497f-88fa-848187020e9d",
+            "Amount": {
+              "Amount": "13.37",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Debit",
+            "DateTime": "2018-05-11T00:00:00+01:00",
+            "Type": "InterimBooked",
+            "CreditLine": [
+              {
+                "Included": false,
+                "Amount": {
+                  "Amount": "86.63",
+                  "Currency": "GBP"
+                },
+                "Type": "Available"
+              },
+              {
+                "Included": false,
+                "Amount": {
+                  "Amount": "100",
+                  "Currency": "GBP"
+                },
+                "Type": "Credit"
+              }
+            ]
+          },
+          {
+            "AccountId": "82802014-b8ee-497f-88fa-848187020e9d",
+            "Amount": {
+              "Amount": "12.50",
+              "Currency": "GBP"
+            },
+            "CreditDebitIndicator": "Credit",
+            "DateTime": "2018-05-11T00:00:00+01:00",
+            "Type": "InterimAvailable",
+            "CreditLine": [
+              {
+                "Included": false,
+                "Amount": {
+                  "Amount": "86.63",
+                  "Currency": "GBP"
+                },
+                "Type": "Available"
+              },
+              {
+                "Included": false,
+                "Amount": {
+                  "Amount": "100",
+                  "Currency": "GBP"
+                },
+                "Type": "Credit"
+              }
+            ]
+          }
+        ]
+      },
+      "Links": {
+        "Self": "v3.0/aisp/accounts/82802014-b8ee-497f-88fa-848187020e9d/balances"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+lovebird:
+  alpha:
+    alphabankromania:
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthAuthorizationUrl: https://localhost:${wiremock.server.https-port}
+      bankId: x-ab-bank-id
+      paginationLimit: 1000
+

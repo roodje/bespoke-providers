@@ -1,0 +1,123 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/berlingroup/v1/accounts/account2/transactions",
+    "queryParameters": {
+      "dateFrom": {
+        "matches": "^[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}$"
+      },
+      "bookingStatus": {
+        "equalTo": "both"
+      },
+      "range": {
+        "absent": null
+      }
+    },
+    "headers": {
+      "X-Request-Id": {
+        "matches": "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
+      },
+      "digest": {
+        "matches": ".+"
+      },
+      "signature": {
+        "matches": "keyId=\"SN=.+,CA=.+\",algorithm=\"rsa-sha512\",headers=\"digest x-request-id\",signature=\".+\""
+      },
+      "TPP-signature-certificate": {
+        "matches": "^-----BEGIN CERTIFICATE-----    [^\n]+-----END CERTIFICATE-----$"
+      },
+      "psu-ip-address": {
+        "equalTo": "192.168.0.1"
+      },
+      "apiKey": {
+        "equalTo": "TEST_API_KEY"
+      },
+      "Authorization": {
+        "equalTo": "Bearer TEST_ACCESS_TOKEN"
+      },
+      "consent-id": {
+        "equalTo": "TEST_CONSENT_ID"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "transactions": {
+        "booked": [
+          {
+            "transactionAmount": {
+              "amount": "8637.31",
+              "currency": "EUR"
+            },
+            "debtorAccount": {
+              "iban": "BE50999090049618"
+            },
+            "bookingDate": "2020-12-31",
+            "remittanceInformationUnstructured": "PSQDNJPUDAUHVLAVXZIH",
+            "remittanceInformationStructured": "",
+            "debtorName": "KMUJGMCVHOEWCCCPDGLO",
+            "proprietaryBankTransactionCode": "P7MT9W",
+            "entryReference": "B7H31CWDOS4K1F13",
+            "_links": {
+              "href": ""
+            }
+          },
+          {
+            "transactionAmount": {
+              "amount": "6843.46",
+              "currency": "EUR"
+            },
+            "debtorAccount": {
+              "iban": "BE50999090049618"
+            },
+            "bookingDate": "2020-12-31",
+            "remittanceInformationUnstructured": "",
+            "remittanceInformationStructured": "VCUTZERMRSQPNGSMWCAG",
+            "debtorName": "ENZCASJWXSNWOOHRSGIT",
+            "proprietaryBankTransactionCode": "JF",
+            "entryReference": "B7H31CWDOQ7K1CLR",
+            "_links": {
+              "href": ""
+            }
+          },
+          {
+            "transactionAmount": {
+              "amount": "-4343.21",
+              "currency": "EUR"
+            },
+            "creditorAccount": {
+              "iban": "BE50999090049618"
+            },
+            "bookingDate": "2020-12-31",
+            "remittanceInformationUnstructured": "JITKAZGKSRRDSNNHAOEN",
+            "remittanceInformationStructured": "",
+            "creditorName": "RLPBADOUNJXTXMIEHKIB",
+            "proprietaryBankTransactionCode": "8R5699",
+            "entryReference": "B7H31CWDOP4K1B09",
+            "_links": {
+              "href": ""
+            }
+          }
+        ],
+        "_links": {
+          "first": {
+            "href": "/v1/accounts/account2/transactions?bookingStatus=both&dateFrom=2019-10-11&range=0-2"
+          },
+          "account": {
+            "href": "/v1/accounts/account2"
+          },
+          "self": {
+            "href": "/v1/accounts/account2/transactions?bookingStatus=both&dateFrom=2019-10-11&range=0-2"
+          }
+        }
+      },
+      "_links": {
+        "href": ""
+      }
+    }
+  }
+}

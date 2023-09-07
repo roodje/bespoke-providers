@@ -1,0 +1,142 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/v3.1/aisp/accounts/66c39bb1-74f9-454c-a0df-9996bb50560a/transactions",
+    "queryParameters": {
+      "fromBookingDateTime": {
+        "matches": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\+[0-9]{2}:[0-9]{2}$"
+      }
+    },
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer eyJraWQiOiJKTzJQVVhfSGlTU3JLUlVMS01EcHNwMzRzaHciLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1TTJ9.eyJhdWQiOiJodHRwczpcL1wvY2TuYXBpLW5jLmN5YnNlcnZpY2VzLmNvLnVrIiwic3ViIjoiMjhmNDgxYTktOTBhYy00OWExLWEyMTItZjM5ZTk5OWViZTJjIiwib3BlbmJhbmtpbmdfaW50ZW50X2lkIjoiNjAxZjE2NjYtNTE2OC00ZTdmLTk5MzItN2MyZjI1Y2NiMDM5Iiwic2NvcGUiOiJhY2NvdW50cyBvcGVuaWQiLCJpc3MiOiJodHRwczpcL1wvY2IuYXBpLW5jLTN5YnNlcnZpY2VzLmNvLnVrIiwiZThwIjoxNjEzNjgwMTI0LCJpYXQiOjE2MTM2NzY1MjQsImNsaWVudF9pZCI6IjI4ZjQ4MWE5LTkwYWMtNDlhMS1hMjEyLWYzOWU5OTllYmUyYyIsImp0aSI6IjZmZGQzMDEyLTg3MjktNDA2Ni05MWFhLWQ0MzJiMTk4NDM3ZSJ9.ry6sChDHLvFGi1VPMCClTsV5PFlMiknsjwNjqK2UJjbHybks18UQGtdD79OXtz8kAooLLEqdidWsMjpH2p5tO3g9FTkIUBeWLUDm6jlhCL_ZYOTHmfcQl_rnC6rFq_OuHaK_EtkfiDWYI3LATckicQiDPoFry2u0D8sybJGGDRKCJoxw24cB4nLtvAK3FHYdKsI6IHU2klWnk986tdHs6GA_DOs-UIVQtNN9isIaTFJgsRgKitLEw2Bdolmpw0B2V2XcV5nq5qPuWGzdbhcIt4P-uwAxOZLkCW7ddvjveZV44enJ7DK-HagJT2dB59zhSQ3tPmrN9dKCvC-5kgTHwg"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "4bf28754-9c17-41e6-bc46-6cf98fff679"
+      },
+      "Accept": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "transformers": [
+      "response-template"
+    ],
+    "jsonBody": {
+      "Data": {
+        "Transaction": [
+          {
+            "AccountId": "66c39bb1-74f9-454c-a0df-9996bb50560a",
+            "TransactionId": null,
+            "CreditDebitIndicator": "Credit",
+            "Status": "Pending",
+            "BookingDateTime": "2020-11-10T00:00:00+01:00",
+            "ValueDateTime": "2020-11-10T00:00:00+01:00",
+            "Amount": {
+              "Amount": "4.72",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "Interest",
+              "Issuer": "Virgin Money"
+            },
+            "TransactionInformation": "INTEREST EARNED",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimAvailable",
+              "Amount": {
+                "Amount": "2904.72",
+                "Currency": "GBP"
+              }
+            }
+          },
+          {
+            "AccountId": "66c39bb1-74f9-454c-a0df-9996bb50560a",
+            "TransactionId": null,
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2020-11-02T00:00:00+01:00",
+            "ValueDateTime": "2020-11-02T00:00:00+01:00",
+            "Amount": {
+              "Amount": "250.00",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "Deposit",
+              "Issuer": "Virgin Money"
+            },
+            "TransactionInformation": "Payment from - Hood",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimAvailable",
+              "Amount": {
+                "Amount": "2900.00",
+                "Currency": "GBP"
+              }
+            }
+          },
+          {
+            "AccountId": "66c39bb1-74f9-454c-a0df-9996bb50560a",
+            "TransactionId": null,
+            "CreditDebitIndicator": "Debit",
+            "Status": "Booked",
+            "BookingDateTime": "2020-10-22T00:00:00+01:00",
+            "ValueDateTime": "2020-10-22T00:00:00+01:00",
+            "Amount": {
+              "Amount": "50.00",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "Payment",
+              "Issuer": "Virgin Money"
+            },
+            "TransactionInformation": "Payment to - 201216 01040800",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimAvailable",
+              "Amount": {
+                "Amount": "2650.00",
+                "Currency": "GBP"
+              }
+            }
+          },
+          {
+            "AccountId": "66c39bb1-74f9-454c-a0df-9996bb50560a",
+            "TransactionId": null,
+            "CreditDebitIndicator": "Credit",
+            "Status": "Booked",
+            "BookingDateTime": "2020-10-21T00:00:00+01:00",
+            "ValueDateTime": "2020-10-21T00:00:00+01:00",
+            "Amount": {
+              "Amount": "200.00",
+              "Currency": "GBP"
+            },
+            "ProprietaryBankTransactionCode": {
+              "Code": "Payment",
+              "Issuer": "Virgin Money"
+            },
+            "TransactionInformation": "Payment to - 301216 01050900",
+            "Balance": {
+              "CreditDebitIndicator": "Credit",
+              "Type": "InterimAvailable",
+              "Amount": {
+                "Amount": "2700.00",
+                "Currency": "GBP"
+              }
+            }
+          }
+        ]
+      },
+      "Links": {
+        "Self": "https://api.openbanking.virginmoney.com/open-banking/v3.1/aisp/accounts/66c39bb1-74f9-454c-a0df-9996bb50560a/transactions",
+        "Next": "{{request.requestLine.baseUrl}}/v3.1/aisp/accounts/66c39bb1-74f9-454c-a0df-9996bb50560a/transactions?fromBookingDateTime=2015-01-01T00%3A00%3A00%2B00%3A00&page=2"
+      },
+      "Meta": {}
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/apiplatform/v2/oauth/token_revocation/mac",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/x-www-form-urlencoded"
+      },
+      "Authentication": {
+        "matches": "MAC.id=\"THE-CLIENT-ID\",ts=\"[0-9]+\",nonce=\"[0-9a-z-]+:AMEX\",mac=\".+\""
+      },
+      "x-amex-api-key": {
+        "contains": "THE-CLIENT-ID"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "contains": "grant_type=revoke"
+      },
+      {
+        "contains": "request_type=single"
+      },
+      {
+        "contains": "access_token=access-token-to-revoke"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8"
+    },
+    "jsonBody": {
+      "result": "success",
+      "revoked_tokens": [
+        "00142369-3dda-49b4-8671-efaa9c7d3e91"
+      ],
+      "invalid_tokens": [
+        ""
+      ]
+    }
+  }
+}

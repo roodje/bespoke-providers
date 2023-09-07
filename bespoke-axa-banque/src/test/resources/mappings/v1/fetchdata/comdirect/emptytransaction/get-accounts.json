@@ -1,0 +1,60 @@
+{
+  "request": {
+    "url": "/v1/accounts?withBalance=true",
+    "method": "GET",
+    "headers": {
+      "X-Request-ID": {
+        "equalTo": "traceId"
+      },
+      "Consent-ID": {
+        "equalTo": "consentId"
+      },
+      "Authorization": {
+        "equalTo": "Bearer THE-ACCESS-TOKEN"
+      },
+      "PSU-IP-Address": {
+        "equalTo": "127.0.1.2"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "accounts": [
+        {
+          "resourceId": "8EAAC7F4F3E75F786FB71B7C111111",
+          "name": "Visa-Karte (Kreditkarte)",
+          "bic": "COBADEHD055",
+          "balances": [
+            {
+              "balanceAmount": {
+                "currency": "EUR",
+                "amount": 0.0
+              },
+              "referenceDate": "2020-12-07",
+              "balanceType": "closingBooked"
+            }
+          ],
+          "currency": "EUR",
+          "ownerName": "Stephan Surname",
+          "maskedPan": "426354XXXXXX7716",
+          "_links": {
+            "account": {
+              "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/8EAAC7F4F3E75F786FB71B7C111111"
+            },
+            "balances": {
+              "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/8EAAC7F4F3E75F786FB71B7C111111/balances"
+            },
+            "transactions": {
+              "href": "https://xs2a-api.comdirect.de/berlingroup/v1/accounts/8EAAC7F4F3E75F786FB71B7C111111/transactions"
+            }
+          },
+          "product": "Kreditkarte"
+        }
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

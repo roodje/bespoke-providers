@@ -1,0 +1,25 @@
+lovebird:
+  barclaysgroup:
+    barclays:
+      pagination-limit: 2
+      baseUrl: https://localhost:${wiremock.server.https-port}
+      oAuthTokenUrl: https://localhost:${wiremock.server.https-port}/token.oauth2
+      customerTypes:
+        - code: PERSONAL
+          type: Personal Customer
+          authorizationUrl: https://personalBarclays.com/as/authorization.oauth2
+        - code: BARCLAYS_CARD
+          type: Barclays Card
+          authorizationUrl: https://barclaysCard.com/as/authorization.oauth2
+        - code: BUSINESS
+          type: Business Banking customer
+          authorizationUrl: https://businessBarclays.com/as/authorization.oauth2
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

@@ -1,0 +1,61 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/open-banking/v3.1/aisp/account-access-consents",
+    "headers": {
+      "Authorization": {
+        "equalTo": "Bearer AAIkMDM5NDJmZTUtOGNiMi00NzVmLWIwMTItNDgyZjM0ZTExYzI58q0t070fBgubnd8pgwu3kCwNt91ZJhhW3wfUl2UulSRjiKcfWfQQ9J9i8OU2QOSciVIl8mQ69GO7mDZ0uEv8INrboRu4fesBmEMq7PS87O7LrN7isyqwzpjKXBZR2JJkL3nF10SuDt_l4SItojPO4"
+      },
+      "x-fapi-interaction-id": {
+        "equalTo": "551c6cce-fc16-49b9-8b16-ab66fea5eb35"
+      },
+      "Content-Type": {
+        "equalTo": "application/json;charset=UTF-8"
+      },
+      "x-fapi-financial-id": {
+        "equalTo": "0015800000jf7AeAAI"
+      },
+      "Accept": {
+        "matches": "^application/json(, application/\\*\\+json)?$"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"Data\":{\"Permissions\":[\"ReadAccountsDetail\",\"ReadBalances\",\"ReadDirectDebits\",\"ReadProducts\",\"ReadStandingOrdersDetail\",\"ReadTransactionsCredits\",\"ReadTransactionsDebits\",\"ReadTransactionsDetail\"]},\"Risk\":{}}"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "jsonBody": {
+      "Data": {
+        "ConsentId": "11122233-317c-451c-8438-3b3fb91466e1",
+        "AccountRequestId": "urn:accounts:v1:35d62f61-3e33-4660-a1db-19f9bd044bf8",
+        "Status": "AwaitingAuthorisation",
+        "Permissions": [
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadDirectDebits",
+          "ReadProducts",
+          "ReadStandingOrdersDetail",
+          "ReadTransactionsCredits",
+          "ReadTransactionsDebits",
+          "ReadTransactionsDetail"
+        ],
+        "CreationDateTime": "2018-01-27T12:52:30.129Z"
+      },
+      "Risk": {
+      },
+      "Links": {
+        "self": "{{request.requestLine.baseUrl}}/open-banking/v3.1/aisp/account-access-consents/urn:accounts:v2:35d62f61-3e33-4660-a1db-19f9bd044bf8"
+      },
+      "Meta": {
+        "total-pages": 1
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json; charset=UTF-8",
+      "x-fapi-interaction-id" : "{{request.headers.x-fapi-interaction-id}}"
+    }
+  }
+}
